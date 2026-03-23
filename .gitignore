@@ -1,0 +1,15 @@
+# Ignore everything except the web output and config
+*.md
+*.py
+__pycache__/
+*.pyc
+
+# Keep web output
+!web/
+!web/**
+
+# Keep config files
+!vercel.json
+!.gitignore
+!package.json
+!README.md
