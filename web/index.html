@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The One Root of Marketing — รากแก้วแห่งการตลาด</title>
+    <title>The One Root of Marketing — รากแก้วการตลาด</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
 
         /* ═══════════════════════════════════════════════
@@ -265,10 +265,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 2rem;
+            padding: 4rem 2rem;
             background:
-                radial-gradient(ellipse 60% 50% at 50% 45%, rgba(139, 105, 20, 0.12) 0%, transparent 70%),
-                linear-gradient(160deg, #1C1917 0%, #2D2720 50%, #1C1917 100%);
+                radial-gradient(ellipse 50% 40% at 50% 40%, rgba(196, 149, 106, 0.08) 0%, transparent 70%),
+                linear-gradient(175deg, #15120F 0%, #1C1917 30%, #252017 55%, #1C1917 80%, #12100E 100%);
             color: #FAF6F0;
             position: relative;
             overflow: hidden;
@@ -278,65 +278,105 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 100%, rgba(0,0,0,0.4) 0%, transparent 60%);
+            background:
+                radial-gradient(circle at 50% 50%, rgba(139, 105, 20, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 50% 100%, rgba(0,0,0,0.5) 0%, transparent 50%);
             pointer-events: none;
         }
 
-        .cover-ornament {
-            font-size: 1.2rem;
+        .cover-top-ornament,
+        .cover-bottom-ornament {
+            font-size: 0.55rem;
             color: var(--accent-light);
-            letter-spacing: 0.8em;
-            margin: 1rem 0;
-            opacity: 0.45;
-            padding-right: 0.8em;
+            letter-spacing: 0.3em;
+            opacity: 0.3;
+        }
+
+        .cover-top-ornament {
+            margin-bottom: 2rem;
+        }
+
+        .cover-bottom-ornament {
+            margin-top: 2rem;
+        }
+
+        .cover-content {
+            position: relative;
+            margin: 1rem 0 2.5rem;
+        }
+
+        .cover-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 300;
+            letter-spacing: 0.6em;
+            color: var(--accent-light);
+            margin: 0 0 0.5rem;
+            opacity: 0.7;
+            text-transform: uppercase;
         }
 
         .cover-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.2rem);
+            font-family: 'Playfair Display', 'Noto Serif Thai', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 700;
-            letter-spacing: 0.06em;
-            line-height: 1.2;
+            font-style: italic;
+            letter-spacing: 0.02em;
+            line-height: 1.0;
             margin: 0;
-            text-shadow: 0 2px 30px rgba(139, 105, 20, 0.15);
+            text-shadow: 0 2px 40px rgba(139, 105, 20, 0.12);
+        }
+
+        .cover-of {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--accent-light);
+            margin: 0.1rem 0;
+            opacity: 0.7;
+        }
+
+        .cover-title-2 {
+            font-size: clamp(2.6rem, 7vw, 4.8rem);
         }
 
         .cover-subtitle {
             font-family: 'Noto Serif Thai', serif;
-            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.55rem);
             color: var(--accent-light);
-            margin: 0.8rem 0 0;
+            margin: 1.5rem 0 0;
             font-weight: 400;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
         }
 
         .cover-line {
-            width: 80px;
+            width: 60px;
             height: 1px;
             background: linear-gradient(90deg, transparent, var(--accent-light), transparent);
-            margin: 2.5rem auto;
-            opacity: 0.6;
+            margin: 1.8rem auto 0;
+            opacity: 0.4;
         }
 
         .cover-tagline {
             font-family: 'Noto Serif Thai', serif;
-            font-size: clamp(0.95rem, 1.8vw, 1.12rem);
-            line-height: 2;
-            color: #B8B0A4;
-            max-width: 520px;
+            font-size: clamp(0.88rem, 1.6vw, 1.05rem);
+            line-height: 2.1;
+            color: #9A928A;
+            max-width: 480px;
             margin: 0 auto;
             font-style: italic;
         }
 
         .cover-author {
             font-family: 'Prompt', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 400;
             color: var(--accent-light);
-            margin-top: 2.5rem;
-            letter-spacing: 0.18em;
+            margin-top: 2rem;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            opacity: 0.85;
+            opacity: 0.6;
         }
 
         .cover-scroll-hint {
@@ -865,7 +905,10 @@
 
             body { line-height: 1.78; }
 
-            .cover-title { font-size: 2.2rem; }
+            .cover-title { font-size: clamp(2.4rem, 10vw, 3rem); }
+            .cover-title-2 { font-size: clamp(2rem, 9vw, 2.6rem); }
+            .cover-label { font-size: 0.65rem; letter-spacing: 0.4em; }
+            .cover-of { font-size: 1rem; }
 
             .chapter-section {
                 padding: 2rem 1.3rem 3rem;
@@ -1049,7 +1092,7 @@
         <div class="sidebar-header">
             <div class="sidebar-logo">&#x2741;</div>
             <h2 class="sidebar-title">The One Root<br>of Marketing</h2>
-            <p class="sidebar-subtitle">รากแก้วแห่งการตลาด</p>
+            <p class="sidebar-subtitle">รากแก้วการตลาด</p>
         </div>
         <ul class="toc-list">
             <li class=""><a class="toc-link" href="#preface" data-target="preface">คำนำผู้เขียน</a></li>
@@ -1088,13 +1131,18 @@
 
         <!-- Cover Section -->
         <section id="cover" class="cover-section">
-            <div class="cover-ornament">&#x2726;</div>
-            <h1 class="cover-title">The One Root<br>of Marketing</h1>
-            <p class="cover-subtitle">รากแก้วแห่งการตลาด</p>
-            <div class="cover-line"></div>
+            <div class="cover-top-ornament">&#x2726;&ensp;&#x2726;&ensp;&#x2726;</div>
+            <div class="cover-content">
+                <p class="cover-label">T H E</p>
+                <h1 class="cover-title">One Root</h1>
+                <p class="cover-of">of</p>
+                <h1 class="cover-title cover-title-2">Marketing</h1>
+                <div class="cover-line"></div>
+                <p class="cover-subtitle">รากแก้วการตลาด</p>
+            </div>
             <p class="cover-tagline">&ldquo;การตลาดทุกรูปแบบ ทุกยุค ทุกแพลตฟอร์ม<br>มีรากแก้วเพียงหนึ่งเดียว คือจิตวิทยาของความเป็นมนุษย์&rdquo;</p>
             <p class="cover-author">Root Cee.</p>
-            <div class="cover-ornament">&#x2726;</div>
+            <div class="cover-bottom-ornament">&#x2726;&ensp;&#x2726;&ensp;&#x2726;</div>
             <a href="#preface" class="cover-scroll-hint">เริ่มอ่าน &darr;</a>
         </section>
 
@@ -3846,7 +3894,7 @@ A: <span class="qtext">นี่คือผลลัพธ์จริงจา
                 <h1>One-Page Summary</h1>
 <h2 class="chapter-subtitle">ทั้งเล่มใน 1 หน้า</h2>
 
-<p><strong>The One Root of Marketing: รากแก้วแห่งการตลาด</strong></p>
+<p><strong>The One Root of Marketing: รากแก้วการตลาด</strong></p>
 <blockquote>
 <p><em><span class="qtext">การตลาดทุกรูปแบบ ทุกยุค ทุกแพลตฟอร์ม มีรากแก้วเพียงหนึ่งเดียว จิตวิทยาของความเป็นมนุษย์</span></em></p>
 </blockquote>
