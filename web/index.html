@@ -423,17 +423,6 @@
             color: var(--heading);
         }
 
-        /* Drop cap for first paragraph of each chapter */
-        .chapter-body > p:first-of-type::first-letter {
-            font-family: 'Noto Serif Thai', 'Prompt', serif;
-            font-size: 3.2em;
-            float: left;
-            line-height: 0.85;
-            margin: 0.05em 0.12em 0 0;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
         /* ── Typography ── */
         h1 {
             font-family: 'Prompt', sans-serif;
@@ -543,8 +532,7 @@
 
         p {
             margin: 0 0 1.4rem;
-            text-align: justify;
-            text-justify: inter-word;
+            text-align: left;
             word-break: break-word;
         }
 
@@ -870,9 +858,6 @@
                 overflow-x: hidden;
             }
 
-            p {
-                text-align: left;
-            }
         }
 
         @media (max-width: 600px) {
@@ -899,7 +884,6 @@
             }
 
             p {
-                text-align: left;
                 word-spacing: normal;
                 margin: 0 0 1.25rem;
                 line-height: 1.78;
@@ -907,11 +891,6 @@
 
             .chapter-body > p:first-of-type {
                 font-size: 1.02em;
-            }
-
-            .chapter-body > p:first-of-type::first-letter {
-                font-size: 2.6em;
-                margin: 0.05em 0.1em 0 0;
             }
 
             li {
