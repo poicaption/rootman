@@ -70,10 +70,11 @@
             font-family: 'Sarabun', 'Noto Serif Thai', Georgia, serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.95;
+            line-height: 1.85;
             margin: 0;
             padding: 0;
             transition: background 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* ── Progress Bar ── */
@@ -368,9 +369,9 @@
 
         /* ── Chapter Sections ── */
         .chapter-section {
-            max-width: 760px;
+            max-width: 720px;
             margin: 0 auto;
-            padding: 2rem 2.5rem 5rem;
+            padding: 3rem 2.5rem 5rem;
         }
 
         .chapter-section + .chapter-section {
@@ -379,6 +380,12 @@
 
         .chapter-body > :first-child {
             margin-top: 0;
+        }
+
+        .chapter-body > p:first-of-type {
+            font-size: 1.05em;
+            line-height: 1.9;
+            color: var(--heading);
         }
 
         /* ── Typography ── */
@@ -394,13 +401,24 @@
 
         h2 {
             font-family: 'Prompt', sans-serif;
-            font-size: 1.45rem;
+            font-size: 1.4rem;
             font-weight: 600;
             color: var(--heading);
             line-height: 1.4;
-            margin: 3rem 0 1.2rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent);
+            margin: 3.5rem 0 1.3rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent);
         }
 
         .chapter-subtitle {
@@ -446,14 +464,16 @@
 
         h3 {
             font-family: 'Prompt', sans-serif;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--heading);
-            margin: 2.4rem 0 0.8rem;
+            color: var(--accent-light);
+            margin: 2.5rem 0 0.8rem;
+            padding-left: 0.8rem;
+            border-left: 3px solid var(--accent);
         }
 
         p {
-            margin: 0 0 1.2rem;
+            margin: 0 0 1.4rem;
             text-align: justify;
             text-justify: inter-word;
             word-break: break-word;
@@ -461,11 +481,12 @@
 
         strong {
             font-weight: 700;
-            color: var(--heading);
+            color: var(--accent-light);
         }
 
         em {
             font-style: italic;
+            color: var(--text-secondary);
         }
 
         a {
@@ -481,11 +502,12 @@
             margin: 2rem 0;
             padding: 1.3rem 1.8rem;
             background: var(--quote-bg);
-            border-left: 4px solid var(--quote-border);
+            border-left: 3px solid var(--quote-border);
             border-radius: 0 8px 8px 0;
             font-style: italic;
             color: var(--text-secondary);
             position: relative;
+            font-size: 0.97em;
         }
 
         blockquote p {
@@ -495,21 +517,25 @@
 
         blockquote p:last-child { margin-bottom: 0; }
 
-        blockquote em { color: var(--heading); }
+        blockquote em { color: var(--heading); font-style: normal; }
 
         /* ── Lists ── */
         ul, ol {
-            margin: 1.2rem 0;
-            padding-left: 1.5rem;
+            margin: 1.4rem 0;
+            padding-left: 1.6rem;
         }
 
         li {
-            margin: 0.5rem 0;
-            line-height: 1.8;
+            margin: 0.6rem 0;
+            line-height: 1.75;
         }
 
         li::marker {
             color: var(--accent);
+        }
+
+        li strong {
+            color: var(--heading);
         }
 
         /* ── Tables ── */
@@ -634,36 +660,68 @@
             }
 
             .chapter-section {
-                padding: 2rem 1.5rem 4rem;
+                padding: 2.5rem 1.5rem 4rem;
+            }
+
+            p {
+                text-align: left;
             }
         }
 
         @media (max-width: 600px) {
-            html { font-size: 15.5px; }
+            html { font-size: 16px; }
 
-            body { line-height: 1.8; }
+            body { line-height: 1.78; }
 
             .cover-title { font-size: 2.2rem; }
 
             .chapter-section {
-                padding: 1.5rem 1.2rem 3rem;
+                padding: 2rem 1.3rem 3rem;
             }
 
-            h1 { font-size: 1.7rem; }
-            h2 { font-size: 1.25rem; }
+            h1 { font-size: 1.6rem; margin-bottom: 0.3rem; }
+
+            h2 {
+                font-size: 1.2rem;
+                margin: 2.8rem 0 1rem;
+            }
+
+            h3 {
+                font-size: 1.05rem;
+                margin: 2rem 0 0.7rem;
+            }
 
             p {
                 text-align: left;
                 word-spacing: normal;
-                margin: 0 0 1rem;
+                margin: 0 0 1.25rem;
+                line-height: 1.78;
             }
 
-            li { line-height: 1.7; }
+            .chapter-body > p:first-of-type {
+                font-size: 1.02em;
+            }
+
+            li {
+                line-height: 1.7;
+                margin: 0.4rem 0;
+            }
+
+            blockquote {
+                padding: 1rem 1.2rem;
+                margin: 1.5rem 0;
+            }
 
             blockquote p { text-align: left; }
 
             table { font-size: 0.82rem; }
             td, thead th { padding: 0.5rem 0.6rem; }
+
+            .appendix-title {
+                font-size: 1.3rem;
+                margin: 3rem 0 1.2rem;
+                padding-top: 1.5rem;
+            }
         }
 
         /* ── Print ── */
