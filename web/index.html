@@ -683,9 +683,32 @@
         }
 
         .gterm:hover::before,
-        .gterm:hover::after,
-        .gterm.active::before,
-        .gterm.active::after {
+        .gterm:hover::after {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile: use JS-positioned tooltip instead of pseudo-elements */
+        #gterm-tip {
+            position: fixed;
+            background: var(--sidebar-bg);
+            color: #E7E0D5;
+            padding: 0.55rem 1rem;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 400;
+            font-style: normal;
+            line-height: 1.55;
+            max-width: 280px;
+            z-index: 9000;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.15s;
+            pointer-events: none;
+        }
+
+        #gterm-tip.visible {
             opacity: 1;
             visibility: visible;
         }
@@ -827,9 +850,14 @@
                 padding-top: 1.5rem;
             }
 
-            .gterm::before {
-                max-width: 220px;
-                font-size: 0.78rem;
+            .gterm::before,
+            .gterm::after {
+                display: none !important;
+            }
+
+            #gterm-tip {
+                max-width: min(280px, calc(100vw - 2rem));
+                font-size: 0.8rem;
             }
 
             #resume-bar {
@@ -4517,6 +4545,9 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
     <!-- Back to Top -->
     <button id="back-to-top" aria-label="Back to top">&#x2191;</button>
 
+    <!-- Glossary Tooltip (mobile) -->
+    <div id="gterm-tip"></div>
+
     <!-- Resume Reading Bar -->
     <div id="resume-bar" role="button" aria-label="กลับไปอ่านต่อ">
         <span class="resume-icon">&#x1F4D6;</span>
@@ -4810,16 +4841,50 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
 
             wrapGlossaryTerms();
 
-            // Mobile: tap to show/hide tooltip
-            document.addEventListener('click', function(e) {
-                var allActive = document.querySelectorAll('.gterm.active');
-                allActive.forEach(function(el) { el.classList.remove('active'); });
+            // Mobile: tap to show positioned tooltip
+            var gtermTip = document.getElementById('gterm-tip');
 
+            function hideGtermTip() {
+                gtermTip.classList.remove('visible');
+            }
+
+            document.addEventListener('click', function(e) {
                 if (e.target.classList && e.target.classList.contains('gterm')) {
                     e.preventDefault();
-                    e.target.classList.add('active');
+                    var tip = e.target.getAttribute('data-tip');
+                    if (!tip) return;
+
+                    gtermTip.textContent = tip;
+                    gtermTip.classList.add('visible');
+
+                    // Position: above the tapped word, clamped to viewport
+                    var rect = e.target.getBoundingClientRect();
+                    var pad = 10;
+
+                    // Temporarily make visible offscreen to measure
+                    gtermTip.style.left = '0px';
+                    gtermTip.style.top = '0px';
+                    var tipW = gtermTip.offsetWidth;
+                    var tipH = gtermTip.offsetHeight;
+
+                    // Horizontal: center on term, clamp to viewport
+                    var left = rect.left + rect.width / 2 - tipW / 2;
+                    left = Math.max(pad, Math.min(left, window.innerWidth - tipW - pad));
+
+                    // Vertical: above the word; if not enough space, show below
+                    var top = rect.top - tipH - 8;
+                    if (top < pad) {
+                        top = rect.bottom + 8;
+                    }
+
+                    gtermTip.style.left = left + 'px';
+                    gtermTip.style.top = top + 'px';
+                } else {
+                    hideGtermTip();
                 }
             });
+
+            window.addEventListener('scroll', hideGtermTip, { passive: true });
 
         })();
     
