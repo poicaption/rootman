@@ -1071,6 +1071,328 @@
             min-height: 1.2em;
             text-align: center;
         }
+
+        /* ═════════════════════════════════════════
+           SCROLL REVEAL & INTERACTIVE GIMMICKS
+           ═════════════════════════════════════════ */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2.reveal::after {
+            width: 0;
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+        }
+        h2.reveal.visible::after { width: 50px; }
+
+        blockquote.reveal {
+            transform: translateY(24px) scale(0.97);
+        }
+        blockquote.reveal.visible {
+            transform: translateY(0) scale(1);
+            box-shadow: 0 4px 30px var(--accent-glow);
+        }
+
+        /* Part divider cinematic entrance */
+        .part-divider .part-number,
+        .part-divider .part-title {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .part-divider.reveal::before {
+            opacity: 0 !important;
+            transition: opacity 1s ease !important;
+        }
+        .part-divider.reveal.visible::before { opacity: 0.5 !important; }
+        .part-divider.reveal.visible .part-number {
+            opacity: 1; transform: translateY(0); transition-delay: 0.2s;
+        }
+        .part-divider.reveal.visible .part-title {
+            opacity: 1; transform: translateY(0); transition-delay: 0.55s;
+        }
+
+        /* Number counter */
+        .count-up { font-variant-numeric: tabular-nums; }
+
+        /* Price shimmer */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .price-glow {
+            background: linear-gradient(90deg,
+                var(--accent) 0%, #FFD700 30%, var(--accent-light) 50%,
+                #FFD700 70%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+            font-weight: 700;
+        }
+
+        /* Ch11 glitch header */
+        @keyframes glitchShake {
+            0%, 100% { transform: translate(0); }
+            15% { transform: translate(-3px, 2px); }
+            30% { transform: translate(3px, -2px); }
+            45% { transform: translate(-2px, -1px); }
+            60% { transform: translate(2px, 1px); }
+            75% { transform: translate(-1px, 2px); }
+        }
+        @keyframes glitchRGB {
+            0%, 100% { text-shadow: none; }
+            15% { text-shadow: 3px 0 rgba(255,0,60,0.4), -3px 0 rgba(0,255,255,0.4); }
+            30% { text-shadow: -2px 0 rgba(255,0,60,0.3), 2px 0 rgba(0,255,255,0.3); }
+            45% { text-shadow: 1px 2px rgba(255,0,60,0.2), -1px -2px rgba(0,255,255,0.2); }
+            60% { text-shadow: -1px -1px rgba(255,0,60,0.1), 1px 1px rgba(0,255,255,0.1); }
+            75% { text-shadow: none; }
+        }
+        .glitch-active h1 {
+            animation: glitchShake 0.5s ease both, glitchRGB 0.8s steps(3, end) both;
+        }
+
+        /* ── Interactive Demo Box ── */
+        .gimmick-box {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1.8rem;
+            margin: 2.5rem 0;
+            background: var(--bg-alt);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .gimmick-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gimmick-box .gimmick-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+        .gimmick-box .gimmick-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 0.8rem;
+        }
+        .gimmick-box .gimmick-text {
+            font-size: 1.05rem;
+            color: var(--heading);
+            line-height: 1.8;
+            margin: 0 0 0.5rem;
+        }
+        .gimmick-box .gimmick-countdown {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 1rem 0;
+            font-variant-numeric: tabular-nums;
+        }
+        .gimmick-box .gimmick-sub {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .gimmick-reveal {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .gimmick-reveal.show {
+            display: block;
+            opacity: 1;
+        }
+        .gimmick-initial.hide { display: none; }
+        .gimmick-btn {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--accent);
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.2s;
+        }
+        .gimmick-btn:hover {
+            background: var(--accent);
+            color: var(--bg);
+        }
+        .gimmick-insight {
+            font-size: 0.92rem;
+            color: var(--heading);
+            line-height: 1.85;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+        .gimmick-insight strong { font-style: normal; }
+
+        /* Coffee comparison cards */
+        .coffee-compare {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+        .coffee-card {
+            flex: 1;
+            min-width: 140px;
+            max-width: 200px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem 1rem;
+            background: var(--bg);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .coffee-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 16px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+        .coffee-card.selected {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .coffee-card .coffee-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+        .coffee-card .coffee-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .coffee-card .coffee-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--heading);
+        }
+
+        /* Dark pattern buttons */
+        .dark-btn-group {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .dark-btn-accept {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #FAF6F0;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .dark-btn-accept:hover { background: var(--accent-light); }
+        .dark-btn-reject {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.68rem;
+            padding: 0.7rem 1rem;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            opacity: 0.4;
+            text-decoration: underline;
+            transition: opacity 0.2s;
+            max-width: 180px;
+            line-height: 1.4;
+        }
+        .dark-btn-reject:hover { opacity: 0.7; }
+
+        /* Social proof counter */
+        .social-counter {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0.5rem 0;
+        }
+        .social-counter .social-num {
+            font-variant-numeric: tabular-nums;
+            min-width: 3ch;
+            display: inline-block;
+        }
+
+        /* Live indicator pulse */
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .gimmick-label-live::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #e74c3c;
+            margin-right: 6px;
+            vertical-align: middle;
+            animation: livePulse 1.5s ease infinite;
+        }
+
+        /* Responsive gimmick */
+        @media (max-width: 600px) {
+            .gimmick-box { padding: 1.5rem 1.2rem; }
+            .coffee-card { min-width: 120px; padding: 1rem 0.8rem; }
+            .coffee-card .coffee-price { font-size: 1.2rem; }
+            .dark-btn-reject { max-width: 150px; font-size: 0.65rem; }
+        }
+
+        /* Print: show content, hide gimmicks */
+        @media print {
+            .reveal { opacity: 1 !important; transform: none !important; }
+            .gimmick-box { display: none !important; }
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .part-divider .part-number,
+            .part-divider .part-title {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .glitch-active h1 { animation: none !important; }
+            .price-glow {
+                animation: none !important;
+                -webkit-text-fill-color: currentColor;
+                background: none;
+            }
+        }
     
     </style>
 </head>
@@ -5481,6 +5803,369 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                 unlockInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Enter') tryUnlock();
                 });
+            }
+
+            // ═══════════════════════════════════
+            // Scroll Reveal & Gimmick Animations
+            // ═══════════════════════════════════
+
+            function initAnimations() {
+                // Tag content elements with .reveal
+                var sel = '.chapter-body > p, .chapter-body > h2, .chapter-body > h3, ' +
+                    '.chapter-body > blockquote, .chapter-body > ul, .chapter-body > ol, ' +
+                    '.chapter-body > .table-container, .part-divider';
+                document.querySelectorAll(sel).forEach(function(el) {
+                    if (!el.classList.contains('reveal') && !el.closest('.gimmick-box')) {
+                        el.classList.add('reveal');
+                    }
+                });
+
+                // Observe reveals
+                var revealObs = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            revealObs.unobserve(entry.target);
+                        }
+                    });
+                }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+
+                document.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+                    revealObs.observe(el);
+                });
+                document.querySelectorAll('.gimmick-box:not(.visible)').forEach(function(el) {
+                    revealObs.observe(el);
+                });
+
+                // Number counters
+                var counterObs = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            runCounter(entry.target);
+                            counterObs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                document.querySelectorAll('.chapter-body strong').forEach(function(el) {
+                    if (el.classList.contains('count-up') || el.closest('.gimmick-box')) return;
+                    if (el.classList.contains('price-glow')) return;
+                    var t = el.textContent.trim();
+                    var m = t.match(/^([\d,]+(?:\.\d+)?)\s*(%|เท่า|ล้าน|คน|คัน|ปี|ชิ้น)?$/);
+                    if (m) {
+                        var n = parseFloat(m[1].replace(/,/g, ''));
+                        if (n >= 5) {
+                            el.setAttribute('data-ct', m[1]);
+                            el.setAttribute('data-cs', m[2] || '');
+                            el.classList.add('count-up');
+                            counterObs.observe(el);
+                        }
+                    }
+                });
+
+                // Price shimmer
+                document.querySelectorAll('#before-you-begin strong').forEach(function(el) {
+                    if (el.textContent.match(/2,990/)) el.classList.add('price-glow');
+                });
+
+                // Ch11 glitch
+                var ch11 = document.getElementById('chapter-11');
+                if (ch11 && !ch11.dataset.glitched) {
+                    var gObs = new IntersectionObserver(function(entries) {
+                        if (entries[0].isIntersecting) {
+                            ch11.classList.add('glitch-active');
+                            ch11.dataset.glitched = '1';
+                            setTimeout(function() { ch11.classList.remove('glitch-active'); }, 900);
+                            gObs.disconnect();
+                        }
+                    }, { threshold: 0.2 });
+                    gObs.observe(ch11);
+                }
+            }
+
+            function runCounter(el) {
+                var raw = el.getAttribute('data-ct');
+                var suffix = el.getAttribute('data-cs');
+                var target = parseFloat(raw.replace(/,/g, ''));
+                var hasComma = raw.indexOf(',') !== -1;
+                var hasDot = raw.indexOf('.') !== -1;
+                var dur = Math.min(2000, Math.max(600, target * 1.5));
+                var t0 = performance.now();
+                function tick(now) {
+                    var p = Math.min((now - t0) / dur, 1);
+                    var ease = 1 - Math.pow(1 - p, 3);
+                    var v = ease * target;
+                    var s;
+                    if (hasDot) {
+                        s = v.toFixed(raw.split('.')[1].replace(/[^\d]/g, '').length);
+                    } else {
+                        s = Math.round(v).toString();
+                        if (hasComma) s = s.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    }
+                    el.textContent = suffix === '%' ? s + '%' : suffix ? s + ' ' + suffix : s;
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+            }
+
+            // ── Chapter Interactive Demos ──
+
+            function setupChapterDemos() {
+                setupCh5Demo();
+                setupCh6Demo();
+                setupCh7Demo();
+                setupCh11Demo();
+            }
+
+            // Ch5: Social Proof — fake reader counter
+            function setupCh5Demo() {
+                var ch = document.getElementById('chapter-05');
+                if (!ch || ch.querySelector('.gimmick-box')) return;
+                var body = ch.querySelector('.chapter-body');
+                var firstH2 = body && body.querySelector('h2');
+                if (!firstH2) return;
+
+                var box = document.createElement('div');
+                box.className = 'gimmick-box';
+                box.innerHTML =
+                    '<div class="gimmick-initial">' +
+                        '<span class="gimmick-emoji">\ud83d\udc65</span>' +
+                        '<div class="gimmick-label gimmick-label-live">LIVE</div>' +
+                        '<div class="social-counter"><span class="social-num" id="g-social-num">48</span> คน</div>' +
+                        '<p class="gimmick-sub">กำลังอ่านบทนี้อยู่ตอนนี้</p>' +
+                    '</div>' +
+                    '<div class="gimmick-reveal">' +
+                        '<span class="gimmick-emoji">\ud83c\udfaf</span>' +
+                        '<p class="gimmick-insight">' +
+                        'ตัวเลขข้างบน<strong>ไม่ใช่เรื่องจริง</strong> เราสร้างมันขึ้นมา<br><br>' +
+                        'แต่คุณเชื่อมันทันทีใช่ไหม?<br><br>' +
+                        'นั่นคือ <strong>Social Proof</strong> สมองเห็นตัวเลขแล้วสรุปโดยอัตโนมัติว่า<br>' +
+                        '<em>\u201cถ้าคนอื่นอ่าน มันต้องน่าอ่าน\u201d</em><br><br>' +
+                        'บทนี้จะอธิบายว่ามันทำงานกับสมองอย่างไร และทำไมคุณถึงหยุดมันไม่ได้</p>' +
+                    '</div>';
+                body.insertBefore(box, firstH2);
+
+                var numEl = box.querySelector('#g-social-num');
+                var revealed = false;
+                var interval = null;
+
+                var demoObs = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting && !revealed) {
+                        // Start fluctuating
+                        if (!interval) {
+                            interval = setInterval(function() {
+                                if (revealed) { clearInterval(interval); return; }
+                                var delta = Math.floor(Math.random() * 5) - 2;
+                                var cur = parseInt(numEl.textContent) + delta;
+                                numEl.textContent = Math.max(38, Math.min(67, cur));
+                            }, 2000);
+                        }
+                        // Reveal after 5 seconds
+                        setTimeout(function() {
+                            if (!revealed) {
+                                revealed = true;
+                                clearInterval(interval);
+                                box.querySelector('.gimmick-initial').classList.add('hide');
+                                box.querySelector('.gimmick-reveal').classList.add('show');
+                            }
+                        }, 5000);
+                        demoObs.unobserve(box);
+                    }
+                }, { threshold: 0.5 });
+                demoObs.observe(box);
+            }
+
+            // Ch6: Scarcity — countdown disappearing text
+            function setupCh6Demo() {
+                var ch = document.getElementById('chapter-06');
+                if (!ch || ch.querySelector('.gimmick-box')) return;
+                var body = ch.querySelector('.chapter-body');
+                var firstH2 = body && body.querySelector('h2');
+                if (!firstH2) return;
+
+                var box = document.createElement('div');
+                box.className = 'gimmick-box';
+                box.innerHTML =
+                    '<div class="gimmick-initial">' +
+                        '<span class="gimmick-emoji">\u23f3</span>' +
+                        '<p class="gimmick-text">ข้อความนี้จะหายไปใน</p>' +
+                        '<div class="gimmick-countdown" id="g-scarcity-count">10</div>' +
+                        '<p class="gimmick-sub">วินาที</p>' +
+                    '</div>' +
+                    '<div class="gimmick-reveal">' +
+                        '<span class="gimmick-emoji">\ud83d\udca1</span>' +
+                        '<p class="gimmick-insight">' +
+                        'ข้อความหายไปแล้ว แต่คุณยังอ่านอยู่ใช่ไหม?<br><br>' +
+                        'ตอนที่นับถอยหลัง คุณ<strong>อ่านเร็วขึ้น</strong>โดยไม่รู้ตัว<br>' +
+                        'นั่นคือ <strong>Urgency</strong> ที่กดดันสมองคุณ<br><br>' +
+                        'แล้วตอนที่มัน \u201cหายไป\u201d คุณรู้สึกอยากเห็นมันอีกครั้งไหม?<br>' +
+                        'นั่นคือ <strong>Scarcity</strong><br><br>' +
+                        'บทนี้จะอธิบายว่าสองแรงนี้ควบคุมการตัดสินใจของคุณอย่างไร</p>' +
+                        '<button class="gimmick-btn" id="g-scarcity-restart">&#x21bb; ดูอีกครั้ง</button>' +
+                    '</div>';
+                body.insertBefore(box, firstH2);
+
+                var countEl = box.querySelector('#g-scarcity-count');
+                var counting = false;
+                var countInterval = null;
+
+                function startCountdown() {
+                    counting = true;
+                    var n = 10;
+                    countEl.textContent = n;
+                    var init = box.querySelector('.gimmick-initial');
+                    init.classList.remove('hide');
+                    init.style.opacity = '';
+                    init.style.transition = '';
+                    box.querySelector('.gimmick-reveal').classList.remove('show');
+
+                    countInterval = setInterval(function() {
+                        n--;
+                        countEl.textContent = n;
+                        if (n <= 3) countEl.style.color = '#c0392b';
+                        if (n <= 0) {
+                            clearInterval(countInterval);
+                            counting = false;
+                            countEl.style.color = '';
+                            init.style.transition = 'opacity 0.8s ease';
+                            init.style.opacity = '0';
+                            setTimeout(function() {
+                                init.classList.add('hide');
+                                init.style.opacity = '';
+                                init.style.transition = '';
+                                box.querySelector('.gimmick-reveal').classList.add('show');
+                            }, 800);
+                        }
+                    }, 1000);
+                }
+
+                var demoObs = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting && !counting &&
+                        !box.querySelector('.gimmick-reveal.show')) {
+                        startCountdown();
+                        demoObs.unobserve(box);
+                    }
+                }, { threshold: 0.5 });
+                demoObs.observe(box);
+
+                box.querySelector('#g-scarcity-restart').addEventListener('click', function() {
+                    startCountdown();
+                });
+            }
+
+            // Ch7: Perception — coffee price comparison
+            function setupCh7Demo() {
+                var ch = document.getElementById('chapter-07');
+                if (!ch || ch.querySelector('.gimmick-box')) return;
+                var body = ch.querySelector('.chapter-body');
+                var firstH2 = body && body.querySelector('h2');
+                if (!firstH2) return;
+
+                var box = document.createElement('div');
+                box.className = 'gimmick-box';
+                box.innerHTML =
+                    '<div class="gimmick-initial">' +
+                        '<div class="gimmick-label">\u2615 ลองเลือกดู</div>' +
+                        '<p class="gimmick-text">กาแฟสองแก้วนี้ แก้วไหนน่าจะ<strong>อร่อยกว่า</strong>?</p>' +
+                        '<div class="coffee-compare">' +
+                            '<div class="coffee-card" data-pick="A">' +
+                                '<div class="coffee-icon">\u2615</div>' +
+                                '<div class="coffee-desc">Arabica 100%<br>คั่วกลาง สดใหม่<br>ดอยแม่สลอง</div>' +
+                                '<div class="coffee-price">45 \u0e3f</div>' +
+                            '</div>' +
+                            '<div class="coffee-card" data-pick="B">' +
+                                '<div class="coffee-icon">\u2615</div>' +
+                                '<div class="coffee-desc">Arabica 100%<br>คั่วกลาง สดใหม่<br>ดอยแม่สลอง</div>' +
+                                '<div class="coffee-price">390 \u0e3f</div>' +
+                            '</div>' +
+                        '</div>' +
+                        '<p class="gimmick-sub">คลิกเลือกแก้วที่คุณคิดว่าอร่อยกว่า</p>' +
+                    '</div>' +
+                    '<div class="gimmick-reveal">' +
+                        '<span class="gimmick-emoji">\ud83e\udde0</span>' +
+                        '<p class="gimmick-insight">' +
+                        'กาแฟทั้งสองแก้ว<strong>เป็นกาแฟตัวเดียวกันทุกประการ</strong><br><br>' +
+                        'แต่สมองคุณรู้สึกว่าแก้ว 390 บาท \u201cน่าจะดีกว่า\u201d ใช่ไหม?<br>' +
+                        'แม้ว่าทุกอย่างจะเหมือนกัน<br><br>' +
+                        'นั่นคือ <strong>Price-Quality Heuristic</strong><br>' +
+                        'ทางลัดของสมองที่ตัดสิน<strong>คุณค่า</strong>จาก<strong>ราคา</strong><br><br>' +
+                        'บทนี้จะอธิบายว่าทำไมการรับรู้ไม่เคยเป็นกลาง<br>' +
+                        'และนักการตลาดใช้สิ่งนี้อย่างไร</p>' +
+                    '</div>';
+                body.insertBefore(box, firstH2);
+
+                box.querySelectorAll('.coffee-card').forEach(function(card) {
+                    card.addEventListener('click', function() {
+                        box.querySelectorAll('.coffee-card').forEach(function(c) {
+                            c.style.pointerEvents = 'none';
+                        });
+                        card.classList.add('selected');
+                        setTimeout(function() {
+                            box.querySelector('.gimmick-initial').classList.add('hide');
+                            box.querySelector('.gimmick-reveal').classList.add('show');
+                        }, 600);
+                    });
+                });
+            }
+
+            // Ch11: Dark Pattern — confirmshaming demo
+            function setupCh11Demo() {
+                var ch = document.getElementById('chapter-11');
+                if (!ch || ch.querySelector('.gimmick-box')) return;
+                var body = ch.querySelector('.chapter-body');
+                var firstH2 = body && body.querySelector('h2');
+                if (!firstH2) return;
+
+                var box = document.createElement('div');
+                box.className = 'gimmick-box';
+                box.innerHTML =
+                    '<div class="gimmick-initial">' +
+                        '<span class="gimmick-emoji">\ud83d\udd14</span>' +
+                        '<p class="gimmick-text">เราต้องการปรับปรุงประสบการณ์การอ่านของคุณ<br>อนุญาตให้เก็บข้อมูลพฤติกรรมการอ่านหรือไม่?</p>' +
+                        '<div class="dark-btn-group">' +
+                            '<button class="dark-btn-accept" id="g-dark-accept">\u2714 ยินดี ให้เลย</button>' +
+                            '<button class="dark-btn-reject" id="g-dark-reject">ไม่ล่ะ ฉันไม่สนใจว่าประสบการณ์การอ่านจะแย่ลง</button>' +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="gimmick-reveal">' +
+                        '<span class="gimmick-emoji">\u26a0\ufe0f</span>' +
+                        '<p class="gimmick-insight">' +
+                        'สังเกตปุ่มสองปุ่มไหม?<br><br>' +
+                        'ปุ่ม<strong>ตกลง</strong> \u2192 ใหญ่ สีสด คลิกง่าย<br>' +
+                        'ปุ่ม<strong>ปฏิเสธ</strong> \u2192 เล็กจิ๋ว สีจาง ข้อความทำให้รู้สึกผิด<br><br>' +
+                        'นี่คือ <strong>Confirmshaming</strong> หนึ่งใน <strong>Dark Patterns</strong><br>' +
+                        'เทคนิคออกแบบให้คุณ<strong>กดตกลงโดยไม่คิด</strong><br><br>' +
+                        'เราจงใจทำให้คุณสัมผัสมันก่อนจะอ่านบทนี้<br>' +
+                        'เพราะหลังจากนี้ คุณจะมองทะลุมันได้ทุกครั้งที่เจอ</p>' +
+                    '</div>';
+                body.insertBefore(box, firstH2);
+
+                function revealDark() {
+                    box.querySelector('.gimmick-initial').classList.add('hide');
+                    box.querySelector('.gimmick-reveal').classList.add('show');
+                }
+                box.querySelector('#g-dark-accept').addEventListener('click', revealDark);
+                box.querySelector('#g-dark-reject').addEventListener('click', revealDark);
+            }
+
+            // ── Initialize animations & demos ──
+            initAnimations();
+            setupChapterDemos();
+
+            // Re-init after unlock
+            var bodyClassObs = new MutationObserver(function(muts) {
+                muts.forEach(function(m) {
+                    if (m.attributeName === 'class' && document.body.classList.contains('unlocked')) {
+                        setTimeout(function() {
+                            initAnimations();
+                            setupChapterDemos();
+                        }, 200);
+                        bodyClassObs.disconnect();
+                    }
+                });
+            });
+            if (!document.body.classList.contains('unlocked')) {
+                bodyClassObs.observe(document.body, { attributes: true });
             }
 
         })();
