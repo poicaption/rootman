@@ -3,6 +3,7 @@
   "buildCommand": null,
   "framework": null,
   "rewrites": [
+    { "source": "/sale", "destination": "/sale.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [

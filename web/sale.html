@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วการตลาด — The One Root of Marketing</title>
+    <meta name="description" content="ทำไมคนถึงซื้อ? คำตอบที่นักการตลาดส่วนใหญ่ไม่รู้ — หนังสือ 12 บทที่กลั่นจากจิตวิทยา ประสาทวิทยา และงานวิจัยหลายร้อยชิ้น">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #121010;
+            --bg-alt: #1A1714;
+            --bg-card: #1E1B17;
+            --text: #C8C0B4;
+            --text-sec: #8A8078;
+            --accent: #C4956A;
+            --accent-dim: rgba(196,149,106,0.12);
+            --gold: #D4A574;
+            --heading: #E7E0D5;
+            --border: #2A2520;
+            --red: #c0392b;
+            --green: #27ae60;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Noto Serif Thai', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Scan line overlay when Third Eye active ── */
+        body.te-on::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent, transparent 3px,
+                rgba(196,149,106,0.015) 3px, rgba(196,149,106,0.015) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ── Scroll reveal ── */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv.vis { opacity: 1; transform: translateY(0); }
+
+        /* ── Section layout ── */
+        .sp {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .sp + .sp { border-top: 1px solid var(--border); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 100%;
+            position: relative;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196,149,106,0.05) 0%, transparent 70%),
+                var(--bg);
+        }
+
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-meta {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-sec);
+            opacity: 0;
+            animation: heroIn 1s 0.3s forwards;
+        }
+
+        .hero-headline {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.7;
+            margin: 2.5rem 0;
+            max-width: 560px;
+            opacity: 0;
+            animation: heroIn 1.2s 1.2s forwards;
+        }
+
+        .hero-ornament {
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 0.5em;
+            opacity: 0;
+            animation: heroIn 0.8s 2.8s forwards;
+        }
+
+        .hero-title-wrap {
+            margin: 2rem 0;
+            opacity: 0;
+            animation: heroIn 1s 3.3s forwards;
+        }
+
+        .hero-title-en {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--heading);
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .hero-title-of {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-style: italic;
+            color: var(--accent);
+            opacity: 0.7;
+            margin: 0.2rem 0;
+        }
+
+        .hero-title-th {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+        }
+
+        .hero-te-intro {
+            margin-top: 3rem;
+            opacity: 0;
+            animation: heroIn 1s 4.2s forwards;
+        }
+
+        .hero-te-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(196,149,106,0.2);
+            border-radius: 100px;
+            padding: 0.55rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.02em;
+        }
+        .hero-te-btn:hover {
+            background: rgba(196,149,106,0.2);
+            border-color: var(--accent);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-sec);
+            opacity: 0;
+            animation: heroIn 0.8s 5s forwards, pulse 2.5s 5.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 0.6; transform: translateY(5px); }
+        }
+
+        /* ── Section headings ── */
+        .sp-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .sp h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.5;
+            margin: 0 0 1.5rem;
+        }
+
+        .sp p { margin: 0 0 1.3rem; }
+
+        .sp strong { color: var(--heading); font-weight: 700; }
+
+        .sp em { color: var(--text-sec); }
+
+        /* ── The Pain list ── */
+        .pain-item {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+        .pain-item .pain-x {
+            color: var(--red);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .pain-item .pain-detail {
+            color: var(--text-sec);
+            font-size: 0.82rem;
+            margin-left: auto;
+            white-space: nowrap;
+        }
+
+        .pain-question {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            color: var(--heading);
+            margin: 2.5rem 0 0.5rem;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .pain-answer {
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* ── Root metaphor ── */
+        .root-visual {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+            line-height: 2.2;
+        }
+        .root-leaf { color: var(--text-sec); opacity: 0.6; }
+        .root-stem { color: var(--text-sec); opacity: 0.8; }
+        .root-root {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        /* ── Story blockquote ── */
+        .story-quote {
+            margin: 2rem 0;
+            padding: 1.5rem 1.8rem 1.5rem 2.5rem;
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-sec);
+            position: relative;
+        }
+        .story-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: 0.3rem;
+            left: 0.6rem;
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        .story-quote p { margin: 0 0 0.5rem; }
+        .story-quote p:last-child { margin: 0; }
+
+        /* ── AHA moments ── */
+        .aha-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem 1.5rem;
+            margin: 1.2rem 0;
+            transition: border-color 0.3s;
+        }
+        .aha-card:hover { border-color: var(--accent); }
+        .aha-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.6rem;
+        }
+        .aha-text {
+            font-size: 1.02rem;
+            color: var(--heading);
+            margin: 0 0 0.6rem;
+            line-height: 1.8;
+        }
+        .aha-explain {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ── Chapter list ── */
+        .ch-grid { margin: 1.5rem 0; }
+        .ch-item {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 0.2rem 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: baseline;
+        }
+        .ch-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            grid-row: 1 / 3;
+            padding-top: 0.1rem;
+        }
+        .ch-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.5;
+        }
+        .ch-hook {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+
+        /* ── For / Not For ── */
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .fit-col h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+        }
+        .fit-yes h3 { color: var(--green); border-color: var(--green); }
+        .fit-no h3 { color: var(--red); border-color: var(--red); }
+        .fit-item {
+            font-size: 0.88rem;
+            margin: 0.8rem 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .fit-item strong { font-size: 0.92rem; display: block; margin-bottom: 0.15rem; }
+
+        /* ── Price section ── */
+        .price-compare {
+            margin: 2rem 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 1rem;
+        }
+        .price-row.alt {
+            text-decoration: line-through;
+            opacity: 0.45;
+        }
+        .price-row.main {
+            text-decoration: none;
+            opacity: 1;
+            border-bottom: 2px solid var(--accent);
+        }
+        .price-name { font-size: 0.9rem; }
+        .price-val {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .price-row.main .price-name {
+            color: var(--heading);
+            font-weight: 600;
+        }
+        .price-row.main .price-val {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .price-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+        }
+
+        .price-hero {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--accent) 0%, #FFD700 40%, var(--gold) 60%, #FFD700 80%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .price-unit {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: var(--text-sec);
+            letter-spacing: 0.1em;
+        }
+        .price-no-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem 1.2rem;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #FAF6F0;
+            background: linear-gradient(135deg, var(--accent) 0%, #8B6914 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.9rem 3rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(196,149,106,0.3);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(196,149,106,0.4);
+        }
+        .cta-or {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+        }
+        .cta-or a {
+            color: var(--accent);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* ── Footer ── */
+        .sp-footer {
+            text-align: center;
+            padding: 2.5rem 2rem 4rem;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            letter-spacing: 0.02em;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .sp-footer a { color: var(--accent); text-decoration: none; }
+
+        /* ═══════════════════════════════════════
+           THIRD EYE ANNOTATIONS
+           ═══════════════════════════════════════ */
+        .te-note {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1),
+                        opacity 0.5s ease,
+                        margin 0.5s ease,
+                        padding 0.5s ease;
+            background: rgba(196,149,106,0.06);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            margin: 0;
+            padding: 0 1.5rem;
+        }
+        body.te-on .te-note {
+            max-height: 500px;
+            opacity: 1;
+            margin: 2rem 0;
+            padding: 1.2rem 1.5rem;
+        }
+        .te-note-head {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .te-note p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.8;
+            margin: 0;
+        }
+        .te-note strong { color: var(--accent); }
+
+        /* ── Third Eye floating toggle ── */
+        #te-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.78rem;
+            color: var(--accent);
+            background: var(--bg-alt);
+            border: 1px solid rgba(196,149,106,0.2);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            opacity: 0;
+            visibility: hidden;
+        }
+        #te-float.vis { opacity: 1; visibility: visible; }
+        #te-float:hover {
+            background: rgba(196,149,106,0.15);
+            border-color: var(--accent);
+        }
+        body.te-on #te-float {
+            background: var(--accent);
+            color: #FAF6F0;
+            border-color: var(--accent);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            .sp { padding: 3.5rem 1.3rem; }
+            .hero { padding: 2.5rem 1.3rem; }
+            .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .price-row { flex-direction: column; gap: 0.2rem; }
+            .price-val { align-self: flex-start; }
+            .ch-item { grid-template-columns: 2.5rem 1fr; }
+            #te-float { bottom: 1rem; left: 1rem; font-size: 0.72rem; padding: 0.45rem 1rem; }
+            .pain-item { flex-wrap: wrap; }
+            .pain-detail { margin-left: 1.5rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hero-meta, .hero-headline, .hero-ornament,
+            .hero-title-wrap, .hero-te-intro, .hero-scroll {
+                opacity: 1 !important; animation: none !important;
+            }
+            .price-big { animation: none !important; -webkit-text-fill-color: var(--accent); background: none; }
+        }
+
+        @media print {
+            .hero { min-height: auto; }
+            #te-float { display: none; }
+            .te-note { max-height: none; opacity: 1; margin: 1rem 0; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <p class="hero-meta">คุณกำลังอ่าน Sale Page</p>
+
+        <h1 class="hero-headline">
+            และนี่คือ sale page เพียงหน้าเดียว<br>
+            ที่จะ<em>สอนคุณ</em>ว่า sale page ทุกหน้า<br>
+            กำลังทำอะไรกับสมองของคุณ
+        </h1>
+
+        <div class="hero-ornament">&#x2726;&ensp;&#x2726;&ensp;&#x2726;</div>
+
+        <div class="hero-title-wrap">
+            <p class="hero-title-en">The One Root</p>
+            <p class="hero-title-of">of</p>
+            <p class="hero-title-en">Marketing</p>
+            <p class="hero-title-th">รากแก้วการตลาด</p>
+        </div>
+
+        <div class="hero-te-intro">
+            <button class="hero-te-btn" id="hero-te-btn">
+                &#x1F52E; เปิดตาที่สาม &mdash; ดูว่าหน้านี้ใช้จิตวิทยาอะไรกับคุณ
+            </button>
+        </div>
+
+        <a href="#pain" class="hero-scroll">เลื่อนลง &darr;</a>
+    </section>
+
+
+    <!-- ═══════ THE PROBLEM ═══════ -->
+    <section class="sp" id="pain">
+        <div class="rv">
+            <div class="sp-label">THE PROBLEM</div>
+            <h2>ลองย้อนนับดู<br>คุณจ่ายเงินซื้อ &ldquo;ความรู้การตลาด&rdquo; ไปเท่าไหร่แล้ว?</h2>
+        </div>
+
+        <div class="rv">
+            <div class="pain-item">
+                <span class="pain-x">&#x2717;</span>
+                <span>คอร์สออนไลน์สอนยิง Ads</span>
+                <span class="pain-detail">5,000 &ndash; 15,000 &#x0E3F;</span>
+            </div>
+            <div class="pain-item">
+                <span class="pain-x">&#x2717;</span>
+                <span>สัมมนาการตลาดสุดสัปดาห์</span>
+                <span class="pain-detail">10,000 &ndash; 25,000 &#x0E3F;</span>
+            </div>
+            <div class="pain-item">
+                <span class="pain-x">&#x2717;</span>
+                <span>หนังสือการตลาด 12 เล่มที่อ่านแล้ววางไว้บนหิ้ง</span>
+                <span class="pain-detail">2,000 &ndash; 5,000 &#x0E3F;</span>
+            </div>
+            <div class="pain-item">
+                <span class="pain-x">&#x2717;</span>
+                <span>จ้างที่ปรึกษามานั่งคุย 1 ชั่วโมง</span>
+                <span class="pain-detail">3,000 &ndash; 8,000 &#x0E3F;</span>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p class="pain-question">
+                แล้ววันนี้?<br>
+                Algorithm เปลี่ยนไปกี่รอบแล้ว?<br>
+                เทคนิคกี่อันที่ &ldquo;ไม่ work แล้ว&rdquo;?<br>
+                คุณใกล้จะ<strong>เข้าใจลูกค้า</strong>มากขึ้นแค่ไหน?
+            </p>
+            <p class="pain-answer">ปัญหาไม่ใช่ว่าคุณเรียนไม่พอ<br>ปัญหาคือคุณเรียนผิดชั้น</p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Pain Point Marketing + Loss Framing</strong> &mdash; section นี้เน้นสิ่งที่คุณ &laquo;สูญเสียไปแล้ว&raquo; ไม่ใช่สิ่งที่จะ &laquo;ได้&raquo; เพราะสมองรู้สึกเจ็บปวดกับการเสีย มากกว่าความสุขจากการได้ 2&ndash;2.5 เท่า (Prospect Theory &mdash; บทที่ 6)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE ROOT ═══════ -->
+    <section class="sp" id="root">
+        <div class="rv">
+            <div class="sp-label">THE ROOT</div>
+            <h2>คุณเรียนแต่ &ldquo;ใบ&rdquo;<br>โดยไม่เคยเห็น &ldquo;ราก&rdquo;</h2>
+        </div>
+
+        <div class="rv root-visual">
+            <span class="root-leaf">&mdash; Facebook Ads &mdash; TikTok &mdash; SEO &mdash; Influencer &mdash;</span><br>
+            <span class="root-leaf">&mdash; Content &mdash; Funnel &mdash; Retarget &mdash; Growth Hack &mdash;</span><br>
+            <span class="root-stem">&#x250A;</span><br>
+            <span class="root-stem">&#x250A;</span><br>
+            <span class="root-root">&#x2741; จิตวิทยาของความเป็นมนุษย์ &#x2741;</span>
+        </div>
+
+        <div class="rv">
+            <p>ใบไม้ร่วงทุกฤดู แต่รากไม้ไม่เคยเปลี่ยน</p>
+            <p>Facebook Ads คือใบ TikTok คือใบ SEO คือใบ<br>
+            แต่<strong>เหตุผลที่คนกดซื้อ?</strong><br>
+            มันเหมือนกันทุกประการ ตั้งแต่ยุคโรมันจนถึงวันนี้</p>
+            <p>หนังสือเล่มนี้ไม่ได้สอนใบ<br>มันสอน<strong>ราก</strong></p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Reframe + Metaphor</strong> &mdash; section นี้เปลี่ยน &laquo;กรอบคิด&raquo; ของคุณจาก &laquo;เครื่องมือ&raquo; เป็น &laquo;ราก&raquo; อุปมาต้นไม้ทำให้สมองเห็นภาพทันที เมื่อ Reframe สำเร็จ คุณจะมองทุกอย่างผ่านกรอบใหม่ (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE STORY ═══════ -->
+    <section class="sp" id="story">
+        <div class="rv">
+            <div class="sp-label">THE PROOF</div>
+            <h2>น้ำปลาโรมัน 2,000 ปีที่แล้ว<br>ใช้จิตวิทยาเดียวกับ Apple 2025</h2>
+        </div>
+
+        <div class="rv">
+            <p>ในปี 79 ก่อนคริสตกาล พ่อค้าชาวโรมันชื่อ Scaurus ขายน้ำปลาหมักที่เรียกว่า Garum สูตรไม่ได้ดีกว่าใคร วัตถุดิบเหมือนกัน แต่เขาร่ำรวยที่สุดในเมือง</p>
+            <p>เพราะเขาทำสิ่งที่ไม่มีใครทำ &mdash; เขาสลักชื่อตัวเองบนทุกขวด วางขวดเปล่าตามร้านค้าทั่วเมือง จนชื่อ <strong>&ldquo;Scauri&rdquo;</strong> กลายเป็นสิ่งที่สมองจำได้โดยอัตโนมัติ</p>
+        </div>
+
+        <div class="rv">
+            <div class="story-quote">
+                <p>คุ้นเคย หมายถึง ปลอดภัย<br>ปลอดภัย หมายถึง เชื่อถือได้<br>เชื่อถือได้ หมายถึง ซื้อ</p>
+            </div>
+            <p>นี่คือหลักการ <strong>Mere Exposure Effect</strong> ที่ถูกค้นพบอย่างเป็นทางการในปี 1968 &mdash; แต่ Scaurus ใช้มันมาสองพันปีก่อนนักวิทยาศาสตร์จะตั้งชื่อให้</p>
+            <p><strong>เครื่องมือเปลี่ยน แพลตฟอร์มเปลี่ยน แต่สมองมนุษย์ไม่เปลี่ยน</strong></p>
+            <p>หนังสือเล่มนี้สอนสิ่งที่ไม่เปลี่ยน</p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Storytelling + Neural Coupling</strong> &mdash; ตอนที่คุณอ่านเรื่อง Scaurus สมองคุณ &laquo;จำลองเหตุการณ์&raquo; เหมือนกำลังอยู่ในเรื่อง Oxytocin หลั่ง ทำให้คุณเชื่อมต่อกับผู้เขียนโดยไม่รู้ตัว เรื่องเล่าทำให้สมองจำได้ดีกว่าข้อมูล 22 เท่า (บทที่ 4)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ AHA MOMENTS ═══════ -->
+    <section class="sp" id="aha">
+        <div class="rv">
+            <div class="sp-label">A TASTE</div>
+            <h2>3 สิ่งจากหนังสือเล่มนี้<br>ที่คุณจะไม่มีวันมองโลกเหมือนเดิม</h2>
+        </div>
+
+        <div class="rv">
+            <div class="aha-card">
+                <div class="aha-num">01</div>
+                <p class="aha-text">ยาหลอกราคาแพง ลดปวดได้ดีกว่ายาหลอกราคาถูก &mdash; <strong>ทั้งที่เป็นยาตัวเดียวกัน</strong></p>
+                <p class="aha-explain">สมองใช้ราคาเป็นสัญญาณบอกคุณภาพ โดยอัตโนมัติ ไม่มีทางหยุด &mdash; Price-Quality Heuristic (บทที่ 7)</p>
+            </div>
+        </div>
+
+        <div class="rv">
+            <div class="aha-card">
+                <div class="aha-num">02</div>
+                <p class="aha-text">สมองคุณตัดสินใจซื้อก่อนที่คุณจะ &ldquo;รู้ตัว&rdquo; &mdash; <strong>เร็วกว่า 0.5 วินาที</strong></p>
+                <p class="aha-explain">แล้วสมองส่วนเหตุผล (Neocortex) จึงสร้าง &ldquo;เหตุผล&rdquo; ขึ้นมาอธิบายย้อนหลัง &mdash; Split-Brain + The Interpreter (บทที่ 2)</p>
+            </div>
+        </div>
+
+        <div class="rv">
+            <div class="aha-card">
+                <div class="aha-num">03</div>
+                <p class="aha-text">คุณรักษาความสัมพันธ์ที่มีความหมายได้ &mdash; <strong>สูงสุดแค่ 150 คน</strong></p>
+                <p class="aha-explain">นั่นคือ Dunbar&rsquo;s Number &mdash; แบรนด์ที่เข้าใจข้อจำกัดนี้ จะสร้าง Community ที่ Loyalty สูง ไม่ใช่แค่สะสมยอด Followers (บทที่ 5)</p>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Curiosity Gap + Social Currency</strong> &mdash; ข้อมูลเหล่านี้สร้าง &laquo;ช่องว่างความอยากรู้&raquo; ในสมอง คุณอ่านแค่ 3 ข้อแล้วอยากรู้อีก 100 ข้อ และเมื่ออ่านจบ คุณจะอยากเล่าให้คนอื่นฟัง &mdash; นั่นคือ Social Currency (บทที่ 5)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE CHAPTERS ═══════ -->
+    <section class="sp" id="chapters">
+        <div class="rv">
+            <div class="sp-label">INSIDE THE BOOK</div>
+            <h2>12 บท 1 สมการ</h2>
+            <p>ทุกบทเชื่อมกับบทถัดไป เหมือนรากที่แตกกิ่งก้าน อ่านจากต้นจนจบ แล้วทุกอย่างจะเชื่อมเป็นภาพเดียว</p>
+        </div>
+
+        <div class="ch-grid rv">
+            <div class="ch-item">
+                <div class="ch-num">บทนำ</div>
+                <div class="ch-title">ความลับที่ซ่อนอยู่ต่อหน้าต่อตา</div>
+                <div class="ch-hook">น้ำปลาโรมันกับ iPhone ใช้จิตวิทยาตัวเดียวกัน</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">01</div>
+                <div class="ch-title">มายาภาพของวิวัฒนาการ</div>
+                <div class="ch-hook">สมองคุณเป็น iPhone แต่ชิปข้างในมีอายุแสนปี</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">02</div>
+                <div class="ch-title">ปุ่มชีวภาพ</div>
+                <div class="ch-hook">Dopamine, Cortisol, Oxytocin &mdash; ปุ่มที่นักการตลาดกดทุกวันโดยไม่รู้</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">03</div>
+                <div class="ch-title">ความปรารถนาดั้งเดิม 5 ข้อ</div>
+                <div class="ch-hook">ทุกการซื้อในประวัติศาสตร์ตอบสนอง 5 ข้อนี้</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">04</div>
+                <div class="ch-title">พลังของการเล่าเรื่อง</div>
+                <div class="ch-hook">สมองจำเรื่องเล่าได้ดีกว่าข้อมูล 22 เท่า</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">05</div>
+                <div class="ch-title">Social Proof &amp; Tribalism</div>
+                <div class="ch-hook">ทำไมคนถึงซื้อเพราะ &ldquo;คนอื่นซื้อ&rdquo;</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">06</div>
+                <div class="ch-title">Scarcity &amp; Urgency</div>
+                <div class="ch-hook">Countdown Timer ทำอะไรกับสมองคุณทุกวัน</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">07</div>
+                <div class="ch-title">Perception is Reality</div>
+                <div class="ch-hook">ไวน์ถูกที่สมองบอกว่าอร่อยเมื่อเชื่อว่าแพง</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">08</div>
+                <div class="ch-title">The Trust Engine</div>
+                <div class="ch-hook">เครื่องจักรสร้างความไว้ใจที่ทำงาน 24 ชม.</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">09</div>
+                <div class="ch-title">Breaking Resistance</div>
+                <div class="ch-hook">ทำไมลูกค้าบอก &ldquo;ขอคิดก่อน&rdquo; แล้วไม่กลับมา</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">10</div>
+                <div class="ch-title">Marketing Without Platforms</div>
+                <div class="ch-hook">การตลาดที่ไม่ต้องพึ่ง Algorithm</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">11</div>
+                <div class="ch-title">The Dark Side of The Root</div>
+                <div class="ch-hook">ด้านมืดที่ต้องรู้ เพื่อไม่ข้ามเส้น</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">12</div>
+                <div class="ch-title">Becoming The Master</div>
+                <div class="ch-hook">จากผู้อ่านเป็นผู้เชี่ยวชาญ</div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Commitment + Sunk Cost</strong> &mdash; คุณใช้เวลาอ่านมาถึงตรงนี้แล้ว สมองเริ่มรู้สึกว่า &laquo;ลงทุนไปแล้ว&raquo; ถ้าเลิกตอนนี้จะเสียเปล่า ยิ่งเลื่อนลง ยิ่งลงทุน ยิ่งอยากเห็นตอนจบ (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ FOR / NOT FOR ═══════ -->
+    <section class="sp" id="fit">
+        <div class="rv">
+            <div class="sp-label">AUDIENCE</div>
+            <h2>หนังสือเล่มนี้ไม่ได้เหมาะกับทุกคน</h2>
+        </div>
+
+        <div class="fit-grid rv">
+            <div class="fit-col fit-yes">
+                <h3>&#x2713; เหมาะกับ</h3>
+                <div class="fit-item"><strong>นักการตลาดที่เหนื่อยกับการไล่ตาม</strong> Algorithm เปลี่ยน เทรนด์เปลี่ยน แต่คุณอยากรู้สิ่งที่ไม่เปลี่ยน</div>
+                <div class="fit-item"><strong>เจ้าของธุรกิจที่ไม่อยากพึ่งเอเจนซีตลอดไป</strong> อยากเข้าใจ &ldquo;ทำไม&rdquo; ด้วยตัวเอง ไม่ใช่แค่จ้างคนทำ</div>
+                <div class="fit-item"><strong>เซลส์ นักขาย คนที่ต้อง &ldquo;โน้มน้าว&rdquo; เป็นอาชีพ</strong> ขายสินค้า ขายไอเดีย หรือขายตัวเองในห้องสัมภาษณ์</div>
+                <div class="fit-item"><strong>คนที่เพิ่งเริ่มต้น</strong> คุณโชคดี เพราะจะเริ่มจากรากตั้งแต่แรก ไม่ต้องถอนวัชพืชเก่าออกก่อน</div>
+            </div>
+            <div class="fit-col fit-no">
+                <h3>&#x2717; ไม่เหมาะกับ</h3>
+                <div class="fit-item"><strong>คนที่ต้องการสูตรทำเงินใน 7 วัน</strong> ไม่มีทางลัด ไม่มีเทมเพลต ไม่มีปุ่มวิเศษ</div>
+                <div class="fit-item"><strong>คนที่เชื่อว่า Data คือทุกอย่าง</strong> Data บอกว่า &ldquo;อะไร&rdquo; เกิดขึ้น แต่ไม่บอกว่า &ldquo;ทำไม&rdquo; หนังสือเล่มนี้คือ &ldquo;ทำไม&rdquo;</div>
+                <div class="fit-item"><strong>คนที่อยากได้เทคนิคดิจิทัลล้วนๆ</strong> วิธีเซ็ต Pixel วิธีเลือก Keyword วิธียิง TikTok Ads &mdash; ไม่ใช่เล่มนี้</div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Tribalism &mdash; In-group / Out-group</strong> &mdash; section นี้แบ่งผู้อ่านเป็น &laquo;ฝั่งเรา&raquo; กับ &laquo;ฝั่งเขา&raquo; ถ้าเห็นตัวเองในฝั่ง &laquo;เหมาะ&raquo; สมองจะรู้สึกเป็นส่วนหนึ่ง ถ้าเห็นตัวในฝั่ง &laquo;ไม่เหมาะ&raquo; บางคนจะ Reactance &mdash; ยิ่งถูกปฏิเสธ ยิ่งอยากพิสูจน์ (บทที่ 5, 6)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE PRICE ═══════ -->
+    <section class="sp" id="price">
+        <div class="rv">
+            <div class="sp-label">THE PRICE</div>
+            <h2>เปรียบเทียบ</h2>
+        </div>
+
+        <div class="price-compare rv">
+            <div class="price-row alt">
+                <span class="price-name">คอร์ส Facebook Ads 3 วัน <span class="price-note">(หมดอายุเมื่อ Algorithm เปลี่ยน)</span></span>
+                <span class="price-val">8,000 &ndash; 15,000 &#x0E3F;</span>
+            </div>
+            <div class="price-row alt">
+                <span class="price-name">สัมมนาการตลาด 2 วัน <span class="price-note">(ลืม 80% ภายใน 1 สัปดาห์)</span></span>
+                <span class="price-val">10,000 &ndash; 25,000 &#x0E3F;</span>
+            </div>
+            <div class="price-row alt">
+                <span class="price-name">จ้างที่ปรึกษา 1 ชั่วโมง <span class="price-note">(ได้ Opinion ไม่ได้ Framework)</span></span>
+                <span class="price-val">3,000 &ndash; 8,000 &#x0E3F;</span>
+            </div>
+            <div class="price-row main">
+                <span class="price-name">หนังสือที่ไม่มีวันหมดอายุ <span class="price-note">(เพราะสมองมนุษย์ไม่ update)</span></span>
+                <span class="price-val">2,990 &#x0E3F;</span>
+            </div>
+        </div>
+
+        <div class="price-hero rv">
+            <div class="price-big">2,990</div>
+            <div class="price-unit">บาท</div>
+            <div class="price-no-list">
+                <span>ไม่มีส่วนลด</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มีคูปอง</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มีของแถม</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มี Flash Sale</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มี Countdown Timer</span>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p>ถ้าหนังสือเล่มนี้สอนเรื่อง Perceived Value แล้วผมขายมันราคาถูกๆ ผมจะเป็นตัวอย่างของคนที่เขียนสิ่งที่ตัวเองไม่เชื่อ</p>
+            <p><strong>ราคาคือสัญญาณ ไม่ใช่แค่ตัวเลข</strong> &mdash; และนั่นคือบทเรียนแรกที่คุณเพิ่งเรียน ก่อนจะเปิดหน้าแรกด้วยซ้ำ</p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Anchoring + Price-Quality Heuristic</strong> &mdash; ตัวเลข 8,000&ndash;25,000 ที่คุณเห็นก่อน กลายเป็น &laquo;จุดอ้างอิง&raquo; (Anchor) ทำให้ 2,990 ดูสมเหตุสมผล และราคาที่สูงกว่าหนังสือทั่วไปเป็น &laquo;สัญญาณ&raquo; ให้สมองว่า นี่ไม่ใช่หนังสือธรรมดา (บทที่ 7)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ AUTHOR ═══════ -->
+    <section class="sp" id="author">
+        <div class="rv">
+            <div class="sp-label">THE AUTHOR</div>
+            <h2>Root Cee.</h2>
+        </div>
+
+        <div class="rv">
+            <p>จบวิทยาการคอมพิวเตอร์ ไม่ใช่การตลาด แต่ขายของชิ้นแรกตั้งแต่อายุ 16</p>
+            <p>ปริญญา CS สอนวิธีคิดเป็นระบบ วิธีแยก Pattern จากความสับสน วิธี Debug ความเชื่อที่ทุกคนรับมาโดยไม่เคยตั้งคำถาม</p>
+            <p>วันนี้เป็น Head of Marketing ให้บริษัท และยังลงมือทำงานจริงทุกวันกับลูกค้าอีกหลายสิบรายในฐานะ Freelance &mdash; ไม่ใช่ที่ปรึกษาที่ให้คำแนะนำจากระยะไกล แต่คนที่เขียน Copy ออกแบบแคมเปญ วัดผล ปรับ แล้ววัดใหม่</p>
+            <p>เขาเลือกที่จะไม่เปิดเผยตัวตน เพราะเชื่อว่า <strong>&ldquo;ไอเดียที่ดีไม่ต้องการใบหน้า&rdquo;</strong></p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Authority Bias + Pratfall Effect</strong> &mdash; ประสบการณ์จริง = สัญญาณ Authority ที่สมองไว้ใจ และการยอมรับว่า &laquo;ไม่ได้จบการตลาด&raquo; คือ Pratfall Effect &mdash; จุดอ่อนเล็กน้อยที่ทำให้ถูกชอบมากกว่าคนสมบูรณ์แบบ (บทที่ 8)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CTA ═══════ -->
+    <section class="cta-section" id="buy">
+        <div class="rv">
+            <a href="/" class="cta-btn">อ่านตัวอย่างฟรี &mdash; บทนำ &amp; บทที่ 1</a>
+            <p class="cta-or">อ่านได้เลยทันที ไม่ต้องสมัคร ไม่ต้องกรอกอีเมล</p>
+        </div>
+
+        <div class="te-note" style="max-width: 680px; margin-left: auto; margin-right: auto;">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Risk Reversal + Cognitive Ease</strong> &mdash; ปุ่มเดียว ข้อความเดียว ไม่ต้องกรอกอะไร ไม่ต้องจ่ายอะไร สมองของคุณไม่มีข้อโต้แย้งเหลือ นี่คือ Zero-Risk + Cognitive Ease &mdash; ลดแรงต้านจนเหลือศูนย์ (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CLOSING ═══════ -->
+    <section class="sp" style="border-top: none; text-align: center;">
+        <div class="rv">
+            <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 2;">
+                คุณเพิ่งอ่าน sale page ที่ใช้จิตวิทยาอย่างน้อย 12 เทคนิคกับคุณ<br><br>
+                ถ้าคุณเปิด<strong>ตาที่สาม</strong>แล้ว คุณเห็นทุกเทคนิค<br>
+                ถ้าคุณยังไม่เปิด ลองเลื่อนกลับขึ้นไปเปิดดู<br><br>
+                แล้วคุณจะเข้าใจว่าทำไมหนังสือเล่มนี้ถึงมีค่า 2,990 บาท<br><br>
+                <strong>เพราะคุณเพิ่งเรียนจบบทเรียนแรกไปแล้ว &mdash; จากหน้าขายของ</strong>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="sp-footer">
+        <p>&#x2741; The One Root of Marketing &mdash; รากแก้วการตลาด &#x2741;</p>
+        <p>&#xa9; Root Cee. &mdash; <a href="/">เข้าสู่หนังสือ</a></p>
+    </footer>
+
+
+    <!-- ═══════ Third Eye Floating Toggle ═══════ -->
+    <button id="te-float">&#x1F52E; ตาที่สาม</button>
+
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ── Scroll reveal ──
+        var revealObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+
+        document.querySelectorAll('.rv').forEach(function(el) {
+            revealObs.observe(el);
+        });
+
+        // ── Third Eye toggle ──
+        var teActive = false;
+        function toggleTE() {
+            teActive = !teActive;
+            document.body.classList.toggle('te-on', teActive);
+        }
+
+        document.getElementById('hero-te-btn').addEventListener('click', function() {
+            toggleTE();
+            // Smooth scroll to first annotation
+            var firstNote = document.querySelector('#pain .te-note');
+            if (firstNote && teActive) {
+                setTimeout(function() {
+                    firstNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            }
+        });
+
+        document.getElementById('te-float').addEventListener('click', toggleTE);
+
+        // Show floating toggle after scrolling past hero
+        var heroEl = document.querySelector('.hero');
+        var floatBtn = document.getElementById('te-float');
+        var floatObs = new IntersectionObserver(function(entries) {
+            floatBtn.classList.toggle('vis', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        floatObs.observe(heroEl);
+
+    })();
+    </script>
+</body>
+</html>
