@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทำไมคุณถึงซื้อ? — รากแก้วการตลาด</title>
+    <meta name="description" content="คุณเคยสงสัยไหมว่าทำไมคุณถึงเลือกซื้อของบางอย่างโดยไม่รู้ตัว? หนังสือเล่มนี้จะเปิดเผยความจริงที่ซ่อนอยู่ใต้ทุกการตัดสินใจ">
+    <!-- Open Graph -->
+    <meta property="og:title" content="ทำไมคุณถึงซื้อ? — รากแก้วการตลาด">
+    <meta property="og:description" content="เมื่อ 2,000 ปีที่แล้ว พ่อค้าคนหนึ่งค้นพบความลับของการขาย — ความลับเดียวกันที่ยังใช้กับคุณอยู่ทุกวันนี้">
+    <meta property="og:type" content="book">
+    <meta property="og:locale" content="th_TH">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ทำไมคุณถึงซื้อ? — รากแก้วการตลาด">
+    <meta name="twitter:description" content="เมื่อ 2,000 ปีที่แล้ว พ่อค้าคนหนึ่งค้นพบความลับของการขาย — ความลับเดียวกันที่ยังใช้กับคุณอยู่ทุกวันนี้">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #121010;
+            --bg-alt: #1A1714;
+            --bg-card: #1E1B17;
+            --text: #C8C0B4;
+            --text-sec: #8A8078;
+            --accent: #C4956A;
+            --accent-dim: rgba(196,149,106,0.12);
+            --gold: #D4A574;
+            --heading: #E7E0D5;
+            --border: #2A2520;
+            --red: #c0392b;
+            --green: #27ae60;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 17px;
+        }
+
+        body {
+            font-family: 'Sarabun', 'Noto Serif Thai', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Reading progress bar ── */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--gold));
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Scan line overlay when Third Eye active ── */
+        body.te-on::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent, transparent 3px,
+                rgba(196,149,106,0.015) 3px, rgba(196,149,106,0.015) 4px
+            );
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ── Scroll reveal variants ── */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv.vis { opacity: 1; transform: translateY(0); }
+
+        .rv-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv-left.vis { opacity: 1; transform: translateX(0); }
+
+        .rv-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv-right.vis { opacity: 1; transform: translateX(0); }
+
+        .rv-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv-scale.vis { opacity: 1; transform: scale(1); }
+
+        /* ── Section layout ── */
+        .sp {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+
+        .sp + .sp { border-top: 1px solid var(--border); }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 100%;
+            position: relative;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196,149,106,0.05) 0%, transparent 70%),
+                var(--bg);
+        }
+
+        @keyframes heroIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-meta {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-sec);
+            opacity: 0;
+            animation: heroIn 1s 0.3s forwards;
+        }
+
+        .hero-headline {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3.5vw, 1.7rem);
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.8;
+            margin: 2.5rem 0;
+            max-width: 580px;
+            opacity: 0;
+            animation: heroIn 1.2s 1.2s forwards;
+        }
+
+        .hero-headline em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .hero-ornament {
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 0.5em;
+            opacity: 0;
+            animation: heroIn 0.8s 2.8s forwards;
+        }
+
+        .hero-title-wrap {
+            margin: 2rem 0;
+            opacity: 0;
+            animation: heroIn 1s 3.3s forwards;
+        }
+
+        .hero-title-en {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 700;
+            font-style: italic;
+            color: var(--heading);
+            line-height: 1.1;
+            margin: 0;
+        }
+
+        .hero-title-of {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            font-style: italic;
+            color: var(--accent);
+            opacity: 0.7;
+            margin: 0.2rem 0;
+        }
+
+        .hero-title-th {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: clamp(0.95rem, 2vw, 1.2rem);
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-top: 1rem;
+        }
+
+        .hero-te-intro {
+            margin-top: 3rem;
+            opacity: 0;
+            animation: heroIn 1s 4.2s forwards;
+        }
+
+        .hero-te-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            color: var(--accent);
+            background: var(--accent-dim);
+            border: 1px solid rgba(196,149,106,0.2);
+            border-radius: 100px;
+            padding: 0.55rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            letter-spacing: 0.02em;
+        }
+        .hero-te-btn:hover {
+            background: rgba(196,149,106,0.2);
+            border-color: var(--accent);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2.5rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-sec);
+            text-decoration: none;
+            opacity: 0;
+            animation: heroIn 0.8s 5s forwards, pulse 2.5s 5.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%,100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 0.6; transform: translateY(5px); }
+        }
+
+        /* ── Section headings ── */
+        .sp-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .sp h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.4rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.5;
+            margin: 0 0 1.5rem;
+        }
+
+        .sp p { margin: 0 0 1.3rem; }
+
+        .sp strong { color: var(--heading); font-weight: 700; }
+
+        .sp em { color: var(--accent); font-style: normal; }
+
+        /* ── Narrative scene block ── */
+        .scene {
+            padding: 1.8rem 2rem;
+            background: var(--bg-card);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin: 2rem 0;
+            line-height: 2;
+            position: relative;
+        }
+        .scene::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            border-radius: 10px 10px 0 0;
+            opacity: 0.4;
+        }
+        .scene p { margin: 0 0 1rem; }
+        .scene p:last-child { margin: 0; }
+
+        /* ── Everyday observation ── */
+        .everyday {
+            padding: 1rem 0 1rem 1.5rem;
+            border-left: 2px solid var(--border);
+            margin: 1.5rem 0;
+            line-height: 1.85;
+            transition: border-color 0.4s;
+        }
+        .everyday:hover { border-color: var(--accent); }
+        .everyday p { margin: 0; }
+
+        /* ── Stats bar ── */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem 2.5rem;
+            margin: 2rem 0 0;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .stat-item { text-align: center; }
+        .stat-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            display: block;
+            line-height: 1.2;
+        }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Punchline ── */
+        .punchline {
+            text-align: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── Root metaphor (CSS Tree) ── */
+        .tree-wrap {
+            text-align: center;
+            margin: 2.5rem 0;
+            position: relative;
+        }
+        .tree-leaves {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        .tree-leaves span {
+            font-size: 0.78rem;
+            padding: 0.25rem 0.7rem;
+            background: rgba(196,149,106,0.06);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            color: var(--text-sec);
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .tree-leaves span:hover {
+            opacity: 1;
+            border-color: var(--text-sec);
+        }
+        .tree-trunk {
+            width: 2px;
+            height: 60px;
+            margin: 0 auto;
+            background: linear-gradient(to bottom, var(--text-sec) 0%, var(--accent) 100%);
+            opacity: 0.5;
+            position: relative;
+        }
+        .tree-trunk::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid var(--accent);
+            opacity: 0.5;
+        }
+        .tree-root-label {
+            margin-top: 0.8rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+        .tree-root-label::before,
+        .tree-root-label::after {
+            content: '\2741';
+            margin: 0 0.5rem;
+            font-size: 0.85rem;
+            opacity: 0.6;
+        }
+
+        /* ── Story blockquote ── */
+        .story-quote {
+            margin: 2rem 0;
+            padding: 1.5rem 1.8rem 1.5rem 2.5rem;
+            background: var(--bg-card);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            font-style: italic;
+            color: var(--text-sec);
+            position: relative;
+        }
+        .story-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: 0.3rem;
+            left: 0.6rem;
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+        .story-quote p { margin: 0 0 0.5rem; }
+        .story-quote p:last-child { margin: 0; }
+
+        /* ── AHA moments ── */
+        .aha-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.5rem 1.5rem;
+            margin: 1.2rem 0;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        .aha-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .aha-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 0.6rem;
+        }
+        .aha-text {
+            font-size: 1.02rem;
+            color: var(--heading);
+            margin: 0 0 0.6rem;
+            line-height: 1.8;
+        }
+        .aha-explain {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* ── Chapter list ── */
+        .ch-grid { margin: 1.5rem 0; }
+        .ch-item {
+            display: grid;
+            grid-template-columns: 3.5rem 1fr;
+            gap: 0.2rem 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: baseline;
+            transition: background 0.3s, padding-left 0.3s;
+            border-radius: 4px;
+        }
+        .ch-item:hover {
+            background: rgba(196,149,106,0.03);
+            padding-left: 0.5rem;
+        }
+        .ch-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            grid-row: 1 / 3;
+            padding-top: 0.1rem;
+        }
+        .ch-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.5;
+        }
+        .ch-hook {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+
+        /* ── For / Not For ── */
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+        .fit-col h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+        }
+        .fit-yes h3 { color: var(--green); border-color: var(--green); }
+        .fit-no h3 { color: var(--red); border-color: var(--red); }
+        .fit-item {
+            font-size: 0.88rem;
+            margin: 0.8rem 0;
+            line-height: 1.7;
+            color: var(--text);
+        }
+        .fit-item strong { font-size: 0.92rem; display: block; margin-bottom: 0.15rem; }
+
+        /* ── Transformation section ── */
+        .transform-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+            align-items: start;
+        }
+        .transform-col {
+            padding: 1.2rem;
+            border-radius: 8px;
+        }
+        .transform-before {
+            background: rgba(192,57,43,0.06);
+            border: 1px solid rgba(192,57,43,0.15);
+        }
+        .transform-after {
+            background: rgba(39,174,96,0.06);
+            border: 1px solid rgba(39,174,96,0.15);
+        }
+        .transform-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin: 0 0 0.8rem;
+        }
+        .transform-before h4 { color: var(--red); }
+        .transform-after h4 { color: var(--green); }
+        .transform-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .transform-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+        .transform-col li::before {
+            margin-right: 0.5rem;
+            font-weight: 700;
+        }
+        .transform-before li::before {
+            content: '\2717';
+            color: var(--red);
+        }
+        .transform-after li::before {
+            content: '\2713';
+            color: var(--green);
+        }
+        .transform-arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+            align-self: center;
+            padding-top: 1.5rem;
+        }
+
+        /* ── Price section ── */
+        .price-compare {
+            margin: 2rem 0;
+        }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.7rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 1rem;
+        }
+        .price-row.alt {
+            text-decoration: line-through;
+            opacity: 0.45;
+        }
+        .price-row.main {
+            text-decoration: none;
+            opacity: 1;
+            border-bottom: 2px solid var(--accent);
+        }
+        .price-name { font-size: 0.9rem; }
+        .price-val {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .price-row.main .price-name {
+            color: var(--heading);
+            font-weight: 600;
+        }
+        .price-row.main .price-val {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+        .price-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+        }
+
+        .price-hero {
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--accent) 0%, #FFD700 40%, var(--gold) 60%, #FFD700 80%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        .price-unit {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: var(--text-sec);
+            letter-spacing: 0.1em;
+        }
+        .price-no-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.4rem 1.2rem;
+            margin-top: 1.5rem;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+        }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem 3rem;
+        }
+        .cta-btn {
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #FAF6F0;
+            background: linear-gradient(135deg, var(--accent) 0%, #8B6914 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 0.9rem 3rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(196,149,106,0.3);
+        }
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(196,149,106,0.4);
+        }
+        .cta-or {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+        }
+
+        /* ── Interactive Demo ── */
+        .demo-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .demo-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 0.3rem;
+        }
+        .demo-subtitle {
+            font-size: 0.8rem;
+            color: var(--text-sec);
+            margin-bottom: 1.5rem;
+        }
+        .demo-choices {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .demo-choice {
+            background: var(--bg-alt);
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 1.2rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .demo-choice:hover {
+            border-color: var(--accent);
+            background: rgba(196,149,106,0.05);
+        }
+        .demo-choice.selected {
+            border-color: var(--accent);
+            background: rgba(196,149,106,0.1);
+        }
+        .demo-choice-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-sec);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .demo-choice-text {
+            font-size: 0.92rem;
+            color: var(--heading);
+            line-height: 1.6;
+        }
+        .demo-choice-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 0.5rem;
+        }
+        .demo-result {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
+        }
+        .demo-result.show {
+            max-height: 400px;
+            opacity: 1;
+        }
+        .demo-result-text {
+            padding: 1.2rem 0 0;
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .demo-result-text strong { color: var(--accent); }
+        .demo-result-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .demo-result-stat { text-align: center; }
+        .demo-result-pct {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .demo-result-label {
+            font-size: 0.72rem;
+            color: var(--text-sec);
+        }
+
+        /* ── Mid-page CTA ── */
+        .mid-cta {
+            text-align: center;
+            padding: 3rem 2rem;
+            max-width: 680px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border);
+        }
+        .mid-cta-text {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            margin-bottom: 1.2rem;
+        }
+        .mid-cta-btn {
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: transparent;
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 0.6rem 2rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .mid-cta-btn:hover {
+            background: var(--accent-dim);
+            transform: translateY(-1px);
+        }
+
+        /* ── Section divider ── */
+        .section-divider {
+            text-align: center;
+            padding: 2rem 0;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .section-divider-dots {
+            color: var(--accent);
+            font-size: 0.5rem;
+            letter-spacing: 1.5em;
+            opacity: 0.5;
+        }
+
+        /* ── Floating CTA ── */
+        #float-cta {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 999;
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: #FAF6F0;
+            background: linear-gradient(135deg, var(--accent) 0%, #8B6914 100%);
+            border: none;
+            border-radius: 100px;
+            padding: 0.55rem 1.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(196,149,106,0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+        }
+        #float-cta.vis {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        #float-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 30px rgba(196,149,106,0.5);
+        }
+
+        /* ── Footer ── */
+        .sp-footer {
+            text-align: center;
+            padding: 2.5rem 2rem 4rem;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            letter-spacing: 0.02em;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .sp-footer a { color: var(--accent); text-decoration: none; }
+
+        /* ═══════════════════════════════════════
+           THIRD EYE ANNOTATIONS
+           ═══════════════════════════════════════ */
+        .te-note {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1),
+                        opacity 0.5s ease,
+                        margin 0.5s ease,
+                        padding 0.5s ease;
+            background: rgba(196,149,106,0.06);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 8px 8px 0;
+            margin: 0;
+            padding: 0 1.5rem;
+        }
+        body.te-on .te-note {
+            max-height: 500px;
+            opacity: 1;
+            margin: 2rem 0;
+            padding: 1.2rem 1.5rem;
+        }
+        .te-note-head {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .te-note p {
+            font-size: 0.85rem;
+            color: var(--text);
+            line-height: 1.8;
+            margin: 0;
+        }
+        .te-note strong { color: var(--accent); }
+
+        /* ── Third Eye floating toggle ── */
+        #te-float {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.78rem;
+            color: var(--accent);
+            background: var(--bg-alt);
+            border: 1px solid rgba(196,149,106,0.2);
+            border-radius: 100px;
+            padding: 0.5rem 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+            opacity: 0;
+            visibility: hidden;
+        }
+        #te-float.vis { opacity: 1; visibility: visible; }
+        #te-float:hover {
+            background: rgba(196,149,106,0.15);
+            border-color: var(--accent);
+        }
+        body.te-on #te-float {
+            background: var(--accent);
+            color: #FAF6F0;
+            border-color: var(--accent);
+        }
+        .te-count {
+            font-size: 0.65rem;
+            background: rgba(196,149,106,0.2);
+            padding: 0.1rem 0.4rem;
+            border-radius: 100px;
+            margin-left: 0.2rem;
+        }
+        body.te-on .te-count {
+            background: rgba(250,246,240,0.2);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            .sp { padding: 3.5rem 1.3rem; }
+            .hero { padding: 2.5rem 1.3rem; }
+            .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+            .transform-grid { grid-template-columns: 1fr; }
+            .transform-arrow { transform: rotate(90deg); justify-self: center; padding-top: 0; }
+            .price-row { flex-direction: column; gap: 0.2rem; }
+            .price-val { align-self: flex-start; }
+            .ch-item { grid-template-columns: 2.5rem 1fr; }
+            #te-float { bottom: 1rem; left: 1rem; font-size: 0.72rem; padding: 0.45rem 1rem; }
+            #float-cta { bottom: 1rem; right: 1rem; font-size: 0.75rem; padding: 0.45rem 1.2rem; }
+            .demo-choices { grid-template-columns: 1fr; }
+            .stats-bar { gap: 0.8rem 1.5rem; }
+            .mid-cta { padding: 2rem 1.3rem; }
+            .scene { padding: 1.3rem 1.3rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .rv, .rv-left, .rv-right, .rv-scale { opacity: 1 !important; transform: none !important; transition: none !important; }
+            .hero-meta, .hero-headline, .hero-ornament,
+            .hero-title-wrap, .hero-te-intro, .hero-scroll {
+                opacity: 1 !important; animation: none !important;
+            }
+            .price-big { animation: none !important; -webkit-text-fill-color: var(--accent); background: none; }
+        }
+
+        @media print {
+            .hero { min-height: auto; }
+            #te-float, #float-cta, #progress-bar { display: none; }
+            .te-note { max-height: none; opacity: 1; margin: 1rem 0; padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Reading progress bar ── -->
+    <div id="progress-bar"></div>
+
+
+    <!-- ═══════ HERO ═══════ -->
+    <section class="hero">
+        <p class="hero-meta">เรื่องจริงที่เปลี่ยนวิธีมองโลกของคุณ</p>
+
+        <h1 class="hero-headline">
+            เมื่อ 2,000 ปีที่แล้ว<br>
+            พ่อค้าคนหนึ่งค้นพบความลับของการขาย<br><br>
+            ความลับเดียวกัน<br>
+            ยังถูกใช้กับคุณอยู่ &mdash; <em>ทุกวันนี้</em>
+        </h1>
+
+        <div class="hero-ornament">&#x2726;&ensp;&#x2726;&ensp;&#x2726;</div>
+
+        <div class="hero-title-wrap">
+            <p class="hero-title-en">The One Root</p>
+            <p class="hero-title-of">of</p>
+            <p class="hero-title-en">Marketing</p>
+            <p class="hero-title-th">รากแก้วการตลาด</p>
+        </div>
+
+        <div class="hero-te-intro">
+            <button class="hero-te-btn" id="hero-te-btn">
+                &#x1F52E; เปิดตาที่สาม &mdash; หน้านี้กำลังใช้จิตวิทยากับคุณ กดเพื่อดูทุกเทคนิค
+            </button>
+        </div>
+
+        <a href="#story" class="hero-scroll">เลื่อนลง &darr;</a>
+    </section>
+
+
+    <!-- ═══════ THE STORY ═══════ -->
+    <section class="sp" id="story">
+        <div class="rv">
+            <div class="sp-label">THE STORY</div>
+            <h2>พ่อค้าน้ำปลาที่รวยที่สุดในจักรวรรดิโรมัน</h2>
+        </div>
+
+        <div class="rv">
+            <div class="scene">
+                <p>ปี 79 ก่อนคริสตกาล เมือง Pompeii ยังเต็มไปด้วยชีวิตชีวา</p>
+                <p>ในตลาดเช้าวันนั้น มีพ่อค้าขายน้ำปลาหมักที่เรียกว่า <strong>Garum</strong> เรียงรายอยู่หลายสิบเจ้า สูตรไม่ต่างกัน วัตถุดิบเหมือนกัน รสชาติแยกแทบไม่ออก</p>
+                <p>แต่มีชายคนหนึ่งที่รวยกว่าคนอื่นทั้งหมด</p>
+                <p>ชื่อของเขาคือ <strong>Umbricius Scaurus</strong></p>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p>Scaurus ไม่ได้มีสูตรลับ ไม่ได้มีวัตถุดิบพิเศษ ไม่ได้ขายถูกกว่า</p>
+            <p>สิ่งที่เขาทำต่างจากคนอื่น มีอยู่อย่างเดียว &mdash;</p>
+            <p>เขา<strong>สลักชื่อตัวเอง</strong>บนทุกขวด แล้ววาง<strong>ขวดเปล่า</strong>ไว้ตามร้านค้าทั่วเมือง</p>
+            <p>ไม่ได้ขาย แค่วาง ให้คนเห็นชื่อ <strong>&ldquo;Scauri&rdquo;</strong> ซ้ำแล้วซ้ำเล่า</p>
+        </div>
+
+        <div class="rv">
+            <p>จนวันหนึ่ง เมื่อชาว Pompeii เดินไปในตลาด เห็นน้ำปลาหลายสิบยี่ห้อ สมองของพวกเขาไม่ได้เปรียบเทียบรสชาติ ไม่ได้เปรียบเทียบราคา</p>
+            <p>สมองทำสิ่งเดียว &mdash;</p>
+        </div>
+
+        <div class="rv">
+            <div class="story-quote">
+                <p>คุ้นเคย หมายถึง ปลอดภัย</p>
+                <p>ปลอดภัย หมายถึง เชื่อถือได้</p>
+                <p>เชื่อถือได้ หมายถึง ซื้อ</p>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p>Scaurus รวยที่สุดในเมือง ไม่ใช่เพราะน้ำปลาดีกว่า แต่เพราะเขาเข้าใจสิ่งที่คนขายคนอื่นไม่เข้าใจ &mdash;</p>
+            <p class="punchline">การตัดสินใจซื้อไม่ได้เกิดขึ้นที่ &ldquo;เหตุผล&rdquo;<br>แต่เกิดขึ้นที่ &ldquo;ความรู้สึก&rdquo; ที่คุณไม่รู้ตัว</p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Storytelling + Neural Coupling</strong> &mdash; ตอนที่คุณอ่านเรื่อง Scaurus สมองของคุณไม่ได้แค่ &laquo;อ่าน&raquo; แต่กำลัง &laquo;จำลองเหตุการณ์&raquo; เห็นภาพตลาด เห็นขวดน้ำปลา เห็นชื่อสลักอยู่ &mdash; นี่คือ Neural Coupling ที่ทำให้เรื่องเล่ามีพลังกว่าข้อมูลเปล่าๆ หลายเท่า (บทที่ 4)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE CONNECTION ═══════ -->
+    <section class="sp" id="connection">
+        <div class="rv">
+            <div class="sp-label">THE CONNECTION</div>
+            <h2>เรื่องนี้เกี่ยวกับคุณยังไง?</h2>
+        </div>
+
+        <div class="rv">
+            <p>สิ่งที่ Scaurus ทำเมื่อ 2,000 ปีก่อน มีชื่อเรียกอย่างเป็นทางการว่า <strong>Mere Exposure Effect</strong> &mdash; ถูกค้นพบอีกครั้งในปี 1968 โดยนักจิตวิทยา</p>
+            <p>แต่คุณไม่ต้องจำชื่อมัน &mdash; เพราะคุณ<strong>เคยเจอมันแล้ว</strong></p>
+        </div>
+
+        <div class="rv">
+            <div class="everyday">
+                <p>เคยไหม? เลื่อนผ่านโฆษณาสินค้าตัวหนึ่งหลายครั้ง ไม่เคยคลิก ไม่เคยสนใจ &mdash; <strong>แต่วันที่ต้องซื้อ คุณเลือกยี่ห้อนั้น</strong> โดยไม่รู้ตัวว่าทำไม</p>
+            </div>
+        </div>
+        <div class="rv">
+            <div class="everyday">
+                <p>เคยไหม? เห็นร้านกาแฟร้านหนึ่งผ่านทุกวัน ไม่เคยแวะ &mdash; <strong>แต่วันที่อยากกินกาแฟ คุณเลี้ยวเข้าร้านนั้นเป็นร้านแรก</strong> ทั้งที่ไม่เคยลอง</p>
+            </div>
+        </div>
+        <div class="rv">
+            <div class="everyday">
+                <p>เคยไหม? ยืนเลือกของในซูเปอร์มาร์เก็ต เห็นยี่ห้อที่ไม่เคยลอง vs. ยี่ห้อที่ &ldquo;เคยเห็นที่ไหนสักแห่ง&rdquo; &mdash; <strong>คุณหยิบอันที่คุ้นตา</strong> โดยไม่ได้อ่านฉลากด้วยซ้ำ</p>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p class="punchline">ทั้งหมดนี้คือ Scaurus &mdash; 2,000 ปีต่อมา</p>
+        </div>
+
+        <div class="rv">
+            <p>และนี่เป็นแค่ <em>หนึ่ง</em> ในหลายสิบกลไกที่สมองของคุณใช้ตัดสินใจทุกวัน โดยที่คุณไม่รู้ตัว</p>
+            <p>มันไม่ใช่ &ldquo;แค่เรื่องการตลาด&rdquo; &mdash; มันคือ<strong>เรื่องของคุณ ในฐานะมนุษย์</strong></p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Recognition + Personal Relevance Effect</strong> &mdash; section ที่เพิ่งผ่านมา ตั้งใจให้คุณ &laquo;จำประสบการณ์ตัวเอง&raquo; ได้ ทุกข้อที่ขึ้นต้นด้วย &laquo;เคยไหม?&raquo; ทำให้สมองค้นหาความทรงจำ &mdash; พอเจอ มันรู้สึก &laquo;เกี่ยวกับฉัน&raquo; ทันที ความรู้สึกนี้ทำให้คุณอยากอ่านต่อ (บทที่ 5, 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE ROOT ═══════ -->
+    <section class="sp" id="root">
+        <div class="rv">
+            <div class="sp-label">THE ROOT</div>
+            <h2>ทำไมเราถึงถูกหลอกได้ง่ายขนาดนี้?</h2>
+        </div>
+
+        <div class="rv">
+            <p>คำตอบง่ายกว่าที่คิด &mdash;</p>
+            <p>สมองของคุณไม่ได้ถูกออกแบบมาเพื่อโลกยุคนี้ มันถูกออกแบบมาเพื่อเอาชีวิตรอดบนทุ่งหญ้าเมื่อแสนปีก่อน</p>
+            <p>สมองที่เห็นเสือแล้วต้องวิ่งหนี <strong>ไม่มีเวลาคิดวิเคราะห์</strong></p>
+            <p>สมองที่อยู่ในฝูงแล้วปลอดภัย <strong>ไม่มีเหตุผลต้องคิดต่าง</strong></p>
+            <p>สมองที่คุ้นเคยหมายถึงปลอดภัย <strong>ไม่จำเป็นต้องลองของใหม่</strong></p>
+        </div>
+
+        <div class="rv">
+            <p>สมองนี้ &mdash; สมองเดียวกัน &mdash; คือสมองที่คุณใช้<strong>เลือกซื้อของใน Shopee ตอนตี 2</strong></p>
+        </div>
+
+        <div class="rv-scale tree-wrap">
+            <div class="tree-leaves">
+                <span>โฆษณา</span>
+                <span>โปรโมชัน</span>
+                <span>ลดราคา</span>
+                <span>รีวิว</span>
+                <span>แบรนด์</span>
+                <span>คอนเทนต์</span>
+                <span>ไลฟ์สด</span>
+                <span>Flash Sale</span>
+            </div>
+            <div class="tree-trunk"></div>
+            <div class="tree-root-label">จิตวิทยาของความเป็นมนุษย์</div>
+        </div>
+
+        <div class="rv">
+            <p>สิ่งที่คุณเห็นทุกวัน &mdash; โฆษณา โปรโมชัน Flash Sale รีวิว &mdash; ทั้งหมดเป็นแค่ &ldquo;ใบ&rdquo; ของต้นไม้</p>
+            <p>แต่สิ่งที่ทำให้มัน<strong>ได้ผล</strong>จริงๆ ซ่อนอยู่ข้างล่าง &mdash; ใน &ldquo;ราก&rdquo; ที่มนุษย์ทุกคนมีเหมือนกัน ไม่ว่าจะอยู่ยุคไหน</p>
+        </div>
+
+        <div class="stats-bar rv">
+            <div class="stat-item">
+                <span class="stat-num">12</span>
+                <span class="stat-label">บท</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">100+</span>
+                <span class="stat-label">งานวิจัยอ้างอิง</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">2,000+</span>
+                <span class="stat-label">ปีของหลักฐาน</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-num">1</span>
+                <span class="stat-label">ความจริงที่ซ่อนอยู่</span>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Reframe + Metaphor</strong> &mdash; อุปมา &laquo;ต้นไม้&raquo; เปลี่ยนกรอบคิดของคุณจาก &laquo;เทคนิคแยกชิ้น&raquo; เป็น &laquo;ระบบที่เชื่อมกัน&raquo; ทันที พอสมองเห็นภาพ ราก-ลำต้น-ใบ มันจะจำโครงสร้างนี้ได้เอง โดยไม่ต้อง &laquo;เรียน&raquo; &mdash; นี่คือ Conceptual Metaphor Theory (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ MID-PAGE CTA ═══════ -->
+    <div class="mid-cta rv">
+        <p class="mid-cta-text">เรื่อง Scaurus อยู่ในบทนำ &mdash; อ่านเวอร์ชันเต็มได้ฟรี</p>
+        <a href="/" class="mid-cta-btn">อ่านบทนำฟรี &rarr;</a>
+    </div>
+
+    <div class="section-divider"><span class="section-divider-dots">&#x2022; &#x2022; &#x2022;</span></div>
+
+
+    <!-- ═══════ A TASTE ═══════ -->
+    <section class="sp" id="aha">
+        <div class="rv">
+            <div class="sp-label">A TASTE</div>
+            <h2>3 เรื่องที่จะเปลี่ยนวิธีมองโลกของคุณ</h2>
+        </div>
+
+        <div class="rv-left">
+            <div class="aha-card">
+                <div class="aha-num">01</div>
+                <p class="aha-text">ทำไม<strong>ยาหลอก</strong>ราคาแพง ถึงหายปวดได้ดีกว่ายาหลอกราคาถูก?</p>
+                <p class="aha-explain">งานวิจัยที่ MIT พบว่า คนไข้ที่ได้รับยาหลอก (น้ำเกลือธรรมดา) ที่ติดป้ายราคา 2.50 ดอลลาร์ รายงานว่าหายปวดมากกว่ากลุ่มที่ได้ยาหลอกเดียวกันที่ติดราคา 10 เซนต์ &mdash; ทั้งที่เป็นน้ำเกลือขวดเดียวกัน สมองใช้ &ldquo;ราคา&rdquo; เป็นสัญญาณบอก &ldquo;คุณภาพ&rdquo; โดยอัตโนมัติ (บทที่ 7)</p>
+            </div>
+        </div>
+
+        <div class="rv-right">
+            <div class="aha-card">
+                <div class="aha-num">02</div>
+                <p class="aha-text">ทำไมคุณ<strong>เลื่อนมือถือ</strong>ไม่หยุด ทั้งที่รู้ว่าไม่มีอะไรใหม่?</p>
+                <p class="aha-explain">สมองปล่อย Dopamine ไม่ใช่ตอนที่คุณ &ldquo;ได้&rdquo; สิ่งที่ต้องการ แต่ตอนที่ &ldquo;อาจจะได้&rdquo; &mdash; ความไม่แน่นอนนี้เรียกว่า Variable Reward และมันเป็นกลไกเดียวกับสล็อตแมชชีน ทุกครั้งที่คุณเลื่อนฟีด สมองพนันว่า &ldquo;โพสต์ถัดไปอาจน่าสนใจ&rdquo; (บทที่ 2)</p>
+            </div>
+        </div>
+
+        <div class="rv-left">
+            <div class="aha-card">
+                <div class="aha-num">03</div>
+                <p class="aha-text">ทำไมคุณ<strong>ซื้อของที่ไม่ได้ต้องการ</strong> แค่เพราะมันกำลังจะหมด?</p>
+                <p class="aha-explain">สมองมนุษย์กลัว &ldquo;การเสียของ&rdquo; มากกว่า &ldquo;การได้ของ&rdquo; ประมาณ 2 เท่า ป้าย &ldquo;เหลือ 3 ชิ้นสุดท้าย&rdquo; ไม่ได้ทำให้สินค้ามีค่าขึ้น &mdash; แต่มันทำให้สมองกลัวว่าจะ &ldquo;พลาด&rdquo; ความกลัวนี้เรียกว่า Loss Aversion และมันทรงพลังกว่าเหตุผลทุกข้อ (บทที่ 6)</p>
+            </div>
+        </div>
+
+        <!-- ── Interactive Demo ── -->
+        <div class="rv">
+            <div class="demo-box" id="perception-demo">
+                <div class="demo-title">ลองพิสูจน์ด้วยตัวเอง</div>
+                <div class="demo-subtitle">คุณอยากกินกาแฟ คุณจะเลือกแก้วไหน?</div>
+                <div class="demo-choices">
+                    <div class="demo-choice" data-choice="A">
+                        <div class="demo-choice-label">แก้ว A</div>
+                        <div class="demo-choice-text">กาแฟดำ<br>ร้านข้างทาง<br>แก้วกระดาษ ไม่มีโลโก้</div>
+                        <div class="demo-choice-price">35 &#x0E3F;</div>
+                    </div>
+                    <div class="demo-choice" data-choice="B">
+                        <div class="demo-choice-label">แก้ว B</div>
+                        <div class="demo-choice-text">กาแฟดำ<br>แพ็คเกจมินิมอล<br>แก้วเซรามิกพร้อมชื่อร้าน</div>
+                        <div class="demo-choice-price">165 &#x0E3F;</div>
+                    </div>
+                </div>
+                <div class="demo-result" id="demo-result">
+                    <div class="demo-result-text">
+                        <strong>กาแฟเหมือนกันทุกประการ</strong> &mdash; เมล็ดเดียวกัน คั่วที่เดียวกัน ชงสูตรเดียวกัน<br><br>
+                        แต่คุณก็ยังรู้สึกว่าแก้วขวาน่าจะ &ldquo;อร่อยกว่า&rdquo; ใช่ไหม?<br><br>
+                        นั่นเพราะสมองตัดสินคุณภาพจาก <strong>&ldquo;สิ่งที่เห็น&rdquo;</strong> ไม่ใช่จาก &ldquo;สิ่งที่เป็นจริง&rdquo; &mdash; นี่คือ <strong>Perception is Reality</strong> บทที่ 7
+                    </div>
+                    <div class="demo-result-stats">
+                        <div class="demo-result-stat">
+                            <div class="demo-result-pct" id="demo-pct-a">19%</div>
+                            <div class="demo-result-label">เลือก A</div>
+                        </div>
+                        <div class="demo-result-stat">
+                            <div class="demo-result-pct" id="demo-pct-b">81%</div>
+                            <div class="demo-result-label">เลือก B</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Curiosity Gap + Ikea Effect</strong> &mdash; 3 คำถามข้างบนสร้าง &laquo;ช่องว่างของความอยากรู้&raquo; ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; คุณอ่านต่อเพราะอยากรู้คำตอบ ไม่ใช่เพราะถูกบังคับ และเมื่อคุณลงมือ &laquo;เลือก&raquo; กาแฟด้วยตัวเอง สมองจะให้คุณค่ากับบทเรียนนี้มากขึ้น &mdash; Ikea Effect: คุณรู้สึกผูกพันกับสิ่งที่ &laquo;มีส่วนร่วม&raquo; (บทที่ 5, 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE CHAPTERS ═══════ -->
+    <section class="sp" id="chapters">
+        <div class="rv">
+            <div class="sp-label">THE CHAPTERS</div>
+            <h2>12 บทที่จะเปลี่ยนวิธีคิดของคุณตลอดไป</h2>
+            <p>หนังสือเล่มนี้ไม่ใช่หนังสือ &ldquo;สอนขายของ&rdquo; &mdash; มันคือหนังสือที่อธิบายว่า<strong>ทำไมคุณถึงซื้อ</strong> ทำไมคุณถึงเชื่อ ทำไมคุณถึงเลือก &mdash; โดยคุณไม่เคยรู้ตัว</p>
+        </div>
+
+        <div class="ch-grid rv">
+            <div class="ch-item">
+                <div class="ch-num">บทนำ</div>
+                <div class="ch-title">ความลับที่ซ่อนอยู่ต่อหน้าต่อตา</div>
+                <div class="ch-hook">น้ำปลาโรมัน 2,000 ปีก่อน กับสิ่งที่เกิดขึ้นกับคุณทุกวัน</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">01</div>
+                <div class="ch-title">มายาภาพของวิวัฒนาการ</div>
+                <div class="ch-hook">ทำไมสมองที่ฉลาดพอส่งคนไปดวงจันทร์ ยังตกหลุมโฆษณาง่ายๆ</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">02</div>
+                <div class="ch-title">ปุ่มชีวภาพ</div>
+                <div class="ch-hook">Dopamine ที่ทำให้เลื่อนมือถือไม่หยุด กับ Cortisol ที่ทำให้ซื้อประกันทั้งที่ไม่ชอบ</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">03</div>
+                <div class="ch-title">ความปรารถนาดั้งเดิม 5 ข้อ</div>
+                <div class="ch-hook">ทุกครั้งที่กดซื้อ คุณกำลังตอบสนอง 1 ใน 5 สิ่งนี้ &mdash; รู้ตัวหรือเปล่า?</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">04</div>
+                <div class="ch-title">พลังของการเล่าเรื่อง</div>
+                <div class="ch-hook">ทำไมคุณจำชื่อตัวละคร แต่จำสถิติไม่ได้ &mdash; และใครใช้สิ่งนี้กับคุณอยู่</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">05</div>
+                <div class="ch-title">Social Proof และชนเผ่า</div>
+                <div class="ch-hook">ทำไมคุณดูรีวิวก่อนซื้อ ทำไมคุณอยากมี &ldquo;ของเหมือนคนอื่น&rdquo;</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">06</div>
+                <div class="ch-title">ความขาดแคลนและความเร่งด่วน</div>
+                <div class="ch-hook">&ldquo;เหลือ 3 ชิ้นสุดท้าย&rdquo; ทำอะไรกับสมองคุณ &mdash; และทำไมคุณกดซื้อทุกที</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">07</div>
+                <div class="ch-title">ความจริงถูกสร้างได้</div>
+                <div class="ch-hook">ทำไมกาแฟแก้วละ 200 บาท &ldquo;รู้สึก&rdquo; อร่อยกว่าแก้วละ 35</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">08</div>
+                <div class="ch-title">เครื่องจักรสร้างความไว้ใจ</div>
+                <div class="ch-hook">ทำไมคุณเชื่อคนแปลกหน้าบนอินเทอร์เน็ตมากกว่าคนรู้จัก</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">09</div>
+                <div class="ch-title">ทลายกำแพง</div>
+                <div class="ch-hook">ทำไมคุณบอก &ldquo;ขอคิดก่อน&rdquo; แล้วกลับมาซื้อ (หรือไม่กลับเลย)</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">10</div>
+                <div class="ch-title">การตลาดที่ไม่ต้องพึ่งแพลตฟอร์ม</div>
+                <div class="ch-hook">สิ่งที่ทำงานได้ตั้งแต่ยุค Scaurus จนถึงยุค AI</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">11</div>
+                <div class="ch-title">ด้านมืดของราก</div>
+                <div class="ch-hook">เส้นบางๆ ระหว่าง &ldquo;ชวนเชื่อ&rdquo; กับ &ldquo;หลอกลวง&rdquo; &mdash; ที่ต้องรู้ก่อนใช้</div>
+            </div>
+            <div class="ch-item">
+                <div class="ch-num">12</div>
+                <div class="ch-title">เป็นนายของราก</div>
+                <div class="ch-hook">จากคนที่ &ldquo;ถูกใช้โดยไม่รู้ตัว&rdquo; สู่คนที่ &ldquo;เห็นทุกอย่าง&rdquo;</div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Commitment + Completeness Bias</strong> &mdash; คุณใช้เวลาอ่านมาถึงตรงนี้แล้ว สมองรู้สึกว่า &laquo;ลงทุนไปแล้ว&raquo; ถ้าเลิกตอนนี้จะเสียเปล่า และรายชื่อ 12 บท กระตุ้นให้สมองอยากเห็น &laquo;ภาพเต็ม&raquo; ไม่ใช่แค่ตัวอย่าง &mdash; สมองไม่ชอบสิ่งที่ไม่สมบูรณ์ มันอยากปิดจบ (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ WHO THIS IS FOR ═══════ -->
+    <section class="sp" id="fit">
+        <div class="rv">
+            <div class="sp-label">WHO THIS IS FOR</div>
+            <h2>หนังสือเล่มนี้ไม่ได้เขียนให้นักการตลาด<br>มันเขียนให้ &ldquo;มนุษย์&rdquo;</h2>
+        </div>
+
+        <div class="fit-grid rv">
+            <div class="fit-col fit-yes">
+                <h3>&#x2713; เหมาะกับ</h3>
+                <div class="fit-item"><strong>คนที่เคยถามตัวเองว่า &ldquo;ทำไมฉันถึงซื้อ?&rdquo;</strong> ถ้าคุณเคยรู้สึกว่าตัวเองถูกโน้มน้าวโดยไม่รู้ตัว หนังสือเล่มนี้จะทำให้คุณ &ldquo;เห็น&rdquo; กลไกที่เคยมองไม่เห็น</div>
+                <div class="fit-item"><strong>เจ้าของธุรกิจเล็ก หรือคนที่ขายของออนไลน์</strong> คุณจะเข้าใจว่าทำไมลูกค้าบางคนซื้อ บางคนไม่ซื้อ &mdash; และเริ่มสร้าง &ldquo;เหตุผล&rdquo; ที่ทำให้คนเลือกคุณ</div>
+                <div class="fit-item"><strong>นักศึกษา หรือคนที่เพิ่งเริ่มทำงาน</strong> อ่านเล่มนี้ก่อนเรียนอะไรอื่น &mdash; เพราะมันให้ &ldquo;ฐานราก&rdquo; ที่ทุกทักษะต่อยอดได้</div>
+                <div class="fit-item"><strong>คนที่อยากเข้าใจว่า &ldquo;ทำไมคนเราถึงเป็นแบบนี้&rdquo;</strong> แม้จะไม่ได้ขายของ หนังสือเล่มนี้จะเปลี่ยนวิธีที่คุณมองโฆษณา ข่าว การเมือง และทุก &ldquo;การโน้มน้าว&rdquo; ที่เกิดขึ้นรอบตัว</div>
+            </div>
+            <div class="fit-col fit-no">
+                <h3>&#x2717; ไม่เหมาะกับ</h3>
+                <div class="fit-item"><strong>คนที่อยากได้ &ldquo;สูตรลับ&rdquo; รวยเร็ว</strong> หนังสือเล่มนี้ไม่มีสูตรสำเร็จ &mdash; มันให้ความเข้าใจ ที่จะตามคุณไปตลอดชีวิต</div>
+                <div class="fit-item"><strong>คนที่ไม่อยากรู้ &ldquo;เบื้องหลัง&rdquo;</strong> ถ้าคุณไม่อยากรู้ว่าทำไมคุณคิดในสิ่งที่คิด เชื่อในสิ่งที่เชื่อ &mdash; เล่มนี้อาจทำให้อึดอัด</div>
+                <div class="fit-item"><strong>คนที่ต้องการ &ldquo;คู่มือ step-by-step&rdquo;</strong> หนังสือเล่มนี้สอนว่า &ldquo;ทำไม&rdquo; ไม่ใช่ &ldquo;ทำยังไง&rdquo; &mdash; เพราะเมื่อเข้าใจ &ldquo;ทำไม&rdquo; คุณจะคิด &ldquo;ทำยังไง&rdquo; ได้เอง</div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Identity Labeling + Tribalism</strong> &mdash; section นี้สร้าง &laquo;ตัวตน&raquo; ให้คุณ &mdash; &laquo;คนที่อยากเข้าใจ&raquo; กับ &laquo;คนที่แค่อยากได้สูตร&raquo; ถ้าคุณเห็นตัวเองในฝั่ง &laquo;เหมาะ&raquo; สมองจะ commit กับ identity นั้น แล้วทุกการตัดสินใจหลังจากนี้ต้อง &laquo;สอดคล้อง&raquo; กับตัวตนที่เพิ่งเลือก (บทที่ 5, 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE SHIFT ═══════ -->
+    <section class="sp" id="transform">
+        <div class="rv">
+            <div class="sp-label">THE SHIFT</div>
+            <h2>สิ่งที่เปลี่ยนไปหลังอ่านจบ</h2>
+        </div>
+
+        <div class="transform-grid rv">
+            <div class="transform-col transform-before">
+                <h4>ก่อนอ่าน</h4>
+                <ul>
+                    <li>กดซื้อตามโปรโมชัน โดยไม่รู้ว่าถูกออกแบบมา</li>
+                    <li>ดูรีวิวแล้วเชื่อ ไม่รู้ว่าทำไมถึงเชื่อ</li>
+                    <li>เห็น &ldquo;เหลือ 3 ชิ้น&rdquo; แล้วรีบซื้อ</li>
+                    <li>รู้สึกว่าของแพงดีกว่า แต่อธิบายไม่ได้</li>
+                    <li>เชื่อว่าตัวเอง &ldquo;เลือกเอง&rdquo; ทุกอย่าง</li>
+                </ul>
+            </div>
+            <div class="transform-arrow">&#x2192;</div>
+            <div class="transform-col transform-after">
+                <h4>หลังอ่าน</h4>
+                <ul>
+                    <li>เห็นกลไกเบื้องหลังทุกโปรโมชัน ก่อนจะตัดสินใจ</li>
+                    <li>เข้าใจว่าทำไมรีวิวบางอันทรงพลัง &mdash; และบางอันจงใจหลอก</li>
+                    <li>รู้ว่า &ldquo;ความกลัวพลาด&rdquo; กำลังบงการอยู่ แล้วเลือกอย่างมีสติ</li>
+                    <li>เข้าใจว่า &ldquo;การรับรู้&rdquo; ถูกสร้างได้ &mdash; และใช้ความรู้นี้ได้เอง</li>
+                    <li>มีตาคู่ใหม่ที่เห็น &ldquo;เชือก&rdquo; ที่เคยมองไม่เห็น</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Future Pacing + Contrast Principle</strong> &mdash; section นี้ให้สมองคุณ &laquo;พรีวิวอนาคต&raquo; เห็นตัวเองในเวอร์ชันที่ดีกว่า ช่องว่างระหว่าง &laquo;ก่อน&raquo; กับ &laquo;หลัง&raquo; สร้าง tension ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; และหนังสือเล่มนี้คือสิ่งที่ปิดมัน (บทที่ 3, 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE PRICE ═══════ -->
+    <section class="sp" id="price">
+        <div class="rv">
+            <div class="sp-label">THE PRICE</div>
+            <h2>คุณจ่ายเงินไปเท่าไหร่<br>กับสิ่งที่ไม่ได้เปลี่ยนอะไรเลย?</h2>
+        </div>
+
+        <div class="price-compare rv">
+            <div class="price-row alt">
+                <span class="price-name">กาแฟวันละแก้ว ตลอดทั้งปี <span class="price-note">(หมดไปใน 15 นาที)</span></span>
+                <span class="price-val">5,400+ &#x0E3F;</span>
+            </div>
+            <div class="price-row alt">
+                <span class="price-name">คอร์สออนไลน์ที่ดูไม่จบ <span class="price-note">(เพราะ trigger ตอนโปร แต่ไม่ได้อยากเรียนจริง)</span></span>
+                <span class="price-val">2,990 &ndash; 9,900 &#x0E3F;</span>
+            </div>
+            <div class="price-row alt">
+                <span class="price-name">ของที่ซื้อเพราะ Flash Sale แล้วไม่ได้ใช้ <span class="price-note">(ปีละกี่ครั้ง?)</span></span>
+                <span class="price-val">???+ &#x0E3F;</span>
+            </div>
+            <div class="price-row main">
+                <span class="price-name">หนังสือที่เปลี่ยนวิธีคิดตลอดชีวิต <span class="price-note">(สมองมนุษย์ไม่เปลี่ยน = ไม่มีวันหมดอายุ)</span></span>
+                <span class="price-val">2,990 &#x0E3F;</span>
+            </div>
+        </div>
+
+        <div class="price-hero rv">
+            <div class="price-big">2,990</div>
+            <div class="price-unit">บาท</div>
+            <div class="price-no-list">
+                <span>ไม่มีส่วนลด</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มีคูปอง</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มี Flash Sale</span>
+                <span>&#x00B7;</span>
+                <span>ไม่มี Countdown Timer</span>
+            </div>
+        </div>
+
+        <div class="rv">
+            <p>ถ้าหนังสือเล่มนี้สอนว่า &ldquo;ราคา&rdquo; คือสัญญาณบอกคุณภาพ แล้วผมตั้งราคา 299 บาท &mdash; ผมก็จะกลายเป็นตัวอย่างของคนที่ไม่เชื่อในสิ่งที่ตัวเองเขียน</p>
+            <p>ไม่มีส่วนลด เพราะ<strong>หนังสือเล่มนี้สอนเรื่อง Scarcity</strong> &mdash; แล้วผมจะใช้ Scarcity กับคุณได้ยังไง?</p>
+            <p>ไม่มี Countdown Timer เพราะ<strong>หนังสือเล่มนี้สอนเรื่อง Urgency</strong> &mdash; แล้วผมจะสร้าง Urgency ปลอมๆ ได้ยังไง?</p>
+            <p><strong>ราคาเดียว ตรงไปตรงมา</strong> &mdash; เพราะนั่นคือสิ่งที่หนังสือเล่มนี้เชื่อ</p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Anchoring + Price-Quality Heuristic + Integrity Signal</strong> &mdash; ตัวเลขกาแฟ/คอร์ส/ของ Flash Sale เป็น &laquo;จุดเปรียบเทียบ&raquo; ที่ทำให้ 2,990 รู้สึกสมเหตุสมผล แม้คุณจะ &laquo;รู้&raquo; ว่ากำลังถูกเปรียบเทียบ &mdash; สมองก็ยัง default ไปที่ตัวเลขแรกที่เห็น (Anchoring ทำงานที่สมองส่วนที่เร็วกว่า &laquo;เหตุผล&raquo;) และการที่ผู้เขียนอธิบายว่า &laquo;ทำไมไม่ลดราคา&raquo; สร้างความรู้สึก &laquo;ซื่อสัตย์&raquo; ที่เพิ่ม trust (บทที่ 7, 8)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ THE AUTHOR ═══════ -->
+    <section class="sp" id="author">
+        <div class="rv">
+            <div class="sp-label">THE AUTHOR</div>
+            <h2>Root Cee.</h2>
+        </div>
+
+        <div class="rv">
+            <p>จบวิทยาการคอมพิวเตอร์ ไม่ใช่การตลาด แต่ขายของชิ้นแรกตั้งแต่อายุ 16</p>
+            <p>คนส่วนใหญ่เรียนการตลาดจากตำรา เขาเรียนจากการลงมือทำจริง &mdash; ล้มจริง ขายได้จริง แล้วตั้งคำถามว่า &ldquo;ทำไมวิธีนี้ถึงได้ผล?&rdquo; จนกลายเป็นหนังสือเล่มนี้</p>
+            <p>วันนี้เป็น Head of Marketing ให้บริษัท และยังลงมือทำงานจริงทุกวันกับลูกค้าหลายสิบรายในฐานะ Freelance &mdash; ไม่ใช่คนที่แค่ &ldquo;สอน&rdquo; แต่คือคนที่ &ldquo;ทำ&rdquo;</p>
+            <p>เขาเลือกที่จะไม่เปิดเผยตัวตน เพราะเชื่อว่า <strong>&ldquo;ไอเดียที่ดีไม่ต้องการใบหน้า &mdash; มันต้องการแค่หลักฐาน&rdquo;</strong></p>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Authority + Pratfall Effect + Mystery</strong> &mdash; ประวัติจริงสร้างความน่าเชื่อถือ การยอมรับว่า &laquo;ไม่ได้จบการตลาด&raquo; กลับเพิ่มความชอบ &mdash; จุดอ่อนเล็กน้อยทำให้คนดูจริงใจมากขึ้น (Pratfall Effect) และการไม่เปิดเผยตัวตนสร้าง &laquo;ความลึกลับ&raquo; ที่ทำให้อยากรู้มากขึ้น ไม่ใช่น้อยลง (บทที่ 6, 8)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CTA ═══════ -->
+    <section class="cta-section" id="buy">
+        <div class="rv">
+            <a href="/" class="cta-btn">อ่านบทนำ + บทที่ 1 ฟรี</a>
+            <p class="cta-or">ไม่ต้องสมัคร ไม่ต้องกรอกอีเมล &mdash; แค่กดแล้วอ่านได้เลย</p>
+        </div>
+
+        <div class="te-note" style="max-width: 680px; margin-left: auto; margin-right: auto;">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Risk Reversal + Cognitive Ease</strong> &mdash; ปุ่มเดียว ไม่ต้องจ่ายอะไร ไม่ต้องกรอกอะไร สมองไม่มีข้อโต้แย้งเหลือ &ldquo;แค่กดแล้วอ่านได้เลย&rdquo; คือประโยคที่ลดแรงเสียดทานให้เหลือศูนย์ &mdash; เพราะทุกขั้นตอนที่เพิ่ม = โอกาสที่สมองจะเปลี่ยนใจ (บทที่ 9)</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CLOSING ═══════ -->
+    <section class="sp" style="border-top: none; text-align: center;">
+        <div class="rv">
+            <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 2;">
+                คุณเพิ่งอ่าน sale page ที่ใช้จิตวิทยากับคุณตลอดทั้งหน้า<br><br>
+                ถ้าคุณเปิด<strong>ตาที่สาม</strong>แล้ว คุณเห็นทุกเทคนิค<br>
+                ถ้ายังไม่เปิด ลองเลื่อนกลับขึ้นไปดู<br><br>
+                เรื่อง Scaurus ที่คุณอ่าน?<br>
+                มันทำสิ่งเดียวกับที่ขวดน้ำปลาเปล่าทำ &mdash;<br>
+                <strong>มันทำให้คุณ &ldquo;คุ้นเคย&rdquo; กับหนังสือเล่มนี้</strong><br><br>
+                คุณไม่ได้ถูกหลอก คุณแค่เพิ่ง<strong>เห็น</strong>สิ่งที่เคยมองไม่เห็น<br><br>
+                <strong>นั่นคือบทเรียนแรก &mdash; จากหน้าขายของ</strong>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer class="sp-footer">
+        <p>&#x2741; The One Root of Marketing &mdash; รากแก้วการตลาด &#x2741;</p>
+        <p>&#xa9; Root Cee. &mdash; <a href="/">เข้าสู่หนังสือ</a></p>
+    </footer>
+
+
+    <!-- ═══════ Floating CTA ═══════ -->
+    <a href="/" id="float-cta">อ่านตัวอย่างฟรี &rarr;</a>
+
+    <!-- ═══════ Third Eye Floating Toggle ═══════ -->
+    <button id="te-float">&#x1F52E; ตาที่สาม <span class="te-count" id="te-count"></span></button>
+
+
+    <script>
+    (function() {
+        'use strict';
+
+        // ── Scroll reveal (supports multiple classes) ──
+        var revealObs = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
+
+        document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale').forEach(function(el) {
+            revealObs.observe(el);
+        });
+
+        // ── Reading progress bar ──
+        var progressBar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+            progressBar.style.width = progress + '%';
+        }, { passive: true });
+
+        // ── Third Eye toggle with counter ──
+        var teActive = false;
+        var teNotes = document.querySelectorAll('.te-note');
+        var teCountEl = document.getElementById('te-count');
+        teCountEl.textContent = teNotes.length + ' เทคนิค';
+
+        function toggleTE() {
+            teActive = !teActive;
+            document.body.classList.toggle('te-on', teActive);
+        }
+
+        document.getElementById('hero-te-btn').addEventListener('click', function() {
+            toggleTE();
+            var firstNote = document.querySelector('#story .te-note');
+            if (firstNote && teActive) {
+                setTimeout(function() {
+                    firstNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 400);
+            }
+        });
+
+        document.getElementById('te-float').addEventListener('click', toggleTE);
+
+        // Show floating toggle after scrolling past hero
+        var heroEl = document.querySelector('.hero');
+        var floatBtn = document.getElementById('te-float');
+        var floatObs = new IntersectionObserver(function(entries) {
+            floatBtn.classList.toggle('vis', !entries[0].isIntersecting);
+        }, { threshold: 0 });
+        floatObs.observe(heroEl);
+
+        // ── Floating CTA - show after scrolling to chapters, hide at main CTA ──
+        var floatCTA = document.getElementById('float-cta');
+        var chaptersEl = document.getElementById('chapters');
+        if (chaptersEl && floatCTA) {
+            var ctaObs = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting) {
+                    floatCTA.classList.add('vis');
+                }
+            }, { threshold: 0.1 });
+            ctaObs.observe(chaptersEl);
+
+            var buySection = document.getElementById('buy');
+            if (buySection) {
+                var buyObs = new IntersectionObserver(function(entries) {
+                    if (entries[0].isIntersecting) {
+                        floatCTA.classList.remove('vis');
+                    }
+                }, { threshold: 0.1 });
+                buyObs.observe(buySection);
+            }
+        }
+
+        // ── Interactive perception demo ──
+        var demoChoices = document.querySelectorAll('#perception-demo .demo-choice');
+        var demoResult = document.getElementById('demo-result');
+        var demoClicked = false;
+
+        demoChoices.forEach(function(choice) {
+            choice.addEventListener('click', function() {
+                if (demoClicked) return;
+                demoClicked = true;
+                choice.classList.add('selected');
+                setTimeout(function() {
+                    demoResult.classList.add('show');
+                }, 300);
+            });
+        });
+
+    })();
+    </script>
+</body>
+</html>

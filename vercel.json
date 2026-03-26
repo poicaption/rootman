@@ -4,6 +4,7 @@
   "framework": null,
   "rewrites": [
     { "source": "/sale", "destination": "/sale.html" },
+    { "source": "/start", "destination": "/sale-general.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
