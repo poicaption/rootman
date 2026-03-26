@@ -749,6 +749,23 @@
             color: var(--heading);
             line-height: 1.6;
         }
+        .demo-choice-text s {
+            color: var(--text-sec);
+            opacity: 0.7;
+        }
+        .demo-choice-text .sale-tag {
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--red);
+            background: rgba(192,57,43,0.1);
+            border: 1px solid rgba(192,57,43,0.2);
+            border-radius: 4px;
+            padding: 0.1rem 0.4rem;
+            margin-left: 0.3rem;
+            letter-spacing: 0.05em;
+        }
         .demo-choice-price {
             font-family: 'Prompt', sans-serif;
             font-size: 1.1rem;
@@ -1238,33 +1255,34 @@
         <div class="rv">
             <div class="demo-box" id="perception-demo">
                 <div class="demo-title">ลองพิสูจน์ด้วยตัวเอง</div>
-                <div class="demo-subtitle">คุณอยากกินกาแฟ คุณจะเลือกแก้วไหน?</div>
+                <div class="demo-subtitle">คุณกำลังจะซื้อหูฟังไร้สาย รุ่นเดียวกัน เจอ 2 ร้าน คุณจะซื้อจากร้านไหน?</div>
                 <div class="demo-choices">
                     <div class="demo-choice" data-choice="A">
-                        <div class="demo-choice-label">แก้ว A</div>
-                        <div class="demo-choice-text">กาแฟดำ<br>ร้านข้างทาง<br>แก้วกระดาษ ไม่มีโลโก้</div>
-                        <div class="demo-choice-price">35 &#x0E3F;</div>
+                        <div class="demo-choice-label">ร้าน A</div>
+                        <div class="demo-choice-text">หูฟังไร้สาย รุ่น X<br>รีวิว 4.5 ดาว</div>
+                        <div class="demo-choice-price">1,290 &#x0E3F;</div>
                     </div>
                     <div class="demo-choice" data-choice="B">
-                        <div class="demo-choice-label">แก้ว B</div>
-                        <div class="demo-choice-text">กาแฟดำ<br>แพ็คเกจมินิมอล<br>แก้วเซรามิกพร้อมชื่อร้าน</div>
-                        <div class="demo-choice-price">165 &#x0E3F;</div>
+                        <div class="demo-choice-label">ร้าน B</div>
+                        <div class="demo-choice-text">หูฟังไร้สาย รุ่น X<br>รีวิว 4.5 ดาว<br><s>1,590 &#x0E3F;</s> <span class="sale-tag">SALE</span></div>
+                        <div class="demo-choice-price">1,290 &#x0E3F;</div>
                     </div>
                 </div>
                 <div class="demo-result" id="demo-result">
                     <div class="demo-result-text">
-                        <strong>กาแฟเหมือนกันทุกประการ</strong> &mdash; เมล็ดเดียวกัน คั่วที่เดียวกัน ชงสูตรเดียวกัน<br><br>
-                        แต่คุณก็ยังรู้สึกว่าแก้วขวาน่าจะ &ldquo;อร่อยกว่า&rdquo; ใช่ไหม?<br><br>
-                        นั่นเพราะสมองตัดสินคุณภาพจาก <strong>&ldquo;สิ่งที่เห็น&rdquo;</strong> ไม่ใช่จาก &ldquo;สิ่งที่เป็นจริง&rdquo; &mdash; นี่คือ <strong>Perception is Reality</strong> บทที่ 7
+                        <strong>ราคาเท่ากันทุกประการ &mdash; 1,290 บาท ทั้งสองร้าน</strong><br><br>
+                        แต่สมองของคุณ &ldquo;รู้สึก&rdquo; ว่าร้าน B คุ้มกว่า &mdash; เพราะมันเห็นตัวเลข 1,590 ก่อน แล้วใช้มันเป็น<strong>จุดเปรียบเทียบ</strong>โดยอัตโนมัติ<br><br>
+                        ร้าน B ไม่ได้ลดราคาจริง &mdash; แค่ใส่ &ldquo;ราคาเดิม&rdquo; ที่อาจไม่เคยมีอยู่จริงมาให้คุณเปรียบเทียบ<br><br>
+                        นี่คือ <strong>Anchoring Effect</strong> &mdash; เทคนิคเดียวกับที่ทุกร้านใช้ตอนติดป้ายลดราคา &mdash; บทที่ 7
                     </div>
                     <div class="demo-result-stats">
                         <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-a">19%</div>
-                            <div class="demo-result-label">เลือก A</div>
+                            <div class="demo-result-pct" id="demo-pct-a">24%</div>
+                            <div class="demo-result-label">เลือกร้าน A</div>
                         </div>
                         <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-b">81%</div>
-                            <div class="demo-result-label">เลือก B</div>
+                            <div class="demo-result-pct" id="demo-pct-b">76%</div>
+                            <div class="demo-result-label">เลือกร้าน B</div>
                         </div>
                     </div>
                 </div>
@@ -1273,7 +1291,7 @@
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Curiosity Gap + Ikea Effect</strong> &mdash; 3 คำถามข้างบนสร้าง &laquo;ช่องว่างของความอยากรู้&raquo; ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; คุณอ่านต่อเพราะอยากรู้คำตอบ ไม่ใช่เพราะถูกบังคับ และเมื่อคุณลงมือ &laquo;เลือก&raquo; กาแฟด้วยตัวเอง สมองจะให้คุณค่ากับบทเรียนนี้มากขึ้น &mdash; Ikea Effect: คุณรู้สึกผูกพันกับสิ่งที่ &laquo;มีส่วนร่วม&raquo; (บทที่ 5, 9)</p>
+            <p><strong>Curiosity Gap + Ikea Effect + Anchoring</strong> &mdash; 3 คำถามข้างบนสร้าง &laquo;ช่องว่างของความอยากรู้&raquo; ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; คุณอ่านต่อเพราะอยากรู้คำตอบ ไม่ใช่เพราะถูกบังคับ และ demo ที่เพิ่งผ่าน? มันไม่ได้ทดสอบว่าคุณ &laquo;เลือกอะไร&raquo; &mdash; มันทดสอบว่า &laquo;ตัวเลขที่ขีดฆ่า&raquo; มีผลกับคุณไหม คำตอบคือ &laquo;มี&raquo; เสมอ แม้คุณจะรู้ว่าราคาเท่ากัน &mdash; Anchoring ทำงานที่ระดับที่ &laquo;รู้&raquo; ไม่ช่วย (บทที่ 7, 9)</p>
         </div>
     </section>
 
