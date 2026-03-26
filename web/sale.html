@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>รากแก้วการตลาด — The One Root of Marketing</title>
-    <meta name="description" content="ทำไมคนถึงซื้อ? คำตอบที่นักการตลาดส่วนใหญ่ไม่รู้ — หนังสือ 12 บทที่กลั่นจากจิตวิทยา ประสาทวิทยา และงานวิจัยหลายร้อยชิ้น">
+    <meta name="description" content="หนังสือสำหรับนักการตลาดที่อยากเข้าใจ 'ทำไม' คนถึงซื้อ — 12 บท กลั่นจากจิตวิทยา ประสาทวิทยา และงานวิจัยหลายร้อยชิ้น">
     <!-- Open Graph -->
     <meta property="og:title" content="รากแก้วการตลาด — The One Root of Marketing">
-    <meta property="og:description" content="ทำไมคนถึงซื้อ? หนังสือ 12 บทที่กลั่นจากจิตวิทยา ประสาทวิทยา และงานวิจัยหลายร้อยชิ้น">
+    <meta property="og:description" content="คุณรู้วิธีขาย แต่คุณรู้จริงๆ ไหมว่าทำไมมันถึง work? — หนังสือ 12 บทสำหรับนักการตลาดที่พร้อมจะคิดให้ลึกกว่าเดิม">
     <meta property="og:type" content="book">
     <meta property="og:locale" content="th_TH">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="รากแก้วการตลาด — The One Root of Marketing">
-    <meta name="twitter:description" content="ทำไมคนถึงซื้อ? หนังสือ 12 บทที่กลั่นจากจิตวิทยา ประสาทวิทยา และงานวิจัยหลายร้อยชิ้น">
+    <meta name="twitter:description" content="คุณรู้วิธีขาย แต่คุณรู้จริงๆ ไหมว่าทำไมมันถึง work? — หนังสือ 12 บทสำหรับนักการตลาดที่พร้อมจะคิดให้ลึกกว่าเดิม">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -151,14 +151,20 @@
 
         .hero-headline {
             font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+            font-size: clamp(1.2rem, 3.5vw, 1.7rem);
             font-weight: 600;
             color: var(--heading);
-            line-height: 1.7;
+            line-height: 1.8;
             margin: 2.5rem 0;
-            max-width: 560px;
+            max-width: 580px;
             opacity: 0;
             animation: heroIn 1.2s 1.2s forwards;
+        }
+
+        .hero-headline em {
+            color: var(--accent);
+            font-style: normal;
+            font-weight: 700;
         }
 
         .hero-ornament {
@@ -234,6 +240,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.15em;
             color: var(--text-sec);
+            text-decoration: none;
             opacity: 0;
             animation: heroIn 0.8s 5s forwards, pulse 2.5s 5.5s ease-in-out infinite;
         }
@@ -265,7 +272,18 @@
 
         .sp strong { color: var(--heading); font-weight: 700; }
 
-        .sp em { color: var(--text-sec); }
+        .sp em { color: var(--accent); font-style: normal; }
+
+        /* ── Insight observation ── */
+        .insight {
+            padding: 1rem 0 1rem 1.5rem;
+            border-left: 2px solid var(--border);
+            margin: 1.5rem 0;
+            line-height: 1.85;
+            transition: border-color 0.4s;
+        }
+        .insight:hover { border-color: var(--accent); }
+        .insight p { margin: 0; }
 
         /* ── Stats bar ── */
         .stats-bar {
@@ -293,49 +311,15 @@
             letter-spacing: 0.05em;
         }
 
-        /* ── The Pain list ── */
-        .pain-item {
-            display: flex;
-            align-items: baseline;
-            gap: 0.8rem;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-            opacity: 0;
-            transform: translateX(-20px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .pain-item.vis {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .pain-item .pain-x {
-            color: var(--red);
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-        .pain-item .pain-detail {
-            color: var(--text-sec);
-            font-size: 0.82rem;
-            margin-left: auto;
-            white-space: nowrap;
-        }
-
-        .pain-question {
+        /* ── Punchline ── */
+        .punchline {
+            text-align: center;
             font-family: 'Prompt', sans-serif;
             font-size: 1.1rem;
-            color: var(--heading);
-            margin: 2.5rem 0 0.5rem;
-            text-align: center;
-            line-height: 1.8;
-        }
-
-        .pain-answer {
-            text-align: center;
-            font-size: 1.15rem;
             color: var(--accent);
             font-weight: 600;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
+            line-height: 1.8;
         }
 
         /* ── Root metaphor (CSS Tree) ── */
@@ -624,11 +608,6 @@
             margin-top: 1.5rem;
             font-size: 0.85rem;
             color: var(--text-sec);
-        }
-        .cta-or a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 3px;
         }
 
         /* ── Interactive Demo ── */
@@ -976,8 +955,6 @@
             .ch-item { grid-template-columns: 2.5rem 1fr; }
             #te-float { bottom: 1rem; left: 1rem; font-size: 0.72rem; padding: 0.45rem 1rem; }
             #float-cta { bottom: 1rem; right: 1rem; font-size: 0.75rem; padding: 0.45rem 1.2rem; }
-            .pain-item { flex-wrap: wrap; }
-            .pain-detail { margin-left: 1.5rem; }
             .demo-choices { grid-template-columns: 1fr; }
             .stats-bar { gap: 0.8rem 1.5rem; }
             .mid-cta { padding: 2rem 1.3rem; }
@@ -990,7 +967,6 @@
                 opacity: 1 !important; animation: none !important;
             }
             .price-big { animation: none !important; -webkit-text-fill-color: var(--accent); background: none; }
-            .pain-item { opacity: 1 !important; transform: none !important; }
         }
 
         @media print {
@@ -1007,12 +983,13 @@
 
     <!-- ═══════ HERO ═══════ -->
     <section class="hero">
-        <p class="hero-meta">คุณกำลังอ่าน Sale Page</p>
+        <p class="hero-meta">สำหรับคนที่รู้วิธีขาย &mdash; แต่อยากรู้ว่าทำไม</p>
 
         <h1 class="hero-headline">
-            และนี่คือ sale page เพียงหน้าเดียว<br>
-            ที่จะ<em>สอนคุณ</em>ว่า sale page ทุกหน้า<br>
-            กำลังทำอะไรกับสมองของคุณ
+            คุณรู้ว่า Scarcity เพิ่มยอดขาย<br>
+            คุณรู้ว่า Social Proof ทำให้คนกดซื้อ<br>
+            คุณรู้ว่า Storytelling ขายดีกว่า Feature<br><br>
+            แต่คุณเคยถามจริงๆ ไหม &mdash; <em>ทำไม?</em>
         </h1>
 
         <div class="hero-ornament">&#x2726;&ensp;&#x2726;&ensp;&#x2726;</div>
@@ -1026,57 +1003,54 @@
 
         <div class="hero-te-intro">
             <button class="hero-te-btn" id="hero-te-btn">
-                &#x1F52E; เปิดตาที่สาม &mdash; ดูว่าหน้านี้ใช้จิตวิทยาอะไรกับคุณ
+                &#x1F52E; เปิดตาที่สาม &mdash; หน้านี้ใช้จิตวิทยากับคุณ กดเพื่อเห็นทุกเทคนิค
             </button>
         </div>
 
-        <a href="#pain" class="hero-scroll">เลื่อนลง &darr;</a>
+        <a href="#ceiling" class="hero-scroll">เลื่อนลง &darr;</a>
     </section>
 
 
-    <!-- ═══════ THE PROBLEM ═══════ -->
-    <section class="sp" id="pain">
+    <!-- ═══════ THE CEILING ═══════ -->
+    <section class="sp" id="ceiling">
         <div class="rv">
-            <div class="sp-label">THE PROBLEM</div>
-            <h2>ลองย้อนนับดู<br>คุณจ่ายเงินซื้อ &ldquo;ความรู้การตลาด&rdquo; ไปเท่าไหร่แล้ว?</h2>
+            <div class="sp-label">THE CEILING</div>
+            <h2>คุณเก่ง &mdash; แต่คุณสังเกตสิ่งเหล่านี้ไหม?</h2>
         </div>
 
         <div class="rv">
-            <div class="pain-item" data-delay="0">
-                <span class="pain-x">&#x2717;</span>
-                <span>คอร์สออนไลน์สอนยิง Ads</span>
-                <span class="pain-detail">5,000 &ndash; 15,000 &#x0E3F;</span>
+            <p>คุณไม่ได้เป็นมือใหม่ คุณผ่านมาแล้วทั้ง A/B test, funnel optimization, campaign scaling &mdash; บางคนทำมาหลายปี บางคนบริหารทีม บางคนลงมือเองทุกวัน</p>
+            <p>แต่ลึกๆ คุณเคยรู้สึกแบบนี้ไหม &mdash;</p>
+        </div>
+
+        <div class="rv">
+            <div class="insight">
+                <p>Campaign สองตัว setup เหมือนกัน budget เท่ากัน creative quality เท่ากัน &mdash; <strong>แต่อันนึง convert อีกอันแทบเป็นศูนย์</strong> แล้วคุณอธิบายไม่ได้ว่าทำไม</p>
             </div>
-            <div class="pain-item" data-delay="150">
-                <span class="pain-x">&#x2717;</span>
-                <span>สัมมนาการตลาดสุดสัปดาห์</span>
-                <span class="pain-detail">10,000 &ndash; 25,000 &#x0E3F;</span>
+        </div>
+        <div class="rv">
+            <div class="insight">
+                <p>เขียน copy ที่ทุกคนในทีมเห็นว่าดี &mdash; <strong>แต่ตัวที่ดู &ldquo;ธรรมดากว่า&rdquo; ชนะ A/B test</strong> แล้วคุณบอกทีมได้แค่ &ldquo;data says so&rdquo; โดยไม่เข้าใจจริงๆ ว่า <em>ทำไม</em></p>
             </div>
-            <div class="pain-item" data-delay="300">
-                <span class="pain-x">&#x2717;</span>
-                <span>หนังสือการตลาด 12 เล่มที่อ่านแล้ววางไว้บนหิ้ง</span>
-                <span class="pain-detail">2,000 &ndash; 5,000 &#x0E3F;</span>
+        </div>
+        <div class="rv">
+            <div class="insight">
+                <p>Competitor ที่ product ไม่ได้ดีกว่า budget น้อยกว่า &mdash; <strong>แต่ลูกค้าภักดีกว่า</strong> แล้วคุณรู้สึกว่าเขามี &ldquo;บางอย่าง&rdquo; ที่คุณยังมองไม่เห็น</p>
             </div>
-            <div class="pain-item" data-delay="450">
-                <span class="pain-x">&#x2717;</span>
-                <span>จ้างที่ปรึกษามานั่งคุย 1 ชั่วโมง</span>
-                <span class="pain-detail">3,000 &ndash; 8,000 &#x0E3F;</span>
+        </div>
+        <div class="rv">
+            <div class="insight">
+                <p>รู้ว่า pricing strategy สำคัญ &mdash; <strong>แต่ยังตั้งราคาจาก &ldquo;ต้นทุน + margin&rdquo;</strong> เพราะไม่มี framework อื่นที่ทำให้มั่นใจได้จริง</p>
             </div>
         </div>
 
         <div class="rv">
-            <p class="pain-question">
-                แล้ววันนี้?<br>
-                Algorithm เปลี่ยนไปกี่รอบแล้ว?<br>
-                เทคนิคกี่อันที่ &ldquo;ไม่ work แล้ว&rdquo;?<br>
-                คุณใกล้จะ<strong>เข้าใจลูกค้า</strong>มากขึ้นแค่ไหน?
-            </p>
-            <p class="pain-answer">ปัญหาไม่ใช่ว่าคุณเรียนไม่พอ<br>ปัญหาคือคุณเรียนผิดชั้น</p>
+            <p class="punchline">สิ่งที่ขาดไปไม่ใช่ data เครื่องมือ หรือ budget<br>มันคือ layer ที่อยู่ใต้ทุกอย่าง</p>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Pain Point Marketing + Loss Framing</strong> &mdash; section นี้เน้นสิ่งที่คุณ &laquo;สูญเสียไปแล้ว&raquo; ไม่ใช่สิ่งที่จะ &laquo;ได้&raquo; เพราะสมองรู้สึกเจ็บปวดกับการเสีย มากกว่าความสุขจากการได้ 2&ndash;2.5 เท่า (Prospect Theory &mdash; บทที่ 6)</p>
+            <p><strong>Competence Gap + Identity Challenge</strong> &mdash; section นี้ไม่ได้บอกว่าคุณ &laquo;เรียนไม่พอ&raquo; แต่บอกว่าคุณ &laquo;ยังไม่เห็นอีก layer&raquo; ซึ่งสำหรับคนเก่ง ความรู้สึกว่ามี &laquo;ช่องว่าง&raquo; ในความเชี่ยวชาญ สร้างแรงจูงใจที่ทรงพลังกว่า pain ทั่วไป เพราะ Competence Motivation ต้องการ &laquo;ปิดช่อง&raquo; (บทที่ 3)</p>
         </div>
     </section>
 
@@ -1085,7 +1059,7 @@
     <section class="sp" id="root">
         <div class="rv">
             <div class="sp-label">THE ROOT</div>
-            <h2>คุณเรียนแต่ &ldquo;ใบ&rdquo;<br>โดยไม่เคยเห็น &ldquo;ราก&rdquo;</h2>
+            <h2>คุณ master เครื่องมือแล้ว<br>แต่ยังไม่เคยเห็น operating system ที่อยู่ข้างใต้</h2>
         </div>
 
         <div class="rv-scale tree-wrap">
@@ -1104,11 +1078,11 @@
         </div>
 
         <div class="rv">
-            <p>ใบไม้ร่วงทุกฤดู แต่รากไม้ไม่เคยเปลี่ยน</p>
-            <p>Facebook Ads คือใบ TikTok คือใบ SEO คือใบ<br>
-            แต่<strong>เหตุผลที่คนกดซื้อ?</strong><br>
-            มันเหมือนกันทุกประการ ตั้งแต่ยุคโรมันจนถึงวันนี้</p>
-            <p>หนังสือเล่มนี้ไม่ได้สอนใบ<br>มันสอน<strong>ราก</strong></p>
+            <p>คุณ scale campaign ได้หลักล้าน &mdash; นั่นคือ &ldquo;ใบ&rdquo;</p>
+            <p>คุณเขียน copy ที่ convert 8% &mdash; นั่นก็คือ &ldquo;ใบ&rdquo;</p>
+            <p>แต่<strong>ทำไม</strong> copy นั้นถึง convert? ทำไม campaign นั้นถึง scale ได้? มันไม่ใช่เพราะ creative สวย เพราะ budget เยอะ หรือเพราะ algorithm เข้าข้าง</p>
+            <p>มันเป็นเพราะบางอย่างที่อยู่ลึกกว่านั้น &mdash; <strong>ระบบปฏิบัติการของสมองมนุษย์</strong>ที่ไม่ได้ update มาแสนปี</p>
+            <p>หนังสือเล่มนี้สอน operating system นั้น</p>
         </div>
 
         <div class="stats-bar rv">
@@ -1122,86 +1096,90 @@
             </div>
             <div class="stat-item">
                 <span class="stat-num">2,000+</span>
-                <span class="stat-label">ปีของจิตวิทยา</span>
+                <span class="stat-label">ปีของหลักฐาน</span>
             </div>
             <div class="stat-item">
                 <span class="stat-num">1</span>
-                <span class="stat-label">ราก</span>
+                <span class="stat-label">Framework</span>
             </div>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Reframe + Metaphor</strong> &mdash; section นี้เปลี่ยน &laquo;กรอบคิด&raquo; ของคุณจาก &laquo;เครื่องมือ&raquo; เป็น &laquo;ราก&raquo; อุปมาต้นไม้ทำให้สมองเห็นภาพทันที เมื่อ Reframe สำเร็จ คุณจะมองทุกอย่างผ่านกรอบใหม่ (บทที่ 9)</p>
+            <p><strong>Reframe + Metaphor + Authority Language</strong> &mdash; คำว่า &laquo;operating system&raquo; เปลี่ยนกรอบคิดของคุณจาก &laquo;เครื่องมือ&raquo; เป็น &laquo;ระบบ&raquo; ทันที อุปมาต้นไม้ทำให้สมองเห็นภาพโดยไม่ต้องคิด การ reframe สำเร็จ = คุณจะมองทุกอย่างผ่านกรอบใหม่ตลอดหน้านี้ (บทที่ 9)</p>
         </div>
     </section>
 
 
-    <!-- ═══════ THE STORY ═══════ -->
+    <!-- ═══════ THE PROOF ═══════ -->
     <section class="sp" id="story">
         <div class="rv">
             <div class="sp-label">THE PROOF</div>
-            <h2>น้ำปลาโรมัน 2,000 ปีที่แล้ว<br>ใช้จิตวิทยาเดียวกับ Apple 2025</h2>
+            <h2>น้ำปลาโรมัน 2,000 ปีที่แล้ว<br>กับ retargeting campaign ของคุณวันนี้<br>ใช้จิตวิทยาตัวเดียวกัน</h2>
         </div>
 
         <div class="rv">
-            <p>ในปี 79 ก่อนคริสตกาล พ่อค้าชาวโรมันชื่อ Scaurus ขายน้ำปลาหมักที่เรียกว่า Garum สูตรไม่ได้ดีกว่าใคร วัตถุดิบเหมือนกัน แต่เขาร่ำรวยที่สุดในเมือง</p>
-            <p>เพราะเขาทำสิ่งที่ไม่มีใครทำ &mdash; เขาสลักชื่อตัวเองบนทุกขวด วางขวดเปล่าตามร้านค้าทั่วเมือง จนชื่อ <strong>&ldquo;Scauri&rdquo;</strong> กลายเป็นสิ่งที่สมองจำได้โดยอัตโนมัติ</p>
+            <p>ปี 79 ก่อนคริสตกาล พ่อค้าชาวโรมันชื่อ Scaurus ขายน้ำปลาหมักที่เรียกว่า Garum สูตรไม่ได้ดีกว่าใคร วัตถุดิบเหมือนกัน แต่เขาร่ำรวยที่สุดในเมือง</p>
+            <p>เขาสลักชื่อตัวเองบนทุกขวด วางขวดเปล่าตามร้านค้าทั่วเมือง จนชื่อ <strong>&ldquo;Scauri&rdquo;</strong> กลายเป็นสิ่งที่สมองจำได้โดยอัตโนมัติ</p>
         </div>
 
         <div class="rv">
             <div class="story-quote">
                 <p>คุ้นเคย หมายถึง ปลอดภัย<br>ปลอดภัย หมายถึง เชื่อถือได้<br>เชื่อถือได้ หมายถึง ซื้อ</p>
             </div>
-            <p>นี่คือหลักการ <strong>Mere Exposure Effect</strong> ที่ถูกค้นพบอย่างเป็นทางการในปี 1968 &mdash; แต่ Scaurus ใช้มันมาสองพันปีก่อนนักวิทยาศาสตร์จะตั้งชื่อให้</p>
+        </div>
+
+        <div class="rv">
+            <p>คุณเคย run retargeting campaign ไหม? Scaurus ทำ<strong>แบบเดียวกัน</strong> &mdash; 2,000 ปีก่อนจะมี Facebook</p>
+            <p>นี่คือ <strong>Mere Exposure Effect</strong> ที่ถูกค้นพบอย่างเป็นทางการในปี 1968 &mdash; แต่ Scaurus ใช้มันมาสองพันปีก่อนนักวิทยาศาสตร์จะตั้งชื่อให้</p>
             <p><strong>เครื่องมือเปลี่ยน แพลตฟอร์มเปลี่ยน แต่สมองมนุษย์ไม่เปลี่ยน</strong></p>
-            <p>หนังสือเล่มนี้สอนสิ่งที่ไม่เปลี่ยน</p>
+            <p>สิ่งที่หนังสือเล่มนี้ทำ คือเชื่อมจุดเหล่านี้ &mdash; จิตวิทยา ประสาทวิทยา วิวัฒนาการ &mdash; แล้วแปลงเป็น <strong>framework</strong> ที่คุณใช้ได้จริงกับการตลาดวันนี้</p>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Storytelling + Neural Coupling</strong> &mdash; ตอนที่คุณอ่านเรื่อง Scaurus สมองคุณ &laquo;จำลองเหตุการณ์&raquo; เหมือนกำลังอยู่ในเรื่อง Oxytocin หลั่ง ทำให้คุณเชื่อมต่อกับผู้เขียนโดยไม่รู้ตัว เรื่องเล่าทำให้สมองจำได้ดีกว่าข้อมูล 22 เท่า (บทที่ 4)</p>
+            <p><strong>Storytelling + Neural Coupling + Professional Anchoring</strong> &mdash; ตอนที่คุณอ่านเรื่อง Scaurus สมองคุณ &laquo;จำลองเหตุการณ์&raquo; เหมือนกำลังอยู่ในเรื่อง (Neural Coupling) แล้วตอนที่เชื่อม retargeting เข้ากับ Scaurus &mdash; สมองรู้สึกว่าหนังสือเล่มนี้ &laquo;เข้าใจงานของฉัน&raquo; นั่นคือ Professional Identification (บทที่ 4, 8)</p>
         </div>
     </section>
 
 
     <!-- ═══════ MID-PAGE CTA ═══════ -->
     <div class="mid-cta rv">
-        <p class="mid-cta-text">อยากรู้จักเรื่อง Scaurus เพิ่มเติม? บทนำของหนังสือเล่าเรื่องนี้แบบจัดเต็ม</p>
+        <p class="mid-cta-text">เรื่อง Scaurus อยู่ในบทนำ &mdash; อ่านเวอร์ชันเต็มได้ฟรี</p>
         <a href="/" class="mid-cta-btn">อ่านบทนำฟรี &rarr;</a>
     </div>
 
     <div class="section-divider"><span class="section-divider-dots">&#x2022; &#x2022; &#x2022;</span></div>
 
 
-    <!-- ═══════ AHA MOMENTS ═══════ -->
+    <!-- ═══════ A TASTE ═══════ -->
     <section class="sp" id="aha">
         <div class="rv">
             <div class="sp-label">A TASTE</div>
-            <h2>3 สิ่งจากหนังสือเล่มนี้<br>ที่คุณจะไม่มีวันมองโลกเหมือนเดิม</h2>
+            <h2>3 สิ่งที่คุณอาจใช้มาแล้ว<br>แต่ไม่เคยรู้ว่าทำไมมันถึง work</h2>
         </div>
 
         <div class="rv-left">
             <div class="aha-card">
                 <div class="aha-num">01</div>
-                <p class="aha-text">ยาหลอกราคาแพง ลดปวดได้ดีกว่ายาหลอกราคาถูก &mdash; <strong>ทั้งที่เป็นยาตัวเดียวกัน</strong></p>
-                <p class="aha-explain">สมองใช้ราคาเป็นสัญญาณบอกคุณภาพ โดยอัตโนมัติ ไม่มีทางหยุด &mdash; Price-Quality Heuristic (บทที่ 7)</p>
+                <p class="aha-text">คุณเคยตั้งราคาสูงกว่าคู่แข่ง แล้ว<strong>ขายได้ดีกว่า</strong>ไหม?</p>
+                <p class="aha-explain">นั่นไม่ใช่เพราะลูกค้า &ldquo;ไม่สนราคา&rdquo; &mdash; แต่เป็นเพราะ Price-Quality Heuristic: สมองใช้ราคาเป็นสัญญาณบอกคุณภาพโดยอัตโนมัติ งานวิจัยพบว่า ยาหลอกราคาแพง ลดปวดได้ดีกว่ายาหลอกราคาถูก &mdash; ทั้งที่เป็นน้ำเกลือเหมือนกัน (บทที่ 7)</p>
             </div>
         </div>
 
         <div class="rv-right">
             <div class="aha-card">
                 <div class="aha-num">02</div>
-                <p class="aha-text">สมองคุณตัดสินใจซื้อก่อนที่คุณจะ &ldquo;รู้ตัว&rdquo; &mdash; <strong>เร็วกว่า 0.5 วินาที</strong></p>
-                <p class="aha-explain">แล้วสมองส่วนเหตุผล (Neocortex) จึงสร้าง &ldquo;เหตุผล&rdquo; ขึ้นมาอธิบายย้อนหลัง &mdash; Split-Brain + The Interpreter (บทที่ 2)</p>
+                <p class="aha-text">คุณเคยเขียน headline ที่ <strong>&ldquo;รู้สึก&rdquo; ว่าใช่</strong> แต่อธิบายไม่ได้ว่าทำไม?</p>
+                <p class="aha-explain">เพราะสมองตัดสินใจเร็วกว่า 0.5 วินาที แล้ว Neocortex ค่อย &ldquo;สร้างเหตุผล&rdquo; ขึ้นมาอธิบายย้อนหลัง &ldquo;สัญชาตญาณ&rdquo; ของนักการตลาดเก่ง ที่จริงคือ pattern recognition ของ System 1 &mdash; หนังสือเล่มนี้ทำให้คุณ decode มันได้ (บทที่ 2)</p>
             </div>
         </div>
 
         <div class="rv-left">
             <div class="aha-card">
                 <div class="aha-num">03</div>
-                <p class="aha-text">คุณรักษาความสัมพันธ์ที่มีความหมายได้ &mdash; <strong>สูงสุดแค่ 150 คน</strong></p>
-                <p class="aha-explain">นั่นคือ Dunbar&rsquo;s Number &mdash; แบรนด์ที่เข้าใจข้อจำกัดนี้ จะสร้าง Community ที่ Loyalty สูง ไม่ใช่แค่สะสมยอด Followers (บทที่ 5)</p>
+                <p class="aha-text">คุณเคยสร้าง community หลักหมื่น แต่ <strong>engagement ต่ำลงเรื่อยๆ</strong>?</p>
+                <p class="aha-explain">Dunbar&rsquo;s Number จำกัดความสัมพันธ์ที่มีความหมายไว้ที่ 150 คน &mdash; ไม่ว่าจะเป็นเผ่า ทีม หรือ brand community แบรนด์ที่เข้าใจข้อจำกัดนี้ ออกแบบ loyalty ได้ลึกกว่าแค่สะสมตัวเลข (บทที่ 5)</p>
             </div>
         </div>
 
@@ -1209,15 +1187,15 @@
         <div class="rv">
             <div class="demo-box" id="perception-demo">
                 <div class="demo-title">ลองพิสูจน์ด้วยตัวเอง</div>
-                <div class="demo-subtitle">กาแฟสองแก้ว &mdash; คุณอยากดื่มแก้วไหนมากกว่า?</div>
+                <div class="demo-subtitle">สมมติคุณกำลัง position สินค้าใหม่ &mdash; คุณจะเลือก presentation แบบไหน?</div>
                 <div class="demo-choices">
                     <div class="demo-choice" data-choice="A">
-                        <div class="demo-choice-label">แก้ว A</div>
+                        <div class="demo-choice-label">OPTION A</div>
                         <div class="demo-choice-text">กาแฟดำ<br>ร้านข้างทาง<br>แก้วกระดาษ ไม่มีโลโก้</div>
                         <div class="demo-choice-price">35 &#x0E3F;</div>
                     </div>
                     <div class="demo-choice" data-choice="B">
-                        <div class="demo-choice-label">แก้ว B</div>
+                        <div class="demo-choice-label">OPTION B</div>
                         <div class="demo-choice-text">กาแฟดำ<br>แพ็คเกจมินิมอล<br>แก้วเซรามิกพร้อมชื่อร้าน</div>
                         <div class="demo-choice-price">165 &#x0E3F;</div>
                     </div>
@@ -1225,17 +1203,17 @@
                 <div class="demo-result" id="demo-result">
                     <div class="demo-result-text">
                         <strong>กาแฟเหมือนกันทุกประการ</strong> &mdash; เมล็ดเดียวกัน คั่วที่เดียวกัน ชงสูตรเดียวกัน<br><br>
-                        แต่สมองของคุณ<strong>ไม่สามารถ</strong>มองเห็นมันเป็นกาแฟแก้วเดียวกัน เพราะ<strong>บริบท</strong>เปลี่ยน &laquo;ความเป็นจริง&raquo; ที่สมองสร้างขึ้น<br><br>
-                        นี่คือ <strong>Perception is Reality</strong> &mdash; บทที่ 7 ของหนังสือเล่มนี้
+                        แต่คุณ &mdash; คนที่รู้เรื่อง marketing &mdash; <strong>ก็ยังเลือกไม่เหมือนกัน</strong> เพราะ Perception ไม่ได้ทำงานที่ระดับ &ldquo;เหตุผล&rdquo; แต่ทำงานที่ระดับ System 1 ซึ่ง<strong>ไม่มีทาง override ด้วยความรู้</strong><br><br>
+                        นี่คือ <strong>Perception is Reality</strong> &mdash; บทที่ 7
                     </div>
                     <div class="demo-result-stats">
                         <div class="demo-result-stat">
                             <div class="demo-result-pct" id="demo-pct-a">19%</div>
-                            <div class="demo-result-label">เลือกแก้ว A</div>
+                            <div class="demo-result-label">เลือก A</div>
                         </div>
                         <div class="demo-result-stat">
                             <div class="demo-result-pct" id="demo-pct-b">81%</div>
-                            <div class="demo-result-label">เลือกแก้ว B</div>
+                            <div class="demo-result-label">เลือก B</div>
                         </div>
                     </div>
                 </div>
@@ -1244,17 +1222,17 @@
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Curiosity Gap + Social Currency</strong> &mdash; ข้อมูลเหล่านี้สร้าง &laquo;ช่องว่างความอยากรู้&raquo; ในสมอง คุณอ่านแค่ 3 ข้อแล้วอยากรู้อีก 100 ข้อ และเมื่ออ่านจบ คุณจะอยากเล่าให้คนอื่นฟัง &mdash; นั่นคือ Social Currency (บทที่ 5)<br><br><strong>Interactive Demo = Ikea Effect</strong> &mdash; เมื่อคุณ &laquo;ลงมือทำ&raquo; ด้วยตัวเอง แม้แค่กดปุ่มเดียว สมองให้คุณค่ากับประสบการณ์นั้นมากขึ้น คุณจะจำ &laquo;กาแฟสองแก้ว&raquo; ได้นานกว่าถ้าแค่อ่าน (บทที่ 9)</p>
+            <p><strong>Curiosity Gap + Social Currency + Ikea Effect</strong> &mdash; AHA card ทั้งสามใบเขียนให้คุณ &laquo;จำประสบการณ์ตัวเอง&raquo; ได้ ไม่ใช่แค่ &laquo;รับข้อมูลใหม่&raquo; เมื่อสมองเชื่อมสิ่งที่อ่านกับสิ่งที่เคยเจอ มันรู้สึก relevant ขึ้นทันที &mdash; Personal Relevance Effect (บทที่ 5, 9)<br><br><strong>Interactive Demo = Ikea Effect</strong> &mdash; เมื่อคุณ &laquo;ลงมือเลือก&raquo; ด้วยตัวเอง สมองให้คุณค่ากับบทเรียนนั้นมากขึ้น คุณจะจำ &laquo;กาแฟสองแก้ว&raquo; ได้นานกว่าถ้าแค่อ่าน</p>
         </div>
     </section>
 
 
-    <!-- ═══════ THE CHAPTERS ═══════ -->
+    <!-- ═══════ THE FRAMEWORK ═══════ -->
     <section class="sp" id="chapters">
         <div class="rv">
-            <div class="sp-label">INSIDE THE BOOK</div>
-            <h2>12 บท 1 สมการ</h2>
-            <p>ทุกบทเชื่อมกับบทถัดไป เหมือนรากที่แตกกิ่งก้าน อ่านจากต้นจนจบ แล้วทุกอย่างจะเชื่อมเป็นภาพเดียว</p>
+            <div class="sp-label">THE FRAMEWORK</div>
+            <h2>12 บท 1 Framework<br>ที่เชื่อมทุกอย่างเข้าด้วยกัน</h2>
+            <p>ทุกบทไม่ใช่บทเรียนแยก &mdash; มันคือจิ๊กซอว์ที่ต้องต่อตามลำดับ อ่านจากต้นจนจบ แล้วคุณจะมี mental model สำหรับ decode ทุกแคมเปญ ทุก copy ทุก pricing decision</p>
         </div>
 
         <div class="ch-grid rv">
@@ -1266,136 +1244,136 @@
             <div class="ch-item">
                 <div class="ch-num">01</div>
                 <div class="ch-title">มายาภาพของวิวัฒนาการ</div>
-                <div class="ch-hook">สมองคุณเป็น iPhone แต่ชิปข้างในมีอายุแสนปี</div>
+                <div class="ch-hook">สมองที่ run campaign หลักล้าน ยังทำงานด้วยชิปอายุแสนปี</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">02</div>
                 <div class="ch-title">ปุ่มชีวภาพ</div>
-                <div class="ch-hook">Dopamine, Cortisol, Oxytocin &mdash; ปุ่มที่นักการตลาดกดทุกวันโดยไม่รู้</div>
+                <div class="ch-hook">Dopamine, Cortisol, Oxytocin &mdash; ปุ่มที่ทุก conversion กด โดยที่คุณอาจไม่รู้</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">03</div>
                 <div class="ch-title">ความปรารถนาดั้งเดิม 5 ข้อ</div>
-                <div class="ch-hook">ทุกการซื้อในประวัติศาสตร์ตอบสนอง 5 ข้อนี้</div>
+                <div class="ch-hook">ทุกการซื้อในประวัติศาสตร์ตอบสนอง 5 ข้อนี้ &mdash; รวมถึง campaign ดีที่สุดของคุณ</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">04</div>
                 <div class="ch-title">พลังของการเล่าเรื่อง</div>
-                <div class="ch-hook">สมองจำเรื่องเล่าได้ดีกว่าข้อมูล 22 เท่า</div>
+                <div class="ch-hook">ทำไม case study ที่เล่าเป็น story ถึง convince ได้มากกว่า deck 50 สไลด์</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">05</div>
                 <div class="ch-title">Social Proof &amp; Tribalism</div>
-                <div class="ch-hook">ทำไมคนถึงซื้อเพราะ &ldquo;คนอื่นซื้อ&rdquo;</div>
+                <div class="ch-hook">ทำไม community 500 คนถึง convert ดีกว่า follower 50,000</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">06</div>
                 <div class="ch-title">Scarcity &amp; Urgency</div>
-                <div class="ch-hook">Countdown Timer ทำอะไรกับสมองคุณทุกวัน</div>
+                <div class="ch-hook">Limited edition ทำอะไรกับ Amygdala ของลูกค้าคุณ</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">07</div>
                 <div class="ch-title">Perception is Reality</div>
-                <div class="ch-hook">ไวน์ถูกที่สมองบอกว่าอร่อยเมื่อเชื่อว่าแพง</div>
+                <div class="ch-hook">ทำไม pricing strategy ที่ดีที่สุดเริ่มจากจิตวิทยา ไม่ใช่ spreadsheet</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">08</div>
                 <div class="ch-title">The Trust Engine</div>
-                <div class="ch-hook">เครื่องจักรสร้างความไว้ใจที่ทำงาน 24 ชม.</div>
+                <div class="ch-hook">กลไกสร้าง trust ที่ทำให้ลูกค้าซื้อซ้ำโดยไม่ต้องลด&shy;ราคา</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">09</div>
                 <div class="ch-title">Breaking Resistance</div>
-                <div class="ch-hook">ทำไมลูกค้าบอก &ldquo;ขอคิดก่อน&rdquo; แล้วไม่กลับมา</div>
+                <div class="ch-hook">ทำไมลูกค้าบอก &ldquo;ขอคิดก่อน&rdquo; แล้วไม่กลับมา &mdash; และวิธีป้องกัน</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">10</div>
                 <div class="ch-title">Marketing Without Platforms</div>
-                <div class="ch-hook">การตลาดที่ไม่ต้องพึ่ง Algorithm</div>
+                <div class="ch-hook">กลยุทธ์ที่ work เมื่อวาน วันนี้ และอีก 10 ปีข้างหน้า</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">11</div>
                 <div class="ch-title">The Dark Side of The Root</div>
-                <div class="ch-hook">ด้านมืดที่ต้องรู้ เพื่อไม่ข้ามเส้น</div>
+                <div class="ch-hook">เส้นระหว่าง persuasion กับ manipulation &mdash; ที่นักการตลาดต้องรู้</div>
             </div>
             <div class="ch-item">
                 <div class="ch-num">12</div>
                 <div class="ch-title">Becoming The Master</div>
-                <div class="ch-hook">จากผู้อ่านเป็นผู้เชี่ยวชาญ</div>
+                <div class="ch-hook">จาก &ldquo;รู้เทคนิค&rdquo; สู่ &ldquo;เข้าใจระบบ&rdquo; &mdash; วิธีใช้ framework ในงานจริง</div>
             </div>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Commitment + Sunk Cost</strong> &mdash; คุณใช้เวลาอ่านมาถึงตรงนี้แล้ว สมองเริ่มรู้สึกว่า &laquo;ลงทุนไปแล้ว&raquo; ถ้าเลิกตอนนี้จะเสียเปล่า ยิ่งเลื่อนลง ยิ่งลงทุน ยิ่งอยากเห็นตอนจบ (บทที่ 9)</p>
+            <p><strong>Commitment + Sunk Cost + Completeness Bias</strong> &mdash; คุณใช้เวลาอ่านมาถึงตรงนี้แล้ว สมองเริ่มรู้สึกว่า &laquo;ลงทุนไปแล้ว&raquo; ถ้าเลิกตอนนี้จะเสียเปล่า และรายชื่อบท 12 บทกระตุ้น Completeness Bias &mdash; สมองอยากเห็น &laquo;ภาพเต็ม&raquo; ไม่ใช่แค่ตัวอย่าง (บทที่ 9)</p>
         </div>
     </section>
 
 
-    <!-- ═══════ FOR / NOT FOR ═══════ -->
+    <!-- ═══════ WHO THIS IS FOR ═══════ -->
     <section class="sp" id="fit">
         <div class="rv">
-            <div class="sp-label">AUDIENCE</div>
-            <h2>หนังสือเล่มนี้ไม่ได้เหมาะกับทุกคน</h2>
+            <div class="sp-label">WHO THIS IS FOR</div>
+            <h2>หนังสือเล่มนี้เขียนให้คนที่พร้อมจะ think deeper</h2>
         </div>
 
         <div class="fit-grid rv">
             <div class="fit-col fit-yes">
                 <h3>&#x2713; เหมาะกับ</h3>
-                <div class="fit-item"><strong>นักการตลาดที่เหนื่อยกับการไล่ตาม</strong> Algorithm เปลี่ยน เทรนด์เปลี่ยน แต่คุณอยากรู้สิ่งที่ไม่เปลี่ยน</div>
-                <div class="fit-item"><strong>เจ้าของธุรกิจที่ไม่อยากพึ่งเอเจนซีตลอดไป</strong> อยากเข้าใจ &ldquo;ทำไม&rdquo; ด้วยตัวเอง ไม่ใช่แค่จ้างคนทำ</div>
-                <div class="fit-item"><strong>เซลส์ นักขาย คนที่ต้อง &ldquo;โน้มน้าว&rdquo; เป็นอาชีพ</strong> ขายสินค้า ขายไอเดีย หรือขายตัวเองในห้องสัมภาษณ์</div>
-                <div class="fit-item"><strong>คนที่เพิ่งเริ่มต้น</strong> คุณโชคดี เพราะจะเริ่มจากรากตั้งแต่แรก ไม่ต้องถอนวัชพืชเก่าออกก่อน</div>
+                <div class="fit-item"><strong>CMO, Head of Marketing ที่ตัดสินใจระดับองค์กร</strong> หนังสือเล่มนี้ให้ framework สำหรับ evaluate ทุกแคมเปญ ตั้งแต่ big picture ถึง copy แต่ละบรรทัด</div>
+                <div class="fit-item"><strong>เจ้าของธุรกิจที่บริหารทีมการตลาด</strong> คุณจะเข้าใจ &ldquo;ทำไม&rdquo; ในระดับที่ไม่มีเอเจนซี่ไหนจะอธิบายให้ &mdash; เพราะส่วนใหญ่เขาก็ไม่รู้เหมือนกัน</div>
+                <div class="fit-item"><strong>นักการตลาด 3+ ปีที่อยากไปไกลกว่า execution</strong> คุณจะเห็น pattern ที่เคยทำโดยสัญชาตญาณ แล้วมีชื่อเรียก มีงานวิจัยรองรับ มี framework ให้ทำซ้ำได้</div>
+                <div class="fit-item"><strong>คนที่เพิ่งเริ่มต้น &mdash; และอยากเริ่มจาก layer ที่ถูก</strong> คุณจะมีข้อได้เปรียบที่นักการตลาดส่วนใหญ่ใช้เวลาหลายปีกว่าจะรู้ว่ามีอยู่</div>
             </div>
             <div class="fit-col fit-no">
                 <h3>&#x2717; ไม่เหมาะกับ</h3>
-                <div class="fit-item"><strong>คนที่ต้องการสูตรทำเงินใน 7 วัน</strong> ไม่มีทางลัด ไม่มีเทมเพลต ไม่มีปุ่มวิเศษ</div>
-                <div class="fit-item"><strong>คนที่เชื่อว่า Data คือทุกอย่าง</strong> Data บอกว่า &ldquo;อะไร&rdquo; เกิดขึ้น แต่ไม่บอกว่า &ldquo;ทำไม&rdquo; หนังสือเล่มนี้คือ &ldquo;ทำไม&rdquo;</div>
-                <div class="fit-item"><strong>คนที่อยากได้เทคนิคดิจิทัลล้วนๆ</strong> วิธีเซ็ต Pixel วิธีเลือก Keyword วิธียิง TikTok Ads &mdash; ไม่ใช่เล่มนี้</div>
+                <div class="fit-item"><strong>คนที่ต้องการ template สำเร็จรูป</strong> หนังสือเล่มนี้ให้ framework ไม่ใช่ checklist &mdash; คุณต้องคิดเอง แต่คุณจะคิดได้ดีกว่าเดิมมาก</div>
+                <div class="fit-item"><strong>คนที่เชื่อว่า Data อธิบายได้ทุกอย่าง</strong> Data บอกว่า &ldquo;อะไร&rdquo; เกิดขึ้น หนังสือเล่มนี้บอกว่า &ldquo;ทำไม&rdquo; &mdash; คนที่เก่งจริงต้องรู้ทั้งคู่</div>
+                <div class="fit-item"><strong>คนที่ไม่ชอบตั้งคำถามกับสิ่งที่ตัวเองเชื่อ</strong> หนังสือเล่มนี้จะท้าทายหลาย &ldquo;best practice&rdquo; ที่คุณเคยยึดมั่น</div>
             </div>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Tribalism &mdash; In-group / Out-group</strong> &mdash; section นี้แบ่งผู้อ่านเป็น &laquo;ฝั่งเรา&raquo; กับ &laquo;ฝั่งเขา&raquo; ถ้าเห็นตัวเองในฝั่ง &laquo;เหมาะ&raquo; สมองจะรู้สึกเป็นส่วนหนึ่ง ถ้าเห็นตัวในฝั่ง &laquo;ไม่เหมาะ&raquo; บางคนจะ Reactance &mdash; ยิ่งถูกปฏิเสธ ยิ่งอยากพิสูจน์ (บทที่ 5, 6)</p>
+            <p><strong>Identity-Based Persuasion + Tribalism</strong> &mdash; section นี้ไม่ได้แค่แบ่ง &laquo;เหมาะ / ไม่เหมาะ&raquo; แต่สร้าง identity: &laquo;คนที่พร้อมจะ think deeper&raquo; ถ้าคุณเห็นตัวเองในฝั่งนั้น สมองจะ commit กับ identity นั้น &mdash; แล้วทุกการตัดสินใจหลังจากนี้จะต้อง &laquo;สอดคล้อง&raquo; กับตัวตนที่เพิ่งเลือก (บทที่ 5, 9)</p>
         </div>
     </section>
 
 
-    <!-- ═══════ TRANSFORMATION ═══════ -->
+    <!-- ═══════ THE SHIFT ═══════ -->
     <section class="sp" id="transform">
         <div class="rv">
             <div class="sp-label">THE SHIFT</div>
-            <h2>สิ่งที่เปลี่ยนไปหลังอ่านจบ</h2>
+            <h2>จาก Intuition สู่ Architecture</h2>
         </div>
 
         <div class="transform-grid rv">
             <div class="transform-col transform-before">
                 <h4>ก่อนอ่าน</h4>
                 <ul>
-                    <li>เห็น Ad แล้วกดซื้อโดยไม่รู้ว่า &ldquo;ทำไม&rdquo;</li>
-                    <li>เปลี่ยนกลยุทธ์ทุกเดือนตาม Algorithm</li>
-                    <li>ขายของโดยพูดแต่ Feature</li>
-                    <li>คิดว่า &ldquo;แบรนด์ใหญ่โชคดี&rdquo;</li>
-                    <li>ตั้งราคาตาม &ldquo;ต้นทุน + กำไร&rdquo;</li>
+                    <li>ตัดสินใจจาก best practice + สัญชาตญาณ</li>
+                    <li>Pivot กลยุทธ์ทุกครั้งที่ platform update</li>
+                    <li>เขียน copy ที่ &ldquo;รู้สึก&rdquo; ว่าดี แต่อธิบายไม่ได้ว่าทำไม</li>
+                    <li>ตั้งราคาจากต้นทุน + margin</li>
+                    <li>สร้างแบรนด์ตามสิ่งที่ &ldquo;ควรทำ&rdquo;</li>
                 </ul>
             </div>
             <div class="transform-arrow">&#x2192;</div>
             <div class="transform-col transform-after">
                 <h4>หลังอ่าน</h4>
                 <ul>
-                    <li>เห็นกลไกจิตวิทยาทุกจุดในทุก Sale Page</li>
-                    <li>สร้างแคมเปญที่ไม่ต้องพึ่ง Platform</li>
-                    <li>ขายด้วย Desire + Emotion + Story</li>
-                    <li>เข้าใจ &ldquo;ระบบ&rdquo; ที่ทำให้แบรนด์ได้เปรียบ</li>
-                    <li>ตั้งราคาจากจิตวิทยาการรับรู้</li>
+                    <li>ตัดสินใจจาก framework ของจิตวิทยาที่พิสูจน์แล้ว</li>
+                    <li>สร้างกลยุทธ์ที่ work ข้ามทุก platform เพราะตั้งอยู่บน human psychology</li>
+                    <li>Decode ทุกบรรทัดของ copy ว่า trigger กลไกไหนในสมอง</li>
+                    <li>ตั้งราคาจาก Perceived Value &mdash; ให้ลูกค้า &ldquo;รู้สึก&rdquo; ว่าสมเหตุสมผล</li>
+                    <li>สร้างแบรนด์จาก insight ว่ามนุษย์ยึดมั่นในอะไร</li>
                 </ul>
             </div>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Future Pacing + Contrast Principle</strong> &mdash; section นี้ให้สมองคุณ &laquo;พรีวิวอนาคต&raquo; เปรียบเทียบภาพ &laquo;ก่อน&raquo; กับ &laquo;หลัง&raquo; เมื่อสมองเห็นตัวเองใน &laquo;ก่อน&raquo; และอยากเป็น &laquo;หลัง&raquo; ช่องว่างนั้นสร้างแรงจูงใจ (บทที่ 3, 9)</p>
+            <p><strong>Future Pacing + Contrast Principle</strong> &mdash; section นี้ให้สมองคุณ &laquo;พรีวิวอนาคต&raquo; โดยวาง &laquo;ก่อน&raquo; กับ &laquo;หลัง&raquo; เทียบกัน ช่องว่างระหว่างสองคอลัมน์ = tension ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; และหนังสือเล่มนี้คือสิ่งที่ปิดมัน (บทที่ 3, 9)</p>
         </div>
     </section>
 
@@ -1404,21 +1382,27 @@
     <section class="sp" id="price">
         <div class="rv">
             <div class="sp-label">THE PRICE</div>
-            <h2>เปรียบเทียบ</h2>
+            <h2>ลองสังเกตสิ่งที่เพิ่งเกิดขึ้น<br>ในสมองของคุณ</h2>
+        </div>
+
+        <div class="rv">
+            <p>คุณเพิ่งผ่าน section ที่ frame หนังสือเล่มนี้ว่า &ldquo;Framework ระดับ CMO&rdquo;</p>
+            <p>คุณเพิ่งเห็น 12 บทที่ดูเหมือน executive education program</p>
+            <p>และตอนนี้ &mdash; สมองคุณมี &ldquo;จุดอ้างอิง&rdquo; อยู่แล้ว ก่อนจะเห็นตัวเลข</p>
         </div>
 
         <div class="price-compare rv">
             <div class="price-row alt">
-                <span class="price-name">คอร์ส Facebook Ads 3 วัน <span class="price-note">(หมดอายุเมื่อ Algorithm เปลี่ยน)</span></span>
-                <span class="price-val">8,000 &ndash; 15,000 &#x0E3F;</span>
+                <span class="price-name">Executive Marketing Workshop 2 วัน <span class="price-note">(เนื้อหาหมดอายุเมื่อ trend เปลี่ยน)</span></span>
+                <span class="price-val">25,000 &ndash; 50,000 &#x0E3F;</span>
             </div>
             <div class="price-row alt">
-                <span class="price-name">สัมมนาการตลาด 2 วัน <span class="price-note">(ลืม 80% ภายใน 1 สัปดาห์)</span></span>
-                <span class="price-val">10,000 &ndash; 25,000 &#x0E3F;</span>
+                <span class="price-name">Marketing Consulting 1 เดือน <span class="price-note">(ได้ strategy 1 ไตรมาส)</span></span>
+                <span class="price-val">30,000 &ndash; 100,000 &#x0E3F;</span>
             </div>
             <div class="price-row alt">
-                <span class="price-name">จ้างที่ปรึกษา 1 ชั่วโมง <span class="price-note">(ได้ Opinion ไม่ได้ Framework)</span></span>
-                <span class="price-val">3,000 &ndash; 8,000 &#x0E3F;</span>
+                <span class="price-name">Marketing Conference ต่างประเทศ <span class="price-note">(insight ดี notebook เต็ม action น้อย)</span></span>
+                <span class="price-val">40,000 &ndash; 120,000 &#x0E3F;</span>
             </div>
             <div class="price-row main">
                 <span class="price-name">หนังสือที่ไม่มีวันหมดอายุ <span class="price-note">(เพราะสมองมนุษย์ไม่ update)</span></span>
@@ -1434,8 +1418,6 @@
                 <span>&#x00B7;</span>
                 <span>ไม่มีคูปอง</span>
                 <span>&#x00B7;</span>
-                <span>ไม่มีของแถม</span>
-                <span>&#x00B7;</span>
                 <span>ไม่มี Flash Sale</span>
                 <span>&#x00B7;</span>
                 <span>ไม่มี Countdown Timer</span>
@@ -1443,18 +1425,18 @@
         </div>
 
         <div class="rv">
-            <p>ถ้าหนังสือเล่มนี้สอนเรื่อง Perceived Value แล้วผมขายมันราคาถูกๆ ผมจะเป็นตัวอย่างของคนที่เขียนสิ่งที่ตัวเองไม่เชื่อ</p>
+            <p>ถ้าหนังสือเล่มนี้สอนเรื่อง Perceived Value แล้วผมตั้งราคา 299 บาท &mdash; ผมจะเป็นตัวอย่างของคนที่ไม่เชื่อในสิ่งที่ตัวเองเขียน</p>
             <p><strong>ราคาคือสัญญาณ ไม่ใช่แค่ตัวเลข</strong> &mdash; และนั่นคือบทเรียนแรกที่คุณเพิ่งเรียน ก่อนจะเปิดหน้าแรกด้วยซ้ำ</p>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Anchoring + Price-Quality Heuristic</strong> &mdash; ตัวเลข 8,000&ndash;25,000 ที่คุณเห็นก่อน กลายเป็น &laquo;จุดอ้างอิง&raquo; (Anchor) ทำให้ 2,990 ดูสมเหตุสมผล และราคาที่สูงกว่าหนังสือทั่วไปเป็น &laquo;สัญญาณ&raquo; ให้สมองว่า นี่ไม่ใช่หนังสือธรรมดา (บทที่ 7)</p>
+            <p><strong>Anchoring + Price-Quality Heuristic + Meta-Transparency</strong> &mdash; ใช่ &mdash; ผมเพิ่ง anchor คุณด้วยตัวเลข 25,000-120,000 และคุณรู้ แต่มัน<strong>ยัง work อยู่ดี</strong> เพราะ Anchoring ทำงานที่ระดับ System 1 ซึ่ง System 2 (ส่วนที่ &laquo;รู้ว่ากำลังถูก anchor&raquo;) ไม่สามารถ override ได้ทั้งหมด &mdash; นี่คือเหตุผลว่าทำไมการ &laquo;รู้&raquo; เทคนิคการตลาดจึงไม่เพียงพอ คุณต้อง &laquo;เข้าใจกลไก&raquo; (บทที่ 7)</p>
         </div>
     </section>
 
 
-    <!-- ═══════ AUTHOR ═══════ -->
+    <!-- ═══════ THE AUTHOR ═══════ -->
     <section class="sp" id="author">
         <div class="rv">
             <div class="sp-label">THE AUTHOR</div>
@@ -1463,14 +1445,14 @@
 
         <div class="rv">
             <p>จบวิทยาการคอมพิวเตอร์ ไม่ใช่การตลาด แต่ขายของชิ้นแรกตั้งแต่อายุ 16</p>
-            <p>ปริญญา CS สอนวิธีคิดเป็นระบบ วิธีแยก Pattern จากความสับสน วิธี Debug ความเชื่อที่ทุกคนรับมาโดยไม่เคยตั้งคำถาม</p>
-            <p>วันนี้เป็น Head of Marketing ให้บริษัท และยังลงมือทำงานจริงทุกวันกับลูกค้าอีกหลายสิบรายในฐานะ Freelance &mdash; ไม่ใช่ที่ปรึกษาที่ให้คำแนะนำจากระยะไกล แต่คนที่เขียน Copy ออกแบบแคมเปญ วัดผล ปรับ แล้ววัดใหม่</p>
-            <p>เขาเลือกที่จะไม่เปิดเผยตัวตน เพราะเชื่อว่า <strong>&ldquo;ไอเดียที่ดีไม่ต้องการใบหน้า&rdquo;</strong></p>
+            <p>ปริญญา CS สอนวิธีคิดเป็นระบบ วิธีแยก pattern จากความสับสน วิธี debug ความเชื่อที่ทุกคนรับมาโดยไม่เคยตั้งคำถาม &mdash; ทักษะเดียวกันที่ทำให้มองเห็น &ldquo;ราก&rdquo; ใต้ทุกเครื่องมือ</p>
+            <p>วันนี้เป็น Head of Marketing ให้บริษัท และยังลงมือทำงานจริงทุกวันกับลูกค้าหลายสิบรายในฐานะ Freelance &mdash; ไม่ใช่ที่ปรึกษาที่ให้คำแนะนำจากระยะไกล แต่คนที่เขียน copy ออกแบบแคมเปญ วัดผล ปรับ แล้ววัดใหม่</p>
+            <p>เขาเลือกที่จะไม่เปิดเผยตัวตน เพราะเชื่อว่า <strong>&ldquo;ไอเดียที่ดีไม่ต้องการใบหน้า &mdash; มันต้องการแค่หลักฐาน&rdquo;</strong></p>
         </div>
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Authority Bias + Pratfall Effect</strong> &mdash; ประสบการณ์จริง = สัญญาณ Authority ที่สมองไว้ใจ และการยอมรับว่า &laquo;ไม่ได้จบการตลาด&raquo; คือ Pratfall Effect &mdash; จุดอ่อนเล็กน้อยที่ทำให้ถูกชอบมากกว่าคนสมบูรณ์แบบ (บทที่ 8)</p>
+            <p><strong>Authority Bias + Pratfall Effect + Scarcity of Identity</strong> &mdash; ประสบการณ์จริง + CS background = Authority ที่น่าเชื่อถือสำหรับคนที่คิดเป็นระบบ การยอมรับว่า &laquo;ไม่ได้จบการตลาด&raquo; คือ Pratfall Effect &mdash; จุดอ่อนเล็กน้อยที่เพิ่ม likability และการไม่เปิดเผยตัวตน สร้าง mystique ที่ทำให้สมองอยากรู้มากขึ้น ไม่ใช่น้อยลง (บทที่ 6, 8)</p>
         </div>
     </section>
 
@@ -1478,13 +1460,13 @@
     <!-- ═══════ CTA ═══════ -->
     <section class="cta-section" id="buy">
         <div class="rv">
-            <a href="/" class="cta-btn">อ่านตัวอย่างฟรี &mdash; บทนำ &amp; บทที่ 1</a>
-            <p class="cta-or">อ่านได้เลยทันที ไม่ต้องสมัคร ไม่ต้องกรอกอีเมล</p>
+            <a href="/" class="cta-btn">อ่านบทนำ + บทที่ 1 ฟรี</a>
+            <p class="cta-or">ไม่ต้องสมัคร ไม่ต้องกรอกอีเมล &mdash; แล้วตัดสินใจด้วยตัวเอง</p>
         </div>
 
         <div class="te-note" style="max-width: 680px; margin-left: auto; margin-right: auto;">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Risk Reversal + Cognitive Ease</strong> &mdash; ปุ่มเดียว ข้อความเดียว ไม่ต้องกรอกอะไร ไม่ต้องจ่ายอะไร สมองของคุณไม่มีข้อโต้แย้งเหลือ นี่คือ Zero-Risk + Cognitive Ease &mdash; ลดแรงต้านจนเหลือศูนย์ (บทที่ 9)</p>
+            <p><strong>Risk Reversal + Cognitive Ease + Autonomy Bias</strong> &mdash; ปุ่มเดียว ข้อความเดียว ไม่ต้องจ่ายอะไร สมองไม่มีข้อโต้แย้งเหลือ &ldquo;ตัดสินใจด้วยตัวเอง&rdquo; กระตุ้น Autonomy Bias &mdash; ความรู้สึกว่า &laquo;ฉันเลือกเอง ไม่มีใครบังคับ&raquo; ซึ่งลดแรงต้านได้ดีกว่าการโน้มน้าวทุกรูปแบบ (บทที่ 9)</p>
         </div>
     </section>
 
@@ -1493,11 +1475,12 @@
     <section class="sp" style="border-top: none; text-align: center;">
         <div class="rv">
             <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 2;">
-                คุณเพิ่งอ่าน sale page ที่ใช้จิตวิทยาอย่างน้อย 14 เทคนิคกับคุณ<br><br>
+                คุณเพิ่งอ่าน sale page ที่ใช้จิตวิทยากับคุณตลอดทั้งหน้า<br><br>
                 ถ้าคุณเปิด<strong>ตาที่สาม</strong>แล้ว คุณเห็นทุกเทคนิค<br>
-                ถ้าคุณยังไม่เปิด ลองเลื่อนกลับขึ้นไปเปิดดู<br><br>
-                แล้วคุณจะเข้าใจว่าทำไมหนังสือเล่มนี้ถึงมีค่า 2,990 บาท<br><br>
-                <strong>เพราะคุณเพิ่งเรียนจบบทเรียนแรกไปแล้ว &mdash; จากหน้าขายของ</strong>
+                ถ้ายังไม่เปิด ลองเลื่อนกลับขึ้นไปดู<br><br>
+                แล้วคุณจะเข้าใจว่า หนังสือเล่มนี้<strong>ไม่ใช่สิ่งที่ Sale Page นี้ขาย</strong><br>
+                แต่เป็นสิ่งที่ Sale Page นี้<strong>เพิ่งพิสูจน์</strong><br><br>
+                <strong>คุณเพิ่งเรียนจบบทเรียนแรกไปแล้ว &mdash; จากหน้าขายของ</strong>
             </p>
         </div>
     </section>
@@ -1535,23 +1518,6 @@
             revealObs.observe(el);
         });
 
-        // ── Staggered pain items ──
-        var painObs = new IntersectionObserver(function(entries) {
-            entries.forEach(function(e) {
-                if (e.isIntersecting) {
-                    var items = e.target.querySelectorAll('.pain-item');
-                    items.forEach(function(item) {
-                        var delay = parseInt(item.getAttribute('data-delay') || '0', 10);
-                        setTimeout(function() { item.classList.add('vis'); }, delay);
-                    });
-                    painObs.unobserve(e.target);
-                }
-            });
-        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
-
-        var painContainer = document.querySelector('#pain .rv:nth-child(2)');
-        if (painContainer) painObs.observe(painContainer);
-
         // ── Reading progress bar ──
         var progressBar = document.getElementById('progress-bar');
         window.addEventListener('scroll', function() {
@@ -1574,7 +1540,7 @@
 
         document.getElementById('hero-te-btn').addEventListener('click', function() {
             toggleTE();
-            var firstNote = document.querySelector('#pain .te-note');
+            var firstNote = document.querySelector('#ceiling .te-note');
             if (firstNote && teActive) {
                 setTimeout(function() {
                     firstNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
