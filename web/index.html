@@ -1326,6 +1326,62 @@
             opacity: 0.8;
         }
 
+        /* QR Code step */
+        .unlock-step-qr .unlock-step-body {
+            width: 100%;
+        }
+        .unlock-qr-hint {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin: 0.3rem 0 0.8rem;
+            opacity: 0.7;
+        }
+        .unlock-qr-wrap {
+            display: inline-block;
+            position: relative;
+            margin: 0.3rem 0;
+        }
+        .unlock-qr-link {
+            display: block;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        .unlock-qr-link:hover {
+            border-color: var(--accent);
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(196,149,106,0.2);
+        }
+        .unlock-qr-img {
+            display: block;
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+        }
+        .unlock-qr-badge {
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #FAF6F0;
+            background: var(--accent);
+            padding: 0.25rem 0.8rem;
+            border-radius: 6px 6px 0 0;
+            letter-spacing: 0.05em;
+            white-space: nowrap;
+        }
+        .unlock-qr-id {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            margin: 0.6rem 0 0;
+            opacity: 0.6;
+        }
+
         .unlock-messenger-btn {
             display: inline-flex;
             align-items: center;
@@ -8796,11 +8852,18 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                     <h3 class="unlock-step-title">วิธีรับ &ldquo;รหัสราก&rdquo;</h3>
 
                     <div class="unlock-steps">
-                        <div class="unlock-step">
+                        <div class="unlock-step unlock-step-qr">
                             <div class="unlock-step-num">1</div>
                             <div class="unlock-step-body">
-                                <strong>โอนเงิน 2,990 บาท</strong>
-                                <p>PromptPay: <code>0XX-XXX-XXXX</code></p>
+                                <strong>สแกนจ่าย 2,990 บาท</strong>
+                                <p class="unlock-qr-hint">กดที่ QR หรือบันทึกภาพเพื่อสแกน</p>
+                                <div class="unlock-qr-wrap">
+                                    <a href="images/qr-promptpay.jpg" target="_blank" rel="noopener" class="unlock-qr-link">
+                                        <img src="images/qr-promptpay.jpg" alt="QR Code PromptPay" class="unlock-qr-img" loading="lazy">
+                                        <span class="unlock-qr-badge">&#x26A1; PromptPay</span>
+                                    </a>
+                                </div>
+                                <p class="unlock-qr-id">หรือโอนตรง: <code>0XX-XXX-XXXX</code></p>
                             </div>
                         </div>
                         <div class="unlock-step">
