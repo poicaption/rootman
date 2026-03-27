@@ -208,6 +208,24 @@
             margin-top: 1rem;
         }
 
+        .hero-book-mockup {
+            margin: 2.5rem 0 1rem;
+            opacity: 0;
+            animation: heroIn 1s 3.8s forwards;
+        }
+
+        .hero-book-img {
+            max-width: 300px;
+            width: 55vw;
+            height: auto;
+            filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6)) drop-shadow(0 5px 15px rgba(196,149,106,0.15));
+            transition: transform 0.4s ease;
+        }
+
+        .hero-book-img:hover {
+            transform: scale(1.03) translateY(-4px);
+        }
+
         .hero-te-intro {
             margin-top: 3rem;
             opacity: 0;
@@ -947,6 +965,7 @@
             html { font-size: 16px; }
             .sp { padding: 3.5rem 1.3rem; }
             .hero { padding: 2.5rem 1.3rem; }
+            .hero-book-img { max-width: 220px; }
             .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .transform-grid { grid-template-columns: 1fr; }
             .transform-arrow { transform: rotate(90deg); justify-self: center; padding-top: 0; }
@@ -999,6 +1018,10 @@
             <p class="hero-title-of">of</p>
             <p class="hero-title-en">Marketing</p>
             <p class="hero-title-th">รากแก้วการตลาด</p>
+        </div>
+
+        <div class="hero-book-mockup">
+            <img src="images/Book-Mockup.png" alt="The One Root of Marketing — Book" class="hero-book-img" loading="eager">
         </div>
 
         <div class="hero-te-intro">
