@@ -2,6 +2,7 @@
   "outputDirectory": "web",
   "buildCommand": null,
   "framework": null,
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/sale", "destination": "/sale.html" },
     { "source": "/start", "destination": "/sale-general.html" },
