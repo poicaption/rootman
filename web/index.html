@@ -2567,6 +2567,228 @@
                 background: none;
             }
         }
+
+        /* ═══════════════════════════════════
+           Admin System
+           ═══════════════════════════════════ */
+        .adm-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 99998;
+        }
+        .adm-modal {
+            display: none;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: #1C1917;
+            border: 1px solid #3a3530;
+            border-radius: 12px;
+            padding: 2rem;
+            z-index: 99999;
+            min-width: 340px;
+            max-width: 420px;
+            text-align: center;
+            color: #D4CDC3;
+            font-family: 'Prompt', sans-serif;
+        }
+        .adm-modal-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #C4956A;
+        }
+        .adm-hint {
+            font-size: 0.8rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            color: #8a8078;
+        }
+        .adm-hint a { color: #C4956A; }
+        .adm-hint code {
+            background: #2a2520;
+            padding: 0.15em 0.4em;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+        .adm-input {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            border: 1px solid #3a3530;
+            border-radius: 8px;
+            background: #2a2520;
+            color: #D4CDC3;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            box-sizing: border-box;
+            font-family: monospace;
+        }
+        .adm-input:focus { border-color: #C4956A; outline: none; }
+        .adm-btn {
+            display: inline-block;
+            padding: 0.55rem 1.2rem;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .adm-btn-primary {
+            background: #C4956A;
+            color: #1C1917;
+            font-weight: 600;
+        }
+        .adm-btn-primary:hover { background: #d4a57a; }
+        .adm-btn-save {
+            background: #22c55e;
+            color: #fff;
+            font-weight: 600;
+        }
+        .adm-btn-save:hover { background: #16a34a; }
+        .adm-btn-save:disabled {
+            background: #4a4a4a;
+            color: #888;
+            cursor: not-allowed;
+        }
+        .adm-btn-ghost {
+            background: transparent;
+            color: #8a8078;
+            border: 1px solid #3a3530;
+        }
+        .adm-btn-ghost:hover { border-color: #8a8078; color: #D4CDC3; }
+        .adm-err {
+            color: #ef4444;
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+            min-height: 1.2rem;
+        }
+
+        /* Admin Toolbar */
+        .adm-toolbar {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: 48px;
+            background: #1C1917;
+            border-bottom: 2px solid #C4956A;
+            z-index: 99997;
+            padding: 0 1rem;
+            align-items: center;
+            justify-content: space-between;
+            font-family: 'Prompt', sans-serif;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+        }
+        body.admin-mode .adm-toolbar { display: flex; }
+        body.admin-mode { padding-top: 52px !important; }
+        .adm-tb-left, .adm-tb-center, .adm-tb-right {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .adm-tb-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #22c55e;
+            letter-spacing: 0.05em;
+        }
+        .adm-tb-status {
+            font-size: 0.7rem;
+            color: #8a8078;
+        }
+        .adm-tb-sep {
+            width: 1px;
+            height: 20px;
+            background: #3a3530;
+            margin: 0 0.3rem;
+        }
+        .adm-fmt {
+            width: 30px; height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #3a3530;
+            border-radius: 4px;
+            background: transparent;
+            color: #D4CDC3;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.15s;
+        }
+        .adm-fmt:hover {
+            background: #2a2520;
+            border-color: #C4956A;
+            color: #C4956A;
+        }
+        .adm-chapter-nav {
+            background: #2a2520;
+            color: #D4CDC3;
+            border: 1px solid #3a3530;
+            border-radius: 4px;
+            padding: 0.3rem 0.5rem;
+            font-size: 0.75rem;
+            font-family: 'Prompt', sans-serif;
+            max-width: 200px;
+        }
+
+        /* Edit mode visual indicators */
+        body.admin-mode .chapter-body {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+            -webkit-touch-callout: default !important;
+            outline: 2px dashed rgba(196,149,106,0.3);
+            outline-offset: 8px;
+            border-radius: 4px;
+        }
+        body.admin-mode .chapter-body:focus-within {
+            outline-color: #C4956A;
+            background: rgba(196,149,106,0.03);
+        }
+        body.admin-mode .chapter-body img {
+            pointer-events: auto !important;
+        }
+        body.admin-mode .chapter-body.adm-dirty::before {
+            content: '\270E แก้ไขแล้ว';
+            display: block;
+            font-size: 0.7rem;
+            color: #f59e0b;
+            font-family: 'Prompt', sans-serif;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Admin Toast */
+        .adm-toast {
+            display: none;
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            z-index: 99999;
+            animation: admToastIn 0.3s ease;
+            white-space: nowrap;
+        }
+        .adm-toast.adm-toast-ok { background: #22c55e; color: #fff; }
+        .adm-toast.adm-toast-err { background: #ef4444; color: #fff; }
+        .adm-toast.adm-toast-info { background: #3b82f6; color: #fff; }
+        @keyframes admToastIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        /* Responsive admin toolbar */
+        @media (max-width: 768px) {
+            .adm-toolbar { flex-wrap: wrap; height: auto; padding: 0.4rem; gap: 0.3rem; }
+            .adm-tb-center { order: 3; width: 100%; justify-content: center; gap: 0.3rem; }
+            .adm-chapter-nav { max-width: 120px; }
+            body.admin-mode { padding-top: 90px !important; }
+        }
     
     </style>
 </head>
@@ -9077,6 +9299,55 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
         <button class="resume-dismiss" aria-label="ปิด">&times;</button>
     </div>
 
+    <!-- ═══════ Admin System ═══════ -->
+    <!-- Admin Login Modal -->
+    <div id="adm-overlay" data-admin class="adm-overlay"></div>
+    <div id="adm-login" data-admin class="adm-modal">
+        <div class="adm-modal-title">&#x1F512; Admin Access</div>
+        <input type="password" id="adm-pass" class="adm-input" placeholder="Admin password" autocomplete="off">
+        <button id="adm-login-btn" class="adm-btn adm-btn-primary">เข้าสู่ระบบ</button>
+        <p id="adm-login-err" class="adm-err"></p>
+        <button class="adm-btn adm-btn-ghost" onclick="document.getElementById('adm-login').style.display='none';document.getElementById('adm-overlay').style.display='none';">&times; ปิด</button>
+    </div>
+
+    <!-- GitHub PAT Modal -->
+    <div id="adm-pat" data-admin class="adm-modal" style="display:none">
+        <div class="adm-modal-title">&#x1F511; GitHub Personal Access Token</div>
+        <p class="adm-hint">สร้าง PAT ที่ <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a><br>ต้องมีสิทธิ์ <code>repo</code> &mdash; เก็บไว้ในเบราว์เซอร์นี้เท่านั้น</p>
+        <input type="password" id="adm-pat-input" class="adm-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off">
+        <button id="adm-pat-btn" class="adm-btn adm-btn-primary">บันทึก &amp; เข้าสู่โหมดแก้ไข</button>
+        <p id="adm-pat-err" class="adm-err"></p>
+    </div>
+
+    <!-- Admin Toolbar -->
+    <div id="adm-toolbar" data-admin class="adm-toolbar">
+        <div class="adm-tb-left">
+            <span class="adm-tb-badge">&#x1F527; EDIT MODE</span>
+            <span class="adm-tb-status" id="adm-status"></span>
+        </div>
+        <div class="adm-tb-center">
+            <button class="adm-fmt" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
+            <button class="adm-fmt" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
+            <button class="adm-fmt" data-cmd="formatBlock" data-val="h2" title="H2">H2</button>
+            <button class="adm-fmt" data-cmd="formatBlock" data-val="h3" title="H3">H3</button>
+            <button class="adm-fmt" data-cmd="formatBlock" data-val="blockquote" title="Blockquote">&#x275D;</button>
+            <button class="adm-fmt" data-cmd="formatBlock" data-val="p" title="Paragraph">P</button>
+            <button class="adm-fmt" data-cmd="createLink" title="Link">&#x1F517;</button>
+            <button class="adm-fmt" data-cmd="removeFormat" title="Clear Format">&#x2718;</button>
+            <span class="adm-tb-sep"></span>
+            <button class="adm-fmt" data-cmd="undo" title="Undo (Ctrl+Z)">&#x21A9;</button>
+            <button class="adm-fmt" data-cmd="redo" title="Redo (Ctrl+Y)">&#x21AA;</button>
+        </div>
+        <div class="adm-tb-right">
+            <select id="adm-chapter-nav" class="adm-chapter-nav" title="ข้ามไปบท..."></select>
+            <button id="adm-save-btn" class="adm-btn adm-btn-save">&#x1F4BE; บันทึก &amp; อัปเดต</button>
+            <button id="adm-exit-btn" class="adm-btn adm-btn-ghost">ออก</button>
+        </div>
+    </div>
+
+    <!-- Admin Toast -->
+    <div id="adm-toast" data-admin class="adm-toast"></div>
+
     <script>
 
         // ═══════════════════════════════════
@@ -10159,10 +10430,22 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
             // ═══════════════════════════════════
             // Content Protection
             // ═══════════════════════════════════
+            var isAdminMode = false;
+
             document.addEventListener('contextmenu', function(e) {
+                if (isAdminMode) return;
                 if (e.target.closest('.chapter-body')) e.preventDefault();
             });
             document.addEventListener('keydown', function(e) {
+                if (isAdminMode) {
+                    // In admin mode, only intercept Ctrl+S for save
+                    if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
+                        e.preventDefault();
+                        var saveBtn = document.getElementById('adm-save-btn');
+                        if (saveBtn && !saveBtn.disabled) saveBtn.click();
+                    }
+                    return;
+                }
                 // Block Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+P, Ctrl+U
                 if ((e.ctrlKey || e.metaKey) && ['c','a','s','p','u'].indexOf(e.key.toLowerCase()) !== -1) {
                     if (document.getSelection().anchorNode &&
@@ -10187,6 +10470,7 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                 }
             });
             document.addEventListener('copy', function(e) {
+                if (isAdminMode) return;
                 if (document.getSelection().anchorNode &&
                     document.getSelection().anchorNode.parentElement &&
                     document.getSelection().anchorNode.parentElement.closest('.chapter-body')) {
@@ -10195,6 +10479,7 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
             });
             // Detect visibility change (some screenshot tools)
             document.addEventListener('visibilitychange', function() {
+                if (isAdminMode) return;
                 if (document.hidden) {
                     document.querySelectorAll('.chapter-body').forEach(function(el) {
                         el.style.filter = 'blur(20px)';
@@ -10205,6 +10490,223 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                     });
                 }
             });
+
+            // ═══════════════════════════════════
+            // Admin Edit System
+            // ═══════════════════════════════════
+            var ADMIN_HASH = '2d0e03d263e7c7e834632db67ad4659784fbb083aee0c76c81b9c8efd94c1ba3';
+            var GH_REPO = 'facexerciseclinic-cloud/oneroot';
+            var GH_PATH = 'web/index.html';
+
+            function admToast(msg, type) {
+                var t = document.getElementById('adm-toast');
+                t.textContent = msg;
+                t.className = 'adm-toast adm-toast-' + (type || 'info');
+                t.style.display = 'block';
+                clearTimeout(t._hid);
+                t._hid = setTimeout(function() { t.style.display = 'none'; }, 3500);
+            }
+
+            // Trigger admin login with secret key combo (Ctrl+Shift+E)
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'e') {
+                    e.preventDefault();
+                    if (isAdminMode) return;
+                    document.getElementById('adm-overlay').style.display = 'block';
+                    document.getElementById('adm-login').style.display = 'block';
+                    document.getElementById('adm-pass').focus();
+                }
+            });
+
+            // Admin login
+            document.getElementById('adm-login-btn').addEventListener('click', function() {
+                var pass = document.getElementById('adm-pass').value.trim();
+                if (!pass) return;
+                sha256(pass).then(function(hash) {
+                    if (hash === ADMIN_HASH) {
+                        localStorage.setItem('adm-auth', '1');
+                        document.getElementById('adm-login').style.display = 'none';
+                        document.getElementById('adm-overlay').style.display = 'none';
+                        document.getElementById('adm-login-err').textContent = '';
+                        // Check for GitHub PAT
+                        var pat = localStorage.getItem('adm-pat');
+                        if (!pat) {
+                            document.getElementById('adm-overlay').style.display = 'block';
+                            document.getElementById('adm-pat').style.display = 'block';
+                            document.getElementById('adm-pat-input').focus();
+                        } else {
+                            enterAdminMode(pat);
+                        }
+                    } else {
+                        document.getElementById('adm-login-err').textContent = 'รหัสไม่ถูกต้อง';
+                    }
+                });
+            });
+            document.getElementById('adm-pass').addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') document.getElementById('adm-login-btn').click();
+            });
+
+            // PAT save
+            document.getElementById('adm-pat-btn').addEventListener('click', function() {
+                var pat = document.getElementById('adm-pat-input').value.trim();
+                if (!pat || !pat.startsWith('gh')) {
+                    document.getElementById('adm-pat-err').textContent = 'PAT ต้องเริ่มด้วย ghp_ หรือ github_pat_';
+                    return;
+                }
+                localStorage.setItem('adm-pat', pat);
+                document.getElementById('adm-pat').style.display = 'none';
+                document.getElementById('adm-overlay').style.display = 'none';
+                enterAdminMode(pat);
+            });
+
+            function enterAdminMode(pat) {
+                isAdminMode = true;
+                document.body.classList.add('admin-mode');
+                // Force unlock all content
+                doUnlock();
+                // Make chapter bodies editable
+                document.querySelectorAll('.chapter-body').forEach(function(el) {
+                    el.setAttribute('contenteditable', 'true');
+                    el.addEventListener('input', function() {
+                        el.classList.add('adm-dirty');
+                        updateDirtyCount();
+                    });
+                });
+                // Populate chapter nav
+                populateChapterNav();
+                admToast('เข้าสู่โหมดแก้ไขแล้ว', 'ok');
+            }
+
+            function populateChapterNav() {
+                var nav = document.getElementById('adm-chapter-nav');
+                nav.innerHTML = '<option value="">ข้ามไปบท...</option>';
+                document.querySelectorAll('.chapter-section').forEach(function(sec) {
+                    var id = sec.id;
+                    var title = sec.querySelector('h1');
+                    var label = title ? title.textContent.trim().substring(0, 40) : id;
+                    var opt = document.createElement('option');
+                    opt.value = id;
+                    opt.textContent = label;
+                    nav.appendChild(opt);
+                });
+                nav.addEventListener('change', function() {
+                    if (nav.value) {
+                        var el = document.getElementById(nav.value);
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        nav.value = '';
+                    }
+                });
+            }
+
+            function updateDirtyCount() {
+                var dirty = document.querySelectorAll('.adm-dirty').length;
+                var status = document.getElementById('adm-status');
+                status.textContent = dirty > 0 ? dirty + ' บทมีการเปลี่ยนแปลง' : '';
+                document.getElementById('adm-save-btn').disabled = dirty === 0;
+            }
+
+            // Formatting toolbar
+            document.querySelectorAll('.adm-fmt').forEach(function(btn) {
+                btn.addEventListener('mousedown', function(e) {
+                    e.preventDefault(); // Keep selection
+                    var cmd = btn.getAttribute('data-cmd');
+                    var val = btn.getAttribute('data-val') || null;
+                    if (cmd === 'createLink') {
+                        val = prompt('URL:');
+                        if (!val) return;
+                    }
+                    if (cmd === 'formatBlock' && val) {
+                        val = '<' + val + '>';
+                    }
+                    document.execCommand(cmd, false, val);
+                });
+            });
+
+            // Save & Update via GitHub API
+            document.getElementById('adm-save-btn').addEventListener('click', function() {
+                var saveBtn = document.getElementById('adm-save-btn');
+                if (saveBtn.disabled) return;
+                saveBtn.disabled = true;
+                saveBtn.textContent = '⏳ กำลังบันทึก...';
+                var pat = localStorage.getItem('adm-pat');
+                if (!pat) {
+                    admToast('ไม่พบ PAT — กด Ctrl+Shift+E เพื่อตั้งค่าใหม่', 'err');
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '&#x1F4BE; บันทึก &amp; อัปเดต';
+                    return;
+                }
+
+                // Get the full page HTML
+                var html = '<!DOCTYPE html>\n<html lang="th">\n' + document.documentElement.innerHTML + '\n</html>';
+                // Clean up contenteditable and dirty markers before saving
+                html = html.replace(/ contenteditable="true"/g, '');
+                html = html.replace(/ class="adm-dirty"/g, '');
+                html = html.replace(/ class="([^"]*) adm-dirty([^"]*)"/g, ' class="$1$2"');
+                // Remove admin elements from saved HTML
+                html = html.replace(/<[^>]+data-admin[^>]*>[\s\S]*?<\/[^>]+>/g, '');
+
+                // Step 1: Get current file SHA
+                fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
+                    headers: { 'Authorization': 'token ' + pat }
+                })
+                .then(function(res) {
+                    if (!res.ok) throw new Error('GitHub GET failed: ' + res.status);
+                    return res.json();
+                })
+                .then(function(data) {
+                    var sha = data.sha;
+                    // Step 2: Update file
+                    return fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': 'token ' + pat,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Edit via web admin',
+                            content: btoa(unescape(encodeURIComponent(html))),
+                            sha: sha,
+                            branch: 'main'
+                        })
+                    });
+                })
+                .then(function(res) {
+                    if (!res.ok) throw new Error('GitHub PUT failed: ' + res.status);
+                    return res.json();
+                })
+                .then(function(result) {
+                    admToast('บันทึกสำเร็จ! Vercel กำลัง deploy...', 'ok');
+                    document.querySelectorAll('.adm-dirty').forEach(function(el) {
+                        el.classList.remove('adm-dirty');
+                    });
+                    updateDirtyCount();
+                })
+                .catch(function(err) {
+                    admToast('บันทึกล้มเหลว: ' + err.message, 'err');
+                    console.error(err);
+                })
+                .finally(function() {
+                    saveBtn.disabled = false;
+                    saveBtn.innerHTML = '&#x1F4BE; บันทึก &amp; อัปเดต';
+                    updateDirtyCount();
+                });
+            });
+
+            // Exit admin mode
+            document.getElementById('adm-exit-btn').addEventListener('click', function() {
+                var dirty = document.querySelectorAll('.adm-dirty').length;
+                if (dirty > 0 && !confirm('คุณมี ' + dirty + ' บทที่ยังไม่ได้บันทึก จะออกจากโหมดแก้ไข?')) return;
+                isAdminMode = false;
+                document.body.classList.remove('admin-mode');
+                document.querySelectorAll('.chapter-body').forEach(function(el) {
+                    el.removeAttribute('contenteditable');
+                    el.classList.remove('adm-dirty');
+                });
+                admToast('ออกจากโหมดแก้ไขแล้ว', 'info');
+            });
+
+            // Init: disable save button
+            updateDirtyCount();
 
         })();
     
