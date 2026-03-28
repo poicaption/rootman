@@ -474,6 +474,25 @@
             margin-top: 0;
         }
 
+        /* ── Content Protection ── */
+        .chapter-body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        .chapter-body img {
+            -webkit-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+
+        @media print {
+            body { display: none !important; }
+        }
+
         /* ── Version Toggle (Normal / Aggressive) ── */
         .version-toggle {
             display: flex;
@@ -10135,6 +10154,56 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                     var target = section.querySelector('.version-' + version);
                     if (target) target.classList.add('active');
                 });
+            });
+
+            // ═══════════════════════════════════
+            // Content Protection
+            // ═══════════════════════════════════
+            document.addEventListener('contextmenu', function(e) {
+                if (e.target.closest('.chapter-body')) e.preventDefault();
+            });
+            document.addEventListener('keydown', function(e) {
+                // Block Ctrl+C, Ctrl+A, Ctrl+S, Ctrl+P, Ctrl+U
+                if ((e.ctrlKey || e.metaKey) && ['c','a','s','p','u'].indexOf(e.key.toLowerCase()) !== -1) {
+                    if (document.getSelection().anchorNode &&
+                        document.getSelection().anchorNode.parentElement &&
+                        document.getSelection().anchorNode.parentElement.closest('.chapter-body')) {
+                        e.preventDefault();
+                    }
+                    // Block print and view source globally
+                    if (e.key.toLowerCase() === 'p' || e.key.toLowerCase() === 'u') {
+                        e.preventDefault();
+                    }
+                }
+                // Block F12 and Ctrl+Shift+I (DevTools)
+                if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'i')) {
+                    e.preventDefault();
+                }
+                // Block PrintScreen
+                if (e.key === 'PrintScreen') {
+                    e.preventDefault();
+                    document.body.style.filter = 'blur(30px)';
+                    setTimeout(function() { document.body.style.filter = ''; }, 1500);
+                }
+            });
+            document.addEventListener('copy', function(e) {
+                if (document.getSelection().anchorNode &&
+                    document.getSelection().anchorNode.parentElement &&
+                    document.getSelection().anchorNode.parentElement.closest('.chapter-body')) {
+                    e.preventDefault();
+                }
+            });
+            // Detect visibility change (some screenshot tools)
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    document.querySelectorAll('.chapter-body').forEach(function(el) {
+                        el.style.filter = 'blur(20px)';
+                    });
+                } else {
+                    document.querySelectorAll('.chapter-body').forEach(function(el) {
+                        el.style.filter = '';
+                    });
+                }
             });
 
         })();
