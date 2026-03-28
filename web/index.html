@@ -10622,7 +10622,7 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                 });
             });
 
-            // Save & Update via GitHub API
+            // Save & Update via GitHub API — fetch pristine source, patch only edited sections
             document.getElementById('adm-save-btn').addEventListener('click', function() {
                 var saveBtn = document.getElementById('adm-save-btn');
                 if (saveBtn.disabled) return;
@@ -10636,16 +10636,8 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                     return;
                 }
 
-                // Get the full page HTML
-                var html = '<!DOCTYPE html>\n<html lang="th">\n' + document.documentElement.innerHTML + '\n</html>';
-                // Clean up contenteditable and dirty markers before saving
-                html = html.replace(/ contenteditable="true"/g, '');
-                html = html.replace(/ class="adm-dirty"/g, '');
-                html = html.replace(/ class="([^"]*) adm-dirty([^"]*)"/g, ' class="$1$2"');
-                // Remove admin elements from saved HTML
-                html = html.replace(/<[^>]+data-admin[^>]*>[\s\S]*?<\/[^>]+>/g, '');
+                var fileSha = null;
 
-                // Step 1: Get current file SHA
                 fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
                     headers: { 'Authorization': 'token ' + pat }
                 })
@@ -10654,8 +10646,40 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                     return res.json();
                 })
                 .then(function(data) {
-                    var sha = data.sha;
-                    // Step 2: Update file
+                    fileSha = data.sha;
+                    var pristine = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+
+                    // Collect edits: section id -> new innerHTML of .chapter-body
+                    var edits = {};
+                    document.querySelectorAll('.chapter-body.adm-dirty').forEach(function(el) {
+                        var sec = el.closest('.chapter-section');
+                        if (sec && sec.id) {
+                            var clean = el.innerHTML;
+                            clean = clean.replace(/ contenteditable="true"/g, '');
+                            clean = clean.replace(/ class="adm-dirty"/g, '');
+                            edits[sec.id] = clean;
+                        }
+                    });
+
+                    // For each edit, find the section in pristine and replace chapter-body content
+                    var result = pristine;
+                    Object.keys(edits).forEach(function(secId) {
+                        // Match: opening tag of section with this id ... chapter-body div open tag, then content, then the last </div> before </section>
+                        var startMarker = 'id="' + secId + '"';
+                        var idx = result.indexOf(startMarker);
+                        if (idx === -1) return;
+                        var bodyStart = result.indexOf('<div class="chapter-body">', idx);
+                        if (bodyStart === -1) return;
+                        bodyStart = bodyStart + '<div class="chapter-body">'.length;
+                        // Find matching </div> that closes chapter-body (it's followed by </section>)
+                        var secEnd = result.indexOf('</section>', bodyStart);
+                        if (secEnd === -1) return;
+                        // The </div> just before </section> closes the chapter-body
+                        var bodyEnd = result.lastIndexOf('</div>', secEnd);
+                        if (bodyEnd === -1 || bodyEnd < bodyStart) return;
+                        result = result.substring(0, bodyStart) + '\n' + edits[secId] + '\n            ' + result.substring(bodyEnd);
+                    });
+
                     return fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
                         method: 'PUT',
                         headers: {
@@ -10664,8 +10688,8 @@ Sensory Marketing การใช้ประสาทสัมผัสทั�
                         },
                         body: JSON.stringify({
                             message: 'Edit via web admin',
-                            content: btoa(unescape(encodeURIComponent(html))),
-                            sha: sha,
+                            content: btoa(unescape(encodeURIComponent(result))),
+                            sha: fileSha,
                             branch: 'main'
                         })
                     });
