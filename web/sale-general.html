@@ -814,29 +814,22 @@
             color: var(--heading);
             line-height: 1.6;
         }
-        .demo-choice-text s {
+        .demo-choice-scenario {
+            font-size: 0.78rem;
             color: var(--text-sec);
-            opacity: 0.7;
+            line-height: 1.7;
+            margin-top: 0.6rem;
+            font-style: italic;
         }
-        .demo-choice-text .sale-tag {
-            display: inline-block;
+        .demo-choice-verdict {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: var(--red);
-            background: rgba(192,57,43,0.1);
-            border: 1px solid rgba(192,57,43,0.2);
-            border-radius: 4px;
-            padding: 0.1rem 0.4rem;
-            margin-left: 0.3rem;
-            letter-spacing: 0.05em;
+            color: var(--heading);
+            margin-top: 0.8rem;
         }
-        .demo-choice-price {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
+        .demo-choice-verdict .demo-highlight {
             color: var(--accent);
-            margin-top: 0.5rem;
         }
         .demo-result {
             max-height: 0;
@@ -1597,38 +1590,38 @@
             </div>
         </div>
 
-        <!-- ── Interactive Demo ── -->
+        <!-- ── Interactive Demo: Framing Effect ── -->
         <div class="rv">
             <div class="demo-box" id="perception-demo">
                 <div class="demo-title">ลองพิสูจน์ด้วยตัวเอง</div>
-                <div class="demo-subtitle">คุณกำลังจะซื้อหูฟังไร้สาย รุ่นเดียวกัน เจอ 2 ร้าน คุณจะซื้อจากร้านไหน?</div>
+                <div class="demo-subtitle">โรคระบาดกำลังคุกคามประเทศ คาดว่าจะมีผู้เสียชีวิต 600 คน<br>มีโปรแกรมรับมือ 2 แบบ &mdash; คุณจะเลือกแบบไหน?</div>
                 <div class="demo-choices">
                     <div class="demo-choice" data-choice="A">
-                        <div class="demo-choice-label">ร้าน A</div>
-                        <div class="demo-choice-text">หูฟังไร้สาย รุ่น X<br>คะแนน 4.5 ดาว</div>
-                        <div class="demo-choice-price">1,290 &#x0E3F;</div>
+                        <div class="demo-choice-label">โปรแกรม A</div>
+                        <div class="demo-choice-text">ช่วยชีวิตคนได้<br><strong>200 คน</strong> อย่างแน่นอน</div>
                     </div>
                     <div class="demo-choice" data-choice="B">
-                        <div class="demo-choice-label">ร้าน B</div>
-                        <div class="demo-choice-text">หูฟังไร้สาย รุ่น X<br>คะแนน 4.5 ดาว<br><s>1,590 &#x0E3F;</s> <span class="sale-tag">ลด</span></div>
-                        <div class="demo-choice-price">1,290 &#x0E3F;</div>
+                        <div class="demo-choice-label">โปรแกรม B</div>
+                        <div class="demo-choice-text">มีคน<br><strong>400 คน เสียชีวิต</strong> อย่างแน่นอน</div>
                     </div>
                 </div>
                 <div class="demo-result" id="demo-result">
                     <div class="demo-result-text">
-                        <strong>ราคาเท่ากันทุกประการ &mdash; 1,290 บาท ทั้งสองร้าน</strong><br><br>
-                        แต่สมองของคุณ &ldquo;รู้สึก&rdquo; ว่าร้าน B คุ้มกว่า &mdash; เพราะมันเห็นตัวเลข 1,590 ก่อน แล้วใช้มันเป็น<strong>จุดเปรียบเทียบ</strong>โดยอัตโนมัติ<br><br>
-                        ร้าน B ไม่ได้ลดราคาจริง &mdash; แค่ใส่ &ldquo;ราคาเดิม&rdquo; ที่อาจไม่เคยมีอยู่จริงมาให้คุณเปรียบเทียบ<br><br>
-                        นี่คือ <strong>Anchoring</strong> &mdash; เทคนิค &ldquo;ทิ้งตัวเลข&rdquo; ให้สมองจำ แล้วใช้มันเป็นไม้บรรทัดวัดทุกอย่างหลังจากนั้น &mdash; บทที่ 7
+                        <strong>ทั้งสองโปรแกรมให้ผลลัพธ์เหมือนกันทุกประการ</strong><br><br>
+                        600 คน &mdash; รอด 200 &mdash; ตาย 400<br>
+                        ตัวเลขเดียวกัน ข้อเท็จจริงเดียวกัน<br><br>
+                        แต่คนส่วนใหญ่เลือก A &mdash; เพราะสมองมนุษย์ &ldquo;รู้สึก&rdquo; ต่างกันเมื่อได้ยินคำว่า &ldquo;ช่วยชีวิต&rdquo; กับ &ldquo;เสียชีวิต&rdquo; แม้ผลลัพธ์จะเท่ากัน<br><br>
+                        นี่คือ <strong>Framing Effect</strong> &mdash; คุณไม่ได้ตัดสินจากข้อเท็จจริง คุณตัดสินจาก &ldquo;กรอบ&rdquo; ที่คนอื่นเลือกใช้เล่าข้อเท็จจริงนั้นให้คุณฟัง<br><br>
+                        และมันไม่ได้แค่ขายของ &mdash; มันเปลี่ยนวิธีที่คุณตัดสินใจเรื่องสุขภาพ การเงิน ความสัมพันธ์ ทุกเรื่องในชีวิต ทุกวัน &mdash; บทที่ 7
                     </div>
                     <div class="demo-result-stats">
                         <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-a">24%</div>
-                            <div class="demo-result-label">เลือกร้าน A</div>
+                            <div class="demo-result-pct" id="demo-pct-a">72%</div>
+                            <div class="demo-result-label">เลือก A &ldquo;ช่วยชีวิต&rdquo;</div>
                         </div>
                         <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-b">76%</div>
-                            <div class="demo-result-label">เลือกร้าน B</div>
+                            <div class="demo-result-pct" id="demo-pct-b">28%</div>
+                            <div class="demo-result-label">เลือก B &ldquo;เสียชีวิต&rdquo;</div>
                         </div>
                     </div>
                 </div>
@@ -1637,7 +1630,7 @@
 
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>ช่องว่างความอยากรู้ + ความภูมิใจที่ลงมือเอง + กลลวงจุดเปรียบเทียบ</strong> &mdash; 3 คำถามข้างบนสร้าง &laquo;ช่องว่างของความอยากรู้&raquo; ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; คุณอ่านต่อเพราะอยากรู้คำตอบ ไม่ใช่เพราะถูกบังคับ และตัวทดสอบที่เพิ่งผ่าน? มันไม่ได้ทดสอบว่าคุณ &laquo;เลือกอะไร&raquo; &mdash; มันทดสอบว่า &laquo;ตัวเลขที่ขีดฆ่า&raquo; มีผลกับคุณไหม คำตอบคือ &laquo;มี&raquo; เสมอ แม้คุณจะรู้ว่าราคาเท่ากัน &mdash; กลลวงจุดเปรียบเทียบทำงานที่ระดับที่ &laquo;รู้&raquo; ไม่ช่วย (บทที่ 7, 9)</p>
+            <p><strong>ช่องว่างความอยากรู้ + Framing Effect</strong> &mdash; 3 คำถามข้างบนสร้าง &laquo;ช่องว่างของความอยากรู้&raquo; ที่สมองต้องการ &laquo;ปิด&raquo; &mdash; คุณอ่านต่อเพราะอยากรู้คำตอบ ไม่ใช่เพราะถูกบังคับ ส่วนตัวทดสอบที่เพิ่งผ่าน? มันไม่ได้ทดสอบว่าคุณ &laquo;เลือกอะไร&raquo; &mdash; มันทดสอบว่า &laquo;คำ&raquo; ที่ใช้เล่าข้อเท็จจริงเดียวกัน เปลี่ยนการตัดสินใจของคุณได้ไหม คำตอบคือ &laquo;ได้เสมอ&raquo; &mdash; แม้คุณจะรู้ว่าผลลัพธ์เหมือนกัน สมองยังเลือกตาม &laquo;กรอบ&raquo; ที่ได้ยินก่อน (บทที่ 7, 9)</p>
         </div>
     </section>
 
