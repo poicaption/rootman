@@ -875,6 +875,113 @@
             color: var(--text-sec);
         }
 
+        /* ── Choice / Purchase section ── */
+        .choice-section {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border);
+        }
+        .choice-section-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
+            font-weight: 600;
+            color: var(--heading);
+            text-align: center;
+            margin-bottom: 0.8rem;
+        }
+        .choice-section-sub {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            line-height: 1.9;
+        }
+        .choice-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .choice-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.8rem 1.5rem;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+        .choice-card:hover {
+            border-color: rgba(196,149,106,0.3);
+        }
+        .choice-card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        .choice-card-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 0.6rem;
+        }
+        .choice-card-desc {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+        }
+        .choice-card-btn {
+            display: inline-block;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.6rem 1.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        .choice-btn-free {
+            color: var(--accent);
+            background: transparent;
+            border: 1px solid var(--accent);
+        }
+        .choice-btn-free:hover {
+            background: var(--accent-dim);
+            transform: translateY(-1px);
+        }
+        .choice-btn-buy {
+            color: #1C1917;
+            background: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        .choice-btn-buy:hover {
+            background: var(--gold);
+            transform: translateY(-1px);
+        }
+        .choice-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .choice-price-unit {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--text-sec);
+        }
+        .choice-footer {
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            line-height: 1.9;
+            margin-top: 1rem;
+        }
+        .choice-footer a {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+
         /* ── Mid-page CTA ── */
         .mid-cta {
             text-align: center;
@@ -1066,6 +1173,7 @@
             .stats-bar { gap: 0.8rem 1.5rem; }
             .mid-cta { padding: 2rem 1.3rem; }
             .scene { padding: 1.3rem 1.3rem; }
+            .choice-grid { grid-template-columns: 1fr; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1820,6 +1928,38 @@
             <div class="hero-book-mockup">
                 <img src="images/Book-Mockup.png" alt="The One Root of Marketing &mdash; Book" class="hero-book-img" loading="lazy">
             </div>
+        </div>
+    </section>
+
+
+    <!-- ═══════ CHOICE: Read Free or Buy ═══════ -->
+    <section class="sp" id="choice" style="border-top: none; padding-top: 0;">
+        <div class="choice-section" style="padding-top: 2rem;">
+            <div class="rv">
+                <p class="choice-section-title">สองทางเลือก &mdash; ไม่มีทางไหนผิด</p>
+                <p class="choice-section-sub">ถ้ายังไม่แน่ใจ อ่านฟรีก่อนได้เลย ไม่ต้องรีบ<br>ถ้าอ่านมาถึงตรงนี้แล้วรู้สึกว่าใช่ ก็ซื้อได้เลยเช่นกัน</p>
+            </div>
+
+            <div class="choice-grid rv">
+                <div class="choice-card">
+                    <div class="choice-card-icon">&#x1F4D6;</div>
+                    <div class="choice-card-title">ลองอ่านก่อน</div>
+                    <p class="choice-card-desc">บทนำ + บทที่ 1 เปิดให้อ่านฟรีทั้งหมด<br>ไม่ต้องสมัคร ไม่ต้องกรอกอะไร</p>
+                    <a href="/" class="choice-card-btn choice-btn-free">เริ่มอ่านฟรี &rarr;</a>
+                </div>
+                <div class="choice-card">
+                    <div class="choice-card-icon">&#x1F4D5;</div>
+                    <div class="choice-card-title">ซื้อทั้งเล่ม</div>
+                    <div class="choice-price">2,990 <span class="choice-price-unit">บาท</span></div>
+                    <p class="choice-card-desc">12 บท + 5 Bonus &mdash; ปลดล็อกทันที<br>สแกน QR แล้วส่งสลิปทาง Messenger</p>
+                    <a href="https://m.me/rootmanknow" target="_blank" rel="noopener" class="choice-card-btn choice-btn-buy">ซื้อผ่าน Messenger</a>
+                </div>
+            </div>
+
+            <p class="choice-footer rv">
+                ไม่มีกดดัน ไม่มีนับถอยหลัง &mdash; หนังสือจะอยู่ตรงนี้เมื่อคุณพร้อม<br>
+                มีคำถาม? <a href="https://m.me/rootmanknow" target="_blank" rel="noopener">ทักมาคุยได้เลย</a>
+            </p>
         </div>
     </section>
 
