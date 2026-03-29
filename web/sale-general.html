@@ -2331,7 +2331,20 @@
             })
             .then(function(data) {
                 fileSha = data.sha;
-                var pristine = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+                // GitHub Contents API returns empty content for files > 1 MB
+                if (data.content && data.content.replace(/\n/g, '').length > 0) {
+                    return decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+                }
+                // Fallback: fetch raw file via download_url
+                return fetch(data.download_url).then(function(r) {
+                    if (!r.ok) throw new Error('Raw download failed: ' + r.status);
+                    return r.text();
+                });
+            })
+            .then(function(pristine) {
+                if (!pristine || pristine.length < 100) {
+                    throw new Error('Pristine source is empty or too short (' + (pristine ? pristine.length : 0) + ' chars). Aborting to prevent data loss.');
+                }
 
                 // Collect edits from dirty sections
                 var edits = {};
