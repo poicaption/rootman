@@ -6,6 +6,7 @@
   "rewrites": [
     { "source": "/sale", "destination": "/sale.html" },
     { "source": "/start", "destination": "/sale-general.html" },
+    { "source": "/ai", "destination": "/sale-ai.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
