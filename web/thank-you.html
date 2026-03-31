@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขอบคุณที่ซื้อ — รากแก้วการตลาด</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    fbq('track', 'Purchase', {value: 1390, currency: 'THB', content_name: 'รากแก้วการตลาด'});
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=Purchase&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --bg: #121010;
+            --bg-alt: #1A1714;
+            --bg-card: #1E1B17;
+            --text: #C8C0B4;
+            --text-sec: #8A8078;
+            --accent: #C4956A;
+            --gold: #D4A574;
+            --heading: #E7E0D5;
+            --border: #2A2520;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            font-size: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
+        .container {
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* ── Confetti animation ── */
+        .confetti-wrap {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            animation: pop 0.5s cubic-bezier(0.16,1,0.3,1);
+        }
+        @keyframes pop {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 0.5rem;
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Unlock Code reward box ── */
+        .reward-box {
+            background: var(--bg-card);
+            border: 1px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin-bottom: 2rem;
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(196,149,106,0); }
+            100% { box-shadow: 0 0 20px 2px rgba(196,149,106,0.15); }
+        }
+        .reward-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+        .reward-code {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-weight: 600;
+            font-style: italic;
+            color: var(--heading);
+            letter-spacing: 0.02em;
+            margin-bottom: 1rem;
+            user-select: all;
+            cursor: pointer;
+        }
+        .reward-hint {
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+        }
+        .reward-hint strong { color: var(--accent); }
+
+        .copy-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover {
+            background: var(--accent-dim);
+        }
+        .copy-btn.copied {
+            background: rgba(196,149,106,0.15);
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* ── Bonus teaser ── */
+        .bonus-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .bonus-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 0.8rem;
+        }
+        .bonus-title span { color: var(--accent); }
+        .bonus-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bonus-list li {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            padding: 0.35rem 0;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6;
+        }
+        .bonus-list li:last-child { border-bottom: none; }
+        .bonus-list li::before {
+            content: '🔓 ';
+        }
+        .bonus-note {
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            margin-top: 0.8rem;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ── CTA button ── */
+        .go-read-btn {
+            display: inline-block;
+            padding: 0.75rem 2.5rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #1C1917;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            margin-bottom: 1rem;
+        }
+        .go-read-btn:hover {
+            background: var(--gold);
+            transform: translateY(-1px);
+        }
+        .go-read-link {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            margin-bottom: 2rem;
+        }
+
+        /* ── Third Eye ── */
+        .te-note {
+            background: rgba(196,149,106,0.04);
+            border: 1px solid rgba(196,149,106,0.12);
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: left;
+        }
+        .te-note-head {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+        .te-note p {
+            font-size: 0.8rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+        }
+        .te-note strong { color: var(--text); }
+
+        /* ── Footer ── */
+        .ty-footer {
+            margin-top: 2rem;
+            font-size: 0.72rem;
+            color: var(--text-sec);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="confetti-wrap">🎉</div>
+        <h1>ขอบคุณที่ไว้วางใจ</h1>
+        <p class="subtitle">การชำระเงินสำเร็จแล้ว &mdash; นี่คือรางวัลของคุณ</p>
+
+        <!-- ── Unlock Code ── -->
+        <div class="reward-box">
+            <div class="reward-label">&#x1F511; Unlock Code ของคุณ</div>
+            <div class="reward-code" id="unlock-code" title="กดเพื่อคัดลอก">the oldest code still runs</div>
+            <p class="reward-hint">นำไปวางในช่อง <strong>Unlock Code</strong> ที่หน้าหนังสือ<br>เพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก</p>
+            <button class="copy-btn" id="copy-btn">คัดลอก Unlock Code</button>
+        </div>
+
+        <!-- ── Bonus: what you unlocked ── -->
+        <div class="bonus-section">
+            <div class="bonus-title"><span>&#x1F381;</span> สิ่งที่คุณปลดล็อกแล้ว</div>
+            <ul class="bonus-list">
+                <li>12 บทเต็ม &mdash; จิตวิทยา ประสาทวิทยา พฤติกรรมศาสตร์</li>
+                <li>Bonus 1: The Experiment &mdash; ทดลองจริงกับธุรกิจจริง</li>
+                <li>Bonus 2: 24 Hours &mdash; วิเคราะห์ 1 วันของผู้บริโภค</li>
+                <li>Bonus 3: Campaign Autopsy &mdash; ชำแหละแคมเปญระดับโลก</li>
+                <li>Bonus 4: The Red Ocean &mdash; กลยุทธ์ตลาดเลือด</li>
+                <li>Bonus 5: The Locked Room &mdash; บทที่ต้องอ่านทั้งเล่มก่อนถึงจะเข้าใจ</li>
+                <li>ภาคผนวก + One-Page Summary</li>
+            </ul>
+            <p class="bonus-note">อ่านได้ตลอดชีพ &mdash; ไม่มีวันหมดอายุ</p>
+        </div>
+
+        <!-- ── Go read ── -->
+        <a href="/" class="go-read-btn">เริ่มอ่านเลย &rarr;</a>
+        <span class="go-read-link">วาง Unlock Code ที่ด้านล่างของหน้าหนังสือ</span>
+
+        <!-- ── Third Eye ── -->
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม &mdash; บทเรียนสุดท้ายก่อนเข้าเล่ม</div>
+            <p><strong>Post-Purchase Rationalization + Endowment Effect</strong> &mdash; ตอนนี้สมองของคุณกำลังทำสิ่งที่น่าสนใจ: มันกำลัง &laquo;ยืนยันกับตัวเอง&raquo; ว่าการซื้อครั้งนี้เป็นการตัดสินใจที่ดี &mdash; เพราะความรู้สึก &laquo;เป็นเจ้าของ&raquo; ทำให้คุณให้คุณค่ากับสิ่งที่ได้มามากกว่าก่อนซื้อ (Endowment Effect) และหน้านี้ถูกออกแบบมาเพื่อเสริมความรู้สึกนั้น &mdash; ทุก bullet ที่คุณเพิ่งอ่านทำให้รู้สึกว่า &laquo;ได้เยอะ&raquo; ป้าย &laquo;อ่านได้ตลอดชีพ&raquo; ลบความกังวลที่เหลือ &mdash; นี่คือบทที่ 7 และ 9 ที่ทำงานอยู่ตรงนี้ ก่อนคุณจะเปิดอ่านด้วยซ้ำ</p>
+        </div>
+
+        <div class="ty-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
+    </div>
+
+    <script>
+    (function() {
+        var code = document.getElementById('unlock-code');
+        var btn = document.getElementById('copy-btn');
+        var codeText = code.textContent;
+
+        function copyCode() {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(codeText).then(function() {
+                    showCopied();
+                });
+            } else {
+                var ta = document.createElement('textarea');
+                ta.value = codeText;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showCopied();
+            }
+        }
+
+        function showCopied() {
+            btn.textContent = '✓ คัดลอกแล้ว!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = 'คัดลอก Unlock Code';
+                btn.classList.remove('copied');
+            }, 2500);
+        }
+
+        btn.addEventListener('click', copyCode);
+        code.addEventListener('click', copyCode);
+    })();
+    </script>
+</body>
+</html>
