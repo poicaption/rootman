@@ -32,80 +32,141 @@
     <style>
         :root {
             --bg: #FAFAF7;
-            --bg-alt: #F0EDE8;
+            --bg-alt: #F3F0EB;
+            --bg-warm: #FFF9F2;
             --bg-dark: #1A1714;
+            --bg-dark2: #232019;
             --text: #2D2A26;
             --text-sec: #6B6560;
             --text-light: #9A948D;
             --accent: #C23B22;
             --accent-hover: #A83220;
+            --accent-soft: rgba(194,59,34,0.08);
             --gold: #B8860B;
             --gold-bg: #FDF6E3;
+            --warm: #C4956A;
             --border: #E0DCD6;
             --border-dark: #C8C2BA;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 17px; }
         body {
             font-family: 'Sarabun', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.9;
-            font-size: 1.05rem;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Progress bar ── */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--warm));
+            z-index: 10000;
+            transition: width 0.1s linear;
         }
 
         /* ── Layout ── */
         .sec {
-            max-width: 680px;
+            max-width: 660px;
             margin: 0 auto;
-            padding: 3.5rem 1.5rem;
+            padding: 4rem 1.5rem;
         }
         .sec-wide {
             max-width: 100%;
             padding: 3.5rem 1.5rem;
+        }
+        .sec p { margin-bottom: 1rem; }
+
+        /* ── Section titles ── */
+        .sec-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .sec-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        .sec-title em {
+            font-style: normal;
+            color: var(--accent);
         }
 
         /* ── Hero ── */
         .hero {
             background: var(--bg-dark);
             color: #F5F0EB;
-            padding: 4rem 1.5rem 3.5rem;
+            padding: 5rem 1.5rem 4rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 50% 80%, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
         }
         .hero-inner {
             max-width: 640px;
             margin: 0 auto;
+            position: relative;
         }
         .hero-eyebrow {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            letter-spacing: 0.2em;
-            color: #C4956A;
+            letter-spacing: 0.25em;
+            color: var(--warm);
             text-transform: uppercase;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.5rem;
         }
         .hero h1 {
             font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.6rem, 5vw, 2.3rem);
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
             font-weight: 700;
-            line-height: 1.4;
-            margin-bottom: 1.2rem;
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
         }
         .hero h1 em {
             font-style: normal;
             color: var(--accent);
         }
         .hero-sub {
-            font-size: 1.05rem;
+            font-size: 1rem;
             color: #A29A90;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-hook {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1.05rem;
+            color: #D4CFC7;
             line-height: 1.8;
-            margin-bottom: 2rem;
+            margin: 1.8rem auto 2.2rem;
+            max-width: 480px;
+            font-style: italic;
         }
         .hero-cta {
             display: inline-block;
-            padding: 0.85rem 2.5rem;
+            padding: 0.9rem 2.8rem;
             border-radius: 6px;
             background: var(--accent);
             color: #fff;
@@ -113,189 +174,272 @@
             font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
         }
-        .hero-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .hero-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); }
         .hero-note {
             font-size: 0.78rem;
             color: #6B6560;
-            margin-top: 0.8rem;
+            margin-top: 1rem;
+        }
+        .hero-note a { color: var(--warm); text-decoration: none; border-bottom: 1px solid rgba(196,149,106,0.3); transition: border-color 0.2s; }
+        .hero-note a:hover { border-color: var(--warm); }
+
+        /* ── Pull quote ── */
+        .pull-quote {
+            border-left: 3px solid var(--warm);
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            margin: 1.8rem 0;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .pull-quote cite {
+            display: block;
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
         }
 
-        /* ── Section titles ── */
-        .sec-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.25rem, 3.5vw, 1.6rem);
-            font-weight: 700;
-            color: var(--text);
-            line-height: 1.5;
-            margin-bottom: 1rem;
+        /* ── Scenario list ── */
+        .scenario {
+            padding: 0.6rem 0 0.6rem 1.2rem;
+            border-left: 2px solid var(--border);
+            margin-bottom: 0.8rem;
+            transition: border-color 0.3s;
         }
-        .sec-title em {
-            font-style: normal;
-            color: var(--accent);
-        }
-        .sec-label {
+        .scenario:hover { border-color: var(--accent); }
+        .scenario-q {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 0.2em;
-            color: var(--gold);
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 0.15rem;
         }
-        .sec p {
-            margin-bottom: 1rem;
+        .scenario-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin: 0;
         }
 
         /* ── Highlight strip (dark band) ── */
         .dark-band {
             background: var(--bg-dark);
             color: #F5F0EB;
-            padding: 3rem 1.5rem;
+            padding: 3.5rem 1.5rem;
             text-align: center;
+            position: relative;
+        }
+        .dark-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.04) 0%, transparent 70%);
+            pointer-events: none;
         }
         .dark-band-inner {
-            max-width: 620px;
+            max-width: 600px;
             margin: 0 auto;
+            position: relative;
         }
         .dark-band p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             line-height: 1.9;
             margin-bottom: 0.5rem;
         }
-        .dark-band strong {
-            color: #C4956A;
-        }
+        .dark-band strong { color: var(--warm); }
         .dark-band .big-quote {
             font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.15rem, 3vw, 1.4rem);
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
             font-weight: 600;
-            line-height: 1.6;
+            line-height: 1.65;
             color: #fff;
             margin: 1rem 0;
+        }
+        .dark-band .big-quote strong { color: var(--warm); }
+        .dark-band-sub {
+            color: var(--warm);
+            font-size: 0.88rem;
+            margin-top: 1rem;
         }
 
         /* ── Comparison columns ── */
         .compare {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
+            gap: 1rem;
             margin: 2rem 0;
         }
         .compare-col {
-            padding: 1.5rem;
-            border-radius: 10px;
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            transition: transform 0.2s;
         }
+        .compare-col:hover { transform: translateY(-2px); }
         .compare-col h4 {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 700;
             margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
         }
-        .compare-col ul {
-            list-style: none;
-            padding: 0;
-        }
+        .compare-col ul { list-style: none; padding: 0; }
         .compare-col li {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             line-height: 1.7;
-            padding: 0.3rem 0;
+            padding: 0.35rem 0;
         }
         .compare-ai {
             background: #F5F3F0;
             border: 1px solid var(--border);
         }
-        .compare-ai h4 { color: var(--text-sec); }
-        .compare-ai li::before { content: '⚡ '; }
+        .compare-ai h4 { color: var(--text-sec); border-bottom: 1px solid var(--border); }
+        .compare-ai li::before { content: '— '; color: var(--text-light); }
         .compare-you {
-            background: #FFF8F0;
+            background: var(--gold-bg);
             border: 2px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(184,134,11,0.08);
         }
-        .compare-you h4 { color: var(--gold); }
-        .compare-you li::before { content: '🧠 '; }
+        .compare-you h4 { color: var(--gold); border-bottom: 1px solid #E8D5A8; }
+        .compare-you li::before { content: '✦ '; color: var(--gold); }
         .compare-you li { color: var(--text); }
 
         /* ── Benefit cards ── */
         .benefit-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1rem;
+            gap: 1.2rem;
             margin: 2rem 0;
         }
         .benefit-card {
             background: #fff;
             border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.6rem 1.5rem;
             border-left: 4px solid var(--accent);
-            transition: box-shadow 0.2s;
+            transition: box-shadow 0.3s, transform 0.2s;
         }
         .benefit-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
         }
         .benefit-num {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
             color: var(--accent);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.3rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
         }
         .benefit-title {
             font-family: 'Prompt', sans-serif;
-            font-size: 1rem;
+            font-size: 1.02rem;
             font-weight: 700;
             color: var(--text);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
         }
         .benefit-desc {
             font-size: 0.88rem;
             color: var(--text-sec);
+            line-height: 1.8;
+            margin: 0 0 0.6rem;
+        }
+        .benefit-example {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-style: italic;
             line-height: 1.7;
             margin: 0;
-        }
-
-        /* ── Social proof numbers ── */
-        .proof-bar {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            padding: 2rem 0;
-            flex-wrap: wrap;
-        }
-        .proof-item { text-align: center; }
-        .proof-num {
-            font-family: 'Prompt', sans-serif;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .proof-label {
-            font-size: 0.75rem;
-            color: var(--text-sec);
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
         }
 
         /* ── Gold highlight box ── */
         .gold-box {
             background: var(--gold-bg);
             border: 1px solid #E8D5A8;
-            border-radius: 10px;
-            padding: 1.5rem;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem;
             margin: 2rem 0;
         }
         .gold-box p {
             font-size: 0.92rem;
             color: var(--text);
             margin: 0;
-            line-height: 1.8;
+            line-height: 1.9;
         }
         .gold-box strong { color: var(--gold); }
+
+        /* ── Proof bar ── */
+        .proof-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        .proof-item { text-align: center; }
+        .proof-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        .proof-label {
+            font-size: 0.73rem;
+            color: var(--text-sec);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Who / Not-for ── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .who-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+        }
+        .who-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+        }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.3rem 0;
+        }
+        .who-yes {
+            background: #F7FBF5;
+            border: 1px solid #D5E8CC;
+        }
+        .who-yes h4 { color: #4A7C3F; border-bottom: 1px solid #D5E8CC; }
+        .who-yes li::before { content: '✓ '; color: #4A7C3F; font-weight: 700; }
+        .who-no {
+            background: #FDF5F4;
+            border: 1px solid #E8CCCC;
+        }
+        .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
+        .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
 
         /* ── Pricing section ── */
         .pricing-section {
             text-align: center;
-            padding: 3.5rem 1.5rem;
+            padding: 4rem 1.5rem;
             background: #fff;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
@@ -307,9 +451,23 @@
         .pricing-box {
             background: var(--bg);
             border: 2px solid var(--text);
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 2.5rem 2rem;
             margin: 1.5rem 0;
+            position: relative;
+        }
+        .pricing-badge {
+            position: absolute;
+            top: -12px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.3rem 1.2rem;
+            border-radius: 20px;
+            letter-spacing: 0.05em;
         }
         .pricing-title {
             font-family: 'Prompt', sans-serif;
@@ -330,6 +488,11 @@
             font-weight: 400;
             color: var(--text-sec);
         }
+        .pricing-per {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
         .pricing-includes {
             text-align: left;
             margin: 1.5rem 0;
@@ -337,9 +500,9 @@
             list-style: none;
         }
         .pricing-includes li {
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: var(--text-sec);
-            padding: 0.35rem 0;
+            padding: 0.4rem 0;
             border-bottom: 1px solid var(--border);
         }
         .pricing-includes li:last-child { border: none; }
@@ -359,10 +522,11 @@
             font-size: 1.1rem;
             font-weight: 700;
             text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
             margin-top: 0.5rem;
+            box-shadow: 0 4px 16px rgba(194,59,34,0.2);
         }
-        .pricing-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .pricing-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(194,59,34,0.3); }
         .pricing-note {
             font-size: 0.78rem;
             color: var(--text-light);
@@ -372,38 +536,50 @@
         /* ── FAQ ── */
         .faq-item {
             border-bottom: 1px solid var(--border);
-            padding: 1.2rem 0;
+            padding: 1.3rem 0;
         }
         .faq-q {
             font-family: 'Prompt', sans-serif;
             font-size: 0.95rem;
             font-weight: 600;
             color: var(--text);
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.5rem;
         }
         .faq-a {
             font-size: 0.88rem;
             color: var(--text-sec);
-            line-height: 1.8;
+            line-height: 1.85;
             margin: 0;
         }
+        .faq-a a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3); transition: border-color 0.2s; }
+        .faq-a a:hover { border-color: var(--accent); }
 
         /* ── Final CTA band ── */
         .final-cta {
             background: var(--bg-dark);
             color: #F5F0EB;
-            padding: 3.5rem 1.5rem;
+            padding: 4rem 1.5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
         }
         .final-cta-inner {
             max-width: 560px;
             margin: 0 auto;
+            position: relative;
         }
         .final-cta h2 {
             font-family: 'Prompt', sans-serif;
             font-size: clamp(1.15rem, 3vw, 1.4rem);
             font-weight: 700;
-            line-height: 1.5;
+            line-height: 1.55;
             margin-bottom: 0.8rem;
         }
         .final-cta p {
@@ -421,9 +597,10 @@
             font-size: 1rem;
             font-weight: 700;
             text-decoration: none;
-            transition: background 0.2s, transform 0.15s;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
         }
-        .final-cta-btn:hover { background: var(--accent-hover); transform: translateY(-1px); }
+        .final-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); }
         .final-cta-note {
             font-size: 0.78rem;
             color: #6B6560;
@@ -432,18 +609,20 @@
         .final-cta-free {
             display: inline-block;
             margin-top: 1rem;
-            color: #C4956A;
+            color: var(--warm);
             font-size: 0.85rem;
-            text-decoration: underline;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196,149,106,0.3);
+            transition: border-color 0.2s;
         }
+        .final-cta-free:hover { border-color: var(--warm); }
 
-        /* ── Divider ── */
-        .divider {
-            text-align: center;
-            padding: 1rem 0;
-            color: var(--border-dark);
-            font-size: 0.8rem;
-            letter-spacing: 0.5em;
+        /* ── Thin divider ── */
+        .thin-div {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-dark), transparent);
+            max-width: 200px;
+            margin: 0 auto;
         }
 
         /* ── Footer ── */
@@ -455,138 +634,224 @@
         }
 
         /* ── Animations ── */
-        .rv { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
         .rv.vis { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: 0.1s; }
+        .rv-d2 { transition-delay: 0.2s; }
+        .rv-d3 { transition-delay: 0.3s; }
 
         /* ── Responsive ── */
         @media (max-width: 640px) {
-            .compare { grid-template-columns: 1fr; }
+            .compare, .who-grid { grid-template-columns: 1fr; }
             .proof-bar { gap: 1.5rem; }
             .pricing-price { font-size: 2.5rem; }
-            .sec { padding: 2.5rem 1.2rem; }
+            .sec { padding: 3rem 1.2rem; }
+            .hero { padding: 3.5rem 1.2rem 3rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ═══════ HERO ═══════ -->
+    <!-- ── Progress bar ── -->
+    <div id="progress-bar"></div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════════ -->
     <div class="hero">
         <div class="hero-inner rv">
             <div class="hero-eyebrow">The One Root of Marketing</div>
-            <h1>ในขณะที่ทุกคนวิ่งไล่ตาม AI...<br><em>จงเป็นคนเดียวที่คุมเกม</em></h1>
-            <p class="hero-sub">AI เขียนแคปชั่นได้ ยิงแอดได้ สร้างคอนเทนต์ได้<br>แต่มันไม่รู้วิธีกระตุ้นกลไกสมองที่ทำให้คน<strong style="color:#F5F0EB;">ควักเงินจ่ายทันที</strong></p>
-            <a href="#pricing" class="hero-cta">เจาะลึก &laquo;รากแก้ว&raquo; ที่ AI ไม่มีวัน เข้าใจ</a>
-            <p class="hero-note">หรือ <a href="/" style="color: #C4956A;">อ่านบทนำฟรีก่อน</a></p>
+            <h1>ทุกคนมี AI เหมือนกันหมดแล้ว<br><em>คนที่ชนะคือคนที่เข้าใจ &laquo;มนุษย์&raquo;</em></h1>
+            <p class="hero-sub">AI เขียนแคปชั่นให้คุณได้ภายใน 3 วินาที ยิงแอดให้ได้ภายใน 5 นาที สร้างคอนเทนต์ให้ได้ตลอด 24 ชั่วโมง</p>
+            <p class="hero-hook">&ldquo;แต่ถ้ามันเก่งขนาดนั้น &mdash; ทำไมยอดขายคุณยังไม่ขึ้น?&rdquo;</p>
+            <a href="#pricing" class="hero-cta">เจาะลึกสิ่งที่ AI ไม่มีวันเข้าใจ</a>
+            <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
         </div>
     </div>
 
 
-    <!-- ═══════ THE PROBLEM ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         THE PROBLEM — expanded with real scenarios
+         ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">ปัญหา</div>
-        <h2 class="sec-title">ถาม AI เรื่องการตลาดเยอะมาก<br>แต่รู้สึกเหมือน<em>ขาดอะไรไป</em></h2>
-        <p>คุณถาม ChatGPT ให้เขียนแคปชั่น &mdash; มันเขียนได้ดี</p>
-        <p>คุณให้มันวิเคราะห์กลุ่มเป้าหมาย &mdash; มันตอบได้ครบ</p>
-        <p>คุณให้มันออกแบบ Funnel &mdash; มันวาดออกมาสวย</p>
-        <p style="margin-top: 1.5rem; font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.05rem;">แต่พอเอาไปใช้จริง &mdash; ทำไมมันไม่ขาย?</p>
-        <p>เพราะ AI ทำงานจาก <strong>ข้อมูล</strong> &mdash; แต่การตัดสินใจซื้อของมนุษย์ไม่ได้เกิดจากข้อมูล</p>
-        <p>มันเกิดจากสิ่งที่ลึกกว่านั้น &mdash; สิ่งที่ AI อ่านไม่ออก</p>
+        <h2 class="sec-title">คุณทำทุกอย่าง &laquo;ถูก&raquo; แล้ว<br>แต่รู้สึกเหมือน<em>ยังขาดอะไรบางอย่าง</em></h2>
+
+        <p>เคยเป็นแบบนี้ไหม?</p>
+
+        <div class="scenario">
+            <div class="scenario-q">ถาม AI ให้เขียนแคปชั่น &mdash; มันเขียนได้ดี สวยด้วยซ้ำ</div>
+            <p class="scenario-a">แต่โพสต์ไปแล้วคนอ่านจบ... แล้วก็เลื่อนผ่าน ไม่มีใครกดซื้อ</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ให้มันวิเคราะห์กลุ่มเป้าหมาย &mdash; ตอบมาครบ ชัดเจน</div>
+            <p class="scenario-a">แต่พอยิงแอดเข้ากลุ่มนั้น ยอดก็ไม่ขยับ เหมือนยิงไปตกน้ำ</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ให้มันออกแบบ Funnel &mdash; วาดมาสวย ครบทุกขั้นตอน</div>
+            <p class="scenario-a">แต่คนเข้ามาทีละร้อย ออกไปทีละร้อย ไม่มีใครเหลือให้ปิดการขาย</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ให้มันสร้าง Content Calendar &mdash; วางแผนให้ทั้งเดือน</div>
+            <p class="scenario-a">แต่ Engagement ก็ยังเท่าเดิม คนดูแต่ไม่ทำอะไร</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">คุณไม่ได้ทำอะไรผิด &mdash; คุณแค่ขาดชิ้นส่วนที่ AI ไม่มีทางให้คุณได้</p>
+
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">เพราะ AI ทำงานจาก &laquo;ข้อมูล&raquo; &mdash; แต่การตัดสินใจซื้อของมนุษย์ไม่ได้เกิดจากข้อมูล</p>
     </div>
 
 
-    <!-- ═══════ DARK BAND: The Gap ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Gap
+         ═══════════════════════════════════════════════ -->
     <div class="dark-band rv">
         <div class="dark-band-inner">
-            <p class="big-quote">&ldquo;AI ไม่เคยกลัวสิ่งที่กำลังจะหมด<br>ไม่เคยอยากเป็นส่วนหนึ่งของกลุ่ม<br>ไม่เคยตัดสินใจเพราะ &lsquo;รู้สึก&rsquo;&rdquo;</p>
-            <p style="color: #C4956A; font-size: 0.9rem; margin-top: 1rem;">แต่ลูกค้าของคุณ &mdash; เป็นมนุษย์</p>
+            <p style="font-size: 0.88rem; color: #A29A90; margin-bottom: 1rem;">ลองคิดดู</p>
+            <p class="big-quote">&ldquo;AI ไม่เคยกลัวสิ่งที่กำลังจะหมด<br>ไม่เคยอยากได้สิ่งที่คนอื่นมี<br>ไม่เคยรู้สึกว่า &lsquo;ต้องซื้อตอนนี้ ไม่งั้นจะเสียใจ&rsquo;&rdquo;</p>
+            <p class="dark-band-sub">แต่ลูกค้าของคุณ &mdash; รู้สึกแบบนั้นทุกวัน</p>
         </div>
     </div>
 
 
-    <!-- ═══════ THE ONE ROOT ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         THE REAL MECHANISM
+         ═══════════════════════════════════════════════ -->
     <div class="sec rv">
-        <div class="sec-label">รากแก้ว</div>
-        <h2 class="sec-title">มี &laquo;สิ่งเดียว&raquo; ที่ AI จะไม่มีวันเข้าใจ<br>ไปอีกอย่างน้อย <em>20 ปี</em></h2>
-        <p><strong>สัญชาตญาณดิบที่ควบคุมการตัดสินใจซื้อ</strong></p>
-        <p>สมองมนุษย์ไม่ได้ถูกออกแบบมาเพื่อเลือกสินค้าใน Shopee &mdash; มันถูกออกแบบมาเพื่อเอาชีวิตรอดบนทุ่งหญ้าเมื่อแสนปีก่อน</p>
-        <p>กลไกเดียวกันที่เคยช่วยให้มนุษย์วิ่งหนีเสือ ตอนนี้ถูกใช้ทำให้คุณ<strong>กดซื้อตอนตี 2</strong> โดยไม่รู้ตัว</p>
-        <p style="margin-top: 1.5rem;">ถ้าคุณเข้าใจกลไกข้อนี้ &mdash;</p>
+        <div class="sec-label">ความจริง</div>
+        <h2 class="sec-title">สิ่งที่ทำให้คนกดซื้อ<br>ไม่ใช่ &laquo;เหตุผล&raquo; &mdash; แต่เป็น<em>สัญชาตญาณ</em></h2>
+
+        <p>คุณเคยสั่งของออนไลน์ตอนตี 2 แล้วตื่นมาถามตัวเองว่า &ldquo;ทำไมกดซื้อวะ?&rdquo; ไหม?</p>
+
+        <p>นั่นไม่ใช่เพราะคุณโง่ &mdash; นั่นเป็นเพราะสมองของคุณทำงานตามกลไกที่ถูกออกแบบมาเมื่อ <strong>200,000 ปีก่อน</strong></p>
+
+        <p>สมองมนุษย์ไม่ได้ถูกออกแบบมาเพื่อเลือกสินค้าใน Shopee &mdash; มันถูกออกแบบมาเพื่อเอาชีวิตรอดบนทุ่งหญ้าแอฟริกา</p>
+
+        <div class="pull-quote">
+            กลไกเดียวกันที่เคยช่วยให้บรรพบุรุษเราวิ่งหนีเสือ ตอนนี้ถูกใช้ทำให้คุณกดซื้อของที่ไม่ได้วางแผนจะซื้อ &mdash; แล้วยังรู้สึกดีกับมันด้วย
+        </div>
+
+        <p>Cortisol ที่เคยเตือนเรื่องอันตราย &rarr; ตอนนี้ทำให้คุณกลัว &laquo;พลาดดีล&raquo;</p>
+        <p>Dopamine ที่เคยให้รางวัลเวลาหาอาหารเจอ &rarr; ตอนนี้ให้รางวัลเวลากดสั่งซื้อ</p>
+        <p>สัญชาตญาณฝูง ที่เคยปกป้องชีวิต &rarr; ตอนนี้ทำให้คุณเชื่อรีวิว 5 ดาวจากคนที่ไม่เคยเจอ</p>
+
+        <p style="margin-top: 1.5rem;"><strong>AI รู้ว่า &laquo;คนมักซื้อตอนลดราคา&raquo;</strong> &mdash; แต่มันไม่รู้<em>ว่าทำไม</em></p>
+        <p>มันเห็นแค่ข้อมูล แต่ไม่เข้าใจ<strong>กลไกข้างหลัง</strong></p>
 
         <div class="gold-box">
-            <p>คุณจะไม่ต้องเหนื่อยวิ่งตาม Algorithm อีกต่อไป<br><strong>คุณจะเป็นคนที่คุมเกม</strong>และสร้างยอดขายได้ ไม่ว่าเครื่องมือจะเปลี่ยนไปแค่ไหนก็ตาม</p>
+            <p>ถ้าคุณเข้าใจกลไกข้อนี้ &mdash; คุณจะไม่ต้องเหนื่อยวิ่งตาม Algorithm อีกต่อไป<br><strong>คุณจะเป็นคนที่คุมเกม</strong> ไม่ว่าเครื่องมือจะเปลี่ยนไปกี่ยุคกี่สมัย</p>
         </div>
     </div>
 
 
-    <!-- ═══════ AI vs YOU ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         AI vs YOU — expanded
+         ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">เปรียบเทียบ</div>
-        <h2 class="sec-title">AI ทำได้แค่ &laquo;ใบ&raquo; &mdash; <em>คุณต้องเข้าใจ &laquo;ราก&raquo;</em></h2>
+        <h2 class="sec-title">AI ทำได้แค่ &laquo;ใบ&raquo;<br><em>คุณต้องเป็นคนปลูก &laquo;ราก&raquo;</em></h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">จินตนาการว่าการตลาดคือต้นไม้ &mdash; AI สร้าง &laquo;ใบ&raquo; ให้คุณได้สวยมาก แต่ต้นไม้ที่ไม่มีรากจะยืนอยู่ได้นานแค่ไหน?</p>
+
         <div class="compare">
             <div class="compare-col compare-ai">
-                <h4>AI ทำได้</h4>
+                <h4>AI ทำได้ (ใบ)</h4>
                 <ul>
-                    <li>เขียนแคปชั่น</li>
-                    <li>วิเคราะห์ข้อมูล</li>
-                    <li>ออกแบบ Funnel</li>
-                    <li>สร้างคอนเทนต์</li>
-                    <li>ตั้งราคาตามตลาด</li>
+                    <li>เขียนแคปชั่นได้ใน 3 วินาที</li>
+                    <li>วิเคราะห์ข้อมูลเป็นแสนแถว</li>
+                    <li>ออกแบบ Funnel สวยงาม</li>
+                    <li>สร้างคอนเทนต์ไม่มีวันหมด</li>
+                    <li>ตั้งราคาตามข้อมูลตลาด</li>
+                    <li>A/B Test อัตโนมัติ</li>
                 </ul>
             </div>
             <div class="compare-col compare-you">
-                <h4>คุณทำได้ (หลังอ่าน)</h4>
+                <h4>คุณทำได้หลังอ่าน (ราก)</h4>
                 <ul>
-                    <li>กระตุ้น Dopamine Loop</li>
-                    <li>สร้าง Loss Aversion</li>
-                    <li>ใช้ Social Proof ที่แท้จริง</li>
-                    <li>เขียนเรื่องที่ &laquo;ฝัง&raquo; ในสมอง</li>
-                    <li>ตั้งราคาที่ &laquo;รู้สึกถูก&raquo;</li>
+                    <li>กระตุ้น Dopamine Loop ให้คนอยากซื้อ</li>
+                    <li>สร้าง Loss Aversion ที่ทำให้กลัวพลาด</li>
+                    <li>ใช้ Social Proof ที่ &laquo;ฝัง&raquo; ความเชื่อ</li>
+                    <li>เขียนเรื่องที่ติดอยู่ในหัวคนอ่าน</li>
+                    <li>ตั้งราคาที่ &laquo;รู้สึกถูก&raquo; โดยอัตโนมัติ</li>
+                    <li>เปลี่ยน &laquo;ไม่แน่ใจ&raquo; เป็น &laquo;ต้องได้&raquo;</li>
                 </ul>
             </div>
         </div>
-        <p style="text-align: center; font-size: 0.88rem; color: var(--text-sec);">AI เป็นเครื่องมือที่เร็วที่สุด &mdash; แต่มันไม่มีวันแทน<strong style="color: var(--text);">ความเข้าใจมนุษย์</strong></p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">AI เป็นเครื่องมือที่เร็วที่สุดในประวัติศาสตร์ &mdash; แต่เครื่องมือไม่เคยแทน<strong style="color: var(--text);">ความเข้าใจ</strong></p>
     </div>
 
 
-    <!-- ═══════ DARK BAND: Punchline ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: Punchline
+         ═══════════════════════════════════════════════ -->
     <div class="dark-band rv">
         <div class="dark-band-inner">
-            <p style="font-size: 0.88rem; color: #A29A90;">คนที่ใช้ AI + เข้าใจจิตวิทยามนุษย์</p>
-            <p class="big-quote">จะเป็นคน<strong>เดียว</strong>ที่เหลือรอด<br>ในตลาดที่ทุกคนมีเครื่องมือเหมือนกัน</p>
+            <p style="font-size: 0.85rem; color: #A29A90;">ในโลกที่ทุกคนมี AI เหมือนกัน</p>
+            <p class="big-quote">คนที่ใช้ AI + <strong>เข้าใจสัญชาตญาณมนุษย์</strong><br>จะเป็นคนเดียวที่เหลือรอด</p>
+            <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">ส่วนคนที่พึ่ง AI อย่างเดียว &mdash; จะค่อยๆ หายไป<br>โดยไม่รู้ด้วยซ้ำว่าหายไปเพราะอะไร</p>
         </div>
     </div>
 
 
-    <!-- ═══════ WHAT'S INSIDE ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         THE BOOK — expanded chapter detail
+         ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">สิ่งที่คุณจะได้</div>
         <h2 class="sec-title">12 บท + 5 บทพิเศษ<br>ที่ <em>AI สอนคุณไม่ได้</em></h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">ทุกบทเขียนจากงานวิจัยจริง + ประสบการณ์จากสนามจริง ไม่ใช่ทฤษฎีลอยๆ ที่ AI ดึงมาจากอินเทอร์เน็ต</p>
+
         <div class="benefit-grid">
-            <div class="benefit-card">
-                <div class="benefit-num">บทที่ 1-3</div>
+            <div class="benefit-card rv rv-d1">
+                <div class="benefit-num">Part I &mdash; ระบบปฏิบัติการ</div>
                 <div class="benefit-title">ทำไมสมองยุคหินยังควบคุมกระเป๋าเงินคุณ</div>
-                <p class="benefit-desc">Dopamine, Cortisol, ความปรารถนาดั้งเดิม 5 ข้อ &mdash; เข้าใจระบบปฏิบัติการที่ AI อ่านไม่ออก</p>
+                <p class="benefit-desc">Dopamine, Cortisol, Oxytocin &mdash; สารเคมี 3 ตัวที่ควบคุมทุกการตัดสินใจซื้อ + ความปรารถนาดั้งเดิม 5 ข้อที่มนุษย์ทุกคนมีเหมือนกันมาตั้งแต่ยุคหิน</p>
+                <p class="benefit-example">เช่น: ทำไม Flash Sale ถึงได้ผลทุกครั้ง แม้คุณรู้ว่ามันเป็นกลยุทธ์? &mdash; คำตอบอยู่ใน Cortisol Loop</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-num">บทที่ 4-6</div>
-                <div class="benefit-title">เทคนิคที่ทำให้คนจ่ายเงินโดยไม่รู้ตัว</div>
-                <p class="benefit-desc">Storytelling, Social Proof, Scarcity &mdash; วิธีใช้ที่ได้ผลจริง ไม่ใช่ทฤษฎีลอยๆ</p>
+
+            <div class="benefit-card rv rv-d2">
+                <div class="benefit-num">Part II &mdash; อาวุธ</div>
+                <div class="benefit-title">เทคนิคที่ทำให้คนตัดสินใจก่อน &laquo;คิด&raquo;</div>
+                <p class="benefit-desc">Storytelling ที่ปลดการ์ดของสมอง, Social Proof ที่เปลี่ยนคนแปลกหน้าเป็นเหตุผลในการซื้อ, Scarcity ที่ทำให้ของธรรมดากลายเป็นสิ่งที่ &laquo;ต้องได้&raquo;</p>
+                <p class="benefit-example">เช่น: ทำไมร้านชาบูบางร้านถึงมีคิวยาว ทั้งที่ร้านข้างๆ รสชาติดีกว่า? &mdash; คำตอบไม่ใช่ &laquo;อาหาร&raquo; แต่เป็น &laquo;กลไก&raquo;</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-num">บทที่ 7-9</div>
-                <div class="benefit-title">ควบคุม &laquo;การรับรู้&raquo; และทำลายแนวต้าน</div>
-                <p class="benefit-desc">Framing, Anchoring, Trust Engine &mdash; ทำให้ลูกค้า &laquo;รู้สึก&raquo; ว่าถูก ก่อนจะคิดด้วยซ้ำ</p>
+
+            <div class="benefit-card rv rv-d3">
+                <div class="benefit-num">Part III &mdash; การรับรู้</div>
+                <div class="benefit-title">ทำให้ลูกค้า &laquo;รู้สึกว่าถูก&raquo; ก่อนจะคิดด้วยซ้ำ</div>
+                <p class="benefit-desc">Framing ที่เปลี่ยนมุมมอง, Anchoring ที่ตั้งจุดเปรียบเทียบในหัว, Trust Engine ที่สร้างความเชื่อใจโดยไม่ต้องพิสูจน์อะไร</p>
+                <p class="benefit-example">เช่น: ทำไมกาแฟแก้วละ 180 บาทถึง &laquo;รู้สึกปกติ&raquo; ถ้าวางข้างๆ แก้วละ 320? &mdash; สมองคุณถูก Anchor ไปแล้ว</p>
             </div>
-            <div class="benefit-card">
-                <div class="benefit-num">บทที่ 10-12</div>
-                <div class="benefit-title">ขายได้แม้ไม่มีแพลตฟอร์ม + จริยธรรม</div>
-                <p class="benefit-desc">Marketing Without Platforms, Dark Side, Becoming The Master &mdash; ทั้ง &laquo;อาวุธ&raquo; และ &laquo;เกราะ&raquo;</p>
+
+            <div class="benefit-card rv">
+                <div class="benefit-num">Part IV &mdash; เกราะ + ปัญญา</div>
+                <div class="benefit-title">ทั้ง &laquo;ขายได้โดยไม่ต้องพึ่งแพลตฟอร์ม&raquo; และ &laquo;รู้ทันด้านมืด&raquo;</div>
+                <p class="benefit-desc">Marketing Without Platforms &mdash; วิธีขายที่ยังได้ผลแม้ Facebook ปิดตัว, Dark Side &mdash; เทคนิคที่แบรนด์ใหญ่ใช้กับคุณทุกวัน (เพื่อให้คุณรู้ทัน), Becoming The Master &mdash; การใช้พลังนี้อย่างมีจริยธรรม</p>
+                <p class="benefit-example">เช่น: ทำไม Subscription ถึงยกเลิกยากกว่าสมัคร? &mdash; นี่คือ Dark Pattern ที่คุณควรรู้ (ทั้งเพื่อใช้และเพื่อป้องกัน)</p>
+            </div>
+
+            <div class="benefit-card rv" style="border-left-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">Bonus &mdash; 5 บทพิเศษ</div>
+                <div class="benefit-title">ทดลองจริง + วิเคราะห์แคมเปญจริง + กลยุทธ์ตลาดเลือด</div>
+                <p class="benefit-desc">ไม่ใช่แค่ทฤษฎี &mdash; แต่เป็นการเอาทุกหลักการมาลงมือทำจริง วิเคราะห์แคมเปญจริงที่ประสบความสำเร็จ (และล้มเหลว) + กลยุทธ์สำหรับตลาดที่การแข่งขันดุเดือด</p>
             </div>
         </div>
     </div>
 
 
-    <!-- ═══════ PROOF BAR ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         PROOF BAR
+         ═══════════════════════════════════════════════ -->
     <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
         <div class="proof-bar rv">
             <div class="proof-item">
@@ -595,34 +860,84 @@
             </div>
             <div class="proof-item">
                 <div class="proof-num">5</div>
-                <div class="proof-label">บทพิเศษ</div>
+                <div class="proof-label">บทพิเศษ (Bonus)</div>
             </div>
             <div class="proof-item">
                 <div class="proof-num">100+</div>
                 <div class="proof-label">งานวิจัยอ้างอิง</div>
             </div>
             <div class="proof-item">
-                <div class="proof-num">2,000+</div>
-                <div class="proof-label">ปีของหลักฐาน</div>
+                <div class="proof-num">200,000</div>
+                <div class="proof-label">ปีของหลักฐาน (สมองมนุษย์)</div>
             </div>
         </div>
     </div>
 
 
-    <!-- ═══════ PRICING ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         WHO IS THIS FOR
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช่สำหรับคุณไหม?</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับคนแบบไหน<br>และ<em>ไม่เหมาะ</em>กับคนแบบไหน</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>ใช้ AI แล้ว แต่ยอดไม่ขึ้น</li>
+                    <li>อยากเข้าใจ &laquo;ทำไม&raquo; ไม่ใช่แค่ &laquo;ทำยังไง&raquo;</li>
+                    <li>เบื่อเทคนิคที่หมดอายุทุก 6 เดือน</li>
+                    <li>อยากสร้างรากฐานที่ใช้ได้ตลอดชีวิต</li>
+                    <li>สนใจจิตวิทยามนุษย์จริงๆ</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>ไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>ต้องการ &laquo;สูตรลัด&raquo; ที่ใช้ได้ทันที</li>
+                    <li>อยากได้แค่ Template กับ Prompt</li>
+                    <li>ไม่อยากอ่าน แค่อยากให้ AI ทำให้หมด</li>
+                    <li>คิดว่าการตลาดคือแค่เรื่องเทคนิค</li>
+                    <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการขาย</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้าคุณยังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรี</a> แล้วตัดสินใจเอง</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Real Cost
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90; margin-bottom: 0.8rem;">ลองคิดแบบนี้</p>
+            <p class="big-quote">ทุกวันที่คุณยิงแอดโดยไม่เข้าใจสมองลูกค้า<br>คือวันที่คุณ<strong>จ่ายค่าโฆษณาซ้ำ</strong><br>เพื่อผลลัพธ์เดิม</p>
+            <p class="dark-band-sub">ความรู้ไม่มีวันหมดอายุ &mdash; แต่โอกาสมี</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         PRICING
+         ═══════════════════════════════════════════════ -->
     <div class="pricing-section" id="pricing">
         <div class="pricing-inner rv">
             <div class="sec-label">ลงทุน</div>
-            <h2 class="sec-title">ความรู้ที่ AI ให้คุณไม่ได้<br><em>ราคาเท่ากาแฟไม่กี่แก้ว</em></h2>
+            <h2 class="sec-title">ความรู้ที่ AI จะไม่มีวันให้คุณได้<br><em>ราคาน้อยกว่าค่ายิงแอดหนึ่งวัน</em></h2>
             <div class="pricing-box">
+                <div class="pricing-badge">ปลดล็อกทันที</div>
                 <div class="pricing-title">รากแก้วการตลาด &mdash; ฉบับเต็ม</div>
                 <div class="pricing-price">1,390 <span>บาท</span></div>
+                <p class="pricing-per">จ่ายครั้งเดียว &bull; อ่านได้ตลอดชีพ</p>
                 <ul class="pricing-includes">
                     <li>12 บทเต็ม &mdash; จิตวิทยา, ประสาทวิทยา, พฤติกรรมศาสตร์</li>
                     <li>5 บทพิเศษ (Bonus) &mdash; ทดลองจริง, วิเคราะห์แคมเปญ, กลยุทธ์ตลาดเลือด</li>
-                    <li>ภาคผนวก + One-Page Summary</li>
-                    <li>ปลดล็อกทันทีหลังชำระเงิน</li>
-                    <li>อ่านได้ตลอดชีพ &mdash; ไม่มีวันหมดอายุ</li>
+                    <li>ภาคผนวก + One-Page Summary ใช้เป็น Quick Reference</li>
+                    <li>รับ Unlock Code ทันทีหลังชำระเงิน</li>
+                    <li>ไม่มีวันหมดอายุ &mdash; ไม่มี Subscription &mdash; ไม่มีค่าใช้จ่ายเพิ่ม</li>
                 </ul>
                 <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
                 <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
@@ -631,43 +946,52 @@
     </div>
 
 
-    <!-- ═══════ FAQ ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         FAQ — expanded
+         ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">คำถามที่พบบ่อย</div>
         <h2 class="sec-title">ก่อนตัดสินใจ</h2>
 
         <div class="faq-item">
             <div class="faq-q">ในเมื่อ AI ก็เขียนหนังสือได้ ทำไมต้องอ่านหนังสือที่มนุษย์เขียน?</div>
-            <p class="faq-a">เพราะ AI เขียนจากข้อมูลที่มีอยู่แล้ว &mdash; มันรวบรวมสิ่งที่ &laquo;ทุกคนรู้&raquo; ได้ดี แต่มันไม่สามารถเชื่อมโยงประสบการณ์จริงจากธุรกิจจริง + งานวิจัยหลายร้อยชิ้น + สัญชาตญาณที่มาจากการลงสนามจริงมากกว่าสิบปี ได้ในแบบเดียวกัน หนังสือเล่มนี้ไม่ได้แค่รวมข้อมูล &mdash; มัน<strong>กลั่น</strong>ข้อมูลผ่านคนที่ใช้มันจริง</p>
+            <p class="faq-a">AI เขียนจากข้อมูลที่มีอยู่แล้ว &mdash; มันรวบรวมสิ่งที่ &laquo;ทุกคนรู้&raquo; ได้ดี แต่มันไม่สามารถเชื่อมโยงประสบการณ์จริงจากธุรกิจจริง + งานวิจัยหลายร้อยชิ้น + สัญชาตญาณที่มาจากการลงสนามจริงมากกว่าสิบปี ได้ในแบบเดียวกัน หนังสือเล่มนี้ไม่ได้แค่รวมข้อมูล &mdash; มัน<strong>กลั่น</strong>ข้อมูลผ่านคนที่ใช้มันจริง</p>
         </div>
 
         <div class="faq-item">
             <div class="faq-q">ผมไม่ได้ทำการตลาด อ่านแล้วได้อะไร?</div>
-            <p class="faq-a">ได้ &laquo;ตาคู่ใหม่&raquo; &mdash; คุณจะเห็นว่าทำไมคุณถึงเลือกร้านนี้แทนร้านนั้น ทำไมถึงกดซื้อของที่ไม่ได้วางแผนจะซื้อ ทำไมถึงเชื่อรีวิวบางอัน &mdash; ความเข้าใจนี้ใช้ได้ทุกเรื่องในชีวิต ไม่ใช่แค่ขายของ</p>
+            <p class="faq-a">ได้ &laquo;ตาคู่ใหม่&raquo; &mdash; คุณจะเริ่มเห็นว่าทำไมคุณถึงเลือกร้านนี้แทนร้านนั้น ทำไมถึงกดซื้อของที่ไม่ได้วางแผนจะซื้อ ทำไมถึงเชื่อรีวิวบางอัน ทำไม Subscription ถึงยกเลิกยาก ทำไมของแจกฟรีถึงทำให้รู้สึก &laquo;เป็นหนี้&raquo; &mdash; ความเข้าใจนี้ใช้ได้ทุกเรื่องในชีวิต ไม่ใช่แค่ขายของ</p>
         </div>
 
         <div class="faq-item">
             <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
-            <p class="faq-a">ได้ครับ &mdash; <a href="/" style="color: var(--accent);">บทนำ + บทที่ 1 เปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร กดแล้วอ่านได้เลย</p>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/">บทนำ + บทที่ 1 เปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร กดแล้วอ่านได้เลย ถ้าอ่านแล้วรู้สึกว่า &laquo;รู้อยู่แล้ว&raquo; &mdash; ก็ไม่ต้องซื้อ ไม่มีใครบังคับ</p>
         </div>
 
         <div class="faq-item">
             <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
-            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้รับ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ตลอดชีพ</p>
+            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้รับ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันที ไม่ต้องรอ ไม่ต้องให้ใครอนุมัติ</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">1,390 บาท คุ้มไหม?</div>
+            <p class="faq-a">ถ้าคุณเข้าใจหลักการในเล่มนี้จริงแค่ข้อเดียวแล้วนำไปปรับแคมเปญ &mdash; มันคืนทุนได้ภายในสัปดาห์แรก คิดง่ายๆ: ค่ายิงแอด Facebook วันเดียวก็มากกว่านี้แล้ว แต่ความรู้ที่ใช้ได้ตลอดชีวิตราคาแค่นี้</p>
         </div>
 
         <div class="faq-item" style="border: none;">
-            <div class="faq-q">1,390 บาท คุ้มไหม?</div>
-            <p class="faq-a">ถ้าคุณเข้าใจหลักการในเล่มนี้จริงแค่ข้อเดียวแล้วนำไปใช้ &mdash; มันคืนทุน 1,390 ได้ภายในสัปดาห์แรก ถ้าทำไม่ได้ แปลว่าคุณยังไม่ได้ลงมือทำ ซึ่งบทนำฟรีจะช่วยให้คุณตัดสินใจได้ว่าเล่มนี้ใช่สำหรับคุณหรือไม่</p>
+            <div class="faq-q">ถ้าผมใช้ AI เก่งอยู่แล้ว จำเป็นต้องอ่านไหม?</div>
+            <p class="faq-a">ยิ่งต้องอ่าน &mdash; เพราะ AI เป็นแค่เครื่องมือ คนที่ใช้เครื่องมือเดียวกัน <strong>แต่เข้าใจมนุษย์มากกว่า</strong> จะได้ผลลัพธ์ที่ต่างกันอย่างสิ้นเชิง AI + ความเข้าใจจิตวิทยา คือ combo ที่แข่งยากที่สุดในตลาดตอนนี้</p>
         </div>
     </div>
 
 
-    <!-- ═══════ FINAL CTA ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         FINAL CTA
+         ═══════════════════════════════════════════════ -->
     <div class="final-cta">
         <div class="final-cta-inner rv">
             <h2>เครื่องมือเปลี่ยนทุกปี<br>แต่ &laquo;มนุษย์&raquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
-            <p>เจาะลึก &laquo;แก่นเดียว&raquo; ที่จะทำให้คุณนำหน้า AI และคู่แข่ง</p>
+            <p>ลงทุนกับสิ่งที่ไม่มีวันหมดอายุ &mdash; ความเข้าใจในสิ่งที่ทำให้คนเป็นคน</p>
             <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
             <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
@@ -675,13 +999,26 @@
     </div>
 
 
-    <!-- ═══════ FOOTER ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════ -->
     <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
 
 
-    <!-- ═══════ SCROLL REVEAL ═══════ -->
+    <!-- ═══════════════════════════════════════════════
+         SCRIPTS
+         ═══════════════════════════════════════════════ -->
     <script>
     (function() {
+        /* ── Progress bar ── */
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
+
+        /* ── Scroll reveal ── */
         var els = document.querySelectorAll('.rv');
         var io = new IntersectionObserver(function(entries) {
             entries.forEach(function(e) {
@@ -690,7 +1027,7 @@
                     io.unobserve(e.target);
                 }
             });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.12 });
         els.forEach(function(el) { io.observe(el); });
     })();
     </script>
