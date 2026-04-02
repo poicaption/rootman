@@ -436,80 +436,85 @@
         .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
         .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
 
-        /* ── Pricing section ── */
+        /* ── Pricing section (no-tricks) ── */
         .pricing-section {
             text-align: center;
             padding: 4rem 1.5rem;
-            background: #fff;
+            background: var(--bg-alt);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
         }
         .pricing-inner {
-            max-width: 520px;
+            max-width: 580px;
             margin: 0 auto;
         }
-        .pricing-box {
-            background: var(--bg);
-            border: 2px solid var(--text);
+        .notricks {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            padding: 2rem 2rem;
+            background: #fff;
             border-radius: 14px;
-            padding: 2.5rem 2rem;
-            margin: 1.5rem 0;
-            position: relative;
+            border: 1px solid var(--border);
         }
-        .pricing-badge {
-            position: absolute;
-            top: -12px; left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: #fff;
+        .notricks-title {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 700;
-            padding: 0.3rem 1.2rem;
-            border-radius: 20px;
-            letter-spacing: 0.05em;
-        }
-        .pricing-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--text-sec);
-            margin-bottom: 0.5rem;
-        }
-        .pricing-price {
-            font-family: 'Prompt', sans-serif;
-            font-size: 3rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: var(--text);
-            line-height: 1.1;
+            margin-bottom: 1rem;
         }
-        .pricing-price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-sec);
+        .notricks-title u {
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
         }
-        .pricing-per {
-            font-size: 0.78rem;
-            color: var(--text-light);
-            margin-top: 0.3rem;
+        .notricks-list {
+            font-size: 0.88rem;
+            color: var(--warm);
+            line-height: 2;
+            margin-bottom: 1.2rem;
         }
-        .pricing-includes {
-            text-align: left;
-            margin: 1.5rem 0;
-            padding: 0;
-            list-style: none;
+        .notricks-why {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
         }
-        .pricing-includes li {
-            font-size: 0.86rem;
-            color: var(--text-sec);
-            padding: 0.4rem 0;
-            border-bottom: 1px solid var(--border);
+        .notricks-why strong {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
         }
-        .pricing-includes li:last-child { border: none; }
-        .pricing-includes li::before {
-            content: '✓ ';
-            color: var(--accent);
+        .price-hero {
+            margin: 2rem 0 2.5rem;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
             font-weight: 700;
+            line-height: 1.1;
+            color: var(--gold);
+        }
+        .price-unit {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: var(--text-sec);
+            letter-spacing: 0.08em;
+        }
+        .price-reason {
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+        .price-reason-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+        }
+        .price-reason p {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
         }
         .pricing-cta {
             display: inline-block;
@@ -531,6 +536,12 @@
             font-size: 0.78rem;
             color: var(--text-light);
             margin-top: 1rem;
+        }
+        .pricing-sub-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-top: 1.5rem;
+            line-height: 1.8;
         }
 
         /* ── FAQ ── */
@@ -649,7 +660,8 @@
         @media (max-width: 640px) {
             .compare, .who-grid { grid-template-columns: 1fr; }
             .proof-bar { gap: 1.5rem; }
-            .pricing-price { font-size: 2.5rem; }
+            .price-big { font-size: 2.8rem; }
+            .notricks { padding: 1.5rem 1.2rem; }
             .sec { padding: 3rem 1.2rem; }
             .hero { padding: 3.5rem 1.2rem 3rem; }
         }
@@ -938,7 +950,7 @@
             </div>
         </div>
 
-        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้าคุณยังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรี</a> แล้วตัดสินใจเอง</p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้าคุณยังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> แล้วตัดสินใจเอง</p>
     </div>
 
 
@@ -959,23 +971,34 @@
          ═══════════════════════════════════════════════ -->
     <div class="pricing-section" id="pricing">
         <div class="pricing-inner rv">
-            <div class="sec-label">ลงทุน</div>
-            <h2 class="sec-title">ความรู้ที่ AI จะไม่มีวันให้คุณได้<br><em>ราคาน้อยกว่าค่ายิงแอดหนึ่งวัน</em></h2>
-            <div class="pricing-box">
-                <div class="pricing-badge">ปลดล็อกทันที</div>
-                <div class="pricing-title">รากแก้วการตลาด &mdash; ฉบับเต็ม</div>
-                <div class="pricing-price">1,390 <span>บาท</span></div>
-                <p class="pricing-per">จ่ายครั้งเดียว &bull; อ่านได้ตลอดชีพ</p>
-                <ul class="pricing-includes">
-                    <li>12 บทเต็ม &mdash; จิตวิทยา, ประสาทวิทยา, พฤติกรรมศาสตร์</li>
-                    <li>5 บทพิเศษ (Bonus) &mdash; ทดลองจริง, วิเคราะห์แคมเปญ, กลยุทธ์ตลาดเลือด</li>
-                    <li>ภาคผนวก + One-Page Summary ใช้เป็น Quick Reference</li>
-                    <li>รับ Unlock Code ทันทีหลังชำระเงิน</li>
-                    <li>ไม่มีวันหมดอายุ &mdash; ไม่มี Subscription &mdash; ไม่มีค่าใช้จ่ายเพิ่ม</li>
-                </ul>
-                <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
-                <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
+
+            <div class="notricks">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
+                <p class="notricks-list">
+                    ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;<br>
+                    ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;<br>
+                    ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน<br>
+                    ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด<br>
+                    ไม่มีการเทียบราคากาแฟ หรือเทียบค่าแอดที่ไม่ work
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้มันกับคุณเอง</p>
             </div>
+
+            <div class="price-hero">
+                <div class="price-big">1,390</div>
+                <div class="price-unit">บาท</div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">ทำไมราคานี้?</h4>
+                <p>เพราะมันคือผลลัพธ์ของสิบกว่าปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; กรองผ่านงานวิจัยหลายร้อยชิ้น กลั่นผ่านธุรกิจจริงหลายสิบราย ทดสอบกับเงินจริงและลูกค้าจริง</p>
+                <p>ไม่มีหนังสือการตลาดภาษาไทยเล่มไหนที่รวมจิตวิทยา ประสาทวิทยา พฤติกรรมศาสตร์ และกรณีศึกษาระดับนี้ไว้ในที่เดียว &mdash; นั่นคือเหตุผลทั้งหมด ไม่มากไม่น้อยกว่านี้</p>
+            </div>
+
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
+            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
         </div>
     </div>
 
@@ -1033,7 +1056,7 @@
             <p>ลงทุนกับสิ่งที่ไม่มีวันหมดอายุ &mdash; ความเข้าใจในสิ่งที่ทำให้คนเป็นคน</p>
             <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
-            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านคำนำ + บทนำฟรีก่อน &rarr;</a>
         </div>
     </div>
 
