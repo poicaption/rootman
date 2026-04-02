@@ -436,6 +436,73 @@
         .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
         .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
 
+
+        /* ── Value context (honest anchor) ── */
+        .value-context {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+        .value-context-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+        }
+        .value-alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid var(--border);
+            gap: 0.8rem;
+        }
+        .value-alt-name {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+        .value-alt-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+        .value-alt-price {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .value-alt-this {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.7rem;
+        }
+        .value-alt-this .value-alt-name {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .value-alt-this .value-alt-note {
+            color: var(--text-sec);
+        }
+        .value-alt-this .value-alt-price {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .value-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1.2rem;
+            line-height: 1.85;
+        }
+        .value-meta em {
+            font-style: normal;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* ── Pricing section (no-tricks) ── */
         .pricing-section {
             text-align: center;
@@ -678,6 +745,9 @@
             .proof-num { font-size: 1.8rem; }
             .pricing-section { padding: 3rem 1.3rem; }
             .notricks { padding: 1.5rem 1.3rem; }
+            .value-alt-name { font-size: 0.82rem; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-meta { font-size: 0.75rem; }
             .notricks-title { font-size: 0.95rem; }
             .notricks-list { font-size: 0.84rem; }
             .notricks-why { font-size: 0.88rem; }
@@ -734,6 +804,14 @@
             .proof-label { font-size: 0.68rem; }
             .pricing-section { padding: 2.5rem 1rem; }
             .notricks { padding: 1.2rem 1rem; margin-bottom: 2rem; }
+            .value-context { margin-bottom: 2rem; }
+            .value-context-title { font-size: 0.85rem; }
+            .value-alt { flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-alt-name { font-size: 0.8rem; }
+            .value-alt-note { font-size: 0.68rem; }
+            .value-alt-this .value-alt-price { font-size: 0.95rem; }
+            .value-meta { font-size: 0.72rem; }
             .notricks-title { font-size: 0.9rem; }
             .notricks-list { font-size: 0.8rem; line-height: 1.9; }
             .notricks-why { font-size: 0.84rem; }
@@ -1075,6 +1153,31 @@
                 </p>
                 <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
                 ผมจะไม่ใช้มันกับคุณเอง</p>
+            </div>
+
+            <div class="value-context">
+                <h4 class="value-context-title">ถ้าคุณอยากได้ความรู้เดียวกันนี้จากที่อื่น</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">Workshop การตลาดเชิงจิตวิทยา 2 วัน <span class="value-alt-note">(ครอบคลุมแค่ 2–3 หัวข้อ)</span></span>
+                    <span class="value-alt-price">25,000–50,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หลักสูตร Consumer Psychology ออนไลน์ <span class="value-alt-note">(มักเป็นภาษาอังกฤษ ไม่มีบริบทไทย)</span></span>
+                    <span class="value-alt-price">8,000–15,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Marketing Consulting 1 เดือน <span class="value-alt-note">(ได้ Strategy 1 ไตรมาส)</span></span>
+                    <span class="value-alt-price">30,000–100,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือการตลาดภาษาอังกฤษ 1 เล่ม <span class="value-alt-note">(เนื้อหาหมดอายุเมื่อ trend เปลี่ยน)</span></span>
+                    <span class="value-alt-price">500–1,200 ฿</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมทั้งหมดนี้ไว้ในที่เดียว <span class="value-alt-note">(ใช้ได้ตลอดชีวิต ไม่มีวันหมดอายุ)</span></span>
+                    <span class="value-alt-price">1,390 ฿</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ และคุณก็รู้ แต่ตัวเลขทุกตัวเป็นราคาจริงในตลาดจริง<br>ถ้าอยากรู้ว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
             </div>
 
             <div class="price-hero">
