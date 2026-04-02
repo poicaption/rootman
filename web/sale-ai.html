@@ -657,13 +657,105 @@
         .rv-d3 { transition-delay: 0.3s; }
 
         /* ── Responsive ── */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .sec { padding: 3rem 1.3rem; }
+            .hero { padding: 4rem 1.3rem 3rem; }
+            .hero h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .hero-sub { font-size: 0.92rem; }
+            .hero-hook { font-size: 0.95rem; margin: 1.3rem auto 1.8rem; }
+            .hero-cta { padding: 0.85rem 2.2rem; font-size: 0.95rem; }
+            .dark-band { padding: 2.8rem 1.3rem; }
+            .dark-band .big-quote { font-size: clamp(1rem, 3vw, 1.2rem); }
+            .compare { gap: 0.8rem; }
+            .compare-col { padding: 1.2rem 1rem; }
+            .compare-col li { font-size: 0.82rem; }
+            .benefit-card { padding: 1.3rem 1.2rem; }
+            .benefit-title { font-size: 0.95rem; }
+            .benefit-desc { font-size: 0.85rem; }
+            .benefit-example { font-size: 0.8rem; }
+            .proof-bar { gap: 1.5rem; }
+            .proof-num { font-size: 1.8rem; }
+            .pricing-section { padding: 3rem 1.3rem; }
+            .notricks { padding: 1.5rem 1.3rem; }
+            .notricks-title { font-size: 0.95rem; }
+            .notricks-list { font-size: 0.84rem; }
+            .notricks-why { font-size: 0.88rem; }
+            .price-big { font-size: clamp(2.8rem, 7vw, 3.5rem); }
+            .price-reason p { font-size: 0.85rem; }
+            .pricing-cta { font-size: 1rem; padding: 0.9rem 1.5rem; }
+            .faq-q { font-size: 0.9rem; }
+            .faq-a { font-size: 0.85rem; }
+            .final-cta { padding: 3rem 1.3rem; }
+            .final-cta-btn { padding: 0.85rem 2rem; font-size: 0.95rem; }
+            .gold-box { padding: 1.3rem 1.2rem; }
+            .gold-box p { font-size: 0.88rem; }
+            .pull-quote { font-size: 0.92rem; padding-left: 1rem; }
+        }
+
         @media (max-width: 640px) {
             .compare, .who-grid { grid-template-columns: 1fr; }
-            .proof-bar { gap: 1.5rem; }
-            .price-big { font-size: 2.8rem; }
-            .notricks { padding: 1.5rem 1.2rem; }
-            .sec { padding: 3rem 1.2rem; }
-            .hero { padding: 3.5rem 1.2rem 3rem; }
+            .hero-cta { display: block; width: 100%; text-align: center; }
+            .final-cta-btn { display: block; width: 100%; max-width: 360px; margin: 0 auto; text-align: center; }
+            .proof-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem 1rem;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 2rem 0;
+            }
+            .proof-item { text-align: center; }
+            .who-col { padding: 1.2rem 1rem; }
+            .who-col li { font-size: 0.82rem; }
+            .scenario { padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 0.6rem; }
+            .scenario-q { font-size: 0.88rem; }
+            .scenario-a { font-size: 0.84rem; }
+        }
+
+        @media (max-width: 420px) {
+            html { font-size: 15px; }
+            .sec { padding: 2.5rem 1rem; }
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .hero h1 { font-size: 1.2rem; line-height: 1.55; }
+            .hero-sub { font-size: 0.88rem; }
+            .hero-hook { font-size: 0.9rem; }
+            .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
+            .sec-title { font-size: 1.1rem; }
+            .sec-label { font-size: 0.62rem; }
+            .dark-band { padding: 2.2rem 1rem; }
+            .dark-band .big-quote { font-size: 1rem; line-height: 1.7; }
+            .dark-band-sub { font-size: 0.82rem; }
+            .compare-col h4 { font-size: 0.78rem; }
+            .benefit-card { padding: 1.1rem 1rem; }
+            .benefit-num { font-size: 0.62rem; }
+            .benefit-title { font-size: 0.9rem; }
+            .proof-num { font-size: 1.5rem; }
+            .proof-label { font-size: 0.68rem; }
+            .pricing-section { padding: 2.5rem 1rem; }
+            .notricks { padding: 1.2rem 1rem; margin-bottom: 2rem; }
+            .notricks-title { font-size: 0.9rem; }
+            .notricks-list { font-size: 0.8rem; line-height: 1.9; }
+            .notricks-why { font-size: 0.84rem; }
+            .price-big { font-size: 2.5rem; }
+            .price-reason-title { font-size: 0.92rem; }
+            .price-reason p { font-size: 0.82rem; }
+            .pricing-cta { font-size: 0.95rem; padding: 0.85rem 1rem; }
+            .pricing-note { font-size: 0.72rem; }
+            .pricing-sub-note { font-size: 0.78rem; }
+            .faq-q { font-size: 0.85rem; }
+            .faq-a { font-size: 0.82rem; }
+            .final-cta { padding: 2.5rem 1rem; }
+            .final-cta h2 { font-size: 1.05rem; }
+            .final-cta p { font-size: 0.85rem; }
+            .final-cta-btn { font-size: 0.9rem; padding: 0.8rem 1rem; }
+            .final-cta-note { font-size: 0.72rem; }
+            .final-cta-free { font-size: 0.8rem; }
+            .gold-box { padding: 1.1rem 1rem; }
+            .gold-box p { font-size: 0.84rem; }
+            .pull-quote { font-size: 0.88rem; margin: 1.3rem 0; }
+            .who-col h4 { font-size: 0.78rem; }
+            .who-col li { font-size: 0.8rem; }
         }
     </style>
 </head>
