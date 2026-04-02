@@ -321,7 +321,6 @@
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.6rem 1.5rem;
-            border-left: 4px solid var(--accent);
             transition: box-shadow 0.3s, transform 0.2s;
         }
         .benefit-card:hover {
@@ -781,6 +780,8 @@
             .scenario { padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 0.6rem; }
             .scenario-q { font-size: 0.88rem; }
             .scenario-a { font-size: 0.84rem; }
+            .sec::before { width: 30px; margin-bottom: 1.2rem; }
+            .compare-you::before { font-size: 0.55rem; top: -8px; right: 8px; padding: 0.1rem 0.5rem; }
         }
 
         @media (max-width: 420px) {
@@ -834,7 +835,276 @@
             .pull-quote { font-size: 0.88rem; margin: 1.3rem 0; }
             .who-col h4 { font-size: 0.78rem; }
             .who-col li { font-size: 0.8rem; }
+            .sec::before { width: 24px; margin-bottom: 1rem; }
+            .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
+            .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
+            .price-reason { padding: 1.2rem 1rem; }
+            .benefit-card { border-top-width: 2px; }
         }
+
+        /* ── Visual Polish ── */
+
+        /* Hero: gradient glow on accent text */
+        .hero h1 em {
+            background: linear-gradient(135deg, var(--accent) 0%, #E8744A 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero: subtle bottom fade */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
+        }
+
+        /* Section ornament divider */
+        .sec::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--warm), transparent);
+            margin-bottom: 1.8rem;
+            border-radius: 2px;
+        }
+        .sec:first-of-type::before { display: none; }
+
+        /* Scenarios: hover glow */
+        .scenario {
+            border-radius: 6px;
+            padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .scenario:hover {
+            border-color: var(--accent);
+            background: rgba(194,59,34,0.02);
+        }
+
+        /* Comparison: subtle shadow lift on "you" column */
+        .compare-you {
+            position: relative;
+        }
+        .compare-you::before {
+            content: 'คุณ + AI';
+            position: absolute;
+            top: -10px; right: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.15rem 0.7rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        /* Benefit cards: top accent strip */
+        .benefit-card {
+            border-left: none;
+            border-top: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(194,59,34,0.03), transparent);
+            pointer-events: none;
+        }
+        .benefit-card[style*="border-top-color"] {
+            border-top: 3px solid var(--gold) !important;
+        }
+        .benefit-card[style*="border-top-color"]::before {
+            background: linear-gradient(to bottom, rgba(184,134,11,0.04), transparent);
+        }
+
+        /* Proof bar: gradient numbers */
+        .proof-num {
+            background: linear-gradient(135deg, var(--accent), var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Gold box: left accent stripe + subtle shadow */
+        .gold-box {
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 16px rgba(184,134,11,0.06);
+        }
+
+        /* Notricks box: subtle accent treatment */
+        .notricks {
+            position: relative;
+            overflow: hidden;
+        }
+        .notricks::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* Value alt rows: hover highlight */
+        .value-alt {
+            transition: background 0.2s;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            border-radius: 4px;
+        }
+        .value-alt:hover {
+            background: rgba(0,0,0,0.02);
+        }
+        .value-alt-this {
+            background: rgba(194,59,34,0.03);
+        }
+        .value-alt-this:hover {
+            background: rgba(194,59,34,0.06);
+        }
+
+        /* Price hero: subtle glow */
+        .price-hero {
+            position: relative;
+        }
+        .price-big {
+            text-shadow: 0 2px 40px rgba(184,134,11,0.15);
+        }
+
+        /* CTA button: subtle pulse on idle */
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(194,59,34,0.2); }
+            50% { box-shadow: 0 4px 28px rgba(194,59,34,0.35); }
+        }
+        .pricing-cta {
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .pricing-cta:hover {
+            animation: none;
+        }
+
+        /* Dark band: inner glow enhancement */
+        .dark-band {
+            border-top: 1px solid rgba(196,149,106,0.1);
+            border-bottom: 1px solid rgba(196,149,106,0.1);
+        }
+        .dark-band .big-quote {
+            text-shadow: 0 0 60px rgba(196,149,106,0.08);
+        }
+
+        /* FAQ: interactive feel */
+        .faq-item {
+            transition: background 0.2s;
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            border-radius: 6px;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item:hover {
+            background: rgba(0,0,0,0.015);
+        }
+        .faq-q::before {
+            content: 'Q';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.62rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        /* Final CTA: dramatic gradient */
+        .final-cta {
+            background: linear-gradient(165deg, #1A1714 0%, #2A2520 40%, #1A1714 100%);
+        }
+        .final-cta h2 {
+            background: linear-gradient(135deg, #F5F0EB, var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Final CTA button: match pulse */
+        .final-cta-btn {
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .final-cta-btn:hover {
+            animation: none;
+        }
+
+        /* Proof bar section: subtle texture */
+        .sec-wide {
+            position: relative;
+        }
+        .sec-wide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 120px,
+                rgba(0,0,0,0.01) 120px,
+                rgba(0,0,0,0.01) 121px
+            );
+            pointer-events: none;
+        }
+
+        /* Who grid: subtle shadow */
+        .who-col {
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .who-col:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Pricing section: warm gradient background */
+        .pricing-section {
+            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 100%);
+        }
+
+        /* Footer: subtle top border */
+        .sp-footer {
+            border-top: 1px solid var(--border);
+        }
+
+        /* Section labels: dot accent */
+        .sec-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* Price reason section: card style */
+        .price-reason {
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid var(--border);
+        }
+
     </style>
 </head>
 <body>
@@ -857,6 +1127,7 @@
         </div>
     </div>
 
+    <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
 
     <!-- ═══════════════════════════════════════════════
          THE PROBLEM — expanded with real scenarios
@@ -1022,7 +1293,7 @@
                 <p class="benefit-example">เช่น: ทำไม Subscription ถึงยกเลิกยากกว่าสมัคร? &mdash; นี่คือ Dark Pattern ที่คุณควรรู้ (ทั้งเพื่อใช้และเพื่อป้องกัน)</p>
             </div>
 
-            <div class="benefit-card rv" style="border-left-color: var(--gold); background: var(--gold-bg);">
+            <div class="benefit-card rv" style="border-top-color: var(--gold); background: var(--gold-bg);">
                 <div class="benefit-num" style="color: var(--gold);">Bonus &mdash; 5 บทพิเศษ</div>
                 <div class="benefit-title">ทดลองจริง + วิเคราะห์แคมเปญจริง + กลยุทธ์ตลาดเลือด</div>
                 <p class="benefit-desc">ไม่ใช่แค่ทฤษฎี &mdash; แต่เป็นการเอาทุกหลักการมาลงมือทำจริง วิเคราะห์แคมเปญจริงที่ประสบความสำเร็จ (และล้มเหลว) + กลยุทธ์สำหรับตลาดที่การแข่งขันดุเดือด</p>
@@ -1050,7 +1321,7 @@
             </div>
             <div class="proof-item">
                 <div class="proof-num">200,000</div>
-                <div class="proof-label">ปีของหลักฐาน (สมองมนุษย์)</div>
+                <div class="proof-label">ปีของหลักฐาน<br><span style="font-size: 0.62rem; color: var(--text-light);">(สมองมนุษย์)</span></div>
             </div>
         </div>
     </div>
@@ -1089,6 +1360,9 @@
         </div>
     </div>
 
+    <div style="text-align: center; padding: 0.5rem 0;">
+        <span style="font-size: 0.6rem; color: var(--border-dark); letter-spacing: 1em;">&#x25C6; &#x25C6; &#x25C6;</span>
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          WHO IS THIS FOR
