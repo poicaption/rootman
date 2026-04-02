@@ -781,6 +781,9 @@
             .scenario-q { font-size: 0.88rem; }
             .scenario-a { font-size: 0.84rem; }
             .sec::before { width: 30px; margin-bottom: 1.2rem; }
+            .reader-whisper { padding: 1.1rem 1.2rem; }
+            .whisper-body { font-size: 0.78rem; }
+            .whisper-code { font-size: 0.82rem; padding: 0.25rem 0.6rem; }
             .compare-you::before { font-size: 0.55rem; top: -8px; right: 8px; padding: 0.1rem 0.5rem; }
         }
 
@@ -836,10 +839,82 @@
             .who-col h4 { font-size: 0.78rem; }
             .who-col li { font-size: 0.8rem; }
             .sec::before { width: 24px; margin-bottom: 1rem; }
+            .reader-whisper { padding: 1rem; }
+            .whisper-label { font-size: 0.72rem; }
+            .whisper-body { font-size: 0.76rem; }
+            .whisper-code { font-size: 0.78rem; }
+            .whisper-note { font-size: 0.66rem; }
             .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
             .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
             .price-reason { padding: 1.2rem 1rem; }
             .benefit-card { border-top-width: 2px; }
+        }
+
+
+        /* ── Reader's whisper (coupon) ── */
+        .reader-whisper {
+            margin-top: 1.8rem;
+            padding: 1.3rem 1.5rem;
+            border: 1px dashed var(--border-dark);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .reader-whisper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--warm), transparent);
+        }
+        .whisper-label {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            font-style: italic;
+            margin-bottom: 0.6rem;
+            line-height: 1.7;
+        }
+        .whisper-body {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .whisper-code-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .whisper-code {
+            font-family: 'IBM Plex Sans Thai', 'Prompt', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(194,59,34,0.12);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            user-select: all;
+        }
+        .whisper-code:hover {
+            background: rgba(194,59,34,0.12);
+            border-color: rgba(194,59,34,0.25);
+        }
+        .whisper-copy-hint {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .whisper-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            line-height: 1.7;
         }
 
         /* ── Visual Polish ── */
@@ -1465,6 +1540,21 @@
                 <p>ไม่มีหนังสือการตลาดภาษาไทยเล่มไหนที่รวมจิตวิทยา ประสาทวิทยา พฤติกรรมศาสตร์ และกรณีศึกษาระดับนี้ไว้ในที่เดียว &mdash; นั่นคือเหตุผลทั้งหมด ไม่มากไม่น้อยกว่านี้</p>
             </div>
 
+
+            <div class="reader-whisper rv">
+                <p class="whisper-label">ถ้าคุณอ่านมาถึงตรงนี้จริงๆ &mdash;</p>
+                <div class="whisper-body">
+                    <p>แปลว่าคุณไม่ได้แค่เลื่อนผ่าน คุณอ่าน คุณคิด คุณชั่งน้ำหนัก<br>
+                    คนแบบนี้คือคนที่หนังสือเล่มนี้เขียนให้</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน ลดอีก 200 บาท</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">ROOT200</span>
+                        <span class="whisper-copy-hint" id="copy-hint">คลิกเพื่อคัดลอก</span>
+                    </div>
+                    <p class="whisper-note">ไม่ใช่โปรโมชั่น ไม่มีนับถอยหลัง &mdash; แค่ขอบคุณที่ให้เวลากับมัน</p>
+                </div>
+            </div>
+
             <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
             <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
             <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
@@ -1561,6 +1651,27 @@
         }, { threshold: 0.12 });
         els.forEach(function(el) { io.observe(el); });
     })();
+
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+        } else {
+            var t = document.createElement('textarea');
+            t.value = code;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+        }
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = 'คัดลอกแล้ว ✓';
+        hint.style.color = 'var(--gold)';
+        setTimeout(function() {
+            hint.textContent = 'คลิกเพื่อคัดลอก';
+            hint.style.color = '';
+        }, 2000);
+    }
     </script>
 </body>
 </html>
