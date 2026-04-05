@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วการตลาด — อาวุธลับของนักขายที่ปิดทุกดีล</title>
+    <meta name="description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย — เขาแค่อ่านคนออก เจาะลึกจิตวิทยาที่เปลี่ยนการขายของคุณตลอดชีวิต">
+    <meta property="og:title" content="รากแก้วการตลาด — อาวุธลับของนักขายที่ปิดทุกดีล">
+    <meta property="og:description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย — เขาแค่อ่านคนออก">
+    <meta property="og:type" content="book">
+    <meta property="og:locale" content="th_TH">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --bg: #FAFAF7;
+            --bg-alt: #F3F0EB;
+            --bg-warm: #FFF9F2;
+            --bg-dark: #1A1714;
+            --bg-dark2: #232019;
+            --text: #2D2A26;
+            --text-sec: #6B6560;
+            --text-light: #9A948D;
+            --accent: #C23B22;
+            --accent-hover: #A83220;
+            --accent-soft: rgba(194,59,34,0.08);
+            --gold: #B8860B;
+            --gold-bg: #FDF6E3;
+            --warm: #C4956A;
+            --border: #E0DCD6;
+            --border-dark: #C8C2BA;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 17px; }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Progress bar ── */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--warm));
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Layout ── */
+        .sec {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+        .sec-wide {
+            max-width: 100%;
+            padding: 3.5rem 1.5rem;
+        }
+        .sec p { margin-bottom: 1rem; }
+
+        /* ── Section titles ── */
+        .sec-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .sec-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        .sec-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 5rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 50% 80%, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-eyebrow {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--warm);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent) 0%, #E8744A 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: #A29A90;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-hook {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1.05rem;
+            color: #D4CFC7;
+            line-height: 1.8;
+            margin: 1.8rem auto 2.2rem;
+            max-width: 480px;
+            font-style: italic;
+        }
+        .hero-cta {
+            display: inline-block;
+            padding: 0.9rem 2.8rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
+        }
+        .hero-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); }
+        .hero-note {
+            font-size: 0.78rem;
+            color: #6B6560;
+            margin-top: 1rem;
+        }
+        .hero-note a { color: var(--warm); text-decoration: none; border-bottom: 1px solid rgba(196,149,106,0.3); transition: border-color 0.2s; }
+        .hero-note a:hover { border-color: var(--warm); }
+
+        /* ── Pull quote ── */
+        .pull-quote {
+            border-left: 3px solid var(--warm);
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            margin: 1.8rem 0;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .pull-quote cite {
+            display: block;
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ── Scenario list ── */
+        .scenario {
+            padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+            border-left: 2px solid var(--border);
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .scenario:hover { border-color: var(--accent); background: rgba(194,59,34,0.02); }
+        .scenario-q {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+        .scenario-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ── Highlight strip (dark band) ── */
+        .dark-band {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(196,149,106,0.1);
+            border-bottom: 1px solid rgba(196,149,106,0.1);
+        }
+        .dark-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .dark-band-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .dark-band p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 0.5rem;
+        }
+        .dark-band strong { color: var(--warm); }
+        .dark-band .big-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-weight: 600;
+            line-height: 1.65;
+            color: #fff;
+            margin: 1rem 0;
+            text-shadow: 0 0 60px rgba(196,149,106,0.08);
+        }
+        .dark-band .big-quote strong { color: var(--warm); }
+        .dark-band-sub {
+            color: var(--warm);
+            font-size: 0.88rem;
+            margin-top: 1rem;
+        }
+
+        /* ── Comparison columns ── */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .compare-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .compare-col:hover { transform: translateY(-2px); }
+        .compare-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
+        }
+        .compare-col ul { list-style: none; padding: 0; }
+        .compare-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.35rem 0;
+        }
+        .compare-old {
+            background: #F5F3F0;
+            border: 1px solid var(--border);
+        }
+        .compare-old h4 { color: var(--text-sec); border-bottom: 1px solid var(--border); }
+        .compare-old li::before { content: '— '; color: var(--text-light); }
+        .compare-new {
+            background: var(--gold-bg);
+            border: 2px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(184,134,11,0.08);
+            position: relative;
+        }
+        .compare-new::before {
+            content: 'อ่านแล้วได้สิ่งนี้';
+            position: absolute;
+            top: -10px; right: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.15rem 0.7rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+        }
+        .compare-new h4 { color: var(--gold); border-bottom: 1px solid #E8D5A8; }
+        .compare-new li::before { content: '✦ '; color: var(--gold); }
+        .compare-new li { color: var(--text); }
+
+        /* ── Benefit cards ── */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .benefit-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.6rem 1.5rem;
+            border-top: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(194,59,34,0.03), transparent);
+            pointer-events: none;
+        }
+        .benefit-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .benefit-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .benefit-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        .benefit-desc {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin: 0 0 0.6rem;
+        }
+        .benefit-example {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Gold highlight box ── */
+        .gold-box {
+            background: var(--gold-bg);
+            border: 1px solid #E8D5A8;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 16px rgba(184,134,11,0.06);
+        }
+        .gold-box p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.9;
+        }
+        .gold-box strong { color: var(--gold); }
+
+        /* ── Proof bar ── */
+        .proof-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        .proof-item { text-align: center; }
+        .proof-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--accent), var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .proof-label {
+            font-size: 0.73rem;
+            color: var(--text-sec);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Who / Not-for ── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .who-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .who-col:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .who-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+        }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.3rem 0;
+        }
+        .who-yes {
+            background: #F7FBF5;
+            border: 1px solid #D5E8CC;
+        }
+        .who-yes h4 { color: #4A7C3F; border-bottom: 1px solid #D5E8CC; }
+        .who-yes li::before { content: '✓ '; color: #4A7C3F; font-weight: 700; }
+        .who-no {
+            background: #FDF5F4;
+            border: 1px solid #E8CCCC;
+        }
+        .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
+        .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
+
+        /* ── Value context (honest anchor) ── */
+        .value-context {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+        .value-context-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+        }
+        .value-alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            gap: 0.8rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .value-alt:hover { background: rgba(0,0,0,0.02); }
+        .value-alt-name {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+        .value-alt-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+        .value-alt-price {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .value-alt-this {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.7rem;
+            background: rgba(194,59,34,0.03);
+        }
+        .value-alt-this:hover { background: rgba(194,59,34,0.06); }
+        .value-alt-this .value-alt-name {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .value-alt-this .value-alt-note {
+            color: var(--text-sec);
+        }
+        .value-alt-this .value-alt-price {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .value-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1.2rem;
+            line-height: 1.85;
+        }
+        .value-meta em {
+            font-style: normal;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── Pricing section (no-tricks) ── */
+        .pricing-section {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .notricks {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            padding: 2rem 2rem;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .notricks::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+            border-radius: 3px 0 0 3px;
+        }
+        .notricks-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .notricks-title u {
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .notricks-list {
+            font-size: 0.88rem;
+            color: var(--warm);
+            line-height: 2;
+            margin-bottom: 1.2rem;
+        }
+        .notricks-why {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .notricks-why strong {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .price-hero {
+            margin: 2rem 0 2.5rem;
+            position: relative;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--gold);
+            text-shadow: 0 2px 40px rgba(184,134,11,0.15);
+        }
+        .price-unit {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: var(--text-sec);
+            letter-spacing: 0.08em;
+        }
+        .price-reason {
+            text-align: left;
+            margin-bottom: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid var(--border);
+        }
+        .price-reason-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+        }
+        .price-reason p {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+        }
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(194,59,34,0.2); }
+            50% { box-shadow: 0 4px 28px rgba(194,59,34,0.35); }
+        }
+        .pricing-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 16px rgba(194,59,34,0.2);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .pricing-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(194,59,34,0.3); animation: none; }
+        .pricing-note {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+        .pricing-sub-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── Reader's whisper (coupon) ── */
+        .reader-whisper {
+            margin-top: 1.8rem;
+            padding: 1.3rem 1.5rem;
+            border: 1px dashed var(--border-dark);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .reader-whisper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--warm), transparent);
+        }
+        .whisper-label {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            font-style: italic;
+            margin-bottom: 0.6rem;
+            line-height: 1.7;
+        }
+        .whisper-body {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .whisper-code-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .whisper-code {
+            font-family: 'IBM Plex Sans Thai', 'Prompt', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(194,59,34,0.12);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            user-select: all;
+        }
+        .whisper-code:hover {
+            background: rgba(194,59,34,0.12);
+            border-color: rgba(194,59,34,0.25);
+        }
+        .whisper-copy-hint {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .whisper-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* ── FAQ ── */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.3rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item:hover { background: rgba(0,0,0,0.015); }
+        .faq-q {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .faq-q::before {
+            content: 'Q';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.62rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+        .faq-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.85;
+            margin: 0;
+        }
+        .faq-a a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3); transition: border-color 0.2s; }
+        .faq-a a:hover { border-color: var(--accent); }
+
+        /* ── Final CTA band ── */
+        .final-cta {
+            background: linear-gradient(165deg, #1A1714 0%, #2A2520 40%, #1A1714 100%);
+            color: #F5F0EB;
+            padding: 4rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .final-cta-inner {
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .final-cta h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.15rem, 3vw, 1.4rem);
+            font-weight: 700;
+            line-height: 1.55;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #F5F0EB, var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .final-cta p {
+            color: #A29A90;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+        .final-cta-btn {
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .final-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); animation: none; }
+        .final-cta-note {
+            font-size: 0.78rem;
+            color: #6B6560;
+            margin-top: 0.8rem;
+        }
+        .final-cta-free {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--warm);
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196,149,106,0.3);
+            transition: border-color 0.2s;
+        }
+        .final-cta-free:hover { border-color: var(--warm); }
+
+        /* ── Thin divider ── */
+        .thin-div {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-dark), transparent);
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* ── Footer ── */
+        .sp-footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Section ornament ── */
+        .sec::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--warm), transparent);
+            margin-bottom: 1.8rem;
+            border-radius: 2px;
+        }
+        .sec:first-of-type::before { display: none; }
+
+        /* ── Section labels: dot accent ── */
+        .sec-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ── Animations ── */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv.vis { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: 0.1s; }
+        .rv-d2 { transition-delay: 0.2s; }
+        .rv-d3 { transition-delay: 0.3s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .sec { padding: 3rem 1.3rem; }
+            .hero { padding: 4rem 1.3rem 3rem; }
+            .hero h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .hero-sub { font-size: 0.92rem; }
+            .hero-hook { font-size: 0.95rem; margin: 1.3rem auto 1.8rem; }
+            .hero-cta { padding: 0.85rem 2.2rem; font-size: 0.95rem; }
+            .dark-band { padding: 2.8rem 1.3rem; }
+            .dark-band .big-quote { font-size: clamp(1rem, 3vw, 1.2rem); }
+            .compare { gap: 0.8rem; }
+            .compare-col { padding: 1.2rem 1rem; }
+            .compare-col li { font-size: 0.82rem; }
+            .benefit-card { padding: 1.3rem 1.2rem; }
+            .benefit-title { font-size: 0.95rem; }
+            .benefit-desc { font-size: 0.85rem; }
+            .benefit-example { font-size: 0.8rem; }
+            .proof-bar { gap: 1.5rem; }
+            .proof-num { font-size: 1.8rem; }
+            .pricing-section { padding: 3rem 1.3rem; }
+            .notricks { padding: 1.5rem 1.3rem; }
+            .value-alt-name { font-size: 0.82rem; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-meta { font-size: 0.75rem; }
+            .notricks-title { font-size: 0.95rem; }
+            .notricks-list { font-size: 0.84rem; }
+            .notricks-why { font-size: 0.88rem; }
+            .price-big { font-size: clamp(2.8rem, 7vw, 3.5rem); }
+            .price-reason p { font-size: 0.85rem; }
+            .pricing-cta { font-size: 1rem; padding: 0.9rem 1.5rem; }
+            .faq-q { font-size: 0.9rem; }
+            .faq-a { font-size: 0.85rem; }
+            .final-cta { padding: 3rem 1.3rem; }
+            .final-cta-btn { padding: 0.85rem 2rem; font-size: 0.95rem; }
+            .gold-box { padding: 1.3rem 1.2rem; }
+            .gold-box p { font-size: 0.88rem; }
+            .pull-quote { font-size: 0.92rem; padding-left: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            .compare, .who-grid { grid-template-columns: 1fr; }
+            .hero-cta { display: block; width: 100%; text-align: center; }
+            .final-cta-btn { display: block; width: 100%; max-width: 360px; margin: 0 auto; text-align: center; }
+            .proof-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem 1rem;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 2rem 0;
+            }
+            .proof-item { text-align: center; }
+            .who-col { padding: 1.2rem 1rem; }
+            .who-col li { font-size: 0.82rem; }
+            .scenario { padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 0.6rem; }
+            .scenario-q { font-size: 0.88rem; }
+            .scenario-a { font-size: 0.84rem; }
+            .sec::before { width: 30px; margin-bottom: 1.2rem; }
+            .reader-whisper { padding: 1.1rem 1.2rem; }
+            .whisper-body { font-size: 0.78rem; }
+            .whisper-code { font-size: 0.82rem; padding: 0.25rem 0.6rem; }
+            .compare-new::before { font-size: 0.55rem; top: -8px; right: 8px; padding: 0.1rem 0.5rem; }
+        }
+
+        @media (max-width: 420px) {
+            html { font-size: 15px; }
+            .sec { padding: 2.5rem 1rem; }
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .hero h1 { font-size: 1.2rem; line-height: 1.55; }
+            .hero-sub { font-size: 0.88rem; }
+            .hero-hook { font-size: 0.9rem; }
+            .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
+            .sec-title { font-size: 1.1rem; }
+            .sec-label { font-size: 0.62rem; }
+            .dark-band { padding: 2.2rem 1rem; }
+            .dark-band .big-quote { font-size: 1rem; line-height: 1.7; }
+            .dark-band-sub { font-size: 0.82rem; }
+            .compare-col h4 { font-size: 0.78rem; }
+            .benefit-card { padding: 1.1rem 1rem; border-top-width: 2px; }
+            .benefit-num { font-size: 0.62rem; }
+            .benefit-title { font-size: 0.9rem; }
+            .proof-num { font-size: 1.5rem; }
+            .proof-label { font-size: 0.68rem; }
+            .pricing-section { padding: 2.5rem 1rem; }
+            .notricks { padding: 1.2rem 1rem; margin-bottom: 2rem; }
+            .value-context { margin-bottom: 2rem; }
+            .value-context-title { font-size: 0.85rem; }
+            .value-alt { flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-alt-name { font-size: 0.8rem; }
+            .value-alt-note { font-size: 0.68rem; }
+            .value-alt-this .value-alt-price { font-size: 0.95rem; }
+            .value-meta { font-size: 0.72rem; }
+            .notricks-title { font-size: 0.9rem; }
+            .notricks-list { font-size: 0.8rem; line-height: 1.9; }
+            .notricks-why { font-size: 0.84rem; }
+            .price-big { font-size: 2.5rem; }
+            .price-reason-title { font-size: 0.92rem; }
+            .price-reason p { font-size: 0.82rem; }
+            .pricing-cta { font-size: 0.95rem; padding: 0.85rem 1rem; }
+            .pricing-note { font-size: 0.72rem; }
+            .pricing-sub-note { font-size: 0.78rem; }
+            .faq-q { font-size: 0.85rem; }
+            .faq-a { font-size: 0.82rem; }
+            .final-cta { padding: 2.5rem 1rem; }
+            .final-cta h2 { font-size: 1.05rem; }
+            .final-cta p { font-size: 0.85rem; }
+            .final-cta-btn { font-size: 0.9rem; padding: 0.8rem 1rem; }
+            .final-cta-note { font-size: 0.72rem; }
+            .final-cta-free { font-size: 0.8rem; }
+            .gold-box { padding: 1.1rem 1rem; }
+            .gold-box p { font-size: 0.84rem; }
+            .pull-quote { font-size: 0.88rem; margin: 1.3rem 0; }
+            .who-col h4 { font-size: 0.78rem; }
+            .who-col li { font-size: 0.8rem; }
+            .sec::before { width: 24px; margin-bottom: 1rem; }
+            .reader-whisper { padding: 1rem; }
+            .whisper-label { font-size: 0.72rem; }
+            .whisper-body { font-size: 0.76rem; }
+            .whisper-code { font-size: 0.78rem; }
+            .whisper-note { font-size: 0.66rem; }
+            .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
+            .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
+            .price-reason { padding: 1.2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Progress bar ── -->
+    <div id="progress-bar"></div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════════ -->
+    <div class="hero">
+        <div class="hero-inner rv">
+            <div class="hero-eyebrow">The One Root of Marketing</div>
+            <h1>นักขายที่ปิดได้ทุกดีล<br>ไม่ได้เก่งเรื่องขาย &mdash;<br><em>เขาแค่อ่านคนออก</em></h1>
+            <p class="hero-sub">คุณมี Script มี Technique มี Closing Framework &mdash; แต่ทำไมลูกค้าบางคนยังหลุดไปทุกครั้ง?</p>
+            <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
+            <a href="#pricing" class="hero-cta">เข้าถึงรากแก้วของการขาย</a>
+            <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
+        </div>
+    </div>
+
+    <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
+
+    <!-- ═══════════════════════════════════════════════
+         THE PROBLEM — pain points for salespeople
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ปัญหา</div>
+        <h2 class="sec-title">คุณทำทุกอย่างตาม Playbook<br>แต่<em>ลูกค้ายังหลุดมือ</em></h2>
+
+        <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
+
+        <div class="scenario">
+            <div class="scenario-q">Pitch เดียวกัน กับลูกค้า 10 คน</div>
+            <p class="scenario-a">3 คนซื้อ 7 คนไม่ซื้อ &mdash; แต่คุณไม่รู้ว่าทำไม ได้แต่โทษ &ldquo;ดวง&rdquo; หรือ &ldquo;ลูกค้าไม่มีงบ&rdquo;</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">&ldquo;ขอคิดก่อนนะครับ&rdquo; &mdash; แล้วก็หายไปเลย</div>
+            <p class="scenario-a">คุณ Follow Up ไป 2-3 รอบ ลูกค้าอ่านแล้วไม่ตอบ คุณก็ไม่รู้จะพูดอะไรเพิ่ม</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ปิดการขายได้ &mdash; แต่ลูกค้าไม่กลับมาซื้อซ้ำ</div>
+            <p class="scenario-a">ยอดเดือนนี้ดี แต่เดือนหน้าต้องหาลูกค้าใหม่ตั้งแต่ศูนย์ทุกครั้ง</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">คู่แข่งขายถูกกว่า &mdash; ลูกค้าถามว่า &ldquo;ทำไมต้องซื้อกับคุณ?&rdquo;</div>
+            <p class="scenario-a">คุณตอบไปตามที่ company training สอน แต่รู้สึกว่ามันไม่ได้ "โดน" ลูกค้าจริงๆ</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">เสนอราคาแล้วลูกค้าบอก &ldquo;แพงไปนะ&rdquo;</div>
+            <p class="scenario-a">คุณลดราคาทุกครั้ง เพราะไม่รู้จะทำยังไงให้เขา &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องลด</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาไม่ได้อยู่ที่ตัวสินค้า ไม่ได้อยู่ที่ราคา ไม่ได้อยู่ที่ Script &mdash;</p>
+
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">ปัญหาอยู่ที่คุณ &ldquo;ขาย&rdquo; ให้สมองส่วนคิด &mdash; แต่คนตัดสินใจด้วยสมองส่วนรู้สึก</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Truth about Selling
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.88rem; color: #A29A90; margin-bottom: 1rem;">ลองนึกดู</p>
+            <p class="big-quote">&ldquo;นักขายที่เก่งที่สุดที่คุณเคยเจอ<br>ไม่ได้พูดเก่งที่สุด &mdash;<br>แต่เขา<strong>อ่านคนออกที่สุด</strong>&rdquo;</p>
+            <p class="dark-band-sub">และนั่นคือทักษะที่เรียนรู้ได้ &mdash; ถ้ารู้ว่าสมองมนุษย์ทำงานยังไง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         THE MECHANISM — why psychology matters for sales
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ training ไม่ได้สอนคุณ</div>
+        <h2 class="sec-title">ลูกค้าตัดสินใจซื้อภายใน <em>3 วินาทีแรก</em><br>ก่อนที่คุณจะเริ่ม Pitch ด้วยซ้ำ</h2>
+
+        <p>งานวิจัยจาก Harvard Business School พบว่ามนุษย์ตัดสินใจเลือก &ldquo;เชื่อ&rdquo; หรือ &ldquo;ไม่เชื่อ&rdquo; คุณภายในไม่กี่วินาทีแรกของการพูดคุย</p>
+
+        <p>นั่นเป็นเพราะสมองมนุษย์ไม่ได้ถูกออกแบบมาเพื่อวิเคราะห์ข้อเสนอ &mdash; มันถูกออกแบบมาเพื่อ<strong>ประเมินว่าคุณไว้ใจได้ไหม</strong></p>
+
+        <div class="pull-quote">
+            สมองส่วน Limbic System &mdash; ส่วนเดียวกับที่ทำให้บรรพบุรุษเราตัดสินใจว่าคนแปลกหน้าเป็น &ldquo;มิตร&rdquo; หรือ &ldquo;ศัตรู&rdquo; &mdash; ตอนนี้เป็นส่วนที่ตัดสินใจว่าจะ &ldquo;ซื้อ&rdquo; หรือ &ldquo;ไม่ซื้อ&rdquo; จากคุณ
+            <cite>&mdash; จากบทที่ 1: The Illusion of Evolution</cite>
+        </div>
+
+        <p><strong>Oxytocin</strong> (สารแห่งความไว้วางใจ) หลั่งเมื่อลูกค้ารู้สึกว่าคุณ &ldquo;เข้าใจ&rdquo; เขา &rarr; นี่คือเหตุผลว่าทำไมนักขายที่ถามคำถามเก่งถึงปิดได้มากกว่าคนที่ Pitch เก่ง</p>
+
+        <p><strong>Dopamine</strong> (สารแห่งความคาดหวัง) พุ่งสูงสุดตอนที่ลูกค้า &ldquo;เกือบได้&rdquo; &rarr; นี่คือเหตุผลว่าทำไมการสร้าง Anticipation ก่อน Reveal ราคาถึงเปลี่ยนผลลัพธ์</p>
+
+        <p><strong>Cortisol</strong> (สารแห่งความกลัว) พุ่งเมื่อรู้สึกว่ากำลังจะ &ldquo;สูญเสีย&rdquo; &rarr; Loss Aversion ทำให้คนกลัวเสียมากกว่าอยากได้ 2.5 เท่า &mdash; นักขายที่เก่งใช้หลักนี้โดยไม่ต้อง Hard Sell</p>
+
+        <p style="margin-top: 1.5rem;"><strong>Sales Training สอนให้คุณ &ldquo;ทำอะไร&rdquo;</strong> &mdash; แต่ไม่เคยสอนว่า<em>ทำไมมันถึงได้ผล</em></p>
+        <p>เมื่อคุณเข้าใจ &ldquo;ทำไม&rdquo; &mdash; คุณจะหยุดท่อง Script แล้วเริ่ม<strong>อ่านสถานการณ์ได้เอง</strong></p>
+
+        <div class="gold-box">
+            <p>เทคนิคการขาย 100 ข้อ สู้ไม่ได้กับ<strong>ความเข้าใจสมองมนุษย์ 1 เรื่อง</strong><br>เพราะเทคนิคหมดอายุ &mdash; แต่ธรรมชาติของมนุษย์ไม่เคยเปลี่ยนมา 200,000 ปี</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         Script vs Understanding — comparison
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">เปรียบเทียบ</div>
+        <h2 class="sec-title">&ldquo;ขายตาม Script&rdquo; vs<br><em>&ldquo;ขายเพราะอ่านคนออก&rdquo;</em></h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองแนวทางนี้ใช้พลังงานเท่ากัน &mdash; แต่ผลลัพธ์ต่างกันอย่างสิ้นเชิง</p>
+
+        <div class="compare">
+            <div class="compare-col compare-old">
+                <h4>ขายตาม Script</h4>
+                <ul>
+                    <li>ท่องประโยคปิดการขาย</li>
+                    <li>ลูกค้าบอก &ldquo;แพง&rdquo; ก็ลดราคา</li>
+                    <li>สร้าง Urgency แบบกดดัน</li>
+                    <li>Follow Up ด้วยความรู้สึกผิด</li>
+                    <li>ปิดได้แต่ลูกค้าไม่กลับมา</li>
+                    <li>เปลี่ยนที่ทำงานก็เริ่มใหม่จากศูนย์</li>
+                </ul>
+            </div>
+            <div class="compare-col compare-new">
+                <h4>ขายเพราะเข้าใจสมอง</h4>
+                <ul>
+                    <li>รู้ว่าลูกค้ากลัวอะไรจริงๆ ก่อนพูด</li>
+                    <li>ทำให้ &ldquo;รู้สึกคุ้ม&rdquo; โดยไม่ต้องลดราคา</li>
+                    <li>สร้าง Urgency ที่ลูกค้า &ldquo;ขอบคุณ&rdquo;</li>
+                    <li>Follow Up ที่ลูกค้าอยากตอบเอง</li>
+                    <li>ปิดแล้วลูกค้าแนะนำต่อ</li>
+                    <li>ทักษะนี้ติดตัวไปทุกที่</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">Script คือเครื่องมือ &mdash; แต่<strong style="color: var(--text);">ความเข้าใจคน</strong>คืออาวุธที่ไม่มีวันทื่อ</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Competitive Edge
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่สินค้าเหมือนกัน ราคาใกล้กัน</p>
+            <p class="big-quote">นักขายที่เข้าใจว่า<strong>ทำไมลูกค้าตัดสินใจ</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องพูดอะไร&rdquo;<br>ทุกครั้ง &mdash; โดยไม่ต้อง Hard Sell สักประโยค</p>
+            <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">ลูกค้าจะรู้สึกว่าคุณ &ldquo;เข้าใจเขา&rdquo;<br>ทั้งที่คุณแค่เข้าใจว่าสมองทำงานยังไง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         THE BOOK — chapters framed for salespeople
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คุณจะได้</div>
+        <h2 class="sec-title">12 บท + 5 บทพิเศษ<br>ที่เปลี่ยน<em>วิธีที่คุณมองการขาย</em>ตลอดชีวิต</h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">ทุกบทเขียนจากงานวิจัยด้านจิตวิทยา + ประสาทวิทยา + ประสบการณ์จริงจากสนามการขาย</p>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1">
+                <div class="benefit-num">สมองลูกค้า</div>
+                <div class="benefit-title">ทำไมลูกค้า &ldquo;อยากได้&rdquo; ตอนนั้น แต่ &ldquo;เปลี่ยนใจ&rdquo; ตอนจ่าย?</div>
+                <p class="benefit-desc">Dopamine Loop &mdash; สารเคมีที่ทำให้คน &ldquo;อยากได้&rdquo; แต่พอถึงจุดจ่ายเงิน สมองจะเปลี่ยนโหมดทันที คุณจะรู้วิธีรักษา &ldquo;ความอยาก&rdquo; นั้นไว้จนถึงปิดดีล</p>
+                <p class="benefit-example">เช่น: ทำไมลูกค้าที่ตื่นเต้นตอน Demo ถึงเงียบไปตอน Follow Up? &mdash; มันไม่ใช่เรื่อง &ldquo;ลืม&rdquo; แต่เป็นเรื่อง Dopamine ที่หายไป</p>
+            </div>
+
+            <div class="benefit-card rv rv-d2">
+                <div class="benefit-num">ความไว้วางใจ</div>
+                <div class="benefit-title">สร้าง &ldquo;ความเชื่อใจ&rdquo; ใน 5 นาทีแรก โดยไม่ต้อง Prove อะไร</div>
+                <p class="benefit-desc">Trust Engine &mdash; Oxytocin (สารแห่งความผูกพัน) หลั่งเมื่อลูกค้ารู้สึกว่าคุณ &ldquo;อยู่ข้างเดียวกัน&rdquo; ไม่ใช่แค่ &ldquo;อยากขายของ&rdquo; คุณจะได้เทคนิคที่ทำให้ลูกค้าเปิดใจก่อนที่คุณจะเริ่มพูดเรื่องสินค้า</p>
+                <p class="benefit-example">เช่น: ทำไมลูกค้าเชื่อรีวิวจากคนแปลกหน้ามากกว่า Sales ที่ยืนอยู่ตรงหน้า? &mdash; และคุณจะกลับสถานการณ์นี้ได้ยังไง</p>
+            </div>
+
+            <div class="benefit-card rv rv-d3">
+                <div class="benefit-num">การรับรู้ราคา</div>
+                <div class="benefit-title">ทำไม &ldquo;แพง&rdquo; ไม่เคยเกี่ยวกับตัวเลข &mdash; และคุณจะเปลี่ยนมันได้ยังไง</div>
+                <p class="benefit-desc">Anchoring + Framing &mdash; สมองไม่ได้ประเมินราคาจากมูลค่าจริง แต่จาก &ldquo;จุดเปรียบเทียบ&rdquo; ที่อยู่ในหัว คุณจะรู้วิธีตั้ง Anchor ที่ทำให้ราคาของคุณ &ldquo;รู้สึกถูก&rdquo; โดยอัตโนมัติ</p>
+                <p class="benefit-example">เช่น: ทำไมกาแฟ 180 บาทถึง &ldquo;รู้สึกปกติ&rdquo; ถ้าวางข้างๆ แก้ว 320? &mdash; และคุณจะใช้หลักเดียวกันนี้กับทุก Proposal ได้ยังไง</p>
+            </div>
+
+            <div class="benefit-card rv">
+                <div class="benefit-num">การปิดการขาย</div>
+                <div class="benefit-title">เปลี่ยน &ldquo;ขอคิดก่อน&rdquo; เป็น &ldquo;เอาเลย&rdquo; โดยไม่ต้องกดดัน</div>
+                <p class="benefit-desc">Breaking Resistance + Scarcity &mdash; เมื่อลูกค้าบอกว่า &ldquo;ขอคิดก่อน&rdquo; สิ่งที่เกิดขึ้นจริงในสมองคือ Cognitive Dissonance &mdash; ความขัดแย้งระหว่าง &ldquo;อยากได้&rdquo; กับ &ldquo;กลัวเสียใจ&rdquo; คุณจะรู้วิธีแก้ทั้งสองด้านพร้อมกัน</p>
+                <p class="benefit-example">เช่น: ทำไมลูกค้าที่ซื้อไปแล้วถึงกลับมาอ่าน Ad ของคุณเอง? &mdash; นี่คือ Post-Purchase Rationalization ที่คุณสร้างได้ตั้งแต่ก่อนปิด</p>
+            </div>
+
+            <div class="benefit-card rv" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">ความสัมพันธ์ระยะยาว</div>
+                <div class="benefit-title">เปลี่ยนลูกค้าเป็น &ldquo;คนแนะนำ&rdquo; โดยไม่ต้องขอ</div>
+                <p class="benefit-desc">Social Proof + Reciprocity + Tribal Belonging &mdash; ทำไมลูกค้าบางคนกลายเป็น &ldquo;แฟนคลับ&rdquo; ที่แนะนำคุณให้เพื่อนทุกคน? มันไม่ใช่เรื่องบริการดี &mdash; มันเรื่องเรื่องความรู้สึก &ldquo;เป็นพวกเดียวกัน&rdquo;</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         PROOF BAR
+         ═══════════════════════════════════════════════ -->
+    <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
+        <div class="proof-bar rv">
+            <div class="proof-item">
+                <div class="proof-num">12</div>
+                <div class="proof-label">บทเต็ม</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">5</div>
+                <div class="proof-label">บทพิเศษ (Bonus)</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">100+</div>
+                <div class="proof-label">งานวิจัยอ้างอิง</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">200,000</div>
+                <div class="proof-label">ปีของหลักฐาน<br><span style="font-size: 0.62rem; color: var(--text-light);">(สมองมนุษย์)</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         NOT A SALES BOOK — it's deeper
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ต่าง</div>
+        <h2 class="sec-title">นี่ไม่ใช่หนังสือ &ldquo;สอนขาย&rdquo;<br><em>นี่คือหนังสือสอนอ่านคน</em></h2>
+
+        <p>มีหนังสือสอนขายเป็นร้อยเล่มในตลาด &mdash; ส่วนใหญ่สอน Script สอน Framework สอนท่าปิด</p>
+        <p>เล่มนี้ไม่สอนสิ่งเหล่านั้น &mdash; <strong>เล่มนี้สอนว่าทำไมสิ่งเหล่านั้นถึงได้ผล</strong></p>
+
+        <div class="scenario">
+            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
+            <p class="scenario-a">ออกแบบเป็น Web Book &mdash; เปิดอ่านได้ระหว่างรอลูกค้า ระหว่าง Commute ไม่ต้องโหลด App</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">แต่ละบทจบในตัว กระโดดไปเรื่องที่ต้องการได้เลย</div>
+            <p class="scenario-a">พรุ่งนี้ต้อง Pitch ราคา? กระโดดไปบทที่ 7 (Anchoring) ได้ทันที ไม่ต้องอ่านเรียง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">มี Third Eye Note ซ่อนอยู่ทั่วหนังสือ</div>
+            <p class="scenario-a">กดเปิดแล้วจะเห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; เรียนรู้จากการ &ldquo;ถูกขาย&rdquo; จริง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">ทุกหลักการมาพร้อมเคสจริงที่เจอทุกวัน</div>
+            <p class="scenario-a">ไม่ใช่ทฤษฎีลอยๆ &mdash; ทุกบทมีตัวอย่างจากร้านค้า แบรนด์ หรือสถานการณ์ขายที่คุณรู้จัก</p>
+        </div>
+
+        <div class="gold-box">
+            <p>คุณไม่ต้องชอบอ่านหนังสือก็ได้ &mdash; <strong>แค่อยากรู้ว่าทำไมลูกค้าบางคนซื้อ และบางคนไม่</strong><br>แค่นั้นก็พอ</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 0.5rem 0;">
+        <span style="font-size: 0.6rem; color: var(--border-dark); letter-spacing: 1em;">&#x25C6; &#x25C6; &#x25C6;</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         WHO IS THIS FOR
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช่สำหรับคุณไหม?</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับนักขายแบบไหน<br>และ<em>ไม่เหมาะ</em>กับแบบไหน</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>ปิดได้บ้าง แต่ไม่รู้ว่า &ldquo;ทำไม&rdquo;</li>
+                    <li>เบื่อ Script ที่ไม่ work กับลูกค้าทุกคน</li>
+                    <li>อยากเป็นนักขายที่ลูกค้า &ldquo;อยากซื้อ&rdquo; ไม่ใช่ &ldquo;ถูกขาย&rdquo;</li>
+                    <li>เป็น Sales Manager ที่ต้อง Train ทีม</li>
+                    <li>เป็นฟรีแลนซ์ / เจ้าของธุรกิจที่ต้องขายตัวเอง</li>
+                    <li>อยากสร้างความสามารถที่ติดตัวไปทุกบริษัท</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>ไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>อยากได้แค่ &ldquo;ประโยคปิดการขาย 50 ข้อ&rdquo;</li>
+                    <li>ไม่สนใจว่าทำไมลูกค้าตัดสินใจ แค่อยากปิดยอด</li>
+                    <li>คิดว่าขายเก่งคือพูดเก่ง</li>
+                    <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการขาย</li>
+                    <li>ต้องการสูตรลัดแบบ Copy-Paste</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Real Cost
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90; margin-bottom: 0.8rem;">ลองคำนวณดู</p>
+            <p class="big-quote">ดีลที่หลุดไปเดือนละ 1 ดีล<br>เพราะคุณ<strong>ไม่รู้ว่าลูกค้าคิดอะไรอยู่</strong><br>มันมีมูลค่าเท่าไหร่?</p>
+            <p class="dark-band-sub">1,390 บาท กับ 1 ดีลที่กู้คืนมาได้ &mdash; คุ้มกว่ากี่เท่า?</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         PRICING
+         ═══════════════════════════════════════════════ -->
+    <div class="pricing-section" id="pricing">
+        <div class="pricing-inner rv">
+
+            <div class="notricks">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
+                <p class="notricks-list">
+                    ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;<br>
+                    ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;<br>
+                    ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน<br>
+                    ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด<br>
+                    ไม่มีการเทียบราคากาแฟ หรือเทียบค่าคอมฯ ที่เสียไป
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้มันกับคุณเอง</p>
+            </div>
+
+            <div class="value-context">
+                <h4 class="value-context-title">ถ้าคุณอยากเก่งขึ้นจากที่อื่น</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">คอร์ส Sales Training 2 วัน <span class="value-alt-note">(ได้ Script + Role Play สัปดาห์เดียวก็ลืม)</span></span>
+                    <span class="value-alt-price">15,000–40,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Sales Coaching 1-on-1 ต่อเดือน <span class="value-alt-note">(ดีแต่แพงและจบเมื่อหยุดจ่าย)</span></span>
+                    <span class="value-alt-price">10,000–30,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือ Sales ภาษาอังกฤษ 1 เล่ม <span class="value-alt-note">(สอน &ldquo;ทำอะไร&rdquo; แต่ไม่สอน &ldquo;ทำไม&rdquo;)</span></span>
+                    <span class="value-alt-price">500–1,200 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Workshop จิตวิทยาผู้บริโภค <span class="value-alt-note">(ครอบคลุมแค่ 2–3 หัวข้อ)</span></span>
+                    <span class="value-alt-price">25,000–50,000 ฿</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมจิตวิทยาทุกด้านของการตัดสินใจซื้อ <span class="value-alt-note">(ใช้ได้ตลอดชีวิต ทุกอุตสาหกรรม ทุกบริษัท)</span></span>
+                    <span class="value-alt-price">1,390 ฿</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
+            </div>
+
+            <div class="price-hero">
+                <div class="price-big">1,390</div>
+                <div class="price-unit">บาท</div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">ทำไมราคานี้?</h4>
+                <p>เพราะมันคือผลลัพธ์ของสิบกว่าปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; ทำไมคนถึงซื้อ? กรองผ่านงานวิจัยหลายร้อยชิ้น กลั่นผ่านธุรกิจจริงหลายสิบราย ทดสอบกับเงินจริงและลูกค้าจริง</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณปิดดีลเพิ่มได้แค่ 1 ดีลต่อเดือน &mdash; มันคืนทุนตั้งแต่สัปดาห์แรก</p>
+            </div>
+
+            <div class="reader-whisper rv">
+                <p class="whisper-label">ถ้าคุณอ่านมาถึงตรงนี้จริงๆ &mdash;</p>
+                <div class="whisper-body">
+                    <p>แปลว่าคุณไม่ได้แค่เลื่อนผ่าน คุณอ่าน คุณคิด คุณชั่งน้ำหนัก<br>
+                    คนแบบนี้คือนักขายที่จะเก่งขึ้นเร็วที่สุด</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน ลดอีก 200 บาท</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">ROOT200</span>
+                        <span class="whisper-copy-hint" id="copy-hint">คลิกเพื่อคัดลอก</span>
+                    </div>
+                    <p class="whisper-note">ไม่ใช่โปรโมชั่น ไม่มีนับถอยหลัง &mdash; แค่ขอบคุณที่ให้เวลากับมัน</p>
+                </div>
+            </div>
+
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
+            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FAQ — tailored for salespeople
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">คำถามที่พบบ่อย</div>
+        <h2 class="sec-title">ก่อนตัดสินใจ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมขายมาหลายปีแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
+            <p class="faq-a">ยิ่งขายมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมี &ldquo;สัญชาตญาณ&rdquo; อยู่แล้ว เล่มนี้จะอธิบายว่าทำไมสัญชาตญาณนั้นถึงได้ผล ทำให้คุณเปลี่ยนจาก &ldquo;บังเอิญปิดได้&rdquo; เป็น &ldquo;ตั้งใจปิดได้ทุกครั้ง&rdquo; และยังสอนทีมต่อได้ด้วย</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">นี่คือหนังสือ &ldquo;การตลาด&rdquo; ทำไมนักขายต้องอ่าน?</div>
+            <p class="faq-a">เพราะการตลาดและการขายมีรากเหมือนกัน &mdash; คือจิตวิทยาของการตัดสินใจ คุณขายแบบตัวต่อตัว แต่สมองลูกค้าทำงานเหมือนกันไม่ว่าจะเจอ Ad หรือเจอคุณนั่งอยู่ตรงหน้า หลักการเดียวกัน ใช้ได้หมด</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/">บทนำเปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันทีจากมือถือ</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">เอาไปเป็น Training Material ให้ทีมได้ไหม?</div>
+            <p class="faq-a">Unlock Code ใช้ได้หลายเครื่อง &mdash; แต่ถ้าจะซื้อให้ทีม แนะนำให้ซื้อแยกเพื่อให้แต่ละคนมี Copy ของตัวเอง เพราะวิธีที่ดีที่สุดคือให้อ่านเอง + มาพูดคุยกัน</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมไม่ชอบอ่านหนังสือ อ่านจบไหม?</div>
+            <p class="faq-a">เล่มนี้ออกแบบมาให้ <strong>หยุดไม่ได้</strong> &mdash; ทุกบทเปิดด้วยเรื่องจริงที่ทำให้อยากรู้คำตอบ ไม่ต้องอ่านรวดเดียว เปิดก่อน Meeting ก็ได้ อ่านระหว่างรอลูกค้าก็ได้ แต่ละบทจบในตัว</p>
+        </div>
+
+        <div class="faq-item" style="border: none;">
+            <div class="faq-q">ผมขาย B2B ใช้ได้ไหม? หรือแค่ B2C?</div>
+            <p class="faq-a">ใช้ได้ทั้งคู่ &mdash; เพราะไม่ว่าจะ B2B หรือ B2C คนที่ตัดสินใจคือ &ldquo;มนุษย์&rdquo; เหมือนกัน สมองของ Procurement Manager ก็ทำงานด้วย Oxytocin, Dopamine, และ Cortisol เหมือนลูกค้าใน 7-Eleven หลักการเดียวกัน แค่บริบทต่าง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FINAL CTA
+         ═══════════════════════════════════════════════ -->
+    <div class="final-cta">
+        <div class="final-cta-inner rv">
+            <h2>เทคนิคการขายเปลี่ยนทุกปี<br>แต่ &ldquo;สมองลูกค้า&rdquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
+            <p>ลงทุนกับทักษะที่ติดตัวไปทุกบริษัท ทุกอุตสาหกรรม ทุกยุค &mdash; ความเข้าใจว่าทำไมคนถึงซื้อ</p>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
+            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════ -->
+    <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SCRIPTS
+         ═══════════════════════════════════════════════ -->
+    <script>
+    (function() {
+        /* ── Progress bar ── */
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
+
+        /* ── Scroll reveal ── */
+        var els = document.querySelectorAll('.rv');
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        els.forEach(function(el) { io.observe(el); });
+    })();
+
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+        } else {
+            var t = document.createElement('textarea');
+            t.value = code;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+        }
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = '\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01\u0e41\u0e25\u0e49\u0e27 \u2713';
+        hint.style.color = 'var(--gold)';
+        setTimeout(function() {
+            hint.textContent = '\u0e04\u0e25\u0e34\u0e01\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01';
+            hint.style.color = '';
+        }, 2000);
+    }
+    </script>
+</body>
+</html>
