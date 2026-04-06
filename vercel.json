@@ -8,6 +8,9 @@
     { "source": "/start", "destination": "/sale-general.html" },
     { "source": "/ai", "destination": "/sale-ai.html" },
     { "source": "/sales", "destination": "/sale-sales.html" },
+    { "source": "/sme", "destination": "/sale-sme.html" },
+    { "source": "/ecom", "destination": "/sale-ecom.html" },
+    { "source": "/copywriter", "destination": "/sale-copywriter.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],

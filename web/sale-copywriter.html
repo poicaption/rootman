@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วการตลาด — เขียนให้คนอ่านไม่ใช่แค่ Like แต่ลงมือทำ</title>
+    <meta name="description" content="คุณเขียนดี Like เยอะ แต่ยอดขาย = 0? เพราะคุณเขียนให้สมองส่วนผิด — เรียนรู้วิธีเขียนให้สมองลูกค้าลงมือทำ">
+    <meta property="og:title" content="รากแก้วการตลาด — เขียนให้คนอ่านไม่ใช่แค่ Like แต่ลงมือทำ">
+    <meta property="og:description" content="เขียนดี Like เยอะ แต่ยอดขาย = 0? เพราะคุณเขียนให้สมองส่วนผิด">
+    <meta property="og:type" content="book">
+    <meta property="og:locale" content="th_TH">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
+    /></noscript>
+    <style>
+        :root{--bg:#FAFAF7;--bg-alt:#F3F0EB;--bg-warm:#FFF9F2;--bg-dark:#1A1714;--bg-dark2:#232019;--text:#2D2A26;--text-sec:#6B6560;--text-light:#9A948D;--accent:#C23B22;--accent-hover:#A83220;--accent-soft:rgba(194,59,34,0.08);--gold:#B8860B;--gold-bg:#FDF6E3;--warm:#C4956A;--border:#E0DCD6;--border-dark:#C8C2BA}
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:17px}body{font-family:'Sarabun',sans-serif;background:var(--bg);color:var(--text);line-height:1.9;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        #progress-bar{position:fixed;top:0;left:0;height:3px;width:0%;background:linear-gradient(90deg,var(--accent),var(--warm));z-index:10000;transition:width .1s linear}
+        .sec{max-width:660px;margin:0 auto;padding:4rem 1.5rem}.sec-wide{max-width:100%;padding:3.5rem 1.5rem}.sec p{margin-bottom:1rem}
+        .sec-label{font-family:'Prompt',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.25em;color:var(--gold);text-transform:uppercase;margin-bottom:.6rem}
+        .sec-title{font-family:'Prompt',sans-serif;font-size:clamp(1.25rem,3.5vw,1.6rem);font-weight:700;color:var(--text);line-height:1.5;margin-bottom:1.2rem}.sec-title em{font-style:normal;color:var(--accent)}
+        .hero{background:var(--bg-dark);color:#F5F0EB;padding:5rem 1.5rem 4rem;text-align:center;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 50% 80%,rgba(194,59,34,.06) 0%,transparent 60%);pointer-events:none}
+        .hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
+        .hero-inner{max-width:640px;margin:0 auto;position:relative}
+        .hero-eyebrow{font-family:'Prompt',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.25em;color:var(--warm);text-transform:uppercase;margin-bottom:1.5rem}
+        .hero h1{font-family:'Prompt',sans-serif;font-size:clamp(1.5rem,5vw,2.2rem);font-weight:700;line-height:1.45;margin-bottom:1.5rem}
+        .hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent) 0%,#E8744A 50%,var(--accent) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-sub{font-size:1rem;color:#A29A90;line-height:1.9;margin-bottom:.8rem;max-width:520px;margin-left:auto;margin-right:auto}
+        .hero-hook{font-family:'Noto Serif Thai',serif;font-size:1.05rem;color:#D4CFC7;line-height:1.8;margin:1.8rem auto 2.2rem;max-width:480px;font-style:italic}
+        .hero-cta{display:inline-block;padding:.9rem 2.8rem;border-radius:6px;background:var(--accent);color:#fff;font-family:'Prompt',sans-serif;font-size:1rem;font-weight:700;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(194,59,34,.25)}
+        .hero-cta:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 28px rgba(194,59,34,.35)}
+        .hero-note{font-size:.78rem;color:#6B6560;margin-top:1rem}.hero-note a{color:var(--warm);text-decoration:none;border-bottom:1px solid rgba(196,149,106,.3);transition:border-color .2s}.hero-note a:hover{border-color:var(--warm)}
+        .pull-quote{border-left:3px solid var(--warm);padding:.2rem 0 .2rem 1.3rem;margin:1.8rem 0;font-family:'Noto Serif Thai',serif;font-size:1rem;color:var(--text);line-height:1.9}
+        .pull-quote cite{display:block;font-family:'Sarabun',sans-serif;font-style:normal;font-size:.78rem;color:var(--text-light);margin-top:.5rem}
+        .scenario{padding:.8rem .8rem .8rem 1.2rem;border-left:2px solid var(--border);margin-bottom:.8rem;border-radius:6px;transition:border-color .3s,background .3s}
+        .scenario:hover{border-color:var(--accent);background:rgba(194,59,34,.02)}
+        .scenario-q{font-family:'Prompt',sans-serif;font-weight:600;font-size:.92rem;color:var(--text);margin-bottom:.15rem}
+        .scenario-a{font-size:.88rem;color:var(--text-sec);line-height:1.7;margin:0}
+        .dark-band{background:var(--bg-dark);color:#F5F0EB;padding:3.5rem 1.5rem;text-align:center;position:relative;border-top:1px solid rgba(196,149,106,.1);border-bottom:1px solid rgba(196,149,106,.1)}
+        .dark-band::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(196,149,106,.04) 0%,transparent 70%);pointer-events:none}
+        .dark-band-inner{max-width:600px;margin:0 auto;position:relative}.dark-band p{font-size:1rem;line-height:1.9;margin-bottom:.5rem}.dark-band strong{color:var(--warm)}
+        .dark-band .big-quote{font-family:'Prompt',sans-serif;font-size:clamp(1.1rem,3vw,1.35rem);font-weight:600;line-height:1.65;color:#fff;margin:1rem 0;text-shadow:0 0 60px rgba(196,149,106,.08)}.dark-band .big-quote strong{color:var(--warm)}
+        .dark-band-sub{color:var(--warm);font-size:.88rem;margin-top:1rem}
+        .compare{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:2rem 0}.compare-col{padding:1.5rem 1.3rem;border-radius:12px;transition:transform .2s}.compare-col:hover{transform:translateY(-2px)}
+        .compare-col h4{font-family:'Prompt',sans-serif;font-size:.82rem;font-weight:700;margin-bottom:.8rem;padding-bottom:.6rem}.compare-col ul{list-style:none;padding:0}.compare-col li{font-size:.85rem;line-height:1.7;padding:.35rem 0}
+        .compare-old{background:#F5F3F0;border:1px solid var(--border)}.compare-old h4{color:var(--text-sec);border-bottom:1px solid var(--border)}.compare-old li::before{content:'\2014 ';color:var(--text-light)}
+        .compare-new{background:var(--gold-bg);border:2px solid var(--gold);box-shadow:0 2px 12px rgba(184,134,11,.08);position:relative}
+        .compare-new::before{content:'\E0AD\E048\E032\E019\E041\E025\E049\E027\E044\E014\E049\E02A\E034\E048\E007\E019\E035\E049';position:absolute;top:-10px;right:12px;font-family:'Prompt',sans-serif;font-size:.62rem;font-weight:700;color:#fff;background:var(--gold);padding:.15rem .7rem;border-radius:10px;letter-spacing:.05em}
+        .compare-new h4{color:var(--gold);border-bottom:1px solid #E8D5A8}.compare-new li::before{content:'\2726 ';color:var(--gold)}.compare-new li{color:var(--text)}
+        .benefit-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin:2rem 0}
+        .benefit-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:1.6rem 1.5rem;border-top:3px solid var(--accent);position:relative;overflow:hidden;transition:box-shadow .3s,transform .2s}
+        .benefit-card::before{content:'';position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,rgba(194,59,34,.03),transparent);pointer-events:none}
+        .benefit-card:hover{box-shadow:0 6px 24px rgba(0,0,0,.06);transform:translateY(-2px)}
+        .benefit-num{font-family:'Prompt',sans-serif;font-size:.68rem;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.4rem}
+        .benefit-title{font-family:'Prompt',sans-serif;font-size:1.02rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.5}
+        .benefit-desc{font-size:.88rem;color:var(--text-sec);line-height:1.8;margin:0 0 .6rem}.benefit-example{font-size:.82rem;color:var(--text-light);font-style:italic;line-height:1.7;margin:0;padding-top:.5rem;border-top:1px solid var(--border)}
+        .gold-box{background:var(--gold-bg);border:1px solid #E8D5A8;border-radius:12px;padding:1.5rem 1.5rem;margin:2rem 0;border-left:4px solid var(--gold);box-shadow:0 2px 16px rgba(184,134,11,.06)}.gold-box p{font-size:.92rem;color:var(--text);margin:0;line-height:1.9}.gold-box strong{color:var(--gold)}
+        .proof-bar{display:flex;justify-content:center;gap:3rem;padding:2.5rem 0;flex-wrap:wrap}.proof-item{text-align:center}
+        .proof-num{font-family:'Prompt',sans-serif;font-size:2.2rem;font-weight:700;color:var(--accent);line-height:1.2;background:linear-gradient(135deg,var(--accent),var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .proof-label{font-size:.73rem;color:var(--text-sec);margin-top:.2rem}
+        .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin:2rem 0}.who-col{padding:1.5rem 1.3rem;border-radius:12px;box-shadow:0 1px 8px rgba(0,0,0,.03);transition:box-shadow .3s,transform .2s}.who-col:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-2px)}
+        .who-col h4{font-family:'Prompt',sans-serif;font-size:.82rem;font-weight:700;margin-bottom:.8rem;padding-bottom:.5rem}.who-col ul{list-style:none;padding:0}.who-col li{font-size:.85rem;line-height:1.7;padding:.3rem 0}
+        .who-yes{background:#F7FBF5;border:1px solid #D5E8CC}.who-yes h4{color:#4A7C3F;border-bottom:1px solid #D5E8CC}.who-yes li::before{content:'\2713 ';color:#4A7C3F;font-weight:700}
+        .who-no{background:#FDF5F4;border:1px solid #E8CCCC}.who-no h4{color:#8B4A4A;border-bottom:1px solid #E8CCCC}.who-no li::before{content:'\2717 ';color:#8B4A4A;font-weight:700}
+        .value-context{text-align:left;margin-bottom:2.5rem}.value-context-title{font-family:'Prompt',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:1.2rem}
+        .value-alt{display:flex;justify-content:space-between;align-items:baseline;padding:.65rem .5rem;border-bottom:1px solid var(--border);gap:.8rem;border-radius:4px;transition:background .2s}.value-alt:hover{background:rgba(0,0,0,.02)}
+        .value-alt-name{font-size:.85rem;color:var(--text-sec);line-height:1.6}.value-alt-note{font-size:.72rem;color:var(--text-light)}.value-alt-price{font-family:'Prompt',sans-serif;font-weight:600;font-size:.85rem;color:var(--text-sec);white-space:nowrap;flex-shrink:0}
+        .value-alt-this{border-bottom:2px solid var(--accent);padding-bottom:.7rem;background:rgba(194,59,34,.03)}.value-alt-this:hover{background:rgba(194,59,34,.06)}.value-alt-this .value-alt-name{color:var(--text);font-weight:600}.value-alt-this .value-alt-note{color:var(--text-sec)}.value-alt-this .value-alt-price{color:var(--accent);font-size:1rem;font-weight:700}
+        .value-meta{font-size:.78rem;color:var(--text-light);font-style:italic;margin-top:1.2rem;line-height:1.85}.value-meta em{font-style:normal;color:var(--accent);font-weight:600}
+        .pricing-section{text-align:center;padding:4rem 1.5rem;background:linear-gradient(180deg,var(--bg-alt) 0%,var(--bg-warm) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+        .pricing-inner{max-width:580px;margin:0 auto}
+        .notricks{text-align:left;margin-bottom:2.5rem;padding:2rem 2rem;background:#fff;border-radius:14px;border:1px solid var(--border);position:relative;overflow:hidden}
+        .notricks::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--accent),var(--warm));border-radius:3px 0 0 3px}
+        .notricks-title{font-family:'Prompt',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:1rem}.notricks-title u{text-decoration-color:var(--accent);text-underline-offset:3px}
+        .notricks-list{font-size:.88rem;color:var(--warm);line-height:2;margin-bottom:1.2rem}.notricks-why{font-size:.92rem;color:var(--text);line-height:1.9}.notricks-why strong{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+        .price-hero{margin:2rem 0 2.5rem;position:relative}.price-big{font-family:'Prompt',sans-serif;font-size:clamp(3rem,7vw,4.5rem);font-weight:700;line-height:1.1;color:var(--gold);text-shadow:0 2px 40px rgba(184,134,11,.15)}.price-unit{font-family:'Prompt',sans-serif;font-size:1rem;color:var(--text-sec);letter-spacing:.08em}
+        .price-reason{text-align:left;margin-bottom:2rem;background:#fff;border-radius:12px;padding:1.5rem 1.8rem;border:1px solid var(--border)}.price-reason-title{font-family:'Prompt',sans-serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.8rem}.price-reason p{font-size:.88rem;color:var(--text-sec);line-height:1.9;margin-bottom:.8rem}
+        @keyframes cta-pulse{0%,100%{box-shadow:0 4px 16px rgba(194,59,34,.2)}50%{box-shadow:0 4px 28px rgba(194,59,34,.35)}}
+        .pricing-cta{display:inline-block;width:100%;padding:1rem 2rem;border-radius:8px;background:var(--accent);color:#fff;font-family:'Prompt',sans-serif;font-size:1.1rem;font-weight:700;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;margin-top:.5rem;box-shadow:0 4px 16px rgba(194,59,34,.2);animation:cta-pulse 3s ease-in-out infinite}
+        .pricing-cta:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 24px rgba(194,59,34,.3);animation:none}
+        .pricing-note{font-size:.78rem;color:var(--text-light);margin-top:1rem}.pricing-sub-note{font-size:.82rem;color:var(--text-sec);margin-top:1.5rem;line-height:1.8}
+        .reader-whisper{margin-top:1.8rem;padding:1.3rem 1.5rem;border:1px dashed var(--border-dark);border-radius:10px;background:rgba(255,255,255,.5);position:relative}
+        .reader-whisper::before{content:'';position:absolute;top:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg,transparent,var(--warm),transparent)}
+        .whisper-label{font-family:'Noto Serif Thai',serif;font-size:.78rem;color:var(--text-sec);font-style:italic;margin-bottom:.6rem;line-height:1.7}
+        .whisper-body{font-family:'Sarabun',sans-serif;font-size:.82rem;color:var(--text);line-height:1.8}.whisper-code-wrap{display:inline-flex;align-items:center;gap:.5rem;margin-top:.5rem}
+        .whisper-code{font-family:'IBM Plex Sans Thai','Prompt',monospace;font-size:.88rem;font-weight:700;color:var(--accent);background:var(--accent-soft);padding:.3rem .8rem;border-radius:6px;letter-spacing:.12em;border:1px solid rgba(194,59,34,.12);cursor:pointer;transition:background .2s,border-color .2s;user-select:all}
+        .whisper-code:hover{background:rgba(194,59,34,.12);border-color:rgba(194,59,34,.25)}.whisper-copy-hint{font-size:.65rem;color:var(--text-light);transition:color .3s}.whisper-note{font-size:.72rem;color:var(--text-light);margin-top:.5rem;line-height:1.7}
+        .faq-item{border-bottom:1px solid var(--border);padding:1.3rem .5rem;border-radius:6px;transition:background .2s;margin-bottom:.2rem}.faq-item:hover{background:rgba(0,0,0,.015)}
+        .faq-q{font-family:'Prompt',sans-serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.5rem}
+        .faq-q::before{content:'Q';display:inline-flex;align-items:center;justify-content:center;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-size:.62rem;font-weight:700;margin-right:.5rem;flex-shrink:0;vertical-align:middle}
+        .faq-a{font-size:.88rem;color:var(--text-sec);line-height:1.85;margin:0}.faq-a a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(194,59,34,.3);transition:border-color .2s}.faq-a a:hover{border-color:var(--accent)}
+        .final-cta{background:linear-gradient(165deg,#1A1714 0%,#2A2520 40%,#1A1714 100%);color:#F5F0EB;padding:4rem 1.5rem;text-align:center;position:relative;overflow:hidden}
+        .final-cta::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at center bottom,rgba(194,59,34,.06) 0%,transparent 60%);pointer-events:none}
+        .final-cta-inner{max-width:560px;margin:0 auto;position:relative}
+        .final-cta h2{font-family:'Prompt',sans-serif;font-size:clamp(1.15rem,3vw,1.4rem);font-weight:700;line-height:1.55;margin-bottom:.8rem;background:linear-gradient(135deg,#F5F0EB,var(--warm));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .final-cta p{color:#A29A90;font-size:.92rem;margin-bottom:1.5rem}
+        .final-cta-btn{display:inline-block;padding:.9rem 3rem;border-radius:6px;background:var(--accent);color:#fff;font-family:'Prompt',sans-serif;font-size:1rem;font-weight:700;text-decoration:none;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 20px rgba(194,59,34,.25);animation:cta-pulse 3s ease-in-out infinite}
+        .final-cta-btn:hover{background:var(--accent-hover);transform:translateY(-2px);box-shadow:0 6px 28px rgba(194,59,34,.35);animation:none}
+        .final-cta-note{font-size:.78rem;color:#6B6560;margin-top:.8rem}
+        .final-cta-free{display:inline-block;margin-top:1rem;color:var(--warm);font-size:.85rem;text-decoration:none;border-bottom:1px solid rgba(196,149,106,.3);transition:border-color .2s}.final-cta-free:hover{border-color:var(--warm)}
+        .thin-div{height:1px;background:linear-gradient(90deg,transparent,var(--border-dark),transparent);max-width:200px;margin:0 auto}
+        .sp-footer{text-align:center;padding:2rem 1.5rem;font-size:.72rem;color:var(--text-light);border-top:1px solid var(--border)}
+        .sec::before{content:'';display:block;width:40px;height:2px;background:linear-gradient(90deg,var(--warm),transparent);margin-bottom:1.8rem;border-radius:2px}.sec:first-of-type::before{display:none}
+        .sec-label::before{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--gold);margin-right:.5rem;vertical-align:middle}
+        .rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}.rv.vis{opacity:1;transform:none}.rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+        @media(max-width:768px){html{font-size:16px}.sec{padding:3rem 1.3rem}.hero{padding:4rem 1.3rem 3rem}.hero h1{font-size:clamp(1.3rem,5vw,1.8rem)}.dark-band{padding:2.8rem 1.3rem}.compare{gap:.8rem}.compare-col{padding:1.2rem 1rem}.pricing-section{padding:3rem 1.3rem}.notricks{padding:1.5rem 1.3rem}.price-big{font-size:clamp(2.8rem,7vw,3.5rem)}.final-cta{padding:3rem 1.3rem}}
+        @media(max-width:640px){.compare,.who-grid{grid-template-columns:1fr}.hero-cta{display:block;width:100%;text-align:center}.final-cta-btn{display:block;width:100%;max-width:360px;margin:0 auto;text-align:center}.proof-bar{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem 1rem;max-width:320px;margin:0 auto;padding:2rem 0}}
+        @media(max-width:420px){html{font-size:15px}.sec{padding:2.5rem 1rem}.hero{padding:3rem 1rem 2.5rem}.hero h1{font-size:1.2rem;line-height:1.55}.sec-title{font-size:1.1rem}.dark-band{padding:2.2rem 1rem}.dark-band .big-quote{font-size:1rem;line-height:1.7}.price-big{font-size:2.5rem}.pricing-section{padding:2.5rem 1rem}.notricks{padding:1.2rem 1rem}.final-cta{padding:2.5rem 1rem}}
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-inner rv">
+            <div class="hero-eyebrow">The One Root of Marketing</div>
+            <h1>เขียนดี Like เยอะ<br>แต่ยอดขาย = 0<br><em>เพราะคุณเขียนให้สมองส่วนผิด</em></h1>
+            <p class="hero-sub">คุณเขียน Content ที่คนอ่านชอบ กด Like กด Share &mdash; แต่ไม่มีใคร &ldquo;ทำ&rdquo; ตามที่คุณอยากให้ทำ เพราะสมองส่วนที่ &ldquo;ชอบ&rdquo; กับส่วนที่ &ldquo;ซื้อ&rdquo; คนละส่วนกัน</p>
+            <p class="hero-hook">&ldquo;Copywriter ที่ดีที่สุดไม่ได้เขียนให้คนอ่าน &mdash; เขาเขียนให้สมองตอบ&rdquo;</p>
+            <a href="#pricing" class="hero-cta">เขียนให้สมองลูกค้าลงมือทำ</a>
+            <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
+        </div>
+    </div>
+
+    <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
+
+    <!-- PAIN POINTS -->
+    <div class="sec rv">
+        <div class="sec-label">ปัญหา</div>
+        <h2 class="sec-title">คุณเขียนเก่ง<br>แต่<em>ตัวหนังสือไม่ขยับคน</em></h2>
+
+        <p>ถ้าเป็น Copywriter หรือ Content Creator สถานการณ์เหล่านี้คงคุ้นเคย:</p>
+
+        <div class="scenario">
+            <div class="scenario-q">เขียน Content ที่คนชอบ Like เยอะ Comment เยอะ &mdash; แต่ยอดขาย = 0</div>
+            <p class="scenario-a">Reach ดี Engagement ดี แต่ไม่มีใครกดซื้อ ไม่มีใครกดสมัคร &mdash; รู้สึกเหมือนเขียนให้คนดูแต่ไม่ใช่ให้คนทำ</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">&ldquo;เขียนดี&rdquo; ลูกค้าบอก &mdash; แล้วก็ไม่จ้างต่อ</div>
+            <p class="scenario-a">ลูกค้าชมว่าเขียนสวย แต่พอดูยอดขายจากงานที่เขียน &mdash; ไม่ขยับ สุดท้ายก็ไม่ต่อสัญญา</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ไม่รู้ว่าทำไม Copy บางชิ้น Work บางชิ้นไม่</div>
+            <p class="scenario-a">เขียนเหมือนกัน Framework เดียวกัน แต่ผลลัพธ์ต่างกันทุกครั้ง ได้แต่เดาว่า &ldquo;อันนี้น่าจะ Work&rdquo;</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">ลูกค้าบอก &ldquo;เขียนให้ขายได้&rdquo; แต่ไม่รู้จะเริ่มตรงไหน</div>
+            <p class="scenario-a">คุณเขียนเก่ง แต่ &ldquo;เขียนให้ขายได้&rdquo; ต้องใช้ความรู้คนละชุดกับ &ldquo;เขียนให้คนอ่าน&rdquo;</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">กลัวว่า AI จะมาแทนที่งานเขียน</div>
+            <p class="scenario-a">AI เขียนได้แล้ว เขียนเร็วกว่า ถูกกว่า &mdash; แต่ AI ไม่รู้ว่าทำไมคนถึงซื้อ ถ้าคุณรู้ &mdash; คุณจะไม่ถูกแทนที่</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาทั้งหมดนี้ไม่ใช่เรื่อง &ldquo;ภาษา&rdquo; ไม่ใช่เรื่อง &ldquo;ฝีมือเขียน&rdquo; &mdash;</p>
+
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">ปัญหาคือคุณเขียนให้ &ldquo;สมองส่วนคิด&rdquo; &mdash; แต่คน<em>ตัดสินใจซื้อด้วยสมองส่วนรู้สึก</em></p>
+    </div>
+
+
+    <!-- DARK BAND -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.88rem; color: #A29A90; margin-bottom: 1rem;">ความจริงที่ Copywriter ระดับโลกรู้</p>
+            <p class="big-quote">&ldquo;Content ที่ดีที่สุดในโลก<br>ไม่ได้เก่งเรื่องภาษา &mdash;<br>มันเก่งเรื่อง<strong>จิตวิทยาของสมอง</strong>&rdquo;</p>
+            <p class="dark-band-sub">David Ogilvy รู้เรื่องนี้ Apple ใช้เรื่องนี้ &mdash; และคุณก็เรียนได้</p>
+        </div>
+    </div>
+
+
+    <!-- MECHANISM -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คอร์ส Copywriting ไม่ได้สอน</div>
+        <h2 class="sec-title">ลูกค้าไม่ได้ &ldquo;อ่าน&rdquo; Content ของคุณ<br>สมองเขาแค่<em>สแกน 0.3 วินาที</em>แล้วตัดสิน</h2>
+
+        <p>สมองไม่ได้อ่านทุกตัวอักษร &mdash; สมอง<strong>สแกน</strong>แล้วตัดสินว่า: เลื่อนผ่าน หรือ หยุด</p>
+
+        <p>การตัดสินใจนั้นเกิดจากสารเคมี 3 ตัว:</p>
+
+        <p><strong>Dopamine</strong> (สารแห่งความอยาก) &mdash; กระตุ้นเมื่อเจอสิ่งที่ &ldquo;คาดไม่ถึง&rdquo; หรือ &ldquo;ทำให้อยากรู้ต่อ&rdquo; ถ้า Hook ของคุณไม่กระตุ้น Dopamine &mdash; ลูกค้าเลื่อนผ่านทุกครั้ง ไม่ว่า Body Copy จะดีแค่ไหน</p>
+
+        <p><strong>Oxytocin</strong> (สารแห่งความไว้วางใจ) &mdash; หลั่งเมื่อรู้สึกว่า &ldquo;คนนี้เข้าใจเรา&rdquo; Storytelling ที่ดีไม่ได้เล่าเรื่องสวยๆ &mdash; มันสร้าง Oxytocin ที่ทำให้คนอ่านรู้สึกว่า &ldquo;คนเขียนนี้คือพวกเดียวกัน&rdquo;</p>
+
+        <p><strong>Cortisol</strong> (สารแห่งความกลัว) &mdash; ทำให้รู้สึก &ldquo;ถ้าไม่ทำตอนนี้จะเสีย&rdquo; CTA ที่ดีไม่ได้บอกว่า &ldquo;ซื้อเลย&rdquo; &mdash; CTA ที่ดีกระตุ้น Cortisol ที่ทำให้คนอ่าน<em>ต้อง</em>กดตอนนี้</p>
+
+        <div class="pull-quote">
+            เขียนให้คน &ldquo;รู้สึกดี&rdquo; กับเขียนให้คน &ldquo;ลงมือทำ&rdquo; ต้องใช้คนละเทคนิค ถ้ารู้เรื่องนี้ ทุกบรรทัดที่เขียนจะเปลี่ยนความหมาย
+            <cite>&mdash; จากบทที่ 4: The Story Arc</cite>
+        </div>
+
+        <div class="gold-box">
+            <p>คุณไม่ต้องเปลี่ยนสไตล์การเขียน<br><strong>แค่เข้าใจว่าสมองคนอ่านทำงานยังไง &mdash; ทุกบรรทัดที่เขียนจะมีพลังมากขึ้น</strong></p>
+        </div>
+    </div>
+
+
+    <!-- COMPARISON -->
+    <div class="sec rv">
+        <div class="sec-label">เปรียบเทียบ</div>
+        <h2 class="sec-title">&ldquo;เขียนตามที่รู้สึก&rdquo; vs<br><em>&ldquo;เขียนจากจิตวิทยาสมอง&rdquo;</em></h2>
+
+        <div class="compare">
+            <div class="compare-col compare-old">
+                <h4>เขียนตามที่รู้สึก</h4>
+                <ul>
+                    <li>Hook ที่ &ldquo;น่าจะดี&rdquo;</li>
+                    <li>Body Copy แบบไม่รู้ว่ายาวพอหรือยัง</li>
+                    <li>CTA: &ldquo;ซื้อเลย!&rdquo;</li>
+                    <li>ไม่รู้ว่าทำไม Copy นี้ Work</li>
+                    <li>บาง Copy ดี บาง Copy ไม่ &mdash; เดาไม่ออก</li>
+                    <li>ลูกค้าชมว่า &ldquo;เขียนดี&rdquo; แต่ไม่จ้างต่อ</li>
+                </ul>
+            </div>
+            <div class="compare-col compare-new">
+                <h4>เขียนจากจิตวิทยา</h4>
+                <ul>
+                    <li>Hook ที่กระตุ้น Dopamine ตรงจุด</li>
+                    <li>Body ที่สร้าง Oxytocin ทีละชั้น</li>
+                    <li>CTA ที่ใช้ Cortisol + Scarcity</li>
+                    <li>รู้ว่า &ldquo;ทำไม&rdquo; Work &rarr; ทำซ้ำได้ทุกครั้ง</li>
+                    <li>ออกแบบ Copy ให้ Work ก่อนเขียน</li>
+                    <li>ลูกค้าเห็นยอดขาย &rarr; จ้างต่อทันที</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- DARK BAND 2 -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90;">ในยุคที่ AI เขียน Content ได้</p>
+            <p class="big-quote">Copywriter ที่เข้าใจว่า<strong>ทำไมคนซื้อ</strong><br>จะไม่มีวันถูกแทนที่ &mdash;<br>เพราะ AI เขียนได้ แต่<strong>ไม่รู้ว่าทำไมมัน Work</strong></p>
+        </div>
+    </div>
+
+
+    <!-- BOOK BENEFITS -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คุณจะได้</div>
+        <h2 class="sec-title">12 บท + 5 บทพิเศษ<br>ที่เปลี่ยน<em>ทุกบรรทัดที่คุณเขียน</em>ตลอดชีวิต</h2>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1">
+                <div class="benefit-num">Hook</div>
+                <div class="benefit-title">เขียน Hook ที่สมองหยุดเลื่อนภายใน 0.3 วินาที</div>
+                <p class="benefit-desc">Dopamine Loop + Pattern Interrupt &mdash; สมองจะหยุดเมื่อเจอ &ldquo;สิ่งที่คาดไม่ถึง&rdquo; เรียนรู้กลไกที่ทำให้ Hook บาง Hook &ldquo;ดึง&rdquo; ได้ และบาง Hook แค่ &ldquo;ผ่าน&rdquo;</p>
+                <p class="benefit-example">เช่น: ทำไม &ldquo;5 วิธีเพิ่มยอดขาย&rdquo; สมองเลื่อนผ่าน แต่ &ldquo;ร้านที่ขายดีที่สุดในย่านนี้ไม่เคยลดราคาสักครั้ง&rdquo; สมองหยุด?</p>
+            </div>
+
+            <div class="benefit-card rv rv-d2">
+                <div class="benefit-num">Storytelling</div>
+                <div class="benefit-title">เล่าเรื่องที่ทำให้คนอ่าน &ldquo;เชื่อ&rdquo; โดยไม่ต้องพิสูจน์</div>
+                <p class="benefit-desc">Story Arc + Oxytocin &mdash; เรื่องราวที่ดีไม่ได้แค่สนุก &mdash; มันสร้างสารเคมีที่ทำให้คนอ่าน &ldquo;ไว้ใจ&rdquo; คนเขียน เรียนรู้โครงสร้างเรื่องที่สมองตอบรับทุกครั้ง</p>
+                <p class="benefit-example">เช่น: ทำไมโฆษณาที่เล่าเรื่องชีวิตจริงถึงขายดีกว่าโฆษณาที่บอก Feature? &mdash; เพราะ Story สร้าง Oxytocin แต่ Feature สร้างแค่ &ldquo;ข้อมูล&rdquo;</p>
+            </div>
+
+            <div class="benefit-card rv rv-d3">
+                <div class="benefit-num">Persuasion</div>
+                <div class="benefit-title">เปลี่ยนคนอ่านจาก &ldquo;น่าสนใจ&rdquo; เป็น &ldquo;ต้องซื้อตอนนี้&rdquo;</div>
+                <p class="benefit-desc">Loss Aversion + Scarcity + Breaking Resistance &mdash; มนุษย์กลัวเสียมากกว่าอยากได้ 2.5 เท่า เรียนรู้วิธีเขียน CTA ที่ทำให้คนอ่าน &ldquo;ต้อง&rdquo; กด ไม่ใช่ &ldquo;อยาก&rdquo; กด</p>
+                <p class="benefit-example">เช่น: CTA &ldquo;ซื้อเลย&rdquo; vs &ldquo;คนที่ซื้อไปเมื่อวานบอกว่าน่าจะซื้อตั้งนานแล้ว &mdash; เหลืออีก 8 ชิ้น&rdquo; &mdash; ตัวไหนทำให้สมองกด?</p>
+            </div>
+
+            <div class="benefit-card rv">
+                <div class="benefit-num">Social Proof</div>
+                <div class="benefit-title">ใช้ &ldquo;คนอื่น&rdquo; ช่วยขายแทนคุณ</div>
+                <p class="benefit-desc">Social Proof + Tribal Belonging &mdash; คนไม่ได้เชื่อคนเขียน เขาเชื่อ &ldquo;คนอื่นที่เหมือนเขา&rdquo; เรียนรู้วิธีใส่ Social Proof ในงานเขียนที่สมองตอบรับทันที</p>
+                <p class="benefit-example">เช่น: ทำไม &ldquo;ขายไปแล้ว 10,000 ชิ้น&rdquo; ไม่ค่อยได้ผล แต่ &ldquo;คุณแม่ท่านหนึ่งส่งข้อความมาว่า...&rdquo; ถึงได้ผล?</p>
+            </div>
+
+            <div class="benefit-card rv" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">Price Copy</div>
+                <div class="benefit-title">เขียน Copy ราคาที่ทำให้ &ldquo;รู้สึกถูก&rdquo; โดยไม่ต้องลด</div>
+                <p class="benefit-desc">Anchoring + Framing &mdash; วิธีที่คุณ &ldquo;เขียน&rdquo; ราคาเปลี่ยนความรู้สึกของคนอ่านได้ทั้งหมด เรียนรู้เทคนิค Framing ที่ทำให้ราคาเดิม &ldquo;รู้สึกคุ้ม&rdquo; ขึ้นทันที</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- PROOF BAR -->
+    <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+        <div class="proof-bar rv">
+            <div class="proof-item"><div class="proof-num">12</div><div class="proof-label">บทเต็ม</div></div>
+            <div class="proof-item"><div class="proof-num">5</div><div class="proof-label">บทพิเศษ (Bonus)</div></div>
+            <div class="proof-item"><div class="proof-num">100+</div><div class="proof-label">งานวิจัยอ้างอิง</div></div>
+            <div class="proof-item"><div class="proof-num">200,000</div><div class="proof-label">ปีของหลักฐาน<br><span style="font-size: 0.62rem; color: var(--text-light);">(สมองมนุษย์)</span></div></div>
+        </div>
+    </div>
+
+
+    <!-- NOT A TEXTBOOK -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ต่าง</div>
+        <h2 class="sec-title">นี่ไม่ใช่ &ldquo;สูตรเขียน Copy&rdquo;<br><em>นี่คือ Source Code ของ Persuasion</em></h2>
+
+        <p>สูตร Copywriting สอนให้คุณเขียน &ldquo;ตามแบบ&rdquo; &mdash; เล่มนี้สอนว่าทำไมแบบนั้นถึงได้ผล ทำให้คุณ<em>สร้างแบบใหม่ได้เอง</em></p>
+
+        <div class="scenario">
+            <div class="scenario-q">เขียนสไตล์ Robert Greene &times; Malcolm Gladwell</div>
+            <p class="scenario-a">อ่านสนุก ลึก แต่ไม่หนัก &mdash; ในฐานะคนเขียน คุณจะได้เรียนรู้ &ldquo;วิธีเขียน&rdquo; ไปในตัว</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
+            <p class="scenario-a">ออกแบบเป็น Web Book &mdash; เปิดอ่านได้ระหว่างรอ Brief ไม่ต้องโหลด App</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">มี Third Eye Note ซ่อนอยู่ทั่วหนังสือ</div>
+            <p class="scenario-a">กดเปิดแล้วจะเห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; เรียนรู้ Copywriting จากการ &ldquo;ถูก Copy&rdquo; จริง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">แต่ละบทจบในตัว กระโดดไปเรื่องที่ต้องการได้เลย</div>
+            <p class="scenario-a">ลูกค้าให้ Brief มา? กระโดดไปบทที่เกี่ยวข้อง ใช้เป็น Reference ได้ทันที</p>
+        </div>
+
+        <div class="gold-box">
+            <p>ในฐานะคนเขียน หนังสือเล่มนี้จะทำสองอย่างพร้อมกัน:<br><strong>1) สอนจิตวิทยาที่ทำให้งานเขียนมีพลัง</strong><br><strong>2) แสดงวิธีใช้จิตวิทยานั้น &ldquo;กับคุณ&rdquo; จริงๆ ในขณะที่คุณอ่าน</strong></p>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 0.5rem 0;">
+        <span style="font-size: 0.6rem; color: var(--border-dark); letter-spacing: 1em;">&#x25C6; &#x25C6; &#x25C6;</span>
+    </div>
+
+    <!-- WHO IS THIS FOR -->
+    <div class="sec rv">
+        <div class="sec-label">ใช่สำหรับคุณไหม?</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับนักเขียนแบบไหน<br>และ<em>ไม่เหมาะ</em>กับแบบไหน</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>เป็น Copywriter ที่อยากเขียนให้ &ldquo;ขายได้&rdquo; จริง</li>
+                    <li>เป็น Content Creator ที่ Engagement ดีแต่ยอดขายไม่ขยับ</li>
+                    <li>อยากรู้ &ldquo;ทำไม&rdquo; Copy บางชิ้น Work ไม่ใช่แค่ &ldquo;ทำอะไร&rdquo;</li>
+                    <li>อยากสร้าง Unfair Advantage เหนือ AI</li>
+                    <li>อยากเพิ่มมูลค่างานเขียนและเรทค่าจ้าง</li>
+                    <li>อยากเข้าใจจิตวิทยาลึกๆ ไม่ใช่แค่ Hack</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>ไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>อยากได้แค่ &ldquo;Template Copy 100 อัน&rdquo;</li>
+                    <li>ไม่สนใจว่า &ldquo;ทำไม&rdquo; คนซื้อ แค่อยากได้สูตร</li>
+                    <li>คิดว่า Copywriting คือแค่เรื่อง &ldquo;ภาษา&rdquo;</li>
+                    <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการเขียน</li>
+                    <li>อยากเก่งขึ้นภายใน 24 ชั่วโมง</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> &mdash; ในฐานะนักเขียน คุณจะสังเกตเทคนิคที่ใช้กับคุณได้ทันที</p>
+    </div>
+
+
+    <!-- DARK BAND: ROI -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90; margin-bottom: 0.8rem;">ลองคิดดู</p>
+            <p class="big-quote">ถ้าเข้าใจจิตวิทยาแล้ว<br>งานเขียนทุกชิ้นของคุณ<strong>ขายได้มากขึ้น</strong><br>เรทค่าจ้างจะขยับขึ้นเท่าไหร่?</p>
+            <p class="dark-band-sub">1,390 บาท กับทักษะที่เปลี่ยนทุกบรรทัดที่เขียนตลอดชีวิต</p>
+        </div>
+    </div>
+
+
+    <!-- PRICING -->
+    <div class="pricing-section" id="pricing">
+        <div class="pricing-inner rv">
+
+            <div class="notricks">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
+                <p class="notricks-list">
+                    ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;<br>
+                    ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;<br>
+                    ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน<br>
+                    ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้มันกับคุณเอง</p>
+            </div>
+
+            <div class="value-context">
+                <h4 class="value-context-title">ถ้าคุณอยากเก่ง Copywriting จากที่อื่น</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">คอร์ส Copywriting 2 วัน <span class="value-alt-note">(สอนสูตร เปลี่ยนทุกปี)</span></span>
+                    <span class="value-alt-price">8,000&ndash;20,000 &#x0E3F;</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือ Copywriting ภาษาอังกฤษ <span class="value-alt-note">(สอน &ldquo;ทำอะไร&rdquo; แต่ไม่สอน &ldquo;ทำไม&rdquo;)</span></span>
+                    <span class="value-alt-price">500&ndash;1,200 &#x0E3F;</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Workshop จิตวิทยาผู้บริโภค <span class="value-alt-note">(ครอบคลุมแค่ 2&ndash;3 หัวข้อ)</span></span>
+                    <span class="value-alt-price">25,000&ndash;50,000 &#x0E3F;</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมจิตวิทยาทุกด้านที่ทำให้ &ldquo;ตัวหนังสือ&rdquo; ขยับคน <span class="value-alt-note">(ใช้ได้ตลอดชีวิต ไม่ว่าจะเขียนอะไร)</span></span>
+                    <span class="value-alt-price">1,390 &#x0E3F;</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
+            </div>
+
+            <div class="price-hero">
+                <div class="price-big">1,390</div>
+                <div class="price-unit">บาท</div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">ทำไมราคานี้?</h4>
+                <p>เพราะมันคือผลลัพธ์ของสิบกว่าปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; ทำไมคนถึงซื้อ? กรองผ่านงานวิจัยหลายร้อยชิ้น กลั่นผ่านธุรกิจจริงหลายสิบราย</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้ Copy ของคุณ Convert ดีขึ้น &mdash; ลูกค้าจะจ่ายค่าจ้างเพิ่มให้คุณเอง</p>
+            </div>
+
+            <div class="reader-whisper rv">
+                <p class="whisper-label">ถ้าคุณอ่านมาถึงตรงนี้จริงๆ &mdash;</p>
+                <div class="whisper-body">
+                    <p>ในฐานะนักเขียน คุณน่าจะสังเกตเห็นแล้วว่าหน้านี้ใช้เทคนิคอะไรบ้าง<br>
+                    ถ้าสังเกตเห็น &mdash; คุณจะได้ประโยชน์จากเล่มนี้มากที่สุด</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน ลดอีก 200 บาท</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">ROOT200</span>
+                        <span class="whisper-copy-hint" id="copy-hint">คลิกเพื่อคัดลอก</span>
+                    </div>
+                    <p class="whisper-note">ไม่ใช่โปรโมชั่น ไม่มีนับถอยหลัง &mdash; แค่ขอบคุณที่ให้เวลากับมัน</p>
+                </div>
+            </div>
+
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
+            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
+        </div>
+    </div>
+
+
+    <!-- FAQ -->
+    <div class="sec rv">
+        <div class="sec-label">คำถามที่พบบ่อย</div>
+        <h2 class="sec-title">ก่อนตัดสินใจ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมเป็น Copywriter มาหลายปีแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
+            <p class="faq-a">ยิ่งเขียนมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมี &ldquo;สัญชาตญาณ&rdquo; อยู่แล้ว เล่มนี้จะอธิบายว่า<em>ทำไม</em>สัญชาตญาณนั้นถึงได้ผล ทำให้คุณเปลี่ยนจาก &ldquo;เดาว่าดี&rdquo; เป็น &ldquo;รู้ว่าดี&rdquo; และสอนลูกทีมต่อได้ด้วย</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ต่างจากหนังสือ Copywriting เล่มอื่นยังไง?</div>
+            <p class="faq-a">หนังสือ Copywriting ส่วนใหญ่สอน &ldquo;สูตร&rdquo; (AIDA, PAS, 4U) &mdash; เล่มนี้สอน &ldquo;ทำไม&rdquo; สูตรเหล่านั้นถึง Work ทำให้คุณสร้างสูตรใหม่ได้เอง ไม่ต้องยึดติดกับ Framework คนอื่น</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/">บทนำเปิดให้อ่านฟรีทั้งหมด</a> ในฐานะนักเขียน ลองอ่านแล้วสังเกตว่าคุณ &ldquo;หยุดตรงไหน&rdquo; และ &ldquo;ทำไม&rdquo;</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันทีจากมือถือ</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมเป็น Content Creator ไม่ใช่ Copywriter อ่านได้ไหม?</div>
+            <p class="faq-a">ได้เลย &mdash; เพราะไม่ว่าจะเขียน Copy, Content, Script, หรือ Caption &mdash; สมองคนอ่านทำงานเหมือนกันทั้งหมด หลักการเดียว ใช้ได้กับงานเขียนทุกรูปแบบ</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">AI เขียนได้แล้ว อ่านเล่มนี้จะช่วยยังไง?</div>
+            <p class="faq-a">AI เขียน &ldquo;ได้&rdquo; แต่ไม่รู้ว่า &ldquo;ทำไม&rdquo; มัน Work นักเขียนที่เข้าใจจิตวิทยาจะกลายเป็นคน &ldquo;สั่ง AI ได้ตรงจุด&rdquo; และ &ldquo;ตรวจงาน AI ได้&rdquo; &mdash; นั่นคือ Unfair Advantage ที่ AI สร้างให้ตัวเองไม่ได้</p>
+        </div>
+
+        <div class="faq-item" style="border: none;">
+            <div class="faq-q">เขียนภาษาไทยอ่านง่ายไหม?</div>
+            <p class="faq-a">เล่มนี้เขียนเป็นภาษาไทยทั้งหมด สไตล์เล่าเรื่องที่อ่านสนุก ทุกคำศัพท์ภาษาอังกฤษมีคำอธิบายทันทีที่ใช้ ไม่ต้องมีพื้นฐานอะไรมาก่อน</p>
+        </div>
+    </div>
+
+
+    <!-- FINAL CTA -->
+    <div class="final-cta">
+        <div class="final-cta-inner rv">
+            <h2>สูตร Copywriting เปลี่ยนทุกปี<br>แต่ &ldquo;สมองคนอ่าน&rdquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
+            <p>ลงทุนกับความเข้าใจที่เปลี่ยนทุกบรรทัดที่คุณเขียน &mdash; ตลอดชีวิต</p>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
+            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+        </div>
+    </div>
+
+    <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
+
+    <script>
+    (function() {
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            bar.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + '%';
+        }, { passive: true });
+        var els = document.querySelectorAll('.rv');
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('vis'); io.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        els.forEach(function(el) { io.observe(el); });
+    })();
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) { navigator.clipboard.writeText(code); }
+        else { var t = document.createElement('textarea'); t.value = code; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t); }
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = '\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01\u0e41\u0e25\u0e49\u0e27 \u2713';
+        hint.style.color = 'var(--gold)';
+        setTimeout(function() { hint.textContent = '\u0e04\u0e25\u0e34\u0e01\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01'; hint.style.color = ''; }, 2000);
+    }
+    </script>
+</body>
+</html>
