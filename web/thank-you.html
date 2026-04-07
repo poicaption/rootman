@@ -123,6 +123,75 @@
         }
         .reward-hint strong { color: var(--accent); }
 
+        /* ── Step-by-step instructions ── */
+        .steps-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .steps-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .steps-title span { color: var(--accent); }
+        .steps-list {
+            list-style: none;
+            padding: 0;
+            counter-reset: step-counter;
+        }
+        .steps-list li {
+            position: relative;
+            font-size: 0.82rem;
+            color: var(--text);
+            padding: 0.6rem 0 0.6rem 2.8rem;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.7;
+            counter-increment: step-counter;
+        }
+        .steps-list li:last-child { border-bottom: none; }
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0.55rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: rgba(196,149,106,0.12);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            line-height: 2rem;
+        }
+        .steps-list li .step-detail {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            margin-top: 0.15rem;
+        }
+        .steps-list li strong { color: var(--heading); }
+        .steps-list li code {
+            background: rgba(196,149,106,0.1);
+            color: var(--accent);
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.78rem;
+            font-family: 'Sarabun', sans-serif;
+        }
+
         .copy-btn {
             display: inline-block;
             margin-top: 1rem;
@@ -257,6 +326,37 @@
             <button class="copy-btn" id="copy-btn">คัดลอก Unlock Code</button>
         </div>
 
+        <!-- ── Step-by-step instructions ── -->
+        <div class="steps-section">
+            <div class="steps-title"><span>📋</span> วิธีใช้ Unlock Code (ทำตามทีละขั้น)</div>
+            <ol class="steps-list">
+                <li>
+                    <strong>กดปุ่ม "คัดลอก Unlock Code" ด้านบน</strong>
+                    <span class="step-detail">หรือกดที่ตัวอักษร <code>the oldest code still runs</code> ได้เลย — ระบบจะคัดลอกให้อัตโนมัติ</span>
+                </li>
+                <li>
+                    <strong>กดปุ่ม "เริ่มอ่านเลย" เพื่อไปหน้าหนังสือ</strong>
+                    <span class="step-detail">จะเปิดหน้าหนังสือ — บทนำอ่านได้ฟรี ส่วนบทเต็มยังล็อกอยู่</span>
+                </li>
+                <li>
+                    <strong>เลื่อนลงไปด้านล่างสุดของหน้า</strong>
+                    <span class="step-detail">จะเจอกล่องที่เขียนว่า "มี Unlock Code แล้ว?" พร้อมช่องกรอกรหัส</span>
+                </li>
+                <li>
+                    <strong>กดที่ช่องกรอก แล้ว "วาง" (Paste) รหัสลงไป</strong>
+                    <span class="step-detail">บนมือถือ: กดค้างที่ช่อง → เลือก "วาง" &nbsp;|&nbsp; บนคอม: กด Ctrl+V (Windows) หรือ ⌘+V (Mac)</span>
+                </li>
+                <li>
+                    <strong>กดปุ่ม "ปลดล็อก"</strong>
+                    <span class="step-detail">รอสักครู่ — เมื่อรหัสถูกต้อง บทเต็มทั้งหมดจะแสดงขึ้นทันที &#x1F389;</span>
+                </li>
+                <li>
+                    <strong>เสร็จแล้ว! อ่านได้ทุกบทตลอดชีพ</strong>
+                    <span class="step-detail">ระบบจะจำรหัสไว้ในเครื่อง — ครั้งต่อไปเปิดมาอ่านได้เลยไม่ต้องใส่ใหม่ (เว้นแต่เปลี่ยนเบราว์เซอร์หรือล้าง Cache)</span>
+                </li>
+            </ol>
+        </div>
+
         <!-- ── Bonus: what you unlocked ── -->
         <div class="bonus-section">
             <div class="bonus-title"><span>&#x1F381;</span> สิ่งที่คุณปลดล็อกแล้ว</div>
@@ -274,7 +374,7 @@
 
         <!-- ── Go read ── -->
         <a href="/" class="go-read-btn">เริ่มอ่านเลย &rarr;</a>
-        <span class="go-read-link">วาง Unlock Code ที่ด้านล่างของหน้าหนังสือ</span>
+        <span class="go-read-link">ไปหน้าหนังสือ → เลื่อนล่างสุด → วาง Unlock Code → กด "ปลดล็อก"</span>
 
         <!-- ── Third Eye ── -->
         <div class="te-note">
