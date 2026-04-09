@@ -321,9 +321,9 @@
         <!-- ── Unlock Code ── -->
         <div class="reward-box">
             <div class="reward-label">&#x1F511; Unlock Code ของคุณ</div>
-            <div class="reward-code" id="unlock-code" title="กดเพื่อคัดลอก">the oldest code still runs</div>
-            <p class="reward-hint">นำไปวางในช่อง <strong>Unlock Code</strong> ที่หน้าหนังสือ<br>เพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก</p>
-            <button class="copy-btn" id="copy-btn">คัดลอก Unlock Code</button>
+            <div class="reward-code" id="unlock-code">กำลังโหลด...</div>
+            <p class="reward-hint" id="reward-hint">กำลังตรวจสอบการชำระเงิน...</p>
+            <button class="copy-btn" id="copy-btn" style="display:none;">คัดลอก Unlock Code</button>
         </div>
 
         <!-- ── Step-by-step instructions ── -->
@@ -332,7 +332,7 @@
             <ol class="steps-list">
                 <li>
                     <strong>กดปุ่ม "คัดลอก Unlock Code" ด้านบน</strong>
-                    <span class="step-detail">หรือกดที่ตัวอักษร <code>the oldest code still runs</code> ได้เลย — ระบบจะคัดลอกให้อัตโนมัติ</span>
+                    <span class="step-detail">หรือกดที่ตัวอักษร Code ด้านบนได้เลย — ระบบจะคัดลอกให้อัตโนมัติ</span>
                 </li>
                 <li>
                     <strong>กดปุ่ม "เริ่มอ่านเลย" เพื่อไปหน้าหนังสือ</strong>
@@ -352,7 +352,7 @@
                 </li>
                 <li>
                     <strong>เสร็จแล้ว! อ่านได้ทุกบทตลอดชีพ</strong>
-                    <span class="step-detail">ระบบจะจำรหัสไว้ในเครื่อง — ครั้งต่อไปเปิดมาอ่านได้เลยไม่ต้องใส่ใหม่ (เว้นแต่เปลี่ยนเบราว์เซอร์หรือล้าง Cache)</span>
+                    <span class="step-detail">ระบบจะจำรหัสไว้ในเครื่อง — ครั้งต่อไปเปิดมาอ่านได้เลยไม่ต้องใส่ใหม่<br>&#x1F4F1; Code ผูกกับอุปกรณ์ 1 เครื่อง — หากต้องการย้ายเครื่อง ให้ใส่ Code อีกครั้งบนเครื่องใหม่</span>
                 </li>
             </ol>
         </div>
@@ -387,39 +387,79 @@
 
     <script>
     (function() {
-        var code = document.getElementById('unlock-code');
-        var btn = document.getElementById('copy-btn');
-        var codeText = code.textContent;
+        var codeEl = document.getElementById('unlock-code');
+        var hintEl = document.getElementById('reward-hint');
+        var copyBtn = document.getElementById('copy-btn');
+        var stepsSection = document.querySelector('.steps-section');
+        var bonusSection = document.querySelector('.bonus-section');
+        var goReadBtn = document.querySelector('.go-read-btn');
+        var goReadLink = document.querySelector('.go-read-link');
 
-        function copyCode() {
-            if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(codeText).then(function() {
-                    showCopied();
-                });
-            } else {
-                var ta = document.createElement('textarea');
-                ta.value = codeText;
-                ta.style.position = 'fixed';
-                ta.style.opacity = '0';
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                showCopied();
+        var params = new URLSearchParams(window.location.search);
+        var sessionId = params.get('session_id');
+
+        function showError(msg) {
+            codeEl.textContent = '—';
+            codeEl.style.fontSize = '2rem';
+            hintEl.innerHTML = msg + '<br><br><a href="/" style="color: var(--accent);">กลับหน้าหลัก</a>';
+            if (stepsSection) stepsSection.style.display = 'none';
+        }
+
+        function showCode(code) {
+            codeEl.textContent = code;
+            codeEl.title = 'กดเพื่อคัดลอก';
+            codeEl.style.cursor = 'pointer';
+            codeEl.style.userSelect = 'all';
+            hintEl.innerHTML = 'นำไปวางในช่อง <strong>Unlock Code</strong> ที่หน้าหนังสือ<br>เพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก';
+            copyBtn.style.display = '';
+            setupCopy(code);
+        }
+
+        function setupCopy(codeText) {
+            function doCopy() {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(codeText).then(onCopied);
+                } else {
+                    var ta = document.createElement('textarea');
+                    ta.value = codeText;
+                    ta.style.position = 'fixed';
+                    ta.style.opacity = '0';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    onCopied();
+                }
             }
+            function onCopied() {
+                copyBtn.textContent = '\u2713 คัดลอกแล้ว!';
+                copyBtn.classList.add('copied');
+                setTimeout(function() {
+                    copyBtn.textContent = 'คัดลอก Unlock Code';
+                    copyBtn.classList.remove('copied');
+                }, 2500);
+            }
+            copyBtn.addEventListener('click', doCopy);
+            codeEl.addEventListener('click', doCopy);
         }
 
-        function showCopied() {
-            btn.textContent = '✓ คัดลอกแล้ว!';
-            btn.classList.add('copied');
-            setTimeout(function() {
-                btn.textContent = 'คัดลอก Unlock Code';
-                btn.classList.remove('copied');
-            }, 2500);
+        if (!sessionId) {
+            showError('ไม่พบข้อมูลการชำระเงิน');
+            return;
         }
 
-        btn.addEventListener('click', copyCode);
-        code.addEventListener('click', copyCode);
+        fetch('/api/verify-session?session_id=' + encodeURIComponent(sessionId))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.code) {
+                    showCode(data.code);
+                } else {
+                    showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้');
+                }
+            })
+            .catch(function() {
+                showError('เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้');
+            });
     })();
     </script>
 </body>

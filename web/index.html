@@ -4269,10 +4269,26 @@
                 } catch(e) {}
             }
 
-            function doUnlock(code) {
-                return decryptAllChapters(code).then(function() {
+            // ── Device ID ──
+            function getDeviceId() {
+                var id = localStorage.getItem('oneroot-did');
+                if (!id) {
+                    if (crypto.randomUUID) {
+                        id = crypto.randomUUID();
+                    } else {
+                        id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            var r = Math.random() * 16 | 0;
+                            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                        });
+                    }
+                    localStorage.setItem('oneroot-did', id);
+                }
+                return id;
+            }
+
+            function doUnlock(passphrase) {
+                return decryptAllChapters(passphrase).then(function() {
                     document.body.classList.add('unlocked');
-                    localStorage.setItem('oneroot-uk', btoa(code));
                     // Re-observe newly visible sections for TOC tracking
                     document.querySelectorAll('.chapter-section').forEach(function(s) {
                         observer.observe(s);
@@ -4283,15 +4299,16 @@
                 });
             }
 
-            // Check if already unlocked (stored code)
+            // ── Auto-unlock on page load ──
             (function() {
-                var stored = localStorage.getItem('oneroot-uk');
-                if (stored) {
+                // Path 1: Master code (stored from before)
+                var storedMaster = localStorage.getItem('oneroot-uk');
+                if (storedMaster) {
                     try {
-                        var code = atob(stored);
-                        sha256(code).then(function(hash) {
+                        var mc = atob(storedMaster);
+                        sha256(mc).then(function(hash) {
                             if (hash === UNLOCK_HASH) {
-                                doUnlock(code);
+                                doUnlock(mc);
                             } else {
                                 localStorage.removeItem('oneroot-uk');
                             }
@@ -4299,10 +4316,48 @@
                     } catch(e) {
                         localStorage.removeItem('oneroot-uk');
                     }
+                    return;
                 }
-                // Migration: old key users get a friendly message + auto-scroll to input
+
+                // Path 2: Unique code (verify device with API)
+                var storedCode = localStorage.getItem('oneroot-uc');
+                if (storedCode) {
+                    var did = getDeviceId();
+                    fetch('/api/unlock', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ code: storedCode, device_id: did, action: 'verify' })
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.passphrase) {
+                            doUnlock(data.passphrase);
+                        } else {
+                            // Device mismatch or invalid code
+                            localStorage.removeItem('oneroot-uc');
+                            var errEl = document.getElementById('unlock-error');
+                            var inp = document.getElementById('unlock-input');
+                            if (errEl) {
+                                errEl.style.color = '#C23B22';
+                                errEl.textContent = data.message || 'รหัสนี้ถูกใช้งานบนอุปกรณ์อื่น กรุณาใส่ Unlock Code อีกครั้ง';
+                            }
+                            if (inp) {
+                                setTimeout(function() {
+                                    inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    inp.focus();
+                                }, 500);
+                            }
+                        }
+                    })
+                    .catch(function() {
+                        // API error — don't lock out, just skip auto-unlock
+                    });
+                    return;
+                }
+
+                // Path 3: Migration from old key
                 var oldKey = localStorage.getItem('oneroot-unlocked');
-                if (oldKey === '1' && !stored) {
+                if (oldKey === '1') {
                     localStorage.removeItem('oneroot-unlocked');
                     setTimeout(function() {
                         var inp = document.getElementById('unlock-input');
@@ -4325,18 +4380,57 @@
 
             function tryUnlock() {
                 if (!unlockInput) return;
-                var code = unlockInput.value.trim().toLowerCase();
+                var code = unlockInput.value.trim();
                 if (!code) return;
-                sha256(code).then(function(hash) {
+
+                // Check if it's the master code first (client-side)
+                sha256(code.toLowerCase()).then(function(hash) {
                     if (hash === UNLOCK_HASH) {
-                        doUnlock(code).then(function() {
+                        // Master code — direct decrypt, no device limit
+                        doUnlock(code.toLowerCase()).then(function() {
+                            localStorage.setItem('oneroot-uk', btoa(code.toLowerCase()));
                             var gate = document.getElementById('unlock-gate');
                             if (gate) gate.scrollIntoView({ behavior: 'smooth' });
                         });
-                    } else if (unlockError) {
-                        unlockError.textContent = 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
-                        unlockInput.select();
+                        return;
                     }
+
+                    // Unique code — go through API with device lock
+                    var did = getDeviceId();
+                    if (unlockError) {
+                        unlockError.style.color = '#C4956A';
+                        unlockError.textContent = 'กำลังตรวจสอบ...';
+                    }
+
+                    fetch('/api/unlock', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ code: code.toUpperCase(), device_id: did, action: 'unlock' })
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.passphrase) {
+                            doUnlock(data.passphrase).then(function() {
+                                localStorage.setItem('oneroot-uc', code.toUpperCase());
+                                if (data.device_changed && unlockError) {
+                                    unlockError.style.color = '#C4956A';
+                                    unlockError.textContent = 'ย้ายมาเครื่องนี้แล้ว — อุปกรณ์เก่าจะถูกล็อก';
+                                }
+                                var gate = document.getElementById('unlock-gate');
+                                if (gate) gate.scrollIntoView({ behavior: 'smooth' });
+                            });
+                        } else if (unlockError) {
+                            unlockError.style.color = '#C23B22';
+                            unlockError.textContent = data.message || 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
+                            unlockInput.select();
+                        }
+                    })
+                    .catch(function() {
+                        if (unlockError) {
+                            unlockError.style.color = '#C23B22';
+                            unlockError.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+                        }
+                    });
                 });
             }
 
