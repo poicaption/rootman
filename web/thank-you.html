@@ -37,411 +37,653 @@
             --gold: #D4A574;
             --heading: #E7E0D5;
             --border: #2A2520;
+            --danger: #E85D5D;
+            --danger-dim: rgba(232,93,93,0.08);
+            --success: #6BCB77;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin:0; padding:0; box-sizing:border-box; }
         body {
             font-family: 'Sarabun', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.9;
+            line-height: 1.8;
             font-size: 1rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
         }
         .container {
-            max-width: 580px;
+            max-width: 520px;
             width: 100%;
+        }
+
+        /* ── Hero ── */
+        .hero {
             text-align: center;
+            padding: 1.5rem 0 1rem;
         }
-
-        /* ── Confetti animation ── */
-        .confetti-wrap {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            animation: pop 0.5s cubic-bezier(0.16,1,0.3,1);
+        .hero-icon {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            animation: bounce-in 0.6s cubic-bezier(0.16,1,0.3,1);
         }
-        @keyframes pop {
-            0% { transform: scale(0); opacity: 0; }
-            60% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
+        @keyframes bounce-in {
+            0% { transform: scale(0) rotate(-10deg); opacity:0; }
+            60% { transform: scale(1.15) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); opacity:1; }
         }
-
-        h1 {
+        .hero h1 {
             font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.3rem, 4vw, 1.6rem);
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             font-weight: 700;
             color: var(--heading);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
-        .subtitle {
-            font-size: 0.9rem;
+        .hero .sub {
+            font-size: 0.85rem;
             color: var(--text-sec);
-            margin-bottom: 2.5rem;
+        }
+        .hero .sub .check { color: var(--success); }
+
+        /* ── Warning banner ── */
+        .warn-banner {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--danger-dim);
+            border: 1px solid rgba(232,93,93,0.25);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0 1.2rem;
+            animation: pulse-warn 2s ease-in-out 3;
+        }
+        @keyframes pulse-warn {
+            0%,100% { border-color: rgba(232,93,93,0.25); }
+            50% { border-color: rgba(232,93,93,0.6); }
+        }
+        .warn-icon { font-size: 1.3rem; flex-shrink:0; }
+        .warn-text {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--danger);
+            line-height: 1.5;
+        }
+        .warn-text span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            font-family: 'Sarabun', sans-serif;
+            margin-top: 0.15rem;
         }
 
-        /* ── Unlock Code reward box ── */
-        .reward-box {
+        /* ── Code card ── */
+        .code-card {
             background: var(--bg-card);
-            border: 1px solid var(--accent);
-            border-radius: 12px;
-            padding: 2rem 1.5rem;
-            margin-bottom: 2rem;
-            animation: glow-pulse 2s ease-in-out infinite alternate;
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
-        @keyframes glow-pulse {
-            0% { box-shadow: 0 0 0 0 rgba(196,149,106,0); }
-            100% { box-shadow: 0 0 20px 2px rgba(196,149,106,0.15); }
+        .code-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.06) 0%, transparent 70%);
+            pointer-events: none;
         }
-        .reward-label {
+        .code-label {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 600;
             color: var(--accent);
-            letter-spacing: 0.2em;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1rem;
         }
-        .reward-code {
+        .code-display {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-size: clamp(1.4rem, 5vw, 1.8rem);
             font-weight: 600;
             font-style: italic;
             color: var(--heading);
-            letter-spacing: 0.02em;
-            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+            padding: 0.8rem 1rem;
+            background: rgba(196,149,106,0.06);
+            border: 1px dashed rgba(196,149,106,0.3);
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
             user-select: all;
             cursor: pointer;
-        }
-        .reward-hint {
-            font-size: 0.78rem;
-            color: var(--text-sec);
-            line-height: 1.7;
-        }
-        .reward-hint strong { color: var(--accent); }
-
-        /* ── Step-by-step instructions ── */
-        .steps-section {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
-        }
-        .steps-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--heading);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-        .steps-title span { color: var(--accent); }
-        .steps-list {
-            list-style: none;
-            padding: 0;
-            counter-reset: step-counter;
-        }
-        .steps-list li {
-            position: relative;
-            font-size: 0.82rem;
-            color: var(--text);
-            padding: 0.6rem 0 0.6rem 2.8rem;
-            border-bottom: 1px solid var(--border);
-            line-height: 1.7;
-            counter-increment: step-counter;
-        }
-        .steps-list li:last-child { border-bottom: none; }
-        .steps-list li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0.55rem;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            background: rgba(196,149,106,0.12);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            font-family: 'Prompt', sans-serif;
-            font-weight: 700;
-            font-size: 0.8rem;
+            transition: background 0.2s;
+            min-height: 3.2rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            line-height: 2rem;
         }
-        .steps-list li .step-detail {
-            display: block;
-            font-size: 0.75rem;
-            color: var(--text-sec);
-            margin-top: 0.15rem;
-        }
-        .steps-list li strong { color: var(--heading); }
-        .steps-list li code {
-            background: rgba(196,149,106,0.1);
-            color: var(--accent);
-            padding: 0.1rem 0.4rem;
-            border-radius: 4px;
-            font-size: 0.78rem;
-            font-family: 'Sarabun', sans-serif;
+        .code-display:hover {
+            background: rgba(196,149,106,0.12);
         }
 
-        .copy-btn {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1.5rem;
-            border-radius: 8px;
+        /* ── Action buttons ── */
+        .action-row {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .btn-copy {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            background: var(--accent);
+            border: none;
+            color: #1C1917;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { background: var(--gold); }
+        .btn-copy.copied {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-copy .icon { font-size: 1rem; }
+        .btn-screenshot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
             background: transparent;
-            border: 1px solid var(--accent);
-            color: var(--accent);
+            border: 1px solid var(--border);
+            color: var(--text-sec);
             font-family: 'Prompt', sans-serif;
             font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
         }
-        .copy-btn:hover {
-            background: var(--accent-dim);
+        .btn-screenshot:hover {
+            border-color: var(--text-sec);
+            color: var(--text);
         }
-        .copy-btn.copied {
-            background: rgba(196,149,106,0.15);
-            border-color: var(--gold);
-            color: var(--gold);
+        .btn-screenshot .icon { font-size: 1rem; }
+        .code-saved-msg {
+            font-size: 0.75rem;
+            color: var(--success);
+            min-height: 1.2rem;
+            transition: opacity 0.3s;
+            opacity: 0;
         }
+        .code-saved-msg.show { opacity:1; }
 
-        /* ── Bonus teaser ── */
-        .bonus-section {
+        /* ── Quick steps ── */
+        .quick-steps {
+            margin: 1.5rem 0;
+        }
+        .quick-steps-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--heading);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .step-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .step-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            text-align: left;
+            padding: 0.9rem 1rem;
+            transition: border-color 0.3s;
         }
-        .bonus-title {
+        .step-card.active {
+            border-color: var(--accent);
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            background: rgba(196,149,106,0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
             font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-card.done .step-num {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+        .step-card.done .step-num::after { content: '✓'; }
+        .step-card.done .step-num span { display: none; }
+        .step-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .step-body strong {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
             font-weight: 600;
             color: var(--heading);
-            margin-bottom: 0.8rem;
+            display: block;
+            line-height: 1.5;
         }
-        .bonus-title span { color: var(--accent); }
+        .step-body .hint {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+            margin-top: 0.15rem;
+        }
+        .step-body .hint code {
+            background: rgba(196,149,106,0.1);
+            color: var(--accent);
+            padding: 0.05rem 0.35rem;
+            border-radius: 4px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.78rem;
+        }
+
+        /* ── CTA ── */
+        .cta-area {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        .go-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2.5rem;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #1C1917;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(196,149,106,0.3);
+        }
+        .go-btn:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196,149,106,0.4);
+        }
+
+        /* ── Bonus ── */
+        .bonus-collapse {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .bonus-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: none;
+            border: none;
+            color: var(--heading);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+        .bonus-toggle .arrow {
+            color: var(--text-sec);
+            transition: transform 0.3s;
+            font-size: 0.9rem;
+        }
+        .bonus-toggle.open .arrow { transform: rotate(180deg); }
+        .bonus-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .bonus-content.open { max-height: 500px; }
+        .bonus-inner {
+            padding: 0 1rem 1rem;
+        }
         .bonus-list {
             list-style: none;
             padding: 0;
         }
         .bonus-list li {
-            font-size: 0.82rem;
-            color: var(--text-sec);
-            padding: 0.35rem 0;
-            border-bottom: 1px solid var(--border);
-            line-height: 1.6;
-        }
-        .bonus-list li:last-child { border-bottom: none; }
-        .bonus-list li::before {
-            content: '🔓 ';
-        }
-        .bonus-note {
             font-size: 0.78rem;
             color: var(--text-sec);
-            margin-top: 0.8rem;
-            text-align: center;
+            padding: 0.3rem 0;
+            line-height: 1.6;
+        }
+        .bonus-list li::before {
+            content: '✦ ';
+            color: var(--accent);
+        }
+        .bonus-note {
+            font-size: 0.72rem;
+            color: var(--text-sec);
+            margin-top: 0.5rem;
             font-style: italic;
         }
 
-        /* ── CTA button ── */
-        .go-read-btn {
-            display: inline-block;
-            padding: 0.75rem 2.5rem;
-            border-radius: 8px;
-            background: var(--accent);
-            color: #1C1917;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s;
-            margin-bottom: 1rem;
+        /* ── Device note ── */
+        .device-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            background: rgba(196,149,106,0.04);
+            border: 1px solid rgba(196,149,106,0.12);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
         }
-        .go-read-btn:hover {
-            background: var(--gold);
-            transform: translateY(-1px);
-        }
-        .go-read-link {
-            display: block;
-            font-size: 0.78rem;
+        .device-note .icon { font-size: 1rem; flex-shrink:0; margin-top:0.1rem; }
+        .device-note .txt {
+            font-size: 0.75rem;
             color: var(--text-sec);
-            margin-bottom: 2rem;
+            line-height: 1.7;
         }
+        .device-note .txt strong { color: var(--text); }
 
         /* ── Third Eye ── */
         .te-note {
             background: rgba(196,149,106,0.04);
-            border: 1px solid rgba(196,149,106,0.12);
-            border-radius: 8px;
-            padding: 1.2rem;
-            text-align: left;
+            border: 1px solid rgba(196,149,106,0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.8rem 0;
         }
-        .te-note-head {
+        .te-head {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 600;
             color: var(--accent);
             letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
         }
-        .te-note p {
-            font-size: 0.8rem;
+        .te-body {
+            font-size: 0.78rem;
             color: var(--text-sec);
             line-height: 1.8;
         }
-        .te-note strong { color: var(--text); }
+        .te-body strong { color: var(--text); }
 
         /* ── Footer ── */
         .ty-footer {
-            margin-top: 2rem;
-            font-size: 0.72rem;
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.7rem;
             color: var(--text-sec);
             opacity: 0.5;
+        }
+
+        /* ── Loading state ── */
+        .loading .code-display {
+            color: var(--text-sec);
+            font-style: normal;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.9rem;
+        }
+        .loading .btn-copy,
+        .loading .btn-screenshot {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ── Error state ── */
+        .error-state .code-card {
+            border-color: var(--danger);
+        }
+        .error-state .code-display {
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            border-color: rgba(232,93,93,0.2);
+            background: var(--danger-dim);
+        }
+        .error-state .warn-banner,
+        .error-state .action-row,
+        .error-state .quick-steps,
+        .error-state .cta-area,
+        .error-state .bonus-collapse,
+        .error-state .device-note,
+        .error-state .te-note { display: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 400px) {
+            .action-row { flex-direction: column; }
+            .btn-screenshot { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="confetti-wrap">🎉</div>
-        <h1>ขอบคุณที่ไว้วางใจ</h1>
-        <p class="subtitle">การชำระเงินสำเร็จแล้ว &mdash; นี่คือรางวัลของคุณ</p>
+    <div class="container loading" id="app">
 
-        <!-- ── Unlock Code ── -->
-        <div class="reward-box">
-            <div class="reward-label">&#x1F511; Unlock Code ของคุณ</div>
-            <div class="reward-code" id="unlock-code">กำลังโหลด...</div>
-            <p class="reward-hint" id="reward-hint">กำลังตรวจสอบการชำระเงิน...</p>
-            <button class="copy-btn" id="copy-btn" style="display:none;">คัดลอก Unlock Code</button>
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-icon">🎁</div>
+            <h1>ขอบคุณที่ไว้วางใจครับ</h1>
+            <p class="sub"><span class="check">✓</span> ชำระเงินสำเร็จ — นี่คือ Unlock Code ของคุณ</p>
         </div>
 
-        <!-- ── Step-by-step instructions ── -->
-        <div class="steps-section">
-            <div class="steps-title"><span>📋</span> วิธีใช้ Unlock Code (ทำตามทีละขั้น)</div>
-            <ol class="steps-list">
-                <li>
-                    <strong>กดปุ่ม "คัดลอก Unlock Code" ด้านบน</strong>
-                    <span class="step-detail">หรือกดที่ตัวอักษร Code ด้านบนได้เลย — ระบบจะคัดลอกให้อัตโนมัติ</span>
-                </li>
-                <li>
-                    <strong>กดปุ่ม "เริ่มอ่านเลย" เพื่อไปหน้าหนังสือ</strong>
-                    <span class="step-detail">จะเปิดหน้าหนังสือ — บทนำอ่านได้ฟรี ส่วนบทเต็มยังล็อกอยู่</span>
-                </li>
-                <li>
-                    <strong>เลื่อนลงไปด้านล่างสุดของหน้า</strong>
-                    <span class="step-detail">จะเจอกล่องที่เขียนว่า "มี Unlock Code แล้ว?" พร้อมช่องกรอกรหัส</span>
-                </li>
-                <li>
-                    <strong>กดที่ช่องกรอก แล้ว "วาง" (Paste) รหัสลงไป</strong>
-                    <span class="step-detail">บนมือถือ: กดค้างที่ช่อง → เลือก "วาง" &nbsp;|&nbsp; บนคอม: กด Ctrl+V (Windows) หรือ ⌘+V (Mac)</span>
-                </li>
-                <li>
-                    <strong>กดปุ่ม "ปลดล็อก"</strong>
-                    <span class="step-detail">รอสักครู่ — เมื่อรหัสถูกต้อง บทเต็มทั้งหมดจะแสดงขึ้นทันที &#x1F389;</span>
-                </li>
-                <li>
-                    <strong>เสร็จแล้ว! อ่านได้ทุกบทตลอดชีพ</strong>
-                    <span class="step-detail">ระบบจะจำรหัสไว้ในเครื่อง — ครั้งต่อไปเปิดมาอ่านได้เลยไม่ต้องใส่ใหม่<br>&#x1F4F1; Code ผูกกับอุปกรณ์ 1 เครื่อง — หากต้องการย้ายเครื่อง ให้ใส่ Code อีกครั้งบนเครื่องใหม่</span>
-                </li>
-            </ol>
+        <!-- Warning -->
+        <div class="warn-banner">
+            <div class="warn-icon">⚠️</div>
+            <div class="warn-text">
+                รหัสนี้แสดงครั้งเดียวเท่านั้น — บันทึกไว้ตอนนี้เลย
+                <span>คัดลอก หรือ จับภาพหน้าจอ (Screenshot) ก่อนปิดหน้านี้</span>
+            </div>
         </div>
 
-        <!-- ── Bonus: what you unlocked ── -->
-        <div class="bonus-section">
-            <div class="bonus-title"><span>&#x1F381;</span> สิ่งที่คุณปลดล็อกแล้ว</div>
-            <ul class="bonus-list">
-                <li>12 บทเต็ม &mdash; จิตวิทยา ประสาทวิทยา พฤติกรรมศาสตร์</li>
-                <li>Bonus 1: The Experiment &mdash; ทดลองจริงกับธุรกิจจริง</li>
-                <li>Bonus 2: 24 Hours &mdash; วิเคราะห์ 1 วันของผู้บริโภค</li>
-                <li>Bonus 3: Campaign Autopsy &mdash; ชำแหละแคมเปญระดับโลก</li>
-                <li>Bonus 4: The Red Ocean &mdash; กลยุทธ์ตลาดเลือด</li>
-                <li>Bonus 5: The Locked Room &mdash; บทที่ต้องอ่านทั้งเล่มก่อนถึงจะเข้าใจ</li>
-                <li>ภาคผนวก + One-Page Summary</li>
-            </ul>
-            <p class="bonus-note">อ่านได้ตลอดชีพ &mdash; ไม่มีวันหมดอายุ</p>
+        <!-- Code Card -->
+        <div class="code-card">
+            <div class="code-label">🔑 Your Unlock Code</div>
+            <div class="code-display" id="code-display">กำลังโหลด...</div>
+            <div class="action-row">
+                <button class="btn-copy" id="btn-copy">
+                    <span class="icon">📋</span> คัดลอกรหัส
+                </button>
+                <button class="btn-screenshot" id="btn-screenshot">
+                    <span class="icon">📸</span> Screenshot
+                </button>
+            </div>
+            <div class="code-saved-msg" id="saved-msg">&nbsp;</div>
         </div>
 
-        <!-- ── Go read ── -->
-        <a href="/" class="go-read-btn">เริ่มอ่านเลย &rarr;</a>
-        <span class="go-read-link">ไปหน้าหนังสือ → เลื่อนล่างสุด → วาง Unlock Code → กด "ปลดล็อก"</span>
+        <!-- Quick Steps -->
+        <div class="quick-steps">
+            <div class="quick-steps-title">ทำ 3 ขั้นตอนนี้เพื่อปลดล็อก</div>
+            <div class="step-cards">
+                <div class="step-card active" id="step1">
+                    <div class="step-num"><span>1</span></div>
+                    <div class="step-body">
+                        <strong>คัดลอกรหัสด้านบน</strong>
+                        <div class="hint">กดปุ่ม "📋 คัดลอกรหัส" หรือกดที่ตัว Code ได้เลย</div>
+                    </div>
+                </div>
+                <div class="step-card" id="step2">
+                    <div class="step-num"><span>2</span></div>
+                    <div class="step-body">
+                        <strong>ไปหน้าหนังสือ → เลื่อนล่างสุด</strong>
+                        <div class="hint">จะเจอช่อง "มี Unlock Code แล้ว?" รออยู่</div>
+                    </div>
+                </div>
+                <div class="step-card" id="step3">
+                    <div class="step-num"><span>3</span></div>
+                    <div class="step-body">
+                        <strong>วางรหัส → กด "ปลดล็อก"</strong>
+                        <div class="hint">มือถือ: กดค้าง → วาง &nbsp;|&nbsp; คอม: <code>Ctrl+V</code> แล้วกดปลดล็อก — เปิดอ่านได้ทันที 🎉</div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- ── Third Eye ── -->
+        <!-- CTA -->
+        <div class="cta-area">
+            <a href="/" class="go-btn">เริ่มอ่านเลย →</a>
+        </div>
+
+        <!-- Device note -->
+        <div class="device-note">
+            <div class="icon">📱</div>
+            <div class="txt">
+                <strong>Code ผูกกับอุปกรณ์ 1 เครื่อง</strong> — ระบบจะจำเครื่องที่ใช้ปลดล็อกครั้งแรก
+                หากต้องการย้ายเครื่อง ใส่ Code อีกครั้งบนเครื่องใหม่ (เครื่องเดิมจะถูกปลดออก)
+            </div>
+        </div>
+
+        <!-- Bonus (collapsible) -->
+        <div class="bonus-collapse">
+            <button class="bonus-toggle" id="bonus-toggle">
+                <span>🎁 สิ่งที่คุณปลดล็อกแล้ว (12 บท + 5 บทพิเศษ)</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="bonus-content" id="bonus-content">
+                <div class="bonus-inner">
+                    <ul class="bonus-list">
+                        <li>12 บทเต็ม — จิตวิทยา ประสาทวิทยา พฤติกรรมศาสตร์</li>
+                        <li>Bonus 1: The Experiment — ทดลองจริงกับธุรกิจจริง</li>
+                        <li>Bonus 2: 24 Hours — วิเคราะห์ 1 วันของผู้บริโภค</li>
+                        <li>Bonus 3: Campaign Autopsy — ชำแหละแคมเปญระดับโลก</li>
+                        <li>Bonus 4: The Red Ocean — กลยุทธ์ตลาดเลือด</li>
+                        <li>Bonus 5: The Locked Room — บทที่ต้องอ่านทั้งเล่มก่อนถึงจะเข้าใจ</li>
+                        <li>ภาคผนวก + One-Page Summary</li>
+                    </ul>
+                    <p class="bonus-note">📖 อ่านได้ตลอดชีพ — ไม่มีวันหมดอายุ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Eye -->
         <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม &mdash; บทเรียนสุดท้ายก่อนเข้าเล่ม</div>
-            <p><strong>Post-Purchase Rationalization + Endowment Effect</strong> &mdash; ตอนนี้สมองของคุณกำลังทำสิ่งที่น่าสนใจ: มันกำลัง &laquo;ยืนยันกับตัวเอง&raquo; ว่าการซื้อครั้งนี้เป็นการตัดสินใจที่ดี &mdash; เพราะความรู้สึก &laquo;เป็นเจ้าของ&raquo; ทำให้คุณให้คุณค่ากับสิ่งที่ได้มามากกว่าก่อนซื้อ (Endowment Effect) และหน้านี้ถูกออกแบบมาเพื่อเสริมความรู้สึกนั้น &mdash; ทุก bullet ที่คุณเพิ่งอ่านทำให้รู้สึกว่า &laquo;ได้เยอะ&raquo; ป้าย &laquo;อ่านได้ตลอดชีพ&raquo; ลบความกังวลที่เหลือ &mdash; นี่คือบทที่ 7 และ 9 ที่ทำงานอยู่ตรงนี้ ก่อนคุณจะเปิดอ่านด้วยซ้ำ</p>
+            <div class="te-head">🔮 ตาที่สาม — บทเรียนสุดท้ายก่อนเข้าเล่ม</div>
+            <div class="te-body">
+                <strong>Post-Purchase Rationalization + Endowment Effect</strong> — ตอนนี้สมองของคุณกำลัง «ยืนยันกับตัวเอง» ว่าการซื้อครั้งนี้เป็นการตัดสินใจที่ดี เพราะความรู้สึก «เป็นเจ้าของ» ทำให้คุณให้คุณค่ากับสิ่งที่ได้มามากกว่าก่อนซื้อ — นี่คือบทที่ 7 และ 9 ที่ทำงานอยู่ตรงนี้ ก่อนคุณจะเปิดอ่านด้วยซ้ำ
+            </div>
         </div>
 
-        <div class="ty-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
+        <!-- Footer -->
+        <div class="ty-footer">© รากแก้วการตลาด — The One Root of Marketing</div>
     </div>
 
     <script>
     (function() {
-        var codeEl = document.getElementById('unlock-code');
-        var hintEl = document.getElementById('reward-hint');
-        var copyBtn = document.getElementById('copy-btn');
-        var stepsSection = document.querySelector('.steps-section');
-        var bonusSection = document.querySelector('.bonus-section');
-        var goReadBtn = document.querySelector('.go-read-btn');
-        var goReadLink = document.querySelector('.go-read-link');
+        var app = document.getElementById('app');
+        var codeEl = document.getElementById('code-display');
+        var copyBtn = document.getElementById('btn-copy');
+        var ssBtn = document.getElementById('btn-screenshot');
+        var savedMsg = document.getElementById('saved-msg');
+        var step1 = document.getElementById('step1');
+        var bonusToggle = document.getElementById('bonus-toggle');
+        var bonusContent = document.getElementById('bonus-content');
 
-        var params = new URLSearchParams(window.location.search);
-        var sessionId = params.get('session_id');
+        var currentCode = '';
+
+        /* ── Bonus toggle ── */
+        bonusToggle.addEventListener('click', function() {
+            bonusToggle.classList.toggle('open');
+            bonusContent.classList.toggle('open');
+        });
+
+        /* ── Copy ── */
+        function doCopy() {
+            if (!currentCode) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentCode).then(onCopied);
+            } else {
+                var ta = document.createElement('textarea');
+                ta.value = currentCode;
+                ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                onCopied();
+            }
+        }
+        function onCopied() {
+            copyBtn.innerHTML = '<span class="icon">✓</span> คัดลอกแล้ว!';
+            copyBtn.classList.add('copied');
+            savedMsg.textContent = '✓ รหัสอยู่ในคลิปบอร์ดแล้ว — ไปวางที่หน้าหนังสือได้เลย';
+            savedMsg.classList.add('show');
+            step1.classList.remove('active');
+            step1.classList.add('done');
+            document.getElementById('step2').classList.add('active');
+            setTimeout(function() {
+                copyBtn.innerHTML = '<span class="icon">📋</span> คัดลอกอีกครั้ง';
+                copyBtn.classList.remove('copied');
+            }, 4000);
+        }
+
+        copyBtn.addEventListener('click', doCopy);
+        codeEl.addEventListener('click', doCopy);
+
+        /* ── Screenshot reminder ── */
+        ssBtn.addEventListener('click', function() {
+            savedMsg.textContent = '💡 กด Power+Volume Down (มือถือ) หรือ Win+Shift+S (คอม) เพื่อจับภาพหน้าจอ';
+            savedMsg.classList.add('show');
+            ssBtn.innerHTML = '<span class="icon">👍</span> ดีมาก!';
+            setTimeout(function() {
+                ssBtn.innerHTML = '<span class="icon">📸</span> Screenshot';
+            }, 3000);
+        });
+
+        /* ── Show code ── */
+        function showCode(code) {
+            currentCode = code;
+            app.classList.remove('loading');
+            codeEl.textContent = code;
+        }
 
         function showError(msg) {
-            codeEl.textContent = '—';
-            codeEl.style.fontSize = '2rem';
-            hintEl.innerHTML = msg + '<br><br><a href="/" style="color: var(--accent);">กลับหน้าหลัก</a>';
-            if (stepsSection) stepsSection.style.display = 'none';
+            app.classList.remove('loading');
+            app.classList.add('error-state');
+            codeEl.textContent = msg;
+            /* show a link back */
+            var linkDiv = document.createElement('div');
+            linkDiv.style.cssText = 'margin-top:1.5rem;text-align:center;';
+            linkDiv.innerHTML = '<a href="/" style="color:var(--accent);font-family:Prompt,sans-serif;font-size:0.9rem;">← กลับหน้าหลัก</a>';
+            document.querySelector('.code-card').appendChild(linkDiv);
         }
 
-        function showCode(code) {
-            codeEl.textContent = code;
-            codeEl.title = 'กดเพื่อคัดลอก';
-            codeEl.style.cursor = 'pointer';
-            codeEl.style.userSelect = 'all';
-            hintEl.innerHTML = 'นำไปวางในช่อง <strong>Unlock Code</strong> ที่หน้าหนังสือ<br>เพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก';
-            copyBtn.style.display = '';
-            setupCopy(code);
-        }
-
-        function setupCopy(codeText) {
-            function doCopy() {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(codeText).then(onCopied);
-                } else {
-                    var ta = document.createElement('textarea');
-                    ta.value = codeText;
-                    ta.style.position = 'fixed';
-                    ta.style.opacity = '0';
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(ta);
-                    onCopied();
-                }
-            }
-            function onCopied() {
-                copyBtn.textContent = '\u2713 คัดลอกแล้ว!';
-                copyBtn.classList.add('copied');
-                setTimeout(function() {
-                    copyBtn.textContent = 'คัดลอก Unlock Code';
-                    copyBtn.classList.remove('copied');
-                }, 2500);
-            }
-            copyBtn.addEventListener('click', doCopy);
-            codeEl.addEventListener('click', doCopy);
-        }
+        /* ── Fetch code from API ── */
+        var params = new URLSearchParams(window.location.search);
+        var sessionId = params.get('session_id');
 
         if (!sessionId) {
             showError('ไม่พบข้อมูลการชำระเงิน');
@@ -458,7 +700,7 @@
                 }
             })
             .catch(function() {
-                showError('เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้');
+                showError('เกิดข้อผิดพลาด — กรุณารีเฟรชหน้านี้');
             });
     })();
     </script>
