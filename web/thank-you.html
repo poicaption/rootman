@@ -20,10 +20,9 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1429938142262731');
     fbq('track', 'PageView');
-    fbq('track', 'Purchase', {value: 1390, currency: 'THB', content_name: 'รากแก้วการตลาด'});
     </script>
     <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1429938142262731&ev=Purchase&noscript=1"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
     <style>
@@ -695,6 +694,17 @@
             .then(function(data) {
                 if (data.code) {
                     showCode(data.code);
+                    /* Fire Purchase pixel only after verified payment */
+                    if (typeof fbq === 'function') {
+                        fbq('track', 'Purchase', {
+                            value: 1390.00,
+                            currency: 'THB',
+                            content_name: 'รากแก้วการตลาด',
+                            content_type: 'product',
+                            content_ids: ['oneroot-book'],
+                            num_items: 1
+                        });
+                    }
                 } else {
                     showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้');
                 }
