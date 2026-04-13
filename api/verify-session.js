@@ -51,7 +51,7 @@ export default async function handler(req) {
     const existing = await redis(['GET', `session:${sessionId}`]);
     if (existing.result) {
       const data = JSON.parse(existing.result);
-      return json({ code: data.code });
+      return json({ code: data.code, customer_email: data.customer_email || null });
     }
 
     // Verify with Stripe
@@ -78,8 +78,11 @@ export default async function handler(req) {
     const code = generateCode();
     const now = new Date().toISOString();
 
+    // Extract customer email for Advanced Matching
+    const customerEmail = (session.customer_details && session.customer_details.email) || null;
+
     // Store session → code (90-day TTL)
-    await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, created_at: now }), 'EX', 7776000]);
+    await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, customer_email: customerEmail, created_at: now }), 'EX', 7776000]);
 
     // Store code → data (permanent)
     await redis(['SET', `code:${code}`, JSON.stringify({ session_id: sessionId, device_id: null, created_at: now })]);
@@ -87,7 +90,7 @@ export default async function handler(req) {
     // Log
     console.log('[NEW-CODE]', JSON.stringify({ code, session_id: sessionId.slice(0, 20) + '...', ts: now }));
 
-    return json({ code });
+    return json({ code, customer_email: customerEmail });
   } catch (e) {
     console.error('[VERIFY-ERROR]', e.message);
     return json({ error: 'server_error', message: 'เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้' }, 500);

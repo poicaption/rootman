@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, nofollow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -147,12 +147,12 @@
             margin-bottom: 1rem;
         }
         .code-display {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(1.4rem, 5vw, 1.8rem);
-            font-weight: 600;
-            font-style: italic;
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(1.3rem, 4.5vw, 1.65rem);
+            font-weight: 700;
+            font-style: normal;
             color: var(--heading);
-            letter-spacing: 0.05em;
+            letter-spacing: 0.12em;
             padding: 0.8rem 1rem;
             background: rgba(196,149,106,0.06);
             border: 1px dashed rgba(196,149,106,0.3);
@@ -694,8 +694,14 @@
             .then(function(data) {
                 if (data.code) {
                     showCode(data.code);
-                    /* Fire Purchase pixel only after verified payment */
+                    /* Fire Purchase pixel with Advanced Matching */
                     if (typeof fbq === 'function') {
+                        /* Re-init with customer email for Advanced Matching */
+                        if (data.customer_email) {
+                            fbq('init', '1429938142262731', {
+                                em: data.customer_email
+                            });
+                        }
                         fbq('track', 'Purchase', {
                             value: 1390.00,
                             currency: 'THB',

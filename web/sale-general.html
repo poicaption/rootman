@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>คุณรู้แล้ว แต่มันยังได้ผล — รากแก้วการตลาด</title>
-    <meta name="description" content="คุณเพิ่งอ่านข้อความที่บอกคุณทุกอย่าง แล้วยังกดเข้ามา — นี่คือหนังสือที่อธิบายว่าทำไม">
-    <!-- Open Graph -->
-    <meta property="og:title" content="คุณรู้แล้ว แต่มันยังได้ผล — รากแก้วการตลาด">
-    <meta property="og:description" content="คุณเพิ่งอ่านข้อความที่บอกคุณทุกอย่าง แล้วยังกดเข้ามา — นี่คือหนังสือที่อธิบายว่าทำไม">
-    <meta property="og:type" content="book">
-    <meta property="og:locale" content="th_TH">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="คุณรู้แล้ว แต่มันยังได้ผล — รากแก้วการตลาด">
-    <meta name="twitter:description" content="คุณเพิ่งอ่านข้อความที่บอกคุณทุกอย่าง แล้วยังกดเข้ามา — นี่คือหนังสือที่อธิบายว่าทำไม">
+    <title>รากแก้วการตลาด — เข้าใจว่าทำไมลูกค้าถึงซื้อ</title>
+    <meta name="description" content="หยุดวิ่งตามเทรนด์ เริ่มเข้าใจสมองมนุษย์ — 12 บท 12 กลไกจิตวิทยาที่ทำให้คนตัดสินใจซื้อ">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600&family=Noto+Serif+Thai:wght@400;700&family=Prompt:wght@400;600;700;800&family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -28,2411 +20,1519 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1429938142262731');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {content_name: 'sale-general', content_category: 'landing-page'});
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
-    /></noscript>
-    <!-- End Meta Pixel Code -->
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"/></noscript>
+
     <style>
         :root {
-            --bg: #121010;
-            --bg-alt: #1A1714;
-            --bg-card: #1E1B17;
-            --text: #C8C0B4;
-            --text-sec: #8A8078;
-            --accent: #C4956A;
-            --accent-dim: rgba(196,149,106,0.12);
-            --gold: #D4A574;
-            --heading: #E7E0D5;
-            --border: #2A2520;
-            --red: #c0392b;
-            --green: #27ae60;
+            --bg: #FAFAF7;
+            --bg-alt: #F5F3F0;
+            --bg-warm: #FAF8F4;
+            --bg-dark: #1A1714;
+            --text: #2C2825;
+            --text-sec: #5A5550;
+            --text-light: #8A847E;
+            --accent: #C23B22;
+            --accent-hover: #A83220;
+            --accent-soft: rgba(194,59,34,0.06);
+            --gold: #B8860B;
+            --gold-bg: #FBF8F0;
+            --warm: #C4956A;
+            --border: #E0DCD6;
+            --border-dark: #C8C2BA;
         }
-
-        *, *::before, *::after { box-sizing: border-box; }
-
-        html {
-            scroll-behavior: smooth;
-            font-size: 17px;
-        }
-
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 17px; }
         body {
-            font-family: 'Sarabun', 'Noto Serif Thai', Georgia, serif;
+            font-family: 'Sarabun', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.9;
-            margin: 0;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* ── Reading progress bar ── */
+        /* ── Progress bar ── */
         #progress-bar {
             position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            width: 0%;
-            background: linear-gradient(90deg, var(--accent), var(--gold));
+            top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--warm));
             z-index: 10000;
             transition: width 0.1s linear;
         }
 
-        /* ── Scan line overlay when Third Eye active ── */
-        body.te-on::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent, transparent 3px,
-                rgba(196,149,106,0.015) 3px, rgba(196,149,106,0.015) 4px
-            );
-            pointer-events: none;
-            z-index: 9999;
-        }
-
-        /* ── Scroll reveal variants ── */
-        .rv {
-            opacity: 0;
-            transform: translateY(28px);
-            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
-        }
-        .rv.vis { opacity: 1; transform: translateY(0); }
-
-        .rv-left {
-            opacity: 0;
-            transform: translateX(-40px);
-            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
-        }
-        .rv-left.vis { opacity: 1; transform: translateX(0); }
-
-        .rv-right {
-            opacity: 0;
-            transform: translateX(40px);
-            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
-        }
-        .rv-right.vis { opacity: 1; transform: translateX(0); }
-
-        .rv-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                        transform 0.9s cubic-bezier(0.16,1,0.3,1);
-        }
-        .rv-scale.vis { opacity: 1; transform: scale(1); }
-
-        /* ── Section layout ── */
-        .sp {
-            max-width: 680px;
+        /* ── Layout ── */
+        .sec {
+            max-width: 660px;
             margin: 0 auto;
-            padding: 5rem 2rem;
-            position: relative;
+            padding: 4rem 1.5rem;
         }
+        .sec-wide {
+            max-width: 100%;
+            padding: 3.5rem 1.5rem;
+        }
+        .sec p { margin-bottom: 1rem; }
 
-        .sp + .sp { border-top: 1px solid var(--border); }
+        /* ── Section titles ── */
+        .sec-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .sec-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        .sec-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
 
         /* ── Hero ── */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 5rem 1.5rem 4rem;
             text-align: center;
-            padding: 3rem 2rem;
-            max-width: 100%;
             position: relative;
-            background:
-                radial-gradient(ellipse 60% 50% at 50% 40%, rgba(196,149,106,0.05) 0%, transparent 70%),
-                var(--bg);
+            overflow: hidden;
         }
-
-        @keyframes heroIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .hero-meta {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-sec);
-            opacity: 0;
-            animation: heroIn 1s 0.3s forwards;
-        }
-
-        .hero-headline {
-            font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.2rem, 3.5vw, 1.7rem);
-            font-weight: 600;
-            color: var(--heading);
-            line-height: 1.8;
-            margin: 2.5rem 0;
-            max-width: 580px;
-            opacity: 0;
-            animation: heroIn 1.2s 1.2s forwards;
-        }
-
-        .hero-headline em {
-            color: var(--accent);
-            font-style: normal;
-            font-weight: 700;
-        }
-
-        .hero-ornament {
-            font-size: 0.6rem;
-            color: var(--accent);
-            letter-spacing: 0.5em;
-            opacity: 0;
-            animation: heroIn 0.8s 2.8s forwards;
-        }
-
-        .hero-title-wrap {
-            margin: 2rem 0;
-        }
-
-        .hero .hero-title-wrap {
-            opacity: 0;
-            animation: heroIn 1s 3.3s forwards;
-        }
-
-        .hero-title-en {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 700;
-            font-style: italic;
-            color: var(--heading);
-            line-height: 1.1;
-            margin: 0;
-        }
-
-        .hero-title-of {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(0.9rem, 2vw, 1.2rem);
-            font-style: italic;
-            color: var(--accent);
-            opacity: 0.7;
-            margin: 0.2rem 0;
-        }
-
-        .hero-title-th {
-            font-family: 'Noto Serif Thai', serif;
-            font-size: clamp(0.95rem, 2vw, 1.2rem);
-            color: var(--accent);
-            letter-spacing: 0.15em;
-            margin-top: 1rem;
-        }
-
-        .hero-book-mockup {
-            margin: 2.5rem 0 1rem;
-        }
-
-        .hero .hero-book-mockup {
-            opacity: 0;
-            animation: heroIn 1s 3.8s forwards;
-        }
-
-        .hero-book-img {
-            max-width: 300px;
-            width: 55vw;
-            height: auto;
-            filter: drop-shadow(0 20px 60px rgba(0,0,0,0.6)) drop-shadow(0 5px 15px rgba(196,149,106,0.15));
-            transition: transform 0.4s ease;
-        }
-
-        .hero-book-img:hover {
-            transform: scale(1.03) translateY(-4px);
-        }
-
-        .hero-te-intro {
-            margin-top: 3rem;
-            opacity: 0;
-            animation: heroIn 1s 4.2s forwards;
-        }
-
-        .hero-te-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.82rem;
-            color: var(--accent);
-            background: var(--accent-dim);
-            border: 1px solid rgba(196,149,106,0.2);
-            border-radius: 100px;
-            padding: 0.55rem 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            letter-spacing: 0.02em;
-        }
-        .hero-te-btn:hover {
-            background: rgba(196,149,106,0.2);
-            border-color: var(--accent);
-        }
-
-        .hero-scroll {
+        .hero::before {
+            content: '';
             position: absolute;
-            bottom: 2.5rem;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            color: var(--text-sec);
-            text-decoration: none;
-            opacity: 0;
-            animation: heroIn 0.8s 5s forwards, pulse 2.5s 5.5s ease-in-out infinite;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 50% 80%, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
         }
-        @keyframes pulse {
-            0%,100% { opacity: 0.3; transform: translateY(0); }
-            50% { opacity: 0.6; transform: translateY(5px); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none;
         }
-
-        /* ── Section headings ── */
-        .sp-label {
+        .hero-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-eyebrow {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.65rem;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--warm);
             text-transform: uppercase;
-            letter-spacing: 0.3em;
-            color: var(--accent);
             margin-bottom: 1.5rem;
         }
-
-        .sp h2 {
+        .hero h1 {
             font-family: 'Prompt', sans-serif;
-            font-size: clamp(1.4rem, 3vw, 1.8rem);
-            font-weight: 600;
-            color: var(--heading);
-            line-height: 1.5;
-            margin: 0 0 1.5rem;
-        }
-
-        .sp p { margin: 0 0 1.3rem; }
-
-        .sp strong { color: var(--heading); font-weight: 700; }
-
-        .sp em { color: var(--accent); font-style: normal; }
-
-        /* ── Narrative scene block ── */
-        .scene {
-            padding: 1.8rem 2rem;
-            background: var(--bg-card);
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            margin: 2rem 0;
-            line-height: 2;
-            position: relative;
-        }
-        .scene::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            border-radius: 10px 10px 0 0;
-            opacity: 0.4;
-        }
-        .scene p { margin: 0 0 1rem; }
-        .scene p:last-child { margin: 0; }
-
-        /* ── Everyday observation ── */
-        .everyday {
-            padding: 1rem 0 1rem 1.5rem;
-            border-left: 2px solid var(--border);
-            margin: 1.5rem 0;
-            line-height: 1.85;
-            transition: border-color 0.4s;
-        }
-        .everyday:hover { border-color: var(--accent); }
-        .everyday p { margin: 0; }
-
-        /* ── Stats bar ── */
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem 2.5rem;
-            margin: 2rem 0 0;
-            padding: 2rem 0;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-        .stat-item { text-align: center; }
-        .stat-num {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.6rem;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
             font-weight: 700;
-            color: var(--accent);
-            display: block;
-            line-height: 1.2;
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
         }
-        .stat-label {
-            font-size: 0.75rem;
-            color: var(--text-sec);
-            letter-spacing: 0.05em;
-        }
-
-        /* ── Punchline ── */
-        .punchline {
-            text-align: center;
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.1rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-top: 1.5rem;
-            line-height: 1.8;
-        }
-
-        /* ── Root metaphor (CSS Tree) ── */
-        .tree-wrap {
-            text-align: center;
-            margin: 2.5rem 0;
-            position: relative;
-        }
-        .tree-leaves {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.4rem;
-            margin-bottom: 1rem;
-        }
-        .tree-leaves span {
-            font-size: 0.78rem;
-            padding: 0.25rem 0.7rem;
-            background: rgba(196,149,106,0.06);
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-sec);
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-        .tree-leaves span:hover {
-            opacity: 1;
-            border-color: var(--text-sec);
-        }
-        .tree-trunk {
-            width: 2px;
-            height: 60px;
-            margin: 0 auto;
-            background: linear-gradient(to bottom, var(--text-sec) 0%, var(--accent) 100%);
-            opacity: 0.5;
-            position: relative;
-        }
-        .tree-trunk::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 0;
-            border-left: 5px solid transparent;
-            border-right: 5px solid transparent;
-            border-top: 8px solid var(--accent);
-            opacity: 0.5;
-        }
-        .tree-root-label {
-            margin-top: 0.8rem;
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--accent);
-            letter-spacing: 0.05em;
-        }
-        .tree-root-label::before,
-        .tree-root-label::after {
-            content: '\2741';
-            margin: 0 0.5rem;
-            font-size: 0.85rem;
-            opacity: 0.6;
-        }
-
-        /* ── Story blockquote ── */
-        .story-quote {
-            margin: 2rem 0;
-            padding: 1.5rem 1.8rem 1.5rem 2.5rem;
-            background: var(--bg-card);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0;
-            font-style: italic;
-            color: var(--text-sec);
-            position: relative;
-        }
-        .story-quote::before {
-            content: '\201C';
-            position: absolute;
-            top: 0.3rem;
-            left: 0.6rem;
-            font-size: 2rem;
-            color: var(--accent);
-            opacity: 0.3;
-            font-family: Georgia, serif;
-        }
-        .story-quote p { margin: 0 0 0.5rem; }
-        .story-quote p:last-child { margin: 0; }
-
-        /* ── AHA moments ── */
-        .aha-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 1.5rem 1.5rem;
-            margin: 1.2rem 0;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-        .aha-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .aha-num {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: var(--accent);
-            letter-spacing: 0.15em;
-            margin-bottom: 0.6rem;
-        }
-        .aha-text {
-            font-size: 1.02rem;
-            color: var(--heading);
-            margin: 0 0 0.6rem;
-            line-height: 1.8;
-        }
-        .aha-explain {
-            font-size: 0.85rem;
-            color: var(--text-sec);
-            margin: 0;
-            line-height: 1.7;
-        }
-
-        /* ── Chapter list ── */
-        .ch-grid { margin: 1.5rem 0; }
-        .ch-item {
-            display: grid;
-            grid-template-columns: 3.5rem 1fr;
-            gap: 0.2rem 1rem;
-            padding: 1rem 0;
-            border-bottom: 1px solid var(--border);
-            align-items: baseline;
-            transition: background 0.3s, padding-left 0.3s;
-            border-radius: 4px;
-        }
-        .ch-item:hover {
-            background: rgba(196,149,106,0.03);
-            padding-left: 0.5rem;
-        }
-        .ch-num {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.75rem;
-            color: var(--accent);
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            grid-row: 1 / 3;
-            padding-top: 0.1rem;
-        }
-        .ch-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--heading);
-            line-height: 1.5;
-        }
-        .ch-hook {
-            font-size: 0.82rem;
-            color: var(--text-sec);
-            line-height: 1.6;
-        }
-
-        /* ── For / Not For ── */
-        .fit-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin: 1.5rem 0;
-        }
-        .fit-col h3 {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin: 0 0 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid;
-        }
-        .fit-yes h3 { color: var(--green); border-color: var(--green); }
-        .fit-no h3 { color: var(--red); border-color: var(--red); }
-        .fit-item {
-            font-size: 0.88rem;
-            margin: 0.8rem 0;
-            line-height: 1.7;
-            color: var(--text);
-        }
-        .fit-item strong { font-size: 0.92rem; display: block; margin-bottom: 0.15rem; }
-
-        /* ── Transformation section ── */
-        .transform-grid {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            gap: 1rem;
-            margin: 1.5rem 0;
-            align-items: start;
-        }
-        .transform-col {
-            padding: 1.2rem;
-            border-radius: 8px;
-        }
-        .transform-before {
-            background: rgba(192,57,43,0.06);
-            border: 1px solid rgba(192,57,43,0.15);
-        }
-        .transform-after {
-            background: rgba(39,174,96,0.06);
-            border: 1px solid rgba(39,174,96,0.15);
-        }
-        .transform-col h4 {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            margin: 0 0 0.8rem;
-        }
-        .transform-before h4 { color: var(--red); }
-        .transform-after h4 { color: var(--green); }
-        .transform-col ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .transform-col li {
-            font-size: 0.85rem;
-            line-height: 1.7;
-            margin-bottom: 0.5rem;
-            color: var(--text);
-        }
-        .transform-col li::before {
-            margin-right: 0.5rem;
-            font-weight: 700;
-        }
-        .transform-before li::before {
-            content: '\2717';
-            color: var(--red);
-        }
-        .transform-after li::before {
-            content: '\2713';
-            color: var(--green);
-        }
-        .transform-arrow {
-            font-size: 1.5rem;
-            color: var(--accent);
-            align-self: center;
-            padding-top: 1.5rem;
-        }
-
-        /* ── Price section ── */
-        .price-compare {
-            margin: 2rem 0;
-        }
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0.7rem 0;
-            border-bottom: 1px solid var(--border);
-            gap: 1rem;
-        }
-        .price-row.alt {
-            text-decoration: line-through;
-            opacity: 0.45;
-        }
-        .price-row.main {
-            text-decoration: none;
-            opacity: 1;
-            border-bottom: 2px solid var(--accent);
-        }
-        .price-name { font-size: 0.9rem; }
-        .price-val {
-            font-family: 'Prompt', sans-serif;
-            font-weight: 700;
-            white-space: nowrap;
-        }
-        .price-row.main .price-name {
-            color: var(--heading);
-            font-weight: 600;
-        }
-        .price-row.main .price-val {
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-        .price-note {
-            font-size: 0.82rem;
-            color: var(--text-sec);
-        }
-
-        .price-hero {
-            text-align: center;
-            margin: 3rem 0 2rem;
-        }
-        .price-big {
-            font-family: 'Prompt', sans-serif;
-            font-size: clamp(2.8rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--accent) 0%, #FFD700 40%, var(--gold) 60%, #FFD700 80%, var(--accent) 100%);
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent) 0%, #E8744A 50%, var(--accent) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 4s linear infinite;
         }
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+        .hero-sub {
+            font-size: 1rem;
+            color: #A29A90;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-hook {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1.05rem;
+            color: #D4CFC7;
+            line-height: 1.8;
+            margin: 1.8rem auto 2.2rem;
+            max-width: 480px;
+            font-style: italic;
+        }
+        .hero-cta {
+            display: inline-block;
+            padding: 0.9rem 2.8rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
+        }
+        .hero-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); }
+        .hero-note {
+            font-size: 0.78rem;
+            color: #6B6560;
+            margin-top: 1rem;
+        }
+        .hero-note a { color: var(--warm); text-decoration: none; border-bottom: 1px solid rgba(196,149,106,0.3); transition: border-color 0.2s; }
+        .hero-note a:hover { border-color: var(--warm); }
+
+        /* ── Pull quote ── */
+        .pull-quote {
+            border-left: 3px solid var(--warm);
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            margin: 1.8rem 0;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .pull-quote cite {
+            display: block;
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ── Scenario list ── */
+        .scenario {
+            padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+            border-left: 2px solid var(--border);
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .scenario:hover { border-color: var(--accent); background: rgba(194,59,34,0.02); }
+        .scenario-q {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+        .scenario-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ── Highlight strip (dark band) ── */
+        .dark-band {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(196,149,106,0.1);
+            border-bottom: 1px solid rgba(196,149,106,0.1);
+        }
+        .dark-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .dark-band-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .dark-band p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 0.5rem;
+        }
+        .dark-band strong { color: var(--warm); }
+        .dark-band .big-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-weight: 600;
+            line-height: 1.65;
+            color: #fff;
+            margin: 1rem 0;
+            text-shadow: 0 0 60px rgba(196,149,106,0.08);
+        }
+        .dark-band .big-quote strong { color: var(--warm); }
+        .dark-band-sub {
+            color: var(--warm);
+            font-size: 0.88rem;
+            margin-top: 1rem;
+        }
+
+        /* ── Comparison columns ── */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        .compare-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .compare-col:hover { transform: translateY(-2px); }
+        .compare-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
+        }
+        .compare-col ul { list-style: none; padding: 0; }
+        .compare-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.35rem 0;
+        }
+        .compare-old {
+            background: #F5F3F0;
+            border: 1px solid var(--border);
+        }
+        .compare-old h4 { color: var(--text-sec); border-bottom: 1px solid var(--border); }
+        .compare-old li::before { content: '— '; color: var(--text-light); }
+        .compare-new {
+            background: var(--gold-bg);
+            border: 2px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(184,134,11,0.08);
+            position: relative;
+        }
+        .compare-new::before {
+            content: 'อ่านแล้วได้สิ่งนี้';
+            position: absolute;
+            top: -10px; right: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.15rem 0.7rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+        }
+        .compare-new h4 { color: var(--gold); border-bottom: 1px solid #E8D5A8; }
+        .compare-new li::before { content: '✦ '; color: var(--gold); }
+        .compare-new li { color: var(--text); }
+
+        /* ── Benefit cards ── */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .benefit-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.6rem 1.5rem;
+            border-top: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(194,59,34,0.03), transparent);
+            pointer-events: none;
+        }
+        .benefit-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .benefit-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .benefit-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        .benefit-desc {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin: 0 0 0.6rem;
+        }
+        .benefit-example {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Gold highlight box ── */
+        .gold-box {
+            background: var(--gold-bg);
+            border: 1px solid #E8D5A8;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 16px rgba(184,134,11,0.06);
+        }
+        .gold-box p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.9;
+        }
+        .gold-box strong { color: var(--gold); }
+
+        /* ── Proof bar ── */
+        .proof-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        .proof-item { text-align: center; }
+        .proof-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--accent), var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .proof-label {
+            font-size: 0.73rem;
+            color: var(--text-sec);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Who / Not-for ── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+            margin: 2rem 0;
+        }
+        .who-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .who-col:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .who-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+        }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.3rem 0;
+        }
+        .who-yes {
+            background: #F7FBF5;
+            border: 1px solid #D5E8CC;
+        }
+        .who-yes h4 { color: #4A7C3F; border-bottom: 1px solid #D5E8CC; }
+        .who-yes li::before { content: '✓ '; color: #4A7C3F; font-weight: 700; }
+        .who-no {
+            background: #FDF5F4;
+            border: 1px solid #E8CCCC;
+        }
+        .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
+        .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
+
+        /* ── Value context (honest anchor) ── */
+        .value-context {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+        .value-context-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+        }
+        .value-alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            gap: 0.8rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .value-alt:hover { background: rgba(0,0,0,0.02); }
+        .value-alt-name {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+        .value-alt-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+        .value-alt-price {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .value-alt-this {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.7rem;
+            background: rgba(194,59,34,0.03);
+        }
+        .value-alt-this:hover { background: rgba(194,59,34,0.06); }
+        .value-alt-this .value-alt-name {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .value-alt-this .value-alt-note {
+            color: var(--text-sec);
+        }
+        .value-alt-this .value-alt-price {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .value-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1.2rem;
+            line-height: 1.85;
+        }
+        .value-meta em {
+            font-style: normal;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── Pricing section (no-tricks) ── */
+        .pricing-section {
+            text-align: center;
+            padding: 4rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .notricks {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            padding: 2rem 2rem;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .notricks::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+            border-radius: 3px 0 0 3px;
+        }
+        .notricks-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .notricks-title u {
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .notricks-list {
+            font-size: 0.88rem;
+            color: var(--warm);
+            line-height: 2;
+            margin-bottom: 1.2rem;
+        }
+        .notricks-why {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .notricks-why strong {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .price-hero {
+            margin: 2rem 0 2.5rem;
+            position: relative;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--gold);
+            text-shadow: 0 2px 40px rgba(184,134,11,0.15);
         }
         .price-unit {
             font-family: 'Prompt', sans-serif;
             font-size: 1rem;
             color: var(--text-sec);
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
         }
-        .price-no-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.4rem 1.2rem;
-            margin-top: 1.5rem;
-            font-size: 0.78rem;
-            color: var(--text-sec);
-        }
-
-        /* ── CTA ── */
-        .cta-section {
-            text-align: center;
-            padding: 5rem 2rem 3rem;
-        }
-        .cta-btn {
-            display: inline-block;
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: #FAF6F0;
-            background: linear-gradient(135deg, var(--accent) 0%, #8B6914 100%);
-            border: none;
-            border-radius: 10px;
-            padding: 0.9rem 3rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(196,149,106,0.3);
-        }
-        .cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(196,149,106,0.4);
-        }
-        .cta-or {
-            margin-top: 1.5rem;
-            font-size: 0.85rem;
-            color: var(--text-sec);
-        }
-
-        .cta-line-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: #fff;
-            background: #06C755;
-            border: none;
-            border-radius: 100px;
-            padding: 0.7rem 2rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .cta-line-btn:hover {
-            background: #05b34c;
-            transform: translateY(-1px);
-        }
-
-        .cta-line-btn svg { flex-shrink: 0; }
-
-        /* ── Interactive Demo ── */
-        .demo-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+        .price-reason {
+            text-align: left;
+            margin-bottom: 2rem;
+            background: #fff;
             border-radius: 12px;
-            padding: 2rem 1.5rem;
-            margin: 2rem 0;
-            text-align: center;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid var(--border);
         }
-        .demo-title {
+        .price-reason-title {
             font-family: 'Prompt', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--heading);
-            margin-bottom: 0.3rem;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
         }
-        .demo-subtitle {
-            font-size: 0.8rem;
+        .price-reason p {
+            font-size: 0.88rem;
             color: var(--text-sec);
-            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
         }
-        .demo-choices {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-            margin-bottom: 1rem;
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(194,59,34,0.2); }
+            50% { box-shadow: 0 4px 28px rgba(194,59,34,0.35); }
         }
-        .demo-choice {
-            background: var(--bg-alt);
-            border: 2px solid var(--border);
+        .pricing-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 16px rgba(194,59,34,0.2);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .pricing-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(194,59,34,0.3); animation: none; }
+        .pricing-note {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+        .pricing-sub-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── Reader's whisper (coupon) ── */
+        .reader-whisper {
+            margin-top: 1.8rem;
+            padding: 1.3rem 1.5rem;
+            border: 1px dashed var(--border-dark);
             border-radius: 10px;
-            padding: 1.2rem 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
+            background: rgba(255,255,255,0.5);
+            position: relative;
         }
-        .demo-choice:hover {
-            border-color: var(--accent);
-            background: rgba(196,149,106,0.05);
+        .reader-whisper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--warm), transparent);
         }
-        .demo-choice.selected {
-            border-color: var(--accent);
-            background: rgba(196,149,106,0.1);
-        }
-        .demo-choice-label {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.72rem;
-            color: var(--text-sec);
-            letter-spacing: 0.1em;
-            margin-bottom: 0.5rem;
-        }
-        .demo-choice-text {
-            font-size: 0.92rem;
-            color: var(--heading);
-            line-height: 1.6;
-        }
-        .demo-choice-scenario {
+        .whisper-label {
+            font-family: 'Noto Serif Thai', serif;
             font-size: 0.78rem;
             color: var(--text-sec);
-            line-height: 1.7;
-            margin-top: 0.6rem;
             font-style: italic;
+            margin-bottom: 0.6rem;
+            line-height: 1.7;
         }
-        .demo-choice-verdict {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--heading);
-            margin-top: 0.8rem;
-        }
-        .demo-choice-verdict .demo-highlight {
-            color: var(--accent);
-        }
-        .demo-result {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease;
-        }
-        .demo-result.show {
-            max-height: 400px;
-            opacity: 1;
-        }
-        .demo-result-text {
-            padding: 1.2rem 0 0;
-            font-size: 0.88rem;
+        .whisper-body {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.82rem;
             color: var(--text);
             line-height: 1.8;
         }
-        .demo-result-text strong { color: var(--accent); }
-        .demo-result-stats {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border);
+        .whisper-code-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
         }
-        .demo-result-stat { text-align: center; }
-        .demo-result-pct {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.3rem;
+        .whisper-code {
+            font-family: 'IBM Plex Sans Thai', 'Prompt', monospace;
+            font-size: 0.88rem;
             font-weight: 700;
             color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(194,59,34,0.12);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            user-select: all;
         }
-        .demo-result-label {
+        .whisper-code:hover {
+            background: rgba(194,59,34,0.12);
+            border-color: rgba(194,59,34,0.25);
+        }
+        .whisper-copy-hint {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .whisper-note {
             font-size: 0.72rem;
-            color: var(--text-sec);
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            line-height: 1.7;
         }
 
-        /* ── Choice / Purchase section ── */
-        .choice-section {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            border-top: 1px solid var(--border);
+        /* ── FAQ ── */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.3rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+            margin-bottom: 0.2rem;
         }
-        .choice-section-title {
-            font-family: 'Prompt', sans-serif;
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
-            font-weight: 600;
-            color: var(--heading);
-            text-align: center;
-            margin-bottom: 0.8rem;
-        }
-        .choice-section-sub {
-            font-size: 0.85rem;
-            color: var(--text-sec);
-            text-align: center;
-            margin-bottom: 2.5rem;
-            line-height: 1.9;
-        }
-        .choice-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        .choice-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.8rem 1.5rem;
-            text-align: center;
-            transition: border-color 0.3s;
-        }
-        .choice-card:hover {
-            border-color: rgba(196,149,106,0.3);
-        }
-        .choice-card-icon {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-        .choice-card-title {
+        .faq-item:hover { background: rgba(0,0,0,0.015); }
+        .faq-q {
             font-family: 'Prompt', sans-serif;
             font-size: 0.95rem;
             font-weight: 600;
-            color: var(--heading);
-            margin-bottom: 0.6rem;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
-        .choice-card-desc {
-            font-size: 0.82rem;
-            color: var(--text-sec);
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-        }
-        .choice-card-btn {
-            display: inline-block;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 0.6rem 1.8rem;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        .choice-btn-free {
+        .faq-q::before {
+            content: 'Q';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
             color: var(--accent);
-            background: transparent;
-            border: 1px solid var(--accent);
-        }
-        .choice-btn-free:hover {
-            background: var(--accent-dim);
-            transform: translateY(-1px);
-        }
-        .choice-btn-buy {
-            color: #1C1917;
-            background: var(--accent);
-            border: 1px solid var(--accent);
-        }
-        .choice-btn-buy:hover {
-            background: var(--gold);
-            transform: translateY(-1px);
-        }
-        .choice-price {
-            font-family: 'Prompt', sans-serif;
-            font-size: 1.3rem;
+            font-size: 0.62rem;
             font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 0.3rem;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            vertical-align: middle;
         }
-        .choice-price-unit {
-            font-size: 0.8rem;
-            font-weight: 400;
+        .faq-a {
+            font-size: 0.88rem;
             color: var(--text-sec);
+            line-height: 1.85;
+            margin: 0;
         }
-        .choice-footer {
+        .faq-a a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3); transition: border-color 0.2s; }
+        .faq-a a:hover { border-color: var(--accent); }
+
+        /* ── Final CTA band ── */
+        .final-cta {
+            background: linear-gradient(165deg, #1A1714 0%, #2A2520 40%, #1A1714 100%);
+            color: #F5F0EB;
+            padding: 4rem 1.5rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(194,59,34,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .final-cta-inner {
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .final-cta h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.15rem, 3vw, 1.4rem);
+            font-weight: 700;
+            line-height: 1.55;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #F5F0EB, var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .final-cta p {
+            color: #A29A90;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+        .final-cta-btn {
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .final-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); animation: none; }
+        .final-cta-note {
             font-size: 0.78rem;
-            color: var(--text-sec);
-            line-height: 1.9;
+            color: #6B6560;
+            margin-top: 0.8rem;
+        }
+        .final-cta-free {
+            display: inline-block;
             margin-top: 1rem;
-        }
-        .choice-footer a {
-            color: var(--accent);
-            text-decoration: underline;
-        }
-
-        /* ── Mid-page CTA ── */
-        .mid-cta {
-            text-align: center;
-            padding: 3rem 2rem;
-            max-width: 680px;
-            margin: 0 auto;
-            border-top: 1px solid var(--border);
-        }
-        .mid-cta-text {
-            font-size: 0.88rem;
-            color: var(--text-sec);
-            margin-bottom: 1.2rem;
-        }
-        .mid-cta-btn {
-            display: inline-block;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--accent);
-            background: transparent;
-            border: 1px solid var(--accent);
-            border-radius: 8px;
-            padding: 0.6rem 2rem;
-            cursor: pointer;
+            color: var(--warm);
+            font-size: 0.85rem;
             text-decoration: none;
-            transition: all 0.3s;
+            border-bottom: 1px solid rgba(196,149,106,0.3);
+            transition: border-color 0.2s;
         }
-        .mid-cta-btn:hover {
-            background: var(--accent-dim);
-            transform: translateY(-1px);
-        }
+        .final-cta-free:hover { border-color: var(--warm); }
 
-        /* ── Section divider ── */
-        .section-divider {
-            text-align: center;
-            padding: 2rem 0;
-            max-width: 680px;
+        /* ── Thin divider ── */
+        .thin-div {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-dark), transparent);
+            max-width: 200px;
             margin: 0 auto;
-        }
-        .section-divider-dots {
-            color: var(--accent);
-            font-size: 0.5rem;
-            letter-spacing: 1.5em;
-            opacity: 0.5;
-        }
-
-        /* ── Floating CTA ── */
-        #float-cta {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 999;
-            display: inline-block;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: #FAF6F0;
-            background: linear-gradient(135deg, var(--accent) 0%, #8B6914 100%);
-            border: none;
-            border-radius: 100px;
-            padding: 0.55rem 1.5rem;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 20px rgba(196,149,106,0.4);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-        }
-        #float-cta.vis {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-        #float-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 30px rgba(196,149,106,0.5);
         }
 
         /* ── Footer ── */
         .sp-footer {
             text-align: center;
-            padding: 2.5rem 2rem 4rem;
-            font-size: 0.78rem;
-            color: var(--text-sec);
-            letter-spacing: 0.02em;
-            max-width: 680px;
-            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
         }
-        .sp-footer a { color: var(--accent); text-decoration: none; }
 
-        /* ═══════════════════════════════════════
-           THIRD EYE ANNOTATIONS
-           ═══════════════════════════════════════ */
-        .te-note {
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1),
-                        opacity 0.5s ease,
-                        margin 0.5s ease,
-                        padding 0.5s ease;
-            background: rgba(196,149,106,0.06);
-            border-left: 3px solid var(--accent);
-            border-radius: 0 8px 8px 0;
-            margin: 0;
-            padding: 0 1.5rem;
+        /* ── Section ornament ── */
+        .sec::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--warm), transparent);
+            margin-bottom: 1.8rem;
+            border-radius: 2px;
         }
-        body.te-on .te-note {
-            max-height: 500px;
-            opacity: 1;
-            margin: 2rem 0;
-            padding: 1.2rem 1.5rem;
-        }
-        .te-note-head {
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-        }
-        .te-note p {
-            font-size: 0.85rem;
-            color: var(--text);
-            line-height: 1.8;
-            margin: 0;
-        }
-        .te-note strong { color: var(--accent); }
+        .sec:first-of-type::before { display: none; }
 
-        /* ── Third Eye floating toggle ── */
-        #te-float {
-            position: fixed;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.78rem;
-            color: var(--accent);
-            background: var(--bg-alt);
-            border: 1px solid rgba(196,149,106,0.2);
-            border-radius: 100px;
-            padding: 0.5rem 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+        /* ── Section labels: dot accent ── */
+        .sec-label::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--gold);
+            margin-right: 0.5rem;
+            vertical-align: middle;
+        }
+
+        /* ── Animations ── */
+        .rv {
             opacity: 0;
-            visibility: hidden;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
         }
-        #te-float.vis { opacity: 1; visibility: visible; }
-        #te-float:hover {
-            background: rgba(196,149,106,0.15);
-            border-color: var(--accent);
-        }
-        body.te-on #te-float {
-            background: var(--accent);
-            color: #FAF6F0;
-            border-color: var(--accent);
-        }
-        .te-count {
-            font-size: 0.65rem;
-            background: rgba(196,149,106,0.2);
-            padding: 0.1rem 0.4rem;
-            border-radius: 100px;
-            margin-left: 0.2rem;
-        }
-        body.te-on .te-count {
-            background: rgba(250,246,240,0.2);
-        }
+        .rv.vis { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: 0.1s; }
+        .rv-d2 { transition-delay: 0.2s; }
+        .rv-d3 { transition-delay: 0.3s; }
 
         /* ── Responsive ── */
-        @media (max-width: 600px) {
-            html { font-size: 16px; }
-            .sp { padding: 3.5rem 1.3rem; }
-            .hero { padding: 2.5rem 1.3rem; }
-            .hero-book-img { max-width: 220px; }
-            .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .transform-grid { grid-template-columns: 1fr; }
-            .transform-arrow { transform: rotate(90deg); justify-self: center; padding-top: 0; }
-            .price-row { flex-direction: column; gap: 0.2rem; }
-            .price-val { align-self: flex-start; }
-            .ch-item { grid-template-columns: 2.5rem 1fr; }
-            #te-float { bottom: 1rem; left: 1rem; font-size: 0.72rem; padding: 0.45rem 1rem; }
-            #float-cta { bottom: 1rem; right: 1rem; font-size: 0.75rem; padding: 0.45rem 1.2rem; }
-            .demo-choices { grid-template-columns: 1fr; }
-            .stats-bar { gap: 0.8rem 1.5rem; }
-            .mid-cta { padding: 2rem 1.3rem; }
-            .scene { padding: 1.3rem 1.3rem; }
-            .choice-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .rv, .rv-left, .rv-right, .rv-scale { opacity: 1 !important; transform: none !important; transition: none !important; }
-            .hero-meta, .hero-headline, .hero-ornament,
-            .hero-title-wrap, .hero-te-intro, .hero-scroll {
-                opacity: 1 !important; animation: none !important;
-            }
-            .price-big { animation: none !important; -webkit-text-fill-color: var(--accent); background: none; }
-        }
-
-        @media print {
-            .hero { min-height: auto; }
-            #te-float, #float-cta, #progress-bar { display: none; }
-            .te-note { max-height: none; opacity: 1; margin: 1rem 0; padding: 1rem; }
-        }
-
-        /* ── Admin Edit System ── */
-        .adm-overlay {
-            display: none;
-            position: fixed; inset: 0;
-            background: rgba(0,0,0,0.6);
-            z-index: 99998;
-        }
-        .adm-modal {
-            display: none;
-            position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background: #1C1917;
-            border: 1px solid #3a3530;
-            border-radius: 12px;
-            padding: 2rem;
-            z-index: 99999;
-            min-width: 340px;
-            max-width: 420px;
-            text-align: center;
-            color: #D4CDC3;
-            font-family: 'Prompt', sans-serif;
-        }
-        .adm-modal-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            color: #C4956A;
-        }
-        .adm-hint {
-            font-size: 0.8rem;
-            line-height: 1.8;
-            margin-bottom: 1rem;
-            color: #8a8078;
-        }
-        .adm-hint a { color: #C4956A; }
-        .adm-hint code {
-            background: #2a2520;
-            padding: 0.15em 0.4em;
-            border-radius: 3px;
-            font-size: 0.85em;
-        }
-        .adm-input {
-            width: 100%;
-            padding: 0.7rem 1rem;
-            border: 1px solid #3a3530;
-            border-radius: 8px;
-            background: #2a2520;
-            color: #D4CDC3;
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-            box-sizing: border-box;
-            font-family: monospace;
-        }
-        .adm-input:focus { border-color: #C4956A; outline: none; }
-        .adm-btn {
-            display: inline-block;
-            padding: 0.55rem 1.2rem;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            transition: all 0.2s;
-        }
-        .adm-btn-primary {
-            background: #C4956A;
-            color: #1C1917;
-            font-weight: 600;
-        }
-        .adm-btn-primary:hover { background: #d4a57a; }
-        .adm-btn-save {
-            background: #22c55e;
-            color: #fff;
-            font-weight: 600;
-        }
-        .adm-btn-save:hover { background: #16a34a; }
-        .adm-btn-save:disabled {
-            background: #4a4a4a;
-            color: #888;
-            cursor: not-allowed;
-        }
-        .adm-btn-ghost {
-            background: transparent;
-            color: #8a8078;
-            border: 1px solid #3a3530;
-        }
-        .adm-btn-ghost:hover { border-color: #8a8078; color: #D4CDC3; }
-        .adm-err {
-            color: #ef4444;
-            font-size: 0.8rem;
-            margin: 0.5rem 0;
-            min-height: 1.2rem;
-        }
-        .adm-toolbar {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            height: 48px;
-            background: #1C1917;
-            border-bottom: 2px solid #C4956A;
-            z-index: 99997;
-            padding: 0 1rem;
-            align-items: center;
-            justify-content: space-between;
-            font-family: 'Prompt', sans-serif;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.4);
-        }
-        body.admin-mode .adm-toolbar { display: flex; }
-        body.admin-mode { padding-top: 52px !important; }
-        .adm-tb-left, .adm-tb-center, .adm-tb-right {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .adm-tb-badge {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #22c55e;
-            letter-spacing: 0.05em;
-        }
-        .adm-tb-status {
-            font-size: 0.7rem;
-            color: #8a8078;
-        }
-        .adm-tb-sep {
-            width: 1px;
-            height: 20px;
-            background: #3a3530;
-            margin: 0 0.3rem;
-        }
-        .adm-fmt {
-            width: 30px; height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #3a3530;
-            border-radius: 4px;
-            background: transparent;
-            color: #D4CDC3;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.15s;
-        }
-        .adm-fmt:hover {
-            background: #2a2520;
-            border-color: #C4956A;
-            color: #C4956A;
-        }
-        .adm-section-nav {
-            background: #2a2520;
-            color: #D4CDC3;
-            border: 1px solid #3a3530;
-            border-radius: 4px;
-            padding: 0.3rem 0.5rem;
-            font-size: 0.75rem;
-            font-family: 'Prompt', sans-serif;
-            max-width: 200px;
-        }
-        body.admin-mode .sp {
-            -webkit-user-select: text !important;
-            -moz-user-select: text !important;
-            -ms-user-select: text !important;
-            user-select: text !important;
-            outline: 2px dashed rgba(196,149,106,0.3);
-            outline-offset: 8px;
-            border-radius: 4px;
-        }
-        body.admin-mode .sp:focus-within {
-            outline-color: #C4956A;
-            background: rgba(196,149,106,0.03);
-        }
-        body.admin-mode .sp.adm-dirty::before {
-            content: '\270E แก้ไขแล้ว';
-            display: block;
-            font-size: 0.7rem;
-            color: #f59e0b;
-            font-family: 'Prompt', sans-serif;
-            margin-bottom: 0.5rem;
-        }
-        .adm-toast {
-            display: none;
-            position: fixed;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-family: 'Prompt', sans-serif;
-            font-size: 0.85rem;
-            z-index: 99999;
-            animation: admToastIn 0.3s ease;
-            white-space: nowrap;
-        }
-        .adm-toast.adm-toast-ok { background: #22c55e; color: #fff; }
-        .adm-toast.adm-toast-err { background: #ef4444; color: #fff; }
-        .adm-toast.adm-toast-info { background: #3b82f6; color: #fff; }
-        @keyframes admToastIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
-            to { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
         @media (max-width: 768px) {
-            .adm-toolbar { flex-wrap: wrap; height: auto; padding: 0.4rem; gap: 0.3rem; }
-            .adm-tb-center { order: 3; width: 100%; justify-content: center; gap: 0.3rem; }
-            .adm-section-nav { max-width: 120px; }
-            body.admin-mode { padding-top: 90px !important; }
+            html { font-size: 16px; }
+            .sec { padding: 3rem 1.3rem; }
+            .hero { padding: 4rem 1.3rem 3rem; }
+            .hero h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .hero-sub { font-size: 0.92rem; }
+            .hero-hook { font-size: 0.95rem; margin: 1.3rem auto 1.8rem; }
+            .hero-cta { padding: 0.85rem 2.2rem; font-size: 0.95rem; }
+            .dark-band { padding: 2.8rem 1.3rem; }
+            .dark-band .big-quote { font-size: clamp(1rem, 3vw, 1.2rem); }
+            .compare { gap: 0.8rem; }
+            .compare-col { padding: 1.2rem 1rem; }
+            .compare-col li { font-size: 0.82rem; }
+            .benefit-card { padding: 1.3rem 1.2rem; }
+            .benefit-title { font-size: 0.95rem; }
+            .benefit-desc { font-size: 0.85rem; }
+            .benefit-example { font-size: 0.8rem; }
+            .proof-bar { gap: 1.5rem; }
+            .proof-num { font-size: 1.8rem; }
+            .pricing-section { padding: 3rem 1.3rem; }
+            .notricks { padding: 1.5rem 1.3rem; }
+            .value-alt-name { font-size: 0.82rem; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-meta { font-size: 0.75rem; }
+            .notricks-title { font-size: 0.95rem; }
+            .notricks-list { font-size: 0.84rem; }
+            .notricks-why { font-size: 0.88rem; }
+            .price-big { font-size: clamp(2.8rem, 7vw, 3.5rem); }
+            .price-reason p { font-size: 0.85rem; }
+            .pricing-cta { font-size: 1rem; padding: 0.9rem 1.5rem; }
+            .faq-q { font-size: 0.9rem; }
+            .faq-a { font-size: 0.85rem; }
+            .final-cta { padding: 3rem 1.3rem; }
+            .final-cta-btn { padding: 0.85rem 2rem; font-size: 0.95rem; }
+            .gold-box { padding: 1.3rem 1.2rem; }
+            .gold-box p { font-size: 0.88rem; }
+            .pull-quote { font-size: 0.92rem; padding-left: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            .compare, .who-grid { grid-template-columns: 1fr; }
+            .hero-cta { display: block; width: 100%; text-align: center; }
+            .final-cta-btn { display: block; width: 100%; max-width: 360px; margin: 0 auto; text-align: center; }
+            .proof-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem 1rem;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 2rem 0;
+            }
+            .proof-item { text-align: center; }
+            .who-col { padding: 1.2rem 1rem; }
+            .who-col li { font-size: 0.82rem; }
+            .scenario { padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 0.6rem; }
+            .scenario-q { font-size: 0.88rem; }
+            .scenario-a { font-size: 0.84rem; }
+            .sec::before { width: 30px; margin-bottom: 1.2rem; }
+            .reader-whisper { padding: 1.1rem 1.2rem; }
+            .whisper-body { font-size: 0.78rem; }
+            .whisper-code { font-size: 0.82rem; padding: 0.25rem 0.6rem; }
+            .compare-new::before { font-size: 0.55rem; top: -8px; right: 8px; padding: 0.1rem 0.5rem; }
+        }
+
+        @media (max-width: 420px) {
+            html { font-size: 15px; }
+            .sec { padding: 2.5rem 1rem; }
+            .hero { padding: 3rem 1rem 2.5rem; }
+            .hero h1 { font-size: 1.2rem; line-height: 1.55; }
+            .hero-sub { font-size: 0.88rem; }
+            .hero-hook { font-size: 0.9rem; }
+            .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
+            .sec-title { font-size: 1.1rem; }
+            .sec-label { font-size: 0.62rem; }
+            .dark-band { padding: 2.2rem 1rem; }
+            .dark-band .big-quote { font-size: 1rem; line-height: 1.7; }
+            .dark-band-sub { font-size: 0.82rem; }
+            .compare-col h4 { font-size: 0.78rem; }
+            .benefit-card { padding: 1.1rem 1rem; border-top-width: 2px; }
+            .benefit-num { font-size: 0.62rem; }
+            .benefit-title { font-size: 0.9rem; }
+            .proof-num { font-size: 1.5rem; }
+            .proof-label { font-size: 0.68rem; }
+            .pricing-section { padding: 2.5rem 1rem; }
+            .notricks { padding: 1.2rem 1rem; margin-bottom: 2rem; }
+            .value-context { margin-bottom: 2rem; }
+            .value-context-title { font-size: 0.85rem; }
+            .value-alt { flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-alt-name { font-size: 0.8rem; }
+            .value-alt-note { font-size: 0.68rem; }
+            .value-alt-this .value-alt-price { font-size: 0.95rem; }
+            .value-meta { font-size: 0.72rem; }
+            .notricks-title { font-size: 0.9rem; }
+            .notricks-list { font-size: 0.8rem; line-height: 1.9; }
+            .notricks-why { font-size: 0.84rem; }
+            .price-big { font-size: 2.5rem; }
+            .price-reason-title { font-size: 0.92rem; }
+            .price-reason p { font-size: 0.82rem; }
+            .pricing-cta { font-size: 0.95rem; padding: 0.85rem 1rem; }
+            .pricing-note { font-size: 0.72rem; }
+            .pricing-sub-note { font-size: 0.78rem; }
+            .faq-q { font-size: 0.85rem; }
+            .faq-a { font-size: 0.82rem; }
+            .final-cta { padding: 2.5rem 1rem; }
+            .final-cta h2 { font-size: 1.05rem; }
+            .final-cta p { font-size: 0.85rem; }
+            .final-cta-btn { font-size: 0.9rem; padding: 0.8rem 1rem; }
+            .final-cta-note { font-size: 0.72rem; }
+            .final-cta-free { font-size: 0.8rem; }
+            .gold-box { padding: 1.1rem 1rem; }
+            .gold-box p { font-size: 0.84rem; }
+            .pull-quote { font-size: 0.88rem; margin: 1.3rem 0; }
+            .who-col h4 { font-size: 0.78rem; }
+            .who-col li { font-size: 0.8rem; }
+            .sec::before { width: 24px; margin-bottom: 1rem; }
+            .reader-whisper { padding: 1rem; }
+            .whisper-label { font-size: 0.72rem; }
+            .whisper-body { font-size: 0.76rem; }
+            .whisper-code { font-size: 0.78rem; }
+            .whisper-note { font-size: 0.66rem; }
+            .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
+            .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
+            .price-reason { padding: 1.2rem 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ── Reading progress bar ── -->
+    <!-- ── Progress bar ── -->
     <div id="progress-bar"></div>
 
 
-    <!-- ═══════ HERO ═══════ -->
-    <section class="hero">
+    <!-- ═══════════════════════════════════════════════
+         HERO
+         ═══════════════════════════════════════════════ -->
+    <div class="hero">
+        <div class="hero-inner rv">
+            <div class="hero-eyebrow">The One Root of Marketing</div>
+            <h1>คุณทำ Content ทำ Ads ทำทุกอย่าง &mdash;<br>แต่ยังตอบไม่ได้ว่า<br><em>&ldquo;ทำไมลูกค้าถึงซื้อ?&rdquo;</em></h1>
+            <p class="hero-sub">เทรนด์เปลี่ยนทุก 6 เดือน แพลตฟอร์มเปลี่ยนทุกปี &mdash; แต่สมองมนุษย์ไม่เคยเปลี่ยนมา 200,000 ปี</p>
+            <p class="hero-hook">&ldquo;95% ของการตัดสินใจซื้อเกิดในจิตใต้สำนึก &mdash; ลูกค้าเองก็ไม่รู้ว่าทำไมตัวเองถึงซื้อ แล้วคุณจะรู้ได้ยังไง?&rdquo;</p>
+            <a href="#pricing" class="hero-cta">เข้าถึงรากแก้วของการตลาด</a>
+            <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
+        </div>
+    </div>
 
-        <p class="hero-meta">สิ่งที่เพิ่งเกิดขึ้น</p>
+    <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
 
-        <h1 class="hero-headline">
-            คุณรู้ว่าคุณโดนจิตวิทยา<br>
-            คุณรู้ว่าคุณกำลังถูกนำทาง<br><br>
-            <em>แต่คุณยังกดเข้ามา</em>
-        </h1>
+    <!-- ═══════════════════════════════════════════════
+         THE PROBLEM — pain points for marketers / business owners
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ปัญหา</div>
+        <h2 class="sec-title">คุณทำทุกอย่างที่กูรูบอก<br>แต่<em>ผลลัพธ์ยังวัดไม่ได้</em></h2>
 
-        <p style="font-family: 'Prompt', sans-serif; font-size: clamp(0.9rem, 2vw, 1.05rem); color: var(--text-sec); line-height: 2.2; max-width: 480px; margin: 0 auto; text-align: center; opacity: 0; animation: heroIn 1s 2.2s forwards;">
-            เพราะ <b>“รู้”</b> กับ <b>“หยุดได้”</b> คือคนละเรื่อง<br>
-            และนั่นคือ <strong style="color: var(--accent);">ราก</strong> ที่ทุกอย่างในหน้านี้เกาะอยู่
-        </p>
+        <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
 
-        <div class="hero-ornament">✦ ✦ ✦</div>
-
-        <div class="hero-te-intro">
-            <button class="hero-te-btn" id="hero-te-btn">
-                🔮 เปิดตาที่สาม — หน้านี้กำลังใช้จิตวิทยากับคุณ กดเพื่อดูทุกเทคนิค
-            </button>
+        <div class="scenario">
+            <div class="scenario-q">ทำ Content 100 ชิ้น ไวรัล 1 ชิ้น &mdash; แต่ไม่รู้ว่าทำไม</div>
+            <p class="scenario-a">คุณทำซ้ำสูตรเดิม แต่ชิ้นต่อไปไม่เวิร์ก ได้แต่โทษอัลกอริทึม หรือ &ldquo;ช่วงนี้คนไม่เล่นโซเชียล&rdquo;</p>
         </div>
 
-        <a href="#story" class="hero-scroll">เลื่อนลง ↓</a>
-    
-    </section>
+        <div class="scenario">
+            <div class="scenario-q">ยิง Ads งบเดือนละหมื่น แต่ Cost per Sale ไม่ลง</div>
+            <p class="scenario-a">เปลี่ยน Creative เปลี่ยน Audience ปรับ Bid &mdash; แต่ลูกค้ากดดูแล้วไม่ซื้อ คุณไม่รู้ว่าอะไรทำให้เขาหยุด</p>
+        </div>
 
-    <div style="max-width: 680px; margin: 0 auto; padding: 0 2rem;">
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Self-referential Loop + Cognitive Dissonance</strong> &mdash; ประโยคแรกที่คุณเห็นย้ำสิ่งที่คุณเพิ่งเรียนรู้จากโพสต์ สมองรู้สึก &laquo;ใช่ ฉันรู้แล้ว&raquo; &mdash; ซึ่งสร้างความรู้สึก &laquo;คิดเหมือนกัน&raquo; ให้คุณเชื่อใจผู้เขียนมากกว่าหน้าขายทั่วไป และ &laquo;แต่คุณยังกดเข้ามา&raquo; คือตัวจุดชนวน Cognitive Dissonance &mdash; สมองต้องหาเหตุผลว่า &laquo;ทำไมฉันถึงกดเข้ามา ทั้งที่รู้ว่าเป็นการตลาด?&raquo; คำตอบเดียวที่สมบูรณ์ อยู่ในหน้านี้ (บทที่ 4, 5, 9)</p>
+        <div class="scenario">
+            <div class="scenario-q">ตั้งราคาแล้วลูกค้าบอก &ldquo;แพง&rdquo; &mdash; แต่ไปซื้อเจ้าอื่นที่แพงกว่า</div>
+            <p class="scenario-a">มันไม่เกี่ยวกับตัวเลข แต่คุณไม่รู้ว่าจะทำยังไงให้ลูกค้า &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องลดราคา</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">เทรนด์ใหม่มาทุก 6 เดือน &mdash; เรียนไม่ทัน ใช้ไม่เป็น หมดอายุก็ไล่ตามใหม่</div>
+            <p class="scenario-a">AI Marketing, Short Video, Social Commerce, Conversational Commerce &mdash; พอเริ่มเข้าใจ มันก็เปลี่ยนแล้ว</p>
+        </div>
+
+        <div class="scenario">
+            <div class="scenario-q">แบรนด์คู่แข่งสินค้าเหมือนกัน แต่ขายดีกว่า &mdash; คุณไม่รู้ว่าเขาทำอะไรต่าง</div>
+            <p class="scenario-a">ดูหน้าเพจเขา ดูโฆษณาเขา ก็ &ldquo;ธรรมดา&rdquo; &mdash; แต่ทำไมลูกค้าเลือกเขา?</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาไม่ได้อยู่ที่แพลตฟอร์ม ไม่ได้อยู่ที่ Budget ไม่ได้อยู่ที่เครื่องมือ &mdash;</p>
+
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">ปัญหาอยู่ที่คุณ &ldquo;สื่อสาร&rdquo; กับสมองส่วนคิด &mdash; แต่คนตัดสินใจซื้อด้วยสมองส่วนรู้สึก</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Truth about Marketing
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.88rem; color: #A29A90; margin-bottom: 1rem;">ลองสังเกตดู</p>
+            <p class="big-quote">&ldquo;แบรนด์ที่คนรักที่สุด<br>ไม่ได้โฆษณาเก่งที่สุด &mdash;<br>แต่เขา<strong>เข้าใจคนมากที่สุด</strong>&rdquo;</p>
+            <p class="dark-band-sub">และนั่นคือสิ่งที่เรียนรู้ได้ &mdash; ถ้ารู้ว่าสมองมนุษย์ทำงานยังไง</p>
         </div>
     </div>
 
 
-    <!-- ═══════ THE STORY ═══════ -->
-    <section class="sp" id="story">
-        <div class="rv">
-            <div class="sp-label">เรื่องเล่า</div>
-            <h2>พ่อค้าน้ำปลาที่รวยที่สุดในจักรวรรดิโรมัน</h2>
-            <p>ในแคปชั่นที่คุณเพิ่งอ่าน มีชื่อของพ่อค้าที่ตายไปแล้ว 2,000 ปี &mdash; แต่สิ่งที่เขาทำ ยังทำงานอยู่ในทุกโฆษณาที่คุณเห็นวันนี้</p>
+    <!-- ═══════════════════════════════════════════════
+         THE MECHANISM — why psychology matters for marketing
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คอร์สการตลาดไม่ได้สอนคุณ</div>
+        <h2 class="sec-title">ลูกค้าตัดสินใจซื้อภายใน <em>3 วินาทีแรก</em><br>ก่อนที่จะอ่าน Caption ของคุณด้วยซ้ำ</h2>
+
+        <p>งานวิจัยจาก Harvard Business School พบว่า 95% ของการตัดสินใจซื้อเกิดในจิตใต้สำนึก &mdash; ลูกค้าตัดสินใจ &ldquo;เอา&rdquo; หรือ &ldquo;ไม่เอา&rdquo; ก่อนที่จะอ่านรายละเอียดสินค้าด้วยซ้ำ</p>
+
+        <p>นั่นเป็นเพราะสมองมนุษย์ไม่ได้ถูกออกแบบมาเพื่อวิเคราะห์โฆษณา &mdash; มันถูกออกแบบมาเพื่อ<strong>ตอบสนองต่อสัญญาณทางอารมณ์</strong></p>
+
+        <div class="pull-quote">
+            สมองส่วน Limbic System &mdash; ส่วนเดียวกับที่ทำให้บรรพบุรุษเราตัดสินใจว่าผลไม้ลูกนี้ &ldquo;กินได้&rdquo; หรือ &ldquo;อันตราย&rdquo; &mdash; ตอนนี้เป็นส่วนที่ตัดสินใจว่าจะ &ldquo;คลิก&rdquo; หรือ &ldquo;เลื่อนผ่าน&rdquo; โฆษณาของคุณ
+            <cite>&mdash; จากบทที่ 1: The Illusion of Evolution</cite>
         </div>
 
-        <div class="rv">
-            <div class="scene">
-                <p>ปี 79 ก่อนคริสตกาล เมือง Pompeii ยังเต็มไปด้วยชีวิตชีวา</p>
-                <p>ในตลาดเช้าวันนั้น มีพ่อค้าขายน้ำปลาหมักที่เรียกว่า <strong>Garum</strong> เรียงรายอยู่หลายสิบเจ้า สูตรไม่ต่างกัน วัตถุดิบเหมือนกัน รสชาติแยกแทบไม่ออก</p>
-                <p>แต่มีชายคนหนึ่งที่รวยกว่าคนอื่นทั้งหมด</p>
-                <p>ชื่อของเขาคือ <strong>Umbricius Scaurus</strong></p>
-            </div>
+        <p><strong>Dopamine</strong> (สารแห่งความคาดหวัง) พุ่งสูงสุดตอนที่ลูกค้า &ldquo;เกือบได้&rdquo; &rarr; นี่คือเหตุผลว่าทำไม Teaser Content ถึงทำ Engagement ได้มากกว่า Content ที่บอกหมดในคลิปเดียว</p>
+
+        <p><strong>Oxytocin</strong> (สารแห่งความไว้วางใจ) หลั่งเมื่อลูกค้ารู้สึกว่าแบรนด์ &ldquo;เข้าใจ&rdquo; เขา &rarr; นี่คือเหตุผลว่าทำไมรีวิวจากคนจริงถึงทรงพลังกว่า Ad Copy ที่เขียนดีแค่ไหน</p>
+
+        <p><strong>Cortisol</strong> (สารแห่งความกลัว) พุ่งเมื่อรู้สึกว่ากำลังจะ &ldquo;พลาด&rdquo; &rarr; Loss Aversion ทำให้คนกลัวเสียมากกว่าอยากได้ 2.5 เท่า &mdash; นักการตลาดที่เก่งใช้หลักนี้โดยไม่ต้องหลอก</p>
+
+        <p style="margin-top: 1.5rem;"><strong>คอร์สการตลาดสอนให้คุณ &ldquo;ทำอะไร&rdquo;</strong> &mdash; แต่ไม่เคยสอนว่า<em>ทำไมมันถึงได้ผล</em></p>
+        <p>เมื่อคุณเข้าใจ &ldquo;ทำไม&rdquo; &mdash; คุณจะหยุดวิ่งตามเทรนด์ แล้วเริ่ม<strong>สร้างกลยุทธ์ที่ใช้ได้ทุกยุค</strong></p>
+
+        <div class="gold-box">
+            <p>เทคนิคการตลาด 100 ข้อ สู้ไม่ได้กับ<strong>ความเข้าใจสมองมนุษย์ 1 เรื่อง</strong><br>เพราะเทคนิคหมดอายุ &mdash; แต่ธรรมชาติของมนุษย์ไม่เคยเปลี่ยนมา 200,000 ปี</p>
         </div>
-
-        <div class="rv">
-            <p>Scaurus ไม่ได้มีสูตรลับ ไม่ได้มีวัตถุดิบพิเศษ ไม่ได้ขายถูกกว่า</p>
-            <p>สิ่งที่เขาทำต่างจากคนอื่น มีอยู่อย่างเดียว &mdash;</p>
-            <p>เขา<strong>สลักชื่อตัวเอง</strong>บนทุกขวด แล้ววาง<strong>ขวดเปล่า</strong>ไว้ตามร้านค้าทั่วเมือง</p>
-            <p>ไม่ได้ขาย แค่วาง ให้คนเห็นชื่อ <strong>&ldquo;Scauri&rdquo;</strong> ซ้ำแล้วซ้ำเล่า</p>
-        </div>
-
-        <div class="rv">
-            <p>จนวันหนึ่ง เมื่อชาว Pompeii เดินไปในตลาด เห็นน้ำปลาหลายสิบยี่ห้อ สมองของพวกเขาไม่ได้เปรียบเทียบรสชาติ ไม่ได้เปรียบเทียบราคา</p>
-            <p>สมองทำสิ่งเดียว &mdash;</p>
-        </div>
-
-        <div class="rv">
-            <div class="story-quote">
-                <p>คุ้นเคย หมายถึง ปลอดภัย</p>
-                <p>ปลอดภัย หมายถึง เชื่อถือได้</p>
-                <p>เชื่อถือได้ หมายถึง ซื้อ</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <p>Scaurus รวยที่สุดในเมือง ไม่ใช่เพราะน้ำปลาดีกว่า แต่เพราะเขาเข้าใจสิ่งที่คนขายคนอื่นไม่เข้าใจ &mdash;</p>
-            <p class="punchline">การตัดสินใจซื้อไม่ได้เกิดขึ้นที่ &ldquo;เหตุผล&rdquo;<br>แต่เกิดขึ้นที่ &ldquo;ความรู้สึก&rdquo; ที่คุณไม่รู้ตัว</p>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Storytelling + Neural Coupling</strong> &mdash; ตอนที่คุณอ่านเรื่อง Scaurus สมองของคุณไม่ได้แค่ &laquo;อ่าน&raquo; แต่กำลัง &laquo;จำลองเหตุการณ์&raquo; เห็นภาพตลาด เห็นขวดน้ำปลา เห็นชื่อสลักอยู่ &mdash; นี่คือ Neural Coupling ที่ทำให้เรื่องเล่ามีพลังกว่าสถิติหลายเท่า (บทที่ 4)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ THE ROOT ═══════ -->
-    <section class="sp" id="root">
-        <div class="rv">
-            <div class="sp-label">ราก</div>
-            <h2>ทำไมเราถึงถูกหลอกได้ง่ายขนาดนี้?</h2>
-        </div>
-
-        <div class="rv">
-            <p>แคปชั่นนั้นสอนคุณ 4 เทคนิค &mdash; Pattern Interrupt, Curiosity Gap, Sunk Cost, System 1 &amp; 2 &mdash; แต่สิ่งที่ไม่ได้บอก คือทั้ง 4 อย่างนั้น<strong>มีรากเดียว</strong></p>
-            <p>คำตอบง่ายกว่าที่คิด &mdash;</p>
-            <p>สมองของคุณไม่ได้ถูกออกแบบมาเพื่อโลกยุคนี้ มันถูกออกแบบมาเพื่อเอาชีวิตรอดบนทุ่งหญ้าเมื่อแสนปีก่อน</p>
-            <p>สมองที่เห็นเสือแล้วต้องวิ่งหนี <strong>ไม่มีเวลาคิดวิเคราะห์</strong></p>
-            <p>สมองที่อยู่ในฝูงแล้วปลอดภัย <strong>ไม่มีเหตุผลต้องคิดต่าง</strong></p>
-            <p>สมองที่คุ้นเคยหมายถึงปลอดภัย <strong>ไม่จำเป็นต้องลองของใหม่</strong></p>
-        </div>
-
-        <div class="rv">
-            <p>สมองนี้ &mdash; สมองเดียวกัน &mdash; คือสมองที่คุณใช้<strong>เลือกซื้อของผ่านมือถือตอนตี 2</strong></p>
-        </div>
-
-        <div class="rv-scale tree-wrap">
-            <div class="tree-leaves">
-                <span>โฆษณา</span>
-                <span>โปรโมชั่น</span>
-                <span>ลดราคา</span>
-                <span>รีวิว</span>
-                <span>แบรนด์</span>
-                <span>คอนเทนต์</span>
-                <span>ไลฟ์สด</span>
-                <span>Flash Sale</span>
-            </div>
-            <div class="tree-trunk"></div>
-            <div class="tree-root-label">จิตวิทยาของความเป็นมนุษย์</div>
-        </div>
-
-        <div class="rv">
-            <p>สิ่งที่คุณเห็นทุกวัน &mdash; โฆษณา ลดราคา Flash Sale รีวิว &mdash; ทั้งหมดเป็นแค่ &ldquo;ใบ&rdquo; ของต้นไม้</p>
-            <p>แต่สิ่งที่ทำให้มัน<strong>ได้ผล</strong>จริงๆ ซ่อนอยู่ข้างล่าง &mdash; ใน &ldquo;ราก&rdquo; ที่มนุษย์ทุกคนมีเหมือนกัน ไม่ว่าจะอยู่ยุคไหน</p>
-        </div>
-
-        <div class="stats-bar rv">
-            <div class="stat-item">
-                <span class="stat-num">12</span>
-                <span class="stat-label">บท</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">100+</span>
-                <span class="stat-label">งานวิจัยอ้างอิง</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">2,000+</span>
-                <span class="stat-label">ปีของหลักฐาน</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-num">1</span>
-                <span class="stat-label">ความจริงที่ซ่อนอยู่</span>
-            </div>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Reframing + Metaphor</strong> &mdash; อุปมา &laquo;ต้นไม้&raquo; Reframe กรอบคิดของคุณจาก &laquo;เทคนิคแยกชิ้น&raquo; เป็น &laquo;ระบบที่เชื่อมกัน&raquo; ทันที พอสมองเห็นภาพ ราก-ลำต้น-ใบ มันจะจำโครงสร้างนี้ได้เอง โดยไม่ต้อง &laquo;เรียน&raquo; (บทที่ 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ MID-PAGE CTA ═══════ -->
-    <div class="mid-cta rv">
-        <p class="mid-cta-text">เรื่อง Scaurus อยู่ในบทนำ &mdash; อ่านเวอร์ชันเต็มได้ฟรี</p>
-        <a href="/" class="mid-cta-btn">อ่านบทนำฟรี &rarr;</a>
     </div>
 
-    <div class="section-divider"><span class="section-divider-dots">&#x2022; &#x2022; &#x2022;</span></div>
 
+    <!-- ═══════════════════════════════════════════════
+         Chasing Trends vs Understanding — comparison
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">เปรียบเทียบ</div>
+        <h2 class="sec-title">&ldquo;วิ่งตามเทรนด์&rdquo; vs<br><em>&ldquo;เข้าใจสมองมนุษย์&rdquo;</em></h2>
 
-    <!-- ═══════ A TASTE ═══════ -->
-    <section class="sp" id="aha">
-        <div class="rv">
-            <div class="sp-label">หลักฐาน</div>
-            <h2>คุณโดนมาแล้ว &mdash; แค่ไม่เคยรู้ตัว</h2>
-        </div>
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองแนวทางนี้ใช้พลังงานเท่ากัน &mdash; แต่ผลลัพธ์ต่างกันอย่างสิ้นเชิง</p>
 
-        <div class="rv">
-            <p>เมื่อกี้คุณเพิ่งอ่านว่าสมองถูกออกแบบมาเพื่อทุ่งหญ้า ไม่ใช่หน้าจอมือถือ<br>ฟังดูเป็นเรื่องของ &ldquo;คนอื่น&rdquo; ใช่ไหม?</p>
-            <p><strong>ไม่ใช่ &mdash; มันเกิดขึ้นกับคุณแล้ว</strong></p>
-        </div>
-
-        <div class="rv-left">
-            <div class="aha-card">
-                <div class="aha-num">01</div>
-                <p class="aha-text">คุณเคย<strong>จ่ายแพงกว่า</strong>เพราะ &ldquo;รู้สึก&rdquo; ว่ามันดีกว่า &mdash; ทั้งที่ของเหมือนกัน</p>
-                <p class="aha-explain">งานวิจัยพบว่าคนไข้ที่ได้ยาหลอก (น้ำเกลือธรรมดา) ติดป้ายราคา 2.50 ดอลลาร์ รายงานว่าหายปวดมากกว่ากลุ่มที่ได้ยาหลอกเดียวกันติดราคา 10 เซนต์ &mdash; ขวดเดียวกัน สารเดียวกัน แต่สมองใช้ &ldquo;ราคา&rdquo; ตัดสินว่าอะไร &ldquo;ดี&rdquo; โดยที่คุณไม่ได้อนุญาต (บทที่ 7)</p>
-            </div>
-        </div>
-
-        <div class="rv-right">
-            <div class="aha-card">
-                <div class="aha-num">02</div>
-                <p class="aha-text">เมื่อคืน ตอนตี 2 &mdash; <strong>มือคุณเลื่อนหน้าจอเอง</strong> ทั้งที่ตาแทบจะปิด</p>
-                <p class="aha-explain">สมองปล่อย Dopamine ไม่ใช่ตอนที่คุณ &ldquo;ได้&rdquo; สิ่งที่ต้องการ แต่ตอนที่ &ldquo;อาจจะได้&rdquo; &mdash; กลไกเดียวกับตู้สล็อต ทุกครั้งที่นิ้วเลื่อนขึ้น สมองพนันว่า &ldquo;อันถัดไปอาจน่าสนใจ&rdquo; &mdash; มันไม่ได้ถามคุณก่อน (บทที่ 2)</p>
-            </div>
-        </div>
-
-        <div class="rv-left">
-            <div class="aha-card">
-                <div class="aha-num">03</div>
-                <p class="aha-text">คุณเคย<strong>กดซื้อใน 3 วินาที</strong> เพราะเห็นคำว่า &ldquo;เหลือชิ้นสุดท้าย&rdquo; &mdash; แล้ววันรุ่งขึ้นสินค้ายังอยู่</p>
-                <p class="aha-explain">สมองมนุษย์กลัว &ldquo;เสีย&rdquo; มากกว่าดีใจที่ &ldquo;ได้&rdquo; ประมาณ 2 เท่า &mdash; ป้าย &ldquo;เหลือ 3 ชิ้น&rdquo; ไม่ได้ทำให้สินค้ามีค่าขึ้น แต่มันจุดชนวนระบบเตือนภัยในสมองที่ออกแบบมาเพื่อเอาชีวิตรอด &mdash; ระบบเดียวกับที่เคยช่วยคุณวิ่งหนีเสือ ตอนนี้ถูกใช้ขายรองเท้า (บทที่ 6)</p>
-            </div>
-        </div>
-
-        <!-- ── Interactive Demo: Framing Effect ── -->
-        <div class="rv">
-            <div class="demo-box" id="perception-demo">
-                <div class="demo-title">ลองพิสูจน์ด้วยตัวเอง</div>
-                <div class="demo-subtitle">โรคระบาดกำลังคุกคามประเทศ คาดว่าจะมีผู้เสียชีวิต 600 คน<br>มีโปรแกรมรับมือ 2 แบบ &mdash; คุณจะเลือกแบบไหน?</div>
-                <div class="demo-choices">
-                    <div class="demo-choice" data-choice="A">
-                        <div class="demo-choice-label">โปรแกรม A</div>
-                        <div class="demo-choice-text">ช่วยชีวิตคนได้<br><strong>200 คน</strong> อย่างแน่นอน</div>
-                    </div>
-                    <div class="demo-choice" data-choice="B">
-                        <div class="demo-choice-label">โปรแกรม B</div>
-                        <div class="demo-choice-text">มีคน<br><strong>400 คน เสียชีวิต</strong> อย่างแน่นอน</div>
-                    </div>
-                </div>
-                <div class="demo-result" id="demo-result">
-                    <div class="demo-result-text">
-                        <strong>ทั้งสองโปรแกรมให้ผลลัพธ์เหมือนกันทุกประการ</strong><br><br>
-                        600 คน &mdash; รอด 200 &mdash; ตาย 400<br>
-                        ตัวเลขเดียวกัน ข้อเท็จจริงเดียวกัน<br><br>
-                        แต่คนส่วนใหญ่เลือก A &mdash; เพราะสมองมนุษย์ &ldquo;รู้สึก&rdquo; ต่างกันเมื่อได้ยินคำว่า &ldquo;ช่วยชีวิต&rdquo; กับ &ldquo;เสียชีวิต&rdquo; แม้ผลลัพธ์จะเท่ากัน<br><br>
-                        นี่คือ <strong>Framing Effect</strong> &mdash; คุณไม่ได้ตัดสินจากข้อเท็จจริง คุณตัดสินจาก &ldquo;กรอบ&rdquo; ที่คนอื่นเลือกใช้เล่าข้อเท็จจริงนั้นให้คุณฟัง<br><br>
-                        และมันไม่ได้แค่ขายของ &mdash; มันเปลี่ยนวิธีที่คุณตัดสินใจเรื่องสุขภาพ การเงิน ความสัมพันธ์ ทุกเรื่องในชีวิต ทุกวัน &mdash; บทที่ 7
-                    </div>
-                    <div class="demo-result-stats">
-                        <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-a">72%</div>
-                            <div class="demo-result-label">เลือก A &ldquo;ช่วยชีวิต&rdquo;</div>
-                        </div>
-                        <div class="demo-result-stat">
-                            <div class="demo-result-pct" id="demo-pct-b">28%</div>
-                            <div class="demo-result-label">เลือก B &ldquo;เสียชีวิต&rdquo;</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>ช่องว่างความอยากรู้ + Self-referencing + Framing Effect</strong> &mdash; สังเกตไหมว่าส่วนนี้เปลี่ยนจาก &laquo;เรื่องของคนอื่น&raquo; เป็น &laquo;เรื่องของคุณ&raquo; ทันทีในประโยคแรก? นั่นคือ Self-referencing Effect &mdash; สมองให้ความสำคัญกับข้อมูลที่เกี่ยวกับตัวเองมากกว่าข้อมูลทั่วไป และข้อ 03 จงใจเชื่อมกลับไปที่ &laquo;สมองที่วิ่งหนีเสือ&raquo; ที่คุณเพิ่งอ่าน &mdash; Callback ทำให้สมองรู้สึกว่าเนื้อหา &laquo;ต่อเนื่อง&raquo; และ &laquo;ฉลาด&raquo; ซึ่งเพิ่มความไว้วางใจ ส่วนตัวทดสอบ Framing Effect ไม่ได้ทดสอบว่าคุณ &laquo;เลือกอะไร&raquo; &mdash; มันทดสอบว่า &laquo;คำ&raquo; เปลี่ยนการตัดสินใจของคุณได้ไหม คำตอบคือ &laquo;ได้เสมอ&raquo; (บทที่ 5, 7, 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ THE CONNECTION ═══════ -->
-    <section class="sp" id="connection">
-        <div class="rv">
-            <div class="sp-label">จุดเชื่อมโยง</div>
-            <h2>เรื่องนี้เกี่ยวกับคุณยังไง?</h2>
-        </div>
-
-        <div class="rv">
-            <p>สิ่งที่ Scaurus ทำเมื่อ 2,000 ปีก่อน มีชื่อเรียกในทางจิตวิทยาว่า <strong>Mere Exposure Effect</strong> &mdash; ยิ่งเห็นบ่อย ยิ่งรู้สึกคุ้นเคย ยิ่งคุ้นเคย ยิ่งไว้ใจ &mdash; ถูกค้นพบอีกครั้งในปี 1968</p>
-            <p>แต่คุณไม่ต้องจำชื่อมัน &mdash; เพราะคุณ<strong>เคยเจอมันแล้ว</strong></p>
-        </div>
-
-        <div class="rv">
-            <div class="everyday">
-                <p>เคยไหม? เลื่อนผ่านโฆษณาสินค้าตัวหนึ่งหลายครั้ง ไม่เคยกด ไม่เคยสนใจ &mdash; <strong>แต่วันที่ต้องซื้อ คุณเลือกยี่ห้อนั้น</strong> โดยไม่รู้ตัวว่าทำไม</p>
-            </div>
-        </div>
-        <div class="rv">
-            <div class="everyday">
-                <p>เคยไหม? เห็นร้านกาแฟร้านหนึ่งผ่านทุกวัน ไม่เคยแวะ &mdash; <strong>แต่วันที่อยากกินกาแฟ คุณเลี้ยวเข้าร้านนั้นเป็นร้านแรก</strong> ทั้งที่ไม่เคยลอง</p>
-            </div>
-        </div>
-        <div class="rv">
-            <div class="everyday">
-                <p>เคยไหม? ยืนเลือกของในห้าง เห็นยี่ห้อที่ไม่เคยลอง กับยี่ห้อที่ &ldquo;เคยเห็นที่ไหนสักแห่ง&rdquo; &mdash; <strong>คุณหยิบอันที่คุ้นตา</strong> โดยไม่ได้อ่านฉลากด้วยซ้ำ</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <p class="punchline">ทั้งหมดนี้คือ Scaurus &mdash; 2,000 ปีต่อมา</p>
-        </div>
-
-        <div class="rv">
-            <p>และนี่เป็นแค่ <em>หนึ่ง</em> ในหลายสิบกลไกที่สมองของคุณใช้ตัดสินใจทุกวัน โดยที่คุณไม่รู้ตัว</p>
-            <p>มันไม่ใช่ &ldquo;แค่เรื่องการตลาด&rdquo; &mdash; มันคือ<strong>เรื่องของคุณ ในฐานะมนุษย์</strong></p>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Recognition + Self-referencing Effect</strong> &mdash; ส่วนที่เพิ่งผ่านมา ตั้งใจให้คุณ &laquo;จำประสบการณ์ตัวเอง&raquo; ได้ ทุกข้อที่ขึ้นต้นด้วย &laquo;เคยไหม?&raquo; ทำให้สมองค้นหาความทรงจำ &mdash; พอเจอ มันรู้สึก &laquo;เกี่ยวกับฉัน&raquo; ทันที ความรู้สึกนี้ทำให้คุณอยากอ่านต่อ (บทที่ 5, 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ THE CHAPTERS ═══════ -->
-    <section class="sp" id="chapters">
-        <div class="rv">
-            <div class="sp-label">สารบัญ</div>
-            <h2>12 บทที่จะเปลี่ยนวิธีคิดของคุณตลอดไป</h2>
-            <p>หนังสือเล่มนี้ไม่ใช่หนังสือ &ldquo;สอนขายของ&rdquo; &mdash; มันคือหนังสือที่อธิบายว่า<strong>ทำไมคุณถึงซื้อ</strong> ทำไมคุณถึงเชื่อ ทำไมคุณถึงเลือก &mdash; โดยคุณไม่เคยรู้ตัว</p>
-        </div>
-
-        <div class="ch-grid rv">
-            <div class="ch-item">
-                <div class="ch-num">บทนำ</div>
-                <div class="ch-title">ความลับที่ซ่อนอยู่ต่อหน้าต่อตา</div>
-                <div class="ch-hook">น้ำปลาโรมัน 2,000 ปีก่อน กับสิ่งที่เกิดขึ้นกับคุณทุกวัน</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">01</div>
-                <div class="ch-title">มายาภาพของวิวัฒนาการ</div>
-                <div class="ch-hook">ทำไมสมองที่ฉลาดพอส่งคนไปดวงจันทร์ ยังตกหลุมโฆษณาง่ายๆ</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">02</div>
-                <div class="ch-title">ปุ่มชีวภาพ &mdash; The Biological Button</div>
-                <div class="ch-hook">Dopamine ที่ทำให้เลื่อนมือถือไม่หยุด กับ Cortisol ที่ทำให้ซื้อทั้งที่ไม่อยากซื้อ</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">03</div>
-                <div class="ch-title">ความปรารถนาดั้งเดิม 5 ข้อ</div>
-                <div class="ch-hook">ทุกครั้งที่กดซื้อ คุณกำลังตอบสนอง 1 ใน 5 สิ่งนี้ &mdash; รู้ตัวหรือเปล่า?</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">04</div>
-                <div class="ch-title">พลังของการเล่าเรื่อง</div>
-                <div class="ch-hook">ทำไมคุณจำชื่อตัวละคร แต่จำสถิติไม่ได้ &mdash; และใครใช้สิ่งนี้กับคุณอยู่</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">05</div>
-                <div class="ch-title">Social Proof กับสัญชาตญาณฝูง</div>
-                <div class="ch-hook">ทำไมคุณดูรีวิวก่อนซื้อ ทำไมคุณอยากมี &ldquo;ของเหมือนคนอื่น&rdquo; &mdash; และทำไมร้านดังยิ่งดังขึ้นเรื่อยๆ</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">06</div>
-                <div class="ch-title">Scarcity &amp; Urgency &mdash; ของหมดกับเวลาจำกัด</div>
-                <div class="ch-hook">&ldquo;เหลือ 3 ชิ้นสุดท้าย&rdquo; ทำอะไรกับสมองคุณ &mdash; และทำไมคุณกดซื้อทุกที</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">07</div>
-                <div class="ch-title">Perception is Reality &mdash; ความจริงถูกสร้างได้</div>
-                <div class="ch-hook">ทำไมกาแฟแก้วละ 200 บาท &ldquo;รู้สึก&rdquo; อร่อยกว่าแก้วละ 35</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">08</div>
-                <div class="ch-title">กลไกสร้างความไว้ใจ &mdash; The Trust Engine</div>
-                <div class="ch-hook">ทำไมคุณเชื่อคนแปลกหน้าที่ไม่เคยเจอตัวมากกว่าคนรู้จัก</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">09</div>
-                <div class="ch-title">ทลายกำแพง</div>
-                <div class="ch-hook">ทำไมคุณบอก &ldquo;ขอคิดก่อน&rdquo; แล้วกลับมาซื้อ (หรือไม่กลับเลย)</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">10</div>
-                <div class="ch-title">การตลาดที่ไม่ต้องพึ่งแพลตฟอร์ม</div>
-                <div class="ch-hook">สิ่งที่ทำงานได้ตั้งแต่ยุค Scaurus จนถึงยุค AI</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">11</div>
-                <div class="ch-title">ด้านมืดของราก</div>
-                <div class="ch-hook">เส้นบางๆ ระหว่าง &ldquo;ชวนเชื่อ&rdquo; กับ &ldquo;หลอกลวง&rdquo; &mdash; ที่ต้องรู้ก่อนใช้</div>
-            </div>
-            <div class="ch-item">
-                <div class="ch-num">12</div>
-                <div class="ch-title">เป็นนายของราก</div>
-                <div class="ch-hook">จากคนที่ &ldquo;ถูกใช้โดยไม่รู้ตัว&rdquo; สู่คนที่ &ldquo;เห็นทุกอย่าง&rdquo;</div>
-            </div>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Sunk Cost + Zeigarnik Effect</strong> &mdash; คุณใช้เวลาอ่านมาถึงตรงนี้แล้ว สมองรู้สึกว่า &laquo;ลงทุนไปแล้ว&raquo; ถ้าเลิกตอนนี้จะเสียเปล่า (Sunk Cost) และรายชื่อ 12 บท กระตุ้นให้สมองอยากเห็น &laquo;ภาพเต็ม&raquo; ไม่ใช่แค่ตัวอย่าง &mdash; สมองไม่ชอบสิ่งที่ไม่สมบูรณ์ มันอยากปิดจบ (Zeigarnik Effect, บทที่ 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ BONUS CHAPTERS ═══════ -->
-    <section class="sp" id="bonus">
-        <div class="rv">
-            <div class="sp-label">&#x2728; โบนัส</div>
-            <h2>แค่ 12 บทยังไม่พอ &mdash;<br>ยังมีอีก 5 บทที่หนังสือการตลาดเล่มอื่นไม่มี</h2>
-            <p>บทพิเศษเหล่านี้ไม่ใช่ &ldquo;ภาคผนวก&rdquo; ที่ใส่มาให้ครบ &mdash; แต่ละบทคือ<strong>ด่านสุดท้ายที่พิสูจน์ว่าคุณเข้าใจจริง</strong></p>
-        </div>
-
-        <div class="rv">
-            <div class="aha-card">
-                <div class="aha-num">BONUS 01</div>
-                <p class="aha-text">&#x1F9EA; <strong>The Experiment</strong> &mdash; การทดลองที่คุณเป็นหนูทดลอง</p>
-                <p class="aha-explain">คุณเรียนจบทั้ง 12 บทแล้ว คุณรู้ทุกเทคนิค เห็นทุกกลไก &mdash; <strong>แต่สมองคุณยังโดนหลอกอยู่ดี</strong> บทนี้ทำการทดลองจิตวิทยาสดๆ กับคุณผู้อ่าน เพื่อพิสูจน์ว่า &ldquo;รู้&rdquo; ไม่เท่ากับ &ldquo;รอดพ้น&rdquo; &mdash; เหมือนที่ Daniel Kahneman ผู้ค้นพบ Cognitive Bias ยอมรับว่าตัวเองก็ยังโดนทุกวัน</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <div class="aha-card">
-                <div class="aha-num">BONUS 02</div>
-                <p class="aha-text">&#x1F9E0; <strong>24 ชั่วโมงในสมองลูกค้า</strong></p>
-                <p class="aha-explain">ตามติดชีวิต &ldquo;มิ้นท์&rdquo; พนักงานออฟฟิศวัย 32 ตั้งแต่ตื่นนอนจนเข้านอน &mdash; ทุกวินาทีที่เธอ<strong>หยิบมือถือ สั่งกาแฟ กดซื้อของ</strong>ล้วนมีจิตวิทยาจากหนังสือเล่มนี้ซ่อนอยู่ทั้งหมด คุณจะตกใจว่าสมองตัดสินใจไปแล้วกี่ร้อยครั้งก่อนที่คุณจะ &ldquo;รู้สึกตัว&rdquo;</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <div class="aha-card">
-                <div class="aha-num">BONUS 03</div>
-                <p class="aha-text">&#x1FA78; <strong>Campaign Autopsy</strong> &mdash; ชันสูตรแคมเปญระดับโลก</p>
-                <p class="aha-explain">ผ่าแคมเปญที่เปลี่ยนโลกแบบ forensic &mdash; Apple &ldquo;Think Different&rdquo; กู้บริษัทที่กำลังจะตายได้<strong>โดยไม่โชว์สินค้าแม้แต่ชิ้นเดียว</strong> Nike, Dove และอีก 2 แบรนด์ &mdash; บทนี้ reverse-engineer ว่าแต่ละแคมเปญใช้จิตวิทยาข้อไหนจากหนังสือเล่มนี้</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <div class="aha-card">
-                <div class="aha-num">BONUS 04</div>
-                <p class="aha-text">&#x1F7E5; <strong>The Red Ocean Playbook</strong> &mdash; คู่มือเอาชีวิตรอดในสมรภูมิเลือด</p>
-                <p class="aha-explain">เมื่อสินค้าเหมือนกัน ราคาเท่ากัน ลูกค้า 64% บอกว่า<strong>แยกแบรนด์ไม่ออก</strong> &mdash; คนที่สู้ด้วยราคาจะตาย คนที่เปลี่ยน &ldquo;สนามรบ&rdquo; คือคนที่ชนะ บทนี้สอน Category Design &mdash; คุณไม่ต้องมีดาบยาวที่สุด ถ้าคุณเปลี่ยนกติกาการต่อสู้</p>
-            </div>
-        </div>
-
-        <div class="rv">
-            <div class="aha-card">
-                <div class="aha-num">BONUS 05</div>
-                <p class="aha-text">&#x1F510; <strong>The Locked Room</strong> &mdash; เมื่อคุณเข้าใจทุกอย่าง แต่ขยับไม่ได้</p>
-                <p class="aha-explain">คุณมีความรู้ คุณมีไอเดีย แต่คนอนุมัติบอก &ldquo;ไม่มีงบ&rdquo; หัวหน้าบอก &ldquo;เราทำแบบนี้มาตลอด&rdquo; &mdash; บทนี้สอนวิธีใช้จิตวิทยา<strong>เดียวกัน</strong>กับ &ldquo;คนข้างใน&rdquo; องค์กร เพื่อทำให้คนที่มีกุญแจ <em>อยากเปิดประตูให้คุณเอง</em></p>
-            </div>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Endowed Progress Effect + Loss Aversion</strong> &mdash; บทโบนัสถูกวางไว้หลังรายชื่อ 12 บท ตอนที่สมองรู้สึกว่า &laquo;เห็นภาพรวมแล้ว&raquo; &mdash; พอเห็นว่ายังมีอีก 5 บทที่ &laquo;ฟรี&raquo; มาพร้อม สมองรู้สึกว่าจะ &laquo;เสีย&raquo; ถ้าไม่ได้มัน ยิ่งใส่คำว่า &laquo;โบนัส&raquo; สมองจะรู้สึกว่ามูลค่าจริงสูงกว่าราคาที่จ่าย &mdash; ทั้งที่เป็นส่วนหนึ่งของแพ็กเกจตั้งแต่แรก (บทที่ 6, 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ WHO THIS IS FOR ═══════ -->
-    <section class="sp" id="fit">
-        <div class="rv">
-            <div class="sp-label">เหมาะกับใคร</div>
-            <h2>หนังสือเล่มนี้ไม่ได้เขียนให้นักการตลาด<br>มันเขียนให้ &ldquo;มนุษย์&rdquo;</h2>
-        </div>
-
-        <div class="fit-grid rv">
-            <div class="fit-col fit-yes">
-                <h3>&#x2713; เหมาะกับ</h3>
-                <div class="fit-item"><strong>คนที่เคยถามตัวเองว่า &ldquo;ทำไมฉันถึงซื้อ?&rdquo;</strong> ถ้าคุณเคยรู้สึกว่าตัวเองถูกโน้มน้าวโดยไม่รู้ตัว หนังสือเล่มนี้จะทำให้คุณ &ldquo;เห็น&rdquo; กลไกที่เคยมองไม่เห็น</div>
-                <div class="fit-item"><strong>เจ้าของธุรกิจเล็ก หรือคนที่เปิดร้านขายของ</strong> คุณจะเข้าใจว่าทำไมลูกค้าบางคนซื้อ บางคนไม่ซื้อ &mdash; และเริ่มสร้าง &ldquo;เหตุผล&rdquo; ที่ทำให้คนเลือกคุณ</div>
-                <div class="fit-item"><strong>นักศึกษา หรือคนที่เพิ่งเริ่มทำงาน</strong> อ่านเล่มนี้ก่อนเรียนอะไรอื่น &mdash; เพราะมันให้ &ldquo;ฐานราก&rdquo; ที่ทุกทักษะต่อยอดได้</div>
-                <div class="fit-item"><strong>คนที่อยากเข้าใจว่า &ldquo;ทำไมคนเราถึงเป็นแบบนี้&rdquo;</strong> แม้จะไม่ได้ขายของ หนังสือเล่มนี้จะเปลี่ยนวิธีที่คุณมองโฆษณา ข่าว การเมือง และทุก &ldquo;การโน้มน้าว&rdquo; ที่เกิดขึ้นรอบตัว</div>
-            </div>
-            <div class="fit-col fit-no">
-                <h3>&#x2717; ไม่เหมาะกับ</h3>
-                <div class="fit-item"><strong>คนที่อยากได้ &ldquo;สูตรลับ&rdquo; รวยเร็ว</strong> หนังสือเล่มนี้ไม่มีสูตรสำเร็จ &mdash; มันให้ความเข้าใจ ที่จะตามคุณไปตลอดชีวิต</div>
-                <div class="fit-item"><strong>คนที่ไม่อยากรู้ &ldquo;เบื้องหลัง&rdquo;</strong> ถ้าคุณไม่อยากรู้ว่าทำไมคุณคิดในสิ่งที่คิด เชื่อในสิ่งที่เชื่อ &mdash; เล่มนี้อาจทำให้อึดอัด</div>
-                <div class="fit-item"><strong>คนที่ต้องการ &ldquo;คู่มือทำตามทีละขั้น&rdquo;</strong> หนังสือเล่มนี้สอนว่า &ldquo;ทำไม&rdquo; ไม่ใช่ &ldquo;ทำยังไง&rdquo; &mdash; เพราะเมื่อเข้าใจ &ldquo;ทำไม&rdquo; คุณจะคิด &ldquo;ทำยังไง&rdquo; ได้เอง</div>
-            </div>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Identity Labeling + Tribalism</strong> &mdash; ส่วนนี้สร้าง &laquo;ตัวตน&raquo; ให้คุณ &mdash; &laquo;คนที่อยากเข้าใจ&raquo; กับ &laquo;คนที่แค่อยากได้สูตร&raquo; ถ้าคุณเห็นตัวเองในฝั่ง &laquo;เหมาะ&raquo; สมองจะยึดมั่นกับตัวตนนั้น แล้วทุกการตัดสินใจหลังจากนี้ต้อง &laquo;สอดคล้อง&raquo; กับตัวตนที่เพิ่งเลือก (บทที่ 5, 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ THE SHIFT ═══════ -->
-    <section class="sp" id="transform">
-        <div class="rv">
-            <div class="sp-label">จุดเปลี่ยน</div>
-            <h2>สิ่งที่เปลี่ยนไปหลังอ่านจบ</h2>
-        </div>
-
-        <div class="transform-grid rv">
-            <div class="transform-col transform-before">
-                <h4>ก่อนอ่าน</h4>
+        <div class="compare">
+            <div class="compare-col compare-old">
+                <h4>วิ่งตามเทรนด์</h4>
                 <ul>
-                    <li>กดซื้อตามของลดราคา โดยไม่รู้ว่าถูกออกแบบมา</li>
-                    <li>ดูรีวิวแล้วเชื่อ ไม่รู้ว่าทำไมถึงเชื่อ</li>
-                    <li>เห็น &ldquo;เหลือ 3 ชิ้น&rdquo; แล้วรีบซื้อ</li>
-                    <li>รู้สึกว่าของแพงดีกว่า แต่อธิบายไม่ได้</li>
-                    <li>เชื่อว่าตัวเอง &ldquo;เลือกเอง&rdquo; ทุกอย่าง</li>
+                    <li>เปลี่ยนกลยุทธ์ทุก 6 เดือน</li>
+                    <li>ลูกค้าบอก &ldquo;แพง&rdquo; ก็ลดราคา</li>
+                    <li>Content ดี แต่ไม่รู้ทำไมไม่ขาย</li>
+                    <li>Ads ยิงเยอะ ROI ก็ยังต่ำ</li>
+                    <li>เรียนคอร์สใหม่ทุกปี ไม่จบสักที</li>
+                    <li>เปลี่ยนแพลตฟอร์มก็เริ่มใหม่จากศูนย์</li>
                 </ul>
             </div>
-            <div class="transform-arrow">&#x2192;</div>
-            <div class="transform-col transform-after">
-                <h4>หลังอ่าน</h4>
+            <div class="compare-col compare-new">
+                <h4>เข้าใจสมองมนุษย์</h4>
                 <ul>
-                    <li>เห็นกลไกเบื้องหลังทุกของลดราคา ก่อนจะตัดสินใจ</li>
-                    <li>เข้าใจว่าทำไมรีวิวบางอันทรงพลัง &mdash; และบางอันจงใจหลอก</li>
-                    <li>รู้ว่า &ldquo;ความกลัวพลาด&rdquo; กำลังบงการอยู่ แล้วเลือกอย่างมีสติ</li>
-                    <li>เข้าใจว่า &ldquo;การรับรู้&rdquo; ถูกสร้างได้ &mdash; และใช้ความรู้นี้ได้เอง</li>
-                    <li>มีตาคู่ใหม่ที่เห็น &ldquo;เชือก&rdquo; ที่เคยมองไม่เห็น</li>
+                    <li>ใช้หลักการเดียวกันได้ทุกแพลตฟอร์ม</li>
+                    <li>ทำให้ &ldquo;รู้สึกคุ้ม&rdquo; โดยไม่ต้องลดราคา</li>
+                    <li>รู้ว่า Content ไหนจะขาย ก่อนโพสต์</li>
+                    <li>เขียน Ad Copy ที่ &ldquo;โดน&rdquo; ตั้งแต่บรรทัดแรก</li>
+                    <li>เรียนครั้งเดียว ใช้ได้ตลอดชีวิต</li>
+                    <li>ความเข้าใจคน ติดตัวไปทุกที่</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">เทรนด์คือเครื่องมือ &mdash; แต่<strong style="color: var(--text);">ความเข้าใจคน</strong>คือรากแก้วที่ไม่มีวันหมดอายุ</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Competitive Edge
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่ทุกคนใช้เครื่องมือเดียวกัน ยิง Ads แพลตฟอร์มเดียวกัน</p>
+            <p class="big-quote">คนที่เข้าใจว่า<strong>ทำไมลูกค้าตัดสินใจ</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องทำอะไร&rdquo;<br>ทุกครั้ง &mdash; โดยไม่ต้องใช้งบมากกว่า</p>
+            <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">ลูกค้าจะรู้สึกว่าแบรนด์คุณ &ldquo;เข้าใจเขา&rdquo;<br>ทั้งที่คุณแค่เข้าใจว่าสมองทำงานยังไง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         THE BOOK — chapters framed for marketers / business owners
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คุณจะได้</div>
+        <h2 class="sec-title">12 บท + 5 บทพิเศษ<br>ที่เปลี่ยน<em>วิธีที่คุณมองการตลาด</em>ตลอดชีวิต</h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">ทุกบทเขียนจากงานวิจัยด้านจิตวิทยา + ประสาทวิทยา แล้วแปลงเป็นหลักการที่ใช้ได้จริงกับทุกธุรกิจ</p>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1">
+                <div class="benefit-num">สมองลูกค้า</div>
+                <div class="benefit-title">ทำไมลูกค้า &ldquo;อยากได้&rdquo; ตอนเห็น Ad แต่ &ldquo;เปลี่ยนใจ&rdquo; ตอนกดสั่งซื้อ?</div>
+                <p class="benefit-desc">Dopamine Loop &mdash; สารเคมีที่ทำให้คน &ldquo;อยากได้&rdquo; แต่พอถึงจุดจ่ายเงิน สมองจะเปลี่ยนโหมดทันที คุณจะรู้วิธีออกแบบ Funnel ที่รักษา &ldquo;ความอยาก&rdquo; นั้นไว้จนถึงหน้า Checkout</p>
+                <p class="benefit-example">เช่น: ทำไมลูกค้าที่กด Add to Cart ถึงไม่จ่ายเงิน? &mdash; มันไม่ใช่เรื่อง UX แต่เป็นเรื่อง Dopamine ที่หายไประหว่างทาง</p>
+            </div>
+
+            <div class="benefit-card rv rv-d2">
+                <div class="benefit-num">ความไว้วางใจ</div>
+                <div class="benefit-title">สร้าง &ldquo;ความเชื่อใจ&rdquo; กับคนที่ไม่เคยเจอแบรนด์คุณมาก่อน</div>
+                <p class="benefit-desc">Trust Engine &mdash; Oxytocin (สารแห่งความผูกพัน) หลั่งเมื่อลูกค้ารู้สึกว่าแบรนด์ &ldquo;อยู่ข้างเดียวกัน&rdquo; ไม่ใช่แค่ &ldquo;อยากขายของ&rdquo; คุณจะได้หลักการสร้าง Content ที่ทำให้คนเชื่อก่อนที่จะเห็นสินค้าด้วยซ้ำ</p>
+                <p class="benefit-example">เช่น: ทำไมรีวิวจากคนแปลกหน้าถึงทรงพลังกว่า Ad ที่ลงทุนหลักแสน? &mdash; และคุณจะออกแบบ Social Proof ยังไงให้ได้ผลเท่ากัน</p>
+            </div>
+
+            <div class="benefit-card rv rv-d3">
+                <div class="benefit-num">การรับรู้ราคา</div>
+                <div class="benefit-title">ทำไม &ldquo;แพง&rdquo; ไม่เคยเกี่ยวกับตัวเลข &mdash; และคุณจะเปลี่ยนการรับรู้ได้ยังไง</div>
+                <p class="benefit-desc">Anchoring + Framing &mdash; สมองไม่ได้ประเมินราคาจากมูลค่าจริง แต่จาก &ldquo;จุดเปรียบเทียบ&rdquo; ที่อยู่ในหัว คุณจะรู้วิธีตั้งราคา วาง Package และเขียน Pricing Page ที่ทำให้ลูกค้า &ldquo;รู้สึกถูก&rdquo; โดยอัตโนมัติ</p>
+                <p class="benefit-example">เช่น: ทำไมกาแฟ 180 บาทถึง &ldquo;รู้สึกปกติ&rdquo; ถ้าวางข้างๆ แก้ว 320? &mdash; และคุณจะใช้หลักเดียวกันนี้กับทุกหน้าขายได้ยังไง</p>
+            </div>
+
+            <div class="benefit-card rv">
+                <div class="benefit-num">การตัดสินใจซื้อ</div>
+                <div class="benefit-title">เปลี่ยน &ldquo;ดูก่อน&rdquo; เป็น &ldquo;สั่งเลย&rdquo; โดยไม่ต้องกดดัน</div>
+                <p class="benefit-desc">Breaking Resistance + Scarcity &mdash; เมื่อลูกค้าลังเล สิ่งที่เกิดขึ้นจริงในสมองคือ Cognitive Dissonance &mdash; ความขัดแย้งระหว่าง &ldquo;อยากได้&rdquo; กับ &ldquo;กลัวเสียใจ&rdquo; คุณจะรู้วิธีออกแบบ CTA และ Offer ที่แก้ทั้งสองด้านพร้อมกัน</p>
+                <p class="benefit-example">เช่น: ทำไม Limited Edition ถึง Sold Out ทุกรอบ ทั้งที่ราคาแพงกว่าปกติ? &mdash; นี่คือ Scarcity + FOMO ที่คุณสร้างได้โดยไม่ต้องหลอก</p>
+            </div>
+
+            <div class="benefit-card rv" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">การสร้างแบรนด์ระยะยาว</div>
+                <div class="benefit-title">เปลี่ยนลูกค้าเป็น &ldquo;แฟนคลับ&rdquo; ที่บอกต่อเองโดยไม่ต้องขอ</div>
+                <p class="benefit-desc">Social Proof + Reciprocity + Tribal Belonging &mdash; ทำไมลูกค้าบางแบรนด์กลายเป็น &ldquo;ทูต&rdquo; ที่แนะนำให้เพื่อนทุกคน? มันไม่ใช่เรื่องสินค้าดี &mdash; มันเป็นเรื่องของความรู้สึก &ldquo;เป็นพวกเดียวกัน&rdquo;</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         PROOF BAR
+         ═══════════════════════════════════════════════ -->
+    <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
+        <div class="proof-bar rv">
+            <div class="proof-item">
+                <div class="proof-num">12</div>
+                <div class="proof-label">บทเต็ม</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">5</div>
+                <div class="proof-label">บทพิเศษ (Bonus)</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">100+</div>
+                <div class="proof-label">งานวิจัยอ้างอิง</div>
+            </div>
+            <div class="proof-item">
+                <div class="proof-num">200,000</div>
+                <div class="proof-label">ปีของหลักฐาน<br><span style="font-size: 0.62rem; color: var(--text-light);">(สมองมนุษย์)</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         NOT A MARKETING COURSE — it's deeper
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ต่าง</div>
+        <h2 class="sec-title">นี่ไม่ใช่หนังสือ &ldquo;สอนการตลาด&rdquo;<br><em>นี่คือหนังสือสอนเข้าใจคน</em></h2>
+
+        <p>มีคอร์สสอนการตลาดเป็นร้อยในตลาด &mdash; ส่วนใหญ่สอนเครื่องมือ สอน Framework สอนเทคนิค</p>
+        <p>เล่มนี้ไม่สอนสิ่งเหล่านั้น &mdash; <strong>เล่มนี้สอนว่าทำไมสิ่งเหล่านั้นถึงได้ผล</strong></p>
+
+        <div class="scenario">
+            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
+            <p class="scenario-a">ออกแบบเป็น Web Book &mdash; เปิดอ่านได้ระหว่าง Commute ระหว่างพักเบรก ไม่ต้องโหลด App</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">แต่ละบทจบในตัว กระโดดไปเรื่องที่ต้องการได้เลย</div>
+            <p class="scenario-a">พรุ่งนี้ต้องเขียน Pricing Page? กระโดดไปบทที่ 7 (Anchoring) ได้ทันที ไม่ต้องอ่านเรียง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">มี Third Eye Note ซ่อนอยู่ทั่วหนังสือ</div>
+            <p class="scenario-a">กดเปิดแล้วจะเห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; เรียนรู้จากการ &ldquo;ถูกขาย&rdquo; จริง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">ทุกหลักการมาพร้อมเคสจริงที่เจอทุกวัน</div>
+            <p class="scenario-a">ไม่ใช่ทฤษฎีลอยๆ &mdash; ทุกบทมีตัวอย่างจากแบรนด์ แคมเปญ หรือสถานการณ์ที่คุณรู้จัก</p>
+        </div>
+
+        <div class="gold-box">
+            <p>คุณไม่ต้องชอบอ่านหนังสือก็ได้ &mdash; <strong>แค่อยากรู้ว่าทำไมคนถึงซื้อ และทำไมคนถึงไม่ซื้อ</strong><br>แค่นั้นก็พอ</p>
+        </div>
+    </div>
+
+    <div style="text-align: center; padding: 0.5rem 0;">
+        <span style="font-size: 0.6rem; color: var(--border-dark); letter-spacing: 1em;">&#x25C6; &#x25C6; &#x25C6;</span>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
+         WHO IS THIS FOR
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช่สำหรับคุณไหม?</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับคนแบบไหน<br>และ<em>ไม่เหมาะ</em>กับแบบไหน</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>เจ้าของธุรกิจที่อยากให้ลูกค้าเลือกคุณ ไม่ใช่คู่แข่ง</li>
+                    <li>นักการตลาดที่เบื่อกับการเรียนเทรนด์ใหม่ทุก 6 เดือน</li>
+                    <li>Freelance / Content Creator ที่อยากเขียนงานที่ &ldquo;ขาย&rdquo;</li>
+                    <li>มนุษย์ออฟฟิศที่กำลังคิดจะเริ่มธุรกิจตัวเอง</li>
+                    <li>คนที่อยากเข้าใจว่า &ldquo;ทำไม&rdquo; ไม่ใช่แค่ &ldquo;ทำยังไง&rdquo;</li>
+                    <li>อยากสร้างความสามารถที่ติดตัวไปทุกงาน ทุกธุรกิจ</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>ไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>อยากได้แค่ &ldquo;สูตรยิง Ads ให้ขายดี&rdquo;</li>
+                    <li>ไม่สนใจว่าทำไมลูกค้าตัดสินใจ แค่อยากได้ยอด</li>
+                    <li>คิดว่าเครื่องมือสำคัญกว่าความเข้าใจคน</li>
+                    <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการตลาด</li>
+                    <li>ต้องการสูตรรวยเร็วแบบ Copy-Paste</li>
                 </ul>
             </div>
         </div>
 
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Future Pacing + Contrast Principle</strong> &mdash; ส่วนนี้ให้สมองคุณ &laquo;เห็นตัวเองล่วงหน้า&raquo; เห็นตัวเองในภาพที่ดีกว่า ช่องว่างระหว่าง &laquo;ก่อน&raquo; กับ &laquo;หลัง&raquo; สร้างความตึงเครียดที่สมองต้องการ &laquo;ปิด&raquo; &mdash; และหนังสือเล่มนี้คือสิ่งที่ปิดมัน (บทที่ 3, 9)</p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         DARK BAND: The Real Cost
+         ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90; margin-bottom: 0.8rem;">ลองคำนวณดู</p>
+            <p class="big-quote">งบ Ads ที่เสียไปเดือนละหมื่น<br>เพราะคุณ<strong>ไม่รู้ว่าทำไมลูกค้าไม่ซื้อ</strong><br>มันมีมูลค่าเท่าไหร่?</p>
+            <p class="dark-band-sub">1,390 บาท กับความเข้าใจที่ทำให้ทุกบาทที่ลงไปคุ้มค่าขึ้น &mdash; คุ้มกว่ากี่เท่า?</p>
         </div>
-    </section>
+    </div>
 
 
-    <!-- ═══════ BOOK STANCE ═══════ -->
-    <section class="sp" id="stance">
+    <!-- ═══════════════════════════════════════════════
+         PRICING
+         ═══════════════════════════════════════════════ -->
+    <div class="pricing-section" id="pricing">
+        <div class="pricing-inner rv">
 
-        <div class="rv">
-            <div class="sp-label">จุดยืน</div>
-            <h2>หนังสือเล่มนี้เชื่ออะไร</h2>
-        </div>
-
-        <div class="rv">
-            <p>เชื่อว่า<strong>ความรู้ที่ดีต้องพิสูจน์ได้</strong> &mdash; ไม่ใช่แค่ฟังดูดี ทุกบทในเล่มนี้อ้างอิงงานวิจัย ทดสอบกับธุรกิจจริง และวัดผลด้วยเงินจริง</p>
-            <p>เชื่อว่า<strong>คนที่รู้กลไกควรเป็นคนที่ตัดสินใจ</strong> &mdash; ไม่ใช่คนที่ถูกตัดสินใจแทน หนังสือเล่มนี้ไม่ได้สอนให้หลอกใคร แต่สอนให้เห็นว่าใครกำลังหลอกคุณ</p>
-            <p>เชื่อว่า<strong>ไอเดียที่ดีไม่ต้องการใบหน้า</strong> &mdash; มันต้องการแค่หลักฐาน ผู้เขียนเลือกไม่เปิดเผยตัวตน เพราะสิ่งที่อยู่ในหน้ากระดาษสำคัญกว่าชื่อบนปก</p>
-        </div>
-
-        <div class="te-note">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Value-first Authority + Underdog Signal</strong> &mdash; แทนที่จะบอกว่าผู้เขียนเก่ง ส่วนนี้บอกว่า &laquo;หนังสือเชื่ออะไร&raquo; &mdash; ให้คุณตัดสินจากหลักการ ไม่ใช่ประวัติ การไม่เปิดตัวตนทำหน้าที่สองอย่าง: สร้าง Mystery ที่ทำให้อยากรู้มากขึ้น และส่งสัญญาณว่า &laquo;มั่นใจในเนื้อหาพอที่จะไม่ต้องขายด้วยชื่อ&raquo; ซึ่งเป็น Costly Signal รูปแบบหนึ่ง (บทที่ 5, 6, 8)</p>
-        </div>
-    
-    </section>
-
-
-    <!-- ═══════ BOOK SHOWCASE ═══════ -->
-    <section class="sp" id="book-showcase" style="border-top: none; text-align: center; padding-top: 1rem;">
-        <div class="rv">
-            <div class="hero-title-wrap">
-                <p class="hero-title-en">The One Root</p>
-                <p class="hero-title-of">of</p>
-                <p class="hero-title-en">Marketing</p>
-                <p class="hero-title-th">รากแก้วการตลาด</p>
+            <div class="notricks">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
+                <p class="notricks-list">
+                    ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;<br>
+                    ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;<br>
+                    ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน<br>
+                    ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด<br>
+                    ไม่มีการเทียบราคากาแฟ หรือเทียบงบ Ads ที่เสียไป
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้มันกับคุณเอง</p>
             </div>
 
-            <div class="hero-book-mockup">
-                <img src="images/Book-Mockup.png" alt="The One Root of Marketing &mdash; Book" class="hero-book-img" loading="lazy">
-            </div>
-        </div>
-    </section>
-
-
-    <!-- ═══════ CHOICE: Read Free or Buy ═══════ -->
-    <section class="sp" id="choice" style="border-top: none; padding-top: 0;">
-        <div class="choice-section" style="padding-top: 2rem;">
-            <div class="rv">
-                <p class="choice-section-title">สองทางเลือก &mdash; ไม่มีทางไหนผิด</p>
-                <p class="choice-section-sub">ถ้ายังไม่แน่ใจ อ่านฟรีก่อนได้เลย ไม่ต้องรีบ<br>ถ้าอ่านมาถึงตรงนี้แล้วรู้สึกว่าใช่ ก็ซื้อได้เลยเช่นกัน</p>
-            </div>
-
-            <div class="choice-grid rv">
-                <div class="choice-card">
-                    <div class="choice-card-icon">&#x1F4D6;</div>
-                    <div class="choice-card-title">ลองอ่านก่อน</div>
-                    <p class="choice-card-desc">บทนำ + บทที่ 1 เปิดให้อ่านฟรีทั้งหมด<br>ไม่ต้องสมัคร ไม่ต้องกรอกอะไร</p>
-                    <a href="/" class="choice-card-btn choice-btn-free">เริ่มอ่านฟรี &rarr;</a>
+            <div class="value-context">
+                <h4 class="value-context-title">ถ้าคุณอยากเก่งขึ้นจากที่อื่น</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">คอร์ส Digital Marketing 2 วัน <span class="value-alt-note">(ได้เครื่องมือ + Template แต่หมดอายุปีหน้า)</span></span>
+                    <span class="value-alt-price">3,000–15,000 ฿</span>
                 </div>
-                <div class="choice-card">
-                    <div class="choice-card-icon">&#x1F4D5;</div>
-                    <div class="choice-card-title">ซื้อทั้งเล่ม</div>
-                    <div class="choice-price">1,390 <span class="choice-price-unit">บาท</span></div>
-                    <p class="choice-card-desc">12 บท + 5 Bonus &mdash; ปลดล็อกทันที<br>ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay</p>
-                    <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" target="_blank" rel="noopener" class="choice-card-btn choice-btn-buy">ซื้อเลย &mdash; 1,390 &#x0E3F;</a>
+                <div class="value-alt">
+                    <span class="value-alt-name">คอร์ส Facebook Ads ออนไลน์ <span class="value-alt-note">(สอน &ldquo;กดปุ่มไหน&rdquo; แต่ไม่สอน &ldquo;ทำไมลูกค้าคลิก&rdquo;)</span></span>
+                    <span class="value-alt-price">2,500–8,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือ Marketing ภาษาอังกฤษ 1 เล่ม <span class="value-alt-note">(ดีแต่เขียนจากบริบทฝรั่ง)</span></span>
+                    <span class="value-alt-price">500–1,200 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Workshop จิตวิทยาผู้บริโภค <span class="value-alt-note">(ครอบคลุมแค่ 2–3 หัวข้อ)</span></span>
+                    <span class="value-alt-price">25,000–50,000 ฿</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมจิตวิทยาทุกด้านของการตัดสินใจซื้อ <span class="value-alt-note">(ใช้ได้ตลอดชีวิต ทุกแพลตฟอร์ม ทุกธุรกิจ)</span></span>
+                    <span class="value-alt-price">1,390 ฿</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
+            </div>
+
+            <div class="price-hero">
+                <div class="price-big">1,390</div>
+                <div class="price-unit">บาท</div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">ทำไมราคานี้?</h4>
+                <p>เพราะมันคือผลลัพธ์ของสิบกว่าปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; ทำไมคนถึงซื้อ? กรองผ่านงานวิจัยหลายร้อยชิ้น กลั่นผ่านธุรกิจจริงหลายสิบราย ทดสอบกับเงินจริงและลูกค้าจริง</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณเขียน Ad Copy ที่ดีขึ้นแค่ 1 ชิ้น หรือตั้งราคาที่ดีขึ้นแค่ 1 ครั้ง &mdash; มันคืนทุนตั้งแต่สัปดาห์แรก</p>
+            </div>
+
+            <div class="reader-whisper rv">
+                <p class="whisper-label">ถ้าคุณอ่านมาถึงตรงนี้จริงๆ &mdash;</p>
+                <div class="whisper-body">
+                    <p>แปลว่าคุณไม่ได้แค่เลื่อนผ่าน คุณอ่าน คุณคิด คุณชั่งน้ำหนัก<br>
+                    คนแบบนี้คือคนที่จะใช้ความรู้ในเล่มนี้ได้มีประสิทธิภาพที่สุด</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน ลดอีก 200 บาท</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">ROOT200</span>
+                        <span class="whisper-copy-hint" id="copy-hint">คลิกเพื่อคัดลอก</span>
+                    </div>
+                    <p class="whisper-note">ไม่ใช่โปรโมชั่น ไม่มีนับถอยหลัง &mdash; แค่ขอบคุณที่ให้เวลากับมัน</p>
                 </div>
             </div>
 
-            <p class="choice-footer rv">
-                ไม่มีกดดัน ไม่มีนับถอยหลัง &mdash; หนังสือจะอยู่ตรงนี้เมื่อคุณพร้อม<br>
-                มีคำถาม? <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" target="_blank" rel="noopener">ดูรายละเอียดการชำระเงิน</a>
-            </p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ CTA ═══════ -->
-    <section class="cta-section" id="buy">
-        <div class="rv">
-            <p style="font-family: 'Prompt', sans-serif; font-size: 1rem; color: var(--heading); margin-bottom: 0.5rem;">พร้อมหรือยัง?</p>
-            <a href="/" class="cta-btn">เริ่มอ่านเลย &mdash; ฟรี</a>
-            <p class="cta-or">ไม่ต้องสมัคร ไม่ต้องกรอกอีเมล &mdash; แค่กดแล้วอ่านได้เลย</p>
-            <p class="cta-or" style="margin-top: 0.5rem; font-size: 0.82rem;">บทนำ + บทที่ 1 เปิดให้อ่านฟรี ทั้งเล่ม</p>
-        </div>
-
-        <div class="te-note" style="max-width: 680px; margin-left: auto; margin-right: auto;">
-            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
-            <p><strong>Zero Friction + Foot-in-the-door</strong> &mdash; ไม่มีราคา ไม่มีปุ่มซื้อ ไม่มีอะไรให้ตัดสินใจ ลดแรงเสียดทานให้เหลือศูนย์ สมองไม่มีเหตุผลจะ &laquo;ไม่กด&raquo; เพราะไม่ต้องเสียอะไร &mdash; แต่พออ่านจนลึกพอ Sunk Cost กับ Zeigarnik Effect จะทำหน้าที่ต่อเอง (บทที่ 3, 9)</p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ CLOSING ═══════ -->
-    <section class="sp" style="border-top: none; text-align: center;">
-        <div class="rv">
-            <p style="font-size: 0.85rem; color: var(--text-sec); line-height: 2;">
-                จากแคปชั่นที่บอกคุณทุกอย่าง<br>
-                ถึงหน้านี้ที่<strong>ทำ</strong>ทุกอย่างกับคุณ<br><br>
-                คุณรู้ตั้งแต่ต้นว่าคุณกำลังถูกนำทาง<br>
-                แต่คุณยังอ่านจนถึงตรงนี้<br><br>
-                ลองคิดดู &mdash; ถ้าแค่หน้าเว็บเดียวทำแบบนี้กับคุณได้<br>
-                <strong>ลองนึกภาพว่าหนังสือทั้งเล่มจะสอนอะไรคุณได้บ้าง</strong><br><br>
-                ถ้าคุณเปิด<strong>ตาที่สาม</strong>แล้ว คุณเห็นกลไกทุกตัว<br>
-                ถ้ายังไม่เปิด ลองเลื่อนกลับขึ้นไปดู<br><br>
-                ข่าวดีคือ &mdash; คุณไม่ต้องจ่ายอะไรเพื่อเริ่มอ่าน<br>
-                <strong><a href="/" style="color: var(--accent); text-decoration: underline;">กดแล้วเปิดบทนำได้เลย</a></strong>
-            </p>
-        </div>
-    </section>
-
-
-    <!-- ═══════ FOOTER ═══════ -->
-    <footer class="sp-footer">
-        <p>&#x2741; The One Root of Marketing &mdash; รากแก้วการตลาด &#x2741;</p>
-        <p>&#xa9; Root Cee. &mdash; <a href="/">เข้าสู่หนังสือ</a></p>
-    </footer>
-
-
-    <!-- ═══════ Floating CTA ═══════ -->
-    <a href="/" id="float-cta">เริ่มอ่านฟรี &rarr;</a>
-
-    <!-- ═══════ Third Eye Floating Toggle ═══════ -->
-    <button id="te-float">&#x1F52E; ตาที่สาม <span class="te-count" id="te-count"></span></button>
-
-    <!-- ═══════ Admin System ═══════ -->
-    <div id="adm-overlay" data-admin class="adm-overlay"></div>
-    <div id="adm-login" data-admin class="adm-modal">
-        <div class="adm-modal-title">&#x1F512; Admin Access</div>
-        <input type="password" id="adm-pass" class="adm-input" placeholder="Admin password" autocomplete="off">
-        <button id="adm-login-btn" class="adm-btn adm-btn-primary">เข้าสู่ระบบ</button>
-        <p id="adm-login-err" class="adm-err"></p>
-        <button class="adm-btn adm-btn-ghost" onclick="document.getElementById('adm-login').style.display='none';document.getElementById('adm-overlay').style.display='none';">&times; ปิด</button>
-    </div>
-    <div id="adm-pat" data-admin class="adm-modal" style="display:none">
-        <div class="adm-modal-title">&#x1F511; GitHub Personal Access Token</div>
-        <p class="adm-hint">สร้าง PAT ที่ <a href="https://github.com/settings/tokens" target="_blank" rel="noopener">github.com/settings/tokens</a><br>ต้องมีสิทธิ์ <code>repo</code> &mdash; เก็บไว้ในเบราว์เซอร์นี้เท่านั้น</p>
-        <input type="password" id="adm-pat-input" class="adm-input" placeholder="ghp_xxxxxxxxxxxx" autocomplete="off">
-        <button id="adm-pat-btn" class="adm-btn adm-btn-primary">บันทึก &amp; เข้าสู่โหมดแก้ไข</button>
-        <p id="adm-pat-err" class="adm-err"></p>
-    </div>
-    <div id="adm-toolbar" data-admin class="adm-toolbar">
-        <div class="adm-tb-left">
-            <span class="adm-tb-badge">&#x1F527; EDIT MODE</span>
-            <span class="adm-tb-status" id="adm-status"></span>
-        </div>
-        <div class="adm-tb-center">
-            <button class="adm-fmt" data-cmd="bold" title="Bold (Ctrl+B)"><b>B</b></button>
-            <button class="adm-fmt" data-cmd="italic" title="Italic (Ctrl+I)"><i>I</i></button>
-            <button class="adm-fmt" data-cmd="formatBlock" data-val="h2" title="H2">H2</button>
-            <button class="adm-fmt" data-cmd="formatBlock" data-val="h3" title="H3">H3</button>
-            <button class="adm-fmt" data-cmd="formatBlock" data-val="blockquote" title="Blockquote">&#x275D;</button>
-            <button class="adm-fmt" data-cmd="formatBlock" data-val="p" title="Paragraph">P</button>
-            <button class="adm-fmt" data-cmd="createLink" title="Link">&#x1F517;</button>
-            <button class="adm-fmt" data-cmd="removeFormat" title="Clear Format">&#x2718;</button>
-            <span class="adm-tb-sep"></span>
-            <button class="adm-fmt" data-cmd="undo" title="Undo (Ctrl+Z)">&#x21A9;</button>
-            <button class="adm-fmt" data-cmd="redo" title="Redo (Ctrl+Y)">&#x21AA;</button>
-        </div>
-        <div class="adm-tb-right">
-            <select id="adm-section-nav" class="adm-section-nav" title="ข้ามไป section..."></select>
-            <button id="adm-save-btn" class="adm-btn adm-btn-save">&#x1F4BE; บันทึก &amp; อัปเดต</button>
-            <button id="adm-exit-btn" class="adm-btn adm-btn-ghost">ออก</button>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
+            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
         </div>
     </div>
-    <div id="adm-toast" data-admin class="adm-toast"></div>
 
+
+    <!-- ═══════════════════════════════════════════════
+         FAQ — tailored for marketers / business owners
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">คำถามที่พบบ่อย</div>
+        <h2 class="sec-title">ก่อนตัดสินใจ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมทำการตลาดมาหลายปีแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
+            <p class="faq-a">ยิ่งทำมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมี &ldquo;สัญชาตญาณ&rdquo; อยู่แล้ว เล่มนี้จะอธิบายว่าทำไมสัญชาตญาณนั้นถึงได้ผล ทำให้คุณเปลี่ยนจาก &ldquo;บังเอิญเวิร์ก&rdquo; เป็น &ldquo;ตั้งใจให้เวิร์กได้ทุกครั้ง&rdquo; และยังอธิบายให้ทีมหรือลูกค้าฟังได้ด้วย</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">นี่คือหนังสือ &ldquo;จิตวิทยา&rdquo; หรือ &ldquo;การตลาด&rdquo;?</div>
+            <p class="faq-a">ทั้งคู่ &mdash; เพราะการตลาดที่ดีที่สุดคือจิตวิทยาประยุกต์ เล่มนี้เอางานวิจัยด้านจิตวิทยาการตัดสินใจมาแปลงเป็นหลักการที่ใช้ได้จริงกับ Content, Ads, Pricing, Branding ทุกอย่างที่คุณทำอยู่ทุกวัน</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/">บทนำเปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันทีจากมือถือ</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมเป็นเจ้าของธุรกิจ ไม่ได้เป็นนักการตลาด ใช้ได้ไหม?</div>
+            <p class="faq-a">ใช้ได้เต็มที่ &mdash; เพราะเล่มนี้ไม่ได้สอนกดปุ่มบนแพลตฟอร์มไหน แต่สอนว่าทำไมลูกค้าตัดสินใจ ไม่ว่าคุณจะขายของเอง จ้างทีมทำ หรือจ้างเอเจนซี่ &mdash; ความเข้าใจนี้ทำให้คุณตัดสินใจได้ดีขึ้นทุกจุด</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมไม่ชอบอ่านหนังสือ อ่านจบไหม?</div>
+            <p class="faq-a">เล่มนี้ออกแบบมาให้ <strong>หยุดไม่ได้</strong> &mdash; ทุกบทเปิดด้วยเรื่องจริงที่ทำให้อยากรู้คำตอบ ไม่ต้องอ่านรวดเดียว เปิดตอนพักเบรกก็ได้ อ่านระหว่าง Commute ก็ได้ แต่ละบทจบในตัว</p>
+        </div>
+
+        <div class="faq-item" style="border: none;">
+            <div class="faq-q">ใช้ได้กับทุกธุรกิจไหม? หรือแค่ธุรกิจออนไลน์?</div>
+            <p class="faq-a">ใช้ได้ทุกธุรกิจ &mdash; เพราะไม่ว่าจะออนไลน์หรือหน้าร้าน คนที่ตัดสินใจคือ &ldquo;มนุษย์&rdquo; เหมือนกัน สมองของลูกค้าใน Shopee ก็ทำงานด้วย Dopamine, Oxytocin, และ Cortisol เหมือนลูกค้าที่เดินเข้าร้านคุณ หลักการเดียวกัน แค่บริบทต่าง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FINAL CTA
+         ═══════════════════════════════════════════════ -->
+    <div class="final-cta">
+        <div class="final-cta-inner rv">
+            <h2>เทรนด์การตลาดเปลี่ยนทุกปี<br>แต่ &ldquo;สมองลูกค้า&rdquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
+            <p>ลงทุนกับความเข้าใจที่ใช้ได้ทุกแพลตฟอร์ม ทุกธุรกิจ ทุกยุค &mdash; รู้ว่าทำไมคนถึงซื้อ</p>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
+            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════ -->
+    <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SCRIPTS
+         ═══════════════════════════════════════════════ -->
     <script>
     (function() {
-        'use strict';
+        /* ── Progress bar ── */
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
 
-        // ── Scroll reveal (supports multiple classes) ──
-        var revealObs = new IntersectionObserver(function(entries) {
+        /* ── Scroll reveal ── */
+        var els = document.querySelectorAll('.rv');
+        var io = new IntersectionObserver(function(entries) {
             entries.forEach(function(e) {
                 if (e.isIntersecting) {
                     e.target.classList.add('vis');
-                    revealObs.unobserve(e.target);
+                    io.unobserve(e.target);
                 }
             });
-        }, { rootMargin: '0px 0px -6% 0px', threshold: 0.1 });
-
-        document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale').forEach(function(el) {
-            revealObs.observe(el);
-        });
-
-        // ── Reading progress bar ──
-        var progressBar = document.getElementById('progress-bar');
-        window.addEventListener('scroll', function() {
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            var progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-            progressBar.style.width = progress + '%';
-        }, { passive: true });
-
-        // ── Third Eye toggle with counter ──
-        var teActive = false;
-        var teNotes = document.querySelectorAll('.te-note');
-        var teCountEl = document.getElementById('te-count');
-        teCountEl.textContent = teNotes.length + ' เทคนิค';
-
-        function toggleTE() {
-            teActive = !teActive;
-            document.body.classList.toggle('te-on', teActive);
-        }
-
-        document.getElementById('hero-te-btn').addEventListener('click', function() {
-            toggleTE();
-            var firstNote = document.querySelector('#story .te-note');
-            if (firstNote && teActive) {
-                setTimeout(function() {
-                    firstNote.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 400);
-            }
-        });
-
-        document.getElementById('te-float').addEventListener('click', toggleTE);
-
-        // Show floating toggle after scrolling past hero
-        var heroEl = document.querySelector('.hero');
-        var floatBtn = document.getElementById('te-float');
-        var floatObs = new IntersectionObserver(function(entries) {
-            floatBtn.classList.toggle('vis', !entries[0].isIntersecting);
-        }, { threshold: 0 });
-        floatObs.observe(heroEl);
-
-        // ── Floating CTA - show after scrolling to chapters, hide at main CTA ──
-        var floatCTA = document.getElementById('float-cta');
-        var chaptersEl = document.getElementById('chapters');
-        if (chaptersEl && floatCTA) {
-            var ctaObs = new IntersectionObserver(function(entries) {
-                if (entries[0].isIntersecting) {
-                    floatCTA.classList.add('vis');
-                }
-            }, { threshold: 0.1 });
-            ctaObs.observe(chaptersEl);
-
-            var buySection = document.getElementById('buy');
-            if (buySection) {
-                var buyObs = new IntersectionObserver(function(entries) {
-                    if (entries[0].isIntersecting) {
-                        floatCTA.classList.remove('vis');
-                    }
-                }, { threshold: 0.1 });
-                buyObs.observe(buySection);
-            }
-        }
-
-        // ── Interactive perception demo ──
-        var demoChoices = document.querySelectorAll('#perception-demo .demo-choice');
-        var demoResult = document.getElementById('demo-result');
-        var demoClicked = false;
-
-        demoChoices.forEach(function(choice) {
-            choice.addEventListener('click', function() {
-                if (demoClicked) return;
-                demoClicked = true;
-                choice.classList.add('selected');
-                setTimeout(function() {
-                    demoResult.classList.add('show');
-                }, 300);
-            });
-        });
-
+        }, { threshold: 0.12 });
+        els.forEach(function(el) { io.observe(el); });
     })();
 
-    // ═══════════════════════════════════
-    // Admin Edit System
-    // ═══════════════════════════════════
-    (function() {
-        'use strict';
-        var ADMIN_HASH = '2d0e03d263e7c7e834632db67ad4659784fbb083aee0c76c81b9c8efd94c1ba3';
-        var GH_REPO = 'facexerciseclinic-cloud/oneroot';
-        var GH_PATH = 'web/sale-general.html';
-        var isAdminMode = false;
-
-        function sha256(str) {
-            var buf = new TextEncoder().encode(str);
-            return crypto.subtle.digest('SHA-256', buf).then(function(hash) {
-                return Array.from(new Uint8Array(hash)).map(function(b) {
-                    return b.toString(16).padStart(2, '0');
-                }).join('');
-            });
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+        } else {
+            var t = document.createElement('textarea');
+            t.value = code;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
         }
-
-        function admToast(msg, type) {
-            var t = document.getElementById('adm-toast');
-            t.textContent = msg;
-            t.className = 'adm-toast adm-toast-' + (type || 'info');
-            t.style.display = 'block';
-            clearTimeout(t._hid);
-            t._hid = setTimeout(function() { t.style.display = 'none'; }, 3500);
-        }
-
-        // Trigger admin login with Ctrl+Shift+E
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key.toLowerCase() === 'e') {
-                e.preventDefault();
-                if (isAdminMode) return;
-                document.getElementById('adm-overlay').style.display = 'block';
-                document.getElementById('adm-login').style.display = 'block';
-                document.getElementById('adm-pass').focus();
-            }
-            // Ctrl+S save in admin mode
-            if (isAdminMode && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') {
-                e.preventDefault();
-                document.getElementById('adm-save-btn').click();
-            }
-        });
-
-        // Admin login
-        document.getElementById('adm-login-btn').addEventListener('click', function() {
-            var pass = document.getElementById('adm-pass').value.trim();
-            if (!pass) return;
-            sha256(pass).then(function(hash) {
-                if (hash === ADMIN_HASH) {
-                    localStorage.setItem('adm-auth', '1');
-                    document.getElementById('adm-login').style.display = 'none';
-                    document.getElementById('adm-overlay').style.display = 'none';
-                    document.getElementById('adm-login-err').textContent = '';
-                    var pat = localStorage.getItem('adm-pat');
-                    if (!pat) {
-                        document.getElementById('adm-overlay').style.display = 'block';
-                        document.getElementById('adm-pat').style.display = 'block';
-                        document.getElementById('adm-pat-input').focus();
-                    } else {
-                        enterAdminMode(pat);
-                    }
-                } else {
-                    document.getElementById('adm-login-err').textContent = 'รหัสไม่ถูกต้อง';
-                }
-            });
-        });
-        document.getElementById('adm-pass').addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') document.getElementById('adm-login-btn').click();
-        });
-
-        // PAT save
-        document.getElementById('adm-pat-btn').addEventListener('click', function() {
-            var pat = document.getElementById('adm-pat-input').value.trim().replace(/[\u200B-\u200D\uFEFF\u00A0]/g, '');
-            if (!pat || pat.length < 10) {
-                document.getElementById('adm-pat-err').textContent = 'กรุณากรอก PAT ที่ถูกต้อง';
-                return;
-            }
-            localStorage.setItem('adm-pat', pat);
-            document.getElementById('adm-pat').style.display = 'none';
-            document.getElementById('adm-overlay').style.display = 'none';
-            enterAdminMode(pat);
-        });
-
-        function enterAdminMode(pat) {
-            isAdminMode = true;
-            document.body.classList.add('admin-mode');
-            // Make sections editable
-            document.querySelectorAll('.sp').forEach(function(el) {
-                el.setAttribute('contenteditable', 'true');
-                el.addEventListener('input', function() {
-                    el.classList.add('adm-dirty');
-                    updateDirtyCount();
-                });
-            });
-            // Also make hero editable
-            var hero = document.querySelector('.hero');
-            if (hero) {
-                hero.setAttribute('contenteditable', 'true');
-                hero.addEventListener('input', function() {
-                    hero.classList.add('adm-dirty');
-                    updateDirtyCount();
-                });
-            }
-            populateSectionNav();
-            admToast('เข้าสู่โหมดแก้ไขแล้ว', 'ok');
-        }
-
-        function populateSectionNav() {
-            var nav = document.getElementById('adm-section-nav');
-            nav.innerHTML = '<option value="">ข้ามไป section...</option>';
-            var sections = document.querySelectorAll('.hero, .sp[id]');
-            sections.forEach(function(sec) {
-                var id = sec.id || 'hero';
-                var h = sec.querySelector('h1, h2');
-                var label = h ? h.textContent.trim().substring(0, 40) : id;
-                var opt = document.createElement('option');
-                opt.value = id;
-                opt.textContent = label;
-                nav.appendChild(opt);
-            });
-            nav.addEventListener('change', function() {
-                if (nav.value) {
-                    var el = document.getElementById(nav.value) || document.querySelector('.hero');
-                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    nav.value = '';
-                }
-            });
-        }
-
-        function updateDirtyCount() {
-            var dirty = document.querySelectorAll('.adm-dirty').length;
-            var status = document.getElementById('adm-status');
-            status.textContent = dirty > 0 ? dirty + ' section มีการเปลี่ยนแปลง' : '';
-            document.getElementById('adm-save-btn').disabled = dirty === 0;
-        }
-
-        // Formatting toolbar
-        document.querySelectorAll('.adm-fmt').forEach(function(btn) {
-            btn.addEventListener('mousedown', function(e) {
-                e.preventDefault();
-                var cmd = btn.getAttribute('data-cmd');
-                var val = btn.getAttribute('data-val') || null;
-                if (cmd === 'createLink') {
-                    val = prompt('URL:');
-                    if (!val) return;
-                }
-                if (cmd === 'formatBlock' && val) {
-                    val = '<' + val + '>';
-                }
-                document.execCommand(cmd, false, val);
-            });
-        });
-
-        // Save via GitHub API — fetch pristine source, patch only edited sections
-        document.getElementById('adm-save-btn').addEventListener('click', function() {
-            var saveBtn = document.getElementById('adm-save-btn');
-            if (saveBtn.disabled) return;
-            saveBtn.disabled = true;
-            saveBtn.textContent = '⏳ กำลังบันทึก...';
-            var pat = localStorage.getItem('adm-pat');
-            if (!pat) {
-                admToast('ไม่พบ PAT — กด Ctrl+Shift+E เพื่อตั้งค่าใหม่', 'err');
-                saveBtn.disabled = false;
-                saveBtn.innerHTML = '&#x1F4BE; บันทึก &amp; อัปเดต';
-                return;
-            }
-
-            var fileSha = null;
-
-            fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
-                headers: { 'Authorization': 'token ' + pat }
-            })
-            .then(function(res) {
-                if (!res.ok) throw new Error('GitHub GET failed: ' + res.status);
-                return res.json();
-            })
-            .then(function(data) {
-                fileSha = data.sha;
-                // GitHub Contents API returns empty content for files > 1 MB
-                if (data.content && data.content.replace(/\n/g, '').length > 0) {
-                    return decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
-                }
-                // Fallback: fetch raw file via download_url
-                return fetch(data.download_url).then(function(r) {
-                    if (!r.ok) throw new Error('Raw download failed: ' + r.status);
-                    return r.text();
-                });
-            })
-            .then(function(pristine) {
-                if (!pristine || pristine.length < 100) {
-                    throw new Error('Pristine source is empty or too short (' + (pristine ? pristine.length : 0) + ' chars). Aborting to prevent data loss.');
-                }
-
-                // Collect edits from dirty sections
-                var edits = {};
-                document.querySelectorAll('.adm-dirty').forEach(function(el) {
-                    if (el.id) {
-                        edits[el.id] = { innerHTML: el.innerHTML, tag: el.tagName.toLowerCase() };
-                    } else if (el.classList.contains('hero')) {
-                        edits['__hero__'] = { innerHTML: el.innerHTML, tag: 'section' };
-                    }
-                });
-
-                // Patch pristine source using string indexOf (preserves entities & formatting)
-                var result = pristine;
-                Object.keys(edits).forEach(function(key) {
-                    var clean = edits[key].innerHTML;
-                    clean = clean.replace(/ contenteditable="true"/g, '');
-                    clean = clean.replace(/ class="adm-dirty"/g, '');
-
-                    var startMarker, closeTag;
-                    if (key === '__hero__') {
-                        startMarker = 'class="hero"';
-                        closeTag = '</section>';
-                    } else {
-                        startMarker = 'id="' + key + '"';
-                        closeTag = '</section>';
-                    }
-
-                    var idx = result.indexOf(startMarker);
-                    if (idx === -1) return;
-                    // Find the end of the opening tag
-                    var tagClose = result.indexOf('>', idx);
-                    if (tagClose === -1) return;
-                    var contentStart = tagClose + 1;
-                    // Find the closing </section> for this section
-                    var closeIdx = result.indexOf(closeTag, contentStart);
-                    if (closeIdx === -1) return;
-
-                    result = result.substring(0, contentStart) + '\n' + clean + '\n    ' + result.substring(closeIdx);
-                });
-
-                return fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_PATH, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': 'token ' + pat,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: 'Edit sale page via web admin',
-                        content: btoa(unescape(encodeURIComponent(result))),
-                        sha: fileSha,
-                        branch: 'main'
-                    })
-                });
-            })
-            .then(function(res) {
-                if (!res.ok) throw new Error('GitHub PUT failed: ' + res.status);
-                return res.json();
-            })
-            .then(function(result) {
-                admToast('บันทึกสำเร็จ! Vercel กำลัง deploy...', 'ok');
-                document.querySelectorAll('.adm-dirty').forEach(function(el) {
-                    el.classList.remove('adm-dirty');
-                });
-                updateDirtyCount();
-            })
-            .catch(function(err) {
-                admToast('บันทึกล้มเหลว: ' + err.message, 'err');
-                console.error(err);
-            })
-            .finally(function() {
-                saveBtn.disabled = false;
-                saveBtn.innerHTML = '&#x1F4BE; บันทึก &amp; อัปเดต';
-                updateDirtyCount();
-            });
-        });
-
-        // Exit admin mode
-        document.getElementById('adm-exit-btn').addEventListener('click', function() {
-            var dirty = document.querySelectorAll('.adm-dirty').length;
-            if (dirty > 0 && !confirm('คุณมี ' + dirty + ' section ที่ยังไม่ได้บันทึก จะออกจากโหมดแก้ไข?')) return;
-            isAdminMode = false;
-            document.body.classList.remove('admin-mode');
-            document.querySelectorAll('.sp, .hero').forEach(function(el) {
-                el.removeAttribute('contenteditable');
-                el.classList.remove('adm-dirty');
-            });
-            admToast('ออกจากโหมดแก้ไขแล้ว', 'info');
-        });
-
-        updateDirtyCount();
-    })();
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = '\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01\u0e41\u0e25\u0e49\u0e27 \u2713';
+        hint.style.color = 'var(--gold)';
+        setTimeout(function() {
+            hint.textContent = '\u0e04\u0e25\u0e34\u0e01\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01';
+            hint.style.color = '';
+        }, 2000);
+    }
     </script>
 </body>
 </html>
