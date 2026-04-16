@@ -1042,6 +1042,378 @@
             .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
             .price-reason { padding: 1.2rem 1rem; }
         }
+
+        /* ═══════════════════════════════════════════
+           MYSTICAL RETRO-MODERN ENHANCEMENT LAYER
+           ═══════════════════════════════════════════ */
+
+        /* Grain texture overlay — vintage parchment feel */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Progress bar — animated mystic glow */
+        #progress-bar {
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--gold), var(--warm), var(--accent));
+            background-size: 300% 100%;
+            animation: progress-shimmer 3s linear infinite;
+            box-shadow: 0 0 8px rgba(194,59,34,0.3), 0 0 20px rgba(184,134,11,0.15);
+        }
+
+        /* Section ornaments — sacred geometry symbols */
+        .sec::before {
+            content: '◈';
+            width: auto; height: auto;
+            background: none; border-radius: 0;
+            font-size: 0.6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            letter-spacing: 0.8em;
+        }
+
+        /* Section label — glowing underline */
+        .sec-label { position: relative; padding-bottom: 0.35rem; }
+        .sec-label::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0.35;
+        }
+
+        /* Hero — deep atmospheric gradient with layered glow */
+        .hero {
+            background: linear-gradient(175deg, #0A0907 0%, #1A1714 35%, #15120F 65%, #0A0907 100%);
+        }
+        .hero::before {
+            background:
+                radial-gradient(ellipse at 25% 75%, rgba(184,134,11,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 25%, rgba(194,59,34,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(196,149,106,0.05) 0%, transparent 60%);
+        }
+
+        /* Hero scattered star dots */
+        .hero .hero-inner::before {
+            content: '';
+            position: absolute;
+            inset: -80px;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(1px 1px at 8% 15%, rgba(196,149,106,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 92% 20%, rgba(184,134,11,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 18% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 78% 75%, rgba(196,149,106,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 45% 5%, rgba(184,134,11,0.35) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 55% 95%, rgba(255,255,255,0.15) 0%, transparent 100%),
+                radial-gradient(1px 1px at 3% 55%, rgba(196,149,106,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 97% 50%, rgba(184,134,11,0.35) 0%, transparent 100%);
+        }
+
+        /* Hero eyebrow — mystical eye marker */
+        .hero-eyebrow::after {
+            content: '◉';
+            display: block;
+            font-size: 0.45rem;
+            color: var(--gold);
+            margin-top: 0.7rem;
+            opacity: 0.4;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        /* Hero title — subtle ambient glow + animated gradient */
+        .hero h1 { text-shadow: 0 0 60px rgba(245,240,235,0.08); }
+        .hero h1 em {
+            background: linear-gradient(135deg, var(--accent) 0%, #E8744A 30%, var(--gold) 60%, var(--accent) 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        /* Hero hook — decorative geometry mark */
+        .hero-hook { position: relative; }
+        .hero-hook::before {
+            content: '⟐';
+            position: absolute;
+            top: -1.2rem; left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.5rem; color: var(--gold); opacity: 0.2;
+        }
+
+        /* Hero CTA — sweeping light shine */
+        .hero-cta {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.3), 0 0 40px rgba(194,59,34,0.08);
+        }
+        .hero-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+
+        /* Pull quote — gold accent with gradient bg */
+        .pull-quote {
+            border-left-color: var(--gold);
+            background: linear-gradient(90deg, rgba(184,134,11,0.025), transparent);
+            padding-left: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Scenario — dot indicator on hover */
+        .scenario { position: relative; }
+        .scenario::after {
+            content: '';
+            position: absolute;
+            left: -5px; top: 50%;
+            transform: translateY(-50%);
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+        }
+        .scenario:hover::after {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(194,59,34,0.3);
+        }
+
+        /* Dark band — starfield background */
+        .dark-band {
+            background: linear-gradient(175deg, #0A0907 0%, #1A1714 40%, #0F0D0A 100%);
+        }
+        .dark-band::before {
+            background:
+                radial-gradient(1px 1px at 5% 20%, rgba(196,149,106,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 70%, rgba(184,134,11,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 25% 35%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 35% 85%, rgba(196,149,106,0.35) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 15%, rgba(184,134,11,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 65% 60%, rgba(196,149,106,0.3) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 75% 90%, rgba(255,255,255,0.15) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 40%, rgba(184,134,11,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 95% 75%, rgba(196,149,106,0.3) 0%, transparent 100%),
+                radial-gradient(ellipse at center, rgba(196,149,106,0.025) 0%, transparent 70%);
+        }
+        .dark-band .big-quote {
+            text-shadow: 0 0 40px rgba(196,149,106,0.1), 0 0 80px rgba(184,134,11,0.05);
+        }
+        .dark-band strong {
+            text-shadow: 0 0 15px rgba(196,149,106,0.25);
+        }
+
+        /* Benefit cards — vintage journal corner details */
+        .benefit-card {
+            border-top-width: 2px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .benefit-card::after {
+            content: '';
+            position: absolute;
+            bottom: 8px; right: 8px;
+            width: 16px; height: 16px;
+            border-bottom: 1px solid rgba(184,134,11,0.12);
+            border-right: 1px solid rgba(184,134,11,0.12);
+            pointer-events: none;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .benefit-card:hover::after { opacity: 1; }
+        .benefit-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06), 0 0 0 1px rgba(184,134,11,0.06);
+            transform: translateY(-3px);
+        }
+        .benefit-num { font-variant: small-caps; letter-spacing: 0.15em; }
+
+        /* Comparison gold column — inner glow */
+        .compare-new {
+            box-shadow: 0 2px 16px rgba(184,134,11,0.1), inset 0 0 30px rgba(184,134,11,0.02);
+        }
+        .compare-new:hover {
+            box-shadow: 0 8px 28px rgba(184,134,11,0.15), inset 0 0 30px rgba(184,134,11,0.03);
+            transform: translateY(-4px);
+        }
+
+        /* Proof numbers — animated gradient shimmer */
+        .proof-num {
+            background: linear-gradient(135deg, var(--accent), var(--gold), var(--warm));
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text;
+            animation: gradient-shift 5s ease-in-out infinite;
+        }
+
+        /* Pricing section — layered radial glow */
+        .pricing-section {
+            background:
+                radial-gradient(ellipse at 30% 0%, rgba(184,134,11,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(194,59,34,0.02) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 50%, var(--bg-alt) 100%);
+        }
+
+        /* Price number — radiant glow */
+        .price-big {
+            text-shadow: 0 2px 40px rgba(184,134,11,0.25), 0 0 80px rgba(184,134,11,0.1);
+            position: relative;
+        }
+        .price-big::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(184,134,11,0.06) 0%, transparent 60%);
+            pointer-events: none; z-index: -1;
+        }
+
+        /* CTA buttons — sweeping shine effect */
+        .pricing-cta, .final-cta-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-cta::after, .final-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+        .final-cta-btn::after { animation-delay: 2s; }
+
+        /* Final CTA — starfield */
+        .final-cta {
+            background: linear-gradient(175deg, #0A0907 0%, #1A1714 40%, #0F0D0A 100%);
+        }
+        .final-cta::before {
+            background:
+                radial-gradient(1px 1px at 10% 30%, rgba(196,149,106,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 80%, rgba(184,134,11,0.35) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 50% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 65%, rgba(196,149,106,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 40%, rgba(184,134,11,0.3) 0%, transparent 100%),
+                radial-gradient(ellipse at center bottom, rgba(194,59,34,0.04) 0%, transparent 60%);
+        }
+
+        /* Gold box — subtle radiance corner */
+        .gold-box { position: relative; overflow: hidden; }
+        .gold-box::after {
+            content: '';
+            position: absolute;
+            top: -15px; right: -15px;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Whisper code — hover glow */
+        .whisper-code { transition: background 0.2s, border-color 0.2s, box-shadow 0.3s; }
+        .whisper-code:hover { box-shadow: 0 0 12px rgba(194,59,34,0.12); }
+
+        /* Reader whisper — gold gradient line */
+        .reader-whisper::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.35; }
+
+        /* FAQ badge — soft glow ring */
+        .faq-q::before { box-shadow: 0 0 0 3px rgba(194,59,34,0.04); }
+
+        /* Who-yes — subtle green radiance */
+        .who-yes { position: relative; overflow: hidden; }
+        .who-yes::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74,124,63,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Thin divider — mystical symbols */
+        .thin-div {
+            height: auto; background: none;
+            max-width: none !important;
+            text-align: center; padding: 0.3rem 0;
+        }
+        .thin-div::before {
+            content: '⟡ ◈ ⟡';
+            font-size: 0.45rem; color: var(--gold);
+            opacity: 0.3; letter-spacing: 0.4em;
+        }
+
+        /* Sacred geometry floating circles — hero decoration */
+        .sacred-geo {
+            position: absolute; inset: 0;
+            pointer-events: none; overflow: hidden; z-index: 0;
+        }
+        .sg-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(184,134,11,0.06);
+        }
+        .sg-circle.sg-1 {
+            width: 300px; height: 300px;
+            top: 20%; left: -80px;
+            animation: sg-float 12s ease-in-out infinite;
+        }
+        .sg-circle.sg-2 {
+            width: 200px; height: 200px;
+            top: 10%; right: -60px;
+            border-color: rgba(194,59,34,0.05);
+            animation: sg-float 10s ease-in-out infinite reverse;
+        }
+        .sg-circle.sg-3 {
+            width: 400px; height: 400px;
+            bottom: -100px; left: calc(50% - 200px);
+            border-color: rgba(196,149,106,0.04);
+            animation: sg-float 15s ease-in-out infinite;
+        }
+
+        /* ─── Keyframe Animations ─── */
+        @keyframes progress-shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; text-shadow: 0 0 6px rgba(184,134,11,0.5); }
+        }
+        @keyframes btn-shine {
+            0%, 70%, 100% { left: -100%; }
+            80% { left: 150%; }
+        }
+        @keyframes sg-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* Responsive overrides for enhancements */
+        @media (max-width: 768px) {
+            .sg-circle.sg-1 { width: 200px; height: 200px; }
+            .sg-circle.sg-2 { width: 140px; height: 140px; }
+            .sg-circle.sg-3 { width: 260px; height: 260px; left: calc(50% - 130px); }
+            .scenario::after { display: none; }
+        }
+        @media (max-width: 420px) {
+            .sacred-geo { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -1054,6 +1426,7 @@
          HERO
          ═══════════════════════════════════════════════ -->
     <div class="hero">
+        <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
         <div class="hero-inner rv">
             <div class="hero-eyebrow">The One Root of Marketing</div>
             <h1>นักขายที่ปิดได้ทุกดีล<br>ไม่ได้เก่งเรื่องขาย &mdash;<br><em>เขาแค่อ่านคนออก</em></h1>
@@ -1302,8 +1675,8 @@
         </div>
     </div>
 
-    <div style="text-align: center; padding: 0.5rem 0;">
-        <span style="font-size: 0.6rem; color: var(--border-dark); letter-spacing: 1em;">&#x25C6; &#x25C6; &#x25C6;</span>
+    <div style="text-align: center; padding: 1rem 0;">
+        <span style="font-size: 0.55rem; color: var(--gold); opacity: 0.3; letter-spacing: 0.8em;">⊹ ◈ ⊹</span>
     </div>
 
     <!-- ═══════════════════════════════════════════════
