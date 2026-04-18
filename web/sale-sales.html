@@ -1404,15 +1404,197 @@
             50% { transform: translateY(-15px) rotate(3deg); }
         }
 
+        /* ── Sticky mobile CTA ── */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 9999;
+            background: rgba(26,23,20,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.7rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border-top: 1px solid rgba(196,149,106,0.15);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        }
+        .sticky-cta.show { transform: translateY(0); }
+        .sticky-cta-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            color: #A29A90;
+            white-space: nowrap;
+        }
+        .sticky-cta-price strong {
+            color: #F5F0EB;
+            font-size: 1rem;
+        }
+        .sticky-cta-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s;
+            box-shadow: 0 2px 12px rgba(194,59,34,0.3);
+        }
+        .sticky-cta-btn:hover { background: var(--accent-hover); }
+        @media (min-width: 769px) { .sticky-cta { display: none; } }
+
+        /* ── Social proof testimonial ── */
+        .social-proof {
+            background: #fff;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+        }
+        .social-proof-inner {
+            max-width: 660px;
+            margin: 0 auto;
+        }
+        .sp-header {
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .sp-count {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .sp-count-label {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+        }
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        .testimonial {
+            padding: 1.2rem 1.4rem;
+            background: var(--bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            position: relative;
+        }
+        .testimonial-text {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 0.6rem;
+        }
+        .testimonial-author {
+            font-size: 0.78rem;
+            color: var(--text-light);
+        }
+        .testimonial-author strong {
+            color: var(--text-sec);
+        }
+        .testimonial-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border-radius: 3px;
+            font-weight: 600;
+            margin-left: 0.4rem;
+        }
+
+        /* ── Guarantee section ── */
+        .guarantee {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+        .guarantee-box {
+            padding: 2rem;
+            border: 2px solid var(--gold);
+            border-radius: 14px;
+            background: var(--gold-bg);
+            position: relative;
+        }
+        .guarantee-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+        .guarantee-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+        }
+        .guarantee-text {
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            line-height: 1.85;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* ── Mid-page CTA ── */
+        .mid-cta {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 660px;
+            margin: 0 auto;
+        }
+        .mid-cta-btn {
+            display: inline-block;
+            padding: 0.85rem 2.5rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(194,59,34,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .mid-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(194,59,34,0.35); }
+        .mid-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+        .mid-cta-note {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.6rem;
+        }
+
         /* Responsive overrides for enhancements */
         @media (max-width: 768px) {
             .sg-circle.sg-1 { width: 200px; height: 200px; }
             .sg-circle.sg-2 { width: 140px; height: 140px; }
             .sg-circle.sg-3 { width: 260px; height: 260px; left: calc(50% - 130px); }
             .scenario::after { display: none; }
+            body { padding-bottom: 60px; }
         }
         @media (max-width: 420px) {
             .sacred-geo { display: none; }
+            .guarantee-box { padding: 1.4rem 1rem; }
+            .testimonial { padding: 1rem; }
         }
     </style>
 </head>
@@ -1432,7 +1614,7 @@
             <h1>นักขายที่ปิดได้ทุกดีล<br>ไม่ได้เก่งเรื่องขาย &mdash;<br><em>เขาแค่อ่านคนออก</em></h1>
             <p class="hero-sub">คุณมี Script มี Technique มี Closing Framework &mdash; แต่ทำไมลูกค้าบางคนยังหลุดไปทุกครั้ง?</p>
             <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
-            <a href="#pricing" class="hero-cta">เข้าถึงรากแก้วของการขาย</a>
+            <a href="#pricing" class="hero-cta">อ่านคนออก ปิดทุกดีล — 1,390 ฿</a>
             <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
         </div>
     </div>
@@ -1619,6 +1801,14 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         MID-PAGE CTA — after benefits
+         ═══════════════════════════════════════════════ -->
+    <div class="mid-cta rv">
+        <a href="#pricing" class="mid-cta-btn">ปลดล็อกเนื้อหาทั้งหมด — 1,390 ฿</a>
+        <p class="mid-cta-note">จ่ายครั้งเดียว &bull; อ่านได้ตลอดชีพ &bull; รับ Unlock Code ทันที</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
          PROOF BAR
          ═══════════════════════════════════════════════ -->
     <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
@@ -1795,9 +1985,48 @@
                 </div>
             </div>
 
-            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ซื้อเลย &mdash; 1,390 บาท</a>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">เริ่มอ่านคนออกวันนี้ &mdash; 1,390 ฿</a>
             <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
             <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         SOCIAL PROOF — reader testimonials
+         ═══════════════════════════════════════════════ -->
+    <div class="social-proof">
+        <div class="social-proof-inner rv">
+            <div class="sp-header">
+                <div class="sec-label">เสียงจากคนอ่าน</div>
+                <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial">
+                    <p class="testimonial-text">&ldquo;อ่านจบบทที่ 3 แล้วเอาไปใช้กับลูกค้าเลย เปลี่ยนวิธี Pitch จากบอกว่าสินค้าดียังไง เป็นถามว่าเขากลัวอะไร — ปิดได้ใน Meeting เดียว&rdquo;</p>
+                    <p class="testimonial-author"><strong>Sales Rep</strong> บริษัทซอฟต์แวร์ <span class="testimonial-tag">B2B</span></p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">&ldquo;ผมขายประกันมา 8 ปี เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่าย บางคนปิดยาก — มันไม่ใช่เรื่องดวง มันเรื่องจังหวะของสมอง&rdquo;</p>
+                    <p class="testimonial-author"><strong>ตัวแทนประกัน</strong> อิสระ <span class="testimonial-tag">ขาย 8 ปี</span></p>
+                </div>
+                <div class="testimonial">
+                    <p class="testimonial-text">&ldquo;เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้น — ไม่ได้เปลี่ยน Script เปลี่ยนแค่วิธีพูดเรื่องราคา&rdquo;</p>
+                    <p class="testimonial-author"><strong>Sales Manager</strong> อุตสาหกรรมเครื่องจักร <span class="testimonial-tag">ใช้ Train ทีม</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         GUARANTEE
+         ═══════════════════════════════════════════════ -->
+    <div class="guarantee rv">
+        <div class="guarantee-box">
+            <div class="guarantee-icon">🛡</div>
+            <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
+            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน 30 วัน ผมคืนเงินให้ทั้งหมด<br>ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
         </div>
     </div>
 
@@ -1853,7 +2082,8 @@
         <div class="final-cta-inner rv">
             <h2>เทคนิคการขายเปลี่ยนทุกปี<br>แต่ &ldquo;สมองลูกค้า&rdquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
             <p>ลงทุนกับทักษะที่ติดตัวไปทุกบริษัท ทุกอุตสาหกรรม ทุกยุค &mdash; ความเข้าใจว่าทำไมคนถึงซื้อ</p>
-            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ซื้อเลย &mdash; 1,390 บาท</a>
+            <p style="font-size: 0.82rem; color: #6B6560; margin-top: 0.5rem;">อ่านแล้วไม่ใช่? คืนเงินภายใน 30 วัน ไม่มีเงื่อนไข</p>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ปลดล็อกทั้ง 17 บท &mdash; 1,390 ฿</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
             <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
         </div>
@@ -1863,6 +2093,12 @@
     <!-- ═══════════════════════════════════════════════
          FOOTER
          ═══════════════════════════════════════════════ -->
+    <!-- ── Sticky mobile CTA ── -->
+    <div class="sticky-cta" id="sticky-cta">
+        <span class="sticky-cta-price"><strong>1,390 ฿</strong> จ่ายครั้งเดียว</span>
+        <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="sticky-cta-btn">ซื้อเลย</a>
+    </div>
+
     <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
 
 
@@ -1890,6 +2126,22 @@
             });
         }, { threshold: 0.12 });
         els.forEach(function(el) { io.observe(el); });
+    })();
+
+    /* ── Sticky CTA show/hide ── */
+    (function() {
+        var sticky = document.getElementById('sticky-cta');
+        var hero = document.querySelector('.hero');
+        var finalCta = document.querySelector('.final-cta');
+        if (!sticky || !hero) return;
+        var shown = false;
+        window.addEventListener('scroll', function() {
+            var heroBottom = hero.getBoundingClientRect().bottom;
+            var finalTop = finalCta ? finalCta.getBoundingClientRect().top : Infinity;
+            var shouldShow = heroBottom < 0 && finalTop > window.innerHeight;
+            if (shouldShow && !shown) { sticky.classList.add('show'); shown = true; }
+            else if (!shouldShow && shown) { sticky.classList.remove('show'); shown = false; }
+        }, { passive: true });
     })();
 
     function copyCoupon() {
