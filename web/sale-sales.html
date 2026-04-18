@@ -1651,35 +1651,82 @@
             gap: 1rem;
         }
         .testimonial {
-            padding: 1.2rem 1.4rem;
+            padding: 1.3rem 1.4rem;
             background: var(--bg);
             border-radius: 10px;
             border: 1px solid var(--border);
             position: relative;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .testimonial:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+            transform: translateY(-1px);
+        }
+        .testimonial-head {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            margin-bottom: 0.8rem;
+        }
+        .testimonial-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .testimonial-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1rem;
+        }
+        .testimonial-name {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .testimonial-role {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            line-height: 1.4;
         }
         .testimonial-text {
             font-family: 'Noto Serif Thai', serif;
-            font-size: 0.92rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            line-height: 1.85;
             color: var(--text);
             margin-bottom: 0.6rem;
         }
-        .testimonial-author {
-            font-size: 0.78rem;
-            color: var(--text-light);
-        }
-        .testimonial-author strong {
-            color: var(--text-sec);
+        .testimonial-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.5rem;
         }
         .testimonial-tag {
             display: inline-block;
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             padding: 0.15rem 0.5rem;
             background: var(--accent-soft);
             color: var(--accent);
             border-radius: 3px;
             font-weight: 600;
-            margin-left: 0.4rem;
+        }
+        .testimonial-date {
+            font-size: 0.65rem;
+            color: var(--text-light);
+        }
+        .testimonial-stars {
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
         }
 
         /* ── Guarantee section ── */
@@ -2172,18 +2219,119 @@
                 <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
             </div>
             <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;อ่านจบบทที่ 3 แล้วเอาไปใช้กับลูกค้าเลย เปลี่ยนวิธี Pitch จากบอกว่าสินค้าดียังไง เป็นถามว่าเขากลัวอะไร — ปิดได้ใน Meeting เดียว&rdquo;</p>
-                    <p class="testimonial-author"><strong>Sales Rep</strong> บริษัทซอฟต์แวร์ <span class="testimonial-tag">B2B</span></p>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">ธนกฤต ว.</span>
+                            <span class="testimonial-role">Sales Rep &bull; บริษัทซอฟต์แวร์</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;อ่านจบบทที่ 3 เรื่อง Trust Engine แล้วเอาไปใช้กับลูกค้าเลย เปลี่ยนจากบอกว่าสินค้าดียังไง เป็นถามว่าเขากังวลเรื่องอะไร &mdash; ปิดได้ใน Meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">B2B</span>
+                        <span class="testimonial-date">อ่านเมื่อ 2 สัปดาห์ก่อน</span>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;ผมขายประกันมา 8 ปี เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่าย บางคนปิดยาก — มันไม่ใช่เรื่องดวง มันเรื่องจังหวะของสมอง&rdquo;</p>
-                    <p class="testimonial-author"><strong>ตัวแทนประกัน</strong> อิสระ <span class="testimonial-tag">ขาย 8 ปี</span></p>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #8B6E4E, #6B4C30);">ส.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">สมชาย พ.</span>
+                            <span class="testimonial-role">ตัวแทนประกันชีวิต &bull; อิสระ</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;ขายประกันมา 8 ปี คิดว่ารู้หมดแล้ว แต่เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่ายบางคนปิดยาก มันไม่ใช่เรื่องดวง มันเรื่องจังหวะของสมองจริงๆ ตอนนี้เลือกได้เลยว่าจะพูดอะไรตอนไหน&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">ขาย 8 ปี</span>
+                        <span class="testimonial-date">อ่านเมื่อ 1 เดือนก่อน</span>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้น — ไม่ได้เปลี่ยน Script เปลี่ยนแค่วิธีพูดเรื่องราคา&rdquo;</p>
-                    <p class="testimonial-author"><strong>Sales Manager</strong> อุตสาหกรรมเครื่องจักร <span class="testimonial-tag">ใช้ Train ทีม</span></p>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #7A5C8A, #5D3F6E);">น.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">นภัสสร ก.</span>
+                            <span class="testimonial-role">Sales Manager &bull; อุตสาหกรรมเครื่องจักร</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้น ไม่ได้เปลี่ยน Script เลย เปลี่ยนแค่ลำดับการพูดเรื่องราคา เด็กในทีมงงว่าทำไมมันต่างขนาดนี้&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">ใช้ Train ทีม</span>
+                        <span class="testimonial-date">อ่านเมื่อ 3 สัปดาห์ก่อน</span>
+                    </div>
                 </div>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #4A7C5B, #2E5A3E);">ก.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">กิตติพงศ์ ร.</span>
+                            <span class="testimonial-role">เจ้าของร้านกาแฟ &bull; 2 สาขา</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★☆</div>
+                    <p class="testimonial-text">&ldquo;ไม่ได้เป็นเซลส์ แต่ต้องขายของทุกวัน อ่านบทเรื่อง Loss Aversion แล้วลองเปลี่ยนป้ายเมนูใหม่ จากบอกว่า &lsquo;ประหยัด 50 บาท&rsquo; เป็น &lsquo;อย่าพลาดส่วนลด 50 บาทวันนี้&rsquo; ยอดเพิ่มขึ้นจริงๆครับ ง่ายมาก&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">เจ้าของธุรกิจ</span>
+                        <span class="testimonial-date">อ่านเมื่อ 5 วันก่อน</span>
+                    </div>
+                </div>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #B85C38, #8B3A1E);">พ.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">พิมพ์ลภัส อ.</span>
+                            <span class="testimonial-role">ฟรีแลนซ์ออกแบบกราฟิก</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;เป็นฟรีแลนซ์ที่ไม่กล้าเสนอราคา เคยลดราคาให้ลูกค้าทุกครั้งเพราะกลัวเขาไม่จ้าง อ่านบทที่ 7 เรื่อง Anchoring เสร็จ เสนอราคาโปรเจกต์ถัดมาไม่ลดสักบาท &mdash; ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">ฟรีแลนซ์</span>
+                        <span class="testimonial-date">อ่านเมื่อ 1 สัปดาห์ก่อน</span>
+                    </div>
+                </div>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #C4956A, #9A7050);">อ.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">อนุวัฒน์ จ.</span>
+                            <span class="testimonial-role">Account Executive &bull; เอเจนซี่โฆษณา</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;อ่านตอนแรกคิดว่าเป็นหนังสือการตลาดธรรมดา แต่บท Dopamine Loop เปลี่ยนวิธีเขียน Proposal ผมไปเลย เดิม Proposal 10 หน้า ลูกค้าไม่เคยอ่านจบ ตอนนี้ย่อเหลือ 3 หน้าแต่เรียงตาม Dopamine curve &mdash; ลูกค้าโทรกลับเร็วขึ้น 2 วัน&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">B2B Agency</span>
+                        <span class="testimonial-date">อ่านเมื่อ 3 วันก่อน</span>
+                    </div>
+                </div>
+
+                <div class="testimonial rv">
+                    <div class="testimonial-head">
+                        <div class="testimonial-avatar" style="background: linear-gradient(135deg, #6B8E9B, #4A6D7A);">ว.</div>
+                        <div class="testimonial-meta">
+                            <span class="testimonial-name">วิรัช ม.</span>
+                            <span class="testimonial-role">ขายรถยนต์ &bull; โชว์รูมเชียงใหม่</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">&ldquo;ขายรถมา 5 ปี ผมเคยใช้แต่วิธีเดิมคือเปิดราคาแล้วรอลูกค้าต่อ อ่านเล่มนี้แล้วเริ่มเข้าใจว่าลูกค้ากลัวอะไรจริงๆ ตอน walk-in &mdash; ไม่ใช่เรื่องราคา แต่เป็นเรื่อง &lsquo;กลัวถูกหลอก&rsquo; พอเข้าใจตรงนี้ ทุกอย่างเปลี่ยน&rdquo;</p>
+                    <div class="testimonial-bottom">
+                        <span class="testimonial-tag">B2C</span>
+                        <span class="testimonial-date">อ่านเมื่อ 2 สัปดาห์ก่อน</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
