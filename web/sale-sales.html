@@ -2299,13 +2299,14 @@
 
         /* ── Dark-band quote: word-by-word reveal ── */
         document.querySelectorAll('.big-quote').forEach(function(q) {
-            // Wrap each text node word in a span
             var html = q.innerHTML;
-            // Split by tags vs text, wrap words in text portions
-            var result = html.replace(/([^<>\s]+)/g, function(match) {
-                // Skip HTML tags
-                return '<span class="bq-word">' + match + '</span>';
-            });
+            // Split into HTML tags and text segments, only wrap words in text parts
+            var parts = html.split(/(<[^>]+>)/);
+            var result = parts.map(function(part) {
+                if (part.charAt(0) === '<') return part; // HTML tag — keep as-is
+                // Text segment — wrap each word
+                return part.replace(/(\S+)/g, '<span class="bq-word">$1</span>');
+            }).join('');
             q.innerHTML = result;
         });
         var quoteIO = new IntersectionObserver(function(entries) {
