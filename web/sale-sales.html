@@ -73,11 +73,11 @@
         .sec {
             max-width: 660px;
             margin: 0 auto;
-            padding: 3rem 1.5rem;
+            padding: 2.5rem 1.5rem;
         }
         .sec-wide {
             max-width: 100%;
-            padding: 2.5rem 1.5rem;
+            padding: 2rem 1.5rem;
         }
         .sec p { margin-bottom: 0.8rem; }
 
@@ -124,13 +124,10 @@
         .hero::after {
             content: '';
             position: absolute;
-            bottom: 0; left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--warm), transparent);
+            bottom: 0; left: 0; right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
             pointer-events: none;
-            opacity: 0.4;
         }
         .hero-inner {
             max-width: 640px;
@@ -247,7 +244,7 @@
         .dark-band {
             background: var(--bg-dark);
             color: #F5F0EB;
-            padding: 2.5rem 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
             position: relative;
             border-top: 1px solid rgba(196,149,106,0.1);
@@ -890,7 +887,7 @@
             width: 40px;
             height: 2px;
             background: linear-gradient(90deg, var(--warm), transparent);
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.2rem;
             border-radius: 2px;
         }
         .sec:first-of-type::before { display: none; }
@@ -922,13 +919,13 @@
         /* ── Responsive ── */
         @media (max-width: 768px) {
             html { font-size: 16px; }
-            .sec { padding: 2.2rem 1.3rem; }
-            .hero { padding: 3rem 1.3rem 2.2rem; }
+            .sec { padding: 1.6rem 1.3rem; }
+            .hero { padding: 2.5rem 1.3rem 1.8rem; }
             .hero h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
             .hero-sub { font-size: 0.92rem; }
             .hero-hook { font-size: 0.95rem; margin: 1rem auto 1.5rem; }
             .hero-cta { padding: 0.85rem 2.2rem; font-size: 0.95rem; }
-            .dark-band { padding: 2rem 1.3rem; }
+            .dark-band { padding: 1.4rem 1.3rem; }
             .dark-band .big-quote { font-size: clamp(1rem, 3vw, 1.2rem); }
             .compare { gap: 0.8rem; }
             .compare-col { padding: 1.2rem 1rem; }
@@ -937,9 +934,9 @@
             .benefit-title { font-size: 0.95rem; }
             .benefit-desc { font-size: 0.85rem; }
             .benefit-example { font-size: 0.8rem; }
-            .proof-bar { gap: 1.5rem; }
+            .proof-bar { gap: 1.5rem; padding: 1.5rem 0; }
             .proof-num { font-size: 1.8rem; }
-            .pricing-section { padding: 2.2rem 1.3rem; }
+            .pricing-section { padding: 1.6rem 1.3rem; }
             .notricks { padding: 1.5rem 1.3rem; }
             .value-alt-name { font-size: 0.82rem; }
             .value-alt-price { font-size: 0.82rem; }
@@ -952,11 +949,13 @@
             .pricing-cta { font-size: 1rem; padding: 0.9rem 1.5rem; }
             .faq-q { font-size: 0.9rem; }
             .faq-a { font-size: 0.85rem; }
-            .final-cta { padding: 2.2rem 1.3rem; }
+            .final-cta { padding: 1.6rem 1.3rem; }
             .final-cta-btn { padding: 0.85rem 2rem; font-size: 0.95rem; }
-            .gold-box { padding: 1.3rem 1.2rem; }
+            .gold-box { padding: 1.3rem 1.2rem; margin: 1.2rem 0; }
             .gold-box p { font-size: 0.88rem; }
-            .pull-quote { font-size: 0.92rem; padding-left: 1rem; }
+            .pull-quote { font-size: 0.92rem; padding-left: 1rem; margin: 1rem 0; }
+            .guarantee { padding: 1.4rem 1.3rem; }
+            .social-proof { padding: 1.6rem 1rem; }
         }
 
         @media (max-width: 640px) {
@@ -986,26 +985,27 @@
 
         @media (max-width: 420px) {
             html { font-size: 15px; }
-            .sec { padding: 1.6rem 1rem; }
-            .hero { padding: 2.2rem 1rem 1.8rem; }
+            .sec { padding: 1.2rem 1rem; }
+            .hero { padding: 1.8rem 1rem 1.4rem; }
             .hero h1 { font-size: 1.2rem; line-height: 1.55; }
             .hero-sub { font-size: 0.88rem; }
             .hero-hook { font-size: 0.9rem; }
             .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
-            .sec-title { font-size: 1.1rem; }
+            .sec-title { font-size: 1.1rem; margin-bottom: 0.8rem; }
             .sec-label { font-size: 0.62rem; }
-            .dark-band { padding: 1.5rem 1rem; }
+            .dark-band { padding: 1.1rem 1rem; }
             .dark-band .big-quote { font-size: 1rem; line-height: 1.7; }
             .dark-band-sub { font-size: 0.82rem; }
             .compare-col h4 { font-size: 0.78rem; }
             .benefit-card { padding: 1.1rem 1rem; border-top-width: 2px; }
             .benefit-num { font-size: 0.62rem; }
             .benefit-title { font-size: 0.9rem; }
+            .proof-bar { padding: 1.2rem 0; }
             .proof-num { font-size: 1.5rem; }
             .proof-label { font-size: 0.68rem; }
-            .pricing-section { padding: 1.6rem 1rem; }
-            .notricks { padding: 1.2rem 1rem; margin-bottom: 2rem; }
-            .value-context { margin-bottom: 2rem; }
+            .pricing-section { padding: 1.2rem 1rem; }
+            .notricks { padding: 1.2rem 1rem; margin-bottom: 1.5rem; }
+            .value-context { margin-bottom: 1.5rem; }
             .value-context-title { font-size: 0.85rem; }
             .value-alt { flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; }
             .value-alt-price { font-size: 0.82rem; }
@@ -1024,18 +1024,18 @@
             .pricing-sub-note { font-size: 0.78rem; }
             .faq-q { font-size: 0.85rem; }
             .faq-a { font-size: 0.82rem; }
-            .final-cta { padding: 1.6rem 1rem; }
+            .final-cta { padding: 1.2rem 1rem; }
             .final-cta h2 { font-size: 1.05rem; }
             .final-cta p { font-size: 0.85rem; }
             .final-cta-btn { font-size: 0.9rem; padding: 0.8rem 1rem; }
             .final-cta-note { font-size: 0.72rem; }
             .final-cta-free { font-size: 0.8rem; }
-            .gold-box { padding: 1.1rem 1rem; }
+            .gold-box { padding: 1rem; margin: 0.8rem 0; }
             .gold-box p { font-size: 0.84rem; }
-            .pull-quote { font-size: 0.88rem; margin: 1.3rem 0; }
+            .pull-quote { font-size: 0.88rem; margin: 0.8rem 0; }
             .who-col h4 { font-size: 0.78rem; }
             .who-col li { font-size: 0.8rem; }
-            .sec::before { width: 24px; margin-bottom: 1rem; }
+            .sec::before { width: 24px; margin-bottom: 0.8rem; }
             .reader-whisper { padding: 1rem; }
             .whisper-label { font-size: 0.72rem; }
             .whisper-body { font-size: 0.76rem; }
@@ -1044,6 +1044,9 @@
             .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
             .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
             .price-reason { padding: 1.2rem 1rem; }
+            .guarantee { padding: 1rem; }
+            .guarantee-box { padding: 1.2rem 1rem; }
+            .social-proof { padding: 1.2rem 0.8rem; }
         }
 
         /* ═══════════════════════════════════════════
@@ -1407,6 +1410,176 @@
             50% { transform: translateY(-15px) rotate(3deg); }
         }
 
+        /* ─── EMOTION-DRIVEN ANIMATIONS ─── */
+
+        /* 1. Staggered scenario reveal — each pain point hits one by one */
+        .scenario.rv { opacity: 0; transform: translateX(-20px); }
+        .scenario.rv.vis { opacity: 1; transform: translateX(0); }
+        .scenario.rv-s1 { transition-delay: 0s; }
+        .scenario.rv-s2 { transition-delay: 0.12s; }
+        .scenario.rv-s3 { transition-delay: 0.24s; }
+        .scenario.rv-s4 { transition-delay: 0.36s; }
+        .scenario.rv-s5 { transition-delay: 0.48s; }
+
+        /* 2. Dark band quote — dramatic word-by-word entrance */
+        .big-quote .bq-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(8px);
+            filter: blur(3px);
+            transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+        }
+        .big-quote.bq-active .bq-word {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* 3. Section title accent — highlight sweep underline */
+        .sec-title em {
+            position: relative;
+            display: inline;
+            background-image: linear-gradient(120deg, rgba(194,59,34,0.12) 0%, rgba(184,134,11,0.1) 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 40%;
+            background-position: 0 88%;
+            transition: background-size 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .sec.vis .sec-title em,
+        .rv.vis .sec-title em {
+            background-size: 100% 40%;
+        }
+
+        /* 4. Proof number counter — scale entrance */
+        .proof-item.rv {
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .proof-item.rv.vis {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .proof-item.rv-p1 { transition-delay: 0s; }
+        .proof-item.rv-p2 { transition-delay: 0.15s; }
+        .proof-item.rv-p3 { transition-delay: 0.3s; }
+        .proof-item.rv-p4 { transition-delay: 0.45s; }
+
+        /* 5. Price number — dramatic entrance with glow burst */
+        .price-hero.rv {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .price-hero.rv.vis {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @keyframes price-glow-burst {
+            0% { box-shadow: 0 0 0 0 rgba(184,134,11,0.3); }
+            50% { box-shadow: 0 0 60px 20px rgba(184,134,11,0.08); }
+            100% { box-shadow: 0 0 0 0 rgba(184,134,11,0); }
+        }
+        .price-hero.vis .price-big {
+            animation: price-glow-burst 1.2s ease-out 0.3s;
+        }
+
+        /* 6. Gold box — gentle breathing glow */
+        @keyframes gold-breathe {
+            0%, 100% { box-shadow: 0 2px 16px rgba(184,134,11,0.06); }
+            50% { box-shadow: 0 2px 24px rgba(184,134,11,0.12), 0 0 40px rgba(184,134,11,0.04); }
+        }
+        .gold-box { animation: gold-breathe 5s ease-in-out infinite; }
+
+        /* 7. Benefit card icons — rotate-in entrance */
+        .benefit-card.rv {
+            opacity: 0;
+            transform: translateY(24px) rotateX(8deg);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .benefit-card.rv.vis {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        /* 8. FAQ items — slide from right staggered */
+        .faq-item.rv {
+            opacity: 0;
+            transform: translateX(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .faq-item.rv.vis {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 9. Compare columns — slide in from sides */
+        .compare-old.rv-side { opacity: 0; transform: translateX(-20px); }
+        .compare-new.rv-side { opacity: 0; transform: translateX(20px); }
+        .compare-old.rv-side,
+        .compare-new.rv-side {
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .compare-old.rv-side.vis { opacity: 1; transform: translateX(0); }
+        .compare-new.rv-side.vis { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
+
+        /* 10. Who columns — same side reveal */
+        .who-yes.rv-side { opacity: 0; transform: translateX(-20px); }
+        .who-no.rv-side { opacity: 0; transform: translateX(20px); }
+        .who-yes.rv-side,
+        .who-no.rv-side {
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .who-yes.rv-side.vis { opacity: 1; transform: translateX(0); }
+        .who-no.rv-side.vis { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
+
+        /* 11. Reader whisper — fade from below with delay (dramatic reveal) */
+        .reader-whisper.rv {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+            transition-delay: 0.3s;
+        }
+        .reader-whisper.rv.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 12. Notricks strikethrough animation */
+        .notricks-list .nt-line {
+            display: inline;
+            position: relative;
+        }
+        .notricks-list .nt-line::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 0; height: 1px;
+            background: var(--warm);
+            transition: width 0.6s ease;
+        }
+        .notricks.vis .nt-line::after {
+            width: 100%;
+        }
+        .notricks.vis .nt-line:nth-child(2)::after { transition-delay: 0.1s; }
+        .notricks.vis .nt-line:nth-child(3)::after { transition-delay: 0.2s; }
+        .notricks.vis .nt-line:nth-child(4)::after { transition-delay: 0.3s; }
+        .notricks.vis .nt-line:nth-child(5)::after { transition-delay: 0.4s; }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
         /* ── Sticky mobile CTA ── */
         .sticky-cta {
             position: fixed;
@@ -1453,20 +1626,29 @@
         .sticky-cta-btn:hover { background: var(--accent-hover); }
         @media (min-width: 769px) { .sticky-cta { display: none; } }
 
-        /* ── Social proof testimonial ── */
+        /* ── Social proof — Messenger chat style ── */
         .social-proof {
-            background: #fff;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 2.5rem 1.5rem;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(196,149,106,0.1);
+            border-bottom: 1px solid rgba(196,149,106,0.1);
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-proof::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.02) 0%, transparent 70%);
+            pointer-events: none;
         }
         .social-proof-inner {
-            max-width: 660px;
+            max-width: 520px;
             margin: 0 auto;
+            position: relative;
         }
         .sp-header {
             text-align: center;
-            margin-bottom: 1.8rem;
+            margin-bottom: 1.5rem;
         }
         .sp-count {
             font-family: 'Prompt', sans-serif;
@@ -1476,76 +1658,224 @@
         }
         .sp-count-label {
             font-size: 0.85rem;
-            color: var(--text-sec);
+            color: #A29A90;
         }
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
+        /* Chat thread container */
+        .chat-thread {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
         }
-        .testimonial {
-            padding: 1.2rem 1.4rem;
-            background: var(--bg);
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            position: relative;
+        /* Each chat message row */
+        .chat-msg {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
         }
-        .testimonial-text {
-            font-family: 'Noto Serif Thai', serif;
-            font-size: 0.92rem;
-            line-height: 1.8;
-            color: var(--text);
-            margin-bottom: 0.6rem;
+        .chat-avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
         }
-        .testimonial-author {
-            font-size: 0.78rem;
-            color: var(--text-light);
+        .chat-content {
+            max-width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
         }
-        .testimonial-author strong {
-            color: var(--text-sec);
-        }
-        .testimonial-tag {
-            display: inline-block;
+        .chat-name {
+            font-family: 'Prompt', sans-serif;
             font-size: 0.65rem;
-            padding: 0.15rem 0.5rem;
-            background: var(--accent-soft);
-            color: var(--accent);
+            font-weight: 600;
+            color: #A29A90;
+            padding-left: 0.6rem;
+        }
+        .chat-bubble {
+            background: #2A2520;
+            color: #E8E2DA;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            padding: 0.7rem 1rem;
+            border-radius: 18px 18px 18px 4px;
+            position: relative;
+            word-break: break-word;
+        }
+        .chat-bubble-multi {
+            border-radius: 4px 18px 18px 4px;
+        }
+        .chat-bubble-first {
+            border-radius: 18px 18px 18px 4px;
+        }
+        .chat-bubble-last {
+            border-radius: 4px 18px 18px 18px;
+        }
+        .chat-bubble-only {
+            border-radius: 18px 18px 18px 4px;
+        }
+        /* Emoji reaction pill */
+        .chat-react {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: #363230;
+            border: 1px solid #4A4540;
+            border-radius: 12px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.7rem;
+            margin-top: 0.15rem;
+            align-self: flex-start;
+            margin-left: 0.6rem;
+        }
+        .chat-react-count {
+            font-size: 0.55rem;
+            color: #A29A90;
+        }
+        /* Timestamp + role tag under bubble */
+        .chat-info {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding-left: 0.6rem;
+            margin-top: 0.1rem;
+        }
+        .chat-time {
+            font-size: 0.6rem;
+            color: #6B6560;
+        }
+        .chat-tag {
+            font-size: 0.55rem;
+            padding: 0.1rem 0.4rem;
+            background: rgba(194,59,34,0.12);
+            color: var(--warm);
             border-radius: 3px;
             font-weight: 600;
-            margin-left: 0.4rem;
+            font-family: 'Prompt', sans-serif;
+        }
+        /* Seen/delivered status */
+        .chat-seen {
+            font-size: 0.55rem;
+            color: #6B6560;
+            text-align: right;
+            padding-right: 0.3rem;
+        }
+        /* Typing indicator */
+        .chat-typing {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: typing-appear 0.5s ease forwards;
+            animation-delay: 0.8s;
+        }
+        .typing-dots {
+            background: #2A2520;
+            padding: 0.6rem 1rem;
+            border-radius: 18px;
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
+        .typing-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #6B6560;
+            animation: typing-bounce 1.2s ease-in-out infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+        @keyframes typing-appear {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive */
+        @media (max-width: 640px) {
+            .social-proof { padding: 1.4rem 0.6rem; }
+            .chat-bubble { font-size: 0.84rem; padding: 0.6rem 0.9rem; }
+            .chat-content { max-width: 90%; }
         }
 
         /* ── Guarantee section ── */
         .guarantee {
             max-width: 660px;
             margin: 0 auto;
-            padding: 2.5rem 1.5rem;
+            padding: 2rem 1.5rem;
             text-align: center;
         }
         .guarantee-box {
-            padding: 2rem;
-            border: 2px solid var(--gold);
-            border-radius: 14px;
-            background: var(--gold-bg);
+            padding: 2.2rem 2rem;
+            border-radius: 16px;
+            background: var(--bg-dark);
             position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(196,149,106,0.15);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+        .guarantee-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at top center, rgba(184,134,11,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .guarantee-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
         }
         .guarantee-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            filter: drop-shadow(0 0 8px rgba(184,134,11,0.3));
         }
         .guarantee-title {
             font-family: 'Prompt', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--text);
+            color: #F5F0EB;
             margin-bottom: 0.8rem;
+            letter-spacing: 0.02em;
         }
         .guarantee-text {
-            font-size: 0.9rem;
-            color: var(--text-sec);
+            font-size: 0.88rem;
+            color: #A29A90;
             line-height: 1.85;
-            max-width: 480px;
+            max-width: 440px;
             margin: 0 auto;
+        }
+        .guarantee-text strong {
+            color: var(--warm);
+            font-weight: 600;
+        }
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(184,134,11,0.25);
+            background: rgba(184,134,11,0.06);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
         }
 
         /* ── Mid-page CTA ── */
@@ -1618,7 +1948,7 @@
             <p class="hero-sub">คุณมี Script มี Technique มี Closing Framework &mdash; แต่ทำไมลูกค้าบางคนยังหลุดไปทุกครั้ง?</p>
             <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
             <a href="#pricing" class="hero-cta">อ่านคนออก ปิดทุกดีล — 1,390 ฿</a>
-            <p class="hero-note">หรือ <a href="/">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
+            <p class="hero-note">หรือ <a href="/vol1">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
         </div>
     </div>
 
@@ -1633,27 +1963,27 @@
 
         <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
 
-        <div class="scenario">
+        <div class="scenario rv rv-s1">
             <div class="scenario-q">Pitch เดียวกัน กับลูกค้า 10 คน</div>
             <p class="scenario-a">3 คนซื้อ 7 คนไม่ซื้อ &mdash; แต่คุณไม่รู้ว่าทำไม ได้แต่โทษ &ldquo;ดวง&rdquo; หรือ &ldquo;ลูกค้าไม่มีงบ&rdquo;</p>
         </div>
 
-        <div class="scenario">
+        <div class="scenario rv rv-s2">
             <div class="scenario-q">&ldquo;ขอคิดก่อนนะครับ&rdquo; &mdash; แล้วก็หายไปเลย</div>
             <p class="scenario-a">คุณ Follow Up ไป 2-3 รอบ ลูกค้าอ่านแล้วไม่ตอบ คุณก็ไม่รู้จะพูดอะไรเพิ่ม</p>
         </div>
 
-        <div class="scenario">
+        <div class="scenario rv rv-s3">
             <div class="scenario-q">ปิดการขายได้ &mdash; แต่ลูกค้าไม่กลับมาซื้อซ้ำ</div>
             <p class="scenario-a">ยอดเดือนนี้ดี แต่เดือนหน้าต้องหาลูกค้าใหม่ตั้งแต่ศูนย์ทุกครั้ง</p>
         </div>
 
-        <div class="scenario">
+        <div class="scenario rv rv-s4">
             <div class="scenario-q">คู่แข่งขายถูกกว่า &mdash; ลูกค้าถามว่า &ldquo;ทำไมต้องซื้อกับคุณ?&rdquo;</div>
             <p class="scenario-a">คุณตอบไปตามที่ company training สอน แต่รู้สึกว่ามันไม่ได้ "โดน" ลูกค้าจริงๆ</p>
         </div>
 
-        <div class="scenario">
+        <div class="scenario rv rv-s5">
             <div class="scenario-q">เสนอราคาแล้วลูกค้าบอก &ldquo;แพงไปนะ&rdquo;</div>
             <p class="scenario-a">คุณลดราคาทุกครั้ง เพราะไม่รู้จะทำยังไงให้เขา &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องลด</p>
         </div>
@@ -1717,7 +2047,7 @@
         <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองแนวทางนี้ใช้พลังงานเท่ากัน &mdash; แต่ผลลัพธ์ต่างกันอย่างสิ้นเชิง</p>
 
         <div class="compare">
-            <div class="compare-col compare-old">
+            <div class="compare-col compare-old rv-side">
                 <h4>ขายตาม Script</h4>
                 <ul>
                     <li>ท่องประโยคปิดการขาย</li>
@@ -1728,7 +2058,7 @@
                     <li>เปลี่ยนที่ทำงานก็เริ่มใหม่จากศูนย์</li>
                 </ul>
             </div>
-            <div class="compare-col compare-new">
+            <div class="compare-col compare-new rv-side">
                 <h4>ขายเพราะเข้าใจสมอง</h4>
                 <ul>
                     <li>รู้ว่าลูกค้ากลัวอะไรจริงๆ ก่อนพูด</li>
@@ -1815,20 +2145,20 @@
          PROOF BAR
          ═══════════════════════════════════════════════ -->
     <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
-        <div class="proof-bar rv">
-            <div class="proof-item">
+        <div class="proof-bar">
+            <div class="proof-item rv rv-p1">
                 <div class="proof-num">12</div>
                 <div class="proof-label">บทเต็ม</div>
             </div>
-            <div class="proof-item">
+            <div class="proof-item rv rv-p2">
                 <div class="proof-num">5</div>
                 <div class="proof-label">บทพิเศษ (Bonus)</div>
             </div>
-            <div class="proof-item">
+            <div class="proof-item rv rv-p3">
                 <div class="proof-num">100+</div>
                 <div class="proof-label">งานวิจัยอ้างอิง</div>
             </div>
-            <div class="proof-item">
+            <div class="proof-item rv rv-p4">
                 <div class="proof-num">200,000</div>
                 <div class="proof-label">ปีของหลักฐาน<br><span style="font-size: 0.62rem; color: var(--text-light);">(สมองมนุษย์)</span></div>
             </div>
@@ -1868,10 +2198,6 @@
         </div>
     </div>
 
-    <div style="text-align: center; padding: 1rem 0;">
-        <span style="font-size: 0.55rem; color: var(--gold); opacity: 0.3; letter-spacing: 0.8em;">⊹ ◈ ⊹</span>
-    </div>
-
     <!-- ═══════════════════════════════════════════════
          WHO IS THIS FOR
          ═══════════════════════════════════════════════ -->
@@ -1880,7 +2206,7 @@
         <h2 class="sec-title">เล่มนี้เหมาะกับนักขายแบบไหน<br>และ<em>ไม่เหมาะ</em>กับแบบไหน</h2>
 
         <div class="who-grid">
-            <div class="who-col who-yes">
+            <div class="who-col who-yes rv-side">
                 <h4>เหมาะกับคุณ ถ้า...</h4>
                 <ul>
                     <li>ปิดได้บ้าง แต่ไม่รู้ว่า &ldquo;ทำไม&rdquo;</li>
@@ -1891,7 +2217,7 @@
                     <li>อยากสร้างความสามารถที่ติดตัวไปทุกบริษัท</li>
                 </ul>
             </div>
-            <div class="who-col who-no">
+            <div class="who-col who-no rv-side">
                 <h4>ไม่เหมาะ ถ้า...</h4>
                 <ul>
                     <li>อยากได้แค่ &ldquo;ประโยคปิดการขาย 50 ข้อ&rdquo;</li>
@@ -1903,7 +2229,7 @@
             </div>
         </div>
 
-        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/vol1" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(194,59,34,0.3);">อ่านบทนำฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
     </div>
 
 
@@ -1925,14 +2251,14 @@
     <div class="pricing-section" id="pricing">
         <div class="pricing-inner rv">
 
-            <div class="notricks">
+            <div class="notricks rv">
                 <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
                 <p class="notricks-list">
-                    ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;<br>
-                    ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;<br>
-                    ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน<br>
-                    ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด<br>
-                    ไม่มีการเทียบราคากาแฟ หรือเทียบค่าคอมฯ ที่เสียไป
+                    <span class="nt-line">ไม่มี &ldquo;ราคาเต็ม 9,990 ลดเหลือ...&rdquo;</span><br>
+                    <span class="nt-line">ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;</span><br>
+                    <span class="nt-line">ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน</span><br>
+                    <span class="nt-line">ไม่มี &ldquo;3 คนสุดท้าย!&rdquo; ที่ไม่เคยหมด</span><br>
+                    <span class="nt-line">ไม่มีการเทียบราคากาแฟ หรือเทียบค่าคอมฯ ที่เสียไป</span>
                 </p>
                 <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
                 ผมจะไม่ใช้มันกับคุณเอง</p>
@@ -1963,7 +2289,7 @@
                 <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
             </div>
 
-            <div class="price-hero">
+            <div class="price-hero rv">
                 <div class="price-big">1,390</div>
                 <div class="price-unit">บาท</div>
             </div>
@@ -2001,22 +2327,125 @@
     <div class="social-proof">
         <div class="social-proof-inner rv">
             <div class="sp-header">
-                <div class="sec-label">เสียงจากคนอ่าน</div>
+                <div class="sec-label" style="color: var(--warm);">เสียงจากคนอ่าน</div>
                 <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
             </div>
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;อ่านจบบทที่ 3 แล้วเอาไปใช้กับลูกค้าเลย เปลี่ยนวิธี Pitch จากบอกว่าสินค้าดียังไง เป็นถามว่าเขากลัวอะไร — ปิดได้ใน Meeting เดียว&rdquo;</p>
-                    <p class="testimonial-author"><strong>Sales Rep</strong> บริษัทซอฟต์แวร์ <span class="testimonial-tag">B2B</span></p>
+            <div class="chat-thread">
+
+                <!-- ธนกฤต -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ</div>
+                    <div class="chat-content">
+                        <span class="chat-name">ธนกฤต ว.</span>
+                        <div class="chat-bubble chat-bubble-only">อ่านจบบทที่ 3 เรื่อง Trust Engine แล้วเอาไปใช้กับลูกค้าเลยครับ เปลี่ยนจากบอกว่าสินค้าดียังไง เป็นถามว่าเขากังวลเรื่องอะไร</div>
+                        <div class="chat-bubble chat-bubble-last">ปิดได้ใน Meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ 🔥</div>
+                        <div class="chat-react">👍 <span class="chat-react-count">12</span></div>
+                        <div class="chat-info">
+                            <span class="chat-time">14:32</span>
+                            <span class="chat-tag">Sales Rep &bull; B2B</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;ผมขายประกันมา 8 ปี เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่าย บางคนปิดยาก — มันไม่ใช่เรื่องดวง มันเรื่องจังหวะของสมอง&rdquo;</p>
-                    <p class="testimonial-author"><strong>ตัวแทนประกัน</strong> อิสระ <span class="testimonial-tag">ขาย 8 ปี</span></p>
+
+                <!-- สมชาย -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #8B6E4E, #6B4C30);">ส</div>
+                    <div class="chat-content">
+                        <span class="chat-name">สมชาย พ.</span>
+                        <div class="chat-bubble chat-bubble-only">ขายประกันมา 8 ปี คิดว่ารู้หมดแล้ว แต่เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่ายบางคนปิดยาก</div>
+                        <div class="chat-bubble chat-bubble-last">มันไม่ใช่เรื่องดวงครับ มันเรื่องจังหวะของสมองจริงๆ ตอนนี้เลือกได้เลยว่าจะพูดอะไรตอนไหน 💡</div>
+                        <div class="chat-info">
+                            <span class="chat-time">09:17</span>
+                            <span class="chat-tag">ประกันชีวิต &bull; 8 ปี</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="testimonial">
-                    <p class="testimonial-text">&ldquo;เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้น — ไม่ได้เปลี่ยน Script เปลี่ยนแค่วิธีพูดเรื่องราคา&rdquo;</p>
-                    <p class="testimonial-author"><strong>Sales Manager</strong> อุตสาหกรรมเครื่องจักร <span class="testimonial-tag">ใช้ Train ทีม</span></p>
+
+                <!-- นภัสสร -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #7A5C8A, #5D3F6E);">น</div>
+                    <div class="chat-content">
+                        <span class="chat-name">นภัสสร ก.</span>
+                        <div class="chat-bubble chat-bubble-only">เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้นค่ะ ไม่ได้เปลี่ยน Script เลย เปลี่ยนแค่ลำดับการพูดเรื่องราคา</div>
+                        <div class="chat-bubble chat-bubble-last">เด็กในทีมงงว่าทำไมมันต่างขนาดนี้ 555</div>
+                        <div class="chat-react">🔥 <span class="chat-react-count">8</span></div>
+                        <div class="chat-info">
+                            <span class="chat-time">20:45</span>
+                            <span class="chat-tag">Sales Manager</span>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- กิตติพงศ์ -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A7C5B, #2E5A3E);">ก</div>
+                    <div class="chat-content">
+                        <span class="chat-name">กิตติพงศ์ ร.</span>
+                        <div class="chat-bubble chat-bubble-only">ไม่ได้เป็นเซลส์นะครับ เป็นเจ้าของร้านกาแฟ แต่ต้องขายของทุกวัน อ่านบทเรื่อง Loss Aversion แล้วลองเปลี่ยนป้ายเมนูใหม่</div>
+                        <div class="chat-bubble chat-bubble-multi">จากบอกว่า "ประหยัด 50 บาท" เป็น "อย่าพลาดส่วนลด 50 บาทวันนี้"</div>
+                        <div class="chat-bubble chat-bubble-last">ยอดเพิ่มขึ้นจริงๆครับ ง่ายมากเลย 😂</div>
+                        <div class="chat-info">
+                            <span class="chat-time">11:03</span>
+                            <span class="chat-tag">เจ้าของธุรกิจ</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- พิมพ์ลภัส -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #B85C38, #8B3A1E);">พ</div>
+                    <div class="chat-content">
+                        <span class="chat-name">พิมพ์ลภัส อ.</span>
+                        <div class="chat-bubble chat-bubble-only">เป็นฟรีแลนซ์ที่ไม่กล้าเสนอราคาค่ะ เคยลดราคาให้ลูกค้าทุกครั้งเพราะกลัวเขาไม่จ้าง</div>
+                        <div class="chat-bubble chat-bubble-last">อ่านบทที่ 7 เสร็จ เสนอราคาโปรเจกต์ถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ 🥹</div>
+                        <div class="chat-react">❤️ <span class="chat-react-count">15</span></div>
+                        <div class="chat-info">
+                            <span class="chat-time">16:28</span>
+                            <span class="chat-tag">ฟรีแลนซ์</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- อนุวัฒน์ -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #C4956A, #9A7050);">อ</div>
+                    <div class="chat-content">
+                        <span class="chat-name">อนุวัฒน์ จ.</span>
+                        <div class="chat-bubble chat-bubble-only">บท Dopamine Loop เปลี่ยนวิธีเขียน Proposal ผมไปเลย เดิม 10 หน้าลูกค้าไม่เคยอ่านจบ</div>
+                        <div class="chat-bubble chat-bubble-last">ตอนนี้ย่อเหลือ 3 หน้าแต่เรียงตาม Dopamine curve ลูกค้าโทรกลับเร็วขึ้น 2 วันครับ 📈</div>
+                        <div class="chat-info">
+                            <span class="chat-time">22:11</span>
+                            <span class="chat-tag">AE &bull; เอเจนซี่</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- วิรัช -->
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #6B8E9B, #4A6D7A);">ว</div>
+                    <div class="chat-content">
+                        <span class="chat-name">วิรัช ม.</span>
+                        <div class="chat-bubble chat-bubble-only">ขายรถมา 5 ปี เคยใช้แต่วิธีเดิมคือเปิดราคาแล้วรอลูกค้าต่อ อ่านแล้วเพิ่งเข้าใจว่าลูกค้ากลัวอะไรจริงๆตอน walk-in</div>
+                        <div class="chat-bubble chat-bubble-last">ไม่ใช่เรื่องราคาครับ เป็นเรื่อง "กลัวถูกหลอก" พอเข้าใจตรงนี้ ทุกอย่างเปลี่ยน 🧠</div>
+                        <div class="chat-react">💯 <span class="chat-react-count">6</span></div>
+                        <div class="chat-info">
+                            <span class="chat-time">13:55</span>
+                            <span class="chat-tag">ขายรถ &bull; B2C</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Typing indicator -->
+                <div class="chat-typing">
+                    <div class="chat-avatar" style="background: #363230; border: 1px solid #4A4540;">+</div>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+                <div class="chat-seen">กำลังพิมพ์...</div>
+
             </div>
         </div>
     </div>
@@ -2029,7 +2458,8 @@
         <div class="guarantee-box">
             <div class="guarantee-icon">🛡</div>
             <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
-            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน 30 วัน ผมคืนเงินให้ทั้งหมด<br>ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
+            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด — ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
+            <div class="guarantee-badge">🔒 MONEY-BACK GUARANTEE</div>
         </div>
     </div>
 
@@ -2041,37 +2471,37 @@
         <div class="sec-label">คำถามที่พบบ่อย</div>
         <h2 class="sec-title">ก่อนตัดสินใจ</h2>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">ผมขายมาหลายปีแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
             <p class="faq-a">ยิ่งขายมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมี &ldquo;สัญชาตญาณ&rdquo; อยู่แล้ว เล่มนี้จะอธิบายว่าทำไมสัญชาตญาณนั้นถึงได้ผล ทำให้คุณเปลี่ยนจาก &ldquo;บังเอิญปิดได้&rdquo; เป็น &ldquo;ตั้งใจปิดได้ทุกครั้ง&rdquo; และยังสอนทีมต่อได้ด้วย</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">นี่คือหนังสือ &ldquo;การตลาด&rdquo; ทำไมนักขายต้องอ่าน?</div>
             <p class="faq-a">เพราะการตลาดและการขายมีรากเหมือนกัน &mdash; คือจิตวิทยาของการตัดสินใจ คุณขายแบบตัวต่อตัว แต่สมองลูกค้าทำงานเหมือนกันไม่ว่าจะเจอ Ad หรือเจอคุณนั่งอยู่ตรงหน้า หลักการเดียวกัน ใช้ได้หมด</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
-            <p class="faq-a">ได้ครับ &mdash; <a href="/">บทนำเปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/vol1">บทนำเปิดให้อ่านฟรีทั้งหมด</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
             <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันทีจากมือถือ</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">เอาไปเป็น Training Material ให้ทีมได้ไหม?</div>
             <p class="faq-a">Unlock Code ใช้ได้หลายเครื่อง &mdash; แต่ถ้าจะซื้อให้ทีม แนะนำให้ซื้อแยกเพื่อให้แต่ละคนมี Copy ของตัวเอง เพราะวิธีที่ดีที่สุดคือให้อ่านเอง + มาพูดคุยกัน</p>
         </div>
 
-        <div class="faq-item">
+        <div class="faq-item rv">
             <div class="faq-q">ผมไม่ชอบอ่านหนังสือ อ่านจบไหม?</div>
             <p class="faq-a">เล่มนี้ออกแบบมาให้ <strong>หยุดไม่ได้</strong> &mdash; ทุกบทเปิดด้วยเรื่องจริงที่ทำให้อยากรู้คำตอบ ไม่ต้องอ่านรวดเดียว เปิดก่อน Meeting ก็ได้ อ่านระหว่างรอลูกค้าก็ได้ แต่ละบทจบในตัว</p>
         </div>
 
-        <div class="faq-item" style="border: none;">
+        <div class="faq-item rv" style="border: none;">
             <div class="faq-q">ผมขาย B2B ใช้ได้ไหม? หรือแค่ B2C?</div>
             <p class="faq-a">ใช้ได้ทั้งคู่ &mdash; เพราะไม่ว่าจะ B2B หรือ B2C คนที่ตัดสินใจคือ &ldquo;มนุษย์&rdquo; เหมือนกัน สมองของ Procurement Manager ก็ทำงานด้วย Oxytocin, Dopamine, และ Cortisol เหมือนลูกค้าใน 7-Eleven หลักการเดียวกัน แค่บริบทต่าง</p>
         </div>
@@ -2088,7 +2518,7 @@
             <p style="font-size: 0.82rem; color: #6B6560; margin-top: 0.5rem;">อ่านแล้วไม่ใช่? คืนเงินภายใน 30 วัน ไม่มีเงื่อนไข</p>
             <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ปลดล็อกทั้ง 17 บท &mdash; 1,390 ฿</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
-            <a href="/" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+            <a href="/vol1" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
         </div>
     </div>
 
@@ -2118,8 +2548,8 @@
             bar.style.width = pct + '%';
         }, { passive: true });
 
-        /* ── Scroll reveal ── */
-        var els = document.querySelectorAll('.rv');
+        /* ── Scroll reveal (enhanced — handles all rv, rv-side) ── */
+        var allReveal = document.querySelectorAll('.rv, .rv-side');
         var io = new IntersectionObserver(function(entries) {
             entries.forEach(function(e) {
                 if (e.isIntersecting) {
@@ -2128,7 +2558,123 @@
                 }
             });
         }, { threshold: 0.12 });
-        els.forEach(function(el) { io.observe(el); });
+        allReveal.forEach(function(el) { io.observe(el); });
+
+        /* ── Dark-band quote: word-by-word reveal ── */
+        document.querySelectorAll('.big-quote').forEach(function(q) {
+            var html = q.innerHTML;
+            // Split into HTML tags and text segments, only wrap words in text parts
+            var parts = html.split(/(<[^>]+>)/);
+            var result = parts.map(function(part) {
+                if (part.charAt(0) === '<') return part; // HTML tag — keep as-is
+                // Text segment — wrap each word
+                return part.replace(/(\S+)/g, '<span class="bq-word">$1</span>');
+            }).join('');
+            q.innerHTML = result;
+        });
+        var quoteIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var words = e.target.querySelectorAll('.bq-word');
+                    words.forEach(function(w, i) {
+                        w.style.transitionDelay = (i * 0.045) + 's';
+                    });
+                    e.target.classList.add('bq-active');
+                    quoteIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.big-quote').forEach(function(q) { quoteIO.observe(q); });
+
+        /* ── Proof bar: counter animation ── */
+        function animateCounter(el, target, suffix) {
+            suffix = suffix || '';
+            var isLarge = target >= 1000;
+            var duration = isLarge ? 1800 : 1000;
+            var start = 0;
+            var startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                // Ease out cubic
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.floor(eased * target);
+                el.textContent = current.toLocaleString() + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString() + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+        var counterIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var el = e.target;
+                    var text = el.textContent.trim();
+                    var suffix = '';
+                    if (text.indexOf('+') !== -1) { suffix = '+'; text = text.replace('+', ''); }
+                    var num = parseInt(text.replace(/,/g, ''), 10);
+                    if (!isNaN(num)) animateCounter(el, num, suffix);
+                    counterIO.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.proof-num').forEach(function(el) { counterIO.observe(el); });
+
+        /* ── Price: counter animation ── */
+        var priceIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var el = e.target.querySelector('.price-big');
+                    if (el) {
+                        var num = parseInt(el.textContent.replace(/,/g, ''), 10);
+                        if (!isNaN(num)) animateCounter(el, num, '');
+                    }
+                    priceIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.price-hero').forEach(function(el) { priceIO.observe(el); });
+
+        /* ── Notricks: mark as visible for strikethrough ── */
+        var ntIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    ntIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.notricks').forEach(function(el) { ntIO.observe(el); });
+
+        /* ── FAQ stagger delays ── */
+        document.querySelectorAll('.faq-item.rv').forEach(function(el, i) {
+            el.style.transitionDelay = (i * 0.08) + 's';
+        });
+
+        /* ── Hero parallax on mouse (desktop only) ── */
+        if (window.matchMedia('(min-width: 769px) and (hover: hover)').matches) {
+            var geo = document.querySelector('.sacred-geo');
+            var heroEl = document.querySelector('.hero');
+            if (geo && heroEl) {
+                heroEl.addEventListener('mousemove', function(e) {
+                    var rect = heroEl.getBoundingClientRect();
+                    var x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    var y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                    var circles = geo.querySelectorAll('.sg-circle');
+                    circles.forEach(function(c, i) {
+                        var depth = (i + 1) * 6;
+                        c.style.transform = 'translate(' + (x * depth) + 'px, ' + (y * depth) + 'px)';
+                    });
+                });
+                heroEl.addEventListener('mouseleave', function() {
+                    geo.querySelectorAll('.sg-circle').forEach(function(c) {
+                        c.style.transition = 'transform 0.6s ease';
+                        c.style.transform = 'translate(0, 0)';
+                        setTimeout(function() { c.style.transition = ''; }, 600);
+                    });
+                });
+            }
+        }
     })();
 
     /* ── Sticky CTA show/hide ── */
