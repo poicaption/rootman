@@ -4,6 +4,7 @@
   "framework": null,
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/vol1", "destination": "/vol1.html" },
     { "source": "/sale", "destination": "/sale.html" },
     { "source": "/start", "destination": "/sale-general.html" },
     { "source": "/ai", "destination": "/sale-ai.html" },
