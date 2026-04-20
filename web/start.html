@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วการตลาด — รายละเอียดหนังสือ</title>
+    <meta name="description" content="รากแก้วการตลาด (The One Root of Marketing) — 12 บท + 5 บทพิเศษ กลไกจิตวิทยาที่ทำให้คนตัดสินใจซื้อ อ่านเป็น Web Book ได้ทุกอุปกรณ์">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', {content_name: 'start-detail', content_category: 'book-detail'});
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
+    /></noscript>
+
+    <style>
+        :root {
+            --bg: #FAF6F0;
+            --bg-alt: #F3EDE4;
+            --text: #2D2A26;
+            --text-sec: #6B6560;
+            --accent: #8B6914;
+            --accent-warm: #C4956A;
+            --accent-glow: rgba(139, 105, 20, 0.10);
+            --heading: #1A1714;
+            --border: #E0D6C8;
+            --card-bg: #FFFFFF;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.10);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+        [data-theme="dark"] {
+            --bg: #1A1714;
+            --bg-alt: #221F1B;
+            --text: #D4CDC3;
+            --text-sec: #9A928A;
+            --accent: #C4956A;
+            --accent-warm: #D4A574;
+            --accent-glow: rgba(196, 149, 106, 0.12);
+            --heading: #E7E0D5;
+            --border: #3A3530;
+            --card-bg: #252220;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.2);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.25);
+            --shadow-lg: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
+        body {
+            font-family: 'Sarabun', 'Noto Serif Thai', Georgia, serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Navigation ── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(250, 246, 240, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s, box-shadow 0.3s;
+        }
+        [data-theme="dark"] .nav {
+            background: rgba(26, 23, 20, 0.85);
+        }
+        .nav.scrolled { box-shadow: var(--shadow-sm); }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: var(--mono) !important;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--heading);
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .nav-logo span { color: var(--accent); }
+        .nav-actions { display: flex; align-items: center; gap: 1rem; }
+        .nav-link {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-sec);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-link:hover { color: var(--accent); }
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 36px; height: 36px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: border-color 0.3s;
+        }
+        .tm-moon, .tm-sun {
+            position: absolute;
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .tm-moon {
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: transparent;
+            box-shadow: inset -6px -2px 0 0 var(--heading);
+            opacity: 1; transform: scale(1);
+        }
+        .tm-sun {
+            width: 14px; height: 14px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px rgba(196,149,106,0.25), 0 0 8px rgba(196,149,106,0.3);
+            opacity: 0; transform: scale(0.5);
+        }
+        [data-theme="dark"] .tm-moon { opacity: 0; transform: scale(0.5); }
+        [data-theme="dark"] .tm-sun { opacity: 1; transform: scale(1); }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 120px 2rem 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+        .hero-glow {
+            position: absolute;
+            width: 320px; height: 320px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+        }
+        .hero-visual img {
+            width: 300px;
+            position: relative;
+            z-index: 1;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
+        }
+        .hero-text { order: 1; }
+        .hero-visual { order: 2; }
+        .hero-badge {
+            font-family: var(--mono) !important;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--accent);
+            background: var(--accent-glow);
+            display: inline-block;
+            padding: 0.35rem 0.9rem;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            margin-bottom: 1.2rem;
+        }
+        .hero-vol {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            letter-spacing: 2px;
+            color: var(--text-sec);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .hero-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.3;
+            margin-bottom: 0.5rem;
+        }
+        .hero-title-en {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        .hero-desc {
+            font-size: 1.05rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            max-width: 520px;
+            margin-bottom: 2rem;
+        }
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 105, 20, 0.25);
+        }
+        .btn-secondary {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text);
+            background: none;
+            border: 1px solid var(--border);
+            padding: 0.8rem 2rem;
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-secondary:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ── Section Shared ── */
+        .section {
+            padding: 80px 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .section-alt { background: var(--bg-alt); max-width: 100%; }
+        .section-alt > .section-inner { max-width: 900px; margin: 0 auto; }
+        .section-eyebrow {
+            font-family: var(--mono) !important;
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .section-eyebrow::before {
+            content: '// ';
+            opacity: 0.35;
+        }
+        .section-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        .section-desc {
+            font-size: 1rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        /* ── Book Specs ── */
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .spec-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .spec-val {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .spec-label {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+        }
+
+        /* ── TOC (Table of Contents) ── */
+        .toc-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+        .toc-part {
+            margin-bottom: 2rem;
+        }
+        .toc-part-title {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 0;
+        }
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+        .toc-item:hover {
+            background: var(--accent-glow);
+            margin: 0 -1rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            border-radius: var(--radius-sm);
+        }
+        .toc-num {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-sec);
+            min-width: 44px;
+        }
+        .toc-name {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--heading);
+            flex: 1;
+        }
+        .toc-en {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.78rem;
+            font-style: italic;
+            color: var(--text-sec);
+        }
+        .toc-free {
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 500;
+            color: var(--accent);
+            background: var(--accent-glow);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        /* ── What You'll Learn ── */
+        .learn-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .learn-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.8rem;
+        }
+        .learn-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 0.5rem;
+        }
+        .learn-desc {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+        }
+
+        /* ── Format Section ── */
+        .format-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .format-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+        .format-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--accent-glow);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        /* CSS-drawn icons */
+        .fi-web .fi-shape {
+            width: 18px; height: 14px;
+            border: 2px solid var(--accent);
+            border-radius: 3px;
+            position: relative;
+        }
+        .fi-web .fi-shape::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px; right: 3px;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.5;
+        }
+        .fi-phone .fi-shape {
+            width: 12px; height: 18px;
+            border: 2px solid var(--accent);
+            border-radius: 3px;
+            position: relative;
+        }
+        .fi-phone .fi-shape::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px; height: 1.5px;
+            background: var(--accent);
+            border-radius: 1px;
+        }
+        .fi-lock .fi-shape {
+            width: 14px; height: 10px;
+            border: 2px solid var(--accent);
+            border-radius: 2px;
+            position: relative;
+            margin-top: 6px;
+        }
+        .fi-lock .fi-shape::before {
+            content: '';
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px; height: 7px;
+            border: 2px solid var(--accent);
+            border-bottom: none;
+            border-radius: 5px 5px 0 0;
+        }
+        .fi-update .fi-shape {
+            width: 14px; height: 14px;
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            border-right-color: transparent;
+            position: relative;
+        }
+        .fi-update .fi-shape::after {
+            content: '';
+            position: absolute;
+            top: -1px; right: -2px;
+            width: 0; height: 0;
+            border-left: 4px solid var(--accent);
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+        }
+
+        /* ── CTA Section ── */
+        .cta-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .cta-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.3rem;
+        }
+        .cta-price-note {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            margin-bottom: 1.5rem;
+        }
+        .cta-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* ── Footer ── */
+        .footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+        }
+        .footer-inner {
+            font-family: var(--mono) !important;
+            font-size: 0.75rem;
+            letter-spacing: 0.3px;
+            max-width: 1100px;
+            margin: 0 auto;
+            color: var(--text-sec);
+        }
+        .footer-inner a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 100px 1.25rem 40px;
+                text-align: center;
+            }
+            .hero-text { order: 2; }
+            .hero-visual { order: 1; }
+            .hero-visual img { width: 220px; }
+            .hero-glow { width: 260px; height: 260px; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-desc { margin-left: auto; margin-right: auto; }
+            .hero-cta { justify-content: center; }
+            .section { padding: 50px 1.25rem; }
+            .section-title { font-size: 1.5rem; }
+            .specs { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+            .spec-card { padding: 1rem; }
+            .spec-val { font-size: 1.3rem; }
+            .learn-grid { grid-template-columns: 1fr; }
+            .nav-inner { padding: 0 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">one<span>Root</span></a>
+            <div class="nav-actions">
+                <a href="/" class="nav-link">หน้าแรก</a>
+                <a href="/vol1" class="nav-link">อ่านฟรี</a>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode"><span class="tm-moon"></span><span class="tm-sun"></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-text">
+            <div class="hero-badge">&gt;_ vol_1.detail</div>
+            <p class="hero-vol">Volume 1</p>
+            <h1 class="hero-title">รากแก้วการตลาด</h1>
+            <p class="hero-title-en">The One Root of Marketing</p>
+            <p class="hero-desc">
+                12 บท + 5 บทพิเศษ ที่จะเปลี่ยนวิธีที่คุณเข้าใจ "ทำไมคนถึงซื้อ" — เขียนจากจิตวิทยา ประสาทวิทยา และงานวิจัยจริง ไม่ใช่เทคนิคกระแสที่หมดอายุภายในเดือน
+            </p>
+            <div class="hero-cta">
+                <a href="/vol1" class="btn-primary">อ่านฟรี →</a>
+                <a href="#toc" class="btn-secondary">ดูสารบัญ</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="hero-glow"></div>
+            <img src="images/Book-Mockup.png" alt="รากแก้วการตลาด — Book Cover">
+        </div>
+    </section>
+
+    <!-- Book Specs -->
+    <section class="section">
+        <div class="specs">
+            <div class="spec-card">
+                <div class="spec-val">17</div>
+                <div class="spec-label">บททั้งหมด</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-val">4</div>
+                <div class="spec-label">ภาคหลัก</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-val">Web</div>
+                <div class="spec-label">อ่านออนไลน์</div>
+            </div>
+        </div>
+
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">หนังสือเล่มนี้เกี่ยวกับอะไร?</h2>
+        <p class="section-desc">
+            เทรนด์การตลาดเปลี่ยนทุกเดือน แพลตฟอร์มผุดขึ้นทุกปี — แต่สิ่งที่ทำให้มนุษย์ตัดสินใจซื้อ ไม่เคยเปลี่ยนเลย<br><br>
+            หนังสือเล่มนี้จะพาคุณย้อนกลับไปที่ "ราก" ของทุกอย่าง ตั้งแต่สมองสัตว์เลื้อยคลานที่ยังทำงานอยู่ในหัวเรา ไปจนถึงกลไกความไว้วางใจที่สร้างขึ้นและทำลายลงได้ในไม่กี่วินาที เข้าใจครั้งเดียว ใช้ได้ตลอดชีวิต
+        </p>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="section-alt">
+        <div class="section" style="padding-top: 60px; padding-bottom: 60px;">
+            <p class="section-eyebrow">Insights</p>
+            <h2 class="section-title">สิ่งที่คุณจะเข้าใจหลังอ่านจบ</h2>
+            <p class="section-desc">ไม่ใช่ "เคล็ดลับ" ที่ต้องจำ แต่คือ "หลักการ" ที่จะเปลี่ยนมุมมองคุณไปเลย</p>
+            <div class="learn-grid">
+                <div class="learn-card">
+                    <div class="learn-title">ทำไมคนตัดสินใจซื้อ?</div>
+                    <div class="learn-desc">กลไกในสมองที่ทำให้คน "อยากได้" — Dopamine Loop, Loss Aversion, สัญชาตญาณดึกดำบรรพ์ที่ยังทำงานอยู่ทุกวัน</div>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-title">ความไว้วางใจสร้างยังไง?</div>
+                    <div class="learn-desc">Trust Engine — ทำไมคนเชื่อรีวิวจากคนแปลกหน้ามากกว่าโฆษณา และคุณจะสร้างความเชื่อใจก่อนเริ่มขายได้อย่างไร</div>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-title">การรับรู้ราคาทำงานอย่างไร?</div>
+                    <div class="learn-desc">Anchoring + Framing — สมองไม่ได้ตัดสินราคาจากตัวเลข แต่จาก "จุดเปรียบเทียบ" ที่คุณตั้งได้</div>
+                </div>
+                <div class="learn-card">
+                    <div class="learn-title">เปลี่ยน "ขอคิดก่อน" เป็น "เอาเลย"</div>
+                    <div class="learn-desc">Breaking Resistance — เมื่อลูกค้าบอกว่า "ขอคิดก่อน" สิ่งที่เกิดขึ้นจริงในสมองคือ Cognitive Dissonance ที่คุณช่วยแก้ได้</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Table of Contents -->
+    <section class="section" id="toc">
+        <p class="section-eyebrow">Table of Contents</p>
+        <h2 class="section-title">สารบัญ</h2>
+        <p class="section-desc">4 ภาค 12 บท + 5 บทพิเศษ เรียงลำดับจากรากฐาน → กลไกโน้มน้าว → ปิดการขาย → ประยุกต์ใช้ตลอดชีวิต</p>
+
+        <div class="toc-grid">
+            <div class="toc-part">
+                <div class="toc-part-title">Part 1 — Foundation</div>
+                <div class="toc-item">
+                    <span class="toc-num">บทนำ</span>
+                    <span class="toc-name">ความลับที่ซ่อนอยู่ตรงหน้า</span>
+                    <span class="toc-en">The Secret Hidden in Plain Sight</span>
+                    <span class="toc-free">FREE</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">01</span>
+                    <span class="toc-name">ภาพลวงตาของวิวัฒนาการ</span>
+                    <span class="toc-en">The Illusion of Evolution</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">02</span>
+                    <span class="toc-name">ปุ่มกดทางชีวภาพ</span>
+                    <span class="toc-en">The Biological Button</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">03</span>
+                    <span class="toc-name">5 ความปรารถนาดั้งเดิม</span>
+                    <span class="toc-en">The 5 Primal Desires</span>
+                </div>
+            </div>
+
+            <div class="toc-part">
+                <div class="toc-part-title">Part 2 — Mechanisms of Persuasion</div>
+                <div class="toc-item">
+                    <span class="toc-num">04</span>
+                    <span class="toc-name">พลังของเรื่องเล่า</span>
+                    <span class="toc-en">The Power of Storytelling</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">05</span>
+                    <span class="toc-name">Social Proof & ชนเผ่า</span>
+                    <span class="toc-en">Social Proof & Tribalism</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">06</span>
+                    <span class="toc-name">ความขาดแคลนและความเร่งด่วน</span>
+                    <span class="toc-en">Scarcity & Urgency</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">07</span>
+                    <span class="toc-name">การรับรู้คือความจริง</span>
+                    <span class="toc-en">Perception is Reality</span>
+                </div>
+            </div>
+
+            <div class="toc-part">
+                <div class="toc-part-title">Part 3 — Anatomy of Closing a Sale</div>
+                <div class="toc-item">
+                    <span class="toc-num">08</span>
+                    <span class="toc-name">เครื่องยนต์ความไว้วางใจ</span>
+                    <span class="toc-en">The Trust Engine</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">09</span>
+                    <span class="toc-name">ทำลายแนวต้าน</span>
+                    <span class="toc-en">Breaking Resistance</span>
+                </div>
+            </div>
+
+            <div class="toc-part">
+                <div class="toc-part-title">Part 4 — Timeless Application</div>
+                <div class="toc-item">
+                    <span class="toc-num">10</span>
+                    <span class="toc-name">การตลาดที่ไม่ต้องพึ่งแพลตฟอร์ม</span>
+                    <span class="toc-en">Marketing Without Platforms</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">11</span>
+                    <span class="toc-name">ด้านมืดของราก</span>
+                    <span class="toc-en">The Dark Side of The Root</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">12</span>
+                    <span class="toc-name">การเป็นผู้เชี่ยวชาญ</span>
+                    <span class="toc-en">Becoming The Master</span>
+                </div>
+            </div>
+
+            <div class="toc-part">
+                <div class="toc-part-title">Bonus Chapters</div>
+                <div class="toc-item">
+                    <span class="toc-num">B-01</span>
+                    <span class="toc-name">การทดลอง</span>
+                    <span class="toc-en">The Experiment</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">B-02</span>
+                    <span class="toc-name">24 ชั่วโมงในสมอง</span>
+                    <span class="toc-en">24 Hours in the Brain</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">B-03</span>
+                    <span class="toc-name">ผ่าแคมเปญ</span>
+                    <span class="toc-en">Campaign Autopsy</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">B-04</span>
+                    <span class="toc-name">คู่มือ Red Ocean</span>
+                    <span class="toc-en">The Red Ocean Playbook</span>
+                </div>
+                <div class="toc-item">
+                    <span class="toc-num">B-05</span>
+                    <span class="toc-name">ห้องที่ปิดล็อก</span>
+                    <span class="toc-en">The Locked Room</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Format -->
+    <section class="section-alt">
+        <div class="section" style="padding-top: 60px; padding-bottom: 60px;">
+            <p class="section-eyebrow">Format</p>
+            <h2 class="section-title">รูปแบบหนังสือ</h2>
+            <div class="format-list">
+                <div class="format-item">
+                    <div class="format-icon fi-web"><div class="fi-shape"></div></div>
+                    <div>
+                        <div class="learn-title">Web Book — อ่านบนเว็บได้เลย</div>
+                        <div class="learn-desc">ไม่ต้องดาวน์โหลด ไม่ต้องลง App กดลิงก์แล้วอ่านได้ทันทีบนทุกอุปกรณ์</div>
+                    </div>
+                </div>
+                <div class="format-item">
+                    <div class="format-icon fi-phone"><div class="fi-shape"></div></div>
+                    <div>
+                        <div class="learn-title">ออกแบบมาสำหรับมือถือ</div>
+                        <div class="learn-desc">อ่านสบายตาบน iPhone, Android, Tablet หรือคอมพิวเตอร์ รองรับ Dark Mode</div>
+                    </div>
+                </div>
+                <div class="format-item">
+                    <div class="format-icon fi-lock"><div class="fi-shape"></div></div>
+                    <div>
+                        <div class="learn-title">บทนำอ่านฟรี ไม่ต้องสมัคร</div>
+                        <div class="learn-desc">ลองอ่านบทนำก่อนตัดสินใจ ถ้ารู้สึกว่ารู้อยู่แล้ว ก็ไม่ต้องซื้อ</div>
+                    </div>
+                </div>
+                <div class="format-item">
+                    <div class="format-icon fi-update"><div class="fi-shape"></div></div>
+                    <div>
+                        <div class="learn-title">จ่ายครั้งเดียว อ่านได้ตลอดชีพ</div>
+                        <div class="learn-desc">ปลดล็อกด้วย Unlock Code เนื้อหาอัปเดตตลอด ไม่มีค่าสมาชิกรายเดือน</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+        <div class="cta-box">
+            <p class="section-eyebrow">Get Started</p>
+            <h2 class="section-title">พร้อมเข้าใจ "ราก" ของทุกอย่างแล้วหรือยัง?</h2>
+            <div class="cta-price">1,390 ฿</div>
+            <p class="cta-price-note">จ่ายครั้งเดียว &middot; อ่านได้ตลอดชีพ &middot; รับ Unlock Code ทันที</p>
+            <div class="cta-links">
+                <a href="/vol1" class="btn-primary">อ่านบทนำฟรี →</a>
+                <a href="/sale" class="btn-secondary">สั่งซื้อ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>/* &copy; 2026 The One Root Series */ &middot; <a href="/">home</a> &middot; <a href="/vol1">vol_1</a></p>
+        </div>
+    </footer>
+
+    <script>
+    // Theme Toggle
+    (function() {
+        var toggle = document.getElementById('themeToggle');
+        var saved = localStorage.getItem('oneroot-theme');
+        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.body.setAttribute('data-theme', 'dark');
+        }
+        toggle.addEventListener('click', function() {
+            var isDark = document.body.getAttribute('data-theme') === 'dark';
+            if (isDark) {
+                document.body.removeAttribute('data-theme');
+                localStorage.setItem('oneroot-theme', 'light');
+            } else {
+                document.body.setAttribute('data-theme', 'dark');
+                localStorage.setItem('oneroot-theme', 'dark');
+            }
+        });
+    })();
+
+    // Nav scroll effect
+    (function() {
+        var nav = document.getElementById('nav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 20) { nav.classList.add('scrolled'); }
+            else { nav.classList.remove('scrolled'); }
+        });
+    })();
+    </script>
+</body>
+</html>
