@@ -49,7 +49,7 @@
             --border-dark: #C8C2BA;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 17px; }
+        html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
         body {
             font-family: 'Sarabun', sans-serif;
             background: var(--bg);
@@ -2323,15 +2323,13 @@
                 <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
             </div>
             <div class="chat-thread">
-
                 <!-- ธนกฤต -->
                 <div class="chat-msg rv">
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ</div>
                     <div class="chat-content">
                         <span class="chat-name">ธนกฤต ว.</span>
-                        <div class="chat-bubble chat-bubble-only">อ่านจบบทที่ 3 เรื่อง Trust Engine แล้วเอาไปใช้กับลูกค้าเลยครับ เปลี่ยนจากบอกว่าสินค้าดียังไง เป็นถามว่าเขากังวลเรื่องอะไร</div>
-                        <div class="chat-bubble chat-bubble-last">ปิดได้ใน Meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ 🔥</div>
-                        <div class="chat-react">👍 <span class="chat-react-count">12</span></div>
+                        <div class="chat-bubble chat-bubble-only">อ่านจบบทที่ 3 แล้วลองเอาไปใช้กับลูกค้าเลยครับ เปลี่ยนจากบอกว่าของดียังไง เป็นถามว่ากังวลเรื่องอะไร</div>
+                        <div class="chat-bubble chat-bubble-last">ปิดได้ใน meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ</div>
                         <div class="chat-info">
                             <span class="chat-time">14:32</span>
                             <span class="chat-tag">Sales Rep &bull; B2B</span>
@@ -2344,8 +2342,8 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #8B6E4E, #6B4C30);">ส</div>
                     <div class="chat-content">
                         <span class="chat-name">สมชาย พ.</span>
-                        <div class="chat-bubble chat-bubble-only">ขายประกันมา 8 ปี คิดว่ารู้หมดแล้ว แต่เล่มนี้ทำให้เข้าใจว่าทำไมลูกค้าบางคนปิดง่ายบางคนปิดยาก</div>
-                        <div class="chat-bubble chat-bubble-last">มันไม่ใช่เรื่องดวงครับ มันเรื่องจังหวะของสมองจริงๆ ตอนนี้เลือกได้เลยว่าจะพูดอะไรตอนไหน 💡</div>
+                        <div class="chat-bubble chat-bubble-only">ขายประกันมา 8 ปีแล้ว คิดว่ารู้หมดแล้วแหละ แต่อ่านแล้วเพิงเข้าใจว่าทำไมบางคนปิดง่ายบางคนปิดยาก</div>
+                        <div class="chat-bubble chat-bubble-last">ไม่ใช่เรื่องดวง เป็นเรื่องจังหวะของสมองจริงๆ ตอนนี้เลือกได้เลยว่าจะพูดอะไรตอนไหน</div>
                         <div class="chat-info">
                             <span class="chat-time">09:17</span>
                             <span class="chat-tag">ประกันชีวิต &bull; 8 ปี</span>
@@ -2358,9 +2356,9 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #7A5C8A, #5D3F6E);">น</div>
                     <div class="chat-content">
                         <span class="chat-name">นภัสสร ก.</span>
-                        <div class="chat-bubble chat-bubble-only">เอาบทเรื่อง Anchoring ไป Train ทีม 12 คน เดือนถัดมา Close Rate ทั้งทีมขึ้นค่ะ ไม่ได้เปลี่ยน Script เลย เปลี่ยนแค่ลำดับการพูดเรื่องราคา</div>
-                        <div class="chat-bubble chat-bubble-last">เด็กในทีมงงว่าทำไมมันต่างขนาดนี้ 555</div>
-                        <div class="chat-react">🔥 <span class="chat-react-count">8</span></div>
+                        <div class="chat-bubble chat-bubble-first">เอาบท Anchoring ไป train ทีม 12 คนค่ะ</div>
+                        <div class="chat-bubble chat-bubble-multi">เดือนถัดมา close rate ทั้งทีมขึ้น ไม่ได้เปลี่ยน script เลยนะ เปลี่ยนแค่ลำดับการพูดเรื่องราคา</div>
+                        <div class="chat-bubble chat-bubble-last">เด็กในทีมงงเลยว่าทำไมมันต่างขนาดนี้ 555</div>
                         <div class="chat-info">
                             <span class="chat-time">20:45</span>
                             <span class="chat-tag">Sales Manager</span>
@@ -2373,9 +2371,9 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #4A7C5B, #2E5A3E);">ก</div>
                     <div class="chat-content">
                         <span class="chat-name">กิตติพงศ์ ร.</span>
-                        <div class="chat-bubble chat-bubble-only">ไม่ได้เป็นเซลส์นะครับ เป็นเจ้าของร้านกาแฟ แต่ต้องขายของทุกวัน อ่านบทเรื่อง Loss Aversion แล้วลองเปลี่ยนป้ายเมนูใหม่</div>
-                        <div class="chat-bubble chat-bubble-multi">จากบอกว่า "ประหยัด 50 บาท" เป็น "อย่าพลาดส่วนลด 50 บาทวันนี้"</div>
-                        <div class="chat-bubble chat-bubble-last">ยอดเพิ่มขึ้นจริงๆครับ ง่ายมากเลย 😂</div>
+                        <div class="chat-bubble chat-bubble-only">ไม่ได้เป็นเซลส์นะครับ แต่ร้านกาแฟก็ต้องขายของทุกวัน ลองเปลี่ยนป้ายเมนูใหม่ตามบท Loss Aversion</div>
+                        <div class="chat-bubble chat-bubble-multi">จากเขียนว่า ประหยัด 50 บาท เป็น อย่าพลาดส่วนลด 50 บาทวันนี้</div>
+                        <div class="chat-bubble chat-bubble-last">ยอดเพิ่มขึ้นจริงๆครับ ง่ายมากเลย</div>
                         <div class="chat-info">
                             <span class="chat-time">11:03</span>
                             <span class="chat-tag">เจ้าของธุรกิจ</span>
@@ -2388,9 +2386,9 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #B85C38, #8B3A1E);">พ</div>
                     <div class="chat-content">
                         <span class="chat-name">พิมพ์ลภัส อ.</span>
-                        <div class="chat-bubble chat-bubble-only">เป็นฟรีแลนซ์ที่ไม่กล้าเสนอราคาค่ะ เคยลดราคาให้ลูกค้าทุกครั้งเพราะกลัวเขาไม่จ้าง</div>
-                        <div class="chat-bubble chat-bubble-last">อ่านบทที่ 7 เสร็จ เสนอราคาโปรเจกต์ถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ 🥹</div>
-                        <div class="chat-react">❤️ <span class="chat-react-count">15</span></div>
+                        <div class="chat-bubble chat-bubble-first">เป็นฟรีแลนซ์ค่ะ ไม่กล้าเสนอราคาเลย</div>
+                        <div class="chat-bubble chat-bubble-multi">ลดราคาให้ลูกค้าทุกทีเพราะกลัวเขาไม่จ้าง</div>
+                        <div class="chat-bubble chat-bubble-last">อ่านบทที่ 7 เสร็จเสนอราคาโปรเจคถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ</div>
                         <div class="chat-info">
                             <span class="chat-time">16:28</span>
                             <span class="chat-tag">ฟรีแลนซ์</span>
@@ -2403,8 +2401,7 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #C4956A, #9A7050);">อ</div>
                     <div class="chat-content">
                         <span class="chat-name">อนุวัฒน์ จ.</span>
-                        <div class="chat-bubble chat-bubble-only">บท Dopamine Loop เปลี่ยนวิธีเขียน Proposal ผมไปเลย เดิม 10 หน้าลูกค้าไม่เคยอ่านจบ</div>
-                        <div class="chat-bubble chat-bubble-last">ตอนนี้ย่อเหลือ 3 หน้าแต่เรียงตาม Dopamine curve ลูกค้าโทรกลับเร็วขึ้น 2 วันครับ 📈</div>
+                        <div class="chat-bubble chat-bubble-only">บท dopamine loop นี่เปลี่ยนวิธีเขียน proposal ผมไปเลยครับ เดิม 10 หน้าลูกค้าไม่เคยอ่านจบ ตอนนี้ย่อเหลือ 3 หน้า ลูกค้าโทรกลับเร็วขึ้น</div>
                         <div class="chat-info">
                             <span class="chat-time">22:11</span>
                             <span class="chat-tag">AE &bull; เอเจนซี่</span>
@@ -2417,9 +2414,9 @@
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #6B8E9B, #4A6D7A);">ว</div>
                     <div class="chat-content">
                         <span class="chat-name">วิรัช ม.</span>
-                        <div class="chat-bubble chat-bubble-only">ขายรถมา 5 ปี เคยใช้แต่วิธีเดิมคือเปิดราคาแล้วรอลูกค้าต่อ อ่านแล้วเพิ่งเข้าใจว่าลูกค้ากลัวอะไรจริงๆตอน walk-in</div>
-                        <div class="chat-bubble chat-bubble-last">ไม่ใช่เรื่องราคาครับ เป็นเรื่อง "กลัวถูกหลอก" พอเข้าใจตรงนี้ ทุกอย่างเปลี่ยน 🧠</div>
-                        <div class="chat-react">💯 <span class="chat-react-count">6</span></div>
+                        <div class="chat-bubble chat-bubble-first">ขายรถมา 5 ปีครับ ใช้แต่วิธีเดิมคือเปิดราคาแล้วก็รอลูกค้าต่อ</div>
+                        <div class="chat-bubble chat-bubble-multi">อ่านแล้วเพิ่งเข้าใจว่าจริงๆลูกค้าที่ walk-in มาเนี่ยเขากลัวอะไร</div>
+                        <div class="chat-bubble chat-bubble-last">ไม่ใช่เรื่องราคาหรอกครับ เป็นเรื่องกลัวถูกหลอก พอเข้าใจตรงนี้ทุกอย่างเปลี่ยนเลย</div>
                         <div class="chat-info">
                             <span class="chat-time">13:55</span>
                             <span class="chat-tag">ขายรถ &bull; B2C</span>
@@ -2439,6 +2436,7 @@
                 <div class="chat-seen">กำลังพิมพ์...</div>
 
             </div>
+        
         </div>
     </div>
 
