@@ -11,7 +11,7 @@
     <meta property="og:locale" content="th_TH">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -47,6 +47,7 @@
             --warm: #C4956A;
             --border: #E0DCD6;
             --border-dark: #C8C2BA;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
         }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
@@ -83,10 +84,10 @@
 
         /* ── Section titles ── */
         .sec-label {
-            font-family: 'Prompt', sans-serif;
+            font-family: var(--mono);
             font-size: 0.68rem;
-            font-weight: 600;
-            letter-spacing: 0.25em;
+            font-weight: 500;
+            letter-spacing: 0.15em;
             color: var(--gold);
             text-transform: uppercase;
             margin-bottom: 0.6rem;
@@ -886,14 +887,9 @@
 
         /* ── Section labels: dot accent ── */
         .sec-label::before {
-            content: '';
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--gold);
-            margin-right: 0.5rem;
-            vertical-align: middle;
+            content: '// ';
+            opacity: 0.45;
+            font-weight: 400;
         }
 
         /* ── Animations ── */

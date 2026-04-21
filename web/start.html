@@ -305,7 +305,7 @@
         /* ── Book Specs ── */
         .specs {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             gap: 1.5rem;
             margin-bottom: 3rem;
         }
@@ -444,70 +444,101 @@
             justify-content: center;
             flex-shrink: 0;
         }
-        /* CSS-drawn icons */
-        .fi-web .fi-shape {
-            width: 18px; height: 14px;
-            border: 2px solid var(--accent);
-            border-radius: 3px;
+        /* ── Format Icon (Lucide) ── */
+        .format-icon svg {
+            width: 20px; height: 20px;
+            stroke: var(--accent);
+            stroke-width: 1.5;
+            fill: none;
+        }
+
+        /* ── Benefit Cards ── */
+        .benefit-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .benefit-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            border-radius: 0 0 var(--radius) var(--radius);
+            padding: 1.5rem 1.8rem;
+        }
+        .benefit-num {
+            font-family: var(--mono);
+            font-size: 0.67rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .benefit-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--heading);
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+        .benefit-desc {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin-bottom: 0.4rem;
+        }
+        .benefit-ex {
+            font-size: 0.8rem;
+            color: var(--text-sec);
+            opacity: 0.7;
+            font-style: italic;
+            line-height: 1.6;
+        }
+
+        /* ── Who Grid ── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .who-col {
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+        }
+        .who-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .who-yes h4 { color: var(--accent); }
+        .who-no h4 { color: var(--text-sec); }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+            padding: 0.35rem 0 0.35rem 1.2rem;
             position: relative;
         }
-        .fi-web .fi-shape::after {
-            content: '';
+        .who-yes li::before {
+            content: '→';
             position: absolute;
-            top: 3px; left: 3px; right: 3px;
-            height: 2px;
-            background: var(--accent);
+            left: 0;
+            color: var(--accent);
+        }
+        .who-no li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--text-sec);
             opacity: 0.5;
-        }
-        .fi-phone .fi-shape {
-            width: 12px; height: 18px;
-            border: 2px solid var(--accent);
-            border-radius: 3px;
-            position: relative;
-        }
-        .fi-phone .fi-shape::after {
-            content: '';
-            position: absolute;
-            bottom: 2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px; height: 1.5px;
-            background: var(--accent);
-            border-radius: 1px;
-        }
-        .fi-lock .fi-shape {
-            width: 14px; height: 10px;
-            border: 2px solid var(--accent);
-            border-radius: 2px;
-            position: relative;
-            margin-top: 6px;
-        }
-        .fi-lock .fi-shape::before {
-            content: '';
-            position: absolute;
-            top: -7px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 8px; height: 7px;
-            border: 2px solid var(--accent);
-            border-bottom: none;
-            border-radius: 5px 5px 0 0;
-        }
-        .fi-update .fi-shape {
-            width: 14px; height: 14px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            border-right-color: transparent;
-            position: relative;
-        }
-        .fi-update .fi-shape::after {
-            content: '';
-            position: absolute;
-            top: -1px; right: -2px;
-            width: 0; height: 0;
-            border-left: 4px solid var(--accent);
-            border-top: 3px solid transparent;
-            border-bottom: 3px solid transparent;
         }
 
         /* ── CTA Section ── */
@@ -573,7 +604,8 @@
             .hero-cta { justify-content: center; }
             .section { padding: 50px 1.25rem; }
             .section-title { font-size: 1.5rem; }
-            .specs { grid-template-columns: repeat(3, 1fr); gap: 0.8rem; }
+            .specs { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .who-grid { grid-template-columns: 1fr; }
             .spec-card { padding: 1rem; }
             .spec-val { font-size: 1.3rem; }
             .learn-grid { grid-template-columns: 1fr; }
@@ -625,6 +657,10 @@
             <div class="spec-card">
                 <div class="spec-val">4</div>
                 <div class="spec-label">ภาคหลัก</div>
+            </div>
+            <div class="spec-card">
+                <div class="spec-val">100+</div>
+                <div class="spec-label">งานวิจัยอ้างอิง</div>
             </div>
             <div class="spec-card">
                 <div class="spec-val">Web</div>
@@ -787,6 +823,34 @@
         </div>
     </section>
 
+    <!-- Who Is This For -->
+    <section class="section" id="who">
+        <p class="section-eyebrow">Who</p>
+        <h2 class="section-title">เหมาะกับใครบ้าง?</h2>
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>อยากเข้าใจว่า &ldquo;ทำไม&rdquo; คนถึงตัดสินใจแบบนั้น</li>
+                    <li>ทำการตลาด / ขายของ / สร้างแบรนด์ และอยากเข้าใจลึกกว่าเดิม</li>
+                    <li>เบื่อเทคนิคที่หมดอายุภายในเดือน อยากได้หลักการที่ใช้ได้ตลอด</li>
+                    <li>อยากรู้ว่าสมองมนุษย์ทำงานยังไงเวลาเห็นโฆษณา ราคา หรือ Review</li>
+                    <li>เป็นเจ้าของธุรกิจ / นักการตลาด / นักขาย / ครีเอเตอร์</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>อาจไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>ต้องการสูตร Copy-Paste ที่ใช้ได้เลยโดยไม่ต้องเข้าใจ</li>
+                    <li>ไม่สนใจ &ldquo;ทำไม&rdquo; แค่อยากรู้ &ldquo;ทำอะไร&rdquo;</li>
+                    <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการตัดสินใจซื้อ</li>
+                    <li>ต้องการผลลัพธ์โดยไม่ลงมือทำความเข้าใจ</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 1.5rem;">ยังไม่แน่ใจ? &mdash; <a href="/vol1" style="color: var(--accent); text-decoration: none;">อ่านบทนำฟรีก่อน</a> แล้วตัดสินใจเอง</p>
+    </section>
+
     <!-- Format -->
     <section class="section-alt">
         <div class="section" style="padding-top: 60px; padding-bottom: 60px;">
@@ -794,28 +858,28 @@
             <h2 class="section-title">รูปแบบหนังสือ</h2>
             <div class="format-list">
                 <div class="format-item">
-                    <div class="format-icon fi-web"><div class="fi-shape"></div></div>
+                    <div class="format-icon"><i data-lucide="globe"></i></div>
                     <div>
                         <div class="learn-title">Web Book — อ่านบนเว็บได้เลย</div>
                         <div class="learn-desc">ไม่ต้องดาวน์โหลด ไม่ต้องลง App กดลิงก์แล้วอ่านได้ทันทีบนทุกอุปกรณ์</div>
                     </div>
                 </div>
                 <div class="format-item">
-                    <div class="format-icon fi-phone"><div class="fi-shape"></div></div>
+                    <div class="format-icon"><i data-lucide="smartphone"></i></div>
                     <div>
                         <div class="learn-title">ออกแบบมาสำหรับมือถือ</div>
                         <div class="learn-desc">อ่านสบายตาบน iPhone, Android, Tablet หรือคอมพิวเตอร์ รองรับ Dark Mode</div>
                     </div>
                 </div>
                 <div class="format-item">
-                    <div class="format-icon fi-lock"><div class="fi-shape"></div></div>
+                    <div class="format-icon"><i data-lucide="unlock"></i></div>
                     <div>
                         <div class="learn-title">บทนำอ่านฟรี ไม่ต้องสมัคร</div>
                         <div class="learn-desc">ลองอ่านบทนำก่อนตัดสินใจ ถ้ารู้สึกว่ารู้อยู่แล้ว ก็ไม่ต้องซื้อ</div>
                     </div>
                 </div>
                 <div class="format-item">
-                    <div class="format-icon fi-update"><div class="fi-shape"></div></div>
+                    <div class="format-icon"><i data-lucide="badge-check"></i></div>
                     <div>
                         <div class="learn-title">จ่ายครั้งเดียว อ่านได้ตลอดชีพ</div>
                         <div class="learn-desc">ปลดล็อกด้วย Unlock Code เนื้อหาอัปเดตตลอด ไม่มีค่าสมาชิกรายเดือน</div>
@@ -875,5 +939,7 @@
         });
     })();
     </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>

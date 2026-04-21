@@ -615,64 +615,21 @@
             padding: 2rem 1.5rem;
         }
         .feature-icon {
-            width: 48px; height: 48px;
+            width: 52px; height: 52px;
             margin: 0 auto 1rem;
-            position: relative;
-            border-radius: 12px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-        .fi-root {
             background: linear-gradient(135deg, rgba(139,105,20,0.08), rgba(196,149,106,0.12));
             border: 1px solid rgba(139,105,20,0.15);
+            color: var(--accent);
         }
-        .fi-root::before, .fi-root::after {
-            content: '';
-            position: absolute;
-            background: var(--accent);
-            border-radius: 1px;
-        }
-        .fi-root::before {
-            width: 2px; height: 18px;
-            top: 10px; left: 50%;
-            transform: translateX(-50%);
-        }
-        .fi-root::after {
-            width: 14px; height: 2px;
-            bottom: 12px; left: 50%;
-            transform: translateX(-50%) rotate(-30deg);
-            transform-origin: left center;
-        }
-        .fi-read {
-            background: linear-gradient(135deg, rgba(139,105,20,0.08), rgba(196,149,106,0.12));
-            border: 1px solid rgba(139,105,20,0.15);
-        }
-        .fi-read::before {
-            content: '';
-            width: 20px; height: 14px;
-            border: 2px solid var(--accent);
-            border-radius: 2px 6px 6px 2px;
-            border-left-width: 3px;
-        }
-        .fi-try {
-            background: linear-gradient(135deg, rgba(139,105,20,0.08), rgba(196,149,106,0.12));
-            border: 1px solid rgba(139,105,20,0.15);
-        }
-        .fi-try::before {
-            content: '';
-            width: 12px; height: 16px;
-            border: 2px solid var(--accent);
-            border-radius: 3px;
-            position: relative;
-        }
-        .fi-try::after {
-            content: '';
-            position: absolute;
-            width: 8px; height: 2px;
-            background: var(--accent);
-            top: 18px;
-            border-radius: 1px;
+        .feature-icon svg {
+            width: 22px; height: 22px;
+            stroke: currentColor;
+            stroke-width: 1.5;
+            fill: none;
         }
         .feature-title {
             font-family: 'Prompt', sans-serif;
@@ -857,17 +814,17 @@
         </div>
         <div class="features-grid">
             <div class="feature-item">
-                <div class="feature-icon fi-root"></div>
+                <div class="feature-icon"><i data-lucide="anchor"></i></div>
                 <h3 class="feature-title">รากฐาน ไม่ใช่เทรนด์</h3>
                 <p class="feature-desc">สอนหลักการที่ไม่มีวันหมดอายุ เพราะมันมาจากธรรมชาติของมนุษย์ ไม่ใช่อัลกอริทึม</p>
             </div>
             <div class="feature-item">
-                <div class="feature-icon fi-read"></div>
+                <div class="feature-icon"><i data-lucide="book-open"></i></div>
                 <h3 class="feature-title">อ่านได้ทุกที่</h3>
                 <p class="feature-desc">ออกแบบเป็น Web Book — เปิดอ่านได้บนมือถือ แท็บเล็ต คอมพิวเตอร์ ไม่ต้องลง App</p>
             </div>
             <div class="feature-item">
-                <div class="feature-icon fi-try"></div>
+                <div class="feature-icon"><i data-lucide="unlock"></i></div>
                 <h3 class="feature-title">ลองก่อนตัดสินใจ</h3>
                 <p class="feature-desc">บทนำเปิดให้อ่านฟรี — ถ้ารู้สึกว่ารู้อยู่แล้ว ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
             </div>
@@ -925,5 +882,7 @@
         });
     })();
     </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
