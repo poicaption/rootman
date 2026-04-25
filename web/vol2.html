@@ -3264,8 +3264,10 @@
             opacity: 0.6;
         }
 
-        /* Ensure content stays above background overlays */
-        #sidebar, #main, .cover-section, .unlock-gate, main { position: relative; z-index: 2; }
+        /* Ensure content stays above background overlays (preserve original positioning) */
+        #sidebar { z-index: 100; }
+        #main, main { position: relative; z-index: 2; }
+        .cover-section, .unlock-gate { position: relative; z-index: 2; }
     
     </style>
 </head>
