@@ -13,7 +13,7 @@
     { "source": "/sme", "destination": "/sale-sme.html" },
     { "source": "/ecom", "destination": "/sale-ecom.html" },
     { "source": "/copywriter", "destination": "/sale-copywriter.html" },
-    { "source": "/vol2-sale", "destination": "/sale-vol2.html" },
+    { "source": "/sale-vol2", "destination": "/sale-vol2.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },

@@ -6,7 +6,7 @@
     <title>The One Root Vol.2 — The Invisible War — รากแก้วการตลาด ภาค 2</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -2802,6 +2802,470 @@
             .adm-chapter-nav { max-width: 120px; }
             body.admin-mode { padding-top: 90px !important; }
         }
+
+        /* ═══════════════════════════════════════════════
+           ▚ CYBERPUNK SKIN OVERRIDE — Vol.2 / The Invisible War
+           Aligns reader UI with /sale-vol2 design language
+           ═══════════════════════════════════════════════ */
+
+        :root {
+            /* Cyber palette tokens */
+            --cy-void: #050810;
+            --cy-void-2: #0a0f1c;
+            --cy-panel: #0e1424;
+            --cy-panel-2: #131a2e;
+            --cy-cyan: #00f0ff;
+            --cy-cyan-soft: rgba(0,240,255,0.12);
+            --cy-magenta: #ff2b7a;
+            --cy-magenta-soft: rgba(255,43,122,0.12);
+            --cy-amber: #ffb547;
+            --cy-line: rgba(120,160,210,0.18);
+            --cy-grid: rgba(0,240,255,0.05);
+            --cy-mono: 'JetBrains Mono', 'Consolas', monospace;
+            --cy-display: 'Space Grotesk', 'Prompt', sans-serif;
+
+            /* Override semantic vars (light mode = lighter cyber) */
+            --bg: #f3f6fc;
+            --bg-alt: #e9eef8;
+            --text: #1c2740;
+            --text-secondary: #4a5573;
+            --accent: #0080a8;
+            --accent-light: #b6228e;
+            --accent-glow: rgba(0,128,168,0.12);
+            --heading: #0a1224;
+            --border: #c7d3e6;
+            --sidebar-bg: #050810;
+            --sidebar-text: #c8d4e8;
+            --sidebar-active: #00f0ff;
+            --quote-bg: #e9eef8;
+            --quote-border: #00a0c8;
+            --table-header-bg: #0e1424;
+            --table-header-text: #f3f6fc;
+            --table-stripe: #eef2fa;
+            --code-bg: #e7ecf6;
+            --shadow: rgba(8,16,32,0.08);
+            --progress: #00b8d4;
+        }
+
+        [data-theme="dark"] {
+            --bg: #050810;
+            --bg-alt: #0a0f1c;
+            --text: #c8d4e8;
+            --text-secondary: #7a86a0;
+            --accent: #00f0ff;
+            --accent-light: #ff2b7a;
+            --accent-glow: rgba(0,240,255,0.15);
+            --heading: #ffffff;
+            --border: rgba(120,160,210,0.18);
+            --sidebar-bg: #03060d;
+            --sidebar-text: #7a86a0;
+            --sidebar-active: #00f0ff;
+            --quote-bg: #0e1424;
+            --quote-border: #00f0ff;
+            --table-header-bg: #0e1424;
+            --table-header-text: #c8d4e8;
+            --table-stripe: #0a0f1c;
+            --code-bg: #0e1424;
+            --shadow: rgba(0,0,0,0.5);
+            --progress: #00f0ff;
+        }
+
+        /* Body grid layer (subtle) — only in dark mode for reading comfort */
+        [data-theme="dark"] body::before {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+            background-image:
+                linear-gradient(var(--cy-grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cy-grid) 1px, transparent 1px);
+            background-size: 64px 64px;
+            mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 75%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 75%);
+            opacity: 0.6;
+        }
+
+        /* Progress bar — neon */
+        #progress-bar {
+            background: linear-gradient(90deg, var(--cy-cyan), var(--cy-magenta));
+            box-shadow: 0 0 10px var(--cy-cyan), 0 0 20px var(--cy-magenta);
+            height: 2px;
+        }
+
+        /* Sidebar — terminal aesthetic */
+        #sidebar {
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--cy-line);
+        }
+        .sidebar-header {
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0,240,255,0.06), transparent 70%),
+                var(--sidebar-bg);
+            border-bottom: 1px solid var(--cy-line);
+            position: relative;
+        }
+        .sidebar-header::after {
+            content: '';
+            position: absolute;
+            left: 30%; right: 30%; bottom: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cy-cyan), var(--cy-magenta), transparent);
+            opacity: 0.5;
+        }
+        .sidebar-logo {
+            font-family: var(--cy-mono);
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--cy-cyan);
+            letter-spacing: 0.18em;
+            text-shadow: 0 0 12px rgba(0,240,255,0.4);
+        }
+        .sidebar-logo::before { content: '> '; color: var(--cy-magenta); }
+        .sidebar-title {
+            font-family: var(--cy-display);
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+        }
+        .sidebar-subtitle {
+            font-family: var(--cy-mono);
+            font-size: 0.72rem;
+            color: var(--cy-cyan);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .toc-part {
+            font-family: var(--cy-mono);
+            color: var(--cy-magenta);
+            letter-spacing: 0.16em;
+            font-size: 0.62rem;
+            opacity: 0.85;
+        }
+        .toc-part::before { content: '// '; opacity: 0.6; }
+        .toc-link {
+            font-family: 'Sarabun', sans-serif;
+            transition: all 0.2s;
+            position: relative;
+        }
+        .toc-link:hover { color: #fff; background: rgba(0,240,255,0.06); }
+        .toc-link.active {
+            color: var(--cy-cyan);
+            border-left-color: var(--cy-cyan);
+            background: rgba(0,240,255,0.08);
+            text-shadow: 0 0 8px rgba(0,240,255,0.3);
+        }
+
+        /* COVER — full cyberpunk override */
+        .cover-section {
+            background:
+                radial-gradient(ellipse 60% 45% at 50% 30%, rgba(0,240,255,0.10), transparent 65%),
+                radial-gradient(ellipse 50% 35% at 50% 80%, rgba(255,43,122,0.08), transparent 60%),
+                linear-gradient(180deg, #050810 0%, #0a0f1c 50%, #050810 100%) !important;
+            color: #ffffff !important;
+        }
+        .cover-section::before {
+            background-image:
+                linear-gradient(rgba(0,240,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,240,255,0.06) 1px, transparent 1px) !important;
+            background-size: 56px 56px !important;
+            mask-image: radial-gradient(ellipse at 50% 50%, #000, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000, transparent 70%);
+        }
+        /* Floating particle dust */
+        .cover-section::after {
+            content: '';
+            position: absolute; inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(1px 1px at 12% 22%, rgba(0,240,255,0.5), transparent),
+                radial-gradient(1px 1px at 88% 18%, rgba(255,43,122,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 22% 78%, rgba(255,255,255,0.25), transparent),
+                radial-gradient(1px 1px at 68% 82%, rgba(0,240,255,0.4), transparent),
+                radial-gradient(1px 1px at 45% 8%, rgba(255,181,71,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 55% 90%, rgba(255,255,255,0.2), transparent);
+        }
+        .cover-top-ornament,
+        .cover-bottom-ornament {
+            font-family: var(--cy-mono);
+            color: var(--cy-cyan) !important;
+            opacity: 0.7 !important;
+            letter-spacing: 0.25em !important;
+            font-size: 0.7rem !important;
+        }
+        .cover-top-ornament::before { content: '◢ VOL_02 ◣  '; color: var(--cy-magenta); }
+        .cover-top-ornament::after { content: '  ◢ THE INVISIBLE WAR ◣'; color: var(--cy-magenta); }
+        .cover-top-ornament { font-size: 0 !important; }
+        .cover-top-ornament::before, .cover-top-ornament::after { font-size: 0.66rem; }
+
+        .cover-bottom-ornament::before { content: '> ./engage --read'; color: var(--cy-cyan); }
+        .cover-bottom-ornament { font-size: 0 !important; }
+        .cover-bottom-ornament::before { font-size: 0.7rem; letter-spacing: 0.15em; }
+
+        .cover-label {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+            opacity: 0.85 !important;
+            text-shadow: 0 0 10px rgba(0,240,255,0.3);
+        }
+        .cover-title {
+            font-family: var(--cy-display) !important;
+            font-style: normal !important;
+            font-weight: 700 !important;
+            background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #ff2b7a 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 60px rgba(0,240,255,0.18);
+            letter-spacing: -0.01em !important;
+        }
+        .cover-of {
+            font-family: var(--cy-mono) !important;
+            font-style: normal !important;
+            color: var(--cy-magenta) !important;
+            opacity: 0.85 !important;
+        }
+        .cover-subtitle {
+            font-family: 'IBM Plex Sans Thai', 'Sarabun', sans-serif !important;
+            color: var(--cy-cyan) !important;
+            text-shadow: 0 0 20px rgba(0,240,255,0.2);
+        }
+        .cover-line {
+            background: linear-gradient(90deg, transparent, var(--cy-cyan), var(--cy-magenta), transparent) !important;
+            opacity: 0.7 !important;
+            width: 100px !important;
+            height: 1px !important;
+        }
+        .cover-tagline {
+            font-family: 'IBM Plex Sans Thai', 'Sarabun', sans-serif !important;
+            font-style: normal !important;
+            color: #c8d4e8 !important;
+        }
+        .cover-author {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+        }
+        .cover-author::before { content: '// '; color: var(--cy-magenta); }
+        .cover-book-img {
+            filter: drop-shadow(0 20px 60px rgba(0,0,0,0.8))
+                    drop-shadow(0 0 40px rgba(0,240,255,0.18))
+                    drop-shadow(0 0 60px rgba(255,43,122,0.12)) !important;
+        }
+        .cover-scroll-hint {
+            font-family: var(--cy-mono);
+            color: rgba(0,240,255,0.5) !important;
+        }
+        .cover-scroll-hint::before { content: '> '; }
+
+        /* PART DIVIDER — terminal style */
+        .part-divider::before {
+            content: '◢ ◢ ◢' !important;
+            color: var(--cy-magenta) !important;
+            font-family: var(--cy-mono) !important;
+            opacity: 0.8 !important;
+            letter-spacing: 0.5em !important;
+        }
+        .part-number {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+        }
+
+        /* Quote block — neon left border */
+        blockquote, .quote-block {
+            border-left-color: var(--cy-cyan) !important;
+            background: linear-gradient(90deg, var(--cy-cyan-soft), transparent 80%) !important;
+        }
+
+        /* Headings — accent in cyan */
+        h1, h2, h3 { color: var(--heading); }
+        [data-theme="dark"] h1, [data-theme="dark"] h2 {
+            text-shadow: 0 0 24px rgba(0,240,255,0.08);
+        }
+
+        /* ── UNLOCK GATE — cyberpunk ── */
+        .unlock-eyebrow {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+            opacity: 1 !important;
+            letter-spacing: 0.18em !important;
+        }
+        .unlock-eyebrow::before { content: '◢ '; color: var(--cy-magenta); }
+
+        .unlock-headline {
+            font-family: var(--cy-display) !important;
+            color: var(--heading) !important;
+        }
+        .unlock-ch-num {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+            font-weight: 700 !important;
+            text-shadow: 0 0 10px rgba(0,240,255,0.25);
+        }
+        .unlock-ch-info strong { font-family: var(--cy-display) !important; }
+        .unlock-ch-item {
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .unlock-ch-item:hover {
+            border-bottom-color: var(--cy-cyan-soft);
+            background: rgba(0,240,255,0.03);
+        }
+
+        .unlock-bonus {
+            background:
+                linear-gradient(135deg, rgba(255,181,71,0.06), rgba(255,43,122,0.04)),
+                var(--bg-alt) !important;
+            border: 1px solid rgba(255,181,71,0.2) !important;
+        }
+        .unlock-bonus-badge {
+            font-family: var(--cy-mono) !important;
+            background: linear-gradient(135deg, var(--cy-amber), var(--cy-magenta)) !important;
+            border-radius: 4px !important;
+            color: #050810 !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.2em !important;
+        }
+        .unlock-bonus-num {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-amber) !important;
+        }
+        .unlock-bonus-name {
+            font-family: var(--cy-display) !important;
+            color: var(--cy-amber) !important;
+        }
+
+        .unlock-price-section {
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,240,255,0.06), transparent 70%),
+                var(--bg-alt) !important;
+            border: 1px solid var(--cy-line) !important;
+            position: relative;
+            overflow: hidden;
+        }
+        .unlock-price-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%; height: 1px;
+            background: linear-gradient(90deg, var(--cy-cyan), transparent);
+        }
+        .unlock-price-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 40%; height: 1px;
+            background: linear-gradient(270deg, var(--cy-magenta), transparent);
+        }
+        .unlock-price-declare-title em {
+            color: var(--cy-cyan) !important;
+            text-decoration-color: var(--cy-magenta) !important;
+        }
+
+        /* Unlock CTA buttons — neon */
+        .unlock-cta, .unlock-buy-btn, .btn-primary,
+        a[href*="buy.stripe.com"]:not(.v2-chip-link):not(.v2-endcard-cta) {
+            background: linear-gradient(135deg, var(--cy-magenta), #ff5e8a) !important;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5),
+                        0 0 24px rgba(255,43,122,0.3),
+                        0 6px 24px rgba(255,43,122,0.2) !important;
+            border: none !important;
+            color: #fff !important;
+            font-family: 'Prompt', sans-serif !important;
+            letter-spacing: 0.04em !important;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+        .unlock-cta:hover, .unlock-buy-btn:hover, .btn-primary:hover,
+        a[href*="buy.stripe.com"]:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.7),
+                        0 0 36px rgba(255,43,122,0.5),
+                        0 10px 30px rgba(255,43,122,0.35) !important;
+        }
+
+        /* Unlock input — cyber field */
+        .unlock-input, input[type="text"].unlock-input, .unlock-passphrase-input {
+            background: var(--bg-alt) !important;
+            border: 1px solid var(--cy-line) !important;
+            color: var(--heading) !important;
+            font-family: var(--cy-mono) !important;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .unlock-input:focus, .unlock-passphrase-input:focus {
+            border-color: var(--cy-cyan) !important;
+            box-shadow: 0 0 0 3px rgba(0,240,255,0.15),
+                        0 0 16px rgba(0,240,255,0.2) !important;
+            outline: none !important;
+        }
+
+        /* Tables — cyber grid */
+        table { border-color: var(--cy-line) !important; }
+        thead th {
+            font-family: var(--cy-mono) !important;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            font-size: 0.78em;
+        }
+        [data-theme="dark"] thead th {
+            background: linear-gradient(180deg, var(--cy-panel), var(--cy-panel-2)) !important;
+            border-bottom: 1px solid var(--cy-cyan-soft) !important;
+        }
+
+        /* Code blocks — terminal */
+        code, pre {
+            font-family: var(--cy-mono) !important;
+            background: var(--code-bg) !important;
+        }
+        [data-theme="dark"] code,
+        [data-theme="dark"] pre {
+            border: 1px solid var(--cy-line);
+            color: var(--cy-cyan);
+        }
+
+        /* Brand mark / brand lockup — terminal eyebrow */
+        .brand-mark, .brand-lockup {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+        }
+
+        /* "Third Eye" / footnotes accent */
+        .third-eye, .footnote-link, sup.footnote {
+            color: var(--cy-magenta) !important;
+        }
+
+        /* Chapter h1 numbering accent */
+        .chapter-num, .chapter-number {
+            font-family: var(--cy-mono) !important;
+            color: var(--cy-cyan) !important;
+            letter-spacing: 0.14em !important;
+        }
+
+        /* Selection */
+        ::selection {
+            background: var(--cy-cyan);
+            color: var(--cy-void);
+        }
+        [data-theme="dark"] ::selection {
+            background: var(--cy-magenta);
+            color: #fff;
+        }
+
+        /* Dark-mode scanline overlay (very subtle) */
+        [data-theme="dark"] body::after {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 1;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255,255,255,0.008) 0px,
+                rgba(255,255,255,0.008) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            opacity: 0.6;
+        }
+
+        /* Ensure content stays above background overlays */
+        #sidebar, #main, .cover-section, .unlock-gate, main { position: relative; z-index: 2; }
     
     </style>
 </head>
@@ -3488,6 +3952,9 @@
 
             var savedTheme = localStorage.getItem('oneroot-theme');
             if (savedTheme === 'dark') {
+                setTheme(true);
+            } else if (!savedTheme) {
+                // Vol.2 default: dark cyber theme to match /sale-vol2
                 setTheme(true);
             }
 
