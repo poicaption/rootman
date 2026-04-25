@@ -41,6 +41,8 @@ export default async function handler(req) {
 
   const url = new URL(req.url);
   const sessionId = url.searchParams.get('session_id');
+  const volParam = url.searchParams.get('vol');
+  const vol = volParam === '2' ? 2 : 1;
 
   if (!sessionId || sessionId.length < 10) {
     return json({ error: 'missing_session', message: 'ไม่พบข้อมูลการชำระเงิน' }, 400);
@@ -51,7 +53,7 @@ export default async function handler(req) {
     const existing = await redis(['GET', `session:${sessionId}`]);
     if (existing.result) {
       const data = JSON.parse(existing.result);
-      return json({ code: data.code, customer_email: data.customer_email || null });
+      return json({ code: data.code, customer_email: data.customer_email || null, vol: data.vol || 1 });
     }
 
     // Verify with Stripe
@@ -82,15 +84,15 @@ export default async function handler(req) {
     const customerEmail = (session.customer_details && session.customer_details.email) || null;
 
     // Store session → code (90-day TTL)
-    await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, customer_email: customerEmail, created_at: now }), 'EX', 7776000]);
+    await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, customer_email: customerEmail, vol, created_at: now }), 'EX', 7776000]);
 
-    // Store code → data (permanent)
-    await redis(['SET', `code:${code}`, JSON.stringify({ session_id: sessionId, device_id: null, created_at: now })]);
+    // Store code → data (permanent). Tag with vol so /api/unlock returns the right passphrase.
+    await redis(['SET', `code:${code}`, JSON.stringify({ session_id: sessionId, device_id: null, vol, created_at: now })]);
 
     // Log
-    console.log('[NEW-CODE]', JSON.stringify({ code, session_id: sessionId.slice(0, 20) + '...', ts: now }));
+    console.log('[NEW-CODE]', JSON.stringify({ code, vol, session_id: sessionId.slice(0, 20) + '...', ts: now }));
 
-    return json({ code, customer_email: customerEmail });
+    return json({ code, customer_email: customerEmail, vol });
   } catch (e) {
     console.error('[VERIFY-ERROR]', e.message);
     return json({ error: 'server_error', message: 'เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้' }, 500);

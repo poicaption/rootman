@@ -3235,7 +3235,7 @@
                             <div class="unlock-step-body">
                                 <strong>กดปุ่มด้านล่างเพื่อชำระเงิน</strong>
                                 <p class="unlock-step-hint">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay ได้ทันที</p>
-                                <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" target="_blank" rel="noopener" class="unlock-stripe-btn">
+                                <a href="https://buy.stripe.com/cNi00j6S3a7MgDD2wUgYU02" target="_blank" rel="noopener" class="unlock-stripe-btn">
                                     &#x1F512; ชำระเงิน 1,890 บาท
                                 </a>
                             </div>
@@ -4058,7 +4058,6 @@
             function doUnlock(code) {
                 return decryptAllChapters(code).then(function() {
                     document.body.classList.add('unlocked');
-                    localStorage.setItem('oneroot2-uk', btoa(code));
                     // Re-observe newly visible sections for TOC tracking
                     document.querySelectorAll('.chapter-section').forEach(function(s) {
                         observer.observe(s);
@@ -4069,15 +4068,33 @@
                 });
             }
 
-            // Check if already unlocked (stored code)
+            // ── Device ID ──
+            function getDeviceId() {
+                var id = localStorage.getItem('oneroot2-did');
+                if (!id) {
+                    if (crypto.randomUUID) {
+                        id = crypto.randomUUID();
+                    } else {
+                        id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+                            var r = Math.random() * 16 | 0;
+                            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+                        });
+                    }
+                    localStorage.setItem('oneroot2-did', id);
+                }
+                return id;
+            }
+
+            // ── Auto-unlock on page load ──
             (function() {
-                var stored = localStorage.getItem('oneroot2-uk');
-                if (stored) {
+                // Path 1: Master code (stored)
+                var storedMaster = localStorage.getItem('oneroot2-uk');
+                if (storedMaster) {
                     try {
-                        var code = atob(stored);
-                        sha256(code).then(function(hash) {
+                        var mc = atob(storedMaster);
+                        sha256(mc).then(function(hash) {
                             if (hash === UNLOCK_HASH) {
-                                doUnlock(code);
+                                doUnlock(mc);
                             } else {
                                 localStorage.removeItem('oneroot2-uk');
                             }
@@ -4085,6 +4102,39 @@
                     } catch(e) {
                         localStorage.removeItem('oneroot2-uk');
                     }
+                    return;
+                }
+
+                // Path 2: Unique code (verify device with API)
+                var storedCode = localStorage.getItem('oneroot2-uc');
+                if (storedCode) {
+                    var did = getDeviceId();
+                    fetch('/api/unlock', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ code: storedCode, device_id: did, action: 'verify', vol: 2 })
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.passphrase) {
+                            doUnlock(data.passphrase);
+                        } else {
+                            localStorage.removeItem('oneroot2-uc');
+                            var errEl = document.getElementById('unlock-error');
+                            var inp = document.getElementById('unlock-input');
+                            if (errEl) {
+                                errEl.style.color = '#C23B22';
+                                errEl.textContent = data.message || 'รหัสนี้ถูกใช้งานบนอุปกรณ์อื่น กรุณาใส่ Unlock Code อีกครั้ง';
+                            }
+                            if (inp) {
+                                setTimeout(function() {
+                                    inp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                                    inp.focus();
+                                }, 500);
+                            }
+                        }
+                    })
+                    .catch(function() { /* network err — skip auto-unlock */ });
                 }
             })();
 
@@ -4094,18 +4144,57 @@
 
             function tryUnlock() {
                 if (!unlockInput) return;
-                var code = unlockInput.value.trim().toLowerCase();
+                var code = unlockInput.value.trim();
                 if (!code) return;
-                sha256(code).then(function(hash) {
+
+                // Check if it's the master code first (client-side)
+                sha256(code.toLowerCase()).then(function(hash) {
                     if (hash === UNLOCK_HASH) {
-                        doUnlock(code).then(function() {
+                        // Master code — direct decrypt, no device limit
+                        doUnlock(code.toLowerCase()).then(function() {
+                            localStorage.setItem('oneroot2-uk', btoa(code.toLowerCase()));
                             var gate = document.getElementById('unlock-gate');
                             if (gate) gate.scrollIntoView({ behavior: 'smooth' });
                         });
-                    } else if (unlockError) {
-                        unlockError.textContent = 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
-                        unlockInput.select();
+                        return;
                     }
+
+                    // Unique code — go through API with device lock
+                    var did = getDeviceId();
+                    if (unlockError) {
+                        unlockError.style.color = '#C4956A';
+                        unlockError.textContent = 'กำลังตรวจสอบ...';
+                    }
+
+                    fetch('/api/unlock', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ code: code.toUpperCase(), device_id: did, action: 'unlock', vol: 2 })
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.passphrase) {
+                            doUnlock(data.passphrase).then(function() {
+                                localStorage.setItem('oneroot2-uc', code.toUpperCase());
+                                if (data.device_changed && unlockError) {
+                                    unlockError.style.color = '#C4956A';
+                                    unlockError.textContent = 'ย้ายมาเครื่องนี้แล้ว — อุปกรณ์เก่าจะถูกล็อก';
+                                }
+                                var gate = document.getElementById('unlock-gate');
+                                if (gate) gate.scrollIntoView({ behavior: 'smooth' });
+                            });
+                        } else if (unlockError) {
+                            unlockError.style.color = '#C23B22';
+                            unlockError.textContent = data.message || 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
+                            unlockInput.select();
+                        }
+                    })
+                    .catch(function() {
+                        if (unlockError) {
+                            unlockError.style.color = '#C23B22';
+                            unlockError.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+                        }
+                    });
                 });
             }
 

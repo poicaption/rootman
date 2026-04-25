@@ -1,0 +1,724 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ขอบคุณที่ซื้อ — รากแก้วการตลาด Vol.2 (The Invisible War)</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --bg: #121010;
+            --bg-alt: #1A1714;
+            --bg-card: #1E1B17;
+            --text: #C8C0B4;
+            --text-sec: #8A8078;
+            --accent: #C4956A;
+            --gold: #D4A574;
+            --heading: #E7E0D5;
+            --border: #2A2520;
+            --danger: #E85D5D;
+            --danger-dim: rgba(232,93,93,0.08);
+            --success: #6BCB77;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 1rem;
+        }
+        .container {
+            max-width: 520px;
+            width: 100%;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            text-align: center;
+            padding: 1.5rem 0 1rem;
+        }
+        .hero-icon {
+            font-size: 3rem;
+            margin-bottom: 0.8rem;
+            animation: bounce-in 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        @keyframes bounce-in {
+            0% { transform: scale(0) rotate(-10deg); opacity:0; }
+            60% { transform: scale(1.15) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); opacity:1; }
+        }
+        .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 0.3rem;
+        }
+        .hero .sub {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+        }
+        .hero .sub .check { color: var(--success); }
+
+        /* ── Warning banner ── */
+        .warn-banner {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: var(--danger-dim);
+            border: 1px solid rgba(232,93,93,0.25);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0 1.2rem;
+            animation: pulse-warn 2s ease-in-out 3;
+        }
+        @keyframes pulse-warn {
+            0%,100% { border-color: rgba(232,93,93,0.25); }
+            50% { border-color: rgba(232,93,93,0.6); }
+        }
+        .warn-icon { font-size: 1.3rem; flex-shrink:0; }
+        .warn-text {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--danger);
+            line-height: 1.5;
+        }
+        .warn-text span {
+            display: block;
+            font-weight: 400;
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            font-family: 'Sarabun', sans-serif;
+            margin-top: 0.15rem;
+        }
+
+        /* ── Code card ── */
+        .code-card {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 1.8rem 1.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .code-card::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at center, rgba(196,149,106,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .code-label {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        .code-display {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(1.3rem, 4.5vw, 1.65rem);
+            font-weight: 700;
+            font-style: normal;
+            color: var(--heading);
+            letter-spacing: 0.12em;
+            padding: 0.8rem 1rem;
+            background: rgba(196,149,106,0.06);
+            border: 1px dashed rgba(196,149,106,0.3);
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+            user-select: all;
+            cursor: pointer;
+            transition: background 0.2s;
+            min-height: 3.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .code-display:hover {
+            background: rgba(196,149,106,0.12);
+        }
+
+        /* ── Action buttons ── */
+        .action-row {
+            display: flex;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+        }
+        .btn-copy {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            background: var(--accent);
+            border: none;
+            color: #1C1917;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy:hover { background: var(--gold); }
+        .btn-copy.copied {
+            background: var(--success);
+            color: #fff;
+        }
+        .btn-copy .icon { font-size: 1rem; }
+        .btn-screenshot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-sec);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-screenshot:hover {
+            border-color: var(--text-sec);
+            color: var(--text);
+        }
+        .btn-screenshot .icon { font-size: 1rem; }
+        .code-saved-msg {
+            font-size: 0.75rem;
+            color: var(--success);
+            min-height: 1.2rem;
+            transition: opacity 0.3s;
+            opacity: 0;
+        }
+        .code-saved-msg.show { opacity:1; }
+
+        /* ── Quick steps ── */
+        .quick-steps {
+            margin: 1.5rem 0;
+        }
+        .quick-steps-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--heading);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .step-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .step-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 0.9rem 1rem;
+            transition: border-color 0.3s;
+        }
+        .step-card.active {
+            border-color: var(--accent);
+        }
+        .step-num {
+            flex-shrink: 0;
+            width: 1.8rem;
+            height: 1.8rem;
+            border-radius: 50%;
+            background: rgba(196,149,106,0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-card.done .step-num {
+            background: var(--success);
+            border-color: var(--success);
+            color: #fff;
+        }
+        .step-card.done .step-num::after { content: '✓'; }
+        .step-card.done .step-num span { display: none; }
+        .step-body {
+            flex: 1;
+            min-width: 0;
+        }
+        .step-body strong {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--heading);
+            display: block;
+            line-height: 1.5;
+        }
+        .step-body .hint {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+            margin-top: 0.15rem;
+        }
+        .step-body .hint code {
+            background: rgba(196,149,106,0.1);
+            color: var(--accent);
+            padding: 0.05rem 0.35rem;
+            border-radius: 4px;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.78rem;
+        }
+
+        /* ── CTA ── */
+        .cta-area {
+            text-align: center;
+            margin: 1.2rem 0;
+        }
+        .go-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 2.5rem;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #1C1917;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(196,149,106,0.3);
+        }
+        .go-btn:hover {
+            background: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(196,149,106,0.4);
+        }
+
+        /* ── Bonus ── */
+        .bonus-collapse {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .bonus-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: none;
+            border: none;
+            color: var(--heading);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+        .bonus-toggle .arrow {
+            color: var(--text-sec);
+            transition: transform 0.3s;
+            font-size: 0.9rem;
+        }
+        .bonus-toggle.open .arrow { transform: rotate(180deg); }
+        .bonus-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .bonus-content.open { max-height: 500px; }
+        .bonus-inner {
+            padding: 0 1rem 1rem;
+        }
+        .bonus-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bonus-list li {
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            padding: 0.3rem 0;
+            line-height: 1.6;
+        }
+        .bonus-list li::before {
+            content: '✦ ';
+            color: var(--accent);
+        }
+        .bonus-note {
+            font-size: 0.72rem;
+            color: var(--text-sec);
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+
+        /* ── Device note ── */
+        .device-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            background: rgba(196,149,106,0.04);
+            border: 1px solid rgba(196,149,106,0.12);
+            border-radius: 10px;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+        }
+        .device-note .icon { font-size: 1rem; flex-shrink:0; margin-top:0.1rem; }
+        .device-note .txt {
+            font-size: 0.75rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+        }
+        .device-note .txt strong { color: var(--text); }
+
+        /* ── Third Eye ── */
+        .te-note {
+            background: rgba(196,149,106,0.04);
+            border: 1px solid rgba(196,149,106,0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 0.8rem 0;
+        }
+        .te-head {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .te-body {
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+        }
+        .te-body strong { color: var(--text); }
+
+        /* ── Footer ── */
+        .ty-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.7rem;
+            color: var(--text-sec);
+            opacity: 0.5;
+        }
+
+        /* ── Loading state ── */
+        .loading .code-display {
+            color: var(--text-sec);
+            font-style: normal;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.9rem;
+        }
+        .loading .btn-copy,
+        .loading .btn-screenshot {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        /* ── Error state ── */
+        .error-state .code-card {
+            border-color: var(--danger);
+        }
+        .error-state .code-display {
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--text-sec);
+            border-color: rgba(232,93,93,0.2);
+            background: var(--danger-dim);
+        }
+        .error-state .warn-banner,
+        .error-state .action-row,
+        .error-state .quick-steps,
+        .error-state .cta-area,
+        .error-state .bonus-collapse,
+        .error-state .device-note,
+        .error-state .te-note { display: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 400px) {
+            .action-row { flex-direction: column; }
+            .btn-screenshot { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container loading" id="app">
+
+        <!-- Hero -->
+        <div class="hero">
+            <div class="hero-icon">🎁</div>
+            <h1>ขอบคุณที่ไว้วางใจครับ</h1>
+            <p class="sub"><span class="check">✓</span> ชำระเงินสำเร็จ — นี่คือ Unlock Code ของ Vol.2 (The Invisible War)</p>
+        </div>
+
+        <!-- Warning -->
+        <div class="warn-banner">
+            <div class="warn-icon">⚠️</div>
+            <div class="warn-text">
+                รหัสนี้แสดงครั้งเดียวเท่านั้น — บันทึกไว้ตอนนี้เลย
+                <span>คัดลอก หรือ จับภาพหน้าจอ (Screenshot) ก่อนปิดหน้านี้</span>
+            </div>
+        </div>
+
+        <!-- Code Card -->
+        <div class="code-card">
+            <div class="code-label">🔑 Your Unlock Code</div>
+            <div class="code-display" id="code-display">กำลังโหลด...</div>
+            <div class="action-row">
+                <button class="btn-copy" id="btn-copy">
+                    <span class="icon">📋</span> คัดลอกรหัส
+                </button>
+                <button class="btn-screenshot" id="btn-screenshot">
+                    <span class="icon">📸</span> Screenshot
+                </button>
+            </div>
+            <div class="code-saved-msg" id="saved-msg">&nbsp;</div>
+        </div>
+
+        <!-- Quick Steps -->
+        <div class="quick-steps">
+            <div class="quick-steps-title">ทำ 3 ขั้นตอนนี้เพื่อปลดล็อก</div>
+            <div class="step-cards">
+                <div class="step-card active" id="step1">
+                    <div class="step-num"><span>1</span></div>
+                    <div class="step-body">
+                        <strong>คัดลอกรหัสด้านบน</strong>
+                        <div class="hint">กดปุ่ม "📋 คัดลอกรหัส" หรือกดที่ตัว Code ได้เลย</div>
+                    </div>
+                </div>
+                <div class="step-card" id="step2">
+                    <div class="step-num"><span>2</span></div>
+                    <div class="step-body">
+                        <strong>ไปหน้าหนังสือ → เลื่อนล่างสุด</strong>
+                        <div class="hint">จะเจอช่อง "มี Unlock Code แล้ว?" รออยู่</div>
+                    </div>
+                </div>
+                <div class="step-card" id="step3">
+                    <div class="step-num"><span>3</span></div>
+                    <div class="step-body">
+                        <strong>วางรหัส → กด "ปลดล็อก"</strong>
+                        <div class="hint">มือถือ: กดค้าง → วาง &nbsp;|&nbsp; คอม: <code>Ctrl+V</code> แล้วกดปลดล็อก — เปิดอ่านได้ทันที 🎉</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-area">
+            <a href="/vol2" class="go-btn">เริ่มอ่าน Vol.2 →</a>
+        </div>
+
+        <!-- Device note -->
+        <div class="device-note">
+            <div class="icon">📱</div>
+            <div class="txt">
+                <strong>Code ผูกกับอุปกรณ์ 1 เครื่อง</strong> — ระบบจะจำเครื่องที่ใช้ปลดล็อกครั้งแรก
+                หากต้องการย้ายเครื่อง ใส่ Code อีกครั้งบนเครื่องใหม่ (เครื่องเดิมจะถูกปลดออก)
+            </div>
+        </div>
+
+        <!-- Bonus (collapsible) -->
+        <div class="bonus-collapse">
+            <button class="bonus-toggle" id="bonus-toggle">
+                <span>🎁 สิ่งที่คุณปลดล็อกแล้ว (12 บท + 5 บทพิเศษ)</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="bonus-content" id="bonus-content">
+                <div class="bonus-inner">
+                    <ul class="bonus-list">
+                        <li>12 บทเต็ม — สนามรบดิจิทัล จิตวิทยาสมัยใหม่</li>
+                        <li>Bonus 1: The Lab — ห้องทดลองสนามจริง</li>
+                        <li>Bonus 2: 7 Days — วงจร 7 วันของผู้บริโภคยุคใหม่</li>
+                        <li>Bonus 3: The AI Marketer — มาร์เก็ตติ้งยุค AI</li>
+                        <li>Bonus 4: The Thai Battlefield — สมรภูมิตลาดไทย</li>
+                        <li>Bonus 5: The War Room — ห้องวอร์รูม กลยุทธ์ระดับสูง</li>
+                        <li>ภาคผนวก + One-Page Summary</li>
+                    </ul>
+                    <p class="bonus-note">📖 อ่านได้ตลอดชีพ — ไม่มีวันหมดอายุ</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Eye -->
+        <div class="te-note">
+            <div class="te-head">🔮 ตาที่สาม — บทเรียนสุดท้ายก่อนเข้าเล่ม</div>
+            <div class="te-body">
+                <strong>Post-Purchase Rationalization + Endowment Effect</strong> — ตอนนี้สมองของคุณกำลัง «ยืนยันกับตัวเอง» ว่าการซื้อครั้งนี้เป็นการตัดสินใจที่ดี เพราะความรู้สึก «เป็นเจ้าของ» ทำให้คุณให้คุณค่ากับสิ่งที่ได้มามากกว่าก่อนซื้อ — นี่คือบทที่ 7 และ 9 ที่ทำงานอยู่ตรงนี้ ก่อนคุณจะเปิดอ่านด้วยซ้ำ
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="ty-footer">© รากแก้วการตลาด — The One Root of Marketing</div>
+    </div>
+
+    <script>
+    (function() {
+        var app = document.getElementById('app');
+        var codeEl = document.getElementById('code-display');
+        var copyBtn = document.getElementById('btn-copy');
+        var ssBtn = document.getElementById('btn-screenshot');
+        var savedMsg = document.getElementById('saved-msg');
+        var step1 = document.getElementById('step1');
+        var bonusToggle = document.getElementById('bonus-toggle');
+        var bonusContent = document.getElementById('bonus-content');
+
+        var currentCode = '';
+
+        /* ── Bonus toggle ── */
+        bonusToggle.addEventListener('click', function() {
+            bonusToggle.classList.toggle('open');
+            bonusContent.classList.toggle('open');
+        });
+
+        /* ── Copy ── */
+        function doCopy() {
+            if (!currentCode) return;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(currentCode).then(onCopied);
+            } else {
+                var ta = document.createElement('textarea');
+                ta.value = currentCode;
+                ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                onCopied();
+            }
+        }
+        function onCopied() {
+            copyBtn.innerHTML = '<span class="icon">✓</span> คัดลอกแล้ว!';
+            copyBtn.classList.add('copied');
+            savedMsg.textContent = '✓ รหัสอยู่ในคลิปบอร์ดแล้ว — ไปวางที่หน้าหนังสือได้เลย';
+            savedMsg.classList.add('show');
+            step1.classList.remove('active');
+            step1.classList.add('done');
+            document.getElementById('step2').classList.add('active');
+            setTimeout(function() {
+                copyBtn.innerHTML = '<span class="icon">📋</span> คัดลอกอีกครั้ง';
+                copyBtn.classList.remove('copied');
+            }, 4000);
+        }
+
+        copyBtn.addEventListener('click', doCopy);
+        codeEl.addEventListener('click', doCopy);
+
+        /* ── Screenshot reminder ── */
+        ssBtn.addEventListener('click', function() {
+            savedMsg.textContent = '💡 กด Power+Volume Down (มือถือ) หรือ Win+Shift+S (คอม) เพื่อจับภาพหน้าจอ';
+            savedMsg.classList.add('show');
+            ssBtn.innerHTML = '<span class="icon">👍</span> ดีมาก!';
+            setTimeout(function() {
+                ssBtn.innerHTML = '<span class="icon">📸</span> Screenshot';
+            }, 3000);
+        });
+
+        /* ── Show code ── */
+        function showCode(code) {
+            currentCode = code;
+            app.classList.remove('loading');
+            codeEl.textContent = code;
+        }
+
+        function showError(msg) {
+            app.classList.remove('loading');
+            app.classList.add('error-state');
+            codeEl.textContent = msg;
+            /* show a link back */
+            var linkDiv = document.createElement('div');
+            linkDiv.style.cssText = 'margin-top:1.5rem;text-align:center;';
+            linkDiv.innerHTML = '<a href="/vol2" style="color:var(--accent);font-family:Prompt,sans-serif;font-size:0.9rem;">← กลับหน้าหลัก</a>';
+            document.querySelector('.code-card').appendChild(linkDiv);
+        }
+
+        /* ── Fetch code from API ── */
+        var params = new URLSearchParams(window.location.search);
+        var sessionId = params.get('session_id');
+
+        if (!sessionId) {
+            showError('ไม่พบข้อมูลการชำระเงิน');
+            return;
+        }
+
+        fetch('/api/verify-session?vol=2&session_id=' + encodeURIComponent(sessionId))
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                if (data.code) {
+                    showCode(data.code);
+                    /* Fire Purchase pixel with Advanced Matching */
+                    if (typeof fbq === 'function') {
+                        /* Re-init with customer email for Advanced Matching */
+                        if (data.customer_email) {
+                            fbq('init', '1429938142262731', {
+                                em: data.customer_email
+                            });
+                        }
+                        fbq('track', 'Purchase', {
+                            value: 1890.00,
+                            currency: 'THB',
+                            content_name: 'รากแก้วการตลาด Vol.2 (The Invisible War)',
+                            content_type: 'product',
+                            content_ids: ['oneroot-book-v2'],
+                            num_items: 1
+                        });
+                    }
+                } else {
+                    showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้');
+                }
+            })
+            .catch(function() {
+                showError('เกิดข้อผิดพลาด — กรุณารีเฟรชหน้านี้');
+            });
+    })();
+    </script>
+</body>
+</html>
