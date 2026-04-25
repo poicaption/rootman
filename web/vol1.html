@@ -5144,5 +5144,296 @@
         })();
     
     </script>
+
+    <!-- ═══ VOL.2 CROSS-SELL (only for unlocked Vol.1 readers) ═══ -->
+    <style>
+        /* Floating chip bottom-right */
+        .v2-chip {
+            position: fixed;
+            right: 18px;
+            bottom: 18px;
+            z-index: 9990;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            max-width: 320px;
+            padding: 12px 14px 12px 16px;
+            background: linear-gradient(135deg, #0a0f1c 0%, #131a2e 100%);
+            border: 1px solid rgba(0, 240, 255, 0.25);
+            border-radius: 10px;
+            box-shadow:
+                0 0 0 1px rgba(0, 240, 255, 0.05),
+                0 12px 32px rgba(0, 0, 0, 0.4),
+                0 0 28px rgba(0, 240, 255, 0.12);
+            color: #c8d4e8;
+            font-family: 'Sarabun', 'IBM Plex Sans Thai', sans-serif;
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.5s cubic-bezier(0.16,1,0.3,1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .v2-chip.visible { display: flex; }
+        .v2-chip.in { opacity: 1; transform: translateY(0); }
+        .v2-chip::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 18px; right: 18px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00f0ff, #ff2b7a, transparent);
+            opacity: 0.6;
+        }
+        .v2-chip-glyph {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #1a2332, #0f1923);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #00f0ff;
+            letter-spacing: 0.05em;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+        .v2-chip-body { flex: 1; min-width: 0; }
+        .v2-chip-tag {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 9px;
+            color: #ff2b7a;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 2px;
+        }
+        .v2-chip-text {
+            display: block;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .v2-chip-link {
+            color: #00f0ff;
+            text-decoration: none;
+            font-size: 11px;
+            font-family: 'JetBrains Mono', monospace;
+            border-bottom: 1px dotted rgba(0, 240, 255, 0.4);
+            margin-top: 3px;
+            display: inline-block;
+        }
+        .v2-chip-link:hover { color: #ff2b7a; border-color: #ff2b7a; }
+        .v2-chip-close {
+            position: absolute;
+            top: 4px; right: 6px;
+            width: 18px; height: 18px;
+            border: none;
+            background: transparent;
+            color: #4a5470;
+            font-size: 14px;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            border-radius: 3px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .v2-chip-close:hover { color: #ff2b7a; background: rgba(255,43,122,0.08); }
+
+        /* End-of-book inline card — appears after appendix on TOC end */
+        .v2-endcard {
+            display: none;
+            max-width: 720px;
+            margin: 3rem auto 2rem;
+            padding: 2rem 1.8rem;
+            background: linear-gradient(135deg, #0a0f1c 0%, #131a2e 100%);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 12px;
+            color: #c8d4e8;
+            font-family: 'Sarabun', 'IBM Plex Sans Thai', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        body.unlocked .v2-endcard { display: block; }
+        .v2-endcard::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #00f0ff, #ff2b7a, transparent);
+        }
+        .v2-endcard-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: #ff2b7a;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .v2-endcard h3 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 12px;
+            line-height: 1.4;
+        }
+        .v2-endcard h3 em {
+            font-style: normal;
+            background: linear-gradient(135deg, #00f0ff, #ff2b7a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .v2-endcard p {
+            font-size: 0.95rem;
+            line-height: 1.85;
+            color: #c8d4e8;
+            margin: 0 0 18px;
+        }
+        .v2-endcard-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, #ff2b7a, #ff5e8a);
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border-radius: 6px;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5), 0 0 24px rgba(255,43,122,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .v2-endcard-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.7), 0 0 32px rgba(255,43,122,0.45);
+        }
+        .v2-endcard-meta {
+            display: block;
+            margin-top: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #7a86a0;
+            letter-spacing: 0.04em;
+        }
+        .v2-endcard-meta a { color: #00f0ff; text-decoration: none; border-bottom: 1px dotted rgba(0,240,255,0.4); }
+
+        @media (max-width: 600px) {
+            .v2-chip { right: 10px; bottom: 10px; max-width: calc(100vw - 20px); font-size: 12px; }
+            .v2-endcard { padding: 1.5rem 1.3rem; margin: 2rem 1rem; }
+            .v2-endcard h3 { font-size: 1.2rem; }
+        }
+    </style>
+
+    <!-- Floating chip -->
+    <div class="v2-chip" id="v2-chip" role="complementary" aria-label="แนะนำ Vol.2">
+        <button class="v2-chip-close" id="v2-chip-close" aria-label="ปิด">×</button>
+        <div class="v2-chip-glyph">V.II</div>
+        <div class="v2-chip-body">
+            <span class="v2-chip-tag">// new release</span>
+            <span class="v2-chip-text">รากแก้วการตลาด ภาค 2</span>
+            <a href="/vol2-sale" class="v2-chip-link" id="v2-chip-link">สงครามที่มองไม่เห็น →</a>
+        </div>
+    </div>
+
+    <!-- End-of-book inline card -->
+    <div class="v2-endcard" id="v2-endcard">
+        <span class="v2-endcard-tag">// next chapter</span>
+        <h3>อ่านจบ Vol.1 แล้ว — <em>ภาค 2 พร้อมแล้ว</em></h3>
+        <p>ถ้า Vol.1 สอนคุณว่า <strong style="color:#ffffff;">ทำไมคนซื้อ</strong> — Vol.2 จะสอนคุณว่า <strong style="color:#00f0ff;">ทำอย่างไรให้คนเห็นคุณ ก่อนเลื่อนผ่าน</strong> ในยุคที่ Algorithm กลืนทุกความสนใจ</p>
+        <a href="/vol2-sale" class="v2-endcard-cta" id="v2-endcard-cta">ดู Vol.2 — สงครามที่มองไม่เห็น →</a>
+        <span class="v2-endcard-meta">// 12 บท + 5 field reports &bull; <a href="/vol2">scan บทนำฟรี</a></span>
+    </div>
+
+    <script>
+    (function() {
+        var DISMISS_KEY = 'vol2-promo-dismissed';
+        var SHOW_DELAY_MS = 30000; // 30s after page idle to avoid being annoying
+
+        function isUnlocked() {
+            return document.body.classList.contains('unlocked')
+                || !!localStorage.getItem('oneroot-uk')
+                || !!localStorage.getItem('oneroot-uc');
+        }
+
+        function isDismissed() {
+            try { return localStorage.getItem(DISMISS_KEY) === '1'; } catch(e) { return false; }
+        }
+
+        function inject() {
+            // Move endcard to the very end of #toc-list or after main content
+            var endcard = document.getElementById('v2-endcard');
+            var toc = document.getElementById('toc-list') || document.querySelector('.toc-section') || document.querySelector('main');
+            if (endcard && toc && toc.parentNode) {
+                toc.parentNode.insertBefore(endcard, toc.nextSibling);
+            }
+        }
+
+        function showChip() {
+            if (isDismissed() || !isUnlocked()) return;
+            var chip = document.getElementById('v2-chip');
+            if (!chip) return;
+            chip.classList.add('visible');
+            // next frame for transition
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() { chip.classList.add('in'); });
+            });
+        }
+
+        function dismiss() {
+            try { localStorage.setItem(DISMISS_KEY, '1'); } catch(e) {}
+            var chip = document.getElementById('v2-chip');
+            if (chip) {
+                chip.classList.remove('in');
+                setTimeout(function() { chip.classList.remove('visible'); }, 500);
+            }
+        }
+
+        function track(label) {
+            try { if (window.fbq) fbq('trackCustom', 'Vol2CrossSellClick', { from: 'vol1', placement: label }); } catch(e) {}
+        }
+
+        function init() {
+            inject();
+            var closeBtn = document.getElementById('v2-chip-close');
+            if (closeBtn) closeBtn.addEventListener('click', dismiss);
+            var chipLink = document.getElementById('v2-chip-link');
+            if (chipLink) chipLink.addEventListener('click', function() { track('chip'); });
+            var endCta = document.getElementById('v2-endcard-cta');
+            if (endCta) endCta.addEventListener('click', function() { track('endcard'); });
+
+            // Show chip after a delay (only if unlocked)
+            if (isUnlocked() && !isDismissed()) {
+                setTimeout(showChip, SHOW_DELAY_MS);
+            } else {
+                // Listen for unlock event later (class added to body)
+                var mo = new MutationObserver(function(muts) {
+                    muts.forEach(function(m) {
+                        if (m.attributeName === 'class' && isUnlocked()) {
+                            mo.disconnect();
+                            setTimeout(showChip, SHOW_DELAY_MS);
+                        }
+                    });
+                });
+                mo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
 </body>
 </html>

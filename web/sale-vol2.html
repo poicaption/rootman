@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วการตลาด ภาค 2 — สงครามที่มองไม่เห็น</title>
+    <meta name="description" content="ในยุคที่ Algorithm กลืนกินทุกความสนใจ — คนที่เข้าใจสนามรบ คือคนที่ชนะ. 12 บท + 5 บทพิเศษ ของจิตวิทยาในยุคดิจิทัล">
+    <meta property="og:title" content="รากแก้วการตลาด Vol.2 — สงครามที่มองไม่เห็น">
+    <meta property="og:description" content="เมื่อ Algorithm คือสนามรบใหม่ — คนที่อ่านสมรภูมิออก คือคนที่ครองมัน">
+    <meta property="og:type" content="book">
+    <meta property="og:locale" content="th_TH">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Sarabun:wght@300;400;600;700&family=Prompt:wght@400;600;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel -->
+    <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1429938142262731');
+    fbq('track', 'PageView');
+    fbq('track', 'ViewContent', { content_ids: ['oneroot-book-v2'], content_type: 'product', value: 1890, currency: 'THB' });
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1429938142262731&ev=PageView&noscript=1"/></noscript>
+
+    <style>
+        :root {
+            --void: #050810;
+            --void-2: #0a0f1c;
+            --panel: #0e1424;
+            --panel-2: #131a2e;
+            --grid: rgba(0,240,255,0.06);
+            --line: rgba(120,160,210,0.12);
+            --line-2: rgba(120,160,210,0.22);
+            --text: #c8d4e8;
+            --text-dim: #7a86a0;
+            --text-faint: #4a5470;
+            --heading: #ffffff;
+            --cyan: #00f0ff;
+            --cyan-soft: rgba(0,240,255,0.12);
+            --magenta: #ff2b7a;
+            --magenta-soft: rgba(255,43,122,0.12);
+            --amber: #ffb547;
+            --amber-soft: rgba(255,181,71,0.12);
+            --green: #4dffb5;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+            --display: 'Space Grotesk', 'Prompt', sans-serif;
+            --thai: 'IBM Plex Sans Thai', 'Sarabun', sans-serif;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
+        body {
+            font-family: var(--thai);
+            background: var(--void);
+            color: var(--text);
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Background grid + scanlines */
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 0%, transparent 80%);
+        }
+        body::after {
+            content: '';
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: 9997;
+            background: repeating-linear-gradient(
+                to bottom,
+                rgba(255,255,255,0.012) 0px,
+                rgba(255,255,255,0.012) 1px,
+                transparent 1px,
+                transparent 3px
+            );
+            opacity: 0.7;
+        }
+
+        /* Top progress bar */
+        #progress-bar {
+            position: fixed; top: 0; left: 0;
+            height: 2px; width: 0%;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta));
+            box-shadow: 0 0 12px var(--cyan), 0 0 24px var(--magenta);
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
+
+        /* Status bar — mock terminal */
+        .statusbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            z-index: 9999;
+            background: rgba(5,8,16,0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line);
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            color: var(--text-dim);
+            padding: 0.45rem 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            letter-spacing: 0.04em;
+        }
+        .statusbar-left { display: flex; align-items: center; gap: 1rem; }
+        .statusbar-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot { 0%,100%{opacity:.6} 50%{opacity:1} }
+        .statusbar-tag { color: var(--cyan); }
+        .statusbar-right { color: var(--text-faint); }
+        @media (max-width: 640px) {
+            .statusbar { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+            .statusbar-right { display: none; }
+        }
+
+        /* Layout */
+        .sec {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .sec-wide {
+            max-width: 100%;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        .sec p { margin-bottom: 0.9rem; }
+
+        /* Section labels */
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            color: var(--cyan);
+            text-transform: uppercase;
+            margin-bottom: 0.7rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .sec-label::before {
+            content: '◢';
+            color: var(--magenta);
+            font-size: 0.55rem;
+        }
+        .sec-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.35rem, 3.8vw, 1.8rem);
+            font-weight: 700;
+            color: var(--heading);
+            line-height: 1.45;
+            margin-bottom: 1.4rem;
+            letter-spacing: -0.01em;
+        }
+        .sec-title em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 7rem 1.5rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,240,255,0.08), transparent 60%),
+                radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255,43,122,0.06), transparent 60%),
+                var(--void);
+            border-bottom: 1px solid var(--line);
+        }
+        .hero::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at 50% 50%, #000, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at 50% 50%, #000, transparent 70%);
+            pointer-events: none;
+        }
+        /* Floating particles */
+        .hero-particles {
+            position: absolute; inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(1px 1px at 12% 22%, rgba(0,240,255,0.5), transparent),
+                radial-gradient(1px 1px at 88% 18%, rgba(255,43,122,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 22% 78%, rgba(255,255,255,0.25), transparent),
+                radial-gradient(1px 1px at 68% 82%, rgba(0,240,255,0.45), transparent),
+                radial-gradient(1px 1px at 45% 8%, rgba(255,181,71,0.4), transparent),
+                radial-gradient(1.5px 1.5px at 55% 90%, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 8% 55%, rgba(0,240,255,0.35), transparent),
+                radial-gradient(1px 1px at 92% 50%, rgba(255,43,122,0.4), transparent);
+        }
+        .hero-inner {
+            max-width: 720px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-pretag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--cyan);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.35rem 0.9rem;
+            border: 1px solid var(--cyan-soft);
+            border-radius: 4px;
+            background: rgba(0,240,255,0.04);
+            margin-bottom: 1.6rem;
+            box-shadow: inset 0 0 20px rgba(0,240,255,0.04);
+        }
+        .hero-pretag-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+        .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.7rem, 5.5vw, 2.6rem);
+            font-weight: 700;
+            line-height: 1.35;
+            margin-bottom: 1.4rem;
+            color: var(--heading);
+            letter-spacing: -0.02em;
+        }
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan) 0%, #6cf 30%, var(--magenta) 70%, var(--amber) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: hue-shift 8s ease-in-out infinite;
+            text-shadow: 0 0 60px rgba(0,240,255,0.18);
+        }
+        @keyframes hue-shift {
+            0%,100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .hero-sub {
+            font-size: 1.02rem;
+            color: var(--text-dim);
+            line-height: 1.85;
+            margin-bottom: 1rem;
+            max-width: 540px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-hook {
+            font-family: var(--mono);
+            font-size: 0.92rem;
+            color: var(--cyan);
+            line-height: 1.8;
+            margin: 1.6rem auto 2.2rem;
+            max-width: 520px;
+            padding: 1rem 1.2rem;
+            border-left: 2px solid var(--magenta);
+            background: rgba(255,43,122,0.04);
+            text-align: left;
+            position: relative;
+        }
+        .hero-hook::before {
+            content: '> ';
+            color: var(--magenta);
+            font-weight: 700;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 2.4rem;
+            background: linear-gradient(135deg, var(--magenta), #ff5e8a);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(255,43,122,0.5),
+                0 0 30px rgba(255,43,122,0.4),
+                0 8px 30px rgba(255,43,122,0.25);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .hero-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 4s ease-in-out infinite;
+        }
+        .hero-cta:hover {
+            transform: translateY(-2px);
+            box-shadow:
+                0 0 0 1px rgba(255,43,122,0.7),
+                0 0 40px rgba(255,43,122,0.5),
+                0 12px 40px rgba(255,43,122,0.35);
+        }
+        @keyframes btn-shine {
+            0%, 70%, 100% { left: -100%; }
+            85% { left: 150%; }
+        }
+        .hero-note {
+            font-size: 0.82rem;
+            color: var(--text-faint);
+            margin-top: 1.2rem;
+            font-family: var(--mono);
+        }
+        .hero-note a {
+            color: var(--cyan);
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(0,240,255,0.4);
+            transition: color 0.2s;
+        }
+        .hero-note a:hover { color: var(--magenta); border-color: var(--magenta); }
+
+        /* Volume tag (V.II / VOL_02) */
+        .vol-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--magenta);
+            letter-spacing: 0.3em;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--magenta-soft);
+        }
+
+        /* Cards / panels */
+        .panel {
+            background: linear-gradient(145deg, var(--panel), var(--void-2));
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.5rem 1.6rem;
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 40%; height: 1px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+        }
+        .panel::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 40%; height: 1px;
+            background: linear-gradient(270deg, var(--magenta), transparent);
+        }
+
+        /* Scenario rows */
+        .scenario {
+            padding: 1rem 1.1rem;
+            border: 1px solid var(--line);
+            border-left: 2px solid var(--text-faint);
+            background: rgba(14,20,36,0.5);
+            margin-bottom: 0.8rem;
+            border-radius: 4px;
+            transition: border-color 0.3s, background 0.3s, transform 0.2s;
+            position: relative;
+        }
+        .scenario::before {
+            content: attr(data-id);
+            position: absolute;
+            top: 0.6rem; right: 0.8rem;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            color: var(--text-faint);
+            letter-spacing: 0.1em;
+        }
+        .scenario:hover {
+            border-left-color: var(--cyan);
+            background: rgba(0,240,255,0.04);
+            transform: translateX(2px);
+        }
+        .scenario-q {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.96rem;
+            color: var(--heading);
+            margin-bottom: 0.3rem;
+        }
+        .scenario-a {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        /* Dark band */
+        .dark-band {
+            background:
+                radial-gradient(ellipse at center, rgba(0,240,255,0.06), transparent 60%),
+                radial-gradient(ellipse at 30% 50%, rgba(255,43,122,0.05), transparent 60%),
+                #04060e;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .dark-band::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                radial-gradient(1px 1px at 10% 30%, rgba(0,240,255,0.4), transparent),
+                radial-gradient(1px 1px at 30% 70%, rgba(255,43,122,0.35), transparent),
+                radial-gradient(1.5px 1.5px at 50% 50%, rgba(255,255,255,0.2), transparent),
+                radial-gradient(1px 1px at 70% 80%, rgba(0,240,255,0.3), transparent),
+                radial-gradient(1px 1px at 90% 20%, rgba(255,43,122,0.4), transparent);
+            pointer-events: none;
+        }
+        .dark-band-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .dark-band p { font-size: 1rem; line-height: 1.85; margin-bottom: 0.6rem; }
+        .dark-band-pre {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--cyan);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .big-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3.2vw, 1.5rem);
+            font-weight: 600;
+            line-height: 1.6;
+            color: var(--heading);
+            margin: 1rem 0;
+            text-shadow: 0 0 30px rgba(0,240,255,0.15);
+        }
+        .big-quote strong {
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        .dark-band-sub {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-top: 1.2rem;
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            border-left: 2px solid var(--cyan);
+            background: linear-gradient(90deg, rgba(0,240,255,0.05), transparent);
+            padding: 1rem 1.3rem;
+            margin: 1.6rem 0;
+            font-family: var(--thai);
+            font-size: 0.98rem;
+            color: var(--text);
+            line-height: 1.85;
+            border-radius: 0 6px 6px 0;
+            font-style: italic;
+        }
+        .pull-quote cite {
+            display: block;
+            font-family: var(--mono);
+            font-style: normal;
+            font-size: 0.72rem;
+            color: var(--text-faint);
+            margin-top: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* Compare grid */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .compare-col {
+            padding: 1.5rem 1.4rem;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .compare-col h4 {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .compare-col ul { list-style: none; padding: 0; }
+        .compare-col li {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            padding: 0.4rem 0;
+            color: var(--text);
+        }
+        .compare-old {
+            background: rgba(20,25,40,0.6);
+            border: 1px solid var(--line);
+        }
+        .compare-old h4 {
+            color: var(--text-faint);
+            border-bottom: 1px solid var(--line);
+        }
+        .compare-old li::before { content: '× '; color: var(--text-faint); font-weight: 700; }
+        .compare-old li { color: var(--text-dim); }
+        .compare-new {
+            background: linear-gradient(145deg, rgba(0,240,255,0.06), rgba(255,43,122,0.04));
+            border: 1px solid var(--cyan-soft);
+            box-shadow: inset 0 0 30px rgba(0,240,255,0.04), 0 0 30px rgba(0,240,255,0.06);
+        }
+        .compare-new::before {
+            content: 'OUTPUT';
+            position: absolute;
+            top: -1px; right: 12px;
+            font-family: var(--mono);
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: var(--void);
+            background: var(--cyan);
+            padding: 0.18rem 0.7rem;
+            border-radius: 0 0 4px 4px;
+            letter-spacing: 0.12em;
+        }
+        .compare-new h4 {
+            color: var(--cyan);
+            border-bottom: 1px solid var(--cyan-soft);
+        }
+        .compare-new li::before { content: '▸ '; color: var(--cyan); font-weight: 700; }
+
+        /* Benefit cards (chapter modules) */
+        .modules {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .module {
+            background: linear-gradient(145deg, var(--panel), var(--void-2));
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.6rem 1.6rem;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        .module::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--magenta), transparent);
+            opacity: 0.4;
+        }
+        .module:hover {
+            border-color: var(--cyan-soft);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,240,255,0.06);
+        }
+        .module:hover::before { opacity: 1; }
+        .module-id {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            font-weight: 500;
+            color: var(--text-faint);
+            letter-spacing: 0.18em;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+        }
+        .module-id span { color: var(--cyan); }
+        .module-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 0.55rem;
+            line-height: 1.5;
+        }
+        .module-desc {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.85;
+            margin: 0 0 0.7rem;
+        }
+        .module-tag {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--magenta);
+            background: var(--magenta-soft);
+            border: 1px solid rgba(255,43,122,0.2);
+            padding: 0.18rem 0.55rem;
+            border-radius: 3px;
+            letter-spacing: 0.06em;
+            margin-top: 0.4rem;
+        }
+
+        /* Mid CTA */
+        .mid-cta {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .mid-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 0.95rem 2.4rem;
+            background: linear-gradient(135deg, var(--magenta), #ff5e8a);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5), 0 0 24px rgba(255,43,122,0.3);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+        .mid-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 4s ease-in-out infinite;
+        }
+        .mid-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,43,122,0.7), 0 0 36px rgba(255,43,122,0.5); }
+        .mid-cta-note {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--text-faint);
+            margin-top: 0.7rem;
+            letter-spacing: 0.04em;
+        }
+
+        /* Proof stats */
+        .proof-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            padding: 2.5rem 1.5rem;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+        .proof-item {
+            text-align: center;
+            padding: 1.4rem 0.8rem;
+            background: linear-gradient(145deg, var(--panel), var(--void-2));
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+        .proof-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            width: 30%; height: 1px;
+            transform: translateX(-50%);
+            background: var(--cyan);
+            box-shadow: 0 0 10px var(--cyan);
+            opacity: 0.5;
+        }
+        .proof-num {
+            font-family: var(--display);
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.4rem;
+        }
+        .proof-label {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 0.08em;
+        }
+
+        /* Who grid */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .who-col {
+            padding: 1.5rem 1.4rem;
+            border-radius: 8px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+        }
+        .who-col h4 {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.88rem;
+            line-height: 1.75;
+            padding: 0.35rem 0;
+        }
+        .who-yes {
+            border: 1px solid rgba(77,255,181,0.2);
+            background: linear-gradient(145deg, rgba(77,255,181,0.05), transparent);
+        }
+        .who-yes h4 {
+            color: var(--green);
+            border-bottom: 1px solid rgba(77,255,181,0.2);
+        }
+        .who-yes li::before { content: '[+] '; color: var(--green); font-family: var(--mono); }
+        .who-no {
+            border: 1px solid rgba(255,43,122,0.2);
+            background: linear-gradient(145deg, rgba(255,43,122,0.04), transparent);
+        }
+        .who-no h4 {
+            color: var(--magenta);
+            border-bottom: 1px solid var(--magenta-soft);
+        }
+        .who-no li::before { content: '[-] '; color: var(--magenta); font-family: var(--mono); }
+
+        /* Pricing */
+        .pricing-section {
+            padding: 4rem 1.5rem;
+            background:
+                radial-gradient(ellipse at 50% 0%, rgba(0,240,255,0.08), transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(255,43,122,0.06), transparent 60%),
+                var(--void);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            position: relative;
+        }
+        .pricing-inner {
+            max-width: 620px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .notricks {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.8rem 1.8rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        .notricks::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--cyan), var(--magenta));
+        }
+        .notricks-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+        .notricks-title u { text-decoration-color: var(--magenta); text-underline-offset: 4px; }
+        .notricks-list {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 2;
+            margin-bottom: 1.2rem;
+        }
+        .notricks-list span {
+            display: inline-block;
+            text-decoration: line-through;
+            text-decoration-color: var(--magenta);
+            text-decoration-thickness: 1px;
+        }
+        .notricks-why {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.85;
+        }
+        .notricks-why strong { color: var(--cyan); }
+
+        .value-context {
+            margin-bottom: 2.5rem;
+        }
+        .value-context-title {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--cyan);
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .value-alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.7rem 0.5rem;
+            border-bottom: 1px solid var(--line);
+            gap: 0.8rem;
+            transition: background 0.2s;
+        }
+        .value-alt:hover { background: rgba(0,240,255,0.03); }
+        .value-alt-name {
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.65;
+        }
+        .value-alt-note {
+            font-size: 0.76rem;
+            color: var(--text-faint);
+            display: block;
+            margin-top: 0.2rem;
+        }
+        .value-alt-price {
+            font-family: var(--mono);
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .value-alt-this {
+            border-bottom: 2px solid var(--cyan);
+            background: rgba(0,240,255,0.04);
+            padding: 0.85rem 0.6rem;
+            border-radius: 4px 4px 0 0;
+        }
+        .value-alt-this .value-alt-name { color: var(--heading); font-weight: 600; }
+        .value-alt-this .value-alt-price {
+            color: var(--cyan);
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-shadow: 0 0 12px rgba(0,240,255,0.3);
+        }
+        .value-meta {
+            font-size: 0.8rem;
+            color: var(--text-faint);
+            font-style: italic;
+            margin-top: 1.2rem;
+            line-height: 1.85;
+        }
+        .value-meta em {
+            font-style: normal;
+            color: var(--magenta);
+            font-weight: 600;
+        }
+
+        .price-hero {
+            margin: 2rem 0 2rem;
+            text-align: center;
+            position: relative;
+            padding: 1.5rem 0;
+        }
+        .price-frame {
+            display: inline-block;
+            position: relative;
+            padding: 1.2rem 2.5rem;
+        }
+        .price-frame::before, .price-frame::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 8px rgba(0,240,255,0.4);
+        }
+        .price-frame::before {
+            top: 0; left: 0;
+            border-right: none; border-bottom: none;
+        }
+        .price-frame::after {
+            bottom: 0; right: 0;
+            border-left: none; border-top: none;
+        }
+        .price-frame > span:first-child::before, .price-frame > span:first-child::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border: 2px solid var(--magenta);
+            box-shadow: 0 0 8px rgba(255,43,122,0.4);
+        }
+        .price-frame > span:first-child::before {
+            top: 0; right: 0;
+            border-left: none; border-bottom: none;
+        }
+        .price-frame > span:first-child::after {
+            bottom: 0; left: 0;
+            border-right: none; border-top: none;
+        }
+        .price-big {
+            font-family: var(--display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(0,240,255,0.2);
+            letter-spacing: -0.02em;
+        }
+        .price-unit {
+            font-family: var(--mono);
+            font-size: 1rem;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            margin-top: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        .price-reason {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 1.5rem 1.6rem;
+            margin-bottom: 2rem;
+        }
+        .price-reason-title {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .price-reason p {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin-bottom: 0.7rem;
+        }
+
+        .pricing-cta {
+            display: block;
+            width: 100%;
+            padding: 1.1rem 2rem;
+            background: linear-gradient(135deg, var(--magenta), #ff5e8a);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5), 0 0 30px rgba(255,43,122,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .pricing-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 4s ease-in-out infinite;
+        }
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.7), 0 0 40px rgba(255,43,122,0.5);
+        }
+        .pricing-note {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--text-faint);
+            margin-top: 1rem;
+            text-align: center;
+            letter-spacing: 0.04em;
+        }
+        .pricing-sub-note {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-top: 1.5rem;
+            line-height: 1.85;
+            text-align: center;
+        }
+
+        /* Vol1 owner banner */
+        .v1-bonus {
+            background: linear-gradient(135deg, rgba(255,181,71,0.08), rgba(255,43,122,0.05));
+            border: 1px dashed rgba(255,181,71,0.4);
+            border-radius: 8px;
+            padding: 1.3rem 1.5rem;
+            margin: 1.5rem 0 1rem;
+            font-size: 0.88rem;
+            color: var(--text);
+            position: relative;
+        }
+        .v1-bonus-tag {
+            font-family: var(--mono);
+            font-size: 0.65rem;
+            color: var(--amber);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .v1-bonus strong { color: var(--amber); }
+
+        /* Reader whisper */
+        .reader-whisper {
+            margin-top: 1.6rem;
+            padding: 1.4rem 1.6rem;
+            border: 1px dashed var(--line-2);
+            border-radius: 8px;
+            background: rgba(14,20,36,0.6);
+            position: relative;
+        }
+        .reader-whisper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+            opacity: 0.5;
+        }
+        .whisper-label {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--cyan);
+            letter-spacing: 0.06em;
+            margin-bottom: 0.6rem;
+            line-height: 1.65;
+        }
+        .whisper-body { font-size: 0.88rem; color: var(--text); line-height: 1.85; }
+        .whisper-code-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-top: 0.6rem;
+        }
+        .whisper-code {
+            font-family: var(--mono);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--magenta);
+            background: var(--magenta-soft);
+            padding: 0.3rem 0.85rem;
+            border-radius: 4px;
+            letter-spacing: 0.18em;
+            border: 1px solid rgba(255,43,122,0.25);
+            cursor: pointer;
+            user-select: all;
+            transition: box-shadow 0.3s, background 0.2s;
+        }
+        .whisper-code:hover {
+            background: rgba(255,43,122,0.18);
+            box-shadow: 0 0 14px rgba(255,43,122,0.25);
+        }
+        .whisper-copy-hint {
+            font-family: var(--mono);
+            font-size: 0.66rem;
+            color: var(--text-faint);
+            transition: color 0.3s;
+        }
+        .whisper-note {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text-faint);
+            margin-top: 0.7rem;
+            line-height: 1.65;
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid var(--line);
+            padding: 1.4rem 0.6rem;
+            transition: background 0.2s;
+        }
+        .faq-item:hover { background: rgba(0,240,255,0.02); }
+        .faq-q {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: var(--heading);
+            margin-bottom: 0.5rem;
+        }
+        .faq-q::before {
+            content: '?';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem; height: 1.5rem;
+            border-radius: 4px;
+            background: var(--cyan-soft);
+            color: var(--cyan);
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-right: 0.6rem;
+            vertical-align: middle;
+            border: 1px solid var(--cyan-soft);
+        }
+        .faq-a {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.85;
+            margin: 0;
+            padding-left: 2.1rem;
+        }
+        .faq-a a { color: var(--cyan); text-decoration: none; border-bottom: 1px dotted rgba(0,240,255,0.4); }
+        .faq-a a:hover { color: var(--magenta); border-color: var(--magenta); }
+
+        /* Guarantee */
+        .guarantee {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .guarantee-box {
+            padding: 2.2rem 2rem;
+            border-radius: 10px;
+            background: linear-gradient(145deg, var(--panel), var(--void-2));
+            border: 1px solid var(--line-2);
+            position: relative;
+            overflow: hidden;
+        }
+        .guarantee-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 80px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+        }
+        .guarantee-icon {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--cyan);
+            letter-spacing: 0.2em;
+            margin-bottom: 0.6rem;
+        }
+        .guarantee-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--heading);
+            margin-bottom: 0.8rem;
+        }
+        .guarantee-text {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.85;
+            max-width: 460px;
+            margin: 0 auto;
+        }
+        .guarantee-text strong { color: var(--cyan); }
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.4rem 1.1rem;
+            border-radius: 4px;
+            border: 1px solid var(--cyan-soft);
+            background: var(--cyan-soft);
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--cyan);
+            letter-spacing: 0.1em;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background:
+                radial-gradient(ellipse at center, rgba(255,43,122,0.08), transparent 60%),
+                radial-gradient(ellipse at 30% 80%, rgba(0,240,255,0.06), transparent 60%),
+                #04060e;
+            color: var(--text);
+            padding: 3.5rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid var(--line);
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(ellipse at center, #000, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, #000, transparent 70%);
+            pointer-events: none;
+        }
+        .final-cta-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .final-cta h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3.2vw, 1.55rem);
+            font-weight: 700;
+            line-height: 1.55;
+            margin-bottom: 0.9rem;
+            color: var(--heading);
+        }
+        .final-cta h2 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--cyan), var(--magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .final-cta p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            padding: 1rem 3rem;
+            background: linear-gradient(135deg, var(--magenta), #ff5e8a);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 4px;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5), 0 0 36px rgba(255,43,122,0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 4s ease-in-out infinite;
+            animation-delay: 1.5s;
+        }
+        .final-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,43,122,0.7), 0 0 50px rgba(255,43,122,0.55); }
+        .final-cta-note {
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            color: var(--text-faint);
+            margin-top: 1rem;
+            letter-spacing: 0.04em;
+        }
+        .final-cta-free {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--cyan);
+            font-size: 0.88rem;
+            text-decoration: none;
+            border-bottom: 1px dotted rgba(0,240,255,0.4);
+            transition: color 0.2s;
+        }
+        .final-cta-free:hover { color: var(--magenta); border-color: var(--magenta); }
+
+        /* Sticky mobile CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 9998;
+            background: rgba(5,8,16,0.95);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            padding: 0.7rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border-top: 1px solid var(--cyan-soft);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.5);
+        }
+        .sticky-cta.show { transform: translateY(0); }
+        .sticky-cta-price {
+            font-family: var(--mono);
+            font-size: 0.82rem;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+        .sticky-cta-price strong {
+            color: var(--cyan);
+            font-size: 1rem;
+            text-shadow: 0 0 8px rgba(0,240,255,0.3);
+        }
+        .sticky-cta-btn {
+            display: inline-block;
+            padding: 0.6rem 1.6rem;
+            border-radius: 4px;
+            background: linear-gradient(135deg, var(--magenta), #ff5e8a);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            box-shadow: 0 0 0 1px rgba(255,43,122,0.5), 0 0 16px rgba(255,43,122,0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        @media (min-width: 769px) { .sticky-cta { display: none; } }
+
+        /* Footer */
+        .sp-footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text-faint);
+            border-top: 1px solid var(--line);
+            letter-spacing: 0.06em;
+        }
+        .sp-footer a { color: var(--cyan); text-decoration: none; }
+
+        /* Reveal animations */
+        .rv {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv.vis { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: 0.08s; }
+        .rv-d2 { transition-delay: 0.16s; }
+        .rv-d3 { transition-delay: 0.24s; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .hero { padding: 5rem 1.2rem 3rem; }
+            .sec { padding: 2rem 1.2rem; }
+            .compare, .who-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+            .proof-bar { grid-template-columns: 1fr 1fr; padding: 1.8rem 1rem; }
+            .module { padding: 1.3rem 1.2rem; }
+            .pricing-section { padding: 2.5rem 1rem; }
+            .notricks { padding: 1.4rem 1.2rem; }
+            body { padding-bottom: 60px; }
+        }
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 1.4rem; }
+            .price-big { font-size: 2.8rem; }
+            .value-alt { flex-direction: column; gap: 0.2rem; align-items: flex-start; padding: 0.6rem 0.4rem; }
+            .value-alt-this .value-alt-price { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="progress-bar"></div>
+
+    <!-- Status bar (HUD) -->
+    <div class="statusbar">
+        <div class="statusbar-left">
+            <span class="statusbar-dot"></span>
+            <span>SYS / <span class="statusbar-tag">VOL_02</span> / READY</span>
+        </div>
+        <div class="statusbar-right">
+            <span id="clock">--:--:--</span> &nbsp; UTC+7
+        </div>
+    </div>
+
+    <!-- ═══ HERO ═══ -->
+    <div class="hero">
+        <div class="hero-particles"></div>
+        <div class="hero-inner rv">
+            <div class="hero-pretag"><span class="hero-pretag-dot"></span>VOL_02 / The Invisible War</div>
+            <h1>ในยุคที่ Algorithm กลืนทุกความสนใจ —<br><em>คนที่อ่านสนามรบออก คือคนที่ครองมัน</em></h1>
+            <p class="hero-sub">ลูกค้าของคุณเลื่อนผ่านโพสต์ 3,000 ชิ้นต่อวัน — สมองเขามี &ldquo;กำแพง&rdquo; อัตโนมัติที่กรองทุกอย่างออก รวมถึงข้อความของคุณ</p>
+            <div class="hero-hook">ในโลกที่อุดมด้วยข้อมูล &mdash; ข้อมูลที่ล้นจะสร้าง <strong>ความยากจนแห่งความสนใจ</strong><br>&mdash; Herbert Simon, Nobel Prize 1978</div>
+            <a href="#pricing" class="hero-cta">ENGAGE — ฿1,890</a>
+            <p class="hero-note">หรือ <a href="/vol2">scan บทนำฟรีก่อนตัดสินใจ →</a></p>
+        </div>
+    </div>
+
+
+    <!-- ═══ THE PROBLEM ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">DETECTED // PROBLEM</div>
+        <h2 class="sec-title">คุณทำการตลาด &ldquo;ถูก&rdquo; ทุกอย่าง<br>แต่<em>ไม่มีใครเห็น</em></h2>
+
+        <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
+
+        <div class="scenario rv" data-id="01">
+            <div class="scenario-q">โพสต์ Content เป็น 100 ชิ้น แต่ Engagement กลับลดลง</div>
+            <p class="scenario-a">ทำตามเทรนด์ทุกอย่าง ใช้ Hook สวย ใช้รูปคม &mdash; Algorithm ก็ยังไม่ดัน</p>
+        </div>
+        <div class="scenario rv" data-id="02">
+            <div class="scenario-q">ยิง Ads งบเท่าเดิม แต่ CPC แพงขึ้นเรื่อยๆ</div>
+            <p class="scenario-a">ครีเอทีฟใหม่ทุกสัปดาห์ก็แล้ว Audience ใหม่ก็แล้ว &mdash; ผลลัพธ์ก็ยังถดถอย</p>
+        </div>
+        <div class="scenario rv" data-id="03">
+            <div class="scenario-q">มี Following หมื่น แต่ขายได้แค่หลักสิบ</div>
+            <p class="scenario-a">คนกดไลค์ คนคอมเมนต์ คน Save แต่พอเสนอขาย &mdash; เงียบ</p>
+        </div>
+        <div class="scenario rv" data-id="04">
+            <div class="scenario-q">Influencer ก็ใช้ TikTok ก็เล่น Reel ก็ลง — ทุกอย่างทำหมดแล้ว</div>
+            <p class="scenario-a">ใช้พลังงานเป็น 100% &mdash; ผลลัพธ์ที่ได้กลับเป็นเศษเสี้ยวของที่คาด</p>
+        </div>
+        <div class="scenario rv" data-id="05">
+            <div class="scenario-q">คู่แข่ง Content แย่กว่าด้วยซ้ำ — แต่ดังกว่า ขายดีกว่า</div>
+            <p class="scenario-a">คุณไม่เข้าใจว่าทำไม &mdash; รู้แค่ว่า &ldquo;คุณภาพ&rdquo; อย่างเดียวมันไม่พอแล้ว</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาไม่ได้อยู่ที่ Content ของคุณ ไม่ได้อยู่ที่งบ ไม่ได้อยู่ที่ทักษะ &mdash;</p>
+        <p style="font-family: 'Prompt',sans-serif; font-weight: 600; color: var(--magenta); font-size: 1.05rem; text-shadow: 0 0 12px rgba(255,43,122,0.2);">ปัญหาคือคุณกำลังต่อสู้กับ &ldquo;สงคราม&rdquo; ที่คุณมองไม่เห็นว่ามันมีอยู่</p>
+    </div>
+
+
+    <!-- ═══ DARK BAND : THE TRUTH ═══ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p class="dark-band-pre">// transmission incoming</p>
+            <p class="big-quote">&ldquo;คุณไม่ได้แข่งกับคู่แข่งคุณ &mdash;<br>คุณกำลังแข่งกับ <strong>ทุก Notification ทุกคลิป ทุกข้อความ</strong><br>ที่ลูกค้าของคุณได้รับในวินาทีเดียวกัน&rdquo;</p>
+            <p class="dark-band-sub">นี่คือสนามรบจริงของยุคดิจิทัล &mdash; และมันมีกฎใหม่ที่ Vol.1 ไม่ได้สอน</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ THE MECHANISM ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">SYSTEM // ANALYSIS</div>
+        <h2 class="sec-title">ลูกค้าตัดสินใจเลื่อนผ่านโพสต์ของคุณ<br>ภายใน <em>0.3 วินาที</em> &mdash; ก่อนสมองส่วนคิดจะตื่น</h2>
+
+        <p>งานวิจัยจาก Microsoft Research พบว่ามนุษย์ในยุคดิจิทัลมีช่วงความสนใจเฉลี่ย <strong>8 วินาที</strong> &mdash; น้อยกว่าปลาทอง</p>
+
+        <p>แต่ตัวเลขที่น่ากลัวกว่าคือ &mdash; การตัดสินใจ &ldquo;หยุด&rdquo; หรือ &ldquo;เลื่อนผ่าน&rdquo; เกิดขึ้นภายใน 0.3 วินาทีแรก โดยสมองส่วน Limbic ที่<strong>ไม่ผ่านความคิด</strong></p>
+
+        <div class="pull-quote">
+            สมองยุคหินถูกออกแบบมาเพื่อสแกนทุ่งหญ้าหา &ldquo;เสือ&rdquo; กับ &ldquo;ผลเบอร์รี่&rdquo; &mdash; ตอนนี้มันต้องประมวลผล Feed ที่ยาวเป็นไม่รู้จบ จึงสร้าง <em>กำแพง</em> อัตโนมัติ Skip ทุกอย่างที่ไม่จำเป็นต่อการอยู่รอด
+            <cite>// from Chapter 02: The Scroll</cite>
+        </div>
+
+        <p><strong style="color: var(--cyan);">Dopamine Loop</strong> &mdash; ทำไม Feed ถึงเสพติด? เพราะสมองหลั่ง Dopamine ตอน &ldquo;คาดหวัง&rdquo; ไม่ใช่ตอน &ldquo;ได้รับ&rdquo; &rarr; ทุกการ scroll คือลุ้นว่าจะเจอ &ldquo;รางวัล&rdquo;</p>
+
+        <p><strong style="color: var(--cyan);">Pattern Interrupt</strong> &mdash; วิธีเดียวที่จะ &ldquo;หยุด&rdquo; นิ้วของลูกค้าคือ &ldquo;หัก Pattern&rdquo; ของ Feed &mdash; ไม่ใช่ทำให้สวยกว่า แต่ทำให้<em>ต่างจาก</em>สิ่งที่อยู่รอบข้าง</p>
+
+        <p><strong style="color: var(--cyan);">Memory Encoding</strong> &mdash; ลูกค้าจะจำคุณได้ก็ต่อเมื่อสมองตัดสินใจว่า &ldquo;คุ้มค่ากับการจำ&rdquo; &mdash; ซึ่งมีกฎเฉพาะที่ไม่มี Marketing Course ไหนสอน</p>
+
+        <p style="margin-top: 1.5rem;">Vol.1 สอนว่า <strong style="color: var(--cyan);">ทำไมคนซื้อ</strong> &mdash; แต่ Vol.2 สอนว่า <em style="color: var(--magenta); font-style: normal;">ทำอย่างไรให้คนเห็นคุณ ก่อนเลื่อนผ่าน</em></p>
+
+        <div class="panel">
+            <p style="margin: 0;">เพราะในยุคดิจิทัล &mdash; Content ดี + ไม่มีใครเห็น = ไม่มีอยู่จริง<br>และ <strong style="color: var(--cyan);">ความสนใจ คือสกุลเงินที่หายากที่สุดของศตวรรษนี้</strong></p>
+        </div>
+    </div>
+
+
+    <!-- ═══ COMPARE ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">COMPARE // OUTPUT</div>
+        <h2 class="sec-title">&ldquo;ทำตามเทรนด์&rdquo; vs<br><em>&ldquo;เข้าใจสนามรบ&rdquo;</em></h2>
+
+        <p style="margin-bottom: 1.8rem; font-size: 0.92rem; color: var(--text-dim);">ใช้พลังงานเท่ากัน &mdash; ผลลัพธ์ต่างคนละโลก</p>
+
+        <div class="compare">
+            <div class="compare-col compare-old">
+                <h4>OLD MODEL</h4>
+                <ul>
+                    <li>ตามเทรนด์ทุก 3 เดือน</li>
+                    <li>เลียนแบบครีเอทีฟที่กำลังดัง</li>
+                    <li>เพิ่มงบ Ads เมื่อ ROAS ตก</li>
+                    <li>หา Influencer ใหม่เรื่อยๆ</li>
+                    <li>ลด Pricing เมื่อยอดตก</li>
+                    <li>ทำตาม Algorithm บอก</li>
+                </ul>
+            </div>
+            <div class="compare-col compare-new">
+                <h4>UPGRADED</h4>
+                <ul>
+                    <li>เข้าใจกลไกที่สร้างเทรนด์</li>
+                    <li>ออกแบบ Pattern Interrupt ของตัวเอง</li>
+                    <li>ปรับ Hook ให้สมองหยุดเอง</li>
+                    <li>สร้าง Tribe ที่แนะนำต่อโดยไม่ต้องจ่าย</li>
+                    <li>Frame ราคาเป็นเรื่องเล่าแห่งคุณค่า</li>
+                    <li>ใช้ Algorithm เป็นเครื่องมือ ไม่ใช่นาย</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.88rem; color: var(--text-dim); margin-top: 0.5rem;">เทรนด์เป็น &ldquo;เครื่องมือ&rdquo; &mdash; แต่ <strong style="color: var(--cyan);">ความเข้าใจสนามรบ</strong> คืออาวุธที่ไม่มีวันหมดอายุ</p>
+    </div>
+
+
+    <!-- ═══ DARK BAND : EDGE ═══ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p class="dark-band-pre">// in a market where everyone shouts</p>
+            <p class="big-quote">คนที่<strong>เข้าใจว่าทำไมคนหยุดดู</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องโพสต์อะไร&rdquo;<br>ทุกครั้ง &mdash; โดยไม่ต้องไล่ตามเทรนด์สักรอบ</p>
+            <p class="dark-band-sub">เพราะเทรนด์เปลี่ยนทุกเดือน &mdash; แต่สมองมนุษย์ไม่ได้เปลี่ยนมา 200,000 ปี</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ THE BOOK ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">PAYLOAD // CONTENTS</div>
+        <h2 class="sec-title">12 บท + 5 บทพิเศษ<br>ที่<em>ถอดรหัส</em>สงครามที่มองไม่เห็น</h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-dim);">ทุกบทเขียนจากงานวิจัย Behavioral Economics + Neuromarketing + Platform Engineering + เคสจริงจากสนามไทย</p>
+
+        <div class="modules">
+            <div class="module rv rv-d1">
+                <div class="module-id">CH_01 // <span>The Attention Economy</span></div>
+                <div class="module-title">เศรษฐกิจแห่งความสนใจ &mdash; ทำไมมันคือสงครามจริง</div>
+                <p class="module-desc">ลูกค้าได้รับข้อมูลเทียบเท่า 174 หนังสือพิมพ์/วัน &mdash; สมองตอบสนองด้วยการ &ldquo;ปิด&rdquo; Skip ข้าม ลืม คุณจะเข้าใจว่าทำไมการมีสินค้าดีอย่างเดียวไม่พอ และจะ&rdquo;ฝ่ากำแพง&rdquo;นี้ได้ยังไงโดยที่สมองไม่ต่อต้าน</p>
+                <span class="module-tag">attention-economy</span>
+            </div>
+
+            <div class="module rv rv-d1">
+                <div class="module-id">CH_02 // <span>The Scroll</span></div>
+                <div class="module-title">กลไกของการเลื่อน &mdash; ทำไมนิ้วลูกค้าไม่หยุด</div>
+                <p class="module-desc">ทุก Feed ถูกออกแบบให้สมอง &ldquo;ลุ้น&rdquo; ตลอดเวลา &mdash; Dopamine + Variable Reward เปลี่ยนการ scroll เป็น Slot Machine คุณจะรู้ว่าจะ &ldquo;Pattern Interrupt&rdquo; อย่างไรให้นิ้วหยุดกึก</p>
+                <span class="module-tag">pattern-interrupt</span>
+            </div>
+
+            <div class="module rv rv-d1">
+                <div class="module-id">CH_03 // <span>The Hook</span></div>
+                <div class="module-title">ตะขอ &mdash; วิธีเขียน 3 วินาทีแรกที่สมองหนีไม่ได้</div>
+                <p class="module-desc">3 วินาทีแรกตัดสินทุกอย่าง &mdash; แต่ไม่ใช่แค่ &ldquo;เขียนให้ดึงดูด&rdquo; คุณจะได้สูตร Hook ที่ทำงานกับ 6 จุดอ่อนของสมอง พร้อมเทมเพลต 12 แบบที่ทดสอบมาแล้วในสนามไทย</p>
+                <span class="module-tag">hook-architecture</span>
+            </div>
+
+            <div class="module rv rv-d2">
+                <div class="module-id">CH_04 // <span>The Price is a Story</span></div>
+                <div class="module-title">ราคาคือเรื่องเล่า &mdash; ไม่ใช่ตัวเลข</div>
+                <p class="module-desc">สมองไม่ได้ประเมินราคาจากมูลค่า &mdash; ประเมินจาก &ldquo;เรื่องเล่า&rdquo; ที่ห่อหุ้มมัน คุณจะเปลี่ยน &ldquo;แพง&rdquo; เป็น &ldquo;คุ้ม&rdquo; ได้โดยไม่ต้องลดราคาแม้แต่บาทเดียว</p>
+                <span class="module-tag">price-framing</span>
+            </div>
+
+            <div class="module rv rv-d2">
+                <div class="module-id">CH_05 // <span>Choice Architecture</span></div>
+                <div class="module-title">สถาปัตยกรรมแห่งการเลือก &mdash; กำหนด 80% ของผลลัพธ์</div>
+                <p class="module-desc">เสรีภาพในการเลือกไม่มีอยู่จริง &mdash; ผู้ออกแบบทางเลือกกำหนดผลลัพธ์ได้โดยไม่ต้องบังคับใคร ใช้ในเมนู ใน Pricing Page ใน Funnel ทุกที่</p>
+                <span class="module-tag">nudge-design</span>
+            </div>
+
+            <div class="module rv rv-d2">
+                <div class="module-id">CH_06 // <span>The Identity Trap</span></div>
+                <div class="module-title">กับดักตัวตน &mdash; คนไม่ได้ซื้อสินค้า ซื้อ &ldquo;คนที่อยากเป็น&rdquo;</div>
+                <p class="module-desc">ลูกค้า Apple ไม่ได้ซื้อ iPhone &mdash; ซื้อ &ldquo;ความเป็น Apple Person&rdquo; คุณจะเรียนรู้วิธีออกแบบแบรนด์ให้กลายเป็น &ldquo;ตัวตน&rdquo; ที่ลูกค้าอยากเป็น</p>
+                <span class="module-tag">identity-design</span>
+            </div>
+
+            <div class="module rv rv-d3">
+                <div class="module-id">CH_07 // <span>The Algorithm Mind</span></div>
+                <div class="module-title">เข้าใจสมองของ Algorithm &mdash; เพื่อใช้มันแทนถูกใช้</div>
+                <p class="module-desc">Algorithm ของ TikTok, IG, FB, YouTube ทำงานบนหลักการเดียว &mdash; Engagement Velocity คุณจะรู้วิธีอ่านสัญญาณ และใช้กฎของมันให้เป็นประโยชน์</p>
+                <span class="module-tag">algorithm-hacking</span>
+            </div>
+
+            <div class="module rv rv-d3">
+                <div class="module-id">CH_08 // <span>The Viral Equation</span></div>
+                <div class="module-title">สมการของ Viral &mdash; ทำไมบางอย่างไวรัล บางอย่างไม่</div>
+                <p class="module-desc">Viral ไม่ใช่ &ldquo;ดวง&rdquo; &mdash; มันคือสมการ 4 ตัวแปรที่ Wharton วิจัยมา 10 ปี คุณจะรู้ว่าจะออกแบบ Content ที่มี &ldquo;Viral Coefficient&rdquo; สูงได้ยังไง</p>
+                <span class="module-tag">viral-mechanics</span>
+            </div>
+
+            <div class="module rv rv-d3">
+                <div class="module-id">CH_09 // <span>The Memory War</span></div>
+                <div class="module-title">สงครามความทรงจำ &mdash; ทำให้แบรนด์อยู่ในหัวลูกค้า 7 วัน</div>
+                <p class="module-desc">ลูกค้าเห็นโฆษณา 5,000 ชิ้น/วัน &mdash; จำได้ไม่ถึง 12 ชิ้น คุณจะรู้ว่ากลไก &ldquo;Memory Encoding&rdquo; ทำงานยังไง และทำให้แบรนด์ของคุณอยู่ใน 12 ชิ้นนั้น</p>
+                <span class="module-tag">memory-encoding</span>
+            </div>
+
+            <div class="module rv">
+                <div class="module-id">CH_10–12 // <span>The Cult / Loyalty / Invisible Hand</span></div>
+                <div class="module-title">3 บทสุดท้าย &mdash; เปลี่ยนลูกค้าให้กลายเป็น &ldquo;Tribe&rdquo;</div>
+                <p class="module-desc">เมื่อมีคนเห็น เมื่อจำได้ &mdash; เหลือขั้นสุดท้าย: ทำให้คนกลับมา ทำให้คนแนะนำ ทำให้คนกลายเป็น &ldquo;ผู้เผยแพร่&rdquo; ของคุณเอง 3 บทนี้คือ Endgame</p>
+                <span class="module-tag">tribe-building</span>
+            </div>
+
+            <div class="module rv" style="border-color: var(--amber-soft); background: linear-gradient(145deg, rgba(255,181,71,0.05), var(--void-2));">
+                <div class="module-id" style="color: var(--amber);">BONUS_01–05 // <span style="color: var(--amber);">Field Reports</span></div>
+                <div class="module-title">5 บทพิเศษ &mdash; ห้องทดลองจริง 7 วัน + AI Marketer + Thai Battlefield</div>
+                <p class="module-desc">ไม่ใช่ทฤษฎี &mdash; เป็นบันทึกจากสนามจริง: <strong style="color: var(--amber);">The Lab</strong> (วิเคราะห์แคมเปญที่ดัง), <strong style="color: var(--amber);">7 Days</strong> (ทำ Viral ใน 1 สัปดาห์), <strong style="color: var(--amber);">The AI Marketer</strong> (ใช้ AI สู้กับ AI), <strong style="color: var(--amber);">Thai Battlefield</strong> (เคสไทยล้วน), <strong style="color: var(--amber);">The War Room</strong> (สรุปกลยุทธ์รวม)</p>
+                <span class="module-tag" style="color: var(--amber); border-color: rgba(255,181,71,0.3); background: var(--amber-soft);">5-bonus-chapters</span>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══ MID CTA ═══ -->
+    <div class="mid-cta rv">
+        <a href="#pricing" class="mid-cta-btn">UNLOCK ALL 17 MODULES — ฿1,890</a>
+        <p class="mid-cta-note">// one-time payment &bull; lifetime access &bull; instant unlock code</p>
+    </div>
+
+
+    <!-- ═══ PROOF BAR ═══ -->
+    <div class="sec-wide" style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, var(--void), var(--void-2));">
+        <div class="proof-bar">
+            <div class="proof-item rv">
+                <div class="proof-num">12</div>
+                <div class="proof-label">CHAPTERS</div>
+            </div>
+            <div class="proof-item rv rv-d1">
+                <div class="proof-num">5</div>
+                <div class="proof-label">FIELD REPORTS</div>
+            </div>
+            <div class="proof-item rv rv-d2">
+                <div class="proof-num">3000+</div>
+                <div class="proof-label">SCROLLS / DAY<br><span style="font-size:0.6rem;color:var(--text-faint);">(per user)</span></div>
+            </div>
+            <div class="proof-item rv rv-d3">
+                <div class="proof-num">0.3s</div>
+                <div class="proof-label">DECISION TIME<br><span style="font-size:0.6rem;color:var(--text-faint);">(scroll vs stop)</span></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ═══ NOT JUST A MARKETING BOOK ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">DIFFERENT // SIGNAL</div>
+        <h2 class="sec-title">นี่ไม่ใช่หนังสือ &ldquo;สอนยิง Ads&rdquo;<br><em>นี่คือคู่มือสนามรบดิจิทัล</em></h2>
+
+        <p>หนังสือการตลาดดิจิทัลส่วนใหญ่สอน &ldquo;ฟีเจอร์&rdquo; ของ Platform &mdash; เปลี่ยน UI 1 ครั้ง หนังสือทั้งเล่มก็หมดอายุ</p>
+        <p>เล่มนี้ไม่สอนสิ่งเหล่านั้น &mdash; <strong style="color: var(--cyan);">เล่มนี้สอนกฎที่อยู่เบื้องหลังทุก Platform</strong></p>
+
+        <div class="scenario" data-id="A">
+            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด &mdash; Web Book</div>
+            <p class="scenario-a">เปิดอ่านระหว่าง Commute / รอ Brief / นั่งคิด Campaign &mdash; ไม่ต้องโหลด App</p>
+        </div>
+        <div class="scenario" data-id="B">
+            <div class="scenario-q">แต่ละบทจบในตัว &mdash; กระโดดอ่านตามที่ต้องการ</div>
+            <p class="scenario-a">พรุ่งนี้ต้องเขียน Hook? กระโดดบทที่ 3 ได้เลย &mdash; ไม่ต้องอ่านเรียง</p>
+        </div>
+        <div class="scenario" data-id="C">
+            <div class="scenario-q">มี &ldquo;Third Eye&rdquo; ซ่อนอยู่ทั่วเล่ม</div>
+            <p class="scenario-a">เปิดดูแล้วจะเห็นว่าหน้านั้นกำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; เรียนจากการ &ldquo;ถูก Persuade&rdquo; จริง</p>
+        </div>
+        <div class="scenario" data-id="D">
+            <div class="scenario-q">เคสจริงจากสนามไทย &mdash; ไม่ใช่แค่อ้างอิง Apple/Nike</div>
+            <p class="scenario-a">รวมเคสร้านอาหาร แบรนด์ไทย Influencer ไทย Campaign ที่คุณเคยเห็นกับตา</p>
+        </div>
+
+        <div class="panel" style="margin-top: 1.5rem;">
+            <p style="margin: 0;">คุณไม่ต้องเป็นนักการตลาดมืออาชีพก็ได้ &mdash; <strong style="color: var(--cyan);">แค่อยากให้ Content / สินค้า / แบรนด์ของคุณ &ldquo;ถูกเห็น&rdquo;</strong> ในยุคที่ทุกคนแย่งกันตะโกน</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ WHO IS THIS FOR ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">FILTER // AUDIENCE</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับใคร<br>และ<em>ไม่เหมาะ</em>กับใคร</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes">
+                <h4>// MATCH</h4>
+                <ul>
+                    <li>เจ้าของแบรนด์/ธุรกิจที่รู้สึกว่า &ldquo;ตามไม่ทัน&rdquo;</li>
+                    <li>นักการตลาด/Performance ที่ ROAS ตกเรื่อยๆ</li>
+                    <li>Content Creator ที่ Engagement ลดลง</li>
+                    <li>Founder ที่อยากเข้าใจ Algorithm จริงๆ</li>
+                    <li>คนที่ขายของออนไลน์แบบมีของจริง</li>
+                    <li>ฟรีแลนซ์ที่ต้อง Pitch งานในยุคนี้</li>
+                </ul>
+            </div>
+            <div class="who-col who-no">
+                <h4>// MISMATCH</h4>
+                <ul>
+                    <li>อยากได้สูตร &ldquo;Viral 100% ใน 7 วัน&rdquo;</li>
+                    <li>เชื่อว่าทำตามเทรนด์ก็พอ</li>
+                    <li>ไม่สนใจว่าทำไมคนถึงเลื่อนผ่าน &mdash; รู้แค่ &ldquo;ทำอะไร&rdquo;</li>
+                    <li>คิดว่ายิง Ads แพงๆ คือคำตอบเดียว</li>
+                    <li>ไม่ชอบอ่าน &mdash; อยากดูคลิป Tutorial เท่านั้น</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.88rem; color: var(--text-dim); margin-top: 1rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/vol2" style="color: var(--cyan); text-decoration: none; border-bottom: 1px dotted rgba(0,240,255,0.4);">scan บทนำฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
+    </div>
+
+
+    <!-- ═══ DARK BAND : COST ═══ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p class="dark-band-pre">// run the numbers</p>
+            <p class="big-quote">โพสต์ที่ &ldquo;ตาย&rdquo;<br>เพราะคุณ<strong>ไม่เข้าใจกลไก Attention</strong><br>เดือนนึงมีกี่ชิ้น?</p>
+            <p class="dark-band-sub">฿1,890 vs Content 1 ชิ้นที่ &ldquo;ติด&rdquo; เพราะเข้าใจกลไกจริงๆ &mdash; คุ้มกว่ากี่เท่า?</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ PRICING ═══ -->
+    <div class="pricing-section" id="pricing">
+        <div class="pricing-inner rv">
+
+            <div class="notricks">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เจอในหน้านี้</h3>
+                <p class="notricks-list">
+                    <span>ราคาเต็ม ฿9,990 ลดเหลือ...</span><br>
+                    <span>ของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;</span><br>
+                    <span>Countdown Timer ที่รีเซ็ตทุกเที่ยงคืน</span><br>
+                    <span>&ldquo;เหลือ 3 ที่นั่งสุดท้าย!&rdquo; ที่ไม่เคยหมด</span><br>
+                    <span>เทียบราคากับกาแฟ Starbucks</span>
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องเทคนิคเหล่านั้นทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้มันกับคุณเอง</p>
+            </div>
+
+            <div class="value-context">
+                <h4 class="value-context-title">// IF YOU WANT TO LEVEL UP ELSEWHERE</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">คอร์ส Performance Marketing<span class="value-alt-note">(สอน Tactic ที่ Platform เปลี่ยนทุก 6 เดือน)</span></span>
+                    <span class="value-alt-price">15,000–60,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">จ้าง Agency ทำ Strategy ครั้งเดียว<span class="value-alt-note">(ดี แต่จบเมื่อหยุดจ่าย)</span></span>
+                    <span class="value-alt-price">50,000–200,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือ Marketing Eng. 1 เล่ม<span class="value-alt-note">(สอน &ldquo;ทำอะไร&rdquo; ไม่สอน &ldquo;ทำไม&rdquo;)</span></span>
+                    <span class="value-alt-price">600–1,500 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">Workshop Behavioral Design<span class="value-alt-note">(ครอบคลุมแค่ 2-3 หัวข้อ)</span></span>
+                    <span class="value-alt-price">25,000–80,000 ฿</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมจิตวิทยาสนามรบดิจิทัลทั้งระบบ<span class="value-alt-note">(ใช้ได้ทุก Platform ทุกเทรนด์ &mdash; ตลอดชีพ)</span></span>
+                    <span class="value-alt-price">1,890 ฿</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 4</p>
+            </div>
+
+            <div class="price-hero rv">
+                <div class="price-frame">
+                    <span></span>
+                    <div class="price-big">1,890</div>
+                    <div class="price-unit">THB / LIFETIME</div>
+                </div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">// WHY THIS PRICE</h4>
+                <p>เพราะมันคือผลลัพธ์ของหลายปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; ทำไมบางอย่างถึงดัง บางอย่างถึงเงียบ? กลั่นจากงานวิจัยหลายร้อยชิ้น ทดสอบกับเงินจริง แคมเปญจริง ลูกค้าไทยจริง</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้ Content ของคุณ &ldquo;ติด&rdquo; ได้แค่ 1 ชิ้น/เดือน &mdash; มันคืนทุนตั้งแต่สัปดาห์แรก</p>
+            </div>
+
+            <div class="v1-bonus">
+                <span class="v1-bonus-tag">// VOL.1 OWNERS</span>
+                ถ้าคุณอ่าน Vol.1 จบแล้ว &mdash; <strong>Vol.2 คือบทต่อเนื่องที่ขาดไม่ได้</strong> Vol.1 สอนคุณว่าทำไมคนซื้อ Vol.2 จะสอนคุณว่าทำอย่างไรให้คนเห็นคุณ &ldquo;ก่อนเลื่อนผ่าน&rdquo;
+            </div>
+
+            <div class="reader-whisper">
+                <p class="whisper-label">// IF YOU READ THIS FAR</p>
+                <div class="whisper-body">
+                    <p>แปลว่าคุณไม่ได้แค่เลื่อนผ่าน &mdash; คุณอ่าน คุณคิด คุณชั่งน้ำหนัก<br>
+                    คนแบบนี้คือคนที่จะ &ldquo;ใช้&rdquo; เนื้อหาของหนังสือได้จริง</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน &mdash; ลดอีก ฿200</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">VOL2READER</span>
+                        <span class="whisper-copy-hint" id="copy-hint">// click to copy</span>
+                    </div>
+                    <p class="whisper-note">// not a sale, no countdown — just thanks for reading carefully</p>
+                </div>
+            </div>
+
+            <a href="https://buy.stripe.com/cNi00j6S3a7MgDD2wUgYU02" class="pricing-cta" id="main-cta">DEPLOY — ปลดล็อกทั้งเล่ม ฿1,890</a>
+            <p class="pricing-note">// stripe / credit card / promptpay &bull; secured payment</p>
+            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 Field Reports + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ GUARANTEE ═══ -->
+    <div class="guarantee rv">
+        <div class="guarantee-box">
+            <div class="guarantee-icon">// SAFETY PROTOCOL</div>
+            <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
+            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>คืนเงินให้ทั้งหมด &mdash; ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
+            <div class="guarantee-badge">[ 30-DAY MONEY-BACK ]</div>
+        </div>
+    </div>
+
+
+    <!-- ═══ FAQ ═══ -->
+    <div class="sec rv">
+        <div class="sec-label">FAQ // QUERIES</div>
+        <h2 class="sec-title">ก่อนกด Deploy</h2>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมยังไม่ได้อ่าน Vol.1 อ่าน Vol.2 ก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; Vol.2 ออกแบบมาให้อ่านแยกได้ ทุกหลักการอธิบายในตัว แต่ถ้าอ่านทั้งสองเล่ม จะเห็นภาพ &ldquo;ทำไม + ทำอย่างไร&rdquo; ครบถ้วนกว่า</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ผมไม่ใช่นักการตลาดอาชีพ จะใช้ได้ไหม?</div>
+            <p class="faq-a">ใช้ได้ครับ &mdash; ถ้าคุณมีอะไรที่ต้องการให้ &ldquo;ถูกเห็น&rdquo; ในยุคดิจิทัล (สินค้า, แบรนด์, Content, ตัวเอง) เล่มนี้คือคู่มือ ไม่ต้องมีพื้นฐานการตลาดมาก่อน</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">หนังสือสอนเรื่อง Algorithm &mdash; พอ Platform เปลี่ยน เนื้อหาจะหมดอายุไหม?</div>
+            <p class="faq-a">ไม่ครับ &mdash; เพราะเล่มนี้ไม่ได้สอน &ldquo;Tactic&rdquo; ของ Platform เฉพาะ มันสอน <strong>หลักจิตวิทยาที่ Algorithm พึ่งพา</strong> &mdash; ตราบใดที่ Algorithm ยังโชว์ Content ให้มนุษย์ดู หลักการเหล่านี้ยังใช้ได้</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/vol2">บทนำเปิดให้อ่านฟรี</a> ไม่ต้องสมัคร ถ้าอ่านแล้วรู้สึกว่า &ldquo;ไม่ใช่&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือ /vol2 เพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้บนทุกอุปกรณ์</p>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q">เอาไปใช้กับทีมได้ไหม?</div>
+            <p class="faq-a">Unlock Code ใช้ได้หลายอุปกรณ์ &mdash; แต่ถ้าจะใช้กับทีม แนะนำให้ซื้อแยกเพื่อให้แต่ละคนมี Copy ของตัวเอง วิธีดีที่สุดคือให้แต่ละคนอ่าน + มาคุยกัน</p>
+        </div>
+
+        <div class="faq-item" style="border: none;">
+            <div class="faq-q">ทำไม Vol.2 แพงกว่า Vol.1 (1,890 vs 1,390)?</div>
+            <p class="faq-a">เพราะ Vol.2 ลึกกว่า, มี 5 Bonus Field Reports เคสไทยจริง, และเขียนหลังจาก Vol.1 ขายไปแล้ว 500+ เล่ม &mdash; เนื้อหาตอบโจทย์ที่ผู้อ่าน Vol.1 ถามมาบ่อยที่สุด</p>
+        </div>
+    </div>
+
+
+    <!-- ═══ FINAL CTA ═══ -->
+    <div class="final-cta">
+        <div class="final-cta-inner rv">
+            <h2>Algorithm เปลี่ยนทุกเดือน<br>แต่ <em>สมองมนุษย์</em> ไม่เปลี่ยนมา 200,000 ปี</h2>
+            <p>ลงทุนกับความเข้าใจที่ไม่มีวันหมดอายุ &mdash; ในขณะที่ทุกคนยังตามเทรนด์</p>
+            <p style="font-size: 0.78rem; color: var(--text-faint); margin-top: 0.5rem; font-family: var(--mono);">// 30-day money-back guarantee &mdash; no questions asked</p>
+            <a href="https://buy.stripe.com/cNi00j6S3a7MgDD2wUgYU02" class="final-cta-btn">DEPLOY ฿1,890</a>
+            <p class="final-cta-note">// secured by stripe &bull; instant unlock code</p>
+            <a href="/vol2" class="final-cta-free">ยังไม่แน่ใจ? scan บทนำฟรีก่อน →</a>
+        </div>
+    </div>
+
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta" id="sticky-cta">
+        <span class="sticky-cta-price"><strong>฿1,890</strong> &bull; lifetime</span>
+        <a href="https://buy.stripe.com/cNi00j6S3a7MgDD2wUgYU02" class="sticky-cta-btn">DEPLOY</a>
+    </div>
+
+    <div class="sp-footer">// rakkaew.com &bull; The One Root Series &bull; <a href="/vol2">VOL_02</a> // The Invisible War</div>
+
+
+    <script>
+    (function() {
+        // Progress bar
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
+
+        // Reveal
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.rv').forEach(function(el) { io.observe(el); });
+
+        // Counter for proof numbers
+        function animateCounter(el, target, suffix) {
+            suffix = suffix || '';
+            var dur = target >= 1000 ? 1600 : 900;
+            var start = null;
+            function step(ts) {
+                if (!start) start = ts;
+                var p = Math.min((ts - start) / dur, 1);
+                var eased = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString() + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+        var counterIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var el = e.target;
+                    var raw = el.textContent.trim();
+                    if (raw === '0.3s') { counterIO.unobserve(el); return; }
+                    var suffix = '';
+                    var clean = raw;
+                    if (raw.indexOf('+') !== -1) { suffix = '+'; clean = raw.replace('+',''); }
+                    var num = parseInt(clean.replace(/,/g,''), 10);
+                    if (!isNaN(num)) animateCounter(el, num, suffix);
+                    counterIO.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.proof-num').forEach(function(el) { counterIO.observe(el); });
+
+        // Sticky CTA
+        var sticky = document.getElementById('sticky-cta');
+        var hero = document.querySelector('.hero');
+        var finalCta = document.querySelector('.final-cta');
+        var stickyShown = false;
+        if (sticky && hero) {
+            window.addEventListener('scroll', function() {
+                var heroBottom = hero.getBoundingClientRect().bottom;
+                var finalTop = finalCta ? finalCta.getBoundingClientRect().top : Infinity;
+                var should = heroBottom < 0 && finalTop > window.innerHeight;
+                if (should && !stickyShown) { sticky.classList.add('show'); stickyShown = true; }
+                else if (!should && stickyShown) { sticky.classList.remove('show'); stickyShown = false; }
+            }, { passive: true });
+        }
+
+        // Clock
+        function tick() {
+            var d = new Date();
+            var hh = String(d.getHours()).padStart(2,'0');
+            var mm = String(d.getMinutes()).padStart(2,'0');
+            var ss = String(d.getSeconds()).padStart(2,'0');
+            var c = document.getElementById('clock');
+            if (c) c.textContent = hh+':'+mm+':'+ss;
+        }
+        tick(); setInterval(tick, 1000);
+
+        // FB Pixel: track lead/cta clicks
+        document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a) {
+            a.addEventListener('click', function() {
+                if (window.fbq) fbq('track', 'InitiateCheckout', { content_ids: ['oneroot-book-v2'], value: 1890, currency: 'THB' });
+            });
+        });
+    })();
+
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) navigator.clipboard.writeText(code);
+        else {
+            var t = document.createElement('textarea');
+            t.value = code; document.body.appendChild(t); t.select();
+            document.execCommand('copy'); document.body.removeChild(t);
+        }
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = '// copied ✓';
+        hint.style.color = 'var(--cyan)';
+        setTimeout(function() {
+            hint.textContent = '// click to copy';
+            hint.style.color = '';
+        }, 2000);
+    }
+    </script>
+</body>
+</html>
