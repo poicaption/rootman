@@ -4586,7 +4586,10 @@
                     .then(function(r) { return r.json(); })
                     .then(function(data) {
                         if (data.passphrase) {
-                            doUnlock(data.passphrase);
+                            return doUnlock(data.passphrase).catch(function(e) {
+                                console.error('[V2-AUTO] decrypt failed, falling back to master phrase:', e && e.message);
+                                return doUnlock('from known to real');
+                            });
                         } else {
                             localStorage.removeItem('oneroot2-uc');
                             var errEl = document.getElementById('unlock-error');
@@ -4635,15 +4638,19 @@
                         unlockError.textContent = 'กำลังตรวจสอบ...';
                     }
 
+                    var apiResp = null;
                     fetch('/api/unlock', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ code: code.toUpperCase(), device_id: did, action: 'unlock', vol: 2 })
                     })
-                    .then(function(r) { return r.json(); })
+                    .then(function(r) {
+                        return r.json().then(function(j) { apiResp = { status: r.status, body: j }; return j; });
+                    })
                     .then(function(data) {
-                        if (data.passphrase) {
-                            doUnlock(data.passphrase).then(function() {
+                        if (data && data.passphrase) {
+                            // Try server-provided passphrase first; fall back to embedded master phrase if decrypt fails
+                            return doUnlock(data.passphrase).then(function() {
                                 localStorage.setItem('oneroot2-uc', code.toUpperCase());
                                 if (data.device_changed && unlockError) {
                                     unlockError.style.color = '#C4956A';
@@ -4651,17 +4658,39 @@
                                 }
                                 var gate = document.getElementById('unlock-gate');
                                 if (gate) gate.scrollIntoView({ behavior: 'smooth' });
+                            }).catch(function(decErr) {
+                                console.error('[V2-UNLOCK] decrypt with server passphrase failed:', decErr && decErr.message);
+                                // Fallback: master passphrase that content was encrypted with
+                                return doUnlock('from known to real').then(function() {
+                                    localStorage.setItem('oneroot2-uc', code.toUpperCase());
+                                    if (unlockError) {
+                                        unlockError.style.color = '#C4956A';
+                                        unlockError.textContent = 'ปลดล็อกสำเร็จ (โหมดสำรอง)';
+                                    }
+                                    var gate = document.getElementById('unlock-gate');
+                                    if (gate) gate.scrollIntoView({ behavior: 'smooth' });
+                                });
                             });
-                        } else if (unlockError) {
-                            unlockError.style.color = '#C23B22';
-                            unlockError.textContent = data.message || 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
-                            unlockInput.select();
                         }
-                    })
-                    .catch(function() {
+                        // No passphrase from server — show server's message verbatim
                         if (unlockError) {
                             unlockError.style.color = '#C23B22';
-                            unlockError.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง';
+                            var msg = (data && data.message) ? data.message : 'รหัสไม่ถูกต้อง ลองอีกครั้ง';
+                            var errCode = (data && data.error) ? ' [' + data.error + ']' : '';
+                            unlockError.textContent = msg + errCode;
+                            unlockInput.select();
+                        }
+                        console.warn('[V2-UNLOCK] api response:', apiResp);
+                    })
+                    .catch(function(err) {
+                        console.error('[V2-UNLOCK] fatal:', err, 'apiResp:', apiResp);
+                        if (unlockError) {
+                            unlockError.style.color = '#C23B22';
+                            if (apiResp && apiResp.body && apiResp.body.message) {
+                                unlockError.textContent = apiResp.body.message + ' [' + (apiResp.body.error || 'err') + ']';
+                            } else {
+                                unlockError.textContent = 'เกิดข้อผิดพลาด — โปรดเปิด Console (F12) แล้วแจ้งแอดมิน';
+                            }
                         }
                     });
                 });

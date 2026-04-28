@@ -49,7 +49,9 @@ export default async function handler(req) {
     return json({ error: 'method_not_allowed' }, 405);
   }
 
+  let stage = 'init';
   try {
+    stage = 'parse_body';
     const body = await req.json();
     const { code, device_id, action } = body;
     const reqVol = body.vol === 2 || body.vol === '2' ? 2 : 1;
@@ -59,6 +61,7 @@ export default async function handler(req) {
     }
 
     // Master code → always works, no device restriction
+    stage = 'master_hash';
     const hash = await sha256(code.trim().toLowerCase());
     if (hash === MASTER_HASH) {
       return json({ passphrase: getPassphrase(1), master: true, vol: 1 });
@@ -68,11 +71,18 @@ export default async function handler(req) {
     }
 
     // Look up unique code in Redis
+    stage = 'redis_get';
     const result = await redis(['GET', `code:${code.toUpperCase()}`]);
+    if (result && result.error) {
+      console.error('[UNLOCK-REDIS]', JSON.stringify({ code: code.toUpperCase(), redisError: result.error, reqVol }));
+      return json({ error: 'redis_error', message: 'ระบบตรวจรหัสไม่พร้อม กรุณาลองใหม่' }, 503);
+    }
     if (!result.result) {
+      console.log('[UNLOCK-MISS]', JSON.stringify({ code: code.toUpperCase(), reqVol }));
       return json({ error: 'invalid_code', message: 'รหัสไม่ถูกต้อง' }, 400);
     }
 
+    stage = 'parse_record';
     const data = JSON.parse(result.result);
     // Determine the volume this code unlocks. Codes saved before vol-tagging default to 1.
     const codeVol = data.vol === 2 ? 2 : 1;
@@ -110,7 +120,17 @@ export default async function handler(req) {
     return json({ passphrase, device_changed: true });
 
   } catch (e) {
-    console.error('[UNLOCK-ERROR]', e.message);
-    return json({ error: 'server_error', message: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง' }, 500);
+    const envFlags = {
+      hasRedisUrl: !!process.env.UPSTASH_REDIS_REST_URL,
+      hasRedisToken: !!process.env.UPSTASH_REDIS_REST_TOKEN,
+      hasPassV1: !!process.env.UNLOCK_PASSPHRASE,
+      hasPassV2: !!process.env.UNLOCK_PASSPHRASE_V2,
+    };
+    console.error('[UNLOCK-ERROR]', JSON.stringify({ stage, message: e && e.message, name: e && e.name, envFlags }));
+    return json({
+      error: 'server_error',
+      message: 'เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง (' + stage + ')',
+      stage,
+    }, 500);
   }
 }
