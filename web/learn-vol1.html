@@ -3,31 +3,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Root — Visual Learning · รากแก้วการตลาด Vol.1</title>
-<meta name="description" content="สื่อการเรียนรู้เชิงภาพ — ต้นไม้แห่งจิตวิทยาการตลาด">
+<title>The Root · Visual Learning — รากแก้วการตลาด Vol.1</title>
+<meta name="description" content="คอร์สเรียนรู้เชิงภาพ — เข้าใจจิตวิทยาการตลาดในหนึ่งหน้า">
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ═════════════════════════════════════════════
+   THE ROOT · VISUAL LEARNING · VOL.1
+   ═════════════════════════════════════════════ */
+
 :root {
   --bg: #14110d;
   --bg-2: #1a1612;
   --bg-3: #221c16;
+  --bg-4: #2a2218;
   --ink: #f4ede0;
+  --ink-2: #d8cdb6;
   --ink-dim: #b8a98f;
   --ink-faint: #6b5d48;
   --gold: #c4956a;
   --gold-bright: #e0b87f;
+  --gold-soft: rgba(196,149,106,.15);
   --copper: #b87147;
   --root: #8a5a3d;
   --green: #6b8a5a;
   --red: #c4564a;
   --blue: #5a7a8a;
-  --line: rgba(196,149,106,.18);
-  --line-strong: rgba(196,149,106,.4);
+  --line: rgba(196,149,106,.2);
+  --line-strong: rgba(196,149,106,.45);
   --shadow: 0 20px 60px rgba(0,0,0,.5);
-  --transition: .6s cubic-bezier(.2,.8,.2,1);
+  --shadow-sm: 0 4px 16px rgba(0,0,0,.3);
+  --nav-w: 280px;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,604 +47,998 @@ body {
   line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
+  font-feature-settings: "ss01", "ss02";
 }
 body.locked { overflow: hidden; height: 100vh; }
+img, svg { max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
 
-/* ──────────────── Background grain & vignette ──────────────── */
+/* Background texture */
 body::before {
   content: '';
   position: fixed; inset: 0;
   background-image:
-    radial-gradient(ellipse at 20% 10%, rgba(196,149,106,.05), transparent 60%),
-    radial-gradient(ellipse at 80% 90%, rgba(184,113,71,.04), transparent 55%);
+    radial-gradient(ellipse at 15% 5%, rgba(196,149,106,.07), transparent 55%),
+    radial-gradient(ellipse at 85% 95%, rgba(184,113,71,.05), transparent 50%);
   pointer-events: none; z-index: 0;
 }
-body::after {
-  content: ''; position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.7  0 0 0 0 0.55  0 0 0 0 0.4  0 0 0 0.04 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
-  opacity: .35; pointer-events: none; z-index: 0; mix-blend-mode: overlay;
-}
 
-main, .lock-screen { position: relative; z-index: 1; }
-
-/* ──────────────── Lock Screen ──────────────── */
+/* ═════════════════════════════════════════════
+   1. LOCK SCREEN
+   ═════════════════════════════════════════════ */
 .lock-screen {
   position: fixed; inset: 0;
   background: radial-gradient(ellipse at center, var(--bg-2) 0%, var(--bg) 80%);
   display: flex; align-items: center; justify-content: center;
   flex-direction: column; padding: 2rem;
-  z-index: 100;
+  z-index: 1000;
   transition: opacity .6s ease, visibility .6s ease;
 }
 .lock-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
 .lock-card {
-  max-width: 480px; width: 100%;
+  max-width: 460px; width: 100%;
   text-align: center;
   padding: 3rem 2rem;
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: var(--shadow);
-  position: relative;
 }
-.lock-seal {
-  width: 80px; height: 80px;
-  margin: 0 auto 1.5rem;
-  position: relative;
-}
-.lock-seal svg { width: 100%; height: 100%; animation: spin-slow 30s linear infinite; }
+.lock-seal { width: 80px; height: 80px; margin: 0 auto 1.5rem; }
+.lock-seal svg { width: 100%; height: 100%; animation: spin-slow 40s linear infinite; }
 @keyframes spin-slow { to { transform: rotate(360deg); } }
-.lock-seal::after {
-  content: ''; position: absolute; inset: 25%;
-  border: 1.5px solid var(--gold); border-radius: 50%;
-}
 .lock-title {
-  font-size: 1.4rem; font-weight: 600; color: var(--gold-bright);
-  margin-bottom: .5rem; letter-spacing: .05em;
+  font-size: 1.35rem; font-weight: 600; color: var(--gold-bright);
+  margin-bottom: .35rem; letter-spacing: .03em;
 }
 .lock-sub {
-  font-size: .85rem; color: var(--ink-dim);
-  margin-bottom: 2rem; font-family: 'JetBrains Mono', monospace;
-  letter-spacing: .1em;
+  font-size: .8rem; color: var(--ink-dim);
+  margin-bottom: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .15em;
 }
-.lock-input-wrap { position: relative; }
 .lock-input {
   width: 100%; padding: 1rem 1.2rem;
   background: var(--bg);
   border: 1px solid var(--line-strong);
   color: var(--ink);
   font-family: 'JetBrains Mono', monospace;
-  font-size: 1rem;
-  letter-spacing: .15em;
-  text-align: center;
+  font-size: 1rem; letter-spacing: .15em; text-align: center;
   outline: none;
   transition: border-color .2s ease, box-shadow .2s ease;
+  border-radius: 3px;
 }
 .lock-input:focus {
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(196,149,106,.12);
+  box-shadow: 0 0 0 3px rgba(196,149,106,.15);
 }
 .lock-btn {
   margin-top: 1rem; width: 100%;
   padding: 1rem;
   background: var(--gold);
   border: none; color: var(--bg);
-  font-family: 'Prompt', sans-serif;
-  font-size: 1rem; font-weight: 600;
-  letter-spacing: .05em;
-  cursor: pointer;
+  font-size: 1rem; font-weight: 600; letter-spacing: .03em;
+  border-radius: 3px;
   transition: background .2s ease, transform .15s ease;
 }
 .lock-btn:hover { background: var(--gold-bright); }
 .lock-btn:active { transform: scale(.98); }
 .lock-error {
-  margin-top: 1rem;
-  font-size: .85rem;
-  color: var(--red);
-  min-height: 1.2em;
+  margin-top: 1rem; min-height: 1.4em;
+  font-size: .85rem; color: var(--red);
   font-family: 'JetBrains Mono', monospace;
 }
 .lock-hint {
-  margin-top: 2rem;
-  font-size: .75rem;
-  color: var(--ink-faint);
+  margin-top: 1.75rem; font-size: .75rem; color: var(--ink-faint);
+  letter-spacing: .03em;
+}
+
+/* ═════════════════════════════════════════════
+   2. APP LAYOUT (sidebar + main)
+   ═════════════════════════════════════════════ */
+.app { display: grid; grid-template-columns: var(--nav-w) 1fr; min-height: 100vh; position: relative; z-index: 1; }
+@media (max-width: 960px) { .app { grid-template-columns: 1fr; } }
+
+/* Top progress bar */
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: rgba(0,0,0,.4);
+  z-index: 90;
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--copper), var(--gold-bright));
+  transition: width .15s linear;
+}
+
+/* ───────── Sidebar ───────── */
+.sidebar {
+  position: sticky; top: 0;
+  height: 100vh;
+  background: var(--bg-2);
+  border-right: 1px solid var(--line);
+  padding: 1.75rem 1.25rem;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+
+.brand {
+  display: flex; align-items: center; gap: .75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.25rem;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, var(--gold-bright), var(--copper));
+  flex-shrink: 0;
+}
+.brand-name { font-size: .9rem; font-weight: 700; color: var(--ink); line-height: 1.2; }
+.brand-name small {
+  display: block; font-size: .65rem; color: var(--ink-faint);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .15em; font-weight: 400; margin-top: .15rem;
+}
+
+.nav-stats {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--ink-dim);
   letter-spacing: .05em;
 }
+.nav-stats b { color: var(--gold-bright); font-weight: 600; }
 
-/* ──────────────── Layout ──────────────── */
-.section {
-  max-width: 1180px; margin: 0 auto;
-  padding: 7rem 2rem;
-  position: relative;
+.nav-list { list-style: none; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .65rem .85rem;
+  margin-bottom: .15rem;
+  border-radius: 4px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  transition: all .2s ease;
+  cursor: pointer;
 }
-.section-eyebrow {
+.nav-item:hover { color: var(--ink); background: var(--bg-3); }
+.nav-item.active {
+  color: var(--gold-bright);
+  background: var(--bg-3);
+  border-left-color: var(--gold);
+}
+.nav-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .75rem; color: var(--gold);
-  letter-spacing: .25em; text-transform: uppercase;
-  margin-bottom: 1rem;
+  font-size: .7rem;
+  width: 20px; text-align: center;
+  color: var(--ink-faint);
+  flex-shrink: 0;
 }
-.section-title {
-  font-size: clamp(1.8rem, 4.5vw, 3rem);
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  line-height: 1.25;
-  letter-spacing: -.01em;
+.nav-item.active .nav-num { color: var(--gold); }
+.nav-item.done .nav-num::before {
+  content: '✓ '; color: var(--green);
 }
-.section-title em { color: var(--gold-bright); font-style: normal; }
-.section-lead {
-  font-size: 1.05rem; color: var(--ink-dim);
-  max-width: 720px; margin-bottom: 3.5rem;
+.nav-text { flex: 1; }
+.nav-time {
+  font-size: .65rem;
+  color: var(--ink-faint);
+  font-family: 'JetBrains Mono', monospace;
 }
 
-/* ──────────────── Hero ──────────────── */
-.hero {
-  min-height: 100vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  padding: 4rem 2rem;
-  position: relative;
+.nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
+  padding: .55rem .9rem;
+  border-radius: 3px;
+  font-size: .75rem;
   text-align: center;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .1em;
+  transition: all .2s ease;
 }
-.hero-tree-wrap {
-  width: min(580px, 90vw); aspect-ratio: 1 / 1;
-  margin: 0 auto 2.5rem;
+.nav-btn:hover { border-color: var(--gold); color: var(--gold-bright); }
+
+/* ───────── Mobile menu ───────── */
+.mobile-bar {
+  display: none;
+  position: sticky; top: 0;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  padding: .85rem 1rem;
+  z-index: 40;
+  align-items: center; justify-content: space-between;
+}
+.mobile-bar .brand-name { font-size: .85rem; }
+.mobile-toggle {
+  background: var(--bg-3);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  width: 40px; height: 40px;
+  border-radius: 4px;
+  display: grid; place-items: center;
+}
+@media (max-width: 960px) {
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: var(--nav-w); max-width: 80vw;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 100;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-bar { display: flex; }
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6);
+    z-index: 90; opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+  }
+  .sidebar-backdrop.show { opacity: 1; visibility: visible; }
+}
+
+/* ═════════════════════════════════════════════
+   3. MAIN CONTENT
+   ═════════════════════════════════════════════ */
+.main {
+  max-width: 100%;
+  padding: 0;
   position: relative;
 }
-.hero-tree-wrap svg { width: 100%; height: 100%; overflow: visible; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 2rem; }
+@media (max-width: 600px) { .container { padding: 0 1.25rem; } }
+
+/* ───────── Hero ───────── */
+.hero {
+  padding: 5rem 2rem 4rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.hero-grid {
+  max-width: 1080px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 360px);
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
 .hero-mark {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .8rem; color: var(--gold);
-  letter-spacing: .35em; margin-bottom: 1rem;
+  font-size: .75rem; color: var(--gold);
+  letter-spacing: .3em; margin-bottom: 1.25rem;
+  text-transform: uppercase;
 }
-.hero-title {
-  font-size: clamp(2.2rem, 6vw, 4.2rem);
-  font-weight: 700; line-height: 1.1;
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 700;
   letter-spacing: -.02em;
-  background: linear-gradient(180deg, var(--ink) 0%, var(--gold-bright) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.25rem;
 }
-.hero-sub {
-  font-size: 1.1rem; color: var(--ink-dim); max-width: 580px;
-  margin: 0 auto 2.5rem;
+.hero h1 em { color: var(--gold-bright); font-style: normal; }
+.hero p.lead {
+  font-size: 1.05rem;
+  color: var(--ink-dim);
+  margin-bottom: 1.5rem;
 }
-.hero-scroll {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  font-family: 'JetBrains Mono', monospace; font-size: .7rem;
-  color: var(--ink-faint); letter-spacing: .3em;
-  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
 }
-.hero-scroll::after {
-  content: ''; width: 1px; height: 40px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scroll-cue 2s ease-in-out infinite;
+.hero-tag {
+  padding: .4rem .8rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--ink-2);
+  letter-spacing: .05em;
 }
-@keyframes scroll-cue {
-  0%, 100% { transform: scaleY(0); transform-origin: top; }
-  50% { transform: scaleY(1); }
-}
+.hero-tag b { color: var(--gold); font-weight: 600; }
 
-/* SVG tree styles */
+.hero-visual {
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.hero-visual svg { width: 100%; height: 100%; overflow: visible; }
+
+/* SVG draw animation */
 .tree-root, .tree-trunk, .tree-branch {
-  fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+  animation: draw 2.5s cubic-bezier(.4,0,.2,1) forwards;
 }
 .tree-root { stroke: var(--root); stroke-width: 2.5; opacity: .85; }
-.tree-trunk { stroke: var(--copper); stroke-width: 4; }
-.tree-branch { stroke: var(--gold); stroke-width: 1.5; }
-.tree-leaf { fill: var(--gold); }
-.tree-leaf-2 { fill: var(--copper); opacity: .8; }
-.tree-glow { fill: var(--gold-bright); filter: blur(1px); }
-
-.tree-draw { stroke-dasharray: 1000; stroke-dashoffset: 1000;
-  animation: draw 3s ease forwards; }
+.tree-trunk { stroke: var(--copper); stroke-width: 4.5; animation-delay: .8s; }
+.tree-branch { stroke: var(--gold); stroke-width: 1.8; animation-delay: 1.5s; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
+.tree-leaf {
+  fill: var(--gold);
+  opacity: 0;
+  animation: fadeIn .6s ease forwards;
+}
+.tree-leaf-2 { fill: var(--copper); }
+.tree-glow { fill: var(--gold-bright); filter: blur(2px); }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
 
-/* ──────────────── Reveal animation ──────────────── */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.8,.2,1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.reveal-delay-1 { transition-delay: .1s; }
-.reveal-delay-2 { transition-delay: .25s; }
-.reveal-delay-3 { transition-delay: .4s; }
-
-/* ──────────────── Section 1 — Root Tree concept map ──────────────── */
-.tree-map {
+/* Objectives card */
+.objectives {
+  max-width: 1080px; margin: 3rem auto 0;
   background: var(--bg-2);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
   border-radius: 4px;
-  padding: 3rem 1rem;
-  position: relative;
-  overflow: hidden;
+  padding: 1.75rem 2rem;
 }
-.tree-map svg { width: 100%; height: auto; max-height: 640px; display: block; }
-.node-circle { fill: var(--bg-3); stroke: var(--gold); stroke-width: 1.5; transition: all .3s ease; }
-.node-circle.root { stroke: var(--root); stroke-width: 2; }
-.node-circle.center { fill: var(--gold); stroke: var(--gold-bright); stroke-width: 2.5; }
-.node-label {
-  font-family: 'Prompt', sans-serif;
-  fill: var(--ink); font-size: 12px; font-weight: 500;
-  text-anchor: middle; pointer-events: none;
+.objectives h3 {
+  font-size: .85rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
 }
-.node-label.center { fill: var(--bg); font-weight: 700; font-size: 13px; }
-.node-label.dim { fill: var(--ink-dim); font-size: 11px; }
-.node-link { stroke: var(--line-strong); stroke-width: 1.2; fill: none; opacity: .7; }
-.node-group { cursor: pointer; transition: transform .3s ease; }
-.node-group:hover { transform: scale(1.05); }
-.node-group:hover .node-circle { fill: var(--gold); }
-.node-group:hover .node-label { fill: var(--bg); font-weight: 700; }
+.objectives ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: .75rem 1.5rem; }
+.objectives li {
+  display: flex; gap: .75rem;
+  font-size: .95rem; color: var(--ink-2);
+}
+.objectives li::before {
+  content: '→';
+  color: var(--gold);
+  flex-shrink: 0;
+  font-weight: 700;
+}
 
-/* ──────────────── Section 2 — Hormones ──────────────── */
-.hormones-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+/* ═════════════════════════════════════════════
+   4. LESSON BLOCK
+   ═════════════════════════════════════════════ */
+.lesson {
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 1rem;
 }
-.hormone-card {
+.lesson:nth-child(even) { background: rgba(0,0,0,.18); }
+.lesson-inner { max-width: 920px; margin: 0 auto; }
+
+.lesson-header {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed var(--line);
+}
+.lesson-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; letter-spacing: .2em;
+  color: var(--gold);
+  background: var(--gold-soft);
+  padding: .35rem .7rem;
+  border-radius: 2px;
+}
+.lesson-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; color: var(--ink-faint);
+  margin-left: auto;
+}
+.lesson-time::before { content: '◷ '; }
+.lesson h2 {
+  font-size: clamp(1.6rem, 3.8vw, 2.4rem);
+  font-weight: 600;
+  width: 100%;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+}
+.lesson h2 em { color: var(--gold-bright); font-style: normal; }
+
+.lesson-objective {
+  font-size: .92rem;
+  color: var(--ink-dim);
+  margin-bottom: 2.5rem;
+  padding: .85rem 1.1rem;
+  background: var(--bg-2);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 3px 3px 0;
+}
+.lesson-objective b { color: var(--gold-bright); font-weight: 600; }
+
+/* Block titles within a lesson */
+.block { margin-bottom: 2.5rem; }
+.block-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: .85rem;
+}
+.block-label::before {
+  content: ''; width: 18px; height: 1px; background: var(--gold);
+}
+.block h3 {
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: .75rem;
+  font-weight: 600;
+}
+.block p { color: var(--ink-2); margin-bottom: 1rem; font-size: 1rem; }
+.block p:last-child { margin-bottom: 0; }
+.block strong { color: var(--gold-bright); font-weight: 600; }
+
+/* Visual diagram block */
+.visual-block {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 2rem 1.5rem;
+  position: relative;
+}
+.visual-block svg { display: block; margin: 0 auto; }
+
+/* Case study block */
+.case-study {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+  position: relative;
+}
+.case-study::before {
+  content: 'CASE STUDY';
+  position: absolute; top: -.6rem; left: 1rem;
+  background: var(--bg);
+  padding: 0 .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--copper);
+}
+.case-study .case-brand {
+  font-size: .85rem; color: var(--gold);
+  font-weight: 600;
+  margin-bottom: .35rem;
+  letter-spacing: .03em;
+}
+.case-study h4 {
+  font-size: 1.1rem; margin-bottom: .8rem;
+  color: var(--ink);
+}
+.case-study p { font-size: .92rem; color: var(--ink-2); margin-bottom: .6rem; }
+.case-result {
+  display: inline-block;
+  margin-top: .75rem;
+  padding: .35rem .8rem;
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+  font-size: .8rem;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 2px;
+  letter-spacing: .03em;
+}
+
+/* Try-it interactive block */
+.try-it {
+  background: var(--bg-3);
+  border: 1px dashed var(--line-strong);
+  border-radius: 6px;
+  padding: 1.75rem 1.75rem;
+}
+.try-it .block-label { color: var(--copper); }
+.try-it .block-label::before { background: var(--copper); }
+.try-it h3 { color: var(--gold-bright); margin-bottom: .6rem; }
+.try-it-prompt { color: var(--ink-2); margin-bottom: 1.25rem; font-size: .95rem; }
+
+/* Takeaway box */
+.takeaway {
+  background: linear-gradient(135deg, rgba(196,149,106,.08), transparent);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  margin-top: 1rem;
+}
+.takeaway::before {
+  content: '⌬';
+  position: absolute; top: -1px; left: 1.25rem;
+  width: 32px; height: 32px;
+  background: var(--bg);
+  color: var(--gold);
+  display: grid; place-items: center;
+  font-size: 1.2rem;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+.takeaway-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--gold);
+  margin-bottom: .5rem;
+  display: block;
+}
+.takeaway p, .takeaway li { color: var(--ink); font-size: .98rem; }
+.takeaway ul { list-style: none; padding-left: 0; }
+.takeaway li { display: flex; gap: .65rem; margin-bottom: .4rem; }
+.takeaway li::before { content: '◆'; color: var(--gold); flex-shrink: 0; font-size: .8rem; padding-top: .25rem; }
+.takeaway b { color: var(--gold-bright); }
+
+/* ───────── Mark-as-complete ───────── */
+.lesson-complete {
+  margin-top: 2rem;
+  display: flex; align-items: center; gap: .75rem;
+  padding: .85rem 1.25rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: .9rem;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: all .2s ease;
+  user-select: none;
+}
+.lesson-complete:hover { border-color: var(--gold); color: var(--ink); }
+.lesson-complete.checked {
+  border-color: var(--green);
+  background: rgba(107,138,90,.1);
+  color: var(--ink);
+}
+.lesson-checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--line-strong);
+  border-radius: 4px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  transition: all .2s ease;
+}
+.lesson-complete.checked .lesson-checkbox {
+  background: var(--green);
+  border-color: var(--green);
+}
+.lesson-checkbox::after {
+  content: '✓'; color: var(--bg); font-weight: 700;
+  opacity: 0; transition: opacity .2s ease;
+}
+.lesson-complete.checked .lesson-checkbox::after { opacity: 1; }
+
+/* ═════════════════════════════════════════════
+   5. SVG / VISUAL STYLES (per lesson)
+   ═════════════════════════════════════════════ */
+.svg-text { font-family: 'Prompt', sans-serif; fill: var(--ink); font-size: 13px; font-weight: 500; text-anchor: middle; }
+.svg-text-sm { font-family: 'JetBrains Mono', monospace; fill: var(--ink-dim); font-size: 10px; text-anchor: middle; letter-spacing: .1em; }
+.svg-text-tag { font-family: 'JetBrains Mono', monospace; fill: var(--gold); font-size: 10px; text-anchor: middle; letter-spacing: .1em; }
+
+/* L1: tree map */
+.tm-link { stroke: var(--line-strong); stroke-width: 1.3; fill: none; }
+.tm-node { fill: var(--bg-3); stroke: var(--gold); stroke-width: 1.5; transition: fill .25s ease; }
+.tm-node.root { stroke: var(--root); }
+.tm-node.center { fill: var(--gold); stroke: var(--gold-bright); stroke-width: 2; }
+.tm-group { transition: transform .25s ease; cursor: default; }
+.tm-group:hover .tm-node { fill: var(--gold-soft); }
+.tm-group.root-pulse .tm-node { animation: nodePulse 2s ease-in-out infinite; }
+@keyframes nodePulse {
+  0%, 100% { fill: var(--bg-3); }
+  50% { fill: var(--gold-soft); }
+}
+
+/* L2: hormones */
+.hormone-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.hormone {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem 1.25rem;
   position: relative;
   overflow: hidden;
   transition: transform .3s ease, border-color .3s ease;
 }
-.hormone-card:hover { transform: translateY(-4px); border-color: var(--gold); }
-.hormone-card::before {
-  content: ''; position: absolute; top: 0; left: 0; height: 3px;
-  width: var(--bar, 0%);
+.hormone:hover { transform: translateY(-3px); border-color: var(--accent, var(--gold)); }
+.hormone::before {
+  content: ''; position: absolute; top: 0; left: 0;
+  height: 3px; width: 100%;
   background: var(--accent, var(--gold));
-  transition: width 1.2s cubic-bezier(.2,.8,.2,1) .3s;
+  opacity: .8;
 }
 .hormone-icon {
-  width: 48px; height: 48px; margin-bottom: 1rem;
+  width: 44px; height: 44px;
   border-radius: 50%;
-  background: var(--accent, var(--gold));
-  opacity: .15;
-  display: grid; place-items: center;
-  position: relative;
+  background: var(--accent, var(--gold)); opacity: .12;
+  margin-bottom: .9rem; position: relative;
 }
 .hormone-icon::after {
-  content: ''; position: absolute; inset: 30%;
+  content: ''; position: absolute; inset: 28%;
   background: var(--accent, var(--gold)); border-radius: 50%;
-  animation: pulse 2.5s ease-in-out infinite;
+  animation: hormonePulse 2.4s ease-in-out infinite;
 }
-@keyframes pulse {
-  0%, 100% { transform: scale(.7); opacity: .8; }
-  50% { transform: scale(1.1); opacity: 1; }
+@keyframes hormonePulse {
+  0%, 100% { transform: scale(.7); opacity: .85; }
+  50% { transform: scale(1.15); opacity: 1; }
 }
-.hormone-name {
-  font-size: 1.15rem; font-weight: 600;
-  color: var(--accent, var(--gold-bright));
-  margin-bottom: .25rem;
+.hormone-name { font-size: 1.05rem; font-weight: 600; color: var(--accent, var(--gold-bright)); margin-bottom: .15rem; }
+.hormone-tag { font-family: 'JetBrains Mono', monospace; font-size: .65rem; letter-spacing: .15em; color: var(--ink-faint); margin-bottom: .85rem; text-transform: uppercase; }
+.hormone-desc { font-size: .88rem; color: var(--ink-dim); margin-bottom: .85rem; }
+.hormone-trigger { font-size: .8rem; color: var(--ink); border-top: 1px dashed var(--line); padding-top: .75rem; }
+.hormone-trigger b { color: var(--accent, var(--gold)); font-weight: 600; }
+
+/* Hormone matching exercise */
+.match-game {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
 }
-.hormone-tag {
+@media (max-width: 600px) { .match-game { grid-template-columns: 1fr; } }
+.match-col h4 {
   font-family: 'JetBrains Mono', monospace;
   font-size: .7rem; letter-spacing: .15em;
   color: var(--ink-faint);
-  margin-bottom: 1rem;
+  margin-bottom: .65rem;
   text-transform: uppercase;
 }
-.hormone-desc {
-  font-size: .92rem; color: var(--ink-dim);
-  margin-bottom: 1rem;
+.match-item {
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  padding: .75rem .9rem;
+  margin-bottom: .5rem;
+  font-size: .85rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all .2s ease;
 }
-.hormone-trigger {
-  font-size: .85rem; color: var(--ink);
-  border-top: 1px dashed var(--line);
-  padding-top: 1rem;
+.match-item:hover { border-color: var(--gold); }
+.match-item.selected { border-color: var(--gold); background: var(--gold-soft); color: var(--gold-bright); }
+.match-item.matched { opacity: .4; pointer-events: none; border-style: dashed; }
+.match-item.correct { border-color: var(--green); background: rgba(107,138,90,.15); color: var(--green); }
+.match-item.wrong { border-color: var(--red); background: rgba(196,86,74,.1); animation: shake .3s ease; }
+@keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-4px)} 75%{transform:translateX(4px)} }
+.match-status {
+  font-family: 'JetBrains Mono', monospace; font-size: .75rem;
+  color: var(--ink-faint); letter-spacing: .1em;
+  text-align: center;
 }
-.hormone-trigger b { color: var(--accent, var(--gold)); font-weight: 600; }
+.match-status.win { color: var(--green); }
 
-/* ──────────────── Section 3 — 5 Desires Wheel ──────────────── */
-.wheel-wrap {
+/* L3: wheel */
+.wheel-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 3rem;
+  grid-template-columns: minmax(280px, 380px) 1fr;
+  gap: 2.5rem;
   align-items: center;
 }
-@media (max-width: 820px) { .wheel-wrap { grid-template-columns: 1fr; } }
-.wheel-svg-wrap { position: relative; aspect-ratio: 1/1; }
-.wheel-svg-wrap svg { width: 100%; height: 100%; }
+@media (max-width: 720px) { .wheel-grid { grid-template-columns: 1fr; } }
+.wheel-svg { width: 100%; aspect-ratio: 1/1; max-width: 380px; margin: 0 auto; }
+.wheel-svg svg { width: 100%; height: 100%; }
 .wheel-slice {
-  fill: var(--bg-3);
-  stroke: var(--bg);
-  stroke-width: 2;
-  cursor: pointer;
-  transition: fill .3s ease, transform .3s ease;
-  transform-origin: center;
+  fill: var(--bg-3); stroke: var(--bg-2); stroke-width: 2;
+  cursor: pointer; transition: fill .25s ease;
 }
 .wheel-slice:hover, .wheel-slice.active { fill: var(--gold); }
 .wheel-slice-label {
   font-family: 'Prompt', sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  fill: var(--ink);
-  text-anchor: middle; pointer-events: none;
-  dominant-baseline: middle;
+  font-size: 12px; font-weight: 600;
+  fill: var(--ink); pointer-events: none;
+  text-anchor: middle; dominant-baseline: middle;
+  transition: fill .25s ease;
 }
-.wheel-slice:hover ~ .wheel-slice-label,
-.wheel-slice.active ~ .wheel-slice-label { fill: var(--bg); }
-.wheel-center {
-  fill: var(--bg);
-  stroke: var(--gold);
-  stroke-width: 1.5;
-}
+.wheel-slice-group:hover .wheel-slice-label,
+.wheel-slice-group.active .wheel-slice-label { fill: var(--bg); }
+.wheel-center { fill: var(--bg); stroke: var(--gold); stroke-width: 1.5; }
 .wheel-center-text {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; fill: var(--gold);
+  font-size: 10px; fill: var(--gold);
   text-anchor: middle; dominant-baseline: middle;
   letter-spacing: .15em;
 }
 .desire-detail {
   background: var(--bg-2); border: 1px solid var(--line);
-  border-radius: 4px; padding: 2rem;
-  min-height: 320px;
+  border-radius: 6px; padding: 1.75rem;
+  min-height: 280px;
 }
-.desire-detail-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 3rem; font-weight: 700;
-  color: var(--gold);
-  line-height: 1;
-}
-.desire-detail-name {
-  font-size: 1.5rem; font-weight: 600;
-  color: var(--ink); margin: .25rem 0 .5rem;
-}
-.desire-detail-en {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .8rem; color: var(--ink-faint);
-  letter-spacing: .15em;
-  margin-bottom: 1.5rem;
-}
-.desire-detail-body {
-  font-size: .95rem; color: var(--ink-dim);
-  margin-bottom: 1.5rem;
-}
-.desire-detail-tags {
-  display: flex; flex-wrap: wrap; gap: .5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .75rem;
-}
+.desire-num { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.desire-name { font-size: 1.4rem; font-weight: 600; color: var(--ink); margin: .25rem 0 .35rem; }
+.desire-en { font-family: 'JetBrains Mono', monospace; font-size: .75rem; color: var(--ink-faint); letter-spacing: .15em; margin-bottom: 1rem; }
+.desire-body { font-size: .92rem; color: var(--ink-dim); margin-bottom: 1rem; }
+.desire-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 .desire-tag {
-  padding: .35rem .8rem;
+  padding: .3rem .7rem;
   background: var(--bg);
   border: 1px solid var(--line-strong);
   color: var(--gold);
   border-radius: 2px;
-  letter-spacing: .05em;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .03em;
 }
 
-/* ──────────────── Section 4 — Storytelling Arc ──────────────── */
-.arc-wrap {
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 3rem 2rem;
-  overflow: hidden;
-}
-.arc-wrap svg { width: 100%; height: auto; max-height: 400px; }
-.arc-line { fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round;
+/* L4: arc */
+.arc-block svg { width: 100%; height: auto; }
+.arc-baseline { stroke: rgba(196,149,106,.2); stroke-width: 1; stroke-dasharray: 4 4; }
+.arc-line {
+  fill: none; stroke: var(--gold); stroke-width: 2.5; stroke-linecap: round;
   stroke-dasharray: 2000; stroke-dashoffset: 2000;
   transition: stroke-dashoffset 2s ease;
 }
-.arc-wrap.visible .arc-line { stroke-dashoffset: 0; }
+.arc-block.in .arc-line { stroke-dashoffset: 0; }
 .arc-area { fill: url(#arcGrad); opacity: 0; transition: opacity 1s ease 1.5s; }
-.arc-wrap.visible .arc-area { opacity: .25; }
-.arc-marker { fill: var(--bg); stroke: var(--gold); stroke-width: 2; opacity: 0;
-  transition: opacity .4s ease; }
-.arc-wrap.visible .arc-marker { opacity: 1; }
-.arc-marker-1 { transition-delay: 1.7s; }
-.arc-marker-2 { transition-delay: 1.9s; }
-.arc-marker-3 { transition-delay: 2.1s; }
-.arc-marker-4 { transition-delay: 2.3s; }
-.arc-marker-5 { transition-delay: 2.5s; }
-.arc-label {
-  font-family: 'Prompt', sans-serif;
-  font-size: 12px; fill: var(--ink-dim);
-  text-anchor: middle;
+.arc-block.in .arc-area { opacity: .3; }
+.arc-marker { fill: var(--bg); stroke: var(--gold); stroke-width: 2; opacity: 0; transition: opacity .4s ease; }
+.arc-block.in .arc-marker.m1 { transition-delay: 1.5s; opacity: 1; }
+.arc-block.in .arc-marker.m2 { transition-delay: 1.7s; opacity: 1; }
+.arc-block.in .arc-marker.m3 { transition-delay: 1.9s; opacity: 1; }
+.arc-block.in .arc-marker.m4 { transition-delay: 2.1s; opacity: 1; }
+.arc-block.in .arc-marker.m5 { transition-delay: 2.3s; opacity: 1; }
+.arc-stages {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: .75rem;
+  margin-top: 1.5rem;
 }
-.arc-label-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; fill: var(--gold);
-  letter-spacing: .1em;
-  text-anchor: middle;
+@media (max-width: 700px) { .arc-stages { grid-template-columns: repeat(2, 1fr); } }
+.arc-stage {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .85rem;
+  text-align: center;
 }
+.arc-stage-num { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-size: .7rem; letter-spacing: .1em; }
+.arc-stage-name { color: var(--ink); font-weight: 600; font-size: .9rem; margin: .15rem 0; }
+.arc-stage-en { font-family: 'JetBrains Mono', monospace; color: var(--ink-faint); font-size: .65rem; letter-spacing: .1em; }
 
-/* ──────────────── Section 5 — Social Proof comparison ──────────────── */
-.proof-grid {
+/* L5: social proof */
+.proof-compare {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
 }
-@media (max-width: 720px) { .proof-grid { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .proof-compare { grid-template-columns: 1fr; } }
 .proof-card {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 2rem;
-  position: relative;
+  border-radius: 6px;
+  padding: 1.75rem;
 }
-.proof-card.bad { border-color: rgba(196,86,74,.3); }
-.proof-card.good { border-color: rgba(196,149,106,.4); }
-.proof-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .7rem; letter-spacing: .2em;
-  color: var(--ink-faint);
-  margin-bottom: 1rem;
-}
-.proof-tag b { color: var(--red); }
-.proof-card.good .proof-tag b { color: var(--gold); }
-.proof-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 3.5rem; font-weight: 700;
-  line-height: 1;
-}
+.proof-card.bad { border-color: rgba(196,86,74,.4); }
+.proof-card.good { border-color: var(--gold); }
+.proof-tag { font-family: 'JetBrains Mono', monospace; font-size: .7rem; letter-spacing: .15em; color: var(--ink-faint); margin-bottom: .75rem; }
+.proof-tag b.bad { color: var(--red); }
+.proof-tag b.good { color: var(--gold); }
+.proof-num { font-family: 'JetBrains Mono', monospace; font-size: 3rem; font-weight: 700; line-height: 1; }
 .proof-card.bad .proof-num { color: var(--red); }
 .proof-card.good .proof-num { color: var(--gold-bright); }
-.proof-num small { font-size: 1.2rem; opacity: .7; }
-.proof-bar {
-  height: 6px;
-  background: var(--bg-3);
-  border-radius: 3px;
-  margin: 1rem 0;
-  overflow: hidden;
-  position: relative;
-}
-.proof-bar::after {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 0; transition: width 1.5s cubic-bezier(.2,.8,.2,1) .3s;
-}
-.proof-card.bad.visible .proof-bar::after { width: 13%; background: var(--red); }
-.proof-card.good.visible .proof-bar::after { width: 71%; background: var(--gold); }
-.proof-desc {
-  font-size: .92rem; color: var(--ink-dim);
-}
+.proof-num small { font-size: 1.1rem; opacity: .7; }
+.proof-bar { height: 6px; background: var(--bg-3); border-radius: 3px; margin: .85rem 0; overflow: hidden; }
+.proof-bar > div { height: 100%; width: 0; transition: width 1.2s cubic-bezier(.2,.8,.2,1) .3s; border-radius: 3px; }
+.proof-card.bad.in .proof-bar > div { width: 13%; background: var(--red); }
+.proof-card.good.in .proof-bar > div { width: 71%; background: var(--gold); }
+.proof-desc { font-size: .9rem; color: var(--ink-dim); }
 
-/* ──────────────── Section 6 — Scarcity timer ──────────────── */
-.scarcity-wrap {
+/* L6: scarcity */
+.scarcity-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
 }
-@media (max-width: 820px) { .scarcity-wrap { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .scarcity-grid { grid-template-columns: 1fr; } }
 .timer-card {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 2.5rem;
+  border-radius: 6px;
+  padding: 2rem;
   text-align: center;
 }
 .timer-label {
   font-family: 'JetBrains Mono', monospace;
-  font-size: .75rem; color: var(--gold);
-  letter-spacing: .25em;
-  margin-bottom: 1rem;
-  text-transform: uppercase;
+  font-size: .7rem; color: var(--gold); letter-spacing: .2em;
+  margin-bottom: 1rem; text-transform: uppercase;
 }
-.timer-display {
-  display: flex; justify-content: center; gap: .5rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: clamp(2rem, 7vw, 3.5rem);
-  font-weight: 700;
-  color: var(--gold-bright);
-  margin-bottom: 1rem;
-}
+.timer-display { display: flex; justify-content: center; gap: .4rem; }
 .timer-unit {
   display: flex; flex-direction: column; align-items: center;
-  background: var(--bg); padding: 1rem; border-radius: 4px;
-  min-width: 70px;
+  background: var(--bg);
+  padding: .85rem .65rem;
+  border-radius: 4px;
+  min-width: 64px;
+}
+.timer-unit > span:first-child {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--gold-bright);
+  line-height: 1;
 }
 .timer-unit-label {
-  font-size: .7rem; color: var(--ink-faint);
-  margin-top: .25rem; letter-spacing: .1em;
+  font-size: .6rem; color: var(--ink-faint); margin-top: .35rem;
+  letter-spacing: .15em;
 }
-.timer-fade {
-  height: 4px; background: var(--bg-3); margin-top: 1rem;
-  border-radius: 2px; overflow: hidden;
-}
-.timer-fade::after {
-  content: ''; display: block; height: 100%; width: 0;
-  background: linear-gradient(90deg, var(--gold), var(--copper));
-  animation: timer-bar 24h linear infinite;
-}
-@keyframes timer-bar { from { width: 0; } to { width: 100%; } }
-
-.scarcity-explain h3 {
-  font-size: 1.4rem; color: var(--ink);
-  margin-bottom: 1rem;
-}
-.scarcity-explain p {
-  font-size: 1rem; color: var(--ink-dim); margin-bottom: 1rem;
-}
-.scarcity-formula {
+.formula {
   font-family: 'JetBrains Mono', monospace;
   background: var(--bg-2);
   border-left: 3px solid var(--gold);
   padding: 1rem 1.25rem;
   font-size: .9rem;
   color: var(--gold-bright);
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+  border-radius: 0 3px 3px 0;
 }
-.scarcity-formula b { color: var(--ink); }
+.formula b { color: var(--ink); }
 
-/* ──────────────── Section 7 — Trust Engine ──────────────── */
-.trust-meters {
+/* L7: trust meters */
+.meters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  gap: 1rem;
 }
-.trust-meter {
+.meter {
   background: var(--bg-2);
   border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 1.5rem 1.75rem;
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
 }
-.trust-meter-head {
-  display: flex; justify-content: space-between; align-items: baseline;
-  margin-bottom: .75rem;
-}
-.trust-meter-name {
-  font-size: 1.05rem; color: var(--ink); font-weight: 600;
-}
-.trust-meter-pct {
-  font-family: 'JetBrains Mono', monospace;
-  color: var(--gold);
-  font-weight: 700;
-}
-.trust-meter-track {
-  height: 8px; background: var(--bg-3); border-radius: 4px;
-  overflow: hidden; position: relative;
-}
-.trust-meter-fill {
-  height: 100%; width: 0;
-  background: linear-gradient(90deg, var(--copper), var(--gold-bright));
-  border-radius: 4px;
-  transition: width 1.6s cubic-bezier(.2,.8,.2,1);
-}
-.trust-meter.visible .trust-meter-fill { width: var(--w, 50%); }
-.trust-meter-desc {
-  font-size: .85rem; color: var(--ink-dim);
-  margin-top: .8rem;
-}
+.meter-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: .5rem; }
+.meter-name { font-size: 1rem; color: var(--ink); font-weight: 600; }
+.meter-pct { font-family: 'JetBrains Mono', monospace; color: var(--gold); font-weight: 700; font-size: .9rem; }
+.meter-track { height: 8px; background: var(--bg-3); border-radius: 4px; overflow: hidden; }
+.meter-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--copper), var(--gold-bright)); border-radius: 4px; transition: width 1.4s cubic-bezier(.2,.8,.2,1); }
+.meter.in .meter-fill { width: var(--w, 50%); }
+.meter-desc { font-size: .82rem; color: var(--ink-dim); margin-top: .65rem; }
 
-/* ──────────────── Section 8 — Master Diagram ──────────────── */
-.master-wrap {
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  padding: 3rem 1rem;
-  overflow-x: auto;
-}
-.master-wrap svg { width: 100%; min-width: 720px; height: auto; max-height: 520px; }
+/* L8: master diagram */
+.master-wrap { overflow-x: auto; padding-bottom: .5rem; }
+.master-wrap svg { min-width: 720px; width: 100%; height: auto; max-height: 480px; }
 .master-link { stroke: var(--line-strong); stroke-width: 1.5; fill: none; }
-.master-link.active { stroke: var(--gold); stroke-width: 2; }
-.master-node-rect {
-  fill: var(--bg-3); stroke: var(--gold); stroke-width: 1.5;
-  rx: 4; ry: 4;
-  transition: fill .3s ease;
+.master-link.active { stroke: var(--gold); }
+.master-rect { fill: var(--bg-3); stroke-width: 1.5; rx: 4; ry: 4; }
+.master-rect.input { stroke: var(--root); }
+.master-rect.process { stroke: var(--copper); }
+.master-rect.tactic { stroke: var(--gold); }
+.master-rect.output { fill: var(--gold); stroke: var(--gold-bright); stroke-width: 2; }
+.master-text { font-family: 'Prompt', sans-serif; font-size: 11px; fill: var(--ink); font-weight: 500; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.master-text.out { fill: var(--bg); font-weight: 700; font-size: 12px; }
+.master-flow { fill: var(--gold-bright); }
+
+/* ═════════════════════════════════════════════
+   6. QUIZ
+   ═════════════════════════════════════════════ */
+.quiz-section {
+  padding: 5rem 2rem;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
 }
-.master-node-rect.input { stroke: var(--root); }
-.master-node-rect.process { stroke: var(--copper); }
-.master-node-rect.output { stroke: var(--gold-bright); fill: var(--gold); }
-.master-node-text {
-  font-family: 'Prompt', sans-serif;
-  font-size: 12px; fill: var(--ink); font-weight: 500;
-  text-anchor: middle; dominant-baseline: middle;
+.quiz-q {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
 }
-.master-node-rect.output ~ .master-node-text { fill: var(--bg); font-weight: 700; }
-.master-flow-dot {
-  fill: var(--gold-bright);
+.quiz-q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--gold); letter-spacing: .15em;
+  margin-bottom: .35rem;
+}
+.quiz-q-text { font-size: 1.05rem; color: var(--ink); margin-bottom: 1rem; font-weight: 500; }
+.quiz-opts { display: flex; flex-direction: column; gap: .45rem; }
+.quiz-opt {
+  text-align: left;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  padding: .85rem 1rem;
+  border-radius: 4px;
+  font-size: .92rem;
+  display: flex; align-items: center; gap: .75rem;
+  transition: all .2s ease;
+}
+.quiz-opt:hover { border-color: var(--gold); }
+.quiz-opt-marker {
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--ink-dim);
+  flex-shrink: 0;
+}
+.quiz-opt.correct { border-color: var(--green); background: rgba(107,138,90,.15); color: var(--ink); }
+.quiz-opt.correct .quiz-opt-marker { border-color: var(--green); background: var(--green); color: var(--bg); }
+.quiz-opt.wrong { border-color: var(--red); background: rgba(196,86,74,.1); }
+.quiz-opt.wrong .quiz-opt-marker { border-color: var(--red); color: var(--red); }
+.quiz-opt:disabled { cursor: default; }
+.quiz-opt:disabled:hover { border-color: var(--line); }
+.quiz-explain {
+  margin-top: 1rem;
+  padding: .85rem 1rem;
+  background: var(--gold-soft);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 3px 3px 0;
+  font-size: .88rem;
+  color: var(--ink-2);
+  display: none;
+}
+.quiz-q.answered .quiz-explain { display: block; }
+.quiz-explain b { color: var(--gold-bright); }
+
+.quiz-result {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--bg);
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  text-align: center;
+  display: none;
+}
+.quiz-result.show { display: block; }
+.quiz-result-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem; font-weight: 700;
+  color: var(--gold-bright);
+  line-height: 1;
+}
+.quiz-result-msg { font-size: 1.1rem; color: var(--ink); margin: .75rem 0; }
+.quiz-result-sub { font-size: .9rem; color: var(--ink-dim); }
+
+/* ═════════════════════════════════════════════
+   7. CHEATSHEET
+   ═════════════════════════════════════════════ */
+.cheatsheet-section { padding: 5rem 2rem; border-bottom: 1px solid var(--line); }
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.cheat-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+  position: relative;
+}
+.cheat-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  color: var(--gold);
+  letter-spacing: .15em;
+  margin-bottom: .25rem;
+}
+.cheat-card h4 { font-size: 1rem; color: var(--ink); margin-bottom: .5rem; }
+.cheat-card p { font-size: .85rem; color: var(--ink-dim); margin: 0; }
+.cheat-card .hint {
+  margin-top: .65rem;
+  padding-top: .65rem;
+  border-top: 1px dashed var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
+  color: var(--gold-bright);
 }
 
-/* ──────────────── Footer ──────────────── */
+/* ═════════════════════════════════════════════
+   8. FOOTER
+   ═════════════════════════════════════════════ */
 .footer {
-  border-top: 1px solid var(--line);
-  padding: 4rem 2rem 6rem;
+  padding: 4rem 2rem 5rem;
   text-align: center;
-  margin-top: 4rem;
   background: var(--bg-2);
 }
 .footer-mark {
@@ -644,7 +1046,7 @@ main, .lock-screen { position: relative; z-index: 1; }
   font-size: .8rem; color: var(--gold);
   letter-spacing: .3em; margin-bottom: 1rem;
 }
-.footer-msg { font-size: 1.5rem; color: var(--ink); max-width: 540px; margin: 0 auto 2rem; }
+.footer-msg { font-size: 1.4rem; color: var(--ink); max-width: 540px; margin: 0 auto 2rem; line-height: 1.4; }
 .footer-msg em { color: var(--gold-bright); font-style: normal; }
 .footer-cta {
   display: inline-block;
@@ -654,38 +1056,25 @@ main, .lock-screen { position: relative; z-index: 1; }
   text-decoration: none;
   font-weight: 600;
   font-size: 1rem;
-  letter-spacing: .05em;
+  border-radius: 3px;
+  letter-spacing: .03em;
   transition: background .2s ease, transform .15s ease;
 }
 .footer-cta:hover { background: var(--gold-bright); transform: translateY(-2px); }
-.footer-meta { font-size: .8rem; color: var(--ink-faint); margin-top: 2.5rem; font-family: 'JetBrains Mono', monospace; letter-spacing: .15em; }
+.footer-meta { margin-top: 2.5rem; font-size: .75rem; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace; letter-spacing: .15em; }
 
-/* ──────────────── Logout button ──────────────── */
-.logout-btn {
-  position: fixed; top: 1.2rem; right: 1.2rem;
-  background: var(--bg-2);
-  border: 1px solid var(--line);
-  color: var(--ink-dim);
-  padding: .5rem .9rem;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: .7rem; letter-spacing: .1em;
-  cursor: pointer;
-  border-radius: 2px;
-  z-index: 50;
-  transition: color .2s ease, border-color .2s ease;
-}
-.logout-btn:hover { color: var(--gold); border-color: var(--gold); }
+/* ═════════════════════════════════════════════
+   9. UTILITIES
+   ═════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
 
-/* ──────────────── Section divider ──────────────── */
-.divider {
-  width: 100%; height: 1px; max-width: 600px;
-  margin: 0 auto;
-  background: linear-gradient(90deg, transparent, var(--line-strong), transparent);
-}
-
-@media (max-width: 600px) {
-  .section { padding: 5rem 1.25rem; }
-  .lock-card { padding: 2rem 1.25rem; }
+.no-print { }
+@media print {
+  .sidebar, .mobile-bar, .progress-bar, .lock-screen, .lesson-complete, .try-it, .quiz-section { display: none !important; }
+  body, .lesson, .footer { background: white !important; color: black !important; }
+  .lesson, .footer, .objectives { border-color: #ddd !important; }
+  .takeaway { border-color: #999 !important; background: #f9f5ee !important; }
 }
 </style>
 </head>
@@ -698,14 +1087,14 @@ main, .lock-screen { position: relative; z-index: 1; }
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" fill="none" stroke="#c4956a" stroke-width="1" stroke-dasharray="2 4"/>
         <circle cx="50" cy="50" r="35" fill="none" stroke="#c4956a" stroke-width=".5"/>
-        <text x="50" y="20" font-family="JetBrains Mono" font-size="6" fill="#c4956a" text-anchor="middle" letter-spacing="2">VOL.1</text>
+        <text x="50" y="22" font-family="JetBrains Mono" font-size="6" fill="#c4956a" text-anchor="middle" letter-spacing="2">VOL.1</text>
         <text x="50" y="84" font-family="JetBrains Mono" font-size="6" fill="#c4956a" text-anchor="middle" letter-spacing="2">VISUAL</text>
         <path d="M50 35 L50 65 M40 50 L60 50 M44 44 L56 56 M44 56 L56 44" stroke="#c4956a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
       </svg>
     </div>
-    <div class="lock-title">The Root — Visual Learning</div>
+    <div class="lock-title">The Root · Visual Learning</div>
     <div class="lock-sub">VOL.1 · ACCESS RESTRICTED</div>
-    <form class="lock-input-wrap" onsubmit="return tryUnlock(event)">
+    <form onsubmit="return tryUnlock(event)">
       <input type="password" id="lock-input" class="lock-input" placeholder="ใส่รหัสเพื่อเข้าถึง" autocomplete="off" autofocus>
       <button type="submit" class="lock-btn">ปลดล็อก</button>
       <div class="lock-error" id="lock-error"></div>
@@ -714,481 +1103,925 @@ main, .lock-screen { position: relative; z-index: 1; }
   </div>
 </div>
 
-<button class="logout-btn" id="logout" onclick="logout()" style="display:none">⌐ LOGOUT</button>
+<!-- Progress bar -->
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
 
-<!-- ═════════════════ MAIN ═════════════════ -->
-<main id="main" hidden>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-tree-wrap">
-    <svg viewBox="0 0 580 580" aria-hidden="true">
-      <defs>
-        <radialGradient id="trunkGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#e0b87f" stop-opacity=".4"/>
-          <stop offset="100%" stop-color="#b87147" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <!-- Roots (bottom) -->
-      <g class="tree-draw">
-        <path class="tree-root" d="M290 360 Q260 420, 220 460 T140 530"/>
-        <path class="tree-root" d="M290 360 Q280 425, 270 480 T255 555"/>
-        <path class="tree-root" d="M290 360 Q300 425, 310 480 T325 555"/>
-        <path class="tree-root" d="M290 360 Q340 420, 380 460 T440 530"/>
-        <path class="tree-root" d="M290 360 Q210 400, 160 430"/>
-        <path class="tree-root" d="M290 360 Q370 400, 420 430"/>
-      </g>
-      <!-- Trunk -->
-      <path class="tree-trunk tree-draw" d="M290 360 L290 240" style="animation-delay:.5s"/>
-      <!-- Glow halo -->
-      <circle cx="290" cy="190" r="100" fill="url(#trunkGrad)"/>
-      <!-- Branches -->
-      <g class="tree-draw" style="animation-delay:1s">
-        <path class="tree-branch" d="M290 240 Q220 200, 170 180 T100 140"/>
-        <path class="tree-branch" d="M290 240 Q250 195, 210 165 T140 100"/>
-        <path class="tree-branch" d="M290 240 Q290 180, 290 130 T290 60"/>
-        <path class="tree-branch" d="M290 240 Q330 195, 370 165 T440 100"/>
-        <path class="tree-branch" d="M290 240 Q360 200, 410 180 T480 140"/>
-        <path class="tree-branch" d="M290 240 Q260 200, 230 175"/>
-        <path class="tree-branch" d="M290 240 Q320 200, 350 175"/>
-      </g>
-      <!-- Leaves / fruit -->
-      <g style="animation: fadeIn 1.5s ease forwards 2s; opacity:0;">
-        <circle class="tree-leaf" cx="100" cy="140" r="6"/>
-        <circle class="tree-leaf-2" cx="140" cy="100" r="5"/>
-        <circle class="tree-leaf" cx="290" cy="60" r="7"/>
-        <circle class="tree-leaf-2" cx="440" cy="100" r="5"/>
-        <circle class="tree-leaf" cx="480" cy="140" r="6"/>
-        <circle class="tree-leaf-2" cx="230" cy="175" r="4"/>
-        <circle class="tree-leaf-2" cx="350" cy="175" r="4"/>
-        <circle class="tree-glow" cx="290" cy="190" r="14"/>
-      </g>
-      <style>@keyframes fadeIn { to { opacity: 1; } }</style>
-    </svg>
+<!-- Mobile bar -->
+<div class="mobile-bar">
+  <div style="display:flex;align-items:center;gap:.6rem">
+    <div class="brand-mark" style="width:28px;height:28px"></div>
+    <div class="brand-name">The Root <small>VOL.1 · LEARN</small></div>
   </div>
-  <div class="hero-mark">◆ THE ROOT · VOL.1 · VISUAL</div>
-  <h1 class="hero-title">รากแก้วการตลาด<br>ในภาพเดียว</h1>
-  <p class="hero-sub">12 บทของหนังสือ Vol.1 ย่อยเป็นภาพ แผนภูมิ และ interactive — ดูครั้งเดียวเข้าใจหมด</p>
-  <div class="hero-scroll">SCROLL</div>
-</section>
+  <button class="mobile-toggle" id="menu-btn" aria-label="Open menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</div>
+<div class="sidebar-backdrop" id="backdrop"></div>
 
-<div class="divider"></div>
+<div class="app" id="app" hidden>
 
-<!-- Section 1: Concept Map -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 01</div>
-  <h2 class="section-title reveal reveal-delay-1">ต้นไม้แห่ง<em> การตัดสินใจซื้อ</em></h2>
-  <p class="section-lead reveal reveal-delay-2">ทุกการซื้อในโลกนี้ ไม่ได้เริ่มจาก "ราคา" หรือ "สเปก" — มันเริ่มจาก<em> ราก</em> ที่ฝังในสมองมาตั้งแต่บรรพบุรุษหลายแสนปี ลำต้นคือ "อารมณ์" และผลลัพธ์ที่เห็นบนใบ คือ "พฤติกรรมการซื้อ"</p>
-  <div class="tree-map reveal reveal-delay-3">
-    <svg viewBox="0 0 1100 580" aria-hidden="true">
-      <!-- Links: roots up to center -->
-      <g class="node-links">
-        <path class="node-link" d="M150 480 Q300 440, 450 380 T550 290"/>
-        <path class="node-link" d="M320 510 Q400 460, 480 400 T550 290"/>
-        <path class="node-link" d="M550 530 Q550 460, 550 400 T550 290"/>
-        <path class="node-link" d="M780 510 Q700 460, 620 400 T550 290"/>
-        <path class="node-link" d="M950 480 Q800 440, 650 380 T550 290"/>
-        <!-- Center to top -->
-        <path class="node-link" d="M550 290 L550 230"/>
-        <!-- Trunk to branches -->
-        <path class="node-link" d="M550 230 Q400 180, 250 110"/>
-        <path class="node-link" d="M550 230 Q450 170, 380 100"/>
-        <path class="node-link" d="M550 230 L550 80"/>
-        <path class="node-link" d="M550 230 Q650 170, 720 100"/>
-        <path class="node-link" d="M550 230 Q700 180, 850 110"/>
-      </g>
-      <!-- Roots (5 primal desires) -->
-      <g class="node-group" data-tip="เอาตัวรอด">
-        <circle class="node-circle root" cx="150" cy="480" r="38"/>
-        <text class="node-label" x="150" y="478">เอาตัวรอด</text>
-        <text class="node-label dim" x="150" y="494">Survival</text>
-      </g>
-      <g class="node-group" data-tip="สืบพันธุ์">
-        <circle class="node-circle root" cx="320" cy="510" r="38"/>
-        <text class="node-label" x="320" y="508">สืบพันธุ์</text>
-        <text class="node-label dim" x="320" y="524">Sex</text>
-      </g>
-      <g class="node-group" data-tip="สถานะ">
-        <circle class="node-circle root" cx="550" cy="530" r="38"/>
-        <text class="node-label" x="550" y="528">สถานะ</text>
-        <text class="node-label dim" x="550" y="544">Status</text>
-      </g>
-      <g class="node-group" data-tip="เป็นพวก">
-        <circle class="node-circle root" cx="780" cy="510" r="38"/>
-        <text class="node-label" x="780" y="508">เป็นพวก</text>
-        <text class="node-label dim" x="780" y="524">Belonging</text>
-      </g>
-      <g class="node-group" data-tip="อยากรู้">
-        <circle class="node-circle root" cx="950" cy="480" r="38"/>
-        <text class="node-label" x="950" y="478">อยากรู้</text>
-        <text class="node-label dim" x="950" y="494">Curiosity</text>
-      </g>
-      <!-- Trunk: Emotion -->
-      <g class="node-group">
-        <circle class="node-circle center" cx="550" cy="290" r="55"/>
-        <text class="node-label center" x="550" y="285">อารมณ์</text>
-        <text class="node-label center" x="550" y="305" style="font-size:11px">EMOTION</text>
-      </g>
-      <!-- Top: Decisions / behaviors -->
-      <g class="node-group">
-        <circle class="node-circle" cx="250" cy="110" r="34"/>
-        <text class="node-label" x="250" y="108">เรื่องเล่า</text>
-        <text class="node-label dim" x="250" y="124">Story</text>
-      </g>
-      <g class="node-group">
-        <circle class="node-circle" cx="380" cy="100" r="34"/>
-        <text class="node-label" x="380" y="98">ฝูง</text>
-        <text class="node-label dim" x="380" y="114">Tribe</text>
-      </g>
-      <g class="node-group">
-        <circle class="node-circle" cx="550" cy="80" r="36"/>
-        <text class="node-label" x="550" y="78">ขาดแคลน</text>
-        <text class="node-label dim" x="550" y="94">Scarcity</text>
-      </g>
-      <g class="node-group">
-        <circle class="node-circle" cx="720" cy="100" r="34"/>
-        <text class="node-label" x="720" y="98">รับรู้</text>
-        <text class="node-label dim" x="720" y="114">Perception</text>
-      </g>
-      <g class="node-group">
-        <circle class="node-circle" cx="850" cy="110" r="34"/>
-        <text class="node-label" x="850" y="108">เชื่อใจ</text>
-        <text class="node-label dim" x="850" y="124">Trust</text>
-      </g>
-    </svg>
-  </div>
-</section>
+  <!-- ═════════════════ SIDEBAR ═════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">The Root<small>VOL.1 · VISUAL LEARN</small></div>
+    </div>
+    <div class="nav-stats">
+      <div>PROGRESS · <b id="stats-progress">0/8</b></div>
+      <div>EST. TIME · <b>~35 นาที</b></div>
+    </div>
+    <ul class="nav-list" id="nav">
+      <li><a class="nav-item" data-target="hero"><span class="nav-num">▣</span><span class="nav-text">เริ่มต้น</span></a></li>
+      <li><a class="nav-item" data-target="l1"><span class="nav-num">01</span><span class="nav-text">ต้นไม้แห่งการซื้อ</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l2"><span class="nav-num">02</span><span class="nav-text">ปุ่มชีวภาพ</span><span class="nav-time">5'</span></a></li>
+      <li><a class="nav-item" data-target="l3"><span class="nav-num">03</span><span class="nav-text">5 ปรารถนา</span><span class="nav-time">5'</span></a></li>
+      <li><a class="nav-item" data-target="l4"><span class="nav-num">04</span><span class="nav-text">เรื่องเล่า</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l5"><span class="nav-num">05</span><span class="nav-text">ฝูงและการพิสูจน์</span><span class="nav-time">3'</span></a></li>
+      <li><a class="nav-item" data-target="l6"><span class="nav-num">06</span><span class="nav-text">ขาดแคลน</span><span class="nav-time">3'</span></a></li>
+      <li><a class="nav-item" data-target="l7"><span class="nav-num">07</span><span class="nav-text">ความไว้วางใจ</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l8"><span class="nav-num">08</span><span class="nav-text">แผนที่หลัก</span><span class="nav-time">3'</span></a></li>
+      <li><a class="nav-item" data-target="quiz"><span class="nav-num">▤</span><span class="nav-text">ทดสอบความเข้าใจ</span></a></li>
+      <li><a class="nav-item" data-target="cheat"><span class="nav-num">▥</span><span class="nav-text">สรุป Cheatsheet</span></a></li>
+    </ul>
+    <div class="nav-footer">
+      <a class="nav-btn" href="javascript:window.print()">▾ พิมพ์ Cheatsheet</a>
+      <a class="nav-btn" href="javascript:logout()">⌐ LOGOUT</a>
+    </div>
+  </aside>
 
-<!-- Section 2: Hormones -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 02</div>
-  <h2 class="section-title reveal reveal-delay-1">ปุ่มกด<em> ทางชีวภาพ</em></h2>
-  <p class="section-lead reveal reveal-delay-2">สารเคมีในสมอง 4 ตัวนี้ คือคันโยกที่ควบคุมการตัดสินใจของลูกค้า ก่อนเขาจะรู้ตัวเสียอีก — รู้จักมัน คุณคุมเกม</p>
-  <div class="hormones-grid">
-    <div class="hormone-card reveal reveal-delay-1" style="--accent:#c4956a; --bar:85%">
-      <div class="hormone-icon"></div>
-      <div class="hormone-name">Dopamine</div>
-      <div class="hormone-tag">สารแห่ง "อยากได้"</div>
-      <div class="hormone-desc">ไม่ใช่ความสุข — แต่เป็น <b style="color:var(--gold)">ความคาดหวัง</b> ของความสุข สมองหลั่งตอน "ก่อนได้" มากกว่า "ได้แล้ว"</div>
-      <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> ทีเซอร์, นับถอยหลัง, "พรุ่งนี้เปิดตัว!", การลุ้น</div>
-    </div>
-    <div class="hormone-card reveal reveal-delay-2" style="--accent:#b87147; --bar:70%">
-      <div class="hormone-icon"></div>
-      <div class="hormone-name">Oxytocin</div>
-      <div class="hormone-tag">สารแห่ง "ไว้ใจ"</div>
-      <div class="hormone-desc">หลั่งตอนกอด มองตา หรือ<b style="color:var(--copper)"> เห็นคนอื่นได้ดี</b> — เป็นกาวใจของชนเผ่ามนุษย์ ทำให้คนยอมเปิดใจ</div>
-      <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> Story ของลูกค้า, ภาพคนใช้จริง, รีวิวจริงพร้อมหน้า</div>
-    </div>
-    <div class="hormone-card reveal reveal-delay-3" style="--accent:#c4564a; --bar:90%">
-      <div class="hormone-icon"></div>
-      <div class="hormone-name">Cortisol</div>
-      <div class="hormone-tag">สารแห่ง "กลัว"</div>
-      <div class="hormone-desc">หลั่งตอนรู้สึกว่า<b style="color:var(--red)"> จะเสีย</b> — มนุษย์กลัวการเสียของมากกว่ากลัวพลาดสิ่งใหม่ <b>2 เท่า</b> (Loss Aversion)</div>
-      <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> Deadline, เหลือ N ชิ้น, "พรุ่งนี้ราคาขึ้น"</div>
-    </div>
-    <div class="hormone-card reveal reveal-delay-3" style="--accent:#6b8a5a; --bar:60%">
-      <div class="hormone-icon"></div>
-      <div class="hormone-name">Serotonin</div>
-      <div class="hormone-tag">สารแห่ง "เด่น"</div>
-      <div class="hormone-desc">หลั่งตอนรู้สึก<b style="color:var(--green)"> เหนือกว่าคนอื่น</b> ในกลุ่ม — ทำให้แบรนด์หรูยอมจ่ายแพง 10x ได้สบาย</div>
-      <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> VIP, Limited, "เฉพาะสมาชิก", สัญลักษณ์สถานะ</div>
-    </div>
-  </div>
-</section>
+  <!-- ═════════════════ MAIN ═════════════════ -->
+  <main class="main">
 
-<!-- Section 3: 5 Desires Wheel -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 03</div>
-  <h2 class="section-title reveal reveal-delay-1">5 ความปรารถนา<em> ดั้งเดิม</em></h2>
-  <p class="section-lead reveal reveal-delay-2">คลิกแต่ละกลีบเพื่อดูรายละเอียด — ทุกแคมเปญที่ขายได้ในโลกนี้ ล้วน hit อย่างน้อยหนึ่งใน 5 ตัวนี้</p>
-  <div class="wheel-wrap reveal reveal-delay-3">
-    <div class="wheel-svg-wrap">
-      <svg viewBox="0 0 400 400" id="wheel"></svg>
-    </div>
-    <div class="desire-detail" id="desire-detail">
-      <div class="desire-detail-num" id="d-num">01</div>
-      <div class="desire-detail-name" id="d-name">เอาตัวรอด</div>
-      <div class="desire-detail-en" id="d-en">SURVIVAL</div>
-      <div class="desire-detail-body" id="d-body">ความปรารถนาที่ลึกที่สุด — ไม่อยากเจ็บ ไม่อยากตาย ไม่อยากขาดทุน ทุกแคมเปญประกัน อาหารเสริม ยา มาจากตัวนี้</div>
-      <div class="desire-detail-tags" id="d-tags">
-        <span class="desire-tag">ประกัน</span>
-        <span class="desire-tag">สุขภาพ</span>
-        <span class="desire-tag">การเงิน</span>
-        <span class="desire-tag">ความปลอดภัย</span>
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-mark">◆ THE ROOT · VOL.1 · VISUAL EDITION</div>
+          <h1>เข้าใจ<em> รากแก้ว</em>การตลาด<br>ในหนึ่งหน้า</h1>
+          <p class="lead">คอร์สเรียนรู้เชิงภาพ — ย่อย 12 บทของ Vol.1 ให้เป็นแผนภูมิ ตัวอย่างจริง และแบบฝึกที่ลงมือได้ ภายใน 35 นาที</p>
+          <div class="hero-meta">
+            <span class="hero-tag"><b>8</b> บทเรียน</span>
+            <span class="hero-tag"><b>12</b> แผนภูมิ</span>
+            <span class="hero-tag"><b>5</b> แบบฝึก</span>
+            <span class="hero-tag"><b>1</b> Quiz</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <radialGradient id="trunkHaloHero" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#e0b87f" stop-opacity=".4"/>
+                <stop offset="100%" stop-color="#b87147" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- Roots -->
+            <path class="tree-root" d="M200 250 Q170 290, 130 320 T70 370"/>
+            <path class="tree-root" d="M200 250 Q190 295, 175 335 T160 385"/>
+            <path class="tree-root" d="M200 250 Q210 295, 225 335 T240 385"/>
+            <path class="tree-root" d="M200 250 Q230 290, 270 320 T330 370"/>
+            <path class="tree-root" d="M200 250 Q145 280, 105 295"/>
+            <path class="tree-root" d="M200 250 Q255 280, 295 295"/>
+            <!-- Trunk -->
+            <path class="tree-trunk" d="M200 250 L200 165"/>
+            <!-- Halo -->
+            <circle cx="200" cy="135" r="70" fill="url(#trunkHaloHero)"/>
+            <!-- Branches -->
+            <path class="tree-branch" d="M200 165 Q150 130, 110 115 T55 80"/>
+            <path class="tree-branch" d="M200 165 Q170 125, 145 100 T100 50"/>
+            <path class="tree-branch" d="M200 165 Q200 115, 200 80 T200 30"/>
+            <path class="tree-branch" d="M200 165 Q230 125, 255 100 T300 50"/>
+            <path class="tree-branch" d="M200 165 Q250 130, 290 115 T345 80"/>
+            <!-- Leaves -->
+            <circle class="tree-leaf" cx="55" cy="80" r="5" style="animation-delay:3s"/>
+            <circle class="tree-leaf tree-leaf-2" cx="100" cy="50" r="4" style="animation-delay:3.1s"/>
+            <circle class="tree-leaf" cx="200" cy="30" r="6" style="animation-delay:3.2s"/>
+            <circle class="tree-leaf tree-leaf-2" cx="300" cy="50" r="4" style="animation-delay:3.3s"/>
+            <circle class="tree-leaf" cx="345" cy="80" r="5" style="animation-delay:3.4s"/>
+            <circle class="tree-glow" cx="200" cy="135" r="10" style="animation-delay:3.5s"/>
+          </svg>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 4: Storytelling Arc -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 04</div>
-  <h2 class="section-title reveal reveal-delay-1">เส้นโค้ง<em> ของวีรบุรุษ</em></h2>
-  <p class="section-lead reveal reveal-delay-2">ทุก story ที่ขายได้ ไม่ว่าจะเป็นโฆษณา 30 วินาที หรือ sale page 5,000 คำ มีรูปทรงเดียวกันเสมอ</p>
-  <div class="arc-wrap reveal reveal-delay-3" id="arc">
-    <svg viewBox="0 0 1100 380" aria-hidden="true">
-      <defs>
-        <linearGradient id="arcGrad" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stop-color="#c4956a" stop-opacity=".5"/>
-          <stop offset="100%" stop-color="#c4956a" stop-opacity="0"/>
-        </linearGradient>
-      </defs>
-      <!-- Baseline -->
-      <line x1="60" y1="320" x2="1040" y2="320" stroke="rgba(196,149,106,.2)" stroke-width="1" stroke-dasharray="4 4"/>
-      <text class="arc-label-tag" x="60" y="345" text-anchor="start">START</text>
-      <text class="arc-label-tag" x="1040" y="345" text-anchor="end">RESOLUTION</text>
-      <!-- Arc area -->
-      <path class="arc-area" d="M60 320 Q200 280, 280 240 T500 80 T720 280 T900 320 L1040 320 Z"/>
-      <!-- Arc line -->
-      <path class="arc-line" d="M60 320 Q200 280, 280 240 T500 80 T720 280 T900 320 L1040 320"/>
-      <!-- Markers -->
-      <g>
-        <circle class="arc-marker arc-marker-1" cx="60" cy="320" r="8"/>
-        <text class="arc-label" x="60" y="370">ปกติ</text>
-        <text class="arc-label-tag" x="60" y="385">[ORDINARY]</text>
-      </g>
-      <g>
-        <circle class="arc-marker arc-marker-2" cx="280" cy="240" r="8"/>
-        <text class="arc-label" x="280" y="220">ปัญหา</text>
-        <text class="arc-label-tag" x="280" y="205">[CALL]</text>
-      </g>
-      <g>
-        <circle class="arc-marker arc-marker-3" cx="500" cy="80" r="10" stroke-width="3"/>
-        <text class="arc-label" x="500" y="60" style="font-weight:700;fill:var(--gold-bright)">วิกฤต</text>
-        <text class="arc-label-tag" x="500" y="45">[CRISIS]</text>
-      </g>
-      <g>
-        <circle class="arc-marker arc-marker-4" cx="720" cy="280" r="8"/>
-        <text class="arc-label" x="720" y="260">ทางออก</text>
-        <text class="arc-label-tag" x="720" y="245">[SOLUTION]</text>
-      </g>
-      <g>
-        <circle class="arc-marker arc-marker-5" cx="900" cy="320" r="8"/>
-        <text class="arc-label" x="900" y="370">ใหม่</text>
-        <text class="arc-label-tag" x="900" y="385">[TRANSFORM]</text>
-      </g>
-    </svg>
-  </div>
-  <p style="margin-top:1.5rem; color:var(--ink-dim); font-size:.95rem;"><b style="color:var(--gold)">เคล็ด:</b> sale page ที่แปลงดีๆ ใช้ pattern นี้เสมอ — เริ่มที่ "ลูกค้าของคุณตอนนี้" → ปัญหาที่กำลังเจอ → วันที่มันแย่ที่สุด → คุณเจอทางออก → ภาพชีวิตใหม่</p>
-</section>
-
-<!-- Section 5: Social Proof -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 05</div>
-  <h2 class="section-title reveal reveal-delay-1">เมื่อ<em> ฝูงตัดสินใจ</em></h2>
-  <p class="section-lead reveal reveal-delay-2">มนุษย์ไม่ใช่นักคิดอิสระ — เป็น<em> สัตว์ฝูง</em> ที่ดูสมาชิกอื่นก่อนตัดสินใจ ตัวเลขนี้พิสูจน์มันไว้แล้ว</p>
-  <div class="proof-grid">
-    <div class="proof-card bad reveal" id="proof-bad">
-      <div class="proof-tag">▸ ไม่มี SOCIAL PROOF — <b>BASELINE</b></div>
-      <div class="proof-num">1.3<small>%</small></div>
-      <div class="proof-bar"></div>
-      <div class="proof-desc">หน้า sale ไม่มีรีวิว ไม่มีตัวเลขลูกค้า ไม่มีโลโก้พาร์ทเนอร์ — Conversion rate เฉลี่ยทั่วไปจากการศึกษาของ Nielsen Norman Group</div>
-    </div>
-    <div class="proof-card good reveal reveal-delay-1" id="proof-good">
-      <div class="proof-tag">▸ มี SOCIAL PROOF เต็มรูป — <b>+447%</b></div>
-      <div class="proof-num">7.1<small>%</small></div>
-      <div class="proof-bar"></div>
-      <div class="proof-desc">รีวิวจริงพร้อมหน้า, จำนวนลูกค้า, ตรานักรีวิวอันดับ 1, รูปการใช้งาน — บทเรียน: คนซื้อ "เพราะคนอื่นซื้อ" ไม่ใช่เพราะดี</div>
-    </div>
-  </div>
-</section>
-
-<!-- Section 6: Scarcity -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 06</div>
-  <h2 class="section-title reveal reveal-delay-1">เคมี<em> แห่งความขาด</em></h2>
-  <p class="section-lead reveal reveal-delay-2">สิ่งที่หาได้ง่าย = ไร้ค่า สิ่งที่หายาก = มีค่า — สมองมนุษย์เกิดมาด้วยอคตินี้ ทุกแคมเปญใหญ่ใช้มัน</p>
-  <div class="scarcity-wrap">
-    <div class="timer-card reveal">
-      <div class="timer-label">▸ ตัวอย่าง: ดีลปิด</div>
-      <div class="timer-display" id="timer">
-        <div class="timer-unit"><span id="t-h">--</span><span class="timer-unit-label">HRS</span></div>
-        <div class="timer-unit"><span id="t-m">--</span><span class="timer-unit-label">MIN</span></div>
-        <div class="timer-unit"><span id="t-s">--</span><span class="timer-unit-label">SEC</span></div>
+      <div class="objectives">
+        <h3>▸ หลังเรียนจบ คุณจะ</h3>
+        <ul>
+          <li>มองเห็น "ราก" ที่ขับเคลื่อนการตัดสินใจซื้อของลูกค้า</li>
+          <li>แยกแยะ 4 สารเคมีในสมอง และใช้กระตุ้นพฤติกรรมได้ตรงจุด</li>
+          <li>สร้าง story ขายของที่มีโครงเดียวกับฮอลลีวูด</li>
+          <li>ใช้ Social Proof และ Scarcity โดยไม่ดูฝืน</li>
+          <li>วินิจฉัยแบรนด์ตัวเอง ผ่าน 5 มิติของ Trust</li>
+          <li>ออกแบบแคมเปญที่รวมทุกหลักการในชิ้นเดียว</li>
+        </ul>
       </div>
-      <div style="font-size:.85rem; color:var(--ink-dim); margin-top:1rem;">ตัวเลขเปลี่ยน → cortisol หลั่ง → สมองรีบตัดสินใจ</div>
-    </div>
-    <div class="scarcity-explain reveal reveal-delay-2">
-      <h3>ทำไม "เหลือ 3 ชิ้น" ขายดีกว่า "ลด 50%"</h3>
-      <p>เพราะสมอง<b style="color:var(--gold)"> ไม่ได้คำนวณราคา</b> — มันคำนวณ "ความรู้สึกเสียโอกาส" และ Loss Aversion = 2x ของ Gain Hunting</p>
-      <div class="scarcity-formula">
-        <div><b>FORMULA:</b></div>
-        <div>Pain(จะเสีย) ≈ <b style="color:var(--gold-bright)">2 ×</b> Joy(จะได้)</div>
-      </div>
-      <p style="font-size:.9rem;">— Daniel Kahneman, "Thinking, Fast and Slow"</p>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Section 7: Trust Engine -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 07</div>
-  <h2 class="section-title reveal reveal-delay-1">เครื่องยนต์<em> ความไว้วางใจ</em></h2>
-  <p class="section-lead reveal reveal-delay-2">5 ส่วนผสมของ Trust — ขาดตัวใดตัวหนึ่ง เครื่องยนต์ก็ดับ</p>
-  <div class="trust-meters">
-    <div class="trust-meter reveal" style="--w:88%">
-      <div class="trust-meter-head">
-        <span class="trust-meter-name">Authority — เชี่ยวชาญ</span>
-        <span class="trust-meter-pct">88</span>
-      </div>
-      <div class="trust-meter-track"><div class="trust-meter-fill"></div></div>
-      <div class="trust-meter-desc">วุฒิ ประสบการณ์ ผลงาน — ทำไมต้องฟัง <em>คุณ</em>?</div>
-    </div>
-    <div class="trust-meter reveal reveal-delay-1" style="--w:92%">
-      <div class="trust-meter-head">
-        <span class="trust-meter-name">Honesty — โปร่งใส</span>
-        <span class="trust-meter-pct">92</span>
-      </div>
-      <div class="trust-meter-track"><div class="trust-meter-fill"></div></div>
-      <div class="trust-meter-desc">บอกข้อเสีย ข้อจำกัด ราคา — ความสมบูรณ์แบบ = ความไม่จริง</div>
-    </div>
-    <div class="trust-meter reveal reveal-delay-2" style="--w:80%">
-      <div class="trust-meter-head">
-        <span class="trust-meter-name">Consistency — สม่ำเสมอ</span>
-        <span class="trust-meter-pct">80</span>
-      </div>
-      <div class="trust-meter-track"><div class="trust-meter-fill"></div></div>
-      <div class="trust-meter-desc">โพสต์ทุกวัน เนื้อหาเดิม โทนเดิม — สม่ำเสมอชนะอัจฉริยะที่หาย</div>
-    </div>
-    <div class="trust-meter reveal reveal-delay-2" style="--w:75%">
-      <div class="trust-meter-head">
-        <span class="trust-meter-name">Empathy — เข้าใจ</span>
-        <span class="trust-meter-pct">75</span>
-      </div>
-      <div class="trust-meter-track"><div class="trust-meter-fill"></div></div>
-      <div class="trust-meter-desc">"ฉันเคยเป็นแบบคุณ" — บอก pain ของลูกค้า ก่อนแก้ pain</div>
-    </div>
-    <div class="trust-meter reveal reveal-delay-3" style="--w:95%">
-      <div class="trust-meter-head">
-        <span class="trust-meter-name">Proof — พิสูจน์ได้</span>
-        <span class="trust-meter-pct">95</span>
-      </div>
-      <div class="trust-meter-track"><div class="trust-meter-fill"></div></div>
-      <div class="trust-meter-desc">ตัวเลข ภาพก่อน-หลัง รีวิว — บอก = อ่อน, แสดง = แข็ง</div>
-    </div>
-  </div>
-</section>
+    <!-- ═════════════════ LESSON 1 ═════════════════ -->
+    <section class="lesson" id="l1">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 01</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>ต้นไม้แห่ง<em>การตัดสินใจซื้อ</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่าทุกการซื้อเริ่มจาก "ราก" ใต้ดิน — ความปรารถนาแบบสัตว์ — ก่อนจะออกมาเป็น "ใบ" คือเหตุผลที่ลูกค้าใช้อธิบายตัวเอง</div>
 
-<!-- Section 8: Master Diagram -->
-<section class="section">
-  <div class="section-eyebrow reveal">▚ MAP 08 · MASTER</div>
-  <h2 class="section-title reveal reveal-delay-1">ทุกอย่าง<em> เชื่อมโยงกัน</em></h2>
-  <p class="section-lead reveal reveal-delay-2">ภาพรวมของระบบทั้งหมด — จากความปรารถนาในตัวลูกค้า → ผ่านกลไกจิตวิทยา → กลายเป็นการซื้อ</p>
-  <div class="master-wrap reveal reveal-delay-3">
-    <svg viewBox="0 0 1100 460" aria-hidden="true">
-      <!-- Layer labels -->
-      <text class="arc-label-tag" x="10" y="60">[INPUT]</text>
-      <text class="arc-label-tag" x="10" y="220">[PROCESS]</text>
-      <text class="arc-label-tag" x="10" y="380">[OUTPUT]</text>
-      <!-- Input row: 5 desires -->
-      <g>
-        <rect class="master-node-rect input" x="120" y="40" width="120" height="44"/>
-        <text class="master-node-text" x="180" y="62">เอาตัวรอด</text>
-      </g>
-      <g>
-        <rect class="master-node-rect input" x="280" y="40" width="120" height="44"/>
-        <text class="master-node-text" x="340" y="62">สืบพันธุ์</text>
-      </g>
-      <g>
-        <rect class="master-node-rect input" x="440" y="40" width="120" height="44"/>
-        <text class="master-node-text" x="500" y="62">สถานะ</text>
-      </g>
-      <g>
-        <rect class="master-node-rect input" x="600" y="40" width="120" height="44"/>
-        <text class="master-node-text" x="660" y="62">เป็นพวก</text>
-      </g>
-      <g>
-        <rect class="master-node-rect input" x="760" y="40" width="120" height="44"/>
-        <text class="master-node-text" x="820" y="62">อยากรู้</text>
-      </g>
-      <!-- Links input → process -->
-      <g>
-        <path class="master-link" d="M180 84 Q200 130, 280 200"/>
-        <path class="master-link" d="M340 84 Q360 130, 440 200"/>
-        <path class="master-link" d="M500 84 L500 200"/>
-        <path class="master-link" d="M660 84 Q640 130, 560 200"/>
-        <path class="master-link" d="M820 84 Q800 130, 720 200"/>
-      </g>
-      <!-- Process row: 4 hormones -->
-      <g>
-        <rect class="master-node-rect process" x="240" y="200" width="100" height="44"/>
-        <text class="master-node-text" x="290" y="222">Dopamine</text>
-      </g>
-      <g>
-        <rect class="master-node-rect process" x="400" y="200" width="100" height="44"/>
-        <text class="master-node-text" x="450" y="222">Oxytocin</text>
-      </g>
-      <g>
-        <rect class="master-node-rect process" x="560" y="200" width="100" height="44"/>
-        <text class="master-node-text" x="610" y="222">Cortisol</text>
-      </g>
-      <g>
-        <rect class="master-node-rect process" x="720" y="200" width="100" height="44"/>
-        <text class="master-node-text" x="770" y="222">Serotonin</text>
-      </g>
-      <!-- Links process → tactic -->
-      <g>
-        <path class="master-link active" d="M290 244 Q280 290, 250 360"/>
-        <path class="master-link active" d="M450 244 Q420 290, 380 360"/>
-        <path class="master-link active" d="M610 244 Q620 290, 660 360"/>
-        <path class="master-link active" d="M770 244 Q800 290, 850 360"/>
-      </g>
-      <!-- Tactic row -->
-      <g>
-        <rect class="master-node-rect" x="180" y="360" width="140" height="44"/>
-        <text class="master-node-text" x="250" y="382">Story · Teaser</text>
-      </g>
-      <g>
-        <rect class="master-node-rect" x="340" y="360" width="140" height="44"/>
-        <text class="master-node-text" x="410" y="382">Reviews · Tribe</text>
-      </g>
-      <g>
-        <rect class="master-node-rect" x="500" y="360" width="140" height="44"/>
-        <text class="master-node-text" x="570" y="382">Scarcity · Timer</text>
-      </g>
-      <g>
-        <rect class="master-node-rect" x="780" y="360" width="140" height="44"/>
-        <text class="master-node-text" x="850" y="382">VIP · Limited</text>
-      </g>
-      <!-- Output -->
-      <g>
-        <rect class="master-node-rect output" x="940" y="200" width="140" height="44"/>
-        <text class="master-node-text" x="1010" y="222">การซื้อ</text>
-      </g>
-      <path class="master-link active" d="M820 222 L940 222"/>
-      <!-- Animated pulse -->
-      <circle class="master-flow-dot" r="4">
-        <animateMotion dur="3s" repeatCount="indefinite" path="M180 62 Q300 130, 290 222 Q420 290, 420 382"/>
-      </circle>
-      <circle class="master-flow-dot" r="4">
-        <animateMotion dur="3.5s" repeatCount="indefinite" path="M500 62 L500 222 L1010 222"/>
-      </circle>
-      <circle class="master-flow-dot" r="4">
-        <animateMotion dur="4s" repeatCount="indefinite" path="M820 62 Q800 130, 770 222 Q800 290, 850 382"/>
-      </circle>
-    </svg>
-  </div>
-</section>
+        <!-- Visual -->
+        <div class="block">
+          <div class="block-label">▸ Concept Map</div>
+          <h3>โครงสร้าง 3 ชั้นของการตัดสินใจ</h3>
+          <p>วาง mouse บนแต่ละจุดเพื่อสำรวจ — สังเกตว่า "ใบ" (พฤติกรรม) ที่เห็นชัดที่สุด มาจาก "ราก" ที่มองไม่เห็น</p>
+          <div class="visual-block">
+            <svg viewBox="0 0 900 480" aria-hidden="true">
+              <!-- Layer separators -->
+              <line x1="0" y1="120" x2="900" y2="120" stroke="rgba(196,149,106,.1)" stroke-dasharray="3 3"/>
+              <line x1="0" y1="280" x2="900" y2="280" stroke="rgba(196,149,106,.1)" stroke-dasharray="3 3"/>
+              <text class="svg-text-tag" x="20" y="60" text-anchor="start">[BEHAVIOR · ใบ]</text>
+              <text class="svg-text-tag" x="20" y="200" text-anchor="start">[EMOTION · ลำต้น]</text>
+              <text class="svg-text-tag" x="20" y="380" text-anchor="start">[ROOT · ราก ลึก]</text>
+              <!-- Links -->
+              <g>
+                <path class="tm-link" d="M150 380 Q300 340, 450 280 T450 200"/>
+                <path class="tm-link" d="M320 410 Q400 360, 450 280 T450 200"/>
+                <path class="tm-link" d="M450 430 Q450 360, 450 280 T450 200"/>
+                <path class="tm-link" d="M580 410 Q500 360, 450 280 T450 200"/>
+                <path class="tm-link" d="M750 380 Q600 340, 450 280 T450 200"/>
+                <path class="tm-link" d="M450 200 Q300 140, 180 80"/>
+                <path class="tm-link" d="M450 200 Q380 150, 330 80"/>
+                <path class="tm-link" d="M450 200 L450 80"/>
+                <path class="tm-link" d="M450 200 Q520 150, 570 80"/>
+                <path class="tm-link" d="M450 200 Q600 140, 720 80"/>
+              </g>
+              <!-- Behavior nodes (top) -->
+              <g class="tm-group">
+                <circle class="tm-node" cx="180" cy="80" r="32"/>
+                <text class="svg-text" x="180" y="78">เรื่องเล่า</text>
+                <text class="svg-text-sm" x="180" y="94">Story</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="330" cy="80" r="32"/>
+                <text class="svg-text" x="330" y="78">ฝูง</text>
+                <text class="svg-text-sm" x="330" y="94">Tribe</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="450" cy="80" r="34"/>
+                <text class="svg-text" x="450" y="78">ขาดแคลน</text>
+                <text class="svg-text-sm" x="450" y="94">Scarcity</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="570" cy="80" r="32"/>
+                <text class="svg-text" x="570" y="78">รับรู้</text>
+                <text class="svg-text-sm" x="570" y="94">Perception</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="720" cy="80" r="32"/>
+                <text class="svg-text" x="720" y="78">ไว้ใจ</text>
+                <text class="svg-text-sm" x="720" y="94">Trust</text>
+              </g>
+              <!-- Emotion (center) -->
+              <g class="tm-group">
+                <circle class="tm-node center" cx="450" cy="200" r="48"/>
+                <text class="svg-text" x="450" y="196" style="fill:#14110d;font-weight:700">อารมณ์</text>
+                <text class="svg-text-sm" x="450" y="214" style="fill:#14110d;font-weight:600">EMOTION</text>
+              </g>
+              <!-- Roots (bottom) -->
+              <g class="tm-group root-pulse">
+                <circle class="tm-node root" cx="150" cy="380" r="34"/>
+                <text class="svg-text" x="150" y="378">เอาตัวรอด</text>
+                <text class="svg-text-sm" x="150" y="394">Survival</text>
+              </g>
+              <g class="tm-group root-pulse" style="animation-delay:.4s">
+                <circle class="tm-node root" cx="320" cy="410" r="34"/>
+                <text class="svg-text" x="320" y="408">สืบพันธุ์</text>
+                <text class="svg-text-sm" x="320" y="424">Sex</text>
+              </g>
+              <g class="tm-group root-pulse" style="animation-delay:.8s">
+                <circle class="tm-node root" cx="450" cy="430" r="34"/>
+                <text class="svg-text" x="450" y="428">สถานะ</text>
+                <text class="svg-text-sm" x="450" y="444">Status</text>
+              </g>
+              <g class="tm-group root-pulse" style="animation-delay:1.2s">
+                <circle class="tm-node root" cx="580" cy="410" r="34"/>
+                <text class="svg-text" x="580" y="408">เป็นพวก</text>
+                <text class="svg-text-sm" x="580" y="424">Belonging</text>
+              </g>
+              <g class="tm-group root-pulse" style="animation-delay:1.6s">
+                <circle class="tm-node root" cx="750" cy="380" r="34"/>
+                <text class="svg-text" x="750" y="378">อยากรู้</text>
+                <text class="svg-text-sm" x="750" y="394">Curiosity</text>
+              </g>
+            </svg>
+          </div>
+        </div>
 
-<!-- Footer -->
-<footer class="footer reveal">
-  <div class="footer-mark">◆ END · VOL.1 · VISUAL</div>
-  <div class="footer-msg">"ทุกอย่างที่คุณเห็นในตลาด มาจาก<em> ราก</em> เดียวกัน"</div>
-  <a href="/vol1" class="footer-cta">→ อ่าน Vol.1 ฉบับเต็ม</a>
-  <div class="footer-meta">THE ROOT · VOL.1 · VISUAL EDITION</div>
-</footer>
+        <!-- Theory -->
+        <div class="block">
+          <div class="block-label">▸ ทฤษฎี</div>
+          <h3>คนซื้อด้วย <strong>อารมณ์</strong> แล้วใช้ <strong>เหตุผล</strong> มาแก้ตัว</h3>
+          <p>ในวินาทีที่ลูกค้าจ่ายเงิน — ไม่ใช่ "logic" ที่ทำงาน แต่เป็น<strong> สมองส่วน Limbic</strong> ที่ตัดสินใจไปแล้วใน 0.3 วินาที จากนั้น Neocortex ค่อยตามมา "อธิบาย" ว่าทำไมถึงคุ้ม</p>
+          <p>นี่คือเหตุผลที่ feature list ที่ยาวที่สุดในโลก ก็แพ้ <em>เรื่องเล่าเดียว</em> ที่ตรงกับ "รากใต้ดิน" ของลูกค้า</p>
+        </div>
 
-</main>
+        <!-- Case Study -->
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">APPLE · iPhone Launch</div>
+            <h4>ทำไมคนต่อแถว 12 ชั่วโมงเพื่อซื้อโทรศัพท์</h4>
+            <p>Apple ไม่ได้ขาย "specs" — Samsung มี RAM เยอะกว่า แบตอึดกว่า แต่ลูกค้ายอมจ่ายแพงกว่า 30%</p>
+            <p>เพราะ Apple ขุดถึง<strong> ราก "สถานะ" + "เป็นพวก" </strong>— ซื้อ iPhone = เป็นคนสร้างสรรค์ เป็นพวกเดียวกับ Steve Jobs ส่วน "ใบ" คือคำพูดของลูกค้า: "กล้องดีกว่า" "iOS ลื่นกว่า"</p>
+            <span class="case-result">▸ Margin: 37% (vs Samsung 12%)</span>
+          </div>
+        </div>
+
+        <!-- Try It -->
+        <div class="block">
+          <div class="block-label">▸ ลองทำ</div>
+          <div class="try-it">
+            <h3>จับคู่ "ใบ" กับ "ราก"</h3>
+            <p class="try-it-prompt">คลิกหนึ่งคำจากซ้าย แล้วคลิกรากที่ตรงกันจากขวา</p>
+            <div class="match-game" data-game="match1" data-pairs='[["L1","R3"],["L2","R5"],["L3","R1"],["L4","R4"]]'>
+              <div class="match-col">
+                <h4>▸ พฤติกรรมที่เห็น</h4>
+                <div class="match-item" data-side="L" data-id="L1">ซื้อกระเป๋าแบรนด์เนม 80,000</div>
+                <div class="match-item" data-side="L" data-id="L2">ติดตามอินฟลูคนนี้ทุกวัน</div>
+                <div class="match-item" data-side="L" data-id="L3">ซื้อประกันสุขภาพ 60+</div>
+                <div class="match-item" data-side="L" data-id="L4">เข้ากลุ่ม Facebook คนรักรถ</div>
+              </div>
+              <div class="match-col">
+                <h4>▸ รากที่ขับเคลื่อน</h4>
+                <div class="match-item" data-side="R" data-id="R1">เอาตัวรอด</div>
+                <div class="match-item" data-side="R" data-id="R3">สถานะ</div>
+                <div class="match-item" data-side="R" data-id="R4">เป็นพวก</div>
+                <div class="match-item" data-side="R" data-id="R5">อยากรู้</div>
+              </div>
+            </div>
+            <div class="match-status" data-for="match1">▸ จับคู่: 0 / 4</div>
+          </div>
+        </div>
+
+        <!-- Takeaway -->
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li>ก่อนเขียน sale page <b>ถามตัวเอง:</b> "รากไหนใน 5 รากที่กำลังจุด?"</li>
+            <li>ขายสิ่งเดียวกัน แต่<b>เปลี่ยนราก เปลี่ยนภาษา</b> = เปลี่ยนตลาด</li>
+            <li>"ใบสวย" (ฟีเจอร์เด่น) ไม่ทำให้ขาย — <b>"รากลึก" (Pain ตรง)</b> ทำให้ขาย</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l1"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 2 ═════════════════ -->
+    <section class="lesson" id="l2">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 02</span>
+          <span class="lesson-time">5 นาที</span>
+          <h2>4 ปุ่ม<em>ชีวภาพ</em>ในสมองลูกค้า</h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> รู้จักสารเคมี 4 ตัวที่ควบคุมการซื้อ และจับคู่ "ทริกเกอร์" ในแคมเปญกับฮอร์โมนที่มันกระตุ้น</div>
+
+        <div class="block">
+          <div class="block-label">▸ Map</div>
+          <h3>คันโยก 4 ตัวที่คุณกดได้</h3>
+          <p>ทุกครั้งที่ลูกค้ารู้สึก "อยากได้" "วางใจ" "กลัวพลาด" หรือ "เด่น" — มันคือสารตัวใดตัวหนึ่งใน 4 นี้กำลังหลั่งอยู่</p>
+          <div class="hormone-grid">
+            <div class="hormone" style="--accent:#c4956a">
+              <div class="hormone-icon"></div>
+              <div class="hormone-name">Dopamine</div>
+              <div class="hormone-tag">สารแห่ง "อยากได้"</div>
+              <p class="hormone-desc">หลั่งตอน <strong>"ก่อนได้"</strong> มากกว่าตอน "ได้แล้ว" — สมองเสพการลุ้น ไม่ใช่ผลลัพธ์</p>
+              <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> teaser, countdown, "พรุ่งนี้เปิดตัว"</div>
+            </div>
+            <div class="hormone" style="--accent:#b87147">
+              <div class="hormone-icon"></div>
+              <div class="hormone-name">Oxytocin</div>
+              <div class="hormone-tag">สารแห่ง "ไว้ใจ"</div>
+              <p class="hormone-desc">กาวใจของชนเผ่า หลั่งตอน <strong>เห็นมนุษย์คนอื่น</strong>เปิดเผยตัวเอง</p>
+              <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> story ของลูกค้า, ภาพคนใช้จริง, รีวิวพร้อมหน้า</div>
+            </div>
+            <div class="hormone" style="--accent:#c4564a">
+              <div class="hormone-icon"></div>
+              <div class="hormone-name">Cortisol</div>
+              <div class="hormone-tag">สารแห่ง "กลัว"</div>
+              <p class="hormone-desc">หลั่งตอนรู้สึก<strong>กำลังจะเสีย</strong> — กลัวเสีย &gt; กลัวพลาดเสมอ (2:1)</p>
+              <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> deadline, "เหลือ 3 ที่", "พรุ่งนี้ราคาขึ้น"</div>
+            </div>
+            <div class="hormone" style="--accent:#6b8a5a">
+              <div class="hormone-icon"></div>
+              <div class="hormone-name">Serotonin</div>
+              <div class="hormone-tag">สารแห่ง "เด่น"</div>
+              <p class="hormone-desc">หลั่งตอนรู้สึก<strong>เหนือกว่าคนอื่น</strong> ในกลุ่ม — เปิดทางให้ขายแพง 10x ได้</p>
+              <div class="hormone-trigger"><b>กระตุ้นด้วย:</b> VIP, Black Card, "เฉพาะสมาชิก"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">BOOKING.COM · Hotel Listings</div>
+            <h4>หน้าเว็บที่กด "ทุกปุ่ม" พร้อมกัน</h4>
+            <p>ในหน้าจองโรงแรมหน้าเดียว Booking.com กดครบทั้ง 4:</p>
+            <p>• <strong>Dopamine:</strong> "Save 15% — ดีลพิเศษ!" (ลุ้นจะได้ส่วนลด)<br>
+              • <strong>Oxytocin:</strong> "1,247 รีวิวจากลูกค้าจริง" (เห็นเพื่อนมนุษย์แนะ)<br>
+              • <strong>Cortisol:</strong> "เหลือเพียง 1 ห้องในราคานี้" (กลัวเสีย)<br>
+              • <strong>Serotonin:</strong> "Genius Level 3 ได้สิทธิพิเศษ" (รู้สึกเด่น)</p>
+            <span class="case-result">▸ Conversion: ~6% (vs industry 1-2%)</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ลองทำ</div>
+          <div class="try-it">
+            <h3>ระบุฮอร์โมนจาก trigger</h3>
+            <p class="try-it-prompt">จับคู่ trigger กับฮอร์โมนที่ตรงกัน</p>
+            <div class="match-game" data-game="match2" data-pairs='[["A1","B1"],["A2","B3"],["A3","B2"],["A4","B4"]]'>
+              <div class="match-col">
+                <h4>▸ Trigger ที่ใช้</h4>
+                <div class="match-item" data-side="L" data-id="A1">"นับถอยหลัง 23:59:42"</div>
+                <div class="match-item" data-side="L" data-id="A2">"คุณป้อมจากเชียงใหม่ใช้แล้ว 6 เดือน..."</div>
+                <div class="match-item" data-side="L" data-id="A3">"พรุ่งนี้ราคาขึ้น 30%"</div>
+                <div class="match-item" data-side="L" data-id="A4">"VIP เท่านั้น 100 ที่นั่งแรก"</div>
+              </div>
+              <div class="match-col">
+                <h4>▸ ฮอร์โมนเป้าหมาย</h4>
+                <div class="match-item" data-side="R" data-id="B1">Dopamine — ลุ้น</div>
+                <div class="match-item" data-side="R" data-id="B2">Cortisol — กลัวเสีย</div>
+                <div class="match-item" data-side="R" data-id="B3">Oxytocin — ไว้ใจ</div>
+                <div class="match-item" data-side="R" data-id="B4">Serotonin — เด่น</div>
+              </div>
+            </div>
+            <div class="match-status" data-for="match2">▸ จับคู่: 0 / 4</div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li><b>Dopamine</b> = ลุ้น | <b>Oxytocin</b> = ไว้ใจ | <b>Cortisol</b> = กลัวเสีย | <b>Serotonin</b> = เด่น</li>
+            <li>แคมเปญที่ดี กดอย่างน้อย <b>2-3 ปุ่ม</b> พร้อมกัน — ปุ่มเดียวบ่อยเกินจะดื้อยา</li>
+            <li>"กลัวเสีย" = แรงที่สุด แต่ใช้บ่อยจะทำลายแบรนด์ — ผสมกับ "ไว้ใจ" ให้สมดุล</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l2"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 3 ═════════════════ -->
+    <section class="lesson" id="l3">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 03</span>
+          <span class="lesson-time">5 นาที</span>
+          <h2>5 ความปรารถนา<em>ดั้งเดิม</em>ของมนุษย์</h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจ 5 รากที่ขับทุกการซื้อในประวัติศาสตร์มนุษย์ — และเลือก "ราก" ที่ตรงกับสินค้าของคุณ</div>
+
+        <div class="block">
+          <div class="block-label">▸ Wheel</div>
+          <h3>วงล้อ 5 ปรารถนา</h3>
+          <p>คลิกแต่ละกลีบ — ทุกแคมเปญที่ขายได้ในโลก hit อย่างน้อย<strong> หนึ่งใน 5</strong> ตัวนี้เสมอ</p>
+          <div class="visual-block">
+            <div class="wheel-grid">
+              <div class="wheel-svg"><svg viewBox="0 0 400 400" id="wheel"></svg></div>
+              <div class="desire-detail" id="desire-detail">
+                <div class="desire-num" id="d-num">01</div>
+                <div class="desire-name" id="d-name">เอาตัวรอด</div>
+                <div class="desire-en" id="d-en">SURVIVAL</div>
+                <p class="desire-body" id="d-body">ความปรารถนาที่ลึกที่สุด — ไม่อยากเจ็บ ไม่อยากตาย ไม่อยากขาดทุน ทุกแคมเปญประกัน อาหารเสริม ยา หมอ มาจากตัวนี้</p>
+                <div class="desire-tags" id="d-tags">
+                  <span class="desire-tag">ประกัน</span><span class="desire-tag">สุขภาพ</span><span class="desire-tag">การเงิน</span><span class="desire-tag">ความปลอดภัย</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">DOVE · "Real Beauty" Campaign</div>
+            <h4>เปลี่ยนสบู่จาก "เอาตัวรอด" → "สถานะ + เป็นพวก"</h4>
+            <p>สบู่ทุกแบรนด์ขายเรื่อง "ทำความสะอาด" (Survival) — Dove ฉีกออกมา ขายเรื่อง<strong> "ภูมิใจในตัวเอง"</strong> และ<strong> "เป็นพวกที่กล้าเป็นจริง"</strong></p>
+            <p>ผลลัพธ์: คนซื้อ Dove แพงกว่าสบู่อื่น 2 เท่า เพราะมันไม่ได้ขาย "สบู่" แต่ขาย<em> identity</em></p>
+            <span class="case-result">▸ ยอดขายเพิ่ม +700% ใน 3 ปี</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ลองทำ</div>
+          <div class="try-it">
+            <h3>วิเคราะห์ "ราก" ของสินค้าคุณ</h3>
+            <p class="try-it-prompt">นึกถึงสินค้า/บริการของคุณ แล้วถามตัวเอง 3 คำถามนี้</p>
+            <ol style="padding-left:1.5rem;color:var(--ink-2);font-size:.95rem;line-height:1.9">
+              <li>ลูกค้าจะ <strong style="color:var(--gold-bright)">"เสีย"</strong> อะไรถ้าไม่มีสินค้านี้? <em style="color:var(--ink-faint)">→ Survival</em></li>
+              <li>สินค้านี้ทำให้ลูกค้า<strong style="color:var(--gold-bright)"> "ดูดี"</strong> ในสายตาใคร? <em style="color:var(--ink-faint)">→ Sex / Status</em></li>
+              <li>คนที่ใช้สินค้านี้<strong style="color:var(--gold-bright)"> "เป็นพวก"</strong> แบบไหน? <em style="color:var(--ink-faint)">→ Belonging</em></li>
+            </ol>
+            <p style="margin-top:1rem;font-size:.88rem;color:var(--ink-dim)"><strong style="color:var(--gold)">ทิป:</strong> เลือกราก<em> 1 ตัวหลัก + 1 ตัวเสริม</em> — ไม่ใช่ทั้ง 5 พร้อมกัน</p>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li>5 ราก: <b>Survival, Sex, Status, Belonging, Curiosity</b></li>
+            <li>สินค้าเดียวกัน <b>ขายได้ผ่านราก 5 แบบ</b> = 5 ตลาด 5 ภาษา 5 ราคา</li>
+            <li><b>เริ่มจาก "ใคร" ก่อน "อะไร"</b> — รู้ว่าลูกค้าหาราก ไหน แล้วค่อยปรับสินค้า</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l3"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 4 ═════════════════ -->
+    <section class="lesson" id="l4">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 04</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>เส้นโค้ง<em>ของวีรบุรุษ</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เห็นโครง 5 ขั้นที่ทุก story ขายดีใช้ — และวาง story ของแบรนด์/ลูกค้าตามโครงนี้ได้</div>
+
+        <div class="block">
+          <div class="block-label">▸ Pattern</div>
+          <h3>โฆษณา 30 วิ กับ Sale Page 5,000 คำ ใช้รูปทรงเดียวกัน</h3>
+          <p>ทุก story ที่ทำให้คนซื้อ มีโครงสร้าง 5 จุด — เริ่มต่ำ ขึ้นสูง ลงต่ำสุด แล้วฟื้นใหม่ เป็นเส้นโค้งของ Joseph Campbell ที่ Hollywood ใช้ทุกเรื่อง</p>
+          <div class="visual-block arc-block" id="arc">
+            <svg viewBox="0 0 900 360" aria-hidden="true">
+              <defs>
+                <linearGradient id="arcGrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0%" stop-color="#c4956a" stop-opacity=".5"/>
+                  <stop offset="100%" stop-color="#c4956a" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line class="arc-baseline" x1="40" y1="280" x2="860" y2="280"/>
+              <text class="svg-text-tag" x="40" y="310" text-anchor="start">START</text>
+              <text class="svg-text-tag" x="860" y="310" text-anchor="end">RESOLUTION</text>
+              <path class="arc-area" d="M40 280 Q160 240, 230 200 T420 60 T610 240 T780 280 L860 280 Z"/>
+              <path class="arc-line" d="M40 280 Q160 240, 230 200 T420 60 T610 240 T780 280 L860 280"/>
+              <g>
+                <circle class="arc-marker m1" cx="40" cy="280" r="7"/>
+                <text class="svg-text" x="40" y="335">ปกติ</text>
+              </g>
+              <g>
+                <circle class="arc-marker m2" cx="230" cy="200" r="7"/>
+                <text class="svg-text" x="230" y="180">ปัญหา</text>
+              </g>
+              <g>
+                <circle class="arc-marker m3" cx="420" cy="60" r="9" stroke-width="3"/>
+                <text class="svg-text" x="420" y="40" style="fill:#e0b87f;font-weight:700">วิกฤต</text>
+              </g>
+              <g>
+                <circle class="arc-marker m4" cx="610" cy="240" r="7"/>
+                <text class="svg-text" x="610" y="220">ทางออก</text>
+              </g>
+              <g>
+                <circle class="arc-marker m5" cx="780" cy="280" r="7"/>
+                <text class="svg-text" x="780" y="335">โลกใหม่</text>
+              </g>
+            </svg>
+            <div class="arc-stages">
+              <div class="arc-stage"><div class="arc-stage-num">01</div><div class="arc-stage-name">ปกติ</div><div class="arc-stage-en">ORDINARY</div></div>
+              <div class="arc-stage"><div class="arc-stage-num">02</div><div class="arc-stage-name">ปัญหา</div><div class="arc-stage-en">CALL</div></div>
+              <div class="arc-stage"><div class="arc-stage-num">03</div><div class="arc-stage-name">วิกฤต</div><div class="arc-stage-en">CRISIS</div></div>
+              <div class="arc-stage"><div class="arc-stage-num">04</div><div class="arc-stage-name">ทางออก</div><div class="arc-stage-en">SOLUTION</div></div>
+              <div class="arc-stage"><div class="arc-stage-num">05</div><div class="arc-stage-name">เปลี่ยนแปลง</div><div class="arc-stage-en">TRANSFORM</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">NIKE · "Just Do It" (1988)</div>
+            <h4>โฆษณา 60 วิที่เปลี่ยนแบรนด์ไปตลอดกาล</h4>
+            <p><strong>01 ปกติ:</strong> ชายชราอายุ 80 ตื่นเช้า ใส่รองเท้า<br>
+              <strong>02 ปัญหา:</strong> ทุกคนรอบตัวบอกว่า "แก่เกินไปแล้ว"<br>
+              <strong>03 วิกฤต:</strong> เขายืนหน้าสะพาน ตัดสินใจ<br>
+              <strong>04 ทางออก:</strong> เริ่มวิ่ง — ช้าๆ แล้วเร็วขึ้น<br>
+              <strong>05 ใหม่:</strong> เขาวิ่ง 17 ไมล์ทุกวัน "Just Do It"</p>
+            <p style="margin-top:.75rem">ไม่ขายรองเท้าเลย — ขาย<em> identity ของผู้ที่กล้าทำ</em></p>
+            <span class="case-result">▸ Market share: 18% → 43% ใน 10 ปี</span>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ Template</div>
+          <div class="try-it">
+            <h3>วาง Story ของลูกค้าใน 5 บรรทัด</h3>
+            <p class="try-it-prompt">เขียน 1 ประโยคต่อบรรทัด — นี่คือโครง sale page ที่ใช้ได้ทันที</p>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:.85rem;background:var(--bg);padding:1.25rem;border-radius:4px;color:var(--ink-2);line-height:2">
+              <div><span style="color:var(--gold)">01</span> "ก่อนหน้านี้ ลูกค้าของคุณเป็น <span style="color:var(--ink-faint)">[คน/อาชีพ/สถานะ]_____</span>"</div>
+              <div><span style="color:var(--gold)">02</span> "แต่เขาเจอปัญหา <span style="color:var(--ink-faint)">[ปัญหาที่จับต้องได้]_____</span>"</div>
+              <div><span style="color:var(--gold)">03</span> "วันที่แย่ที่สุดคือ <span style="color:var(--ink-faint)">[เหตุการณ์ specific]_____</span>"</div>
+              <div><span style="color:var(--gold)">04</span> "จนเขาเจอ <span style="color:var(--ink-faint)">[สินค้า/วิธีของคุณ]_____</span>"</div>
+              <div><span style="color:var(--gold)">05</span> "วันนี้เขา <span style="color:var(--ink-faint)">[ผลลัพธ์ที่วัดได้]_____</span>"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li>โครง 5 ขั้น: <b>ปกติ → ปัญหา → วิกฤต → ทางออก → เปลี่ยนแปลง</b></li>
+            <li><b>"วิกฤต" คือจุดที่ลูกค้าผูกพัน</b> — อย่ารีบข้าม อย่าทำให้ดูง่ายเกินไป</li>
+            <li>ขาย "การเปลี่ยนแปลง" ไม่ใช่ "ผลิตภัณฑ์" — บอก<b> ก่อน vs หลัง</b> เสมอ</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l4"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 5 ═════════════════ -->
+    <section class="lesson" id="l5">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 05</span>
+          <span class="lesson-time">3 นาที</span>
+          <h2>เมื่อ<em>ฝูง</em>ตัดสินใจ</h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> ใช้พลัง Social Proof ที่ถูกต้อง และเลี่ยงรูปแบบที่ "เก๊" จนทำลายความน่าเชื่อถือ</div>
+
+        <div class="block">
+          <div class="block-label">▸ Compare</div>
+          <h3>ผลของ Social Proof แบบเป็นตัวเลข</h3>
+          <p>ผลการศึกษาของ Nielsen Norman Group + จากข้อมูล e-commerce 1,200 sites:</p>
+          <div class="proof-compare">
+            <div class="proof-card bad" id="p-bad">
+              <div class="proof-tag">▸ <b class="bad">ไม่มี SOCIAL PROOF</b></div>
+              <div class="proof-num">1.3<small>%</small></div>
+              <div class="proof-bar"><div></div></div>
+              <p class="proof-desc">หน้า sale ไม่มีรีวิว ไม่มีตัวเลข ไม่มี logo partner — Conversion เฉลี่ย</p>
+            </div>
+            <div class="proof-card good" id="p-good">
+              <div class="proof-tag">▸ <b class="good">มี SOCIAL PROOF เต็ม +447%</b></div>
+              <div class="proof-num">7.1<small>%</small></div>
+              <div class="proof-bar"><div></div></div>
+              <p class="proof-desc">รีวิวจริง+หน้า, จำนวนลูกค้า, logo, รูปการใช้งาน — เพิ่ม conversion 5-7 เท่า</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ลำดับความน่าเชื่อ</div>
+          <h3>Social Proof ทุกแบบ ไม่เท่ากัน</h3>
+          <ol style="padding-left:1.5rem;color:var(--ink-2);font-size:.95rem;line-height:2">
+            <li><strong>วิดีโอลูกค้าตัวจริง พร้อมหน้า ชื่อ อาชีพ</strong> — น่าเชื่อ 100%</li>
+            <li><strong>Screenshot แชต/อีเมลจริง</strong> — น่าเชื่อ 80%</li>
+            <li><strong>รีวิว Google/Facebook ที่คลิกไปดูได้</strong> — น่าเชื่อ 70%</li>
+            <li><strong>ตัวเลขลูกค้า ("12,000+ คนใช้")</strong> — น่าเชื่อ 50%</li>
+            <li><span style="color:var(--ink-faint)">Logo บริษัทดัง (ไม่มี context)</span> — น่าเชื่อ 30%</li>
+            <li><span style="color:var(--red)">รีวิวข้อความ ไม่มีหน้า/ชื่อจริง</span> — น่าเชื่อ 10% (อาจ <em>ลด</em> trust)</li>
+          </ol>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">AIRBNB · Onboarding</div>
+            <h4>"คนใน 200+ ประเทศวางใจให้เราดูแลห้องของพวกเขา"</h4>
+            <p>Airbnb ไม่บอกว่า "บริษัทเราดี" — แต่บอกว่า<strong> "คนแบบคุณวางใจเรา"</strong> โดยใช้รูปจริง ชื่อจริง เมืองจริง ของ host แต่ละคน</p>
+            <p>เพิ่ม signup conversion 30% เพียงแค่เพิ่มรูปและ story ของ host</p>
+            <span class="case-result">▸ +30% signup conversion</span>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li><b>คนซื้อเพราะคนอื่นซื้อ</b> ไม่ใช่เพราะดี</li>
+            <li>รีวิวมีหน้า &gt; รีวิวไม่มีหน้า — <b>เห็นมนุษย์ &gt; เห็นข้อความ</b></li>
+            <li>"คนแบบฉัน" &gt; "ดารา" — เลือกรีวิวที่ลูกค้ากลุ่มเป้าหมาย<b> ดูแล้วเห็นตัวเอง</b></li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l5"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 6 ═════════════════ -->
+    <section class="lesson" id="l6">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 06</span>
+          <span class="lesson-time">3 นาที</span>
+          <h2>เคมี<em>แห่งความขาด</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> ใช้ Scarcity ที่ "จริง" ไม่ใช่ "ปลอม" — และเข้าใจสมการ Loss Aversion 2:1 ที่ Daniel Kahneman ค้นพบ</div>
+
+        <div class="block">
+          <div class="block-label">▸ Demo</div>
+          <h3>นาฬิกานับถอยหลัง = สาร Cortisol สด ๆ</h3>
+          <p>สมองของคุณตอนนี้กำลังเฝ้าตัวเลขที่เปลี่ยน — และมันรู้สึก<em> เร่ง</em> ขึ้นโดยอัตโนมัติ นี่คือผลของ Cortisol</p>
+          <div class="scarcity-grid">
+            <div class="timer-card">
+              <div class="timer-label">▸ ตัวอย่าง: ดีลปิดตอนเที่ยงคืน</div>
+              <div class="timer-display">
+                <div class="timer-unit"><span id="t-h">--</span><span class="timer-unit-label">HRS</span></div>
+                <div class="timer-unit"><span id="t-m">--</span><span class="timer-unit-label">MIN</span></div>
+                <div class="timer-unit"><span id="t-s">--</span><span class="timer-unit-label">SEC</span></div>
+              </div>
+              <p style="font-size:.8rem;color:var(--ink-dim);margin-top:1rem">ตัวเลขเปลี่ยน → cortisol หลั่ง → สมองรีบตัดสินใจ</p>
+            </div>
+            <div>
+              <h3 style="margin-bottom:.75rem">ทำไม "เหลือ 3 ชิ้น" ขายดีกว่า "ลด 50%"</h3>
+              <p>เพราะสมอง<strong> ไม่ได้คำนวณราคา</strong> — มันคำนวณ<strong> "ความเจ็บปวดของการเสียโอกาส"</strong></p>
+              <div class="formula">
+                <div><b>FORMULA · Loss Aversion</b></div>
+                <div>เจ็บ(จะเสีย) ≈ <b style="color:var(--gold-bright)">2 ×</b> สุข(จะได้)</div>
+              </div>
+              <p style="font-size:.85rem;color:var(--ink-dim)">— Daniel Kahneman, "Thinking, Fast and Slow"</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ Real vs Fake</div>
+          <h3>Scarcity จริง vs Scarcity ปลอม</h3>
+          <div class="proof-compare">
+            <div class="proof-card good">
+              <div class="proof-tag">▸ <b class="good">REAL — ใช้ได้</b></div>
+              <p style="color:var(--ink);margin-bottom:.5rem"><strong>"เหลือ 12 ที่ — ปิดรับ 30/04"</strong></p>
+              <p class="proof-desc">มีหลักฐาน นับลดได้ ปิดจริง ลูกค้ารู้สึกซื่อสัตย์</p>
+            </div>
+            <div class="proof-card bad">
+              <div class="proof-tag">▸ <b class="bad">FAKE — ทำลายแบรนด์</b></div>
+              <p style="color:var(--ink);margin-bottom:.5rem"><strong>"เหลือ 3 ที่!" (ทุกวัน 365 วัน)</strong></p>
+              <p class="proof-desc">เปิดเว็บกี่ครั้งก็เห็นเลขเดิม — ลูกค้ารู้ทัน trust พังถาวร</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ ตัวอย่างจริง</div>
+          <div class="case-study">
+            <div class="case-brand">SUPREME · Drop Strategy</div>
+            <h4>ขายเสื้อยืด $50 ราคา resell $1,500</h4>
+            <p>Supreme ปล่อยสินค้าใหม่ทุกวันพฤหัส 11:00 AM — แต่<strong> หมดในไม่ถึง 1 นาที</strong> เพราะผลิตจำนวนจำกัด</p>
+            <p>นี่คือ Scarcity บริสุทธิ์ — สินค้าราคาทุน $5 ขายได้ $50 และ resell ได้ $1,500 เพราะแบรนด์<em> ปฏิเสธที่จะผลิตเพิ่ม</em></p>
+            <span class="case-result">▸ Brand value: $1B (2017) → $2.1B (2020)</span>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li><b>Loss Aversion = 2:1</b> — เน้น "จะเสียอะไร" มากกว่า "จะได้อะไร"</li>
+            <li><b>Scarcity ต้องจริง</b> — ปลอมหนึ่งครั้ง trust พังถาวร</li>
+            <li>ใช้ <b>Time-limit (deadline)</b> หรือ <b>Quantity-limit (จำนวน)</b> — เลือกอย่างใดอย่างหนึ่ง อย่าทำทั้งคู่พร้อมกัน (ดูฝืน)</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l6"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 7 ═════════════════ -->
+    <section class="lesson" id="l7">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 07</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>เครื่องยนต์<em>ความไว้วางใจ</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> วินิจฉัยแบรนด์ของคุณบน 5 มิติของ Trust แล้วระบุจุดอ่อนเพื่อปรับปรุง</div>
+
+        <div class="block">
+          <div class="block-label">▸ 5 ส่วนผสม</div>
+          <h3>Trust ไม่ใช่หนึ่งสิ่ง — เป็น 5 สิ่งรวมกัน</h3>
+          <p>ขาดตัวใดตัวหนึ่ง ลูกค้าจะลังเล ขาดสองตัว — เขาเดิน ตัวเลขข้างล่างคือ "น้ำหนัก" ของแต่ละตัวจากผลศึกษา Edelman Trust Barometer 2024</p>
+          <div class="meters">
+            <div class="meter" style="--w:88%">
+              <div class="meter-head"><span class="meter-name">Authority — เชี่ยวชาญ</span><span class="meter-pct">88</span></div>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p class="meter-desc">วุฒิ ประสบการณ์ ผลงาน — ทำไมต้องฟัง <em>คุณ</em>?</p>
+            </div>
+            <div class="meter" style="--w:92%">
+              <div class="meter-head"><span class="meter-name">Honesty — โปร่งใส</span><span class="meter-pct">92</span></div>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p class="meter-desc">บอกข้อเสีย ข้อจำกัด ราคาเปิดเผย — สมบูรณ์แบบ = ไม่จริง</p>
+            </div>
+            <div class="meter" style="--w:80%">
+              <div class="meter-head"><span class="meter-name">Consistency — สม่ำเสมอ</span><span class="meter-pct">80</span></div>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p class="meter-desc">โพสต์ทุกวัน โทนเดิม — สม่ำเสมอชนะอัจฉริยะที่หาย</p>
+            </div>
+            <div class="meter" style="--w:75%">
+              <div class="meter-head"><span class="meter-name">Empathy — เข้าใจ</span><span class="meter-pct">75</span></div>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p class="meter-desc">"ฉันเคยเป็นแบบคุณ" — บอก pain ของลูกค้าก่อนเสนอวิธีแก้</p>
+            </div>
+            <div class="meter" style="--w:95%">
+              <div class="meter-head"><span class="meter-name">Proof — พิสูจน์</span><span class="meter-pct">95</span></div>
+              <div class="meter-track"><div class="meter-fill"></div></div>
+              <p class="meter-desc">ตัวเลข ภาพก่อน-หลัง รีวิว — บอก = อ่อน, แสดง = แข็ง</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">▸ Self-Audit</div>
+          <div class="try-it">
+            <h3>ตรวจแบรนด์ของคุณตอนนี้</h3>
+            <p class="try-it-prompt">ให้คะแนน 1-10 บนแต่ละมิติ — ตัวที่ต่ำสุดคือ "งานต้องทำต่อ"</p>
+            <div id="trust-audit"></div>
+            <div id="trust-score" style="margin-top:1rem;text-align:center;font-family:'JetBrains Mono',monospace;font-size:.9rem;color:var(--ink-dim)">▸ คะแนนรวม: <span id="trust-total" style="color:var(--gold-bright);font-weight:700">25</span> / 50</div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li>Trust = <b>Authority + Honesty + Consistency + Empathy + Proof</b></li>
+            <li><b>ตัวที่ต่ำสุดดึงทุกอย่างลง</b> — ไม่ต้องสมบูรณ์ แต่ห้ามขาด</li>
+            <li><b>"แสดง"</b> ทุกตัว ไม่ใช่ "บอก" — ลูกค้าเชื่อสิ่งที่เห็น ไม่ใช่สิ่งที่อ้าง</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l7"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 8 ═════════════════ -->
+    <section class="lesson" id="l8">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 08</span>
+          <span class="lesson-time">3 นาที</span>
+          <h2>ทุกอย่าง<em>เชื่อมโยงกัน</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เห็น "ภาพรวม" ของระบบทั้งหมด — จาก ราก → ฮอร์โมน → กลยุทธ์ → การซื้อ</div>
+
+        <div class="block">
+          <div class="block-label">▸ Master Map</div>
+          <h3>กระแสไหลของการตัดสินใจ</h3>
+          <p>จุดสีทองที่วิ่งบนเส้นคือ "ลูกค้า" — เริ่มจากปรารถนาในตัว ผ่านสารเคมีในสมอง ออกมาเป็นแคมเปญที่กระตุ้น และจบที่การซื้อ</p>
+          <div class="visual-block">
+            <div class="master-wrap">
+              <svg viewBox="0 0 1100 460" aria-hidden="true">
+                <text class="svg-text-tag" x="20" y="60" text-anchor="start">[INPUT]</text>
+                <text class="svg-text-tag" x="20" y="222" text-anchor="start">[BRAIN]</text>
+                <text class="svg-text-tag" x="20" y="382" text-anchor="start">[TACTIC]</text>
+                <!-- Inputs -->
+                <g><rect class="master-rect input" x="120" y="40" width="120" height="44"/><text class="master-text" x="180" y="62">เอาตัวรอด</text></g>
+                <g><rect class="master-rect input" x="280" y="40" width="120" height="44"/><text class="master-text" x="340" y="62">สืบพันธุ์</text></g>
+                <g><rect class="master-rect input" x="440" y="40" width="120" height="44"/><text class="master-text" x="500" y="62">สถานะ</text></g>
+                <g><rect class="master-rect input" x="600" y="40" width="120" height="44"/><text class="master-text" x="660" y="62">เป็นพวก</text></g>
+                <g><rect class="master-rect input" x="760" y="40" width="120" height="44"/><text class="master-text" x="820" y="62">อยากรู้</text></g>
+                <!-- Links -->
+                <path class="master-link" d="M180 84 Q200 130, 290 200"/>
+                <path class="master-link" d="M340 84 Q360 130, 450 200"/>
+                <path class="master-link" d="M500 84 L500 200"/>
+                <path class="master-link" d="M660 84 Q640 130, 560 200"/>
+                <path class="master-link" d="M820 84 Q800 130, 720 200"/>
+                <!-- Process row -->
+                <g><rect class="master-rect process" x="240" y="200" width="100" height="44"/><text class="master-text" x="290" y="222">Dopamine</text></g>
+                <g><rect class="master-rect process" x="400" y="200" width="100" height="44"/><text class="master-text" x="450" y="222">Oxytocin</text></g>
+                <g><rect class="master-rect process" x="560" y="200" width="100" height="44"/><text class="master-text" x="610" y="222">Cortisol</text></g>
+                <g><rect class="master-rect process" x="720" y="200" width="100" height="44"/><text class="master-text" x="770" y="222">Serotonin</text></g>
+                <!-- Process to tactic -->
+                <path class="master-link active" d="M290 244 Q280 290, 250 360"/>
+                <path class="master-link active" d="M450 244 Q420 290, 380 360"/>
+                <path class="master-link active" d="M610 244 Q620 290, 660 360"/>
+                <path class="master-link active" d="M770 244 Q800 290, 850 360"/>
+                <!-- Tactics -->
+                <g><rect class="master-rect tactic" x="180" y="360" width="140" height="44"/><text class="master-text" x="250" y="382">Story · Teaser</text></g>
+                <g><rect class="master-rect tactic" x="340" y="360" width="140" height="44"/><text class="master-text" x="410" y="382">Reviews · Tribe</text></g>
+                <g><rect class="master-rect tactic" x="500" y="360" width="140" height="44"/><text class="master-text" x="570" y="382">Scarcity · Timer</text></g>
+                <g><rect class="master-rect tactic" x="780" y="360" width="140" height="44"/><text class="master-text" x="850" y="382">VIP · Limited</text></g>
+                <!-- Output -->
+                <g><rect class="master-rect output" x="940" y="200" width="140" height="44"/><text class="master-text out" x="1010" y="222">การซื้อ</text></g>
+                <path class="master-link active" d="M820 222 L940 222"/>
+                <!-- Flow dots -->
+                <circle class="master-flow" r="4"><animateMotion dur="3.5s" repeatCount="indefinite" path="M180 62 Q200 130, 290 222 Q280 290, 250 382"/></circle>
+                <circle class="master-flow" r="4"><animateMotion dur="4s" repeatCount="indefinite" path="M500 62 L500 222 L1010 222"/></circle>
+                <circle class="master-flow" r="4"><animateMotion dur="4.5s" repeatCount="indefinite" path="M820 62 Q800 130, 770 222 Q800 290, 850 382"/></circle>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">KEY TAKEAWAY</span>
+          <ul>
+            <li>ทุกแคมเปญใหญ่ ๆ <b>ใช้ pipeline เดียวกัน</b>: ราก → ฮอร์โมน → กลยุทธ์ → การซื้อ</li>
+            <li>เริ่มจาก <b>"ราก"</b> ถ้าผิดที่นี่ ทุกอย่างถัดไปก็ผิดหมด</li>
+            <li>โฆษณาที่ "เปลี่ยนวงการ" คือโฆษณาที่ <b>ขับ pipeline ทั้งเส้น</b> ในชิ้นเดียว</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l8"><div class="lesson-checkbox"></div><span>เรียนจบบทนี้แล้ว</span></div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ QUIZ ═════════════════ -->
+    <section class="quiz-section" id="quiz">
+      <div class="container">
+        <div class="lesson-header">
+          <span class="lesson-num">▤ ทดสอบ</span>
+          <span class="lesson-time">5 นาที</span>
+          <h2>คุณเข้าใจ<em> มากแค่ไหน?</em></h2>
+        </div>
+        <p style="color:var(--ink-dim);margin-bottom:2rem">ตอบให้ครบ 8 ข้อ — ตอบเสร็จจะเห็นคำเฉลย และคะแนนรวม</p>
+        <div id="quiz-list"></div>
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-result-score" id="qr-score">0/8</div>
+          <div class="quiz-result-msg" id="qr-msg">-</div>
+          <div class="quiz-result-sub" id="qr-sub">-</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ CHEATSHEET ═════════════════ -->
+    <section class="cheatsheet-section" id="cheat">
+      <div class="container">
+        <div class="lesson-header">
+          <span class="lesson-num">▥ สรุป</span>
+          <h2>Cheatsheet —<em> สิ่งที่ต้องจำ</em></h2>
+        </div>
+        <p style="color:var(--ink-dim);margin-bottom:1rem">กด <kbd style="background:var(--bg-3);padding:.15rem .4rem;border-radius:3px;font-family:'JetBrains Mono',monospace;font-size:.8rem;border:1px solid var(--line-strong)">Ctrl+P</kbd> เพื่อพิมพ์เป็น PDF — sidebar/quiz จะไม่ถูกพิมพ์ออกมา</p>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-card-num">01 · ROOT TREE</div>
+            <h4>คนซื้อด้วยอารมณ์ ใช้เหตุผลอธิบาย</h4>
+            <p>ราก (Desire) → ลำต้น (Emotion) → ใบ (Behavior)</p>
+            <div class="hint">ถามก่อนเขียน: "รากไหนกำลังจุด?"</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">02 · 4 HORMONES</div>
+            <h4>คันโยก 4 ตัวในสมอง</h4>
+            <p>Dopamine = ลุ้น | Oxytocin = ไว้ใจ | Cortisol = กลัว | Serotonin = เด่น</p>
+            <div class="hint">กดอย่างน้อย 2-3 ปุ่มพร้อมกัน</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">03 · 5 DESIRES</div>
+            <h4>ราก 5 ของมนุษย์</h4>
+            <p>Survival · Sex · Status · Belonging · Curiosity</p>
+            <div class="hint">เลือก 1 หลัก + 1 เสริม ไม่ใช่ทั้ง 5</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">04 · STORY ARC</div>
+            <h4>โครง 5 จุด</h4>
+            <p>ปกติ → ปัญหา → วิกฤต → ทางออก → เปลี่ยนแปลง</p>
+            <div class="hint">"วิกฤต" คือจุดผูกใจ อย่ารีบข้าม</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">05 · SOCIAL PROOF</div>
+            <h4>คนซื้อเพราะคนอื่นซื้อ</h4>
+            <p>วิดีโอ + หน้า &gt; ตัวเลข &gt; ข้อความ</p>
+            <div class="hint">"คนแบบฉัน" &gt; "ดารา"</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">06 · SCARCITY</div>
+            <h4>Loss Aversion 2:1</h4>
+            <p>เจ็บ(เสีย) ≈ 2 × สุข(ได้)</p>
+            <div class="hint">ต้องจริง — ปลอมครั้งเดียว trust พัง</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">07 · TRUST</div>
+            <h4>5 ส่วนผสมของ Trust</h4>
+            <p>Authority · Honesty · Consistency · Empathy · Proof</p>
+            <div class="hint">ตัวต่ำสุดดึงทุกอย่างลง</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">08 · MASTER</div>
+            <h4>Pipeline เดียว</h4>
+            <p>Root → Hormone → Tactic → Purchase</p>
+            <div class="hint">เริ่มจากรากให้ถูก</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-mark">◆ END · VOL.1 · VISUAL EDITION</div>
+      <div class="footer-msg">"ทุกอย่างที่คุณเห็นในตลาด มาจาก<em> ราก</em> เดียวกัน"</div>
+      <a href="/vol1" class="footer-cta">→ อ่าน Vol.1 ฉบับเต็ม</a>
+      <div class="footer-meta">THE ROOT · VOL.1 · LEARN.ROOTMANKNOWS.COM</div>
+    </footer>
+  </main>
+</div>
 
 <script>
-// ─────────────── Lock gate (sha256) ───────────────
-const PASS_HASH = 'b68c960c8c73e167537fc804553cdaf2e57c5afe1a111cfe738e3c6cc170ecb1'; // sha256('poicaption')
+'use strict';
+
+// ═══════════════════ Lock gate ═══════════════════
+const PASS_HASH = 'b68c960c8c73e167537fc804553cdaf2e57c5afe1a111cfe738e3c6cc170ecb1';
 const STORAGE_KEY = 'visual-vol1-pass';
+const PROGRESS_KEY = 'visual-vol1-progress';
 
 async function sha256(str) {
   const buf = new TextEncoder().encode(str);
   const hash = await crypto.subtle.digest('SHA-256', buf);
-  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
 }
 
 async function tryUnlock(e) {
@@ -1202,7 +2035,7 @@ async function tryUnlock(e) {
   const h = await sha256(val);
   if (h === PASS_HASH) {
     localStorage.setItem(STORAGE_KEY, h);
-    revealPage();
+    revealApp();
   } else {
     err.textContent = 'รหัสไม่ถูกต้อง';
     err.style.color = 'var(--red)';
@@ -1211,58 +2044,122 @@ async function tryUnlock(e) {
   return false;
 }
 
-function revealPage() {
+function revealApp() {
   document.getElementById('lock').classList.add('hidden');
   document.body.classList.remove('locked');
-  document.getElementById('main').hidden = false;
-  document.getElementById('logout').style.display = '';
-  setTimeout(initVisuals, 100);
+  document.getElementById('app').hidden = false;
+  setTimeout(initApp, 80);
 }
 
 function logout() {
   localStorage.removeItem(STORAGE_KEY);
   location.reload();
 }
+window.logout = logout;
 
-// Auto-unlock if previously authenticated
-(function() {
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if (saved === PASS_HASH) revealPage();
+(function autoUnlock() {
+  if (localStorage.getItem(STORAGE_KEY) === PASS_HASH) revealApp();
 })();
 
-// ─────────────── Reveal observer ───────────────
-function initVisuals() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  // Arc + proof bars use the same class for trigger
-  document.querySelectorAll('.arc-wrap, .proof-card, .trust-meter').forEach(el => observer.observe(el));
-
+// ═══════════════════ App init ═══════════════════
+function initApp() {
+  initSidebar();
+  initProgressBar();
+  initScrollSpy();
   buildWheel();
+  initRevealObserver();
+  initMatchGames();
+  initTrustAudit();
+  initLessonComplete();
+  buildQuiz();
   startTimer();
 }
 
-// ─────────────── Wheel (5 desires) ───────────────
+// ───────── Sidebar / mobile ─────────
+function initSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+  const btn = document.getElementById('menu-btn');
+  function close() { sidebar.classList.remove('open'); backdrop.classList.remove('show'); }
+  btn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    backdrop.classList.toggle('show');
+  });
+  backdrop.addEventListener('click', close);
+  document.querySelectorAll('.nav-item').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const t = a.getAttribute('data-target');
+      if (!t) return;
+      const target = document.getElementById(t);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      close();
+    });
+  });
+}
+
+// ───────── Progress bar ─────────
+function initProgressBar() {
+  const bar = document.getElementById('progress');
+  const update = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+// ───────── Scroll spy ─────────
+function initScrollSpy() {
+  const sections = ['hero','l1','l2','l3','l4','l5','l6','l7','l8','quiz','cheat'];
+  const navLinks = {};
+  document.querySelectorAll('.nav-item').forEach(a => {
+    const t = a.getAttribute('data-target');
+    if (t) navLinks[t] = a;
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        Object.values(navLinks).forEach(a => a.classList.remove('active'));
+        const link = navLinks[e.target.id];
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+}
+
+// ───────── Reveal observer ─────────
+function initRevealObserver() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: .2 });
+  document.querySelectorAll('.arc-block, .proof-card, .meter, .reveal').forEach(el => obs.observe(el));
+}
+
+// ───────── Wheel (5 desires) ─────────
 const desires = [
-  { num: '01', name: 'เอาตัวรอด', en: 'SURVIVAL', body: 'ความปรารถนาที่ลึกที่สุด — ไม่อยากเจ็บ ไม่อยากตาย ไม่อยากขาดทุน ทุกแคมเปญประกัน อาหารเสริม ยา มาจากตัวนี้', tags: ['ประกัน', 'สุขภาพ', 'การเงิน', 'ความปลอดภัย'] },
-  { num: '02', name: 'สืบพันธุ์', en: 'SEX & ATTRACTION', body: 'ไม่ใช่แค่เซ็กส์ — รวมถึงความน่าดึงดูด เสน่ห์ การได้รับเลือก ทุกแบรนด์น้ำหอม เครื่องสำอาง เครื่องประดับ มาจากตัวนี้', tags: ['เครื่องสำอาง', 'น้ำหอม', 'แฟชั่น', 'fitness'] },
-  { num: '03', name: 'สถานะ', en: 'STATUS', body: 'อยากเด่น อยากเหนือ อยากให้คนชื่นชม — รถยนต์หรู นาฬิกา กระเป๋าแบรนด์เนม ไม่ได้ขายฟังก์ชัน ขายสถานะ', tags: ['Luxury', 'แบรนด์เนม', 'รถ', 'นาฬิกา'] },
-  { num: '04', name: 'เป็นพวก', en: 'BELONGING', body: 'อยากอยู่ในกลุ่ม กลัวถูกเขี่ยออก — community, brand tribe, fan club ทำงานบนปุ่มนี้ทั้งหมด', tags: ['Community', 'Fanbase', 'Cult brand', 'Membership'] },
-  { num: '05', name: 'อยากรู้', en: 'CURIOSITY', body: 'ปุ่มที่หล่อเลี้ยง YouTube, news, gossip — สมองหลั่ง dopamine ตอน "เกือบรู้" มากกว่าตอน "รู้แล้ว"', tags: ['Headline', 'Cliffhanger', 'Mystery', 'Teaser'] }
+  { num:'01', name:'เอาตัวรอด', en:'SURVIVAL', body:'ความปรารถนาที่ลึกที่สุด — ไม่อยากเจ็บ ไม่อยากตาย ไม่อยากขาดทุน ทุกแคมเปญประกัน อาหารเสริม ยา หมอ มาจากรากนี้', tags:['ประกัน','สุขภาพ','การเงิน','ความปลอดภัย'] },
+  { num:'02', name:'สืบพันธุ์', en:'SEX & ATTRACTION', body:'ไม่ใช่แค่เซ็กส์ — รวมความน่าดึงดูด เสน่ห์ การได้รับเลือก น้ำหอม เครื่องสำอาง แฟชั่น fitness — มาจากตัวนี้', tags:['เครื่องสำอาง','น้ำหอม','แฟชั่น','fitness'] },
+  { num:'03', name:'สถานะ', en:'STATUS', body:'อยากเด่น อยากเหนือ อยากให้คนชื่นชม — รถหรู นาฬิกา กระเป๋าแบรนด์เนม ไม่ได้ขายฟังก์ชัน ขายสถานะ', tags:['Luxury','Premium','รถ','นาฬิกา'] },
+  { num:'04', name:'เป็นพวก', en:'BELONGING', body:'อยากอยู่ในกลุ่ม กลัวถูกเขี่ยออก — community brand tribe fan club แบรนด์ลัทธิ ทำงานบนปุ่มนี้ทั้งหมด', tags:['Community','Fanbase','Cult','Membership'] },
+  { num:'05', name:'อยากรู้', en:'CURIOSITY', body:'ปุ่มที่หล่อเลี้ยง YouTube ข่าว gossip — สมองหลั่ง dopamine ตอน "เกือบรู้" มากกว่าตอน "รู้แล้ว"', tags:['Headline','Cliffhanger','Mystery','Teaser'] }
 ];
 
 function buildWheel() {
   const svg = document.getElementById('wheel');
   if (!svg) return;
-  const cx = 200, cy = 200, r = 160, ir = 70;
+  const cx = 200, cy = 200, r = 165, ir = 75;
   const N = desires.length;
-  const slicePaths = [];
-  const labels = [];
+  let html = '';
   for (let i = 0; i < N; i++) {
     const a0 = (i / N) * Math.PI * 2 - Math.PI / 2;
     const a1 = ((i + 1) / N) * Math.PI * 2 - Math.PI / 2;
@@ -1270,26 +2167,25 @@ function buildWheel() {
     const x1 = cx + r * Math.cos(a1), y1 = cy + r * Math.sin(a1);
     const x0i = cx + ir * Math.cos(a0), y0i = cy + ir * Math.sin(a0);
     const x1i = cx + ir * Math.cos(a1), y1i = cy + ir * Math.sin(a1);
-    const large = (a1 - a0) > Math.PI ? 1 : 0;
-    const path = `M ${x0i} ${y0i} L ${x0} ${y0} A ${r} ${r} 0 ${large} 1 ${x1} ${y1} L ${x1i} ${y1i} A ${ir} ${ir} 0 ${large} 0 ${x0i} ${y0i} Z`;
-    slicePaths.push(`<path class="wheel-slice" data-i="${i}" d="${path}"/>`);
-    // Label position: middle of slice
+    const path = `M ${x0i} ${y0i} L ${x0} ${y0} A ${r} ${r} 0 0 1 ${x1} ${y1} L ${x1i} ${y1i} A ${ir} ${ir} 0 0 0 ${x0i} ${y0i} Z`;
     const am = (a0 + a1) / 2;
     const lr = (r + ir) / 2;
     const lx = cx + lr * Math.cos(am);
     const ly = cy + lr * Math.sin(am);
-    labels.push(`<text class="wheel-slice-label" x="${lx}" y="${ly}">${desires[i].name}</text>`);
+    html += `<g class="wheel-slice-group" data-i="${i}">
+      <path class="wheel-slice" d="${path}"/>
+      <text class="wheel-slice-label" x="${lx}" y="${ly}">${desires[i].name}</text>
+    </g>`;
   }
-  svg.innerHTML = slicePaths.join('') + labels.join('') +
-    `<circle class="wheel-center" cx="${cx}" cy="${cy}" r="${ir - 6}"/>` +
-    `<text class="wheel-center-text" x="${cx}" y="${cy - 6}">5 PRIMAL</text>` +
-    `<text class="wheel-center-text" x="${cx}" y="${cy + 10}">DESIRES</text>`;
-
-  svg.querySelectorAll('.wheel-slice').forEach(s => {
-    s.addEventListener('click', () => {
-      svg.querySelectorAll('.wheel-slice').forEach(x => x.classList.remove('active'));
-      s.classList.add('active');
-      const i = +s.getAttribute('data-i');
+  html += `<circle class="wheel-center" cx="${cx}" cy="${cy}" r="${ir - 6}"/>
+    <text class="wheel-center-text" x="${cx}" y="${cy - 6}">5 PRIMAL</text>
+    <text class="wheel-center-text" x="${cx}" y="${cy + 10}">DESIRES</text>`;
+  svg.innerHTML = html;
+  svg.querySelectorAll('.wheel-slice-group').forEach(g => {
+    g.addEventListener('click', () => {
+      svg.querySelectorAll('.wheel-slice-group').forEach(x => x.classList.remove('active'));
+      g.classList.add('active');
+      const i = +g.getAttribute('data-i');
       const d = desires[i];
       document.getElementById('d-num').textContent = d.num;
       document.getElementById('d-name').textContent = d.name;
@@ -1300,13 +2196,244 @@ function buildWheel() {
   });
 }
 
-// ─────────────── Scarcity timer ───────────────
+// ───────── Match games ─────────
+function initMatchGames() {
+  document.querySelectorAll('.match-game').forEach(game => {
+    const id = game.getAttribute('data-game');
+    const pairs = JSON.parse(game.getAttribute('data-pairs'));
+    const status = document.querySelector(`.match-status[data-for="${id}"]`);
+    let selectedL = null, selectedR = null, matched = 0;
+    const total = pairs.length;
+
+    game.querySelectorAll('.match-item').forEach(item => {
+      item.addEventListener('click', () => {
+        if (item.classList.contains('matched') || item.classList.contains('correct')) return;
+        const side = item.getAttribute('data-side');
+        if (side === 'L') {
+          if (selectedL) selectedL.classList.remove('selected');
+          if (selectedL === item) { selectedL = null; return; }
+          selectedL = item;
+          item.classList.add('selected');
+        } else {
+          if (selectedR) selectedR.classList.remove('selected');
+          if (selectedR === item) { selectedR = null; return; }
+          selectedR = item;
+          item.classList.add('selected');
+        }
+        if (selectedL && selectedR) {
+          const lid = selectedL.getAttribute('data-id');
+          const rid = selectedR.getAttribute('data-id');
+          const isMatch = pairs.some(p => p[0] === lid && p[1] === rid);
+          if (isMatch) {
+            selectedL.classList.add('correct');
+            selectedR.classList.add('correct');
+            selectedL.classList.remove('selected');
+            selectedR.classList.remove('selected');
+            matched++;
+            status.textContent = `▸ จับคู่: ${matched} / ${total}`;
+            if (matched === total) {
+              status.classList.add('win');
+              status.textContent = `✓ จับคู่ครบ ${total} / ${total} — ยอดเยี่ยม!`;
+            }
+          } else {
+            const a = selectedL, b = selectedR;
+            a.classList.add('wrong'); b.classList.add('wrong');
+            setTimeout(() => {
+              a.classList.remove('wrong','selected');
+              b.classList.remove('wrong','selected');
+            }, 600);
+          }
+          selectedL = null; selectedR = null;
+        }
+      });
+    });
+  });
+}
+
+// ───────── Trust audit ─────────
+function initTrustAudit() {
+  const dims = [
+    { name:'Authority', label:'เชี่ยวชาญ' },
+    { name:'Honesty', label:'โปร่งใส' },
+    { name:'Consistency', label:'สม่ำเสมอ' },
+    { name:'Empathy', label:'เข้าใจ' },
+    { name:'Proof', label:'พิสูจน์' }
+  ];
+  const wrap = document.getElementById('trust-audit');
+  if (!wrap) return;
+  wrap.innerHTML = dims.map((d, i) => `
+    <div style="display:grid;grid-template-columns:1fr 220px 30px;gap:1rem;align-items:center;margin-bottom:.5rem">
+      <div style="font-size:.9rem;color:var(--ink)">${d.name} <span style="color:var(--ink-faint);font-size:.85rem">— ${d.label}</span></div>
+      <input type="range" min="1" max="10" value="5" data-trust="${i}" style="accent-color:var(--gold)">
+      <div style="font-family:'JetBrains Mono',monospace;color:var(--gold-bright);text-align:right;font-weight:700" data-trust-out="${i}">5</div>
+    </div>
+  `).join('');
+  const total = document.getElementById('trust-total');
+  const update = () => {
+    let sum = 0;
+    wrap.querySelectorAll('input[data-trust]').forEach((inp, i) => {
+      const v = +inp.value;
+      sum += v;
+      wrap.querySelector(`[data-trust-out="${i}"]`).textContent = v;
+    });
+    total.textContent = sum;
+    total.style.color = sum >= 40 ? 'var(--green)' : sum >= 25 ? 'var(--gold-bright)' : 'var(--red)';
+  };
+  wrap.addEventListener('input', update);
+  update();
+}
+
+// ───────── Lesson complete ─────────
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+function setProgress(p) { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); }
+
+function initLessonComplete() {
+  const progress = getProgress();
+  const updateStats = () => {
+    const p = getProgress();
+    const done = ['l1','l2','l3','l4','l5','l6','l7','l8'].filter(k => p[k]).length;
+    document.getElementById('stats-progress').textContent = `${done}/8`;
+    // Mark sidebar items
+    Object.entries({l1:'l1',l2:'l2',l3:'l3',l4:'l4',l5:'l5',l6:'l6',l7:'l7',l8:'l8'}).forEach(([id]) => {
+      const link = document.querySelector(`.nav-item[data-target="${id}"]`);
+      if (link) link.classList.toggle('done', !!p[id]);
+    });
+  };
+
+  document.querySelectorAll('.lesson-complete').forEach(box => {
+    const key = box.getAttribute('data-lesson');
+    if (progress[key]) box.classList.add('checked');
+    box.addEventListener('click', () => {
+      const p = getProgress();
+      p[key] = !p[key];
+      setProgress(p);
+      box.classList.toggle('checked', p[key]);
+      updateStats();
+    });
+  });
+  updateStats();
+}
+
+// ───────── Quiz ─────────
+const QUIZ = [
+  {
+    q: 'ตามหลัก Vol.1 — คนตัดสินใจซื้อด้วยอะไรเป็นอันดับแรก?',
+    opts: ['สเปกของสินค้า', 'ราคาที่ถูกที่สุด', 'อารมณ์ แล้วใช้เหตุผลแก้ตัว', 'รีวิวจาก Pantip'],
+    correct: 2,
+    explain: 'สมอง Limbic ตัดสินใจไปแล้วใน 0.3 วินาทีจาก<b>อารมณ์</b> Neocortex ค่อยตามมา rationalize'
+  },
+  {
+    q: 'ฮอร์โมนตัวไหนหลั่งตอน "ก่อนได้" มากกว่าตอน "ได้แล้ว"?',
+    opts: ['Oxytocin', 'Dopamine', 'Serotonin', 'Cortisol'],
+    correct: 1,
+    explain: '<b>Dopamine</b> เป็นสารแห่ง "การคาดหวัง" — สมองเสพการลุ้น ไม่ใช่ผลลัพธ์ นี่คือเหตุผลที่ teaser/countdown ทำงาน'
+  },
+  {
+    q: '"เหลือ 3 ชิ้น เท่านั้น" ขายดีกว่า "ลด 50%" เพราะอะไร?',
+    opts: ['ราคาที่ลดดูไม่น่าเชื่อ', 'Loss Aversion — กลัวเสีย แรงกว่ากลัวพลาด 2 เท่า', 'คนชอบซื้อของแพง', 'Scarcity ทำให้สินค้าดูดีกว่า'],
+    correct: 1,
+    explain: '<b>Loss Aversion</b> (Kahneman): เจ็บปวดของการเสีย ≈ 2 × ความสุขของการได้ — สมองจึงเร่งตัดสินใจเมื่อเห็นความเสี่ยงจะเสีย'
+  },
+  {
+    q: '5 ปรารถนาดั้งเดิม — ตัวไหน "ไม่ใช่"?',
+    opts: ['Survival', 'Status', 'Belonging', 'Productivity'],
+    correct: 3,
+    explain: '5 รากคือ <b>Survival, Sex, Status, Belonging, Curiosity</b> — Productivity ไม่ใช่รากดั้งเดิม เป็นเพียง "ใบ"'
+  },
+  {
+    q: 'ในโครง Story Arc 5 ขั้น — จุดที่สำคัญที่สุดของการ "ผูกใจ" คือ?',
+    opts: ['ปกติ (Ordinary)', 'ทางออก (Solution)', 'วิกฤต (Crisis)', 'เปลี่ยนแปลง (Transform)'],
+    correct: 2,
+    explain: '<b>วิกฤต</b> คือจุดที่ลูกค้ารู้สึกร่วม — อย่ารีบข้าม อย่าทำให้ดูง่ายเกินไป มันคือจุดที่สมองสร้างความผูกพันกับตัวเอก'
+  },
+  {
+    q: 'Social Proof แบบไหนน่าเชื่อ "ที่สุด"?',
+    opts: ['ตัวเลขลูกค้า "12,000+ คน"', 'รีวิวข้อความไม่มีหน้า', 'วิดีโอลูกค้าตัวจริง พร้อมหน้า ชื่อ อาชีพ', 'Logo บริษัทดัง'],
+    correct: 2,
+    explain: 'มนุษย์เชื่อ <b>มนุษย์ที่เห็นได้</b> — ยิ่ง specific (หน้า ชื่อ อาชีพ เมือง) ยิ่งน่าเชื่อ ตัวเลขใหญ่แต่ไม่มีหน้าน่าเชื่อแค่ 50%'
+  },
+  {
+    q: '"Scarcity ปลอม" ที่ทำลายแบรนด์ที่สุดคือแบบไหน?',
+    opts: ['"เหลือ 12 ที่ ปิดรับ 30/04"', '"เหลือ 3 ที่!" แสดงทุกวัน 365 วัน', 'Black Friday 24 ชั่วโมง', 'Limited Edition 100 ชิ้น'],
+    correct: 1,
+    explain: 'ถ้าลูกค้าเปิดเว็บกี่ครั้งก็เห็นเลขเดิม — เขารู้ว่าโกหก <b>Trust พังถาวร</b>',
+  },
+  {
+    q: 'ใน 5 ส่วนของ Trust — ตัวไหน "เพิ่มได้ง่ายที่สุด" สำหรับแบรนด์ใหม่?',
+    opts: ['Authority (ต้องสะสมประสบการณ์)', 'Consistency (โพสต์สม่ำเสมอ)', 'Honesty (บอกความจริง รวมข้อเสีย)', 'Proof (ต้องมีลูกค้าก่อน)'],
+    correct: 2,
+    explain: '<b>Honesty</b> ทำได้ทันทีโดยไม่ต้องรอเวลา — บอกข้อจำกัด ราคาเปิดเผย เปิดเผยกระบวนการ ทำให้ดูเป็นมนุษย์ ไม่ใช่บริษัทขาย'
+  }
+];
+
+function buildQuiz() {
+  const list = document.getElementById('quiz-list');
+  if (!list) return;
+  list.innerHTML = QUIZ.map((q, i) => `
+    <div class="quiz-q" data-i="${i}">
+      <div class="quiz-q-num">QUESTION ${String(i+1).padStart(2,'0')} / ${String(QUIZ.length).padStart(2,'0')}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-opts">
+        ${q.opts.map((o, j) => `<button class="quiz-opt" data-opt="${j}"><span class="quiz-opt-marker">${String.fromCharCode(65+j)}</span><span>${o}</span></button>`).join('')}
+      </div>
+      <div class="quiz-explain"></div>
+    </div>
+  `).join('');
+
+  const answers = {};
+  list.querySelectorAll('.quiz-q').forEach(q => {
+    const i = +q.getAttribute('data-i');
+    q.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+        const j = +btn.getAttribute('data-opt');
+        const correct = QUIZ[i].correct;
+        answers[i] = j;
+        q.classList.add('answered');
+        q.querySelectorAll('.quiz-opt').forEach((b, k) => {
+          b.disabled = true;
+          if (k === correct) b.classList.add('correct');
+          else if (k === j) b.classList.add('wrong');
+        });
+        q.querySelector('.quiz-explain').innerHTML = `<b>${j === correct ? '✓ ถูกต้อง!' : '✗ คำตอบที่ถูกคือ ' + String.fromCharCode(65+correct)}</b> — ${QUIZ[i].explain}`;
+        // Show result if all answered
+        if (Object.keys(answers).length === QUIZ.length) {
+          showQuizResult(answers);
+        }
+      });
+    });
+  });
+}
+
+function showQuizResult(answers) {
+  let score = 0;
+  QUIZ.forEach((q, i) => { if (answers[i] === q.correct) score++; });
+  const result = document.getElementById('quiz-result');
+  const sc = document.getElementById('qr-score');
+  const msg = document.getElementById('qr-msg');
+  const sub = document.getElementById('qr-sub');
+  sc.textContent = `${score}/${QUIZ.length}`;
+  let label, advice;
+  const pct = score / QUIZ.length;
+  if (pct === 1) { label = 'สมบูรณ์แบบ — Master Level'; advice = 'คุณพร้อมไปอ่าน Vol.1 ฉบับเต็ม และเริ่มใช้กับแคมเปญจริง'; }
+  else if (pct >= .75) { label = 'ยอดเยี่ยม — เข้าใจลึก'; advice = 'แค่ทบทวนข้อที่ผิดอีกครั้ง ก็พร้อมประยุกต์ใช้แล้ว'; }
+  else if (pct >= .5) { label = 'พอใช้ได้ — แต่มีช่องว่าง'; advice = 'ลองอ่าน Cheatsheet ด้านล่างซ้ำ แล้วทำ quiz อีกรอบ'; }
+  else { label = 'ต้องทบทวน'; advice = 'ลองเริ่มใหม่จากบทที่ 01 — เน้นที่ "Concept Map" ของแต่ละบท'; }
+  msg.textContent = label;
+  sub.textContent = advice;
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ───────── Scarcity timer ─────────
 function startTimer() {
   const tH = document.getElementById('t-h');
   const tM = document.getElementById('t-m');
   const tS = document.getElementById('t-s');
   if (!tH) return;
-  // End of day countdown for demo
   function tick() {
     const now = new Date();
     const end = new Date(now);
@@ -1315,9 +2442,9 @@ function startTimer() {
     const h = Math.floor(diff / 3600000);
     const m = Math.floor((diff % 3600000) / 60000);
     const s = Math.floor((diff % 60000) / 1000);
-    tH.textContent = String(h).padStart(2, '0');
-    tM.textContent = String(m).padStart(2, '0');
-    tS.textContent = String(s).padStart(2, '0');
+    tH.textContent = String(h).padStart(2,'0');
+    tM.textContent = String(m).padStart(2,'0');
+    tS.textContent = String(s).padStart(2,'0');
   }
   tick();
   setInterval(tick, 1000);
