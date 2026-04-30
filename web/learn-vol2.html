@@ -1,0 +1,2052 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Root · Visual Learning — รากแก้วการตลาด Vol.2 · The Invisible War</title>
+<meta name="description" content="คอร์สเรียนรู้เชิงภาพ Vol.2 — ถอดรหัสสนามรบดิจิทัล: Attention Economy, Algorithm, Viral, Cult และ Invisible Hand">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Sarabun:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═════════════════════════════════════════════
+   THE ROOT · VISUAL LEARNING · VOL.2
+   THE INVISIBLE WAR · CYBER EDITION
+   ═════════════════════════════════════════════ */
+
+:root {
+  --bg: #050810;
+  --bg-2: #0a0f1c;
+  --bg-3: #0e1424;
+  --bg-4: #131a2e;
+  --ink: #e6f1ff;
+  --ink-2: #c5d3ea;
+  --ink-dim: #8aa0c2;
+  --ink-faint: #4a5b7c;
+  --cyan: #00f0ff;
+  --cyan-bright: #66f8ff;
+  --cyan-soft: rgba(0,240,255,.12);
+  --magenta: #ff2b7a;
+  --magenta-bright: #ff5aa0;
+  --magenta-soft: rgba(255,43,122,.12);
+  --amber: #ffb547;
+  --green: #4dffa6;
+  --red: #ff4d6d;
+  --line: rgba(120,160,210,.18);
+  --line-strong: rgba(120,160,210,.45);
+  --grid: rgba(0,240,255,.05);
+  --shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 60px rgba(0,240,255,.08);
+  --shadow-sm: 0 4px 16px rgba(0,0,0,.5);
+  --nav-w: 280px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: 'IBM Plex Sans Thai', 'Sarabun', 'Space Grotesk', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body.locked { overflow: hidden; height: 100vh; }
+img, svg { max-width: 100%; }
+button { font-family: inherit; cursor: pointer; }
+
+/* Background grid + glow */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px),
+    radial-gradient(ellipse at 15% 5%, rgba(0,240,255,.08), transparent 55%),
+    radial-gradient(ellipse at 85% 95%, rgba(255,43,122,.06), transparent 50%);
+  background-size: 56px 56px, 56px 56px, auto, auto;
+  pointer-events: none; z-index: 0;
+}
+
+/* Scanlines overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,240,255,.012) 0 1px, transparent 1px 3px);
+  pointer-events: none; z-index: 0;
+  mix-blend-mode: screen;
+}
+
+::selection { background: var(--cyan); color: var(--bg); }
+
+/* ═════════════════════════════════════════════
+   1. LOCK SCREEN
+   ═════════════════════════════════════════════ */
+.lock-screen {
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(ellipse at center, var(--bg-2) 0%, var(--bg) 80%),
+    repeating-linear-gradient(0deg, rgba(0,240,255,.025) 0 1px, transparent 1px 4px);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; padding: 2rem;
+  z-index: 1000;
+  transition: opacity .6s ease, visibility .6s ease;
+}
+.lock-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.lock-card {
+  max-width: 460px; width: 100%;
+  text-align: center;
+  padding: 3rem 2rem;
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.lock-card::before {
+  content: ''; position: absolute; inset: -1px;
+  border-radius: 6px;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--cyan), transparent 40%, var(--magenta));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  opacity: .5; pointer-events: none;
+}
+.lock-seal { width: 80px; height: 80px; margin: 0 auto 1.5rem; }
+.lock-seal svg { width: 100%; height: 100%; animation: spin-slow 40s linear infinite; }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.lock-title {
+  font-size: 1.35rem; font-weight: 600; color: var(--cyan-bright);
+  margin-bottom: .35rem; letter-spacing: .03em;
+}
+.lock-sub {
+  font-size: .8rem; color: var(--ink-dim);
+  margin-bottom: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .15em;
+}
+.lock-input {
+  width: 100%; padding: 1rem 1.2rem;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  color: var(--cyan-bright);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem; letter-spacing: .15em; text-align: center;
+  outline: none;
+  transition: border-color .2s ease, box-shadow .2s ease;
+  border-radius: 3px;
+}
+.lock-input:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0,240,255,.15);
+}
+.lock-btn {
+  margin-top: 1rem; width: 100%;
+  padding: 1rem;
+  background: var(--cyan);
+  border: none; color: var(--bg);
+  font-size: 1rem; font-weight: 700; letter-spacing: .05em;
+  border-radius: 3px;
+  font-family: 'JetBrains Mono', monospace;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+}
+.lock-btn:hover { background: var(--cyan-bright); box-shadow: 0 0 24px rgba(0,240,255,.4); }
+.lock-btn:active { transform: scale(.98); }
+.lock-error {
+  margin-top: 1rem; min-height: 1.4em;
+  font-size: .85rem; color: var(--red);
+  font-family: 'JetBrains Mono', monospace;
+}
+.lock-hint {
+  margin-top: 1.75rem; font-size: .75rem; color: var(--ink-faint);
+  letter-spacing: .03em;
+}
+
+/* ═════════════════════════════════════════════
+   2. APP LAYOUT
+   ═════════════════════════════════════════════ */
+.app { display: grid; grid-template-columns: var(--nav-w) 1fr; min-height: 100vh; position: relative; z-index: 1; }
+@media (max-width: 960px) { .app { grid-template-columns: 1fr; } }
+
+.progress-bar {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 3px; background: rgba(0,0,0,.4);
+  z-index: 90;
+}
+.progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--magenta), var(--cyan));
+  transition: width .15s linear;
+  box-shadow: 0 0 12px var(--cyan);
+}
+
+/* Sidebar */
+.sidebar {
+  position: sticky; top: 0;
+  height: 100vh;
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-3));
+  border-right: 1px solid var(--line);
+  padding: 1.75rem 1.25rem;
+  overflow-y: auto;
+  display: flex; flex-direction: column;
+  z-index: 50;
+}
+.sidebar::-webkit-scrollbar { width: 6px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
+
+.brand {
+  display: flex; align-items: center; gap: .75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.25rem;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  border-radius: 4px;
+  background: linear-gradient(135deg, var(--cyan), var(--magenta));
+  flex-shrink: 0;
+  position: relative;
+  box-shadow: 0 0 16px rgba(0,240,255,.3);
+}
+.brand-mark::after {
+  content: '◢'; position: absolute; inset: 0;
+  display: grid; place-items: center;
+  color: var(--bg); font-weight: 700; font-size: 1rem;
+}
+.brand-name { font-size: .9rem; font-weight: 700; color: var(--ink); line-height: 1.2; font-family: 'Space Grotesk', sans-serif; }
+.brand-name small {
+  display: block; font-size: .65rem; color: var(--cyan);
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .15em; font-weight: 400; margin-top: .15rem;
+}
+
+.nav-stats {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--cyan);
+  border-radius: 4px;
+  padding: .75rem 1rem;
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--ink-dim);
+  letter-spacing: .05em;
+}
+.nav-stats b { color: var(--cyan-bright); font-weight: 600; }
+.nav-stats > div { margin: .15rem 0; }
+
+.nav-list { list-style: none; flex: 1; }
+.nav-item {
+  display: flex; align-items: center; gap: .65rem;
+  padding: .65rem .85rem;
+  margin-bottom: .15rem;
+  border-radius: 4px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: .88rem;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  transition: all .2s ease;
+  cursor: pointer;
+}
+.nav-item:hover { color: var(--ink); background: var(--bg-3); }
+.nav-item.active {
+  color: var(--cyan-bright);
+  background: var(--cyan-soft);
+  border-left-color: var(--cyan);
+  box-shadow: inset 0 0 12px rgba(0,240,255,.06);
+}
+.nav-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  width: 20px; text-align: center;
+  color: var(--ink-faint);
+  flex-shrink: 0;
+}
+.nav-item.active .nav-num { color: var(--cyan); }
+.nav-item.done .nav-num::before {
+  content: '✓ '; color: var(--green);
+}
+.nav-text { flex: 1; }
+.nav-time {
+  font-size: .65rem;
+  color: var(--ink-faint);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.nav-footer {
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  display: flex; flex-direction: column; gap: .5rem;
+}
+.nav-btn {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--ink-dim);
+  padding: .55rem .9rem;
+  border-radius: 3px;
+  font-size: .75rem;
+  text-align: center;
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .1em;
+  transition: all .2s ease;
+}
+.nav-btn:hover { border-color: var(--cyan); color: var(--cyan-bright); box-shadow: 0 0 12px rgba(0,240,255,.2); }
+
+/* Mobile */
+.mobile-bar {
+  display: none;
+  position: sticky; top: 0;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+  padding: .85rem 1rem;
+  z-index: 40;
+  align-items: center; justify-content: space-between;
+}
+.mobile-bar .brand-name { font-size: .85rem; }
+.mobile-toggle {
+  background: var(--bg-3);
+  border: 1px solid var(--line-strong);
+  color: var(--cyan);
+  width: 40px; height: 40px;
+  border-radius: 4px;
+  display: grid; place-items: center;
+}
+@media (max-width: 960px) {
+  .sidebar {
+    position: fixed; top: 0; left: 0; bottom: 0;
+    width: var(--nav-w); max-width: 80vw;
+    transform: translateX(-100%);
+    transition: transform .3s ease;
+    z-index: 100;
+  }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-bar { display: flex; }
+  .sidebar-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,.7);
+    z-index: 90; opacity: 0; visibility: hidden;
+    transition: opacity .3s ease, visibility .3s ease;
+  }
+  .sidebar-backdrop.show { opacity: 1; visibility: visible; }
+}
+
+/* ═════════════════════════════════════════════
+   3. MAIN
+   ═════════════════════════════════════════════ */
+.main { max-width: 100%; padding: 0; position: relative; }
+.container { max-width: 920px; margin: 0 auto; padding: 0 2rem; }
+@media (max-width: 600px) { .container { padding: 0 1.25rem; } }
+
+/* Hero */
+.hero {
+  padding: 5rem 2rem 4rem;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.hero-grid {
+  max-width: 1080px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 360px);
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 820px) { .hero-grid { grid-template-columns: 1fr; gap: 2rem; } }
+
+.hero-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; color: var(--cyan);
+  letter-spacing: .25em; margin-bottom: 1.25rem;
+  text-transform: uppercase;
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  margin-bottom: 1.25rem;
+  font-family: 'Space Grotesk', 'IBM Plex Sans Thai', sans-serif;
+}
+.hero h1 em {
+  color: var(--cyan-bright);
+  font-style: normal;
+  text-shadow: 0 0 24px rgba(0,240,255,.4);
+}
+.hero h1 .glitch { color: var(--magenta); font-style: normal; }
+.hero p.lead {
+  font-size: 1.05rem;
+  color: var(--ink-dim);
+  margin-bottom: 1.5rem;
+}
+.hero-meta {
+  display: flex; flex-wrap: wrap; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
+}
+.hero-tag {
+  padding: .4rem .8rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+  color: var(--ink-2);
+  letter-spacing: .05em;
+}
+.hero-tag b { color: var(--cyan); font-weight: 600; }
+
+.hero-visual {
+  aspect-ratio: 1/1;
+  position: relative;
+}
+.hero-visual svg { width: 100%; height: 100%; overflow: visible; }
+
+/* Hero circuit animation */
+.cir-line {
+  fill: none; stroke: var(--cyan); stroke-width: 1.5; stroke-linecap: round;
+  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+  animation: draw 2.5s cubic-bezier(.4,0,.2,1) forwards;
+  filter: drop-shadow(0 0 4px var(--cyan));
+}
+.cir-line.m { stroke: var(--magenta); animation-delay: .8s; filter: drop-shadow(0 0 4px var(--magenta)); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+.cir-node {
+  fill: var(--bg-3); stroke: var(--cyan); stroke-width: 1.5;
+  opacity: 0;
+  animation: fadeIn .6s ease forwards;
+}
+.cir-node.m { stroke: var(--magenta); }
+.cir-pulse {
+  fill: var(--cyan); opacity: 0;
+  animation: pulse 2.4s ease-in-out infinite;
+  animation-delay: 3s;
+}
+@keyframes pulse { 0%,100% { opacity: 0; transform: scale(.6); } 50% { opacity: .9; transform: scale(1.4); } }
+@keyframes fadeIn { from { opacity: 0; transform: scale(0); } to { opacity: 1; transform: scale(1); } }
+
+/* Objectives */
+.objectives {
+  max-width: 1080px; margin: 3rem auto 0;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--cyan);
+  border-radius: 4px;
+  padding: 1.75rem 2rem;
+}
+.objectives h3 {
+  font-size: .85rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 1rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+.objectives ul { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: .75rem 1.5rem; }
+.objectives li {
+  display: flex; gap: .75rem;
+  font-size: .95rem; color: var(--ink-2);
+}
+.objectives li::before {
+  content: '>';
+  color: var(--cyan);
+  flex-shrink: 0;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ═════════════════════════════════════════════
+   4. LESSONS
+   ═════════════════════════════════════════════ */
+.lesson {
+  padding: 5rem 2rem;
+  border-bottom: 1px solid var(--line);
+  scroll-margin-top: 1rem;
+}
+.lesson:nth-child(even) { background: rgba(0,0,0,.25); }
+.lesson-inner { max-width: 920px; margin: 0 auto; }
+
+.lesson-header {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px dashed var(--line);
+}
+.lesson-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; letter-spacing: .2em;
+  color: var(--cyan);
+  background: var(--cyan-soft);
+  padding: .35rem .7rem;
+  border-radius: 2px;
+  border: 1px solid var(--line-strong);
+}
+.lesson-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem; color: var(--ink-faint);
+  margin-left: auto;
+}
+.lesson-time::before { content: '◷ '; }
+.lesson h2 {
+  font-size: clamp(1.6rem, 3.8vw, 2.4rem);
+  font-weight: 600;
+  width: 100%;
+  letter-spacing: -.01em;
+  line-height: 1.25;
+  font-family: 'Space Grotesk', 'IBM Plex Sans Thai', sans-serif;
+}
+.lesson h2 em { color: var(--cyan-bright); font-style: normal; }
+.lesson h2 .glitch { color: var(--magenta); font-style: normal; }
+
+.lesson-objective {
+  font-size: .92rem;
+  color: var(--ink-dim);
+  margin-bottom: 2.5rem;
+  padding: .85rem 1.1rem;
+  background: var(--bg-2);
+  border-left: 2px solid var(--cyan);
+  border-radius: 0 3px 3px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .85rem;
+}
+.lesson-objective b { color: var(--cyan-bright); font-weight: 600; }
+.lesson-objective::before { content: '// '; color: var(--cyan); }
+
+.block { margin-bottom: 2.5rem; }
+.block-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: .85rem;
+}
+.block-label::before {
+  content: '◢'; color: var(--cyan);
+}
+.block h3 {
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: .75rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', 'IBM Plex Sans Thai', sans-serif;
+}
+.block p { color: var(--ink-2); margin-bottom: 1rem; font-size: 1rem; }
+.block p:last-child { margin-bottom: 0; }
+.block strong { color: var(--cyan-bright); font-weight: 600; }
+.block em.m { color: var(--magenta-bright); font-style: normal; font-weight: 600; }
+
+.visual-block {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 2rem 1.5rem;
+  position: relative;
+}
+.visual-block::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, rgba(0,240,255,.018) 0 1px, transparent 1px 4px);
+  pointer-events: none;
+  border-radius: 6px;
+}
+.visual-block svg { display: block; margin: 0 auto; position: relative; }
+
+/* Case study (now "field report") */
+.case-study {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.75rem 2rem;
+  position: relative;
+}
+.case-study::before {
+  content: '// FIELD REPORT';
+  position: absolute; top: -.6rem; left: 1rem;
+  background: var(--bg);
+  padding: 0 .5rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .2em;
+  color: var(--magenta);
+}
+.case-brand {
+  font-size: .85rem; color: var(--cyan);
+  font-weight: 600;
+  margin-bottom: .35rem;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: .1em;
+}
+.case-study h4 {
+  font-size: 1.1rem; margin-bottom: .8rem;
+  color: var(--ink);
+}
+.case-study p { font-size: .92rem; color: var(--ink-2); margin-bottom: .6rem; }
+.case-result {
+  display: inline-block;
+  margin-top: .75rem;
+  padding: .35rem .8rem;
+  background: var(--cyan-soft);
+  color: var(--cyan-bright);
+  font-size: .8rem;
+  font-family: 'JetBrains Mono', monospace;
+  border-radius: 2px;
+  letter-spacing: .03em;
+  border: 1px solid var(--line-strong);
+}
+
+/* Try-it */
+.try-it {
+  background: var(--bg-3);
+  border: 1px dashed var(--line-strong);
+  border-radius: 6px;
+  padding: 1.75rem;
+}
+.try-it .block-label { color: var(--magenta); }
+.try-it .block-label::before { color: var(--magenta); content: '◣'; }
+.try-it h3 { color: var(--magenta-bright); margin-bottom: .6rem; }
+.try-it-prompt { color: var(--ink-2); margin-bottom: 1.25rem; font-size: .95rem; }
+.try-it textarea {
+  width: 100%; min-height: 100px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+  padding: .85rem 1rem;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .9rem;
+  outline: none;
+  resize: vertical;
+}
+.try-it textarea:focus { border-color: var(--magenta); box-shadow: 0 0 0 3px rgba(255,43,122,.15); }
+
+/* Takeaway */
+.takeaway {
+  background: linear-gradient(135deg, rgba(0,240,255,.06), transparent);
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  position: relative;
+  margin-top: 1rem;
+}
+.takeaway::before {
+  content: '◆';
+  position: absolute; top: -1px; left: 1.25rem;
+  width: 32px; height: 32px;
+  background: var(--bg);
+  color: var(--cyan);
+  display: grid; place-items: center;
+  font-size: 1rem;
+  border: 1px solid var(--cyan);
+  border-radius: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 16px rgba(0,240,255,.3);
+}
+.takeaway-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .2em;
+  color: var(--cyan);
+  margin-bottom: .5rem;
+  display: block;
+}
+.takeaway p, .takeaway li { color: var(--ink); font-size: .98rem; }
+.takeaway ul { list-style: none; padding-left: 0; }
+.takeaway li { display: flex; gap: .65rem; margin-bottom: .4rem; }
+.takeaway li::before { content: '▸'; color: var(--cyan); flex-shrink: 0; font-size: .9rem; padding-top: .2rem; }
+.takeaway b { color: var(--cyan-bright); }
+
+/* Lesson complete */
+.lesson-complete {
+  margin-top: 2rem;
+  display: flex; align-items: center; gap: .75rem;
+  padding: .85rem 1.25rem;
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: .9rem;
+  color: var(--ink-dim);
+  cursor: pointer;
+  transition: all .2s ease;
+  user-select: none;
+  font-family: 'JetBrains Mono', monospace;
+}
+.lesson-complete:hover { border-color: var(--cyan); color: var(--ink); }
+.lesson-complete.checked {
+  border-color: var(--green);
+  background: rgba(77,255,166,.08);
+  color: var(--ink);
+}
+.lesson-checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--line-strong);
+  border-radius: 4px;
+  display: grid; place-items: center;
+  flex-shrink: 0;
+  transition: all .2s ease;
+}
+.lesson-complete.checked .lesson-checkbox {
+  background: var(--green);
+  border-color: var(--green);
+}
+.lesson-checkbox::after {
+  content: '✓'; color: var(--bg); font-weight: 700;
+  opacity: 0; transition: opacity .2s ease;
+}
+.lesson-complete.checked .lesson-checkbox::after { opacity: 1; }
+
+/* ═════════════════════════════════════════════
+   5. SVG STYLES
+   ═════════════════════════════════════════════ */
+.svg-text { font-family: 'IBM Plex Sans Thai', sans-serif; fill: var(--ink); font-size: 13px; font-weight: 500; text-anchor: middle; }
+.svg-text-sm { font-family: 'JetBrains Mono', monospace; fill: var(--ink-dim); font-size: 10px; text-anchor: middle; letter-spacing: .1em; }
+.svg-text-tag { font-family: 'JetBrains Mono', monospace; fill: var(--cyan); font-size: 10px; text-anchor: middle; letter-spacing: .15em; }
+
+/* Generic node/link */
+.tm-link { stroke: var(--line-strong); stroke-width: 1.3; fill: none; }
+.tm-link.cyan { stroke: var(--cyan); opacity: .7; }
+.tm-link.mag { stroke: var(--magenta); opacity: .6; }
+.tm-node { fill: var(--bg-3); stroke: var(--cyan); stroke-width: 1.5; transition: fill .25s ease; }
+.tm-node.m { stroke: var(--magenta); }
+.tm-node.center { fill: var(--cyan); stroke: var(--cyan-bright); stroke-width: 2; }
+.tm-group { transition: transform .25s ease; cursor: default; }
+.tm-group:hover .tm-node { fill: var(--cyan-soft); }
+
+/* L1 — battlefield bars */
+.bar-row {
+  display: grid;
+  grid-template-columns: 140px 1fr 80px;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: .5rem;
+  font-size: .9rem;
+}
+.bar-name { color: var(--ink-2); font-family: 'IBM Plex Sans Thai', sans-serif; }
+.bar-track { height: 18px; background: var(--bg-3); border-radius: 3px; overflow: hidden; position: relative; border: 1px solid var(--line); }
+.bar-fill {
+  height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--magenta), var(--cyan));
+  transition: width 1.4s cubic-bezier(.2,.8,.2,1);
+  box-shadow: 0 0 8px rgba(0,240,255,.4);
+}
+.bar-row.in .bar-fill { width: var(--w, 50%); }
+.bar-pct {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--cyan-bright);
+  font-weight: 700; font-size: .85rem;
+  text-align: right;
+}
+
+/* L2 — feed cards */
+.feed-stack {
+  display: grid; gap: .75rem;
+  max-width: 380px; margin: 0 auto;
+}
+.feed-card {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+  font-size: .88rem;
+  color: var(--ink-2);
+  position: relative;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.feed-card.hook { border-color: var(--cyan); background: linear-gradient(135deg, var(--cyan-soft), var(--bg-3)); transform: scale(1.02); box-shadow: 0 0 24px rgba(0,240,255,.15); }
+.feed-card.hook .feed-tag { color: var(--cyan); }
+.feed-card.scrolled { opacity: .35; }
+.feed-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .15em;
+  color: var(--ink-faint);
+  margin-bottom: .35rem;
+}
+
+/* L3 — anchor */
+.anchor-row {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+}
+@media (max-width: 600px) { .anchor-row { grid-template-columns: 1fr; } }
+.anchor-card {
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.25rem;
+  text-align: center;
+}
+.anchor-card.decoy { border-color: var(--magenta); position: relative; }
+.anchor-card.decoy::before {
+  content: 'DECOY'; position: absolute; top: -.55rem; left: 50%; transform: translateX(-50%);
+  background: var(--magenta); color: var(--bg);
+  font-size: .6rem; padding: .15rem .55rem;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: .15em;
+  border-radius: 2px;
+}
+.anchor-card.target { border-color: var(--cyan); box-shadow: 0 0 24px rgba(0,240,255,.15); }
+.anchor-card.target::before {
+  content: 'TARGET'; position: absolute; top: -.55rem; left: 50%; transform: translateX(-50%);
+  background: var(--cyan); color: var(--bg);
+  font-size: .6rem; padding: .15rem .55rem;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: .15em;
+  border-radius: 2px;
+}
+.anchor-card { position: relative; }
+.anchor-name { font-size: .85rem; color: var(--ink-dim); margin-bottom: .35rem; font-family: 'JetBrains Mono', monospace; letter-spacing: .1em; }
+.anchor-price { font-size: 1.7rem; font-weight: 700; color: var(--ink); font-family: 'Space Grotesk', sans-serif; }
+.anchor-price small { font-size: .8rem; color: var(--ink-dim); font-weight: 400; }
+.anchor-card.target .anchor-price { color: var(--cyan-bright); }
+
+/* L5 — identity mirror */
+.mirror-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+@media (max-width: 600px) { .mirror-grid { grid-template-columns: 1fr; } }
+.mirror-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.25rem 1.4rem;
+}
+.mirror-card.them { border-left: 3px solid var(--magenta); }
+.mirror-card.us { border-left: 3px solid var(--cyan); }
+.mirror-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  letter-spacing: .15em;
+  margin-bottom: .65rem;
+}
+.mirror-card.them .mirror-tag { color: var(--magenta); }
+.mirror-card.us .mirror-tag { color: var(--cyan); }
+
+/* L7 — formula */
+.formula {
+  font-family: 'JetBrains Mono', monospace;
+  background: var(--bg);
+  border: 1px solid var(--cyan);
+  padding: 1.25rem 1.5rem;
+  font-size: 1rem;
+  color: var(--cyan-bright);
+  margin: 1rem 0;
+  border-radius: 4px;
+  text-align: center;
+  letter-spacing: .05em;
+  box-shadow: inset 0 0 24px rgba(0,240,255,.06);
+}
+.formula b { color: var(--magenta-bright); }
+
+/* Master pipeline */
+.master-wrap { overflow-x: auto; padding-bottom: .5rem; }
+.master-wrap svg { min-width: 720px; width: 100%; height: auto; max-height: 480px; }
+.master-rect { fill: var(--bg-3); stroke-width: 1.5; rx: 4; ry: 4; }
+.master-rect.input { stroke: var(--magenta); }
+.master-rect.process { stroke: var(--cyan); }
+.master-rect.tactic { stroke: var(--amber); }
+.master-rect.output { fill: var(--cyan); stroke: var(--cyan-bright); stroke-width: 2; }
+.master-text { font-family: 'IBM Plex Sans Thai', sans-serif; font-size: 11px; fill: var(--ink); font-weight: 500; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.master-text.out { fill: var(--bg); font-weight: 700; font-size: 12px; }
+
+/* ═════════════════════════════════════════════
+   6. QUIZ
+   ═════════════════════════════════════════════ */
+.quiz-section {
+  padding: 5rem 2rem;
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--line);
+}
+.quiz-q {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
+}
+.quiz-q-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--cyan); letter-spacing: .15em;
+  margin-bottom: .35rem;
+}
+.quiz-q-text { font-size: 1.05rem; color: var(--ink); margin-bottom: 1rem; font-weight: 500; }
+.quiz-opts { display: flex; flex-direction: column; gap: .45rem; }
+.quiz-opt {
+  text-align: left;
+  background: var(--bg-3);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  padding: .85rem 1rem;
+  border-radius: 4px;
+  font-size: .92rem;
+  display: flex; align-items: center; gap: .75rem;
+  transition: all .2s ease;
+  font-family: inherit;
+}
+.quiz-opt:hover { border-color: var(--cyan); }
+.quiz-opt-marker {
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--line-strong);
+  border-radius: 50%;
+  display: grid; place-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem; color: var(--ink-dim);
+  flex-shrink: 0;
+}
+.quiz-opt.correct { border-color: var(--green); background: rgba(77,255,166,.1); color: var(--ink); }
+.quiz-opt.correct .quiz-opt-marker { border-color: var(--green); background: var(--green); color: var(--bg); }
+.quiz-opt.wrong { border-color: var(--red); background: rgba(255,77,109,.08); }
+.quiz-opt.wrong .quiz-opt-marker { border-color: var(--red); color: var(--red); }
+.quiz-opt:disabled { cursor: default; }
+.quiz-opt:disabled:hover { border-color: var(--line); }
+.quiz-explain {
+  margin-top: 1rem;
+  padding: .85rem 1rem;
+  background: var(--cyan-soft);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 3px 3px 0;
+  font-size: .88rem;
+  color: var(--ink-2);
+  display: none;
+}
+.quiz-q.answered .quiz-explain { display: block; }
+.quiz-explain b { color: var(--cyan-bright); }
+
+.quiz-result {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--bg);
+  border: 1px solid var(--cyan);
+  border-radius: 6px;
+  text-align: center;
+  display: none;
+  box-shadow: 0 0 32px rgba(0,240,255,.15);
+}
+.quiz-result.show { display: block; }
+.quiz-result-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem; font-weight: 700;
+  color: var(--cyan-bright);
+  line-height: 1;
+}
+.quiz-result-msg { font-size: 1.1rem; color: var(--ink); margin: .75rem 0; }
+.quiz-result-sub { font-size: .9rem; color: var(--ink-dim); }
+
+/* ═════════════════════════════════════════════
+   7. CHEATSHEET
+   ═════════════════════════════════════════════ */
+.cheatsheet-section { padding: 5rem 2rem; border-bottom: 1px solid var(--line); }
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.cheat-card {
+  background: var(--bg-2);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--cyan);
+  border-radius: 4px;
+  padding: 1.25rem 1.4rem;
+  position: relative;
+}
+.cheat-card-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .7rem;
+  color: var(--cyan);
+  letter-spacing: .15em;
+  margin-bottom: .25rem;
+}
+.cheat-card h4 { font-size: 1rem; color: var(--ink); margin-bottom: .5rem; font-family: 'Space Grotesk', sans-serif; }
+.cheat-card p { font-size: .85rem; color: var(--ink-dim); margin: 0; }
+.cheat-card .hint {
+  margin-top: .65rem;
+  padding-top: .65rem;
+  border-top: 1px dashed var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .75rem;
+  color: var(--cyan-bright);
+}
+
+/* ═════════════════════════════════════════════
+   8. FOOTER
+   ═════════════════════════════════════════════ */
+.footer {
+  padding: 4rem 2rem 5rem;
+  text-align: center;
+  background: var(--bg-2);
+}
+.footer-mark {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .8rem; color: var(--cyan);
+  letter-spacing: .3em; margin-bottom: 1rem;
+}
+.footer-msg { font-size: 1.4rem; color: var(--ink); max-width: 580px; margin: 0 auto 2rem; line-height: 1.5; font-family: 'Space Grotesk', sans-serif; }
+.footer-msg em { color: var(--cyan-bright); font-style: normal; }
+.footer-msg .glitch { color: var(--magenta); font-style: normal; }
+.footer-cta {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--cyan);
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 3px;
+  letter-spacing: .03em;
+  transition: background .2s ease, transform .15s ease, box-shadow .2s ease;
+  font-family: 'JetBrains Mono', monospace;
+}
+.footer-cta:hover { background: var(--cyan-bright); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(0,240,255,.3); }
+.footer-meta { margin-top: 2.5rem; font-size: .75rem; color: var(--ink-faint); font-family: 'JetBrains Mono', monospace; letter-spacing: .15em; }
+
+/* ═════════════════════════════════════════════
+   9. UTILITIES
+   ═════════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1); }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+@media print {
+  .sidebar, .mobile-bar, .progress-bar, .lock-screen, .lesson-complete, .try-it, .quiz-section { display: none !important; }
+  body, .lesson, .footer { background: white !important; color: black !important; }
+  body::before, body::after { display: none !important; }
+  .lesson, .footer, .objectives { border-color: #ddd !important; }
+  .takeaway { border-color: #999 !important; background: #f4faff !important; }
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- ═════════════════ LOCK SCREEN ═════════════════ -->
+<div class="lock-screen" id="lock">
+  <div class="lock-card">
+    <div class="lock-seal">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="#00f0ff" stroke-width="1" stroke-dasharray="2 4"/>
+        <circle cx="50" cy="50" r="35" fill="none" stroke="#ff2b7a" stroke-width=".5"/>
+        <text x="50" y="22" font-family="JetBrains Mono" font-size="6" fill="#00f0ff" text-anchor="middle" letter-spacing="2">VOL.02</text>
+        <text x="50" y="84" font-family="JetBrains Mono" font-size="6" fill="#ff2b7a" text-anchor="middle" letter-spacing="2">CYBER</text>
+        <path d="M50 35 L50 65 M40 50 L60 50 M44 44 L56 56 M44 56 L56 44" stroke="#00f0ff" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="lock-title">The Root · Visual Learning</div>
+    <div class="lock-sub">VOL.02 · ACCESS RESTRICTED</div>
+    <form onsubmit="return tryUnlock(event)">
+      <input type="password" id="lock-input" class="lock-input" placeholder="ใส่รหัสเพื่อเข้าถึง" autocomplete="off" autofocus>
+      <button type="submit" class="lock-btn">> ./UNLOCK</button>
+      <div class="lock-error" id="lock-error"></div>
+    </form>
+    <div class="lock-hint">หน้านี้สงวนสำหรับผู้ที่ได้รับเชิญ</div>
+  </div>
+</div>
+
+<!-- Progress bar -->
+<div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+<!-- Mobile bar -->
+<div class="mobile-bar">
+  <div style="display:flex;align-items:center;gap:.6rem">
+    <div class="brand-mark" style="width:28px;height:28px"></div>
+    <div class="brand-name">The Root <small>VOL.02 · LEARN</small></div>
+  </div>
+  <button class="mobile-toggle" id="menu-btn" aria-label="Open menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</div>
+<div class="sidebar-backdrop" id="backdrop"></div>
+
+<div class="app" id="app" hidden>
+
+  <!-- ═════════════════ SIDEBAR ═════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">The Root<small>VOL.02 · CYBER LEARN</small></div>
+    </div>
+    <div class="nav-stats">
+      <div>// PROGRESS · <b id="stats-progress">0/8</b></div>
+      <div>// EST.TIME · <b>~35 นาที</b></div>
+    </div>
+    <ul class="nav-list" id="nav">
+      <li><a class="nav-item" data-target="hero"><span class="nav-num">▣</span><span class="nav-text">เริ่มต้น</span></a></li>
+      <li><a class="nav-item" data-target="l1"><span class="nav-num">01</span><span class="nav-text">เศรษฐกิจความสนใจ</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l2"><span class="nav-num">02</span><span class="nav-text">Scroll &amp; Hook</span><span class="nav-time">5'</span></a></li>
+      <li><a class="nav-item" data-target="l3"><span class="nav-num">03</span><span class="nav-text">ราคาคือเรื่องเล่า</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l4"><span class="nav-num">04</span><span class="nav-text">สถาปัตย์ตัวเลือก</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l5"><span class="nav-num">05</span><span class="nav-text">กับดักอัตลักษณ์</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l6"><span class="nav-num">06</span><span class="nav-text">สมอง Algorithm</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l7"><span class="nav-num">07</span><span class="nav-text">สมการไวรัล</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="l8"><span class="nav-num">08</span><span class="nav-text">มือที่มองไม่เห็น</span><span class="nav-time">4'</span></a></li>
+      <li><a class="nav-item" data-target="quiz"><span class="nav-num">▤</span><span class="nav-text">ทดสอบความเข้าใจ</span></a></li>
+      <li><a class="nav-item" data-target="cheat"><span class="nav-num">▥</span><span class="nav-text">สรุป Cheatsheet</span></a></li>
+    </ul>
+    <div class="nav-footer">
+      <a class="nav-btn" href="javascript:window.print()">▾ พิมพ์ Cheatsheet</a>
+      <a class="nav-btn" href="javascript:logout()">⌐ LOGOUT</a>
+    </div>
+  </aside>
+
+  <!-- ═════════════════ MAIN ═════════════════ -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-mark">◢ THE ROOT · VOL.02 · INVISIBLE WAR · CYBER EDITION</div>
+          <h1>ถอดรหัส<em>สนามรบ</em><br><span class="glitch">ดิจิทัล</span> ในหนึ่งหน้า</h1>
+          <p class="lead">คอร์สเรียนรู้เชิงภาพ — ย่อย 12 บทของ Vol.2 ลงเป็น 8 บทเรียน · แผนภูมิ · เคสจริง · แบบฝึก ที่ใช้กับโพสต์ถัดไปได้ทันที ภายใน 35 นาที</p>
+          <div class="hero-meta">
+            <span class="hero-tag"><b>8</b> บทเรียน</span>
+            <span class="hero-tag"><b>10+</b> แผนภูมิ</span>
+            <span class="hero-tag"><b>5</b> แบบฝึก</span>
+            <span class="hero-tag"><b>1</b> Quiz</span>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <svg viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <radialGradient id="cyHalo" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#00f0ff" stop-opacity=".5"/>
+                <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- Outer grid frame -->
+            <rect x="40" y="40" width="320" height="320" fill="none" stroke="rgba(120,160,210,.18)" stroke-width=".5"/>
+            <!-- Halo -->
+            <circle cx="200" cy="200" r="120" fill="url(#cyHalo)"/>
+            <!-- Circuit traces -->
+            <path class="cir-line" d="M40 100 L150 100 L150 200 L260 200 L260 110 L360 110"/>
+            <path class="cir-line" d="M40 200 L100 200 L100 300 L200 300 L200 240"/>
+            <path class="cir-line" d="M360 250 L290 250 L290 320 L200 320"/>
+            <path class="cir-line m" d="M200 40 L200 130 L130 130 L130 200"/>
+            <path class="cir-line m" d="M280 40 L280 80 L320 80 L320 180"/>
+            <!-- Central core -->
+            <circle cx="200" cy="200" r="36" fill="#0a0f1c" stroke="#00f0ff" stroke-width="2"/>
+            <circle cx="200" cy="200" r="22" fill="none" stroke="#ff2b7a" stroke-width="1" stroke-dasharray="2 3"/>
+            <text class="svg-text" x="200" y="196" font-size="10" letter-spacing="2">ATTENTION</text>
+            <text class="svg-text-sm" x="200" y="210" font-size="8">/ CORE</text>
+            <!-- Nodes -->
+            <circle class="cir-node" cx="40" cy="100" r="6" style="animation-delay:2.5s"/>
+            <circle class="cir-node" cx="360" cy="110" r="6" style="animation-delay:2.6s"/>
+            <circle class="cir-node m" cx="200" cy="40" r="6" style="animation-delay:2.7s"/>
+            <circle class="cir-node m" cx="280" cy="40" r="6" style="animation-delay:2.75s"/>
+            <circle class="cir-node" cx="40" cy="200" r="6" style="animation-delay:2.8s"/>
+            <circle class="cir-node" cx="360" cy="250" r="6" style="animation-delay:2.85s"/>
+            <circle class="cir-node" cx="200" cy="320" r="6" style="animation-delay:2.9s"/>
+            <!-- Pulse -->
+            <circle class="cir-pulse" cx="150" cy="100" r="5"/>
+            <circle class="cir-pulse" cx="260" cy="200" r="5" style="animation-delay:3.5s"/>
+            <circle class="cir-pulse" cx="200" cy="300" r="5" style="animation-delay:4s"/>
+          </svg>
+        </div>
+      </div>
+      <div class="objectives">
+        <h3>// หลังเรียนจบ คุณจะ</h3>
+        <ul>
+          <li>เข้าใจว่า "ความสนใจ" คือสกุลเงินจริงในยุคดิจิทัล</li>
+          <li>เขียน Hook ที่หยุดนิ้วใน 0.3 วินาที</li>
+          <li>ตั้งราคาด้วยการเล่าเรื่อง ไม่ใช่ตัวเลข</li>
+          <li>ออกแบบ Choice Architecture ให้ลูกค้าเลือกสิ่งที่คุณต้องการ</li>
+          <li>เข้าใจว่าทำไม Algorithm ถึงเลือกคอนเทนต์ของคุณ</li>
+          <li>มองเห็น "มือที่มองไม่เห็น" ที่ขับเคลื่อนการตัดสินใจซื้อ</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 1 ═════════════════ -->
+    <section class="lesson" id="l1">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 01</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>เศรษฐกิจ<em>ความสนใจ</em> · สกุลเงินใหม่</h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่าในยุคนี้ "ความสนใจ" คือทรัพยากรที่หายากที่สุด และทุกแบรนด์ ทุกคน ทุกอัลกอริทึม กำลังแย่งมัน — ใครชนะ ได้ทุกอย่าง</div>
+
+        <div class="block">
+          <div class="block-label">CONCEPT MAP</div>
+          <h3>3 ชั้นของสนามรบดิจิทัล</h3>
+          <p>ทุกการตัดสินใจซื้อในยุคนี้ต้องผ่าน 3 ด่าน — <strong>การมองเห็น</strong> → <strong>การหยุดดู</strong> → <strong>การเปลี่ยนเป็นการกระทำ</strong> ส่วนใหญ่เสียในด่านแรก ก่อนที่ลูกค้าจะรู้ตัว</p>
+          <div class="visual-block">
+            <svg viewBox="0 0 900 360" aria-hidden="true">
+              <line x1="0" y1="100" x2="900" y2="100" stroke="rgba(120,160,210,.1)" stroke-dasharray="3 3"/>
+              <line x1="0" y1="220" x2="900" y2="220" stroke="rgba(120,160,210,.1)" stroke-dasharray="3 3"/>
+              <text class="svg-text-tag" x="20" y="50" text-anchor="start">[01 · IMPRESSION · มองเห็น]</text>
+              <text class="svg-text-tag" x="20" y="170" text-anchor="start">[02 · ATTENTION · หยุดดู]</text>
+              <text class="svg-text-tag" x="20" y="290" text-anchor="start">[03 · CONVERSION · กระทำ]</text>
+              <!-- Funnel -->
+              <path d="M250 60 L850 60 L780 160 L320 160 Z" class="tm-link cyan" fill="rgba(0,240,255,.05)"/>
+              <path d="M320 180 L780 180 L700 280 L400 280 Z" class="tm-link cyan" fill="rgba(0,240,255,.08)"/>
+              <path d="M400 300 L700 300 L620 340 L480 340 Z" class="tm-link mag" fill="rgba(255,43,122,.12)"/>
+              <text class="svg-text" x="550" y="110">ผ่านตา 1,000 คน</text>
+              <text class="svg-text-sm" x="550" y="128">3 วินาที / คน</text>
+              <text class="svg-text" x="550" y="225">หยุดดู 30 คน · 3%</text>
+              <text class="svg-text-sm" x="550" y="243">มี Hook ที่ใช่</text>
+              <text class="svg-text" x="550" y="318" fill="#66f8ff">ซื้อ 1 คน · 0.1%</text>
+              <text class="svg-text-sm" x="550" y="334">มี CTA ที่คม</text>
+            </svg>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">DATA · BATTLEFIELD</div>
+          <h3>เวลาที่คุณมีจริง ๆ</h3>
+          <p>คนไทยเฉลี่ยเล่นโซเชียลวันละกว่า 8 ชั่วโมง — แต่ความสนใจที่แต่ละโพสต์ได้รับ <em class="m">ลดลงเหลือต่ำกว่า 2 วินาที</em></p>
+          <div class="bar-row" style="--w:95%">
+            <span class="bar-name">2010 · Facebook</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">~12s</span>
+          </div>
+          <div class="bar-row" style="--w:55%">
+            <span class="bar-name">2018 · Instagram</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">~6s</span>
+          </div>
+          <div class="bar-row" style="--w:25%">
+            <span class="bar-name">2023 · TikTok / Reels</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">~2s</span>
+          </div>
+          <div class="bar-row" style="--w:8%">
+            <span class="bar-name">2025 · Hook Window</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">0.3s</span>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">// KEY TAKEAWAY</span>
+          <ul>
+            <li>คุณ <b>ไม่ได้แข่งกับคู่แข่ง</b> — คุณแข่งกับทุกอย่างในฟีด: ข่าว, มีม, แมว</li>
+            <li>0.3 วินาทีแรก = <b>ตัดสินทุกอย่าง</b> — ที่เหลือคือคนที่ "ตัดสินใจดูต่อแล้ว"</li>
+            <li>การลงทุนที่ผิดพลาดที่สุด: <b>โพสต์ดี ๆ ที่ไม่มี Hook</b></li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l1">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 2 ═════════════════ -->
+    <section class="lesson" id="l2">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 02</span>
+          <span class="lesson-time">5 นาที</span>
+          <h2>The Scroll &amp; <em>The Hook</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> รู้ว่านิ้วของลูกค้ากำลัง "ทำสงคราม" กับคอนเทนต์ของคุณอย่างไร และต้องเขียน Hook แบบไหนถึงหยุดมันได้</div>
+
+        <div class="block">
+          <div class="block-label">SIMULATION</div>
+          <h3>นิ้วเลื่อนเฉลี่ย — ใครรอด ใครตาย</h3>
+          <p>ในฟีด 5 โพสต์ต่อหน้าจอ มีโพสต์เดียวที่ "หยุดนิ้ว" — ที่เหลือเลื่อนผ่านโดย<em class="m">ไม่ทันรู้ตัว</em>ว่าเป็นอะไร</p>
+          <div class="visual-block" style="padding:2rem 1rem">
+            <div class="feed-stack">
+              <div class="feed-card scrolled"><div class="feed-tag">// POST · 0.4s</div>มีโปรโมชั่นใหม่ที่ร้านเรานะคะ ลด 20% ทั้งร้าน...</div>
+              <div class="feed-card scrolled"><div class="feed-tag">// POST · 0.3s</div>ขอแนะนำสินค้าตัวใหม่ ดีมากเลย เพื่อนที่ใช้แล้ว...</div>
+              <div class="feed-card hook"><div class="feed-tag">◢ HOOK · 4.2s</div><b style="color:var(--ink);font-weight:600">"ฉันขายของวันละ 200 ออเดอร์ — โดยไม่มีเซลคนเดียว"</b><br><span style="color:var(--ink-dim);font-size:.82rem">เริ่มด้วยตัวเลขเฉพาะ + ความขัดแย้ง = สมองหยุดทันที</span></div>
+              <div class="feed-card scrolled"><div class="feed-tag">// POST · 0.2s</div>วันนี้อากาศดีจัง...</div>
+              <div class="feed-card scrolled"><div class="feed-tag">// POST · 0.5s</div>สวัสดีลูกค้าทุกท่าน เรามีของดีจะแนะนำ...</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">FORMULA</div>
+          <h3>สมการ Hook 4 แบบที่ทำงาน</h3>
+          <div class="formula">HOOK = SPECIFIC + CONFLICT + STAKE</div>
+          <p style="margin-top:1rem"><strong>1. ตัวเลขเฉพาะ</strong> — "200 ออเดอร์" ดีกว่า "เยอะมาก"<br>
+          <strong>2. ความขัดแย้ง</strong> — "ขายเยอะแต่ไม่มีเซล" ทำให้สมองต้อง pause<br>
+          <strong>3. ความเสี่ยง</strong> — "ถ้าไม่อ่านวันนี้คุณจะ..."<br>
+          <strong>4. คำถามที่กวนใจ</strong> — "ทำไม X ที่ดีกว่ากลับไม่ขาย?"</p>
+        </div>
+
+        <div class="case-study">
+          <div class="case-brand">// FIELD CASE · TIKTOK SHOP TH</div>
+          <h4>เปลี่ยน Hook 1 ประโยค — ยอดวิวเพิ่ม 47x</h4>
+          <p>วิดีโอเดิม: <span style="color:var(--ink-faint)">"แนะนำครีมตัวใหม่ของเรา..."</span> → 800 view</p>
+          <p>วิดีโอใหม่: <strong>"ฉันใส่ครีมราคา 89 บาท ซ้อนกัน 7 ชั้น แล้วเกิดเรื่องที่ไม่คาดคิด"</strong> → 37,800 view</p>
+          <span class="case-result">+47x view · same product · same price</span>
+        </div>
+
+        <div class="try-it">
+          <div class="block-label">EXERCISE 01</div>
+          <h3>เขียน Hook สำหรับสินค้าของคุณ</h3>
+          <p class="try-it-prompt">ใช้สูตร <strong>SPECIFIC + CONFLICT + STAKE</strong> — เขียน Hook 1 บรรทัด ที่ทำให้คนหยุดนิ้ว</p>
+          <textarea placeholder="ตัวอย่าง: ฉันขายของออนไลน์ 5 ปี — และเพิ่งรู้ว่าคำนี้ทำให้ลูกค้า 80% ปิดหน้า..."></textarea>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l2">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 3 ═════════════════ -->
+    <section class="lesson" id="l3">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 03</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>ราคา <em>คือเรื่องเล่า</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่าราคาไม่ใช่ตัวเลข — มันคือเรื่องเล่าที่สมองตีความ และคุณวางบริบทอย่างไร เปลี่ยน "แพง" ให้เป็น "คุ้ม" ได้</div>
+
+        <div class="block">
+          <div class="block-label">CONCEPT · ANCHORING</div>
+          <h3>กลยุทธ์ Decoy — ตัวล่อ 3 ตัวเลือก</h3>
+          <p>เมื่อมี 3 ตัวเลือก สมองจะเลือก "ตัวกลาง" ที่ดูคุ้มที่สุดเสมอ — แต่ <em class="m">"ตัวกลาง" คือตัวที่คุณอยากให้เลือก</em> ไม่ใช่บังเอิญ</p>
+          <div class="visual-block" style="padding:2.5rem 1.5rem">
+            <div class="anchor-row">
+              <div class="anchor-card">
+                <div class="anchor-name">BASIC</div>
+                <div class="anchor-price">฿299<small>/เดือน</small></div>
+                <p style="font-size:.78rem;color:var(--ink-faint);margin-top:.5rem">5 GB · 1 user</p>
+              </div>
+              <div class="anchor-card target">
+                <div class="anchor-name">PRO</div>
+                <div class="anchor-price">฿590<small>/เดือน</small></div>
+                <p style="font-size:.78rem;color:var(--ink-faint);margin-top:.5rem">100 GB · 5 user</p>
+              </div>
+              <div class="anchor-card decoy">
+                <div class="anchor-name">PREMIUM</div>
+                <div class="anchor-price">฿790<small>/เดือน</small></div>
+                <p style="font-size:.78rem;color:var(--ink-faint);margin-top:.5rem">120 GB · 5 user</p>
+              </div>
+            </div>
+            <p style="text-align:center;font-family:'JetBrains Mono',monospace;font-size:.8rem;color:var(--ink-faint);margin-top:1rem">// PREMIUM ตั้งใจให้ "ดูไม่คุ้ม" → PRO ดูคุ้มสุด</p>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">FRAMING</div>
+          <h3>เรื่องเล่าเปลี่ยนราคา 100%</h3>
+          <p><strong>แบบ A:</strong> "กาแฟแก้วละ 120 บาท" — แพง<br>
+          <strong>แบบ B:</strong> "เมล็ดกาแฟจาก 1 ใน 3 ไร่บนเขาที่หนาวที่สุดของไทย — ลงมือเลือกทีละเมล็ดด้วยมือ" — <em>คุ้ม</em></p>
+          <p>ตัวเลขเดียวกัน · บริบทคนละโลก · สมองรู้สึก<em class="m">คนละความรู้สึก</em></p>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">// KEY TAKEAWAY</span>
+          <ul>
+            <li>ราคา = ตัวเลข + <b>เรื่องเล่ารอบตัวเลข</b></li>
+            <li>3 ตัวเลือก ดีกว่า 2 — สมองชอบ "เปรียบเทียบแล้วเลือก"</li>
+            <li>อย่าขอโทษเรื่องราคา — <b>เล่าเหตุผล</b> ที่ทำให้มันเป็นแบบนั้น</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l3">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 4 ═════════════════ -->
+    <section class="lesson" id="l4">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 04</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>สถาปัตยกรรม<em>ตัวเลือก</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> ออกแบบหน้าขาย / ฟอร์ม / เมนู ให้ลูกค้าเลือกสิ่งที่คุณอยากให้เลือก โดยไม่รู้สึกถูกบังคับ</div>
+
+        <div class="block">
+          <div class="block-label">PRINCIPLE</div>
+          <h3>3 หลัก Choice Architecture</h3>
+          <p><strong>1. Default</strong> — ค่าเริ่มต้นที่ติ๊กไว้แล้ว = ผู้ใช้ 80% จะปล่อยไว้ (Netflix auto-renew, donation opt-in)</p>
+          <p><strong>2. Decoy</strong> — ตัวเลือกที่ดูเลวกว่า เพื่อทำให้ตัวที่คุณอยากให้เลือก<em>ดูดีขึ้น</em></p>
+          <p><strong>3. Limit</strong> — ตัวเลือกมากเกิน = สมอง freeze (Hick's Law) — 3-5 ตัวคือจุดที่ดีที่สุด</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">CONCEPT MAP</div>
+          <h3>เส้นทางการตัดสินใจในหน้าขาย</h3>
+          <div class="visual-block">
+            <svg viewBox="0 0 900 280" aria-hidden="true">
+              <text class="svg-text-tag" x="20" y="40" text-anchor="start">[ INPUT → DEFAULT → ACTION ]</text>
+              <!-- Flow -->
+              <g class="tm-group"><rect class="master-rect input" x="50" y="100" width="160" height="80"/><text class="master-text" x="130" y="135">เห็น 3 แพ็กเกจ</text><text class="master-text" x="130" y="155" font-size="9">visible options</text></g>
+              <g class="tm-group"><rect class="master-rect process" x="280" y="100" width="160" height="80"/><text class="master-text" x="360" y="135">DEFAULT ติ๊ก PRO</text><text class="master-text" x="360" y="155" font-size="9">cognitive load = 0</text></g>
+              <g class="tm-group"><rect class="master-rect tactic" x="510" y="100" width="160" height="80"/><text class="master-text" x="590" y="135">มี Decoy + Bonus</text><text class="master-text" x="590" y="155" font-size="9">comparison feels right</text></g>
+              <g class="tm-group"><rect class="master-rect output" x="740" y="100" width="120" height="80"/><text class="master-text out" x="800" y="145">PURCHASE</text></g>
+              <!-- Links -->
+              <path class="tm-link cyan" d="M210 140 L280 140" stroke-width="2" marker-end="url(#cyArrow)"/>
+              <path class="tm-link cyan" d="M440 140 L510 140" stroke-width="2"/>
+              <path class="tm-link cyan" d="M670 140 L740 140" stroke-width="2"/>
+              <defs><marker id="cyArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#00f0ff"/></marker></defs>
+            </svg>
+          </div>
+        </div>
+
+        <div class="case-study">
+          <div class="case-brand">// FIELD CASE · UK ORGAN DONATION</div>
+          <h4>Default เปลี่ยน 17% → 90%</h4>
+          <p>ประเทศที่ใช้ "opt-in" (ต้องเลือกเองว่าจะบริจาค): ~17% ตอบรับ</p>
+          <p>ประเทศที่ใช้ "opt-out" (default = บริจาค ต้องเลือกถ้าไม่อยาก): <strong>~90%</strong> ตอบรับ</p>
+          <span class="case-result">change = checkbox · effect = 5x</span>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l4">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 5 ═════════════════ -->
+    <section class="lesson" id="l5">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 05</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>กับดัก<em>อัตลักษณ์</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่าลูกค้าไม่ได้ซื้อสินค้า — เขาซื้อ "ตัวตนที่อยากเป็น" และแบรนด์ที่เก่งคือคนทำให้เขา <em>เห็นตัวเองในกระจกของแบรนด์</em></div>
+
+        <div class="block">
+          <div class="block-label">MIRROR · PRINCIPLE</div>
+          <h3>"คนแบบเรา" vs "ลูกค้าทั่วไป"</h3>
+          <p>คนเชื่อ <em class="m">คนแบบเขา</em> มากกว่า expert — ความสำเร็จของ Apple, Patagonia, Tesla คือทำให้ลูกค้ารู้สึกว่า "ฉันคือคนแบบนี้"</p>
+          <div class="mirror-grid">
+            <div class="mirror-card them">
+              <div class="mirror-tag">// แบรนด์ทั่วไป</div>
+              <h4 style="font-size:1rem;color:var(--ink);margin-bottom:.5rem">"ซื้อสินค้าเรา ของดี ราคาถูก"</h4>
+              <p style="font-size:.88rem;color:var(--ink-dim)">ลูกค้าได้ยินทุกวัน — สมอง filter ออกทันที ไม่มีตัวตน ไม่มีฝ่าย</p>
+            </div>
+            <div class="mirror-card us">
+              <div class="mirror-tag">// แบรนด์ที่ชนะ</div>
+              <h4 style="font-size:1rem;color:var(--ink);margin-bottom:.5rem">"คนทำงานสร้างสรรค์ ใช้ของชิ้นนี้"</h4>
+              <p style="font-size:.88rem;color:var(--ink-dim)">ลูกค้ามอง — แล้วถามตัวเอง "ฉันใช่คนแบบนั้นไหม?" → ซื้อ <b>เพื่อยืนยันตัวตน</b></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">FORMULA · IDENTITY LOOP</div>
+          <h3>วงจร 3 ขั้น</h3>
+          <div class="formula">SEE (เห็นคนแบบนั้น) → FEEL (รู้สึกอยากเป็น) → BUY (ซื้อเพื่อพิสูจน์)</div>
+          <p>หน้าที่ของคุณ: <strong>ทำให้ลูกค้าเห็น "คนแบบเขา"</strong> ใช้สินค้าอย่างเป็นธรรมชาติ — ไม่ใช่ดารา ไม่ใช่ ad คนรับจ้างถ่าย</p>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">// KEY TAKEAWAY</span>
+          <ul>
+            <li>ลูกค้าไม่ซื้อ "สินค้าที่ดีที่สุด" — ซื้อ <b>"ตัวตนที่ใกล้ที่สุด"</b></li>
+            <li>"คนแบบฉัน" &gt; "คนดัง" — ความเฉพาะ &gt; ความใหญ่</li>
+            <li>ระวัง Cult Trap: ตัวตนแคบเกิน = ตลาดเล็ก / ตัวตนกว้างเกิน = ไม่มีใคร</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l5">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 6 ═════════════════ -->
+    <section class="lesson" id="l6">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 06</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>สมอง<em> Algorithm</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่า Algorithm ไม่ใช่ศัตรู — เป็น "สมองที่ขยาย" ของแพลตฟอร์ม ที่จะเลือกคุณก็ต่อเมื่อคุณ "ป้อนสัญญาณที่ถูก"</div>
+
+        <div class="block">
+          <div class="block-label">FEEDBACK LOOP</div>
+          <h3>5 สัญญาณที่ Algorithm อ่าน</h3>
+          <p>ทุกแพลตฟอร์มต่างกัน แต่ใช้สัญญาณคล้ายกัน — เพราะมาจากเป้าหมายเดียวกัน: <em>"ทำให้คนอยู่ในแอปนานขึ้น"</em></p>
+          <div class="visual-block">
+            <svg viewBox="0 0 900 320" aria-hidden="true">
+              <!-- Center -->
+              <circle cx="450" cy="160" r="50" fill="#0a0f1c" stroke="#00f0ff" stroke-width="2"/>
+              <text class="svg-text" x="450" y="155">ALGORITHM</text>
+              <text class="svg-text-sm" x="450" y="172">/ ranker</text>
+              <!-- Signals -->
+              <g class="tm-group">
+                <circle class="tm-node" cx="180" cy="80" r="34"/>
+                <text class="svg-text" x="180" y="78">Watch Time</text>
+                <text class="svg-text-sm" x="180" y="93">เวลาดู</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="180" cy="240" r="34"/>
+                <text class="svg-text" x="180" y="238">Replay</text>
+                <text class="svg-text-sm" x="180" y="253">ดูซ้ำ</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node m" cx="450" cy="40" r="34"/>
+                <text class="svg-text" x="450" y="38">Share</text>
+                <text class="svg-text-sm" x="450" y="53">แชร์</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node m" cx="450" cy="290" r="34"/>
+                <text class="svg-text" x="450" y="288">Save</text>
+                <text class="svg-text-sm" x="450" y="303">บันทึก</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="720" cy="80" r="34"/>
+                <text class="svg-text" x="720" y="78">Comment</text>
+                <text class="svg-text-sm" x="720" y="93">คอมเมนต์</text>
+              </g>
+              <g class="tm-group">
+                <circle class="tm-node" cx="720" cy="240" r="34"/>
+                <text class="svg-text" x="720" y="238">Profile Visit</text>
+                <text class="svg-text-sm" x="720" y="253">เข้าหน้าโปร</text>
+              </g>
+              <!-- Links -->
+              <path class="tm-link cyan" d="M214 80 Q330 100, 400 145"/>
+              <path class="tm-link cyan" d="M214 240 Q330 220, 400 175"/>
+              <path class="tm-link mag" d="M450 74 L450 110"/>
+              <path class="tm-link mag" d="M450 256 L450 210"/>
+              <path class="tm-link cyan" d="M686 80 Q570 100, 500 145"/>
+              <path class="tm-link cyan" d="M686 240 Q570 220, 500 175"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="block">
+          <div class="block-label">PRIORITY · 2025</div>
+          <h3>น้ำหนักสัญญาณ — TikTok / Reels</h3>
+          <div class="bar-row" style="--w:92%">
+            <span class="bar-name">Watch Time %</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">น้ำหนักสูงสุด</span>
+          </div>
+          <div class="bar-row" style="--w:78%">
+            <span class="bar-name">Share</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">สูงมาก</span>
+          </div>
+          <div class="bar-row" style="--w:65%">
+            <span class="bar-name">Save / Replay</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">สูง</span>
+          </div>
+          <div class="bar-row" style="--w:42%">
+            <span class="bar-name">Comment</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">กลาง</span>
+          </div>
+          <div class="bar-row" style="--w:18%">
+            <span class="bar-name">Like</span>
+            <div class="bar-track"><div class="bar-fill"></div></div>
+            <span class="bar-pct">ต่ำ</span>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">// KEY TAKEAWAY</span>
+          <ul>
+            <li>เลิกห่วง Like — ห่วง <b>Watch Time + Share</b></li>
+            <li>คอนเทนต์ที่ "บันทึกไว้ดูซ้ำ" = คอนเทนต์ที่ Algorithm รัก</li>
+            <li>คนจะแชร์ก็ต่อเมื่อ <b>มันพูดสิ่งที่เขาคิด แทนเขา</b></li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l6">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 7 ═════════════════ -->
+    <section class="lesson" id="l7">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 07</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>สมการ<em> ไวรัล</em></h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> เข้าใจว่าทำไมคอนเทนต์บางตัว "ระเบิด" และบางตัวเงียบ — แล้วเขียนคอนเทนต์ที่มีโอกาสไวรัลสูงขึ้นโดยไม่ใช่บังเอิญ</div>
+
+        <div class="block">
+          <div class="block-label">FORMULA</div>
+          <h3>K-Factor — สมการการแพร่</h3>
+          <div class="formula">K = <b>i</b> × <b>c</b><br><span style="font-size:.78rem;color:var(--ink-dim);letter-spacing:.05em">i = invitations sent / user · c = conversion rate</span></div>
+          <p>ถ้า K &gt; 1 → คอนเทนต์ <em>ทบทวีตัวเอง</em> (ไวรัล) — ถ้า K &lt; 1 → ตายลงเรื่อย ๆ</p>
+          <p>ตัวอย่าง: คน 100 ดู → 30 แชร์ → แชร์ละเข้าถึง 5 คนใหม่ → K = 1.5 ✓</p>
+        </div>
+
+        <div class="block">
+          <div class="block-label">DRIVERS · 6</div>
+          <h3>6 ตัวขับเคลื่อน Virality (Berger)</h3>
+          <p><strong>1. Social Currency</strong> — แชร์แล้วดูฉลาด/เท่<br>
+          <strong>2. Triggers</strong> — สิ่งในชีวิตประจำวันที่ทำให้นึกถึง<br>
+          <strong>3. Emotion</strong> — โกรธ/ตื่นเต้น/ซึ้ง > เฉย ๆ<br>
+          <strong>4. Public</strong> — เห็นคนอื่นใช้/ทำได้ง่าย<br>
+          <strong>5. Practical Value</strong> — ใช้ได้จริง<br>
+          <strong>6. Stories</strong> — มีโครงเรื่อง ไม่ใช่ list</p>
+        </div>
+
+        <div class="case-study">
+          <div class="case-brand">// FIELD CASE · ICE BUCKET CHALLENGE</div>
+          <h4>K = ~2.4 · บริจาค $115M ใน 8 สัปดาห์</h4>
+          <p>ทำไมไวรัล? ครบ 6 driver: <strong>Social Currency</strong> (ทำเพื่อเหตุผลใหญ่) + <strong>Trigger</strong> (วิดีโอเพื่อนเข้าฟีดทุกวัน) + <strong>Emotion</strong> (สนุก) + <strong>Public</strong> (ทำได้ทุกคน) + <strong>Practical</strong> (ช่วยจริง) + <strong>Stories</strong> (challenge รุ่นต่อรุ่น)</p>
+          <span class="case-result">organic reach &gt; $50M media buy</span>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l7">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ LESSON 8 ═════════════════ -->
+    <section class="lesson" id="l8">
+      <div class="lesson-inner">
+        <div class="lesson-header">
+          <span class="lesson-num">บทที่ 08</span>
+          <span class="lesson-time">4 นาที</span>
+          <h2>มือ<em>ที่มองไม่เห็น</em> · The Master Map</h2>
+        </div>
+        <div class="lesson-objective"><b>เป้าหมาย:</b> รวมทุกหลักการ Vol.2 ลงในแผนที่เดียว ใช้เป็นเช็กลิสต์ก่อนปล่อยทุกแคมเปญ</div>
+
+        <div class="block">
+          <div class="block-label">MASTER PIPELINE</div>
+          <h3>เส้นทาง Attention → Action</h3>
+          <p>ทุกแคมเปญที่ชนะ <em class="m">มีโครงเดียวกัน</em> — เปลี่ยนแค่หน้าตา ไม่เปลี่ยนโครง</p>
+          <div class="visual-block master-wrap">
+            <svg viewBox="0 0 900 420" aria-hidden="true">
+              <!-- Stage tags -->
+              <text class="svg-text-tag" x="100" y="30" text-anchor="middle">[ INPUT ]</text>
+              <text class="svg-text-tag" x="320" y="30" text-anchor="middle">[ HOOK ]</text>
+              <text class="svg-text-tag" x="540" y="30" text-anchor="middle">[ STORY ]</text>
+              <text class="svg-text-tag" x="760" y="30" text-anchor="middle">[ ARCHITECT ]</text>
+              <text class="svg-text-tag" x="450" y="400" text-anchor="middle">[ PURCHASE / SHARE ]</text>
+
+              <!-- Boxes top row -->
+              <rect class="master-rect input" x="20" y="60" width="160" height="80"/>
+              <text class="master-text" x="100" y="92">Identity ที่อยากเป็น</text>
+              <text class="master-text" x="100" y="110" font-size="9">Lesson 05</text>
+
+              <rect class="master-rect process" x="240" y="60" width="160" height="80"/>
+              <text class="master-text" x="320" y="92">Hook 0.3 วินาที</text>
+              <text class="master-text" x="320" y="110" font-size="9">Lesson 02</text>
+
+              <rect class="master-rect process" x="460" y="60" width="160" height="80"/>
+              <text class="master-text" x="540" y="92">Story + Anchor ราคา</text>
+              <text class="master-text" x="540" y="110" font-size="9">Lesson 03</text>
+
+              <rect class="master-rect tactic" x="680" y="60" width="160" height="80"/>
+              <text class="master-text" x="760" y="92">Default + Decoy</text>
+              <text class="master-text" x="760" y="110" font-size="9">Lesson 04</text>
+
+              <!-- Middle row: signals -->
+              <rect class="master-rect input" x="20" y="200" width="160" height="80"/>
+              <text class="master-text" x="100" y="232">Attention ที่หายาก</text>
+              <text class="master-text" x="100" y="250" font-size="9">Lesson 01</text>
+
+              <rect class="master-rect tactic" x="240" y="200" width="160" height="80"/>
+              <text class="master-text" x="320" y="232">Algorithm Signal</text>
+              <text class="master-text" x="320" y="250" font-size="9">Lesson 06</text>
+
+              <rect class="master-rect tactic" x="460" y="200" width="160" height="80"/>
+              <text class="master-text" x="540" y="232">Viral Driver × 6</text>
+              <text class="master-text" x="540" y="250" font-size="9">Lesson 07</text>
+
+              <rect class="master-rect process" x="680" y="200" width="160" height="80"/>
+              <text class="master-text" x="760" y="232">Trust + Proof</text>
+              <text class="master-text" x="760" y="250" font-size="9">Vol.1 cross-ref</text>
+
+              <!-- Final output -->
+              <rect class="master-rect output" x="350" y="330" width="200" height="60"/>
+              <text class="master-text out" x="450" y="365">CONVERSION</text>
+
+              <!-- Connectors -->
+              <path class="tm-link cyan" d="M180 100 L240 100" stroke-width="2"/>
+              <path class="tm-link cyan" d="M400 100 L460 100" stroke-width="2"/>
+              <path class="tm-link cyan" d="M620 100 L680 100" stroke-width="2"/>
+              <path class="tm-link cyan" d="M100 140 L100 200" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path class="tm-link cyan" d="M320 140 L320 200" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path class="tm-link cyan" d="M540 140 L540 200" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path class="tm-link cyan" d="M760 140 L760 200" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path class="tm-link mag" d="M100 280 Q250 320, 360 330" stroke-width="2"/>
+              <path class="tm-link mag" d="M320 280 Q380 310, 410 330" stroke-width="2"/>
+              <path class="tm-link mag" d="M540 280 Q510 310, 490 330" stroke-width="2"/>
+              <path class="tm-link mag" d="M760 280 Q620 320, 540 330" stroke-width="2"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="takeaway">
+          <span class="takeaway-label">// FINAL · CHECKLIST</span>
+          <ul>
+            <li><b>1.</b> Hook ของฉันใช้ SPECIFIC + CONFLICT + STAKE หรือไม่?</li>
+            <li><b>2.</b> ใครคือ "คนแบบลูกค้า" ที่ฉันแสดงให้เห็น?</li>
+            <li><b>3.</b> มี 3 ตัวเลือก + Decoy ตัวที่อยากให้ดูดีไหม?</li>
+            <li><b>4.</b> สัญญาณที่อยากให้ Algorithm จับ = Watch Time + Share หรือเปล่า?</li>
+            <li><b>5.</b> มี Viral Driver ครบกี่ข้อจาก 6?</li>
+          </ul>
+        </div>
+
+        <div class="lesson-complete" data-lesson="l8">
+          <div class="lesson-checkbox"></div>
+          <span>// ทำเครื่องหมายว่าเรียนจบแล้ว</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ QUIZ ═════════════════ -->
+    <section class="quiz-section" id="quiz">
+      <div class="container">
+        <div class="lesson-header">
+          <span class="lesson-num">▤ ทดสอบ</span>
+          <span class="lesson-time">5 นาที</span>
+          <h2>คุณเข้าใจ<em> มากแค่ไหน?</em></h2>
+        </div>
+        <p style="color:var(--ink-dim);margin-bottom:2rem;font-family:'JetBrains Mono',monospace;font-size:.85rem">// ตอบให้ครบ 8 ข้อ — ตอบเสร็จจะเห็นคำเฉลย และคะแนนรวม</p>
+        <div id="quiz-list"></div>
+        <div class="quiz-result" id="quiz-result">
+          <div class="quiz-result-score" id="qr-score">0/8</div>
+          <div class="quiz-result-msg" id="qr-msg">-</div>
+          <div class="quiz-result-sub" id="qr-sub">-</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════ CHEATSHEET ═════════════════ -->
+    <section class="cheatsheet-section" id="cheat">
+      <div class="container">
+        <div class="lesson-header">
+          <span class="lesson-num">▥ สรุป</span>
+          <h2>Cheatsheet —<em> สิ่งที่ต้องจำ</em></h2>
+        </div>
+        <p style="color:var(--ink-dim);margin-bottom:1rem;font-family:'JetBrains Mono',monospace;font-size:.85rem">// กด <kbd style="background:var(--bg-3);padding:.15rem .4rem;border-radius:3px;font-size:.8rem;border:1px solid var(--line-strong);color:var(--cyan)">Ctrl+P</kbd> เพื่อพิมพ์เป็น PDF — sidebar/quiz จะไม่ถูกพิมพ์ออกมา</p>
+        <div class="cheat-grid">
+          <div class="cheat-card">
+            <div class="cheat-card-num">01 · ATTENTION</div>
+            <h4>ความสนใจ = สกุลเงินจริง</h4>
+            <p>0.3 วินาทีแรก = ตัดสินทุกอย่าง · คุณแข่งกับทุกอย่างในฟีด</p>
+            <div class="hint">ห่วง Hook ก่อนห่วง content</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">02 · HOOK</div>
+            <h4>SPECIFIC + CONFLICT + STAKE</h4>
+            <p>ตัวเลขเฉพาะ + ความขัดแย้ง + ความเสี่ยง = หยุดนิ้ว</p>
+            <div class="hint">เปลี่ยน 1 บรรทัด = +47x view</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">03 · PRICE</div>
+            <h4>ราคา = ตัวเลข + เรื่องเล่า</h4>
+            <p>3 ตัวเลือก · มี Decoy · บริบทเปลี่ยน "แพง" → "คุ้ม"</p>
+            <div class="hint">อย่าขอโทษเรื่องราคา · เล่าเหตุผล</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">04 · CHOICE</div>
+            <h4>Default · Decoy · Limit</h4>
+            <p>ค่าเริ่มต้น = 80% ปล่อยไว้ · 3-5 ตัวเลือก ดีที่สุด</p>
+            <div class="hint">UK organ: opt-out → 90%</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">05 · IDENTITY</div>
+            <h4>ลูกค้าซื้อ "ตัวตนที่อยากเป็น"</h4>
+            <p>SEE → FEEL → BUY · "คนแบบฉัน" &gt; "คนดัง"</p>
+            <div class="hint">แสดงคนแบบลูกค้า ไม่ใช่ดารา</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">06 · ALGORITHM</div>
+            <h4>Watch Time + Share &gt; Like</h4>
+            <p>คอนเทนต์ที่บันทึก/ดูซ้ำ = Algorithm รัก</p>
+            <div class="hint">เลิกห่วง Like · ห่วง Replay</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">07 · VIRAL</div>
+            <h4>K = i × c</h4>
+            <p>K&gt;1 = ทบทวีตัวเอง · 6 driver: SC, Trig, Emo, Pub, Prac, Story</p>
+            <div class="hint">Emotion สูง = แชร์สูง</div>
+          </div>
+          <div class="cheat-card">
+            <div class="cheat-card-num">08 · MASTER</div>
+            <h4>Pipeline เดียว</h4>
+            <p>Identity → Hook → Story+Price → Architect → Conversion</p>
+            <div class="hint">ทุกแคมเปญที่ชนะ มีโครงเดียวกัน</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-mark">◢ END · VOL.02 · CYBER EDITION</div>
+      <div class="footer-msg">"ทุกอย่างที่คุณเห็นใน<em>ฟีด</em> ถูกออกแบบโดย<span class="glitch">มือที่มองไม่เห็น</span> — ตอนนี้คุณเห็นมันแล้ว"</div>
+      <a href="/vol2" class="footer-cta">> ./read --full vol2</a>
+      <div class="footer-meta">THE ROOT · VOL.02 · LEARN.ROOTMANKNOWS.COM</div>
+    </footer>
+  </main>
+</div>
+
+<script>
+'use strict';
+
+// ═══════════════════ Lock gate ═══════════════════
+const PASS_HASH = 'b68c960c8c73e167537fc804553cdaf2e57c5afe1a111cfe738e3c6cc170ecb1';
+const STORAGE_KEY = 'visual-vol2-pass';
+const PROGRESS_KEY = 'visual-vol2-progress';
+
+async function sha256(str) {
+  const buf = new TextEncoder().encode(str);
+  const hash = await crypto.subtle.digest('SHA-256', buf);
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+async function tryUnlock(e) {
+  if (e) e.preventDefault();
+  const input = document.getElementById('lock-input');
+  const err = document.getElementById('lock-error');
+  const val = (input.value || '').trim();
+  if (!val) return false;
+  err.textContent = '> CHECKING...';
+  err.style.color = 'var(--ink-faint)';
+  const h = await sha256(val);
+  if (h === PASS_HASH) {
+    localStorage.setItem(STORAGE_KEY, h);
+    revealApp();
+  } else {
+    err.textContent = '✗ ACCESS DENIED · รหัสไม่ถูกต้อง';
+    err.style.color = 'var(--red)';
+    input.select();
+  }
+  return false;
+}
+
+function revealApp() {
+  document.getElementById('lock').classList.add('hidden');
+  document.body.classList.remove('locked');
+  document.getElementById('app').hidden = false;
+  setTimeout(initApp, 80);
+}
+
+function logout() {
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+}
+window.logout = logout;
+
+(function autoUnlock() {
+  if (localStorage.getItem(STORAGE_KEY) === PASS_HASH) revealApp();
+})();
+
+// ═══════════════════ App init ═══════════════════
+function initApp() {
+  initSidebar();
+  initProgressBar();
+  initScrollSpy();
+  initRevealObserver();
+  initLessonComplete();
+  buildQuiz();
+}
+
+// ───────── Sidebar / mobile ─────────
+function initSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('backdrop');
+  const btn = document.getElementById('menu-btn');
+  function close() { sidebar.classList.remove('open'); backdrop.classList.remove('show'); }
+  btn.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    backdrop.classList.toggle('show');
+  });
+  backdrop.addEventListener('click', close);
+  document.querySelectorAll('.nav-item').forEach(a => {
+    a.addEventListener('click', () => {
+      const t = a.getAttribute('data-target');
+      if (!t) return;
+      const target = document.getElementById(t);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      close();
+    });
+  });
+}
+
+// ───────── Progress bar ─────────
+function initProgressBar() {
+  const bar = document.getElementById('progress');
+  const update = () => {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+// ───────── Scroll spy ─────────
+function initScrollSpy() {
+  const sections = ['hero','l1','l2','l3','l4','l5','l6','l7','l8','quiz','cheat'];
+  const navLinks = {};
+  document.querySelectorAll('.nav-item').forEach(a => {
+    const t = a.getAttribute('data-target');
+    if (t) navLinks[t] = a;
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        Object.values(navLinks).forEach(a => a.classList.remove('active'));
+        const link = navLinks[e.target.id];
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+}
+
+// ───────── Reveal observer ─────────
+function initRevealObserver() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('in');
+    });
+  }, { threshold: .2 });
+  document.querySelectorAll('.bar-row, .reveal').forEach(el => obs.observe(el));
+}
+
+// ───────── Lesson complete ─────────
+function getProgress() {
+  try { return JSON.parse(localStorage.getItem(PROGRESS_KEY) || '{}'); }
+  catch (e) { return {}; }
+}
+function setProgress(p) { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); }
+
+function initLessonComplete() {
+  const progress = getProgress();
+  const updateStats = () => {
+    const p = getProgress();
+    const done = ['l1','l2','l3','l4','l5','l6','l7','l8'].filter(k => p[k]).length;
+    document.getElementById('stats-progress').textContent = `${done}/8`;
+    ['l1','l2','l3','l4','l5','l6','l7','l8'].forEach(id => {
+      const link = document.querySelector(`.nav-item[data-target="${id}"]`);
+      if (link) link.classList.toggle('done', !!p[id]);
+    });
+  };
+
+  document.querySelectorAll('.lesson-complete').forEach(box => {
+    const key = box.getAttribute('data-lesson');
+    if (progress[key]) box.classList.add('checked');
+    box.addEventListener('click', () => {
+      const p = getProgress();
+      p[key] = !p[key];
+      setProgress(p);
+      box.classList.toggle('checked', p[key]);
+      updateStats();
+    });
+  });
+  updateStats();
+}
+
+// ───────── Quiz ─────────
+const QUIZ = [
+  {
+    q: 'ใน 0.3 วินาทีแรกของฟีด — สมองตัดสินอะไรเป็นอันดับแรก?',
+    opts: ['ราคา', 'แบรนด์', 'จะหยุดดูหรือเลื่อนผ่าน', 'รีวิว'],
+    correct: 2,
+    explain: '<b>0.3 วินาที</b> = Hook Window — สมองยังไม่อ่านเนื้อหา แค่ตัดสินใจ "stop หรือ scroll" ก่อนทุกอย่าง'
+  },
+  {
+    q: 'สูตร Hook ที่ทำงานคือ?',
+    opts: ['Long story + emotional', 'SPECIFIC + CONFLICT + STAKE', 'Cute photo + emoji', 'Discount % + countdown'],
+    correct: 1,
+    explain: '<b>SPECIFIC</b> (ตัวเลขเฉพาะ) + <b>CONFLICT</b> (ความขัดแย้ง) + <b>STAKE</b> (ความเสี่ยง) = สมองหยุดทันที'
+  },
+  {
+    q: 'ทำไม 3 แพ็กเกจดีกว่า 2 แพ็กเกจ?',
+    opts: ['ขายได้แพ็กเกจมากขึ้น 3 เท่า', 'มี Decoy ทำให้ตัวกลางดูคุ้มที่สุด', 'ดูเป็นมืออาชีพ', 'ลูกค้าชอบมีตัวเลือก'],
+    correct: 1,
+    explain: '<b>Decoy Effect</b> — ตัวเลือกที่ 3 ตั้งใจให้ดู "ไม่คุ้ม" → ทำให้ตัวกลาง (ที่คุณอยากให้เลือก) ดูเป็นทางเลือกที่ฉลาดที่สุด'
+  },
+  {
+    q: 'ในกรณี UK Organ Donation — opt-out ได้ ~90% ขณะที่ opt-in ได้ ~17% เพราะอะไร?',
+    opts: ['คนอังกฤษใจดีกว่าประเทศอื่น', 'Default Bias — 80% ปล่อยค่าเริ่มต้นไว้', 'มีรางวัลให้ผู้บริจาค', 'รัฐบาลโฆษณาเยอะ'],
+    correct: 1,
+    explain: '<b>Default Bias</b> — มนุษย์ขี้เกียจคิด ค่าเริ่มต้นที่ติ๊กไว้ = 80% จะปล่อยไว้ — เปลี่ยนแค่ checkbox เปลี่ยนผลลัพธ์ 5 เท่า'
+  },
+  {
+    q: 'ลูกค้าตัดสินใจซื้อจาก "อะไร" เป็นหลัก?',
+    opts: ['สเปกของสินค้า', 'ราคาที่ถูกที่สุด', 'ตัวตนที่อยากเป็น (Identity)', 'รีวิวจาก Pantip'],
+    correct: 2,
+    explain: 'ลูกค้าซื้อ <b>"ตัวตนที่อยากเป็น"</b> — แบรนด์ที่ชนะคือคนที่ทำให้ลูกค้าเห็น "คนแบบเขา" ใช้สินค้า แล้วซื้อเพื่อพิสูจน์ตัวเอง'
+  },
+  {
+    q: 'สัญญาณที่ Algorithm (TikTok/Reels) ให้น้ำหนักสูงสุดคือ?',
+    opts: ['Like', 'Comment', 'Watch Time %', 'Profile visits'],
+    correct: 2,
+    explain: '<b>Watch Time %</b> = สัญญาณว่า "คอนเทนต์น่าดู" — Like เป็นสัญญาณอ่อนที่สุด · Share/Save/Replay มีน้ำหนักสูงรองลงมา'
+  },
+  {
+    q: 'ใน K-Factor (K = i × c) — ถ้าต้องการให้คอนเทนต์ "ระเบิด" K ต้องเป็น?',
+    opts: ['K < 1', 'K = 1', 'K > 1', 'K = 0'],
+    correct: 2,
+    explain: '<b>K &gt; 1</b> หมายความว่า 1 คนสร้างมากกว่า 1 ผู้ชมใหม่ → คอนเทนต์ทบทวีตัวเอง = ไวรัล · K&lt;1 = ตายลงเรื่อย'
+  },
+  {
+    q: 'ใน 6 Driver ของ Berger — ตัวไหน "เพิ่มได้ง่ายที่สุด" สำหรับคอนเทนต์ทั่วไป?',
+    opts: ['Social Currency (ต้องเป็นเรื่องที่แชร์แล้วดูฉลาด)', 'Triggers (ต้องอยู่ในชีวิตประจำวัน)', 'Emotion (เพิ่มอารมณ์ในการเล่า)', 'Practical Value (ต้องใช้งานได้จริง)'],
+    correct: 2,
+    explain: '<b>Emotion</b> เพิ่มได้ทันทีโดยไม่ต้องเปลี่ยนสินค้า — เปลี่ยนแค่ภาษา/มุม/จังหวะ ก็เพิ่ม share rate ได้ ตัวอื่นต้องเปลี่ยนโครงคอนเทนต์'
+  }
+];
+
+function buildQuiz() {
+  const list = document.getElementById('quiz-list');
+  if (!list) return;
+  list.innerHTML = QUIZ.map((q, i) => `
+    <div class="quiz-q" data-i="${i}">
+      <div class="quiz-q-num">QUESTION ${String(i+1).padStart(2,'0')} / ${String(QUIZ.length).padStart(2,'0')}</div>
+      <div class="quiz-q-text">${q.q}</div>
+      <div class="quiz-opts">
+        ${q.opts.map((o, j) => `<button class="quiz-opt" data-opt="${j}"><span class="quiz-opt-marker">${String.fromCharCode(65+j)}</span><span>${o}</span></button>`).join('')}
+      </div>
+      <div class="quiz-explain"></div>
+    </div>
+  `).join('');
+
+  const answers = {};
+  list.querySelectorAll('.quiz-q').forEach(q => {
+    const i = +q.getAttribute('data-i');
+    q.querySelectorAll('.quiz-opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (q.classList.contains('answered')) return;
+        const j = +btn.getAttribute('data-opt');
+        const correct = QUIZ[i].correct;
+        answers[i] = j;
+        q.classList.add('answered');
+        q.querySelectorAll('.quiz-opt').forEach((b, k) => {
+          b.disabled = true;
+          if (k === correct) b.classList.add('correct');
+          else if (k === j) b.classList.add('wrong');
+        });
+        q.querySelector('.quiz-explain').innerHTML = `<b>${j === correct ? '✓ ถูกต้อง!' : '✗ คำตอบที่ถูกคือ ' + String.fromCharCode(65+correct)}</b> — ${QUIZ[i].explain}`;
+        if (Object.keys(answers).length === QUIZ.length) showQuizResult(answers);
+      });
+    });
+  });
+}
+
+function showQuizResult(answers) {
+  let score = 0;
+  QUIZ.forEach((q, i) => { if (answers[i] === q.correct) score++; });
+  const result = document.getElementById('quiz-result');
+  const sc = document.getElementById('qr-score');
+  const msg = document.getElementById('qr-msg');
+  const sub = document.getElementById('qr-sub');
+  sc.textContent = `${score}/${QUIZ.length}`;
+  let label, advice;
+  const pct = score / QUIZ.length;
+  if (pct === 1) { label = 'PERFECT · Master Level'; advice = 'คุณพร้อมไปอ่าน Vol.2 ฉบับเต็ม และเริ่มใช้กับแคมเปญจริง'; }
+  else if (pct >= .75) { label = 'EXCELLENT · เข้าใจลึก'; advice = 'แค่ทบทวนข้อที่ผิดอีกครั้ง ก็พร้อมประยุกต์ใช้แล้ว'; }
+  else if (pct >= .5) { label = 'GOOD · มีช่องว่าง'; advice = 'ลองอ่าน Cheatsheet ด้านล่างซ้ำ แล้วทำ quiz อีกรอบ'; }
+  else { label = 'RETRY · ต้องทบทวน'; advice = 'ลองเริ่มใหม่จากบทที่ 01 — เน้นที่ "Concept Map" ของแต่ละบท'; }
+  msg.textContent = label;
+  sub.textContent = advice;
+  result.classList.add('show');
+  result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+</script>
+</body>
+</html>
