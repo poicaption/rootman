@@ -4,6 +4,10 @@
 __pycache__/
 *.pyc
 
+# Local-only admin helper scripts (contain secrets when filled in)
+revoke-code.ps1
+*.local.ps1
+
 # Keep web output
 !web/
 !web/**
