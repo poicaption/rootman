@@ -4654,7 +4654,7 @@
                                 localStorage.setItem('oneroot2-uc', code.toUpperCase());
                                 if (data.device_changed && unlockError) {
                                     unlockError.style.color = '#C4956A';
-                                    unlockError.textContent = 'ย้ายมาเครื่องนี้แล้ว — อุปกรณ์เก่าจะถูกล็อก';
+                                    unlockError.textContent = 'ย้ายมาเครื่องนี้แล้ว — เครื่องที่เก่าที่สุดถูกปลดออก (สูงสุด 2 เครื่องต่อ Code)';
                                 }
                                 var gate = document.getElementById('unlock-gate');
                                 if (gate) gate.scrollIntoView({ behavior: 'smooth' });

@@ -92,32 +92,59 @@ export default async function handler(req) {
     }
     const passphrase = getPassphrase(codeVol);
 
-    // First use — bind device
-    if (!data.device_id) {
-      data.device_id = device_id;
+    // Device slot management — up to 2 active devices per code, FIFO eviction.
+    // Backward compat: migrate legacy single `device_id` field into `devices` array.
+    const MAX_DEVICES = 2;
+    let devices = Array.isArray(data.devices) ? data.devices.filter(Boolean) : [];
+    if (devices.length === 0 && data.device_id) {
+      devices = [data.device_id];
+    }
+
+    // First use — bind first device
+    if (devices.length === 0) {
+      data.devices = [device_id];
+      delete data.device_id;
       await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
       console.log('[UNLOCK-BIND]', JSON.stringify({ code: code.toUpperCase(), device_id: device_id.slice(0, 8) }));
-      return json({ passphrase });
+      return json({ passphrase, device_slot: 1, max_devices: MAX_DEVICES });
     }
 
-    // Same device — OK
-    if (data.device_id === device_id) {
-      return json({ passphrase });
+    // Already in list — OK
+    if (devices.includes(device_id)) {
+      // Persist normalized shape if migrating from legacy field
+      if (data.device_id || !Array.isArray(data.devices)) {
+        data.devices = devices;
+        delete data.device_id;
+        await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
+      }
+      return json({ passphrase, device_slot: devices.indexOf(device_id) + 1, max_devices: MAX_DEVICES });
     }
 
-    // Different device
+    // New device — slot available: auto-add (no friction)
+    if (devices.length < MAX_DEVICES) {
+      devices.push(device_id);
+      data.devices = devices;
+      delete data.device_id;
+      await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
+      console.log('[UNLOCK-ADD]', JSON.stringify({ code: code.toUpperCase(), device_id: device_id.slice(0, 8), slot: devices.length }));
+      return json({ passphrase, device_added: true, device_slot: devices.length, max_devices: MAX_DEVICES });
+    }
+
+    // New device + all slots full
     if (action === 'verify') {
-      // Just checking — don't take over, report mismatch
-      console.log('[DEVICE-MISMATCH]', JSON.stringify({ code: code.toUpperCase(), expected: data.device_id.slice(0, 8), got: device_id.slice(0, 8) }));
-      return json({ error: 'device_mismatch', message: 'รหัสนี้ถูกใช้งานบนอุปกรณ์อื่นแล้ว กรุณาใส่ Unlock Code อีกครั้งเพื่อย้ายมาเครื่องนี้' }, 403);
+      // Just checking — don't evict, report full
+      console.log('[DEVICE-FULL]', JSON.stringify({ code: code.toUpperCase(), got: device_id.slice(0, 8) }));
+      return json({ error: 'device_mismatch', message: 'รหัสนี้ใช้ครบ 2 เครื่องแล้ว กรุณาใส่ Unlock Code อีกครั้งเพื่อย้ายมาเครื่องนี้ (เครื่องที่เก่าที่สุดจะถูกล็อก)' }, 403);
     }
 
-    // action === 'unlock' — take over device
-    const oldDevice = data.device_id;
-    data.device_id = device_id;
+    // action === 'unlock' — FIFO: evict oldest, append new
+    const evicted = devices[0];
+    devices = [devices[1], device_id];
+    data.devices = devices;
+    delete data.device_id;
     await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
-    console.log('[DEVICE-TAKEOVER]', JSON.stringify({ code: code.toUpperCase(), old: oldDevice.slice(0, 8), new: device_id.slice(0, 8) }));
-    return json({ passphrase, device_changed: true });
+    console.log('[DEVICE-EVICT]', JSON.stringify({ code: code.toUpperCase(), evicted: evicted.slice(0, 8), new: device_id.slice(0, 8) }));
+    return json({ passphrase, device_changed: true, device_slot: 2, max_devices: MAX_DEVICES });
 
   } catch (e) {
     const envFlags = {
