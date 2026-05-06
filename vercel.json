@@ -17,6 +17,7 @@
     { "source": "/learn", "destination": "/learn-vol1.html" },
     { "source": "/learn-vol1", "destination": "/learn-vol1.html" },
     { "source": "/learn-vol2", "destination": "/learn-vol2.html" },
+    { "source": "/book-sme", "destination": "/book-sme.html" },
     { "source": "/visualize", "destination": "/learn-vol1.html" },
     { "source": "/visualize-vol2", "destination": "/learn-vol2.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
