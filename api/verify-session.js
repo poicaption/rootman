@@ -80,17 +80,63 @@ export default async function handler(req) {
     const code = generateCode();
     const now = new Date().toISOString();
 
-    // Extract customer email for Advanced Matching
-    const customerEmail = (session.customer_details && session.customer_details.email) || null;
+    // Extract payment evidence for fraud/chargeback defense
+    const customerDetails = session.customer_details || {};
+    const customerEmail = customerDetails.email || null;
+    const customerName = customerDetails.name || null;
+    const customerCountry = (customerDetails.address && customerDetails.address.country) || null;
+    const amountTotal = session.amount_total || null;
+    const currency = session.currency || null;
+    const paymentIntent = session.payment_intent || null;
+    const paymentStatus = session.payment_status || null;
+    const stripeCustomerId = session.customer || null;
 
-    // Store session → code (90-day TTL)
+    // Buyer fingerprint at thank-you page hit (legitimate fraud-prevention purpose)
+    const buyerIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || null;
+    const userAgent = req.headers.get('user-agent') || null;
+
+    // Permanent code record — now includes proof-of-payment fields
+    const codeRecord = {
+      session_id: sessionId,
+      device_id: null,
+      vol,
+      created_at: now,
+      // Payment evidence
+      customer_email: customerEmail,
+      customer_name: customerName,
+      customer_country: customerCountry,
+      amount_total: amountTotal,
+      currency,
+      payment_intent: paymentIntent,
+      payment_status: paymentStatus,
+      stripe_customer_id: stripeCustomerId,
+      buyer_ip: buyerIp,
+      user_agent: userAgent,
+    };
+
+    // Store session → code (90-day TTL — used for thank-you page idempotency)
     await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, customer_email: customerEmail, vol, created_at: now }), 'EX', 7776000]);
 
-    // Store code → data (permanent). Tag with vol so /api/unlock returns the right passphrase.
-    await redis(['SET', `code:${code}`, JSON.stringify({ session_id: sessionId, device_id: null, vol, created_at: now })]);
+    // Store code → data (permanent)
+    await redis(['SET', `code:${code}`, JSON.stringify(codeRecord)]);
+
+    // Permanent purchase audit record (no TTL) — primary evidence ledger
+    await redis(['SET', `purchase:${sessionId}`, JSON.stringify({ ...codeRecord, code })]);
+
+    // Email index for fast lookup during disputes
+    if (customerEmail) {
+      const emailKey = `email:${customerEmail.trim().toLowerCase()}`;
+      await redis(['LPUSH', emailKey, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
+      await redis(['LTRIM', emailKey, 0, 49]); // keep last 50 purchases per email
+    }
+
+    // Payment-intent index (Stripe uses payment_intent in dispute notifications)
+    if (paymentIntent) {
+      await redis(['SET', `pi:${paymentIntent}`, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
+    }
 
     // Log
-    console.log('[NEW-CODE]', JSON.stringify({ code, vol, session_id: sessionId.slice(0, 20) + '...', ts: now }));
+    console.log('[NEW-CODE]', JSON.stringify({ code, vol, session_id: sessionId.slice(0, 20) + '...', email: customerEmail, ts: now }));
 
     return json({ code, customer_email: customerEmail, vol });
   } catch (e) {

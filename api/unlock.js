@@ -30,6 +30,16 @@ async function sha256(str) {
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// Append a usage event to the per-code audit log (last 200 events).
+// Failures are swallowed — must never block an unlock.
+async function appendAudit(code, event) {
+  try {
+    const key = `audit:code:${code.toUpperCase()}`;
+    await redis(['LPUSH', key, JSON.stringify(event)]);
+    await redis(['LTRIM', key, 0, 199]);
+  } catch (_) { /* non-fatal */ }
+}
+
 const MASTER_HASH = '2b9310c06c395990ca9438e5fab2177ca716237b877fdbda8b337b9047bb6b63';
 const MASTER_HASH_V2 = '5726a7d599e3a196ec4863d400c8803023968ed11df253f139cb00cb657302e6';
 
@@ -60,13 +70,28 @@ export default async function handler(req) {
       return json({ error: 'missing_params', message: 'ข้อมูลไม่ครบ' }, 400);
     }
 
+    // Capture request fingerprint for audit (legitimate fraud-prevention)
+    const ipRaw = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '';
+    const ip = ipRaw.split(',')[0].trim() || null;
+    const ua = (req.headers.get('user-agent') || '').slice(0, 200) || null;
+    const auditBase = {
+      ts: new Date().toISOString(),
+      device_id_short: device_id.slice(0, 12),
+      ip,
+      ua,
+      action: action || 'unlock',
+      req_vol: reqVol,
+    };
+
     // Master code → always works, no device restriction
     stage = 'master_hash';
     const hash = await sha256(code.trim().toLowerCase());
     if (hash === MASTER_HASH) {
+      await appendAudit('MASTER-V1', { ...auditBase, event: 'master_unlock', vol: 1 });
       return json({ passphrase: getPassphrase(1), master: true, vol: 1 });
     }
     if (hash === MASTER_HASH_V2) {
+      await appendAudit('MASTER-V2', { ...auditBase, event: 'master_unlock', vol: 2 });
       return json({ passphrase: getPassphrase(2), master: true, vol: 2 });
     }
 
@@ -106,6 +131,7 @@ export default async function handler(req) {
       delete data.device_id;
       await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
       console.log('[UNLOCK-BIND]', JSON.stringify({ code: code.toUpperCase(), device_id: device_id.slice(0, 8) }));
+      await appendAudit(code, { ...auditBase, event: 'bind_first_device', slot: 1 });
       return json({ passphrase, device_slot: 1, max_devices: MAX_DEVICES });
     }
 
@@ -117,6 +143,7 @@ export default async function handler(req) {
         delete data.device_id;
         await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
       }
+      await appendAudit(code, { ...auditBase, event: 'unlock_known_device', slot: devices.indexOf(device_id) + 1 });
       return json({ passphrase, device_slot: devices.indexOf(device_id) + 1, max_devices: MAX_DEVICES });
     }
 
@@ -127,6 +154,7 @@ export default async function handler(req) {
       delete data.device_id;
       await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
       console.log('[UNLOCK-ADD]', JSON.stringify({ code: code.toUpperCase(), device_id: device_id.slice(0, 8), slot: devices.length }));
+      await appendAudit(code, { ...auditBase, event: 'add_device', slot: devices.length });
       return json({ passphrase, device_added: true, device_slot: devices.length, max_devices: MAX_DEVICES });
     }
 
@@ -134,6 +162,7 @@ export default async function handler(req) {
     if (action === 'verify') {
       // Just checking — don't evict, report full
       console.log('[DEVICE-FULL]', JSON.stringify({ code: code.toUpperCase(), got: device_id.slice(0, 8) }));
+      await appendAudit(code, { ...auditBase, event: 'device_full_check' });
       return json({ error: 'device_mismatch', message: 'รหัสนี้ใช้ครบ 2 เครื่องแล้ว กรุณาใส่ Unlock Code อีกครั้งเพื่อย้ายมาเครื่องนี้ (เครื่องที่เก่าที่สุดจะถูกล็อก)' }, 403);
     }
 
@@ -144,6 +173,7 @@ export default async function handler(req) {
     delete data.device_id;
     await redis(['SET', `code:${code.toUpperCase()}`, JSON.stringify(data)]);
     console.log('[DEVICE-EVICT]', JSON.stringify({ code: code.toUpperCase(), evicted: evicted.slice(0, 8), new: device_id.slice(0, 8) }));
+    await appendAudit(code, { ...auditBase, event: 'device_evict', evicted_short: evicted.slice(0, 12), slot: 2 });
     return json({ passphrase, device_changed: true, device_slot: 2, max_devices: MAX_DEVICES });
 
   } catch (e) {
