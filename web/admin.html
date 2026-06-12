@@ -172,7 +172,7 @@
   <div class="gate-card">
     <h1>ROOT<span>·</span>ADMIN</h1>
     <p>หลังบ้านบันทึกการใช้งานลูกค้า</p>
-    <input id="tokenInput" type="password" placeholder="Admin token" autocomplete="off" />
+    <input id="tokenInput" type="password" placeholder="รหัสผ่าน" autocomplete="off" />
     <button id="loginBtn">เข้าสู่ระบบ</button>
     <div class="gate-err" id="gateErr"></div>
   </div>
@@ -222,7 +222,20 @@
 (function () {
   'use strict';
   var TOKEN_KEY = 'root-admin-token';
+  // Salt for deriving the API token from the human passphrase. The plaintext
+  // passphrase is never stored or sent — only this salted SHA-256 derivative.
+  var TOKEN_SALT = 'oneroot-admin-v1:';
   var token = sessionStorage.getItem(TOKEN_KEY) || '';
+
+  // Derive the bearer token from a passphrase: SHA-256(salt + passphrase) → hex.
+  function deriveToken(passphrase) {
+    var bytes = new TextEncoder().encode(TOKEN_SALT + passphrase);
+    return crypto.subtle.digest('SHA-256', bytes).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+        return ('0' + b.toString(16)).slice(-2);
+      }).join('');
+    });
+  }
 
   // ── Helpers ──
   function el(id) { return document.getElementById(id); }
@@ -282,19 +295,22 @@
   }
 
   function doLogin() {
-    var t = el('tokenInput').value.trim();
-    if (!t) { el('gateErr').textContent = 'กรุณาใส่ token'; return; }
-    token = t;
+    var pass = el('tokenInput').value.trim();
+    if (!pass) { el('gateErr').textContent = 'กรุณาใส่รหัสผ่าน'; return; }
     el('gateErr').textContent = 'กำลังตรวจสอบ…';
-    api('/api/admin-overview?limit=1')
+    deriveToken(pass).then(function (derived) {
+      token = derived;
+      return api('/api/admin-overview?limit=1');
+    })
       .then(function () {
         sessionStorage.setItem(TOKEN_KEY, token);
+        el('tokenInput').value = '';
         el('gateErr').textContent = '';
         showApp();
       })
       .catch(function (e) {
         token = '';
-        el('gateErr').textContent = e && e.unauthorized ? 'Token ไม่ถูกต้อง' : 'เชื่อมต่อไม่ได้';
+        el('gateErr').textContent = e && e.unauthorized ? 'รหัสผ่านไม่ถูกต้อง' : 'เชื่อมต่อไม่ได้';
       });
   }
 

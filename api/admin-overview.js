@@ -40,6 +40,23 @@ function safeParse(s) {
   try { return JSON.parse(s); } catch { return null; }
 }
 
+// Constant-time string comparison to avoid leaking the token via timing.
+function timingSafeEqual(a, b) {
+  if (typeof a !== 'string' || typeof b !== 'string') return false;
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  return diff === 0;
+}
+
+function isAuthorized(provided, allowed) {
+  if (!provided) return false;
+  // Compare against every configured secret in constant time.
+  let ok = false;
+  for (const a of allowed) if (timingSafeEqual(provided, a)) ok = true;
+  return ok;
+}
+
 async function val(command, fallback = null) {
   try {
     const r = await redis(command);
@@ -59,9 +76,10 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const auth = req.headers.get('Authorization') || '';
   const bearer = auth.startsWith('Bearer ') ? auth.slice(7) : '';
-  const provided = req.headers.get('x-admin-token') || url.searchParams.get('token') || bearer;
+  // Header-only: never accept ?token= (it can leak via access logs / browser history).
+  const provided = req.headers.get('x-admin-token') || bearer;
   const allowed = [adminToken, adminSecret].filter(Boolean);
-  if (!provided || !allowed.includes(provided)) {
+  if (!isAuthorized(provided, allowed)) {
     return json({ error: 'unauthorized' }, 401);
   }
 
