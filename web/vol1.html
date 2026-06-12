@@ -4259,8 +4259,17 @@
                         tz: Intl.DateTimeFormat().resolvedOptions().timeZone,
                         l: navigator.language,
                         p: navigator.platform,
-                        t: new Date().toISOString()
+                        t: new Date().toISOString(),
+                        vol: 1
                     };
+                    // Attribute usage to the buyer's purchase when a unique code is present.
+                    try {
+                        var uc = localStorage.getItem('oneroot-uc');
+                        if (uc) {
+                            fp.code = uc;
+                            fp.did = getDeviceId();
+                        }
+                    } catch(e) {}
                     fetch('/api/track-unlock', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },

@@ -128,11 +128,54 @@ export default async function handler(req) {
       const emailKey = `email:${customerEmail.trim().toLowerCase()}`;
       await redis(['LPUSH', emailKey, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
       await redis(['LTRIM', emailKey, 0, 49]); // keep last 50 purchases per email
+
+      // Seed the per-user activity timeline with the purchase event so each
+      // customer's detailed usage ledger starts the moment they buy.
+      const activityKey = `activity:email:${customerEmail.trim().toLowerCase()}`;
+      await redis(['LPUSH', activityKey, JSON.stringify({
+        ts: now,
+        event: 'purchase',
+        email: customerEmail,
+        code,
+        vol,
+        amount_total: amountTotal,
+        currency,
+        payment_intent: paymentIntent,
+        customer_country: customerCountry,
+        ip: buyerIp,
+        ua: userAgent ? userAgent.slice(0, 200) : null,
+      })]);
+      await redis(['LTRIM', activityKey, 0, 499]); // keep last 500 events per user
     }
 
     // Payment-intent index (Stripe uses payment_intent in dispute notifications)
     if (paymentIntent) {
       await redis(['SET', `pi:${paymentIntent}`, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
+    }
+
+    // ── Global indexes for the admin dashboard ──
+    // Recent-purchases feed (last 500) — powers the overview list.
+    await redis(['LPUSH', 'purchases:recent', JSON.stringify({
+      ts: now,
+      email: customerEmail,
+      name: customerName,
+      country: customerCountry,
+      code,
+      vol,
+      amount_total: amountTotal,
+      currency,
+      session_id: sessionId,
+    })]);
+    await redis(['LTRIM', 'purchases:recent', 0, 499]);
+
+    // Distinct-customer set (for total unique buyers) + rolling revenue counters.
+    if (customerEmail) {
+      await redis(['SADD', 'users:emails', customerEmail.trim().toLowerCase()]);
+    }
+    await redis(['INCR', 'stats:purchases:total']);
+    await redis(['INCR', `stats:purchases:vol${vol}`]);
+    if (amountTotal) {
+      await redis(['INCRBY', `stats:revenue:${currency || 'unknown'}`, amountTotal]);
     }
 
     // Log

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ROOT · Admin Dashboard</title>
+<style>
+  :root {
+    --bg: #0e1116;
+    --panel: #171b22;
+    --panel-2: #1e242d;
+    --border: #2a313c;
+    --text: #e6e9ef;
+    --muted: #8b95a5;
+    --accent: #c4956a;
+    --accent-2: #6aa9c4;
+    --green: #4caf7d;
+    --red: #e0584b;
+    --amber: #d9a441;
+    --radius: 14px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans Thai", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent-2); }
+
+  /* ── Login gate ── */
+  #gate {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(1200px 600px at 50% -10%, #1b2230 0%, var(--bg) 60%);
+  }
+  .gate-card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 36px 32px; width: min(92vw, 380px);
+    box-shadow: var(--shadow); text-align: center;
+  }
+  .gate-card h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: .5px; }
+  .gate-card p { color: var(--muted); margin: 0 0 22px; font-size: 13px; }
+  .gate-card input {
+    width: 100%; padding: 12px 14px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--panel-2);
+    color: var(--text); font-size: 15px; outline: none; margin-bottom: 12px;
+  }
+  .gate-card input:focus { border-color: var(--accent); }
+  .gate-card button {
+    width: 100%; padding: 12px; border: none; border-radius: 10px;
+    background: var(--accent); color: #1a1206; font-weight: 700; font-size: 15px;
+    cursor: pointer; transition: filter .15s;
+  }
+  .gate-card button:hover { filter: brightness(1.08); }
+  .gate-err { color: var(--red); font-size: 13px; min-height: 18px; margin-top: 10px; }
+
+  /* ── Layout ── */
+  header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 24px; border-bottom: 1px solid var(--border);
+    background: var(--panel); position: sticky; top: 0; z-index: 20;
+  }
+  header .brand { font-weight: 800; letter-spacing: 1px; font-size: 16px; }
+  header .brand span { color: var(--accent); }
+  header .right { display: flex; align-items: center; gap: 12px; }
+  .ghost-btn {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 14px; border-radius: 9px; cursor: pointer; font-size: 13px;
+  }
+  .ghost-btn:hover { border-color: var(--accent); }
+  .updated { color: var(--muted); font-size: 12px; }
+
+  main { padding: 24px; max-width: 1180px; margin: 0 auto; }
+
+  /* ── Stat cards ── */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 26px; }
+  .card {
+    background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 18px 16px; position: relative; overflow: hidden;
+  }
+  .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
+  .card .value { font-size: 30px; font-weight: 800; margin-top: 8px; line-height: 1; }
+  .card .sub { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .card.accent::after, .card.green::after, .card.blue::after, .card.amber::after {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  }
+  .card.accent::after { background: var(--accent); }
+  .card.green::after { background: var(--green); }
+  .card.blue::after { background: var(--accent-2); }
+  .card.amber::after { background: var(--amber); }
+
+  /* ── Search bar ── */
+  .toolbar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
+  .toolbar input {
+    flex: 1; min-width: 220px; padding: 11px 14px; border-radius: 10px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    font-size: 14px; outline: none;
+  }
+  .toolbar input:focus { border-color: var(--accent); }
+  .toolbar button {
+    padding: 11px 18px; border: none; border-radius: 10px; background: var(--accent-2);
+    color: #06181f; font-weight: 700; cursor: pointer; font-size: 14px;
+  }
+
+  /* ── Section ── */
+  .section { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 26px; }
+  .section-head { padding: 14px 18px; border-bottom: 1px solid var(--border); font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
+  .section-head .count { color: var(--muted); font-size: 12px; font-weight: 500; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { text-align: left; padding: 11px 18px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  th { color: var(--muted); font-weight: 600; font-size: 11.5px; text-transform: uppercase; letter-spacing: .5px; }
+  tbody tr { cursor: pointer; transition: background .12s; }
+  tbody tr:hover { background: var(--panel-2); }
+  td.email { color: var(--accent-2); }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12.5px; }
+
+  .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
+  .badge.v1 { background: rgba(106,169,196,.15); color: var(--accent-2); }
+  .badge.v2 { background: rgba(196,149,106,.18); color: var(--accent); }
+  .badge.ok { background: rgba(76,175,125,.15); color: var(--green); }
+  .badge.gone { background: rgba(224,88,75,.15); color: var(--red); }
+
+  .empty { padding: 40px; text-align: center; color: var(--muted); }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--border); border-top-color: var(--accent); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Detail drawer ── */
+  #drawer { position: fixed; inset: 0; z-index: 60; display: none; }
+  #drawer.open { display: block; }
+  #drawer .scrim { position: absolute; inset: 0; background: rgba(0,0,0,.5); }
+  #drawer .panel {
+    position: absolute; right: 0; top: 0; bottom: 0; width: min(94vw, 560px);
+    background: var(--panel); border-left: 1px solid var(--border); box-shadow: var(--shadow);
+    overflow-y: auto; padding: 22px 24px 60px;
+  }
+  #drawer .panel h2 { margin: 0 0 2px; font-size: 18px; word-break: break-all; }
+  #drawer .panel .dsub { color: var(--muted); font-size: 12.5px; margin-bottom: 18px; }
+  .close-x { position: absolute; right: 18px; top: 16px; background: none; border: none; color: var(--muted); font-size: 24px; cursor: pointer; }
+  .mini-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; }
+  .mini { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  .mini .l { color: var(--muted); font-size: 10.5px; text-transform: uppercase; letter-spacing: .5px; }
+  .mini .v { font-size: 20px; font-weight: 800; margin-top: 4px; }
+  .dh { font-size: 12.5px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin: 22px 0 10px; }
+
+  .timeline { position: relative; padding-left: 18px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 4px; bottom: 4px; width: 2px; background: var(--border); }
+  .tl-item { position: relative; padding: 0 0 16px 14px; }
+  .tl-item::before { content: ""; position: absolute; left: -16px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); border: 2px solid var(--panel); }
+  .tl-item.purchase::before { background: var(--green); }
+  .tl-item.evict::before, .tl-item.full::before { background: var(--red); }
+  .tl-item.access::before { background: var(--accent-2); }
+  .tl-event { font-weight: 700; font-size: 13.5px; }
+  .tl-time { color: var(--muted); font-size: 11.5px; margin-bottom: 3px; }
+  .tl-meta { color: var(--muted); font-size: 12px; word-break: break-word; }
+  .tl-meta b { color: var(--text); font-weight: 600; }
+
+  .purchase-row { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 13px; }
+  .purchase-row .pr-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ── Login gate ── -->
+<div id="gate">
+  <div class="gate-card">
+    <h1>ROOT<span>·</span>ADMIN</h1>
+    <p>หลังบ้านบันทึกการใช้งานลูกค้า</p>
+    <input id="tokenInput" type="password" placeholder="Admin token" autocomplete="off" />
+    <button id="loginBtn">เข้าสู่ระบบ</button>
+    <div class="gate-err" id="gateErr"></div>
+  </div>
+</div>
+
+<!-- ── App ── -->
+<div id="app" style="display:none">
+  <header>
+    <div class="brand">ROOT<span>·</span>ADMIN</div>
+    <div class="right">
+      <span class="updated" id="updated"></span>
+      <button class="ghost-btn" id="refreshBtn">รีเฟรช</button>
+      <button class="ghost-btn" id="logoutBtn">ออก</button>
+    </div>
+  </header>
+
+  <main>
+    <div class="cards" id="cards"></div>
+
+    <div class="toolbar">
+      <input id="searchInput" placeholder="ค้นหาด้วยอีเมล / รหัส (ROOT-XXXX-XXXX) / session_id…" />
+      <button id="searchBtn">ดูกิจกรรมลูกค้า</button>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span>การซื้อล่าสุด</span>
+        <span class="count" id="recentCount"></span>
+      </div>
+      <div id="recentWrap">
+        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- ── Detail drawer ── -->
+<div id="drawer">
+  <div class="scrim" id="drawerScrim"></div>
+  <div class="panel" id="drawerPanel">
+    <button class="close-x" id="drawerClose">&times;</button>
+    <div id="drawerBody"></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var TOKEN_KEY = 'root-admin-token';
+  var token = sessionStorage.getItem(TOKEN_KEY) || '';
+
+  // ── Helpers ──
+  function el(id) { return document.getElementById(id); }
+
+  function api(path) {
+    return fetch(path, { headers: { 'x-admin-token': token } })
+      .then(function (r) {
+        if (r.status === 401) { throw { unauthorized: true }; }
+        return r.json().then(function (data) {
+          if (!r.ok) throw data;
+          return data;
+        });
+      });
+  }
+
+  function esc(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+    });
+  }
+
+  function money(minor, cur) {
+    if (minor === null || minor === undefined) return '–';
+    var v = (minor / 100).toLocaleString('th-TH', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    return v + ' ' + (cur ? cur.toUpperCase() : '');
+  }
+
+  function fmtTime(iso) {
+    if (!iso) return '–';
+    try {
+      var d = new Date(iso);
+      return d.toLocaleString('th-TH', { dateStyle: 'medium', timeStyle: 'short' });
+    } catch (e) { return iso; }
+  }
+
+  function relTime(iso) {
+    if (!iso) return '';
+    var diff = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (diff < 60) return 'เมื่อสักครู่';
+    if (diff < 3600) return Math.floor(diff / 60) + ' นาทีที่แล้ว';
+    if (diff < 86400) return Math.floor(diff / 3600) + ' ชม.ที่แล้ว';
+    return Math.floor(diff / 86400) + ' วันที่แล้ว';
+  }
+
+  // ── Login ──
+  function showApp() {
+    el('gate').style.display = 'none';
+    el('app').style.display = 'block';
+    loadOverview();
+  }
+  function showGate(msg) {
+    el('app').style.display = 'none';
+    el('gate').style.display = 'flex';
+    if (msg) el('gateErr').textContent = msg;
+    el('tokenInput').focus();
+  }
+
+  function doLogin() {
+    var t = el('tokenInput').value.trim();
+    if (!t) { el('gateErr').textContent = 'กรุณาใส่ token'; return; }
+    token = t;
+    el('gateErr').textContent = 'กำลังตรวจสอบ…';
+    api('/api/admin-overview?limit=1')
+      .then(function () {
+        sessionStorage.setItem(TOKEN_KEY, token);
+        el('gateErr').textContent = '';
+        showApp();
+      })
+      .catch(function (e) {
+        token = '';
+        el('gateErr').textContent = e && e.unauthorized ? 'Token ไม่ถูกต้อง' : 'เชื่อมต่อไม่ได้';
+      });
+  }
+
+  function logout() {
+    sessionStorage.removeItem(TOKEN_KEY);
+    token = '';
+    el('tokenInput').value = '';
+    showGate('');
+  }
+
+  // ── Overview ──
+  function loadOverview() {
+    el('recentWrap').innerHTML = '<div class="empty"><span class="spinner"></span> กำลังโหลด…</div>';
+    api('/api/admin-overview?limit=200')
+      .then(renderOverview)
+      .catch(function (e) {
+        if (e && e.unauthorized) return logout();
+        el('recentWrap').innerHTML = '<div class="empty">โหลดข้อมูลไม่ได้: ' + esc((e && e.message) || 'error') + '</div>';
+      });
+  }
+
+  function renderOverview(data) {
+    var s = data.stats || {};
+    el('updated').textContent = 'อัปเดต ' + fmtTime(data.generated_at);
+
+    var revStr = Object.keys(s.revenue || {}).map(function (cur) {
+      return money(s.revenue[cur].amount_minor, cur);
+    }).join(' · ') || '–';
+
+    var cards = [
+      { cls: 'green', label: 'ยอดขายรวม', value: revStr, sub: 'ทุกสกุลเงิน' },
+      { cls: 'accent', label: 'จำนวนการซื้อ', value: (s.total_purchases || 0).toLocaleString(), sub: 'ทั้งหมด' },
+      { cls: 'blue', label: 'ลูกค้า (unique)', value: (s.unique_buyers || 0).toLocaleString(), sub: 'อีเมลไม่ซ้ำ' },
+      { cls: 'amber', label: 'ซื้อวันนี้', value: (s.purchases_today || 0).toLocaleString(), sub: 'ตามวันที่ UTC' },
+      { cls: '', label: 'Vol.1 / Vol.2', value: (s.vol1_purchases || 0) + ' / ' + (s.vol2_purchases || 0), sub: 'แยกตามเล่ม' }
+    ];
+    el('cards').innerHTML = cards.map(function (c) {
+      return '<div class="card ' + c.cls + '">' +
+        '<div class="label">' + esc(c.label) + '</div>' +
+        '<div class="value">' + esc(c.value) + '</div>' +
+        '<div class="sub">' + esc(c.sub) + '</div></div>';
+    }).join('');
+
+    var rows = data.recent_purchases || [];
+    el('recentCount').textContent = rows.length + ' รายการ';
+    if (rows.length === 0) {
+      el('recentWrap').innerHTML = '<div class="empty">ยังไม่มีการซื้อ</div>';
+      return;
+    }
+    var html = '<table><thead><tr>' +
+      '<th>เวลา</th><th>อีเมล</th><th>ชื่อ</th><th>เล่ม</th><th>รหัส</th><th>ยอด</th><th>ประเทศ</th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (p) {
+      var vol = p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      html += '<tr data-email="' + esc(p.email || '') + '" data-code="' + esc(p.code || '') + '">' +
+        '<td>' + esc(fmtTime(p.ts)) + '</td>' +
+        '<td class="email">' + esc(p.email || '–') + '</td>' +
+        '<td>' + esc(p.name || '–') + '</td>' +
+        '<td>' + vol + '</td>' +
+        '<td class="mono">' + esc(p.code || '–') + '</td>' +
+        '<td>' + esc(money(p.amount_total, p.currency)) + '</td>' +
+        '<td>' + esc(p.country || '–') + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table>';
+    el('recentWrap').innerHTML = html;
+
+    Array.prototype.forEach.call(el('recentWrap').querySelectorAll('tr[data-email]'), function (tr) {
+      tr.addEventListener('click', function () {
+        var email = tr.getAttribute('data-email');
+        var code = tr.getAttribute('data-code');
+        openUser(email ? 'email=' + encodeURIComponent(email) : 'code=' + encodeURIComponent(code));
+      });
+    });
+  }
+
+  // ── Search ──
+  function doSearch() {
+    var q = el('searchInput').value.trim();
+    if (!q) return;
+    var param;
+    if (/@/.test(q)) param = 'email=' + encodeURIComponent(q);
+    else if (/^ROOT-/i.test(q)) param = 'code=' + encodeURIComponent(q);
+    else if (/^cs_/i.test(q)) param = 'session_id=' + encodeURIComponent(q);
+    else param = 'email=' + encodeURIComponent(q);
+    openUser(param);
+  }
+
+  // ── User detail drawer ──
+  function openUser(queryParam) {
+    el('drawer').classList.add('open');
+    el('drawerBody').innerHTML = '<div class="empty"><span class="spinner"></span> กำลังโหลด…</div>';
+    api('/api/user-activity?' + queryParam + '&limit=300')
+      .then(renderUser)
+      .catch(function (e) {
+        if (e && e.unauthorized) { closeDrawer(); return logout(); }
+        var msg = (e && (e.hint || e.message)) || 'ไม่พบข้อมูล';
+        el('drawerBody').innerHTML = '<button class="close-x" onclick="">&times;</button><div class="empty">' + esc(msg) + '</div>';
+        rebindClose();
+      });
+  }
+
+  function eventLabel(ev) {
+    var map = {
+      purchase: 'ซื้อสำเร็จ',
+      bind_first_device: 'ผูกอุปกรณ์เครื่องแรก',
+      add_device: 'เพิ่มอุปกรณ์',
+      unlock_known_device: 'ปลดล็อก (อุปกรณ์เดิม)',
+      device_evict: 'ย้ายเครื่อง (เตะเครื่องเก่า)',
+      device_full_check: 'อุปกรณ์เต็ม (ตรวจสอบ)',
+      master_unlock: 'ปลดล็อกด้วย Master code',
+      content_access: 'เปิดอ่านเนื้อหา'
+    };
+    return map[ev] || ev || 'เหตุการณ์';
+  }
+  function eventClass(ev) {
+    if (ev === 'purchase') return 'purchase';
+    if (ev === 'device_evict') return 'evict';
+    if (ev === 'device_full_check') return 'full';
+    if (ev === 'content_access') return 'access';
+    return '';
+  }
+
+  function renderUser(data) {
+    var sum = data.summary || {};
+    var html = '<button class="close-x" id="drawerCloseInner">&times;</button>';
+    html += '<h2>' + esc(data.email) + '</h2>';
+    html += '<div class="dsub">ดูครั้งล่าสุด ' + esc(relTime(sum.last_seen)) + ' · ' + esc(fmtTime(sum.last_seen)) + '</div>';
+
+    html += '<div class="mini-cards">' +
+      '<div class="mini"><div class="l">การซื้อ</div><div class="v">' + (sum.total_purchases || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">เหตุการณ์</div><div class="v">' + (sum.total_activity_events || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">อุปกรณ์</div><div class="v">' + (sum.distinct_devices || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">IP</div><div class="v">' + (sum.distinct_ips || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">เปิดอ่าน</div><div class="v">' + ((sum.event_breakdown && sum.event_breakdown.content_access) || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">รหัส</div><div class="v">' + ((sum.codes && sum.codes.length) || 0) + '</div></div>' +
+    '</div>';
+
+    // Purchases
+    html += '<div class="dh">การซื้อ</div>';
+    (data.purchases || []).forEach(function (p) {
+      var vol = p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var status = p.revoked ? '<span class="badge gone">ถูกยกเลิก</span>' : '<span class="badge ok">ใช้งานได้</span>';
+      html += '<div class="purchase-row">' +
+        '<div class="pr-top"><span class="mono">' + esc(p.code || '–') + '</span>' + vol + ' ' + status + '</div>' +
+        '<div class="tl-meta">' + esc(fmtTime(p.purchased_at)) + ' · ' + esc(money(p.amount_total, p.currency)) +
+        ' · อุปกรณ์ ' + (p.device_count || 0) + ' เครื่อง' +
+        (p.customer_country ? ' · ' + esc(p.customer_country) : '') + '</div>' +
+      '</div>';
+    });
+
+    // Timeline
+    html += '<div class="dh">ไทม์ไลน์การใช้งาน</div>';
+    var tl = data.activity_timeline || [];
+    if (tl.length === 0) {
+      html += '<div class="empty">ยังไม่มีกิจกรรม</div>';
+    } else {
+      html += '<div class="timeline">';
+      tl.forEach(function (ev) {
+        var meta = [];
+        if (ev.vol) meta.push('Vol.' + ev.vol);
+        if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
+        if (ev.ip) meta.push('IP ' + esc(ev.ip));
+        if (ev.device_id_short) meta.push('dev ' + esc(ev.device_id_short));
+        if (ev.amount_total) meta.push(esc(money(ev.amount_total, ev.currency)));
+        if (ev.slot) meta.push('slot ' + ev.slot);
+        if (ev.evicted_short) meta.push('เตะ ' + esc(ev.evicted_short));
+        if (ev.platform) meta.push(esc(ev.platform));
+        html += '<div class="tl-item ' + eventClass(ev.event) + '">' +
+          '<div class="tl-time">' + esc(fmtTime(ev.ts)) + ' · ' + esc(relTime(ev.ts)) + '</div>' +
+          '<div class="tl-event">' + esc(eventLabel(ev.event)) + '</div>' +
+          (meta.length ? '<div class="tl-meta">' + meta.join(' · ') + '</div>' : '') +
+        '</div>';
+      });
+      html += '</div>';
+    }
+
+    el('drawerBody').innerHTML = html;
+    rebindClose();
+  }
+
+  function rebindClose() {
+    var btn = el('drawerCloseInner');
+    if (btn) btn.addEventListener('click', closeDrawer);
+  }
+  function closeDrawer() { el('drawer').classList.remove('open'); }
+
+  // ── Wire up ──
+  el('loginBtn').addEventListener('click', doLogin);
+  el('tokenInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
+  el('refreshBtn').addEventListener('click', loadOverview);
+  el('logoutBtn').addEventListener('click', logout);
+  el('searchBtn').addEventListener('click', doSearch);
+  el('searchInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
+  el('drawerScrim').addEventListener('click', closeDrawer);
+  el('drawerClose').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+
+  // ── Boot ──
+  if (token) {
+    api('/api/admin-overview?limit=1').then(showApp).catch(function () { showGate(''); });
+  } else {
+    showGate('');
+  }
+})();
+</script>
+</body>
+</html>

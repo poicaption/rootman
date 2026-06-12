@@ -22,6 +22,7 @@
     { "source": "/visualize-vol2", "destination": "/learn-vol2.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
+    { "source": "/admin", "destination": "/admin.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],

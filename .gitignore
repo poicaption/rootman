@@ -8,6 +8,10 @@ __pycache__/
 revoke-code.ps1
 *.local.ps1
 
+# Environment / secret files — never commit
+.env
+.env.*
+
 # Keep web output
 !web/
 !web/**
@@ -17,3 +21,4 @@ revoke-code.ps1
 !.gitignore
 !package.json
 !README.md
+.vercel

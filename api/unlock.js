@@ -30,13 +30,23 @@ async function sha256(str) {
   return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// Append a usage event to the per-code audit log (last 200 events).
+// Append a usage event to the per-code audit log (last 200 events) AND — when the
+// event carries a customer email — to that user's unified activity timeline
+// (last 500 events across all of their codes/devices).
 // Failures are swallowed — must never block an unlock.
 async function appendAudit(code, event) {
   try {
-    const key = `audit:code:${code.toUpperCase()}`;
+    const codeUpper = code.toUpperCase();
+    const key = `audit:code:${codeUpper}`;
     await redis(['LPUSH', key, JSON.stringify(event)]);
     await redis(['LTRIM', key, 0, 199]);
+
+    // Per-user (email) timeline — the detailed usage ledger for each customer.
+    if (event.email) {
+      const userKey = `activity:email:${String(event.email).trim().toLowerCase()}`;
+      await redis(['LPUSH', userKey, JSON.stringify({ ...event, code: codeUpper })]);
+      await redis(['LTRIM', userKey, 0, 499]);
+    }
   } catch (_) { /* non-fatal */ }
 }
 
@@ -109,6 +119,9 @@ export default async function handler(req) {
 
     stage = 'parse_record';
     const data = JSON.parse(result.result);
+    // Bind the buyer's email (captured at purchase time) to every audit/usage
+    // event from here on, so each customer has a unified per-user timeline.
+    auditBase.email = data.customer_email || null;
     // Determine the volume this code unlocks. Codes saved before vol-tagging default to 1.
     const codeVol = data.vol === 2 ? 2 : 1;
     // If client requested a specific vol that mismatches the code's vol, reject.
