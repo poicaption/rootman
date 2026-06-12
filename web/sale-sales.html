@@ -1917,6 +1917,150 @@
             .guarantee-box { padding: 1.4rem 1rem; }
             .testimonial { padding: 1rem; }
         }
+
+        /* ═══════════════════════════════════════════
+           PREMIUM INTERACTION LAYER  (added)
+           Cohesive "extraordinary" flair — all responsive-safe
+           and disabled under prefers-reduced-motion.
+           ═══════════════════════════════════════════ */
+
+        /* 1 ─ Hero aurora orb: a slow drifting glow that adds living depth */
+        .hero-aurora {
+            position: absolute;
+            top: -20%; left: 50%;
+            width: min(680px, 120vw);
+            height: min(680px, 120vw);
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(closest-side, rgba(194,59,34,0.16), transparent 70%),
+                radial-gradient(closest-side, rgba(184,134,11,0.12), transparent 70%);
+            background-position: 35% 40%, 65% 60%;
+            background-repeat: no-repeat;
+            background-size: 60% 60%, 55% 55%;
+            filter: blur(40px);
+            opacity: 0.9;
+            animation: aurora-drift 16s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+        @keyframes aurora-drift {
+            0%, 100% { background-position: 32% 38%, 66% 62%; transform: translateX(-50%) scale(1); }
+            50%      { background-position: 60% 55%, 38% 42%; transform: translateX(-50%) scale(1.08); }
+        }
+
+        /* 2 ─ Scroll cue: elegant bouncing invite at the foot of the hero */
+        .scroll-cue {
+            position: absolute;
+            left: 50%; bottom: 1.1rem;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.35rem;
+            z-index: 2;
+            color: var(--warm);
+            opacity: 0.7;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-decoration: none;
+        }
+        .scroll-cue.hide { opacity: 0; transform: translateX(-50%) translateY(10px); pointer-events: none; }
+        .scroll-cue span {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+        .scroll-cue .cue-chev {
+            width: 18px; height: 18px;
+            border-right: 1.5px solid var(--warm);
+            border-bottom: 1.5px solid var(--warm);
+            transform: rotate(45deg);
+            animation: cue-bounce 1.8s ease-in-out infinite;
+        }
+        @keyframes cue-bounce {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+            50%      { transform: rotate(45deg) translate(3px, 3px); opacity: 1; }
+        }
+
+        /* 3 ─ Interactive benefit cards: cursor spotlight + subtle 3D tilt (desktop) */
+        .benefit-grid { perspective: 1200px; }
+        .benefit-card {
+            will-change: transform;
+            transition: box-shadow 0.3s, transform 0.25s cubic-bezier(0.16,1,0.3,1), background-color 0.3s;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .benefit-card.tiltable {
+                background-image: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(184,134,11,0.10), transparent 62%);
+            }
+            .benefit-card.tiltable:hover {
+                box-shadow: 0 18px 44px rgba(0,0,0,0.12), 0 0 0 1px rgba(184,134,11,0.12);
+            }
+        }
+
+        /* 4 ─ Floating back-to-top: a sacred-geometry mark that fades in on scroll */
+        .to-top {
+            position: fixed;
+            right: 1rem; bottom: 5.2rem;
+            z-index: 9990;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: rgba(26,23,20,0.82);
+            color: var(--gold);
+            border: 1px solid rgba(196,149,106,0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0; transform: translateY(16px) scale(0.85);
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+        }
+        .to-top.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        .to-top:hover {
+            box-shadow: 0 0 0 1px rgba(196,149,106,0.5), 0 6px 22px rgba(184,134,11,0.25);
+            color: #fff;
+        }
+        .to-top .tt-mark { animation: pulse-glow 4s ease-in-out infinite; }
+        @media (min-width: 769px) { .to-top { bottom: 1.4rem; right: 1.4rem; } }
+
+        /* 5 ─ Price halo: a slow conic ring breathing behind the number */
+        .price-hero { position: relative; }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 220px; height: 220px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: conic-gradient(from 0deg,
+                rgba(184,134,11,0.18), rgba(194,59,34,0.10),
+                rgba(196,149,106,0.16), rgba(184,134,11,0.18));
+            filter: blur(26px);
+            opacity: 0.55;
+            z-index: -1;
+            pointer-events: none;
+            animation: halo-spin 18s linear infinite;
+        }
+        @keyframes halo-spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Responsive tuning for the new layer */
+        @media (max-width: 768px) {
+            .price-hero::before { width: 160px; height: 160px; }
+            .hero-aurora { opacity: 0.7; filter: blur(32px); }
+        }
+        @media (max-width: 420px) {
+            .scroll-cue { display: none; }
+            .price-hero::before { width: 130px; height: 130px; }
+        }
+
+        /* Honour reduced-motion: kill the new ambient motion too */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-aurora, .price-hero::before, .scroll-cue .cue-chev, .to-top .tt-mark { animation: none; }
+            .benefit-card { transition: box-shadow 0.3s, background-color 0.3s; }
+        }
     </style>
 </head>
 <body>
@@ -1929,6 +2073,7 @@
          HERO
          ═══════════════════════════════════════════════ -->
     <div class="hero">
+        <div class="hero-aurora" aria-hidden="true"></div>
         <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
         <div class="hero-inner rv">
             <div class="hero-eyebrow">The One Root of Marketing</div>
@@ -1938,6 +2083,10 @@
             <a href="#pricing" class="hero-cta">อ่านคนออก ปิดทุกดีล — 1,390 ฿</a>
             <p class="hero-note">หรือ <a href="/vol1">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
         </div>
+        <a href="#pricing" class="scroll-cue" id="scroll-cue" aria-label="เลื่อนลงเพื่ออ่านต่อ">
+            <span>เลื่อนอ่าน</span>
+            <span class="cue-chev" aria-hidden="true"></span>
+        </a>
     </div>
 
     <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
@@ -2518,6 +2667,9 @@
         <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="sticky-cta-btn">ซื้อเลย</a>
     </div>
 
+    <!-- ── Back to top ── -->
+    <button class="to-top" id="to-top" aria-label="กลับขึ้นด้านบน"><span class="tt-mark">◈</span></button>
+
     <div class="sp-footer">&copy; รากแก้วการตลาด &mdash; The One Root of Marketing</div>
 
 
@@ -2636,6 +2788,54 @@
         document.querySelectorAll('.faq-item.rv').forEach(function(el, i) {
             el.style.transitionDelay = (i * 0.08) + 's';
         });
+
+        /* ── Reduced-motion guard ── */
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var desktopHover = window.matchMedia('(min-width: 769px) and (hover: hover)').matches;
+
+        /* ── Scroll cue: fade out once the reader starts scrolling ── */
+        (function() {
+            var cue = document.getElementById('scroll-cue');
+            if (!cue) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 80) cue.classList.add('hide');
+                else cue.classList.remove('hide');
+            }, { passive: true });
+        })();
+
+        /* ── Back-to-top: reveal after the hero, smooth-scroll up ── */
+        (function() {
+            var btn = document.getElementById('to-top');
+            var hero = document.querySelector('.hero');
+            if (!btn) return;
+            window.addEventListener('scroll', function() {
+                var past = hero ? hero.getBoundingClientRect().bottom < -120 : window.scrollY > 600;
+                btn.classList.toggle('show', past);
+            }, { passive: true });
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+            });
+        })();
+
+        /* ── Benefit cards: cursor spotlight + subtle 3D tilt (desktop, motion ok) ── */
+        if (desktopHover && !reduceMotion) {
+            document.querySelectorAll('.benefit-card').forEach(function(card) {
+                card.classList.add('tiltable');
+                card.addEventListener('mousemove', function(e) {
+                    var r = card.getBoundingClientRect();
+                    var px = (e.clientX - r.left) / r.width;
+                    var py = (e.clientY - r.top) / r.height;
+                    card.style.setProperty('--mx', (px * 100) + '%');
+                    card.style.setProperty('--my', (py * 100) + '%');
+                    var rx = (0.5 - py) * 6;   // tilt up/down
+                    var ry = (px - 0.5) * 6;   // tilt left/right
+                    card.style.transform = 'perspective(1200px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = '';
+                });
+            });
+        }
 
         /* ── Hero parallax on mouse (desktop only) ── */
         if (window.matchMedia('(min-width: 769px) and (hover: hover)').matches) {
