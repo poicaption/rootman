@@ -2061,6 +2061,344 @@
             .hero-aurora, .price-hero::before, .scroll-cue .cue-chev, .to-top .tt-mark { animation: none; }
             .benefit-card { transition: box-shadow 0.3s, background-color 0.3s; }
         }
+
+        /* ═══════════════════════════════════════════
+           CONVERSION LAYER — added sections
+           ═══════════════════════════════════════════ */
+
+        /* Hero microcopy under CTA */
+        .hero-micro {
+            font-size: 0.78rem;
+            color: #8A837A;
+            line-height: 1.9;
+            margin-top: 1rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-micro strong { color: var(--warm); font-weight: 600; }
+        .hero-cta-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .hero-cta-secondary {
+            display: inline-block;
+            color: var(--warm);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196,149,106,0.3);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .hero-cta-secondary:hover { border-color: var(--warm); color: #F5F0EB; }
+
+        /* ── How It Works / Instant Access ── */
+        .how-it-works {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        .hiw-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .hiw-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+        }
+        .hiw-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.4rem;
+        }
+        .hiw-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 1.4rem;
+        }
+        .hiw-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        .hiw-num {
+            flex-shrink: 0;
+            width: 1.8rem; height: 1.8rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hiw-step-text {
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 0.15rem;
+        }
+        .hiw-note {
+            margin-top: 1.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+        }
+        .hiw-note strong { color: var(--accent); }
+
+        /* ── Big Idea band ── */
+        .bigidea {
+            background: linear-gradient(175deg, #0A0907 0%, #1A1714 40%, #0F0D0A 100%);
+            color: #F5F0EB;
+            padding: 3rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(196,149,106,0.1);
+            border-bottom: 1px solid rgba(196,149,106,0.1);
+        }
+        .bigidea::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(184,134,11,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .bigidea-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .bigidea-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .bigidea-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            line-height: 1.55;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .bigidea-quote em {
+            font-style: normal;
+            color: var(--warm);
+        }
+        .bigidea p {
+            font-size: 0.95rem;
+            color: #C4BDB3;
+            line-height: 1.95;
+            margin-bottom: 0.9rem;
+        }
+        .bigidea .fear-list {
+            font-family: 'Noto Serif Thai', serif;
+            color: #E8E2DA;
+            font-size: 1rem;
+            line-height: 2;
+            margin: 1.2rem 0;
+            padding-left: 1.2rem;
+            border-left: 2px solid rgba(196,149,106,0.3);
+        }
+        .bigidea strong { color: var(--warm); }
+
+        /* ── Mini reviews (pulled-up social proof) ── */
+        .mini-reviews {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .mini-review {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.2rem 1.4rem;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .mini-review:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .mini-review-text {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin: 0 0 0.6rem;
+        }
+        .mini-review-who {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.74rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── Author authority ── */
+        .author-box {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        .author-inner {
+            background: var(--gold-bg);
+            border: 1px solid #E8D5A8;
+            border-left: 4px solid var(--gold);
+            border-radius: 14px;
+            padding: 2rem 1.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .author-inner::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .author-box .sec-label { color: var(--gold); }
+        .author-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .author-box p {
+            font-size: 0.92rem;
+            color: var(--text-sec);
+            line-height: 1.95;
+            margin-bottom: 0.9rem;
+        }
+        .author-box p.author-punch {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            font-style: italic;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+        .author-box strong { color: var(--gold); }
+
+        /* ── Offer box ── */
+        .offer-box {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 2rem 1.9rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+            box-shadow: 0 4px 28px rgba(184,134,11,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .offer-box::before {
+            content: 'สิ่งที่คุณจะได้รับ';
+            position: absolute;
+            top: 0; right: 0;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.25rem 0.9rem;
+            border-radius: 0 14px 0 10px;
+            letter-spacing: 0.05em;
+        }
+        .offer-name {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+        .offer-sub {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-bottom: 1.3rem;
+        }
+        .offer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.3rem;
+        }
+        .offer-list li {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0.45rem 0 0.45rem 1.7rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .offer-list li:last-child { border-bottom: none; }
+        .offer-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0.2rem; top: 0.45rem;
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        .offer-list li span {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            line-height: 1.5;
+        }
+        .offer-access {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .offer-chip {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid rgba(194,59,34,0.12);
+            border-radius: 20px;
+            padding: 0.3rem 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .hiw-steps { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 420px) {
+            .how-it-works { padding: 1.4rem 1rem; }
+            .hiw-card { padding: 1.4rem 1.2rem; }
+            .hiw-title { font-size: 1rem; }
+            .bigidea { padding: 1.8rem 1rem; }
+            .bigidea-quote { font-size: 1.15rem; }
+            .author-box { padding: 1.4rem 1rem; }
+            .author-inner { padding: 1.4rem 1.2rem; }
+            .author-title { font-size: 1.02rem; }
+            .offer-box { padding: 1.4rem 1.2rem; }
+            .offer-name { font-size: 1.05rem; }
+            .mini-review-text { font-size: 0.9rem; }
+        }
     </style>
 </head>
 <body>
@@ -2077,11 +2415,14 @@
         <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
         <div class="hero-inner rv">
             <div class="hero-eyebrow">The One Root of Marketing</div>
-            <h1>นักขายที่ปิดได้ทุกดีล<br>ไม่ได้เก่งเรื่องขาย &mdash;<br><em>เขาแค่อ่านคนออก</em></h1>
-            <p class="hero-sub">คุณมี Script มี Technique มี Closing Framework &mdash; แต่ทำไมลูกค้าบางคนยังหลุดไปทุกครั้ง?</p>
+            <h1>นักขายที่ปิดดีลได้<br>ไม่ได้พูดเก่งกว่า &mdash;<br><em>เขาอ่านคนออกกว่า</em></h1>
+            <p class="hero-sub">หนังสือจิตวิทยาการขายสำหรับคนที่อยากเข้าใจว่า ทำไมลูกค้าถึง &ldquo;ขอคิดก่อน&rdquo; ทำไมคำว่า &ldquo;แพง&rdquo; ไม่ได้แปลว่าไม่มีเงิน และทำไมบางดีลหลุด ทั้งที่คุณพูดถูกทุกอย่าง</p>
             <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
-            <a href="#pricing" class="hero-cta">อ่านคนออก ปิดทุกดีล — 1,390 ฿</a>
-            <p class="hero-note">หรือ <a href="/vol1">อ่านบทนำฟรีก่อนตัดสินใจ</a></p>
+            <div class="hero-cta-row">
+                <a href="#pricing" class="hero-cta">เริ่มอ่านคนออกวันนี้ &mdash; 1,390 บาท</a>
+                <a href="/vol1" class="hero-cta-secondary">อ่านบทนำฟรีก่อน &rarr;</a>
+            </div>
+            <p class="hero-micro">จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านบทแรกฟรีก่อนตัดสินใจ</p>
         </div>
         <a href="#pricing" class="scroll-cue" id="scroll-cue" aria-label="เลื่อนลงเพื่ออ่านต่อ">
             <span>เลื่อนอ่าน</span>
@@ -2092,11 +2433,39 @@
     <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
 
     <!-- ═══════════════════════════════════════════════
+         INSTANT ACCESS — how it works
+         ═══════════════════════════════════════════════ -->
+    <div class="how-it-works rv">
+        <div class="hiw-card">
+            <h3 class="hiw-title">ซื้อแล้วอ่านยังไง?</h3>
+            <div class="hiw-steps">
+                <div class="hiw-step">
+                    <span class="hiw-num">1</span>
+                    <span class="hiw-step-text">กดสั่งซื้อหนังสือ</span>
+                </div>
+                <div class="hiw-step">
+                    <span class="hiw-num">2</span>
+                    <span class="hiw-step-text">ชำระเงินผ่านช่องทางที่รองรับ</span>
+                </div>
+                <div class="hiw-step">
+                    <span class="hiw-num">3</span>
+                    <span class="hiw-step-text">รับ Unlock Code ทันที</span>
+                </div>
+                <div class="hiw-step">
+                    <span class="hiw-num">4</span>
+                    <span class="hiw-step-text">เปิดอ่านผ่านเว็บได้เลย ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์</span>
+                </div>
+            </div>
+            <p class="hiw-note"><strong>ไม่ต้องรอจัดส่ง</strong> ไม่ต้องโหลดแอป และอ่านซ้ำได้ตลอดชีพ</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════
          THE PROBLEM — pain points for salespeople
          ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">ปัญหา</div>
-        <h2 class="sec-title">คุณทำทุกอย่างตาม Playbook<br>แต่<em>ลูกค้ายังหลุดมือ</em></h2>
+        <h2 class="sec-title">คุณอาจไม่ได้ขายไม่เก่ง<br>คุณแค่อ่าน <em>&ldquo;จังหวะในหัวลูกค้า&rdquo;</em> ยังไม่ออก</h2>
 
         <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
 
@@ -2125,20 +2494,47 @@
             <p class="scenario-a">คุณลดราคาทุกครั้ง เพราะไม่รู้จะทำยังไงให้เขา &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องลด</p>
         </div>
 
-        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาไม่ได้อยู่ที่ตัวสินค้า ไม่ได้อยู่ที่ราคา ไม่ได้อยู่ที่ Script &mdash;</p>
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาอาจไม่ใช่ Script ของคุณ &mdash;</p>
 
-        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">ปัญหาอยู่ที่คุณ &ldquo;ขาย&rdquo; ให้สมองส่วนคิด &mdash; แต่คนตัดสินใจด้วยสมองส่วนรู้สึก</p>
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">แต่อาจเป็นเพราะคุณยังไม่เห็นว่า &ldquo;ลูกค้ากำลังติดตรงไหนในใจ&rdquo;</p>
     </div>
 
 
     <!-- ═══════════════════════════════════════════════
-         DARK BAND: The Truth about Selling
+         BIG IDEA
          ═══════════════════════════════════════════════ -->
-    <div class="dark-band rv">
-        <div class="dark-band-inner">
-            <p style="font-size: 0.88rem; color: #A29A90; margin-bottom: 1rem;">ลองนึกดู</p>
-            <p class="big-quote">&ldquo;นักขายที่เก่งที่สุดที่คุณเคยเจอ<br>ไม่ได้พูดเก่งที่สุด &mdash;<br>แต่เขา<strong>อ่านคนออกที่สุด</strong>&rdquo;</p>
-            <p class="dark-band-sub">และนั่นคือทักษะที่เรียนรู้ได้ &mdash; ถ้ารู้ว่าสมองมนุษย์ทำงานยังไง</p>
+    <div class="bigidea rv">
+        <div class="bigidea-inner">
+            <div class="bigidea-label">แก่นของเล่มนี้</div>
+            <p class="bigidea-quote">ลูกค้าไม่ได้ซื้อเพราะคุณพูดครบ<br><em>เขาซื้อเมื่อความกลัวในหัวเขาถูกปลดออก</em></p>
+            <p>การขายส่วนใหญ่พยายามเพิ่มคำพูด เพิ่ม Script เพิ่มเทคนิคปิดการขาย แต่สิ่งที่เกิดขึ้นจริงในหัวลูกค้ามักไม่ใช่เหตุผลตรง ๆ</p>
+            <p>เขาไม่ได้ลังเลเพราะไม่เข้าใจเสมอไป &mdash; เขาอาจลังเลเพราะ:</p>
+            <p class="fear-list">กลัวตัดสินใจผิด<br>กลัวเสียเงิน<br>กลัวดูโง่<br>กลัวโดนขาย<br>หรือยังไม่รู้สึกว่า &ldquo;นี่คือทางเลือกที่ปลอดภัยพอ&rdquo;</p>
+            <p><strong>One Root Marketing</strong> ไม่ได้สอนให้คุณพูดมากขึ้น &mdash; แต่สอนให้คุณอ่านให้ขาดว่า ลูกค้าติดอยู่ตรงไหนก่อนจะซื้อ</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         MINI SOCIAL PROOF — pulled up
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">คนขายจริงใช้จริง</div>
+        <h2 class="sec-title">นี่ไม่ใช่แค่หนังสือให้อ่านแล้วรู้สึกดี<br>แต่เป็น<em>กรอบคิดที่คนขายจริงเอาไปใช้กับลูกค้าจริง</em></h2>
+
+        <div class="mini-reviews">
+            <div class="mini-review rv rv-d1">
+                <p class="mini-review-text">&ldquo;ปิดได้ใน meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ&rdquo;</p>
+                <span class="mini-review-who">ธนกฤต ว. &mdash; Sales Rep, B2B</span>
+            </div>
+            <div class="mini-review rv rv-d2">
+                <p class="mini-review-text">&ldquo;เดือนถัดมา close rate ทั้งทีมขึ้น ไม่ได้เปลี่ยน script เลย เปลี่ยนแค่ลำดับการพูดเรื่องราคา&rdquo;</p>
+                <span class="mini-review-who">นภัสสร ก. &mdash; Sales Manager</span>
+            </div>
+            <div class="mini-review rv rv-d3">
+                <p class="mini-review-text">&ldquo;เสนอราคาโปรเจคถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ&rdquo;</p>
+                <span class="mini-review-who">พิมพ์ลภัส อ. &mdash; ฟรีแลนซ์</span>
+            </div>
         </div>
     </div>
 
@@ -2219,6 +2615,43 @@
             <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่สินค้าเหมือนกัน ราคาใกล้กัน</p>
             <p class="big-quote">นักขายที่เข้าใจว่า<strong>ทำไมลูกค้าตัดสินใจ</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องพูดอะไร&rdquo;<br>ทุกครั้ง &mdash; โดยไม่ต้อง Hard Sell สักประโยค</p>
             <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">ลูกค้าจะรู้สึกว่าคุณ &ldquo;เข้าใจเขา&rdquo;<br>ทั้งที่คุณแค่เข้าใจว่าสมองทำงานยังไง</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
+         WHAT YOU'LL LEARN — real-world use cases
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช้ได้จริงในสนาม</div>
+        <h2 class="sec-title">คุณจะได้เครื่องมืออ่านลูกค้า<br>ใน <em>5 สถานการณ์</em>ที่นักขายเจอทุกวัน</h2>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 1</div>
+                <div class="benefit-title">ตอนลูกค้าเริ่มสนใจ</div>
+                <p class="benefit-desc">รู้ว่าเขาอยากได้จริง หรือแค่ตื่นเต้นชั่วคราว &mdash; เพื่อจะได้ไม่เสียแรงไล่ตามคนที่ไม่มีวันซื้อ และไม่ปล่อยคนที่พร้อมซื้อหลุดมือ</p>
+            </div>
+            <div class="benefit-card rv rv-d2 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 2</div>
+                <div class="benefit-title">ตอนลูกค้าบอกว่าแพง</div>
+                <p class="benefit-desc">เข้าใจว่าคำว่า &ldquo;แพง&rdquo; มักไม่ใช่เรื่องราคาอย่างเดียว แต่เป็นเรื่องการรับรู้คุณค่า ความเสี่ยง และความมั่นใจ &mdash; แก้ให้ตรงจุด โดยไม่ต้องลดราคา</p>
+            </div>
+            <div class="benefit-card rv rv-d3 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 3</div>
+                <div class="benefit-title">ตอนลูกค้าขอคิดก่อน</div>
+                <p class="benefit-desc">อ่านให้ออกว่าเขาติดข้อมูล ติดความกลัว หรือติดความไม่เชื่อใจ &mdash; เพราะแต่ละแบบใช้วิธีรับมือคนละทาง</p>
+            </div>
+            <div class="benefit-card rv tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 4</div>
+                <div class="benefit-title">ตอนต้องสร้างความเชื่อใจ</div>
+                <p class="benefit-desc">ทำให้ลูกค้ารู้สึกว่าคุณไม่ได้แค่ขาย แต่เข้าใจปัญหาและอยู่ฝั่งเดียวกับเขา &mdash; ความเชื่อใจคือสิ่งที่ปิดดีลก่อนคุณจะพูดเรื่องราคาด้วยซ้ำ</p>
+            </div>
+            <div class="benefit-card rv tiltable" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">สถานการณ์ที่ 5</div>
+                <div class="benefit-title">ตอนอยากให้ลูกค้าซื้อซ้ำหรือบอกต่อ</div>
+                <p class="benefit-desc">เข้าใจกลไกที่ทำให้ลูกค้ารู้สึกดีหลังซื้อ ไม่ใช่แค่จบที่การปิดดีล &mdash; ลูกค้าที่รู้สึกดีหลังซื้อ คือคนที่กลับมาซื้อซ้ำและพาเพื่อนมาให้</p>
+            </div>
         </div>
     </div>
 
@@ -2383,6 +2816,20 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         AUTHOR AUTHORITY
+         ═══════════════════════════════════════════════ -->
+    <div class="author-box rv">
+        <div class="author-inner">
+            <div class="sec-label">ที่มาของเล่มนี้</div>
+            <h3 class="author-title">หนังสือเล่มนี้ไม่ได้เขียนจากทฤษฎีลอย ๆ</h3>
+            <p>มันมาจากการสังเกตลูกค้าจริง แคมเปญจริง การขายจริง &mdash; รวมกับงานวิจัยด้านจิตวิทยา พฤติกรรมมนุษย์ และการตัดสินใจหลายร้อยชิ้น</p>
+            <p>ทั้งหมดถูกกรองลงมาเพื่อหาคำตอบเดียว:</p>
+            <p class="author-punch">&ldquo;ทำไมคนถึงซื้อ ทั้งที่บางครั้งเขาไม่ได้ซื้อเพราะเหตุผลที่เขาพูดออกมา&rdquo;</p>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
          PRICING
          ═══════════════════════════════════════════════ -->
     <div class="pricing-section" id="pricing">
@@ -2426,6 +2873,25 @@
                 <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
             </div>
 
+            <div class="offer-box rv">
+                <div class="offer-name">One Root Marketing &mdash; รากแก้วการตลาด</div>
+                <div class="offer-sub">หนังสือจิตวิทยาการขายแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                <ul class="offer-list">
+                    <li>หนังสือหลัก 12 บท <span>เจาะลึกจิตวิทยาการตัดสินใจซื้อทุกด้าน</span></li>
+                    <li>บทพิเศษ 5 บท (Bonus) <span>เคสและสถานการณ์ขายจริงที่เจอทุกวัน</span></li>
+                    <li>Third Eye Note <span>เห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่</span></li>
+                    <li>Web Book Access <span>เปิดอ่านผ่านเว็บได้ทันที ไม่ต้องโหลดแอป</span></li>
+                    <li>Unlock Code <span>รับทันทีหลังชำระเงิน</span></li>
+                    <li>อ่านได้ตลอดชีพ <span>จ่ายครั้งเดียว ไม่มี Subscription</span></li>
+                </ul>
+                <div class="offer-access">
+                    <span class="offer-chip">ซื้อแล้วได้รับทันที</span>
+                    <span class="offer-chip">มือถือ</span>
+                    <span class="offer-chip">แท็บเล็ต</span>
+                    <span class="offer-chip">คอมพิวเตอร์</span>
+                </div>
+            </div>
+
             <div class="price-hero rv">
                 <div class="price-big">1,390</div>
                 <div class="price-unit">บาท</div>
@@ -2451,9 +2917,10 @@
                 </div>
             </div>
 
-            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">เริ่มอ่านคนออกวันนี้ &mdash; 1,390 ฿</a>
-            <p class="pricing-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe</p>
-            <p class="pricing-sub-note">ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก<br>อ่านได้ตลอดชีพ &bull; จ่ายครั้งเดียว &bull; ไม่มี Subscription</p>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="pricing-cta">ปลดล็อกทั้ง 17 บท &mdash; รับ Unlock Code ทันที</a>
+            <p class="pricing-note">ไม่ต้องโหลดแอป &bull; ไม่ต้องรอจัดส่ง &bull; อ่านซ้ำได้ตลอดชีพ</p>
+            <p class="pricing-sub-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe<br>ปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก &bull; จ่ายครั้งเดียว</p>
+            <p style="margin-top: 1.2rem;"><a href="/vol1" class="hero-cta-secondary" style="color: var(--accent); border-color: rgba(194,59,34,0.3);">ยังไม่พร้อมซื้อ? อ่านบทนำฟรีก่อน &rarr;</a></p>
         </div>
     </div>
 
@@ -2607,6 +3074,36 @@
         <h2 class="sec-title">ก่อนตัดสินใจ</h2>
 
         <div class="faq-item rv">
+            <div class="faq-q">อ่านแล้วเอาไปใช้ทันทีได้ไหม?</div>
+            <p class="faq-a">ได้ &mdash; เพราะแต่ละบทเชื่อมกับสถานการณ์ขายจริง เช่น การตั้งราคา การ Follow up การสร้าง Trust การรับมือคำว่าแพง และการปลดแรงต้านก่อนลูกค้าตัดสินใจ</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">ไม่มี Script แล้วจะช่วยขายได้ยังไง?</div>
+            <p class="faq-a">Script เป็นแค่ประโยค แต่เล่มนี้สอนให้เข้าใจว่าเมื่อไหร่ควรพูดอะไร &mdash; เพราะลูกค้าแต่ละคนไม่ได้ติดตรงจุดเดียวกัน บางคนติดราคา บางคนติดความกลัว บางคนติดความไม่เชื่อใจ</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">ถ้าผมไม่ใช่นักขายมืออาชีพ แต่อยากขายของตัวเอง ใช้ได้ไหม?</div>
+            <p class="faq-a">ใช้ได้ &mdash; เพราะฟรีแลนซ์ เจ้าของธุรกิจ ที่ปรึกษา โค้ช AE หรือคนที่ต้องเสนอราคา ล้วนเจอสมองลูกค้าแบบเดียวกัน</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">ต่างจากคอนเทนต์ฟรีในเพจยังไง?</div>
+            <p class="faq-a">คอนเทนต์ฟรีคือเศษ Insight แต่หนังสือคือระบบที่เรียงให้เห็นกลไกทั้งหมด ตั้งแต่ลูกค้าเริ่มสนใจ เชื่อใจ ลังเล ซื้อ และกลับมาซื้อซ้ำ</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงิน คุณจะได้รับ Unlock Code สำหรับเข้าอ่าน Web Book ได้ทันที &mdash; ไม่ต้องรอจัดส่ง</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">อ่านในมือถือได้ไหม?</div>
+            <p class="faq-a">ได้ &mdash; อ่านผ่านมือถือ แท็บเล็ต หรือคอมพิวเตอร์ได้โดยไม่ต้องโหลดแอป</p>
+        </div>
+
+        <div class="faq-item rv">
             <div class="faq-q">ผมขายมาหลายปีแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
             <p class="faq-a">ยิ่งขายมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมี &ldquo;สัญชาตญาณ&rdquo; อยู่แล้ว เล่มนี้จะอธิบายว่าทำไมสัญชาตญาณนั้นถึงได้ผล ทำให้คุณเปลี่ยนจาก &ldquo;บังเอิญปิดได้&rdquo; เป็น &ldquo;ตั้งใจปิดได้ทุกครั้ง&rdquo; และยังสอนทีมต่อได้ด้วย</p>
         </div>
@@ -2622,18 +3119,8 @@
         </div>
 
         <div class="faq-item rv">
-            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
-            <p class="faq-a">หลังชำระเงินผ่าน Stripe คุณจะได้ Unlock Code ทันที &mdash; นำไปใส่ที่หน้าหนังสือเพื่อปลดล็อกทั้ง 12 บท + 5 บทพิเศษ + ภาคผนวก อ่านได้ทันทีจากมือถือ</p>
-        </div>
-
-        <div class="faq-item rv">
             <div class="faq-q">เอาไปเป็น Training Material ให้ทีมได้ไหม?</div>
             <p class="faq-a">Unlock Code ใช้ได้หลายเครื่อง &mdash; แต่ถ้าจะซื้อให้ทีม แนะนำให้ซื้อแยกเพื่อให้แต่ละคนมี Copy ของตัวเอง เพราะวิธีที่ดีที่สุดคือให้อ่านเอง + มาพูดคุยกัน</p>
-        </div>
-
-        <div class="faq-item rv">
-            <div class="faq-q">ผมไม่ชอบอ่านหนังสือ อ่านจบไหม?</div>
-            <p class="faq-a">เล่มนี้ออกแบบมาให้ <strong>หยุดไม่ได้</strong> &mdash; ทุกบทเปิดด้วยเรื่องจริงที่ทำให้อยากรู้คำตอบ ไม่ต้องอ่านรวดเดียว เปิดก่อน Meeting ก็ได้ อ่านระหว่างรอลูกค้าก็ได้ แต่ละบทจบในตัว</p>
         </div>
 
         <div class="faq-item rv" style="border: none;">
@@ -2648,12 +3135,13 @@
          ═══════════════════════════════════════════════ -->
     <div class="final-cta">
         <div class="final-cta-inner rv">
-            <h2>เทคนิคการขายเปลี่ยนทุกปี<br>แต่ &ldquo;สมองลูกค้า&rdquo; ไม่เปลี่ยนมา 200,000 ปี</h2>
-            <p>ลงทุนกับทักษะที่ติดตัวไปทุกบริษัท ทุกอุตสาหกรรม ทุกยุค &mdash; ความเข้าใจว่าทำไมคนถึงซื้อ</p>
+            <h2>เทคนิคการขายเปลี่ยนทุกปี<br>แต่สมองลูกค้าไม่ได้เปลี่ยนเร็วขนาดนั้น</h2>
+            <p>ถ้าคุณยังเจอคำว่า &ldquo;ขอคิดก่อน&rdquo; ยังต้องลดราคาเพื่อปิดดีล ยัง Follow up แล้วเงียบ หรือยังรู้สึกว่าลูกค้าหลุดไปทั้งที่คุณอธิบายดีแล้ว</p>
+            <p>บางทีสิ่งที่คุณต้องเพิ่มอาจไม่ใช่ Script ใหม่ &mdash; แต่คือความสามารถในการอ่านว่า ลูกค้ากำลังกลัวอะไร เชื่ออะไร และตัดสินใจจากอะไรจริง ๆ</p>
             <p style="font-size: 0.82rem; color: #6B6560; margin-top: 0.5rem;">อ่านแล้วไม่ใช่? คืนเงินภายใน 30 วัน ไม่มีเงื่อนไข</p>
-            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">ปลดล็อกทั้ง 17 บท &mdash; 1,390 ฿</a>
+            <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">เริ่มอ่านคนออกวันนี้ &mdash; 1,390 บาท</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
-            <a href="/vol1" class="final-cta-free">ยังไม่แน่ใจ? อ่านบทนำฟรีก่อน &rarr;</a>
+            <a href="/vol1" class="final-cta-free">อ่านบทนำฟรีก่อน &rarr;</a>
         </div>
     </div>
 
