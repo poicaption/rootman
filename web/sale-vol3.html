@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+    <!-- Lightweight particle ambiance (tsParticles slim) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3.5.0/tsparticles.slim.bundle.min.js"></script>
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -2503,7 +2507,69 @@
         }
 
         /* ── Hero refinements: depth, glow, animated gradient on <em> ── */
-        .hero { background: radial-gradient(ellipse at 50% -10%, #173026 0%, var(--bg-dark) 55%, #0A150F 100%); }
+        .hero { background: radial-gradient(ellipse at 50% -10%, #173026 0%, var(--bg-dark) 55%, #0A150F 100%); padding-bottom: 5.5rem; }
+
+        /* Particle canvas — sits behind everything in the hero */
+        #hero-particles {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-inner, .scroll-cue { position: relative; z-index: 2; }
+
+        /* Floating book mockup */
+        .hero-book-wrap {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+        .hero-book-wrap::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 42%;
+            width: 300px; height: 300px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(94,158,128,0.26) 0%, rgba(184,134,11,0.10) 40%, transparent 68%);
+            filter: blur(8px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-book-img {
+            position: relative;
+            z-index: 1;
+            width: min(195px, 48vw);
+            height: auto;
+            filter: drop-shadow(0 30px 55px rgba(0,0,0,0.6)) drop-shadow(0 4px 14px rgba(0,0,0,0.5));
+            animation: bookFloat 6.5s ease-in-out infinite;
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .hero-book-img:hover { transform: translateY(-6px) scale(1.03) rotate(0.5deg); }
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0) rotate(-1.2deg); }
+            50%      { transform: translateY(-13px) rotate(1.2deg); }
+        }
+        .hero-book-tag {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--warm);
+            background: rgba(94,158,128,0.08);
+            border: 1px solid rgba(94,158,128,0.22);
+            border-radius: 30px;
+            padding: 0.3rem 0.9rem;
+        }
+        .hero-book-tag i { color: var(--brass-light); }
         .hero h1 { letter-spacing: -0.01em; text-wrap: balance; }
         .hero h1 em {
             animation: heroShimmer 6s ease-in-out infinite;
@@ -2623,7 +2689,134 @@
         }
         @media (prefers-reduced-motion: reduce) {
             .hero h1 em { animation: none; }
+            .hero-book-img { animation: none; }
             mark.hl, .hl, .key::after, .sec-title em::after { transition: none; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           VOL.3 v2 ENHANCEMENTS — book image, richer chat, FA icons
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── Book in offer box ── */
+        .offer-book-row {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            margin-bottom: 1.3rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .offer-book-img {
+            width: 92px;
+            height: auto;
+            flex-shrink: 0;
+            filter: drop-shadow(0 10px 22px rgba(15,29,23,0.28));
+        }
+        .offer-book-meta { flex: 1; min-width: 0; }
+        .offer-book-meta .offer-name { margin-bottom: 0.2rem; }
+        .offer-book-meta .offer-sub { margin-bottom: 0.5rem; }
+        .offer-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.18rem;
+            color: #E0A93A;
+            font-size: 0.8rem;
+        }
+        .offer-stars span {
+            margin-left: 0.4rem;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-sec);
+        }
+
+        /* ── Social-proof header: avatar stack + live status ── */
+        .sp-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .sp-live {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+        .sp-avatars { display: flex; }
+        .sp-av {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem; font-weight: 700;
+            color: #fff;
+            border: 2px solid var(--bg-dark);
+            margin-left: -10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .sp-av:first-child { margin-left: 0; }
+        .sp-av-more {
+            background: #2A332C;
+            color: var(--warm);
+        }
+        .sp-count-wrap { text-align: left; line-height: 1.3; }
+        .sp-online {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.68rem;
+            color: #8FB3A1;
+            margin-top: 0.1rem;
+        }
+        .sp-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #46C988;
+            box-shadow: 0 0 0 0 rgba(70,201,136,0.6);
+            animation: spPulse 1.8s ease-out infinite;
+        }
+        @keyframes spPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(70,201,136,0.55); }
+            70%  { box-shadow: 0 0 0 7px rgba(70,201,136,0); }
+            100% { box-shadow: 0 0 0 0 rgba(70,201,136,0); }
+        }
+
+        /* ── Chat: online dot on avatar + verified tick ── */
+        .chat-avatar { position: relative; }
+        .chat-online {
+            position: absolute;
+            right: -1px; bottom: -1px;
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: #46C988;
+            border: 2px solid var(--bg-dark);
+        }
+        .chat-verify {
+            color: var(--warm);
+            font-size: 0.6rem;
+            margin-left: 0.1rem;
+        }
+        .chat-name { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .chat-react { cursor: default; }
+        .chat-seen i { color: var(--warm); margin-right: 0.15rem; }
+
+        /* ── Guarantee FA icon ── */
+        .guarantee-icon {
+            color: var(--gold);
+            font-size: 2.4rem;
+            line-height: 1;
+        }
+        .guarantee-badge i { font-size: 0.66rem; }
+
+        /* ── FA icon polish inside CTAs / hero ── */
+        .hero-cta i, .pricing-cta i, .final-cta-btn i, .mid-cta-btn i { font-size: 0.85em; }
+        .hero-micro > i.fa-circle-check { color: var(--warm); margin-right: 0.2rem; }
+
+        @media (max-width: 640px) {
+            .offer-book-img { width: 76px; }
+            .sp-av { width: 30px; height: 30px; font-size: 0.66rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .sp-dot { animation: none; }
         }
     </style>
 </head>
@@ -2635,18 +2828,23 @@
 
     <!-- ═══════════════════════════════════════════════ HERO ═══════════════════════════════════════════════ -->
     <div class="hero">
+        <canvas id="hero-particles" aria-hidden="true"></canvas>
         <div class="hero-aurora" aria-hidden="true"></div>
         <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
         <div class="hero-inner rv">
+            <div class="hero-book-wrap">
+                <img class="hero-book-img" src="images/book-vol3.png" alt="รากแก้วธุรกิจ — One Root of Business" width="190" height="190" loading="eager">
+                <span class="hero-book-tag"><i class="fa-solid fa-bookmark"></i> เล่ม 3 · The One Root Series</span>
+            </div>
             <div class="hero-eyebrow">One Root of Business &mdash; รากแก้วธุรกิจ</div>
             <h1>ขายดีทุกเดือน<br>แต่เงินไม่เคยพอ &mdash;<br><em>เพราะคุณดูแล &ldquo;ใบ&rdquo; ไม่ใช่ &ldquo;ราก&rdquo;</em></h1>
             <p class="hero-sub">หนังสือสำหรับเจ้าของธุรกิจที่เริ่มรู้แล้วว่า &ldquo;ขายได้&rdquo; ไม่เท่ากับ &ldquo;รวยขึ้น&rdquo; &mdash; และอยากเข้าใจระบบที่ตัดสินว่าธุรกิจไหนรอด โต และสะสมอำนาจ ในขณะที่อีกหลายธุรกิจทำงานหนักกว่า ขายได้มากกว่า แต่กลับจนลงทุกปี</p>
             <p class="hero-hook">&ldquo;ธุรกิจไม่ได้พังเพราะเจ้าของไม่ขยัน &mdash; มันพังเพราะเจ้าของมองไม่เห็นระบบที่กำลังกินตัวเองอยู่ข้างใต้&rdquo;</p>
             <div class="hero-cta-row">
-                <a href="#pricing" class="hero-cta">เริ่มเห็นรากธุรกิจวันนี้ &mdash; 1,990 บาท</a>
+                <a href="#pricing" class="hero-cta"><i class="fa-solid fa-unlock-keyhole"></i>&nbsp; เริ่มเห็นรากธุรกิจวันนี้ &mdash; 1,990 บาท</a>
                 <a href="/vol3" class="hero-cta-secondary">อ่านเปิดเล่มฟรีก่อน &rarr;</a>
             </div>
-            <p class="hero-micro">จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านเปิดเล่มฟรีก่อนตัดสินใจ</p>
+            <p class="hero-micro"><i class="fa-solid fa-circle-check"></i> จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านเปิดเล่มฟรีก่อนตัดสินใจ</p>
         </div>
         <a href="#pricing" class="scroll-cue" id="scroll-cue" aria-label="เลื่อนลงเพื่ออ่านต่อ">
             <span>เลื่อนอ่าน</span>
@@ -3017,8 +3215,17 @@
             </div>
 
             <div class="offer-box rv">
-                <div class="offer-name">One Root of Business &mdash; รากแก้วธุรกิจ</div>
-                <div class="offer-sub">หนังสือกลยุทธ์ธุรกิจแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                <div class="offer-book-row">
+                    <img class="offer-book-img" src="images/book-vol3.png" alt="รากแก้วธุรกิจ — One Root of Business" width="120" height="120" loading="lazy">
+                    <div class="offer-book-meta">
+                        <div class="offer-name">One Root of Business &mdash; รากแก้วธุรกิจ</div>
+                        <div class="offer-sub">หนังสือกลยุทธ์ธุรกิจแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                        <div class="offer-stars" aria-label="คะแนนรีวิว 4.9 จาก 5">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            <span>4.9 &bull; จากผู้อ่านจริง</span>
+                        </div>
+                    </div>
+                </div>
                 <ul class="offer-list">
                     <li>หนังสือเต็ม 13 บท <span>เจาะลึกรากทั้งหมดของธุรกิจ ตั้งแต่ตลาดถึงการทบต้น</span></li>
                     <li>เล่าด้วยกรณีศึกษาจริง <span>จากแบรนด์ระดับโลกถึงร้านข้างทาง</span></li>
@@ -3071,27 +3278,62 @@
     <div class="social-proof">
         <div class="social-proof-inner rv">
             <div class="sp-header">
-                <div class="sec-label" style="color: var(--warm);">เสียงจากคนอ่าน</div>
-                <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
+                <div class="sec-label" style="color: var(--warm);">// เสียงจากคนอ่าน</div>
+                <div class="sp-live">
+                    <div class="sp-avatars" aria-hidden="true">
+                        <span class="sp-av" style="background:linear-gradient(135deg,#3FA876,#1B5E43);">ภ</span>
+                        <span class="sp-av" style="background:linear-gradient(135deg,#5E9E80,#2A6B4D);">ว</span>
+                        <span class="sp-av" style="background:linear-gradient(135deg,#6E8C7E,#3D5A4D);">ณ</span>
+                        <span class="sp-av" style="background:linear-gradient(135deg,#4A8C6F,#1B5E43);">ก</span>
+                        <span class="sp-av sp-av-more">+</span>
+                    </div>
+                    <div class="sp-count-wrap">
+                        <span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span>
+                        <span class="sp-online"><span class="sp-dot"></span> มีคนกำลังอ่านตอนนี้</span>
+                    </div>
+                </div>
             </div>
             <div class="chat-thread">
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #3FA876, #1B5E43);">ภ</div>
-                    <div class="chat-bubble">เพิ่งเข้าใจว่าทำไมร้านขายดีแต่เงินไม่พอ บทเรื่องวงจรเงินสดเปลี่ยนวิธีบริหารร้านผมเลย</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #3FA876, #1B5E43);">ภ<span class="chat-online"></span></div>
+                    <div class="chat-content">
+                        <span class="chat-name">ภาคิน ส. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
+                        <div class="chat-bubble">เพิ่งเข้าใจว่าทำไมร้านขายดีแต่เงินไม่พอ บทเรื่องวงจรเงินสดเปลี่ยนวิธีบริหารร้านผมเลย 🔥</div>
+                        <div class="chat-react">❤️ 👍 <span class="chat-react-count">24</span></div>
+                        <div class="chat-info"><span class="chat-time">2 ชม.ที่แล้ว</span><span class="chat-tag">ร้านอาหาร 3 สาขา</span></div>
+                    </div>
                 </div>
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5E9E80, #2A6B4D);">ว</div>
-                    <div class="chat-bubble">ลองขึ้นราคาตามที่เล่มนี้บอก กล้าขึ้นครั้งแรกในรอบสามปี กำไรดีขึ้นจริง</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5E9E80, #2A6B4D);">ว<span class="chat-online"></span></div>
+                    <div class="chat-content">
+                        <span class="chat-name">วรินทร ธ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
+                        <div class="chat-bubble">ลองขึ้นราคาตามที่เล่มนี้บอก กล้าขึ้นครั้งแรกในรอบสามปี กำไรดีขึ้นจริง 📈</div>
+                        <div class="chat-react">🙌 <span class="chat-react-count">18</span></div>
+                        <div class="chat-info"><span class="chat-time">เมื่อวานนี้</span><span class="chat-tag">แบรนด์สกินแคร์</span></div>
+                    </div>
                 </div>
                 <div class="chat-msg rv">
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #6E8C7E, #3D5A4D);">ณ</div>
-                    <div class="chat-bubble">อ่านสนุกมาก ไม่เหมือนหนังสือธุรกิจทั่วไปที่อ่านแล้วง่วง จบเล่มในสองวัน</div>
+                    <div class="chat-content">
+                        <span class="chat-name">ณัฐดนัย พ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
+                        <div class="chat-bubble">อ่านสนุกมาก ไม่เหมือนหนังสือธุรกิจทั่วไปที่อ่านแล้วง่วง จบเล่มในสองวัน</div>
+                        <div class="chat-info"><span class="chat-time">2 วันที่แล้ว</span><span class="chat-tag">ธุรกิจค้าส่ง</span></div>
+                    </div>
                 </div>
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A8C6F, #1B5E43);">ก</div>
-                    <div class="chat-bubble">บทเรื่องระบบกับคอขวดโดนมาก ผมคือคอขวดของธุรกิจตัวเองมาตลอดโดยไม่รู้ตัว</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A8C6F, #1B5E43);">ก<span class="chat-online"></span></div>
+                    <div class="chat-content">
+                        <span class="chat-name">กิตติพงศ์ ร. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
+                        <div class="chat-bubble">บทเรื่องระบบกับคอขวดโดนมาก ผมคือคอขวดของธุรกิจตัวเองมาตลอดโดยไม่รู้ตัว 😮</div>
+                        <div class="chat-react">💯 <span class="chat-react-count">31</span></div>
+                        <div class="chat-info"><span class="chat-time">3 วันที่แล้ว</span><span class="chat-tag">เจ้าของ SME</span></div>
+                        <div class="chat-seen"><i class="fa-solid fa-check-double"></i> อ่านแล้ว</div>
+                    </div>
                 </div>
-                <div class="chat-typing"><span></span><span></span><span></span></div>
+                <div class="chat-typing">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #2A6B4D, #0E3D29);"><i class="fa-solid fa-pen-nib" style="font-size:0.55rem;"></i></div>
+                    <div class="typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+                </div>
             </div>
         </div>
     </div>
@@ -3099,10 +3341,10 @@
     <!-- ═══════════════════════════════════════════════ GUARANTEE ═══════════════════════════════════════════════ -->
     <div class="guarantee rv">
         <div class="guarantee-box">
-            <div class="guarantee-icon">&#x1F6E1;</div>
+            <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
             <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
             <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด &mdash; ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
-            <div class="guarantee-badge">&#x1F512; MONEY-BACK GUARANTEE</div>
+            <div class="guarantee-badge"><i class="fa-solid fa-lock"></i> MONEY-BACK GUARANTEE</div>
         </div>
     </div>
 
@@ -3398,6 +3640,56 @@
             hint.style.color = '';
         }, 2000);
     }
+    </script>
+
+    <!-- ── Hero particle ambiance (tsParticles, progressive enhancement) ── -->
+    <script>
+    (function() {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        function start() {
+            if (typeof tsParticles === 'undefined') return;
+            tsParticles.load({
+                id: 'hero-particles',
+                options: {
+                    fpsLimit: 60,
+                    fullScreen: { enable: false },
+                    detectRetina: true,
+                    background: { color: 'transparent' },
+                    particles: {
+                        number: { value: 38, density: { enable: true, area: 900 } },
+                        color: { value: ['#5E9E80', '#7CB79A', '#B0863A'] },
+                        opacity: {
+                            value: { min: 0.1, max: 0.5 },
+                            animation: { enable: true, speed: 0.6, sync: false }
+                        },
+                        size: { value: { min: 1, max: 2.6 } },
+                        move: {
+                            enable: true,
+                            speed: 0.5,
+                            direction: 'top',
+                            outModes: { default: 'out' },
+                            random: true,
+                            straight: false
+                        },
+                        links: {
+                            enable: true,
+                            distance: 130,
+                            color: '#5E9E80',
+                            opacity: 0.12,
+                            width: 1
+                        }
+                    },
+                    interactivity: {
+                        events: { onHover: { enable: true, mode: 'grab' }, resize: true },
+                        modes: { grab: { distance: 150, links: { opacity: 0.25 } } }
+                    }
+                }
+            });
+        }
+        if (document.readyState === 'complete') start();
+        else window.addEventListener('load', start);
+    })();
     </script>
 </body>
 </html>
