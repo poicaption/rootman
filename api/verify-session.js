@@ -42,7 +42,7 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const sessionId = url.searchParams.get('session_id');
   const volParam = url.searchParams.get('vol');
-  const vol = volParam === '2' ? 2 : 1;
+  const vol = volParam === '3' ? 3 : volParam === '2' ? 2 : 1;
 
   if (!sessionId || sessionId.length < 10) {
     return json({ error: 'missing_session', message: 'ไม่พบข้อมูลการชำระเงิน' }, 400);

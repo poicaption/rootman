@@ -6,6 +6,7 @@
   "rewrites": [
     { "source": "/vol1", "destination": "/vol1.html" },
     { "source": "/vol2", "destination": "/vol2.html" },
+    { "source": "/vol3", "destination": "/vol3.html" },
     { "source": "/sale", "destination": "/sale.html" },
     { "source": "/general", "destination": "/sale-general.html" },
     { "source": "/ai", "destination": "/sale-ai.html" },
@@ -14,6 +15,8 @@
     { "source": "/ecom", "destination": "/sale-ecom.html" },
     { "source": "/copywriter", "destination": "/sale-copywriter.html" },
     { "source": "/sale-vol2", "destination": "/sale-vol2.html" },
+    { "source": "/sale-vol3", "destination": "/sale-vol3.html" },
+    { "source": "/vol3-business", "destination": "/sale-vol3.html" },
     { "source": "/learn", "destination": "/learn-vol1.html" },
     { "source": "/learn-vol1", "destination": "/learn-vol1.html" },
     { "source": "/learn-vol2", "destination": "/learn-vol2.html" },
@@ -22,6 +25,7 @@
     { "source": "/visualize-vol2", "destination": "/learn-vol2.html" },
     { "source": "/thank-you", "destination": "/thank-you.html" },
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
+    { "source": "/thank-you-v3", "destination": "/thank-you-v3.html" },
     { "source": "/admin", "destination": "/admin.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }

@@ -57,6 +57,8 @@ export default async function handler(req) {
   try {
     const body = await req.json().catch(() => ({}));
     const note = body.note || '';
+    const vol = body.vol === 3 || body.vol === '3' ? 3
+      : body.vol === 2 || body.vol === '2' ? 2 : 1;
     const count = Math.min(Math.max(parseInt(body.count) || 1, 1), 20); // max 20 at once
 
     const codes = [];
@@ -69,16 +71,18 @@ export default async function handler(req) {
       await redis(['SET', `code:${code}`, JSON.stringify({
         session_id: `admin:${note || 'manual'}`,
         device_id: null,
+        vol,
         created_at: now,
       })]);
 
       codes.push(code);
-      console.log('[ADMIN-CODE]', JSON.stringify({ code, note, ts: now }));
+      console.log('[ADMIN-CODE]', JSON.stringify({ code, vol, note, ts: now }));
     }
 
     return json({
       codes,
       count: codes.length,
+      vol,
       created_at: now,
       note: note || null,
     });

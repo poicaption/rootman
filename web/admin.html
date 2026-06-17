@@ -124,6 +124,7 @@
   .badge { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; }
   .badge.v1 { background: rgba(106,169,196,.15); color: var(--accent-2); }
   .badge.v2 { background: rgba(196,149,106,.18); color: var(--accent); }
+  .badge.v3 { background: rgba(27,94,67,.18); color: #1B5E43; }
   .badge.ok { background: rgba(76,175,125,.15); color: var(--green); }
   .badge.gone { background: rgba(224,88,75,.15); color: var(--red); }
 
@@ -345,7 +346,7 @@
       { cls: 'accent', label: 'จำนวนการซื้อ', value: (s.total_purchases || 0).toLocaleString(), sub: 'ทั้งหมด' },
       { cls: 'blue', label: 'ลูกค้า (unique)', value: (s.unique_buyers || 0).toLocaleString(), sub: 'อีเมลไม่ซ้ำ' },
       { cls: 'amber', label: 'ซื้อวันนี้', value: (s.purchases_today || 0).toLocaleString(), sub: 'ตามวันที่ UTC' },
-      { cls: '', label: 'Vol.1 / Vol.2', value: (s.vol1_purchases || 0) + ' / ' + (s.vol2_purchases || 0), sub: 'แยกตามเล่ม' }
+      { cls: '', label: 'Vol.1 / Vol.2 / Vol.3', value: (s.vol1_purchases || 0) + ' / ' + (s.vol2_purchases || 0) + ' / ' + (s.vol3_purchases || 0), sub: 'แยกตามเล่ม' }
     ];
     el('cards').innerHTML = cards.map(function (c) {
       return '<div class="card ' + c.cls + '">' +
@@ -364,7 +365,7 @@
       '<th>เวลา</th><th>อีเมล</th><th>ชื่อ</th><th>เล่ม</th><th>รหัส</th><th>ยอด</th><th>ประเทศ</th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (p) {
-      var vol = p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       html += '<tr data-email="' + esc(p.email || '') + '" data-code="' + esc(p.code || '') + '">' +
         '<td>' + esc(fmtTime(p.ts)) + '</td>' +
         '<td class="email">' + esc(p.email || '–') + '</td>' +
@@ -452,7 +453,7 @@
     // Purchases
     html += '<div class="dh">การซื้อ</div>';
     (data.purchases || []).forEach(function (p) {
-      var vol = p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       var status = p.revoked ? '<span class="badge gone">ถูกยกเลิก</span>' : '<span class="badge ok">ใช้งานได้</span>';
       html += '<div class="purchase-row">' +
         '<div class="pr-top"><span class="mono">' + esc(p.code || '–') + '</span>' + vol + ' ' + status + '</div>' +

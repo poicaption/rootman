@@ -52,8 +52,13 @@ async function appendAudit(code, event) {
 
 const MASTER_HASH = '2b9310c06c395990ca9438e5fab2177ca716237b877fdbda8b337b9047bb6b63';
 const MASTER_HASH_V2 = '5726a7d599e3a196ec4863d400c8803023968ed11df253f139cb00cb657302e6';
+const MASTER_HASH_V3 = '2e18efae7a487d708dec9acafdb475f494a79733682e84bc5d97f5fe64226c7b';
 
 function getPassphrase(vol) {
+  if (vol === 3) {
+    // Vol.3 master phrase. Falls back to env var if set, else hardcoded.
+    return process.env.UNLOCK_PASSPHRASE_V3 || 'from store to system';
+  }
   if (vol === 2) {
     // Vol.2 master phrase. Falls back to env var if set, else hardcoded.
     return process.env.UNLOCK_PASSPHRASE_V2 || 'from known to real';
@@ -74,7 +79,8 @@ export default async function handler(req) {
     stage = 'parse_body';
     const body = await req.json();
     const { code, device_id, action } = body;
-    const reqVol = body.vol === 2 || body.vol === '2' ? 2 : 1;
+    const reqVol = body.vol === 3 || body.vol === '3' ? 3
+      : body.vol === 2 || body.vol === '2' ? 2 : 1;
 
     if (!code || !device_id) {
       return json({ error: 'missing_params', message: 'ข้อมูลไม่ครบ' }, 400);
@@ -104,6 +110,10 @@ export default async function handler(req) {
       await appendAudit('MASTER-V2', { ...auditBase, event: 'master_unlock', vol: 2 });
       return json({ passphrase: getPassphrase(2), master: true, vol: 2 });
     }
+    if (hash === MASTER_HASH_V3) {
+      await appendAudit('MASTER-V3', { ...auditBase, event: 'master_unlock', vol: 3 });
+      return json({ passphrase: getPassphrase(3), master: true, vol: 3 });
+    }
 
     // Look up unique code in Redis
     stage = 'redis_get';
@@ -123,7 +133,7 @@ export default async function handler(req) {
     // event from here on, so each customer has a unified per-user timeline.
     auditBase.email = data.customer_email || null;
     // Determine the volume this code unlocks. Codes saved before vol-tagging default to 1.
-    const codeVol = data.vol === 2 ? 2 : 1;
+    const codeVol = data.vol === 3 ? 3 : data.vol === 2 ? 2 : 1;
     // If client requested a specific vol that mismatches the code's vol, reject.
     if (reqVol !== codeVol) {
       return json({ error: 'wrong_volume', message: 'รหัสนี้ใช้กับเล่มอื่น (Vol.' + codeVol + ')' }, 400);

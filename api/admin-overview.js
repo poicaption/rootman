@@ -94,6 +94,7 @@ export default async function handler(req) {
     const totalPurchases = parseInt(await val(['GET', 'stats:purchases:total'], 0)) || 0;
     const vol1 = parseInt(await val(['GET', 'stats:purchases:vol1'], 0)) || 0;
     const vol2 = parseInt(await val(['GET', 'stats:purchases:vol2'], 0)) || 0;
+    const vol3 = parseInt(await val(['GET', 'stats:purchases:vol3'], 0)) || 0;
     const uniqueBuyers = parseInt(await val(['SCARD', 'users:emails'], 0)) || 0;
 
     // Revenue per currency — discover currencies from the recent feed.
@@ -120,6 +121,7 @@ export default async function handler(req) {
         unique_buyers: uniqueBuyers,
         vol1_purchases: vol1,
         vol2_purchases: vol2,
+        vol3_purchases: vol3,
         purchases_today: purchasesToday,
         revenue,
       },

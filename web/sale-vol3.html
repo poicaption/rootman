@@ -1,0 +1,3177 @@
+﻿<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>รากแก้วธุรกิจ — มองธุรกิจให้ขาด โดยไม่ต้องเรียน MBA</title>
+    <meta name="description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย — เขาแค่อ่านคนออก เจาะลึกจิตวิทยาที่เปลี่ยนการขายของคุณตลอดชีวิต">
+    <meta property="og:title" content="รากแก้วการตลาด — อาวุธลับของนักขายที่ปิดทุกดีล">
+    <meta property="og:description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย — เขาแค่อ่านคนออก">
+    <meta property="og:type" content="book">
+    <meta property="og:locale" content="th_TH">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '2615991928816882');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+    <style>
+        :root {
+            --bg: #FAFAF7;
+            --bg-alt: #F3F0EB;
+            --bg-warm: #F3F8F4;
+            --bg-dark: #0F1D17;
+            --bg-dark2: #152019;
+            --text: #2D2A26;
+            --text-sec: #6B6560;
+            --text-light: #9A948D;
+            --accent: #1B5E43;
+            --accent-hover: #15452F;
+            --accent-soft: rgba(27,94,67,0.08);
+            --gold: #6E8C7E;
+            --gold-bg: #EDF3EF;
+            --warm: #5E9E80;
+            --border: #E0DCD6;
+            --border-dark: #C8C2BA;
+            --mono: 'JetBrains Mono', 'Consolas', monospace;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.9;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* ── Progress bar ── */
+        #progress-bar {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--warm));
+            z-index: 10000;
+            transition: width 0.1s linear;
+        }
+
+        /* ── Layout ── */
+        .sec {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        .sec-wide {
+            max-width: 100%;
+            padding: 2rem 1.5rem;
+        }
+        .sec p { margin-bottom: 0.8rem; }
+
+        /* ── Section titles ── */
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+        }
+        .sec-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.25rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+        .sec-title em {
+            font-style: normal;
+            color: var(--accent);
+        }
+
+        /* ── Hero ── */
+        .hero {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 3.5rem 1.5rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 50% 80%, rgba(27,94,67,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-inner {
+            max-width: 640px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .hero-eyebrow {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.25em;
+            color: var(--warm);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.5rem, 5vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.45;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--accent) 0%, #3FA876 50%, var(--accent) 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: 1rem;
+            color: #A29A90;
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-hook {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1.05rem;
+            color: #D4CFC7;
+            line-height: 1.8;
+            margin: 1.8rem auto 2.2rem;
+            max-width: 480px;
+            font-style: italic;
+        }
+        .hero-cta {
+            display: inline-block;
+            padding: 0.9rem 2.8rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(27,94,67,0.25);
+        }
+        .hero-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(27,94,67,0.35); }
+        .hero-note {
+            font-size: 0.78rem;
+            color: #6B6560;
+            margin-top: 1rem;
+        }
+        .hero-note a { color: var(--warm); text-decoration: none; border-bottom: 1px solid rgba(94,158,128,0.3); transition: border-color 0.2s; }
+        .hero-note a:hover { border-color: var(--warm); }
+
+        /* ── Pull quote ── */
+        .pull-quote {
+            border-left: 3px solid var(--warm);
+            padding: 0.2rem 0 0.2rem 1.3rem;
+            margin: 1.8rem 0;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .pull-quote cite {
+            display: block;
+            font-family: 'Sarabun', sans-serif;
+            font-style: normal;
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* ── Scenario list ── */
+        .scenario {
+            padding: 0.8rem 0.8rem 0.8rem 1.2rem;
+            border-left: 2px solid var(--border);
+            margin-bottom: 0.8rem;
+            border-radius: 6px;
+            transition: border-color 0.3s, background 0.3s;
+        }
+        .scenario:hover { border-color: var(--accent); background: rgba(27,94,67,0.02); }
+        .scenario-q {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            color: var(--text);
+            margin-bottom: 0.15rem;
+        }
+        .scenario-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        /* ── Highlight strip (dark band) ── */
+        .dark-band {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            border-top: 1px solid rgba(94,158,128,0.1);
+            border-bottom: 1px solid rgba(94,158,128,0.1);
+        }
+        .dark-band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(94,158,128,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .dark-band-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .dark-band p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 0.5rem;
+        }
+        .dark-band strong { color: var(--warm); }
+        .dark-band .big-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.1rem, 3vw, 1.35rem);
+            font-weight: 600;
+            line-height: 1.65;
+            color: #fff;
+            margin: 1rem 0;
+            text-shadow: 0 0 60px rgba(94,158,128,0.08);
+        }
+        .dark-band .big-quote strong { color: var(--warm); }
+        .dark-band-sub {
+            color: var(--warm);
+            font-size: 0.88rem;
+            margin-top: 1rem;
+        }
+
+        /* ── Comparison columns ── */
+        .compare {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .compare-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+        .compare-col:hover { transform: translateY(-2px); }
+        .compare-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
+        }
+        .compare-col ul { list-style: none; padding: 0; }
+        .compare-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.35rem 0;
+        }
+        .compare-old {
+            background: #F5F3F0;
+            border: 1px solid var(--border);
+        }
+        .compare-old h4 { color: var(--text-sec); border-bottom: 1px solid var(--border); }
+        .compare-old li::before { content: '— '; color: var(--text-light); }
+        .compare-new {
+            background: var(--gold-bg);
+            border: 2px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(184,134,11,0.08);
+            position: relative;
+        }
+        .compare-new::before {
+            content: 'อ่านแล้วได้สิ่งนี้';
+            position: absolute;
+            top: -10px; right: 12px;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.15rem 0.7rem;
+            border-radius: 10px;
+            letter-spacing: 0.05em;
+        }
+        .compare-new h4 { color: var(--gold); border-bottom: 1px solid #E8D5A8; }
+        .compare-new li::before { content: '✦ '; color: var(--gold); }
+        .compare-new li { color: var(--text); }
+
+        /* ── Benefit cards ── */
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .benefit-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.6rem 1.5rem;
+            border-top: 3px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .benefit-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, rgba(27,94,67,0.03), transparent);
+            pointer-events: none;
+        }
+        .benefit-card:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .benefit-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+        .benefit-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+        .benefit-desc {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+            margin: 0 0 0.6rem;
+        }
+        .benefit-example {
+            font-size: 0.82rem;
+            color: var(--text-light);
+            font-style: italic;
+            line-height: 1.7;
+            margin: 0;
+            padding-top: 0.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Gold highlight box ── */
+        .gold-box {
+            background: var(--gold-bg);
+            border: 1px solid #E8D5A8;
+            border-radius: 12px;
+            padding: 1.5rem 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 16px rgba(184,134,11,0.06);
+        }
+        .gold-box p {
+            font-size: 0.92rem;
+            color: var(--text);
+            margin: 0;
+            line-height: 1.9;
+        }
+        .gold-box strong { color: var(--gold); }
+
+        /* ── Proof bar ── */
+        .proof-bar {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            padding: 2.5rem 0;
+            flex-wrap: wrap;
+        }
+        .proof-item { text-align: center; }
+        .proof-num {
+            font-family: 'Prompt', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+            background: linear-gradient(135deg, var(--accent), var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .proof-label {
+            font-size: 0.73rem;
+            color: var(--text-sec);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Who / Not-for ── */
+        .who-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .who-col {
+            padding: 1.5rem 1.3rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .who-col:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .who-col h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.5rem;
+        }
+        .who-col ul { list-style: none; padding: 0; }
+        .who-col li {
+            font-size: 0.85rem;
+            line-height: 1.7;
+            padding: 0.3rem 0;
+        }
+        .who-yes {
+            background: #F7FBF5;
+            border: 1px solid #D5E8CC;
+        }
+        .who-yes h4 { color: #4A7C3F; border-bottom: 1px solid #D5E8CC; }
+        .who-yes li::before { content: '✓ '; color: #4A7C3F; font-weight: 700; }
+        .who-no {
+            background: #F6F1EF;
+            border: 1px solid #E8CCCC;
+        }
+        .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
+        .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
+
+        /* ── Value context (honest anchor) ── */
+        .value-context {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+        .value-context-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.2rem;
+        }
+        .value-alt {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.65rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+            gap: 0.8rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .value-alt:hover { background: rgba(0,0,0,0.02); }
+        .value-alt-name {
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.6;
+        }
+        .value-alt-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+        }
+        .value-alt-price {
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .value-alt-this {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 0.7rem;
+            background: rgba(27,94,67,0.03);
+        }
+        .value-alt-this:hover { background: rgba(27,94,67,0.06); }
+        .value-alt-this .value-alt-name {
+            color: var(--text);
+            font-weight: 600;
+        }
+        .value-alt-this .value-alt-note {
+            color: var(--text-sec);
+        }
+        .value-alt-this .value-alt-price {
+            color: var(--accent);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .value-meta {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            font-style: italic;
+            margin-top: 1.2rem;
+            line-height: 1.85;
+        }
+        .value-meta em {
+            font-style: normal;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* ── Pricing section (no-tricks) ── */
+        .pricing-section {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 100%);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+        .pricing-inner {
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .notricks {
+            text-align: left;
+            margin-bottom: 2.5rem;
+            padding: 2rem 2rem;
+            background: #fff;
+            border-radius: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .notricks::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+            border-radius: 3px 0 0 3px;
+        }
+        .notricks-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        .notricks-title u {
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .notricks-list {
+            font-size: 0.88rem;
+            color: var(--warm);
+            line-height: 2;
+            margin-bottom: 1.2rem;
+        }
+        .notricks-why {
+            font-size: 0.92rem;
+            color: var(--text);
+            line-height: 1.9;
+        }
+        .notricks-why strong {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-underline-offset: 3px;
+        }
+        .price-hero {
+            margin: 2rem 0 2.5rem;
+            position: relative;
+        }
+        .price-big {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--gold);
+            text-shadow: 0 2px 40px rgba(184,134,11,0.15);
+        }
+        .price-unit {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            color: var(--text-sec);
+            letter-spacing: 0.08em;
+        }
+        .price-reason {
+            text-align: left;
+            margin-bottom: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            border: 1px solid var(--border);
+        }
+        .price-reason-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.8rem;
+        }
+        .price-reason p {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.9;
+            margin-bottom: 0.8rem;
+        }
+        @keyframes cta-pulse {
+            0%, 100% { box-shadow: 0 4px 16px rgba(27,94,67,0.2); }
+            50% { box-shadow: 0 4px 28px rgba(27,94,67,0.35); }
+        }
+        .pricing-cta {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 16px rgba(27,94,67,0.2);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .pricing-cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(27,94,67,0.3); animation: none; }
+        .pricing-note {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 1rem;
+        }
+        .pricing-sub-note {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* ── Reader's whisper (coupon) ── */
+        .reader-whisper {
+            margin-top: 1.8rem;
+            padding: 1.3rem 1.5rem;
+            border: 1px dashed var(--border-dark);
+            border-radius: 10px;
+            background: rgba(255,255,255,0.5);
+            position: relative;
+        }
+        .reader-whisper::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 24px; right: 24px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--warm), transparent);
+        }
+        .whisper-label {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            font-style: italic;
+            margin-bottom: 0.6rem;
+            line-height: 1.7;
+        }
+        .whisper-body {
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.82rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        .whisper-code-wrap {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .whisper-code {
+            font-family: 'IBM Plex Sans Thai', 'Prompt', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: var(--accent-soft);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            letter-spacing: 0.12em;
+            border: 1px solid rgba(27,94,67,0.12);
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+            user-select: all;
+        }
+        .whisper-code:hover {
+            background: rgba(27,94,67,0.12);
+            border-color: rgba(27,94,67,0.25);
+        }
+        .whisper-copy-hint {
+            font-size: 0.65rem;
+            color: var(--text-light);
+            transition: color 0.3s;
+        }
+        .whisper-note {
+            font-size: 0.72rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+            line-height: 1.7;
+        }
+
+        /* ── FAQ ── */
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            padding: 1.3rem 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+            margin-bottom: 0.2rem;
+        }
+        .faq-item:hover { background: rgba(0,0,0,0.015); }
+        .faq-q {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+        .faq-q::before {
+            content: 'Q';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.4rem;
+            height: 1.4rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-size: 0.62rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+        .faq-a {
+            font-size: 0.88rem;
+            color: var(--text-sec);
+            line-height: 1.85;
+            margin: 0;
+        }
+        .faq-a a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(27,94,67,0.3); transition: border-color 0.2s; }
+        .faq-a a:hover { border-color: var(--accent); }
+
+        /* ── Final CTA band ── */
+        .final-cta {
+            background: linear-gradient(165deg, #0F1D17 0%, #2A2520 40%, #0F1D17 100%);
+            color: #F5F0EB;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(ellipse at center bottom, rgba(27,94,67,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .final-cta-inner {
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .final-cta h2 {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.15rem, 3vw, 1.4rem);
+            font-weight: 700;
+            line-height: 1.55;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #F5F0EB, var(--warm));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .final-cta p {
+            color: #A29A90;
+            font-size: 0.92rem;
+            margin-bottom: 1.5rem;
+        }
+        .final-cta-btn {
+            display: inline-block;
+            padding: 0.9rem 3rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(27,94,67,0.25);
+            animation: cta-pulse 3s ease-in-out infinite;
+        }
+        .final-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(27,94,67,0.35); animation: none; }
+        .final-cta-note {
+            font-size: 0.78rem;
+            color: #6B6560;
+            margin-top: 0.8rem;
+        }
+        .final-cta-free {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--warm);
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(94,158,128,0.3);
+            transition: border-color 0.2s;
+        }
+        .final-cta-free:hover { border-color: var(--warm); }
+
+        /* ── Thin divider ── */
+        .thin-div {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-dark), transparent);
+            max-width: 200px;
+            margin: 0 auto;
+        }
+
+        /* ── Footer ── */
+        .sp-footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            font-size: 0.72rem;
+            color: var(--text-light);
+            border-top: 1px solid var(--border);
+        }
+
+        /* ── Section ornament ── */
+        .sec::before {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--warm), transparent);
+            margin-bottom: 1.2rem;
+            border-radius: 2px;
+        }
+        .sec:first-of-type::before { display: none; }
+
+        /* ── Section labels: dot accent ── */
+        .sec-label::before {
+            content: '// ';
+            opacity: 0.45;
+            font-weight: 400;
+        }
+
+        /* ── Animations ── */
+        .rv {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .rv.vis { opacity: 1; transform: none; }
+        .rv-d1 { transition-delay: 0.1s; }
+        .rv-d2 { transition-delay: 0.2s; }
+        .rv-d3 { transition-delay: 0.3s; }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            html { font-size: 16px; }
+            .sec { padding: 1.6rem 1.3rem; }
+            .hero { padding: 2.5rem 1.3rem 1.8rem; }
+            .hero h1 { font-size: clamp(1.3rem, 5vw, 1.8rem); }
+            .hero-sub { font-size: 0.92rem; }
+            .hero-hook { font-size: 0.95rem; margin: 1rem auto 1.5rem; }
+            .hero-cta { padding: 0.85rem 2.2rem; font-size: 0.95rem; }
+            .dark-band { padding: 1.4rem 1.3rem; }
+            .dark-band .big-quote { font-size: clamp(1rem, 3vw, 1.2rem); }
+            .compare { gap: 0.8rem; }
+            .compare-col { padding: 1.2rem 1rem; }
+            .compare-col li { font-size: 0.82rem; }
+            .benefit-card { padding: 1.3rem 1.2rem; }
+            .benefit-title { font-size: 0.95rem; }
+            .benefit-desc { font-size: 0.85rem; }
+            .benefit-example { font-size: 0.8rem; }
+            .proof-bar { gap: 1.5rem; padding: 1.5rem 0; }
+            .proof-num { font-size: 1.8rem; }
+            .pricing-section { padding: 1.6rem 1.3rem; }
+            .notricks { padding: 1.5rem 1.3rem; }
+            .value-alt-name { font-size: 0.82rem; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-meta { font-size: 0.75rem; }
+            .notricks-title { font-size: 0.95rem; }
+            .notricks-list { font-size: 0.84rem; }
+            .notricks-why { font-size: 0.88rem; }
+            .price-big { font-size: clamp(2.8rem, 7vw, 3.5rem); }
+            .price-reason p { font-size: 0.85rem; }
+            .pricing-cta { font-size: 1rem; padding: 0.9rem 1.5rem; }
+            .faq-q { font-size: 0.9rem; }
+            .faq-a { font-size: 0.85rem; }
+            .final-cta { padding: 1.6rem 1.3rem; }
+            .final-cta-btn { padding: 0.85rem 2rem; font-size: 0.95rem; }
+            .gold-box { padding: 1.3rem 1.2rem; margin: 1.2rem 0; }
+            .gold-box p { font-size: 0.88rem; }
+            .pull-quote { font-size: 0.92rem; padding-left: 1rem; margin: 1rem 0; }
+            .guarantee { padding: 1.4rem 1.3rem; }
+            .social-proof { padding: 1.6rem 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            .compare, .who-grid { grid-template-columns: 1fr; }
+            .hero-cta { display: block; width: 100%; text-align: center; }
+            .final-cta-btn { display: block; width: 100%; max-width: 360px; margin: 0 auto; text-align: center; }
+            .proof-bar {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem 1rem;
+                max-width: 320px;
+                margin: 0 auto;
+                padding: 2rem 0;
+            }
+            .proof-item { text-align: center; }
+            .who-col { padding: 1.2rem 1rem; }
+            .who-col li { font-size: 0.82rem; }
+            .scenario { padding: 0.5rem 0 0.5rem 1rem; margin-bottom: 0.6rem; }
+            .scenario-q { font-size: 0.88rem; }
+            .scenario-a { font-size: 0.84rem; }
+            .sec::before { width: 30px; margin-bottom: 1.2rem; }
+            .reader-whisper { padding: 1.1rem 1.2rem; }
+            .whisper-body { font-size: 0.78rem; }
+            .whisper-code { font-size: 0.82rem; padding: 0.25rem 0.6rem; }
+            .compare-new::before { font-size: 0.55rem; top: -8px; right: 8px; padding: 0.1rem 0.5rem; }
+        }
+
+        @media (max-width: 420px) {
+            html { font-size: 15px; }
+            .sec { padding: 1.2rem 1rem; }
+            .hero { padding: 1.8rem 1rem 1.4rem; }
+            .hero h1 { font-size: 1.2rem; line-height: 1.55; }
+            .hero-sub { font-size: 0.88rem; }
+            .hero-hook { font-size: 0.9rem; }
+            .hero-eyebrow { font-size: 0.65rem; margin-bottom: 1rem; }
+            .sec-title { font-size: 1.1rem; margin-bottom: 0.8rem; }
+            .sec-label { font-size: 0.62rem; }
+            .dark-band { padding: 1.1rem 1rem; }
+            .dark-band .big-quote { font-size: 1rem; line-height: 1.7; }
+            .dark-band-sub { font-size: 0.82rem; }
+            .compare-col h4 { font-size: 0.78rem; }
+            .benefit-card { padding: 1.1rem 1rem; border-top-width: 2px; }
+            .benefit-num { font-size: 0.62rem; }
+            .benefit-title { font-size: 0.9rem; }
+            .proof-bar { padding: 1.2rem 0; }
+            .proof-num { font-size: 1.5rem; }
+            .proof-label { font-size: 0.68rem; }
+            .pricing-section { padding: 1.2rem 1rem; }
+            .notricks { padding: 1.2rem 1rem; margin-bottom: 1.5rem; }
+            .value-context { margin-bottom: 1.5rem; }
+            .value-context-title { font-size: 0.85rem; }
+            .value-alt { flex-direction: column; gap: 0.15rem; padding: 0.55rem 0; }
+            .value-alt-price { font-size: 0.82rem; }
+            .value-alt-name { font-size: 0.8rem; }
+            .value-alt-note { font-size: 0.68rem; }
+            .value-alt-this .value-alt-price { font-size: 0.95rem; }
+            .value-meta { font-size: 0.72rem; }
+            .notricks-title { font-size: 0.9rem; }
+            .notricks-list { font-size: 0.8rem; line-height: 1.9; }
+            .notricks-why { font-size: 0.84rem; }
+            .price-big { font-size: 2.5rem; }
+            .price-reason-title { font-size: 0.92rem; }
+            .price-reason p { font-size: 0.82rem; }
+            .pricing-cta { font-size: 0.95rem; padding: 0.85rem 1rem; }
+            .pricing-note { font-size: 0.72rem; }
+            .pricing-sub-note { font-size: 0.78rem; }
+            .faq-q { font-size: 0.85rem; }
+            .faq-a { font-size: 0.82rem; }
+            .final-cta { padding: 1.2rem 1rem; }
+            .final-cta h2 { font-size: 1.05rem; }
+            .final-cta p { font-size: 0.85rem; }
+            .final-cta-btn { font-size: 0.9rem; padding: 0.8rem 1rem; }
+            .final-cta-note { font-size: 0.72rem; }
+            .final-cta-free { font-size: 0.8rem; }
+            .gold-box { padding: 1rem; margin: 0.8rem 0; }
+            .gold-box p { font-size: 0.84rem; }
+            .pull-quote { font-size: 0.88rem; margin: 0.8rem 0; }
+            .who-col h4 { font-size: 0.78rem; }
+            .who-col li { font-size: 0.8rem; }
+            .sec::before { width: 24px; margin-bottom: 0.8rem; }
+            .reader-whisper { padding: 1rem; }
+            .whisper-label { font-size: 0.72rem; }
+            .whisper-body { font-size: 0.76rem; }
+            .whisper-code { font-size: 0.78rem; }
+            .whisper-note { font-size: 0.66rem; }
+            .faq-q::before { width: 1.2rem; height: 1.2rem; font-size: 0.55rem; margin-right: 0.4rem; }
+            .sec-label::before { width: 5px; height: 5px; margin-right: 0.4rem; }
+            .price-reason { padding: 1.2rem 1rem; }
+            .guarantee { padding: 1rem; }
+            .guarantee-box { padding: 1.2rem 1rem; }
+            .social-proof { padding: 1.2rem 0.8rem; }
+        }
+
+        /* ═══════════════════════════════════════════
+           MYSTICAL RETRO-MODERN ENHANCEMENT LAYER
+           ═══════════════════════════════════════════ */
+
+        /* Grain texture overlay — vintage parchment feel */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.028;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Progress bar — animated mystic glow */
+        #progress-bar {
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--gold), var(--warm), var(--accent));
+            background-size: 300% 100%;
+            animation: progress-shimmer 3s linear infinite;
+            box-shadow: 0 0 8px rgba(27,94,67,0.3), 0 0 20px rgba(184,134,11,0.15);
+        }
+
+        /* Section ornaments — sacred geometry symbols */
+        .sec::before {
+            content: '◈';
+            width: auto; height: auto;
+            background: none; border-radius: 0;
+            font-size: 0.6rem;
+            color: var(--gold);
+            opacity: 0.3;
+            letter-spacing: 0.8em;
+        }
+
+        /* Section label — glowing underline */
+        .sec-label { position: relative; padding-bottom: 0.35rem; }
+        .sec-label::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 1px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            opacity: 0.35;
+        }
+
+        /* Hero — deep atmospheric gradient with layered glow */
+        .hero {
+            background: linear-gradient(175deg, #0A0907 0%, #0F1D17 35%, #15120F 65%, #0A0907 100%);
+        }
+        .hero::before {
+            background:
+                radial-gradient(ellipse at 25% 75%, rgba(184,134,11,0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 75% 25%, rgba(27,94,67,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(94,158,128,0.05) 0%, transparent 60%);
+        }
+
+        /* Hero scattered star dots */
+        .hero .hero-inner::before {
+            content: '';
+            position: absolute;
+            inset: -80px;
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(1px 1px at 8% 15%, rgba(94,158,128,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 92% 20%, rgba(184,134,11,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 18% 85%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 78% 75%, rgba(94,158,128,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 45% 5%, rgba(184,134,11,0.35) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 55% 95%, rgba(255,255,255,0.15) 0%, transparent 100%),
+                radial-gradient(1px 1px at 3% 55%, rgba(94,158,128,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 97% 50%, rgba(184,134,11,0.35) 0%, transparent 100%);
+        }
+
+        /* Hero eyebrow — mystical eye marker */
+        .hero-eyebrow::after {
+            content: '◉';
+            display: block;
+            font-size: 0.45rem;
+            color: var(--gold);
+            margin-top: 0.7rem;
+            opacity: 0.4;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        /* Hero title — subtle ambient glow + animated gradient */
+        .hero h1 { text-shadow: 0 0 60px rgba(245,240,235,0.08); }
+        .hero h1 em {
+            background: linear-gradient(135deg, var(--accent) 0%, #3FA876 30%, var(--gold) 60%, var(--accent) 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 6s ease-in-out infinite;
+        }
+
+        /* Hero hook — decorative geometry mark */
+        .hero-hook { position: relative; }
+        .hero-hook::before {
+            content: '⟐';
+            position: absolute;
+            top: -1.2rem; left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.5rem; color: var(--gold); opacity: 0.2;
+        }
+
+        /* Hero CTA — sweeping light shine */
+        .hero-cta {
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(27,94,67,0.3), 0 0 40px rgba(27,94,67,0.08);
+        }
+        .hero-cta::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+
+        /* Pull quote — gold accent with gradient bg */
+        .pull-quote {
+            border-left-color: var(--gold);
+            background: linear-gradient(90deg, rgba(184,134,11,0.025), transparent);
+            padding-left: 1.5rem;
+            border-radius: 0 6px 6px 0;
+        }
+
+        /* Scenario — dot indicator on hover */
+        .scenario { position: relative; }
+        .scenario::after {
+            content: '';
+            position: absolute;
+            left: -5px; top: 50%;
+            transform: translateY(-50%);
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            background: var(--bg);
+            transition: border-color 0.3s, background 0.3s, box-shadow 0.3s;
+        }
+        .scenario:hover::after {
+            border-color: var(--accent);
+            background: var(--accent);
+            box-shadow: 0 0 8px rgba(27,94,67,0.3);
+        }
+
+        /* Dark band — starfield background */
+        .dark-band {
+            background: linear-gradient(175deg, #0A0907 0%, #0F1D17 40%, #0F0D0A 100%);
+        }
+        .dark-band::before {
+            background:
+                radial-gradient(1px 1px at 5% 20%, rgba(94,158,128,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 15% 70%, rgba(184,134,11,0.4) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 25% 35%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 35% 85%, rgba(94,158,128,0.35) 0%, transparent 100%),
+                radial-gradient(1px 1px at 50% 15%, rgba(184,134,11,0.5) 0%, transparent 100%),
+                radial-gradient(1px 1px at 65% 60%, rgba(94,158,128,0.3) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 75% 90%, rgba(255,255,255,0.15) 0%, transparent 100%),
+                radial-gradient(1px 1px at 85% 40%, rgba(184,134,11,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 95% 75%, rgba(94,158,128,0.3) 0%, transparent 100%),
+                radial-gradient(ellipse at center, rgba(94,158,128,0.025) 0%, transparent 70%);
+        }
+        .dark-band .big-quote {
+            text-shadow: 0 0 40px rgba(94,158,128,0.1), 0 0 80px rgba(184,134,11,0.05);
+        }
+        .dark-band strong {
+            text-shadow: 0 0 15px rgba(94,158,128,0.25);
+        }
+
+        /* Benefit cards — vintage journal corner details */
+        .benefit-card {
+            border-top-width: 2px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+        .benefit-card::after {
+            content: '';
+            position: absolute;
+            bottom: 8px; right: 8px;
+            width: 16px; height: 16px;
+            border-bottom: 1px solid rgba(184,134,11,0.12);
+            border-right: 1px solid rgba(184,134,11,0.12);
+            pointer-events: none;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .benefit-card:hover::after { opacity: 1; }
+        .benefit-card:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.06), 0 0 0 1px rgba(184,134,11,0.06);
+            transform: translateY(-3px);
+        }
+        .benefit-num { font-variant: small-caps; letter-spacing: 0.15em; }
+
+        /* Comparison gold column — inner glow */
+        .compare-new {
+            box-shadow: 0 2px 16px rgba(184,134,11,0.1), inset 0 0 30px rgba(184,134,11,0.02);
+        }
+        .compare-new:hover {
+            box-shadow: 0 8px 28px rgba(184,134,11,0.15), inset 0 0 30px rgba(184,134,11,0.03);
+            transform: translateY(-4px);
+        }
+
+        /* Proof numbers — animated gradient shimmer */
+        .proof-num {
+            background: linear-gradient(135deg, var(--accent), var(--gold), var(--warm));
+            background-size: 200% auto;
+            -webkit-background-clip: text; background-clip: text;
+            animation: gradient-shift 5s ease-in-out infinite;
+        }
+
+        /* Pricing section — layered radial glow */
+        .pricing-section {
+            background:
+                radial-gradient(ellipse at 30% 0%, rgba(184,134,11,0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 100%, rgba(27,94,67,0.02) 0%, transparent 50%),
+                linear-gradient(180deg, var(--bg-alt) 0%, var(--bg-warm) 50%, var(--bg-alt) 100%);
+        }
+
+        /* Price number — radiant glow */
+        .price-big {
+            text-shadow: 0 2px 40px rgba(184,134,11,0.25), 0 0 80px rgba(184,134,11,0.1);
+            position: relative;
+        }
+        .price-big::after {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            background: radial-gradient(circle, rgba(184,134,11,0.06) 0%, transparent 60%);
+            pointer-events: none; z-index: -1;
+        }
+
+        /* CTA buttons — sweeping shine effect */
+        .pricing-cta, .final-cta-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .pricing-cta::after, .final-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+        .final-cta-btn::after { animation-delay: 2s; }
+
+        /* Final CTA — starfield */
+        .final-cta {
+            background: linear-gradient(175deg, #0A0907 0%, #0F1D17 40%, #0F0D0A 100%);
+        }
+        .final-cta::before {
+            background:
+                radial-gradient(1px 1px at 10% 30%, rgba(94,158,128,0.45) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 80%, rgba(184,134,11,0.35) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 50% 15%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 65%, rgba(94,158,128,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 90% 40%, rgba(184,134,11,0.3) 0%, transparent 100%),
+                radial-gradient(ellipse at center bottom, rgba(27,94,67,0.04) 0%, transparent 60%);
+        }
+
+        /* Gold box — subtle radiance corner */
+        .gold-box { position: relative; overflow: hidden; }
+        .gold-box::after {
+            content: '';
+            position: absolute;
+            top: -15px; right: -15px;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Whisper code — hover glow */
+        .whisper-code { transition: background 0.2s, border-color 0.2s, box-shadow 0.3s; }
+        .whisper-code:hover { box-shadow: 0 0 12px rgba(27,94,67,0.12); }
+
+        /* Reader whisper — gold gradient line */
+        .reader-whisper::before { background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.35; }
+
+        /* FAQ badge — soft glow ring */
+        .faq-q::before { box-shadow: 0 0 0 3px rgba(27,94,67,0.04); }
+
+        /* Who-yes — subtle green radiance */
+        .who-yes { position: relative; overflow: hidden; }
+        .who-yes::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(74,124,63,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        /* Thin divider — mystical symbols */
+        .thin-div {
+            height: auto; background: none;
+            max-width: none !important;
+            text-align: center; padding: 0.3rem 0;
+        }
+        .thin-div::before {
+            content: '⟡ ◈ ⟡';
+            font-size: 0.45rem; color: var(--gold);
+            opacity: 0.3; letter-spacing: 0.4em;
+        }
+
+        /* Sacred geometry floating circles — hero decoration */
+        .sacred-geo {
+            position: absolute; inset: 0;
+            pointer-events: none; overflow: hidden; z-index: 0;
+        }
+        .sg-circle {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(184,134,11,0.06);
+        }
+        .sg-circle.sg-1 {
+            width: 300px; height: 300px;
+            top: 20%; left: -80px;
+            animation: sg-float 12s ease-in-out infinite;
+        }
+        .sg-circle.sg-2 {
+            width: 200px; height: 200px;
+            top: 10%; right: -60px;
+            border-color: rgba(27,94,67,0.05);
+            animation: sg-float 10s ease-in-out infinite reverse;
+        }
+        .sg-circle.sg-3 {
+            width: 400px; height: 400px;
+            bottom: -100px; left: calc(50% - 200px);
+            border-color: rgba(94,158,128,0.04);
+            animation: sg-float 15s ease-in-out infinite;
+        }
+
+        /* ─── Keyframe Animations ─── */
+        @keyframes progress-shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; text-shadow: 0 0 6px rgba(184,134,11,0.5); }
+        }
+        @keyframes btn-shine {
+            0%, 70%, 100% { left: -100%; }
+            80% { left: 150%; }
+        }
+        @keyframes sg-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* ─── EMOTION-DRIVEN ANIMATIONS ─── */
+
+        /* 1. Staggered scenario reveal — each pain point hits one by one */
+        .scenario.rv { opacity: 0; transform: translateX(-20px); }
+        .scenario.rv.vis { opacity: 1; transform: translateX(0); }
+        .scenario.rv-s1 { transition-delay: 0s; }
+        .scenario.rv-s2 { transition-delay: 0.12s; }
+        .scenario.rv-s3 { transition-delay: 0.24s; }
+        .scenario.rv-s4 { transition-delay: 0.36s; }
+        .scenario.rv-s5 { transition-delay: 0.48s; }
+
+        /* 2. Dark band quote — dramatic word-by-word entrance */
+        .big-quote .bq-word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(8px);
+            filter: blur(3px);
+            transition: opacity 0.5s ease, transform 0.5s ease, filter 0.5s ease;
+        }
+        .big-quote.bq-active .bq-word {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        /* 3. Section title accent — highlight sweep underline */
+        .sec-title em {
+            position: relative;
+            display: inline;
+            background-image: linear-gradient(120deg, rgba(27,94,67,0.12) 0%, rgba(184,134,11,0.1) 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 40%;
+            background-position: 0 88%;
+            transition: background-size 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .sec.vis .sec-title em,
+        .rv.vis .sec-title em {
+            background-size: 100% 40%;
+        }
+
+        /* 4. Proof number counter — scale entrance */
+        .proof-item.rv {
+            opacity: 0;
+            transform: scale(0.7);
+            transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .proof-item.rv.vis {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .proof-item.rv-p1 { transition-delay: 0s; }
+        .proof-item.rv-p2 { transition-delay: 0.15s; }
+        .proof-item.rv-p3 { transition-delay: 0.3s; }
+        .proof-item.rv-p4 { transition-delay: 0.45s; }
+
+        /* 5. Price number — dramatic entrance with glow burst */
+        .price-hero.rv {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .price-hero.rv.vis {
+            opacity: 1;
+            transform: scale(1);
+        }
+        @keyframes price-glow-burst {
+            0% { box-shadow: 0 0 0 0 rgba(184,134,11,0.3); }
+            50% { box-shadow: 0 0 60px 20px rgba(184,134,11,0.08); }
+            100% { box-shadow: 0 0 0 0 rgba(184,134,11,0); }
+        }
+        .price-hero.vis .price-big {
+            animation: price-glow-burst 1.2s ease-out 0.3s;
+        }
+
+        /* 6. Gold box — gentle breathing glow */
+        @keyframes gold-breathe {
+            0%, 100% { box-shadow: 0 2px 16px rgba(184,134,11,0.06); }
+            50% { box-shadow: 0 2px 24px rgba(184,134,11,0.12), 0 0 40px rgba(184,134,11,0.04); }
+        }
+        .gold-box { animation: gold-breathe 5s ease-in-out infinite; }
+
+        /* 7. Benefit card icons — rotate-in entrance */
+        .benefit-card.rv {
+            opacity: 0;
+            transform: translateY(24px) rotateX(8deg);
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .benefit-card.rv.vis {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+        }
+
+        /* 8. FAQ items — slide from right staggered */
+        .faq-item.rv {
+            opacity: 0;
+            transform: translateX(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .faq-item.rv.vis {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 9. Compare columns — slide in from sides */
+        .compare-old.rv-side { opacity: 0; transform: translateX(-20px); }
+        .compare-new.rv-side { opacity: 0; transform: translateX(20px); }
+        .compare-old.rv-side,
+        .compare-new.rv-side {
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .compare-old.rv-side.vis { opacity: 1; transform: translateX(0); }
+        .compare-new.rv-side.vis { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
+
+        /* 10. Who columns — same side reveal */
+        .who-yes.rv-side { opacity: 0; transform: translateX(-20px); }
+        .who-no.rv-side { opacity: 0; transform: translateX(20px); }
+        .who-yes.rv-side,
+        .who-no.rv-side {
+            transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1),
+                        transform 0.7s cubic-bezier(0.16,1,0.3,1);
+        }
+        .who-yes.rv-side.vis { opacity: 1; transform: translateX(0); }
+        .who-no.rv-side.vis { opacity: 1; transform: translateX(0); transition-delay: 0.15s; }
+
+        /* 11. Reader whisper — fade from below with delay (dramatic reveal) */
+        .reader-whisper.rv {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1.2s ease, transform 1.2s ease;
+            transition-delay: 0.3s;
+        }
+        .reader-whisper.rv.vis {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 12. Notricks strikethrough animation */
+        .notricks-list .nt-line {
+            display: inline;
+            position: relative;
+        }
+        .notricks-list .nt-line::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%;
+            width: 0; height: 1px;
+            background: var(--warm);
+            transition: width 0.6s ease;
+        }
+        .notricks.vis .nt-line::after {
+            width: 100%;
+        }
+        .notricks.vis .nt-line:nth-child(2)::after { transition-delay: 0.1s; }
+        .notricks.vis .nt-line:nth-child(3)::after { transition-delay: 0.2s; }
+        .notricks.vis .nt-line:nth-child(4)::after { transition-delay: 0.3s; }
+        .notricks.vis .nt-line:nth-child(5)::after { transition-delay: 0.4s; }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ── Sticky mobile CTA ── */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 9999;
+            background: rgba(26,23,20,0.97);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 0.7rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            border-top: 1px solid rgba(94,158,128,0.15);
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+        }
+        .sticky-cta.show { transform: translateY(0); }
+        .sticky-cta-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.82rem;
+            color: #A29A90;
+            white-space: nowrap;
+        }
+        .sticky-cta-price strong {
+            color: #F5F0EB;
+            font-size: 1rem;
+        }
+        .sticky-cta-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s;
+            box-shadow: 0 2px 12px rgba(27,94,67,0.3);
+        }
+        .sticky-cta-btn:hover { background: var(--accent-hover); }
+        @media (min-width: 769px) { .sticky-cta { display: none; } }
+
+        /* ── Social proof — Messenger chat style ── */
+        .social-proof {
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(94,158,128,0.1);
+            border-bottom: 1px solid rgba(94,158,128,0.1);
+            padding: 2rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .social-proof::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at center, rgba(94,158,128,0.02) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .social-proof-inner {
+            max-width: 520px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .sp-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .sp-count {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .sp-count-label {
+            font-size: 0.85rem;
+            color: #A29A90;
+        }
+        /* Chat thread container */
+        .chat-thread {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        /* Each chat message row */
+        .chat-msg {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+        }
+        .chat-avatar {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.6rem;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+        }
+        .chat-content {
+            max-width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+        .chat-name {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: #A29A90;
+            padding-left: 0.6rem;
+        }
+        .chat-bubble {
+            background: #2A2520;
+            color: #E8E2DA;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.88rem;
+            line-height: 1.75;
+            padding: 0.7rem 1rem;
+            border-radius: 18px 18px 18px 4px;
+            position: relative;
+            word-break: break-word;
+        }
+        .chat-bubble-multi {
+            border-radius: 4px 18px 18px 4px;
+        }
+        .chat-bubble-first {
+            border-radius: 18px 18px 18px 4px;
+        }
+        .chat-bubble-last {
+            border-radius: 4px 18px 18px 18px;
+        }
+        .chat-bubble-only {
+            border-radius: 18px 18px 18px 4px;
+        }
+        /* Emoji reaction pill */
+        .chat-react {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: #363230;
+            border: 1px solid #4A4540;
+            border-radius: 12px;
+            padding: 0.1rem 0.4rem;
+            font-size: 0.7rem;
+            margin-top: 0.15rem;
+            align-self: flex-start;
+            margin-left: 0.6rem;
+        }
+        .chat-react-count {
+            font-size: 0.55rem;
+            color: #A29A90;
+        }
+        /* Timestamp + role tag under bubble */
+        .chat-info {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding-left: 0.6rem;
+            margin-top: 0.1rem;
+        }
+        .chat-time {
+            font-size: 0.6rem;
+            color: #6B6560;
+        }
+        .chat-tag {
+            font-size: 0.55rem;
+            padding: 0.1rem 0.4rem;
+            background: rgba(27,94,67,0.12);
+            color: var(--warm);
+            border-radius: 3px;
+            font-weight: 600;
+            font-family: 'Prompt', sans-serif;
+        }
+        /* Seen/delivered status */
+        .chat-seen {
+            font-size: 0.55rem;
+            color: #6B6560;
+            text-align: right;
+            padding-right: 0.3rem;
+        }
+        /* Typing indicator */
+        .chat-typing {
+            display: flex;
+            align-items: flex-end;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: typing-appear 0.5s ease forwards;
+            animation-delay: 0.8s;
+        }
+        .typing-dots {
+            background: #2A2520;
+            padding: 0.6rem 1rem;
+            border-radius: 18px;
+            display: flex;
+            gap: 0.25rem;
+            align-items: center;
+        }
+        .typing-dot {
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #6B6560;
+            animation: typing-bounce 1.2s ease-in-out infinite;
+        }
+        .typing-dot:nth-child(2) { animation-delay: 0.15s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes typing-bounce {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+            30% { transform: translateY(-4px); opacity: 1; }
+        }
+        @keyframes typing-appear {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Responsive */
+        @media (max-width: 640px) {
+            .social-proof { padding: 1.4rem 0.6rem; }
+            .chat-bubble { font-size: 0.84rem; padding: 0.6rem 0.9rem; }
+            .chat-content { max-width: 90%; }
+        }
+
+        /* ── Guarantee section ── */
+        .guarantee {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            text-align: center;
+        }
+        .guarantee-box {
+            padding: 2.2rem 2rem;
+            border-radius: 16px;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(94,158,128,0.15);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.12);
+        }
+        .guarantee-box::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at top center, rgba(184,134,11,0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .guarantee-box::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        .guarantee-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.6rem;
+            filter: drop-shadow(0 0 8px rgba(184,134,11,0.3));
+        }
+        .guarantee-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #F5F0EB;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.02em;
+        }
+        .guarantee-text {
+            font-size: 0.88rem;
+            color: #A29A90;
+            line-height: 1.85;
+            max-width: 440px;
+            margin: 0 auto;
+        }
+        .guarantee-text strong {
+            color: var(--warm);
+            font-weight: 600;
+        }
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin-top: 1rem;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            border: 1px solid rgba(184,134,11,0.25);
+            background: rgba(184,134,11,0.06);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* ── Mid-page CTA ── */
+        .mid-cta {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 660px;
+            margin: 0 auto;
+        }
+        .mid-cta-btn {
+            display: inline-block;
+            padding: 0.85rem 2.5rem;
+            border-radius: 6px;
+            background: var(--accent);
+            color: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(27,94,67,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .mid-cta-btn:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 6px 28px rgba(27,94,67,0.35); }
+        .mid-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -100%;
+            width: 60%; height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+            transform: skewX(-20deg);
+            animation: btn-shine 5s ease-in-out infinite;
+        }
+        .mid-cta-note {
+            font-size: 0.78rem;
+            color: var(--text-light);
+            margin-top: 0.6rem;
+        }
+
+        /* Responsive overrides for enhancements */
+        @media (max-width: 768px) {
+            .sg-circle.sg-1 { width: 200px; height: 200px; }
+            .sg-circle.sg-2 { width: 140px; height: 140px; }
+            .sg-circle.sg-3 { width: 260px; height: 260px; left: calc(50% - 130px); }
+            .scenario::after { display: none; }
+            body { padding-bottom: 60px; }
+        }
+        @media (max-width: 420px) {
+            .sacred-geo { display: none; }
+            .guarantee-box { padding: 1.4rem 1rem; }
+            .testimonial { padding: 1rem; }
+        }
+
+        /* ═══════════════════════════════════════════
+           PREMIUM INTERACTION LAYER  (added)
+           Cohesive "extraordinary" flair — all responsive-safe
+           and disabled under prefers-reduced-motion.
+           ═══════════════════════════════════════════ */
+
+        /* 1 ─ Hero aurora orb: a slow drifting glow that adds living depth */
+        .hero-aurora {
+            position: absolute;
+            top: -20%; left: 50%;
+            width: min(680px, 120vw);
+            height: min(680px, 120vw);
+            transform: translateX(-50%);
+            pointer-events: none;
+            z-index: 0;
+            background:
+                radial-gradient(closest-side, rgba(27,94,67,0.16), transparent 70%),
+                radial-gradient(closest-side, rgba(184,134,11,0.12), transparent 70%);
+            background-position: 35% 40%, 65% 60%;
+            background-repeat: no-repeat;
+            background-size: 60% 60%, 55% 55%;
+            filter: blur(40px);
+            opacity: 0.9;
+            animation: aurora-drift 16s ease-in-out infinite;
+            mix-blend-mode: screen;
+        }
+        @keyframes aurora-drift {
+            0%, 100% { background-position: 32% 38%, 66% 62%; transform: translateX(-50%) scale(1); }
+            50%      { background-position: 60% 55%, 38% 42%; transform: translateX(-50%) scale(1.08); }
+        }
+
+        /* 2 ─ Scroll cue: elegant bouncing invite at the foot of the hero */
+        .scroll-cue {
+            position: absolute;
+            left: 50%; bottom: 1.1rem;
+            transform: translateX(-50%);
+            display: flex; flex-direction: column; align-items: center;
+            gap: 0.35rem;
+            z-index: 2;
+            color: var(--warm);
+            opacity: 0.7;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            text-decoration: none;
+        }
+        .scroll-cue.hide { opacity: 0; transform: translateX(-50%) translateY(10px); pointer-events: none; }
+        .scroll-cue span {
+            font-family: var(--mono);
+            font-size: 0.58rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+        }
+        .scroll-cue .cue-chev {
+            width: 18px; height: 18px;
+            border-right: 1.5px solid var(--warm);
+            border-bottom: 1.5px solid var(--warm);
+            transform: rotate(45deg);
+            animation: cue-bounce 1.8s ease-in-out infinite;
+        }
+        @keyframes cue-bounce {
+            0%, 100% { transform: rotate(45deg) translate(0, 0); opacity: 0.5; }
+            50%      { transform: rotate(45deg) translate(3px, 3px); opacity: 1; }
+        }
+
+        /* 3 ─ Interactive benefit cards: cursor spotlight + subtle 3D tilt (desktop) */
+        .benefit-grid { perspective: 1200px; }
+        .benefit-card {
+            will-change: transform;
+            transition: box-shadow 0.3s, transform 0.25s cubic-bezier(0.16,1,0.3,1), background-color 0.3s;
+        }
+        @media (hover: hover) and (pointer: fine) {
+            .benefit-card.tiltable {
+                background-image: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(184,134,11,0.10), transparent 62%);
+            }
+            .benefit-card.tiltable:hover {
+                box-shadow: 0 18px 44px rgba(0,0,0,0.12), 0 0 0 1px rgba(184,134,11,0.12);
+            }
+        }
+
+        /* 4 ─ Floating back-to-top: a sacred-geometry mark that fades in on scroll */
+        .to-top {
+            position: fixed;
+            right: 1rem; bottom: 5.2rem;
+            z-index: 9990;
+            width: 44px; height: 44px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: rgba(26,23,20,0.82);
+            color: var(--gold);
+            border: 1px solid rgba(94,158,128,0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            font-size: 1rem;
+            cursor: pointer;
+            opacity: 0; transform: translateY(16px) scale(0.85);
+            pointer-events: none;
+            transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.3s;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+        }
+        .to-top.show { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+        .to-top:hover {
+            box-shadow: 0 0 0 1px rgba(94,158,128,0.5), 0 6px 22px rgba(184,134,11,0.25);
+            color: #fff;
+        }
+        .to-top .tt-mark { animation: pulse-glow 4s ease-in-out infinite; }
+        @media (min-width: 769px) { .to-top { bottom: 1.4rem; right: 1.4rem; } }
+
+        /* 5 ─ Price halo: a slow conic ring breathing behind the number */
+        .price-hero { position: relative; }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 220px; height: 220px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: conic-gradient(from 0deg,
+                rgba(184,134,11,0.18), rgba(27,94,67,0.10),
+                rgba(94,158,128,0.16), rgba(184,134,11,0.18));
+            filter: blur(26px);
+            opacity: 0.55;
+            z-index: -1;
+            pointer-events: none;
+            animation: halo-spin 18s linear infinite;
+        }
+        @keyframes halo-spin {
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Responsive tuning for the new layer */
+        @media (max-width: 768px) {
+            .price-hero::before { width: 160px; height: 160px; }
+            .hero-aurora { opacity: 0.7; filter: blur(32px); }
+        }
+        @media (max-width: 420px) {
+            .scroll-cue { display: none; }
+            .price-hero::before { width: 130px; height: 130px; }
+        }
+
+        /* Honour reduced-motion: kill the new ambient motion too */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-aurora, .price-hero::before, .scroll-cue .cue-chev, .to-top .tt-mark { animation: none; }
+            .benefit-card { transition: box-shadow 0.3s, background-color 0.3s; }
+        }
+
+        /* ═══════════════════════════════════════════
+           CONVERSION LAYER — added sections
+           ═══════════════════════════════════════════ */
+
+        /* Hero microcopy under CTA */
+        .hero-micro {
+            font-size: 0.78rem;
+            color: #8A837A;
+            line-height: 1.9;
+            margin-top: 1rem;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-micro strong { color: var(--warm); font-weight: 600; }
+        .hero-cta-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .hero-cta-secondary {
+            display: inline-block;
+            color: var(--warm);
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(94,158,128,0.3);
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .hero-cta-secondary:hover { border-color: var(--warm); color: #F5F0EB; }
+
+        /* ── How It Works / Instant Access ── */
+        .how-it-works {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        .hiw-card {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+            position: relative;
+            overflow: hidden;
+        }
+        .hiw-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--accent), var(--warm));
+        }
+        .hiw-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.4rem;
+        }
+        .hiw-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem 1.4rem;
+        }
+        .hiw-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+        }
+        .hiw-num {
+            flex-shrink: 0;
+            width: 1.8rem; height: 1.8rem;
+            border-radius: 50%;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .hiw-step-text {
+            font-size: 0.88rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding-top: 0.15rem;
+        }
+        .hiw-note {
+            margin-top: 1.4rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-sec);
+            line-height: 1.8;
+        }
+        .hiw-note strong { color: var(--accent); }
+
+        /* ── Big Idea band ── */
+        .bigidea {
+            background: linear-gradient(175deg, #0A0907 0%, #0F1D17 40%, #0F0D0A 100%);
+            color: #F5F0EB;
+            padding: 3rem 1.5rem;
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(94,158,128,0.1);
+            border-bottom: 1px solid rgba(94,158,128,0.1);
+        }
+        .bigidea::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 30%, rgba(184,134,11,0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .bigidea-inner {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .bigidea-label {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.15em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .bigidea-quote {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            font-weight: 700;
+            line-height: 1.55;
+            text-align: center;
+            margin-bottom: 1.8rem;
+        }
+        .bigidea-quote em {
+            font-style: normal;
+            color: var(--warm);
+        }
+        .bigidea p {
+            font-size: 0.95rem;
+            color: #C4BDB3;
+            line-height: 1.95;
+            margin-bottom: 0.9rem;
+        }
+        .bigidea .fear-list {
+            font-family: 'Noto Serif Thai', serif;
+            color: #E8E2DA;
+            font-size: 1rem;
+            line-height: 2;
+            margin: 1.2rem 0;
+            padding-left: 1.2rem;
+            border-left: 2px solid rgba(94,158,128,0.3);
+        }
+        .bigidea strong { color: var(--warm); }
+
+        /* ── Mini reviews (pulled-up social proof) ── */
+        .mini-reviews {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .mini-review {
+            background: #fff;
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--gold);
+            border-radius: 10px;
+            padding: 1.2rem 1.4rem;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.03);
+            transition: box-shadow 0.3s, transform 0.2s;
+        }
+        .mini-review:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .mini-review-text {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 0.95rem;
+            color: var(--text);
+            line-height: 1.85;
+            margin: 0 0 0.6rem;
+        }
+        .mini-review-who {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.74rem;
+            color: var(--gold);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── Author authority ── */
+        .author-box {
+            max-width: 660px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+        .author-inner {
+            background: var(--gold-bg);
+            border: 1px solid #E8D5A8;
+            border-left: 4px solid var(--gold);
+            border-radius: 14px;
+            padding: 2rem 1.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .author-inner::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(184,134,11,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .author-box .sec-label { color: var(--gold); }
+        .author-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .author-box p {
+            font-size: 0.92rem;
+            color: var(--text-sec);
+            line-height: 1.95;
+            margin-bottom: 0.9rem;
+        }
+        .author-box p.author-punch {
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 1rem;
+            color: var(--text);
+            font-style: italic;
+            margin-top: 1rem;
+            margin-bottom: 0;
+        }
+        .author-box strong { color: var(--gold); }
+
+        /* ── Offer box ── */
+        .offer-box {
+            background: #fff;
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 2rem 1.9rem;
+            margin-bottom: 2.5rem;
+            text-align: left;
+            box-shadow: 0 4px 28px rgba(184,134,11,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .offer-box::before {
+            content: 'สิ่งที่คุณจะได้รับ';
+            position: absolute;
+            top: 0; right: 0;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #fff;
+            background: var(--gold);
+            padding: 0.25rem 0.9rem;
+            border-radius: 0 14px 0 10px;
+            letter-spacing: 0.05em;
+        }
+        .offer-name {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+        .offer-sub {
+            font-size: 0.82rem;
+            color: var(--text-sec);
+            margin-bottom: 1.3rem;
+        }
+        .offer-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.3rem;
+        }
+        .offer-list li {
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0.45rem 0 0.45rem 1.7rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .offer-list li:last-child { border-bottom: none; }
+        .offer-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0.2rem; top: 0.45rem;
+            color: var(--gold);
+            font-size: 0.85rem;
+        }
+        .offer-list li span {
+            display: block;
+            font-size: 0.78rem;
+            color: var(--text-sec);
+            line-height: 1.5;
+        }
+        .offer-access {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .offer-chip {
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: var(--accent-soft);
+            border: 1px solid rgba(27,94,67,0.12);
+            border-radius: 20px;
+            padding: 0.3rem 0.85rem;
+        }
+
+        @media (max-width: 640px) {
+            .hiw-steps { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 420px) {
+            .how-it-works { padding: 1.4rem 1rem; }
+            .hiw-card { padding: 1.4rem 1.2rem; }
+            .hiw-title { font-size: 1rem; }
+            .bigidea { padding: 1.8rem 1rem; }
+            .bigidea-quote { font-size: 1.15rem; }
+            .author-box { padding: 1.4rem 1rem; }
+            .author-inner { padding: 1.4rem 1.2rem; }
+            .author-title { font-size: 1.02rem; }
+            .offer-box { padding: 1.4rem 1.2rem; }
+            .offer-name { font-size: 1.05rem; }
+            .mini-review-text { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- ── Progress bar ── -->
+    <div id="progress-bar"></div>
+
+    <!-- ═══════════════════════════════════════════════ HERO ═══════════════════════════════════════════════ -->
+    <div class="hero">
+        <div class="hero-aurora" aria-hidden="true"></div>
+        <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
+        <div class="hero-inner rv">
+            <div class="hero-eyebrow">One Root of Business &mdash; รากแก้วธุรกิจ</div>
+            <h1>ขายดีทุกเดือน<br>แต่เงินไม่เคยพอ &mdash;<br><em>เพราะคุณดูแล &ldquo;ใบ&rdquo; ไม่ใช่ &ldquo;ราก&rdquo;</em></h1>
+            <p class="hero-sub">หนังสือสำหรับเจ้าของธุรกิจที่เริ่มรู้แล้วว่า &ldquo;ขายได้&rdquo; ไม่เท่ากับ &ldquo;รวยขึ้น&rdquo; &mdash; และอยากเข้าใจระบบที่ตัดสินว่าธุรกิจไหนรอด โต และสะสมอำนาจ ในขณะที่อีกหลายธุรกิจทำงานหนักกว่า ขายได้มากกว่า แต่กลับจนลงทุกปี</p>
+            <p class="hero-hook">&ldquo;ธุรกิจไม่ได้พังเพราะเจ้าของไม่ขยัน &mdash; มันพังเพราะเจ้าของมองไม่เห็นระบบที่กำลังกินตัวเองอยู่ข้างใต้&rdquo;</p>
+            <div class="hero-cta-row">
+                <a href="#pricing" class="hero-cta">เริ่มเห็นรากธุรกิจวันนี้ &mdash; 1,990 บาท</a>
+                <a href="/vol3" class="hero-cta-secondary">อ่านเปิดเล่มฟรีก่อน &rarr;</a>
+            </div>
+            <p class="hero-micro">จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านเปิดเล่มฟรีก่อนตัดสินใจ</p>
+        </div>
+        <a href="#pricing" class="scroll-cue" id="scroll-cue" aria-label="เลื่อนลงเพื่ออ่านต่อ">
+            <span>เลื่อนอ่าน</span>
+            <span class="cue-chev" aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
+
+    <!-- ═══════════════════════════════════════════════ HOW IT WORKS ═══════════════════════════════════════════════ -->
+    <div class="how-it-works rv">
+        <div class="hiw-card">
+            <h3 class="hiw-title">ซื้อแล้วอ่านยังไง?</h3>
+            <div class="hiw-steps">
+                <div class="hiw-step"><span class="hiw-num">1</span><span class="hiw-step-text">กดสั่งซื้อหนังสือ</span></div>
+                <div class="hiw-step"><span class="hiw-num">2</span><span class="hiw-step-text">ชำระเงินผ่านช่องทางที่รองรับ</span></div>
+                <div class="hiw-step"><span class="hiw-num">3</span><span class="hiw-step-text">รับ Unlock Code ทันที</span></div>
+                <div class="hiw-step"><span class="hiw-num">4</span><span class="hiw-step-text">เปิดอ่านผ่านเว็บได้เลย ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์</span></div>
+            </div>
+            <p class="hiw-note"><strong>ไม่ต้องรอจัดส่ง</strong> ไม่ต้องโหลดแอป และอ่านซ้ำได้ตลอดชีพ</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ PROBLEM ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ปัญหา</div>
+        <h2 class="sec-title">คุณอาจไม่ได้ทำธุรกิจไม่เก่ง<br>คุณแค่ยังมองไม่เห็น <em>&ldquo;เกมที่ตัวเองกำลังเล่นอยู่&rdquo;</em></h2>
+
+        <p>เคยเจอสถานการณ์พวกนี้ไหม?</p>
+
+        <div class="scenario rv rv-s1">
+            <div class="scenario-q">ยอดขายขึ้นทุกเดือน แต่เงินในบัญชีไม่เคยพอ</div>
+            <p class="scenario-a">ยิ่งขายดี เงินสดยิ่งตึง จะขึ้นราคาก็กลัวลูกค้าหนี จะหยุดก็ไม่ได้ &mdash; แล้วได้แต่สงสัยว่า &ldquo;กำไรหายไปไหนหมด?&rdquo;</p>
+        </div>
+        <div class="scenario rv rv-s2">
+            <div class="scenario-q">ของคุณดีกว่าคู่แข่ง แต่เขาขายได้มากกว่า</div>
+            <p class="scenario-a">คุณทุ่มกับการทำสินค้าให้ดีขึ้นเรื่อยๆ แต่คนที่ขายเก่งกว่า เข้าถึงคนมากกว่า กลับโตเร็วกว่าคุณหลายเท่า</p>
+        </div>
+        <div class="scenario rv rv-s3">
+            <div class="scenario-q">ธุรกิจหยุดทันทีที่คุณเดินออกจากร้าน</div>
+            <p class="scenario-a">ทุกอย่างต้องผ่านคุณ ทุกปัญหาวิ่งมาหาคุณ ลาพักร้อนไม่ได้ ป่วยไม่ได้ &mdash; คุณไม่ได้มีธุรกิจ คุณมีงานที่นายจ้างโหดที่สุด</p>
+        </div>
+        <div class="scenario rv rv-s4">
+            <div class="scenario-q">จ้างคนมากี่คนก็ไม่เวิร์กเหมือนใจ</div>
+            <p class="scenario-a">คุณบ่นว่า &ldquo;หาคนดีๆ ยาก&rdquo; ทั้งที่จริงปัญหาอาจอยู่ที่ระบบแรงจูงใจที่คุณออกแบบไว้เอง</p>
+        </div>
+        <div class="scenario rv rv-s5">
+            <div class="scenario-q">ลูกค้าถามว่า &ldquo;ทำไมต้องแพงกว่าเจ้าอื่น?&rdquo;</div>
+            <p class="scenario-a">คุณลดราคาทุกครั้งที่โดนต่อ เพราะไม่รู้จะทำยังไงให้ลูกค้า &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องทิ้งกำไร</p>
+        </div>
+
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาอาจไม่ใช่ว่าคุณขยันไม่พอ &mdash;</p>
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">แต่อาจเป็นเพราะคุณกำลังวิ่งตาม &ldquo;ใบ&rdquo; ที่ร่วงทุกฤดู แทนที่จะดูแล &ldquo;ราก&rdquo; ที่ไม่เคยเปลี่ยน</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ BIG IDEA ═══════════════════════════════════════════════ -->
+    <div class="bigidea rv">
+        <div class="bigidea-inner">
+            <div class="bigidea-label">แก่นของเล่มนี้</div>
+            <p class="bigidea-quote">ธุรกิจที่ดีไม่ได้เริ่มจากคำตอบที่ถูก<br><em>มันเริ่มจากสายตาที่มองเห็นคำถามที่ถูก</em></p>
+            <p>คนส่วนใหญ่ทุ่มเวลาทั้งชีวิตกับ &ldquo;ใบ&rdquo; ของธุรกิจ &mdash; ตั้งเพจ ยิงแอด ทำคอนเทนต์ ไล่ตามเทรนด์ที่เปลี่ยนทุกเดือน</p>
+            <p>แต่ธุรกิจที่รอด โต และรวยขึ้นทุกปี ไม่ได้ชนะเพราะใบ &mdash; เขาชนะเพราะเข้าใจ <strong>ราก</strong>:</p>
+            <p class="fear-list">ตลาดที่มีแรงโน้มถ่วง<br>กระแสเงินสดที่ไหลถูกทาง<br>อำนาจในการตั้งราคา<br>ช่องทางที่เข้าถึงคน<br>ระบบที่ทำงานแทนเจ้าของ</p>
+            <p><strong>One Root of Business</strong> ไม่ได้สอนให้คุณ &ldquo;เปิดร้านเป็น&rdquo; &mdash; แต่สอนให้คุณมองธุรกิจให้ขาด ด้วยสายตาของคนที่อยู่ในสนามจริง</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ MINI SOCIAL PROOF ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">เจ้าของธุรกิจอ่านแล้วใช้จริง</div>
+        <h2 class="sec-title">นี่ไม่ใช่ตำราที่อ่านแล้วรู้สึกดี<br>แต่เป็น<em>วิธีมองธุรกิจที่เปลี่ยนการตัดสินใจจริง</em></h2>
+
+        <div class="mini-reviews">
+            <div class="mini-review rv rv-d1">
+                <p class="mini-review-text">&ldquo;อ่านบทเรื่องเงินสดจบ กลับมาดูธุรกิจตัวเองใหม่ทันที เพิ่งเข้าใจว่าทำไมขายดีแต่เงินหาย&rdquo;</p>
+                <span class="mini-review-who">ภาคิน ส. &mdash; เจ้าของร้านอาหาร 3 สาขา</span>
+            </div>
+            <div class="mini-review rv rv-d2">
+                <p class="mini-review-text">&ldquo;ขึ้นราคา 12% ตามที่เล่มนี้อธิบาย ลูกค้าหายไปนิดเดียว กำไรโตเกือบเท่าตัว&rdquo;</p>
+                <span class="mini-review-who">วรินทร ธ. &mdash; เจ้าของแบรนด์สกินแคร์</span>
+            </div>
+            <div class="mini-review rv rv-d3">
+                <p class="mini-review-text">&ldquo;เริ่มวางระบบให้ร้านเดินได้โดยไม่มีผม ครั้งแรกในรอบ 5 ปีที่ได้พาครอบครัวไปเที่ยว&rdquo;</p>
+                <span class="mini-review-who">ณัฐดนัย พ. &mdash; เจ้าของธุรกิจค้าส่ง</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ MECHANISM ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ MBA ราคาหลายแสนพยายามสอน</div>
+        <h2 class="sec-title">ยอดขายคือ <em>เสียงดัง</em><br>กำไรและเงินสดคือ <em>ความเงียบ</em> ที่ตัดสินทุกอย่าง</h2>
+
+        <p>คนทำธุรกิจส่วนใหญ่ภูมิใจกับ &ldquo;ยอดขาย&rdquo; เพราะมันดัง โชว์ได้ ทำให้รู้สึกว่ากำลังชนะ แต่ยอดขายไม่เคยบอกว่าคุณรวยขึ้นหรือจนลง</p>
+
+        <div class="pull-quote">
+            กำไรคือความเห็น แต่เงินสดคือความจริง &mdash; คุณกำไรได้ทุกเดือน แล้วก็ยังตายได้ในวันเดียว ถ้าวันนั้นเงินสดในมือไม่พอจ่ายสิ่งที่ถึงกำหนดต้องจ่าย
+            <cite>&mdash; จากบทที่ 5: เลือดที่แท้จริงของธุรกิจ</cite>
+        </div>
+
+        <p><strong>วงจรเงินสด</strong> ตัดสินว่าใครหมุนเงินได้เร็วและโตได้โดยไม่ต้องกู้ &mdash; สองธุรกิจที่กำไรเท่ากันบนกระดาษ อันที่วงจรเงินสดสั้นกว่าจะรวยกว่าเสมอ</p>
+        <p><strong>อำนาจราคา</strong> คือเครื่องวัดสุดท้ายว่าธุรกิจคุณแข็งแรงจริงหรือแค่ดูดี &mdash; ขึ้นราคา 10% โดยขายได้เท่าเดิม กำไรโตได้ถึง 33% โดยไม่ต้องทำงานเพิ่มแม้แต่นิดเดียว</p>
+        <p><strong>กำแพงคูเมือง</strong> คือสิ่งที่แยกธุรกิจที่รวยถาวร ออกจากธุรกิจที่รวยแค่ชั่วคราว &mdash; เพราะกำไรที่ดีจะดึงดูดคู่แข่งเข้ามาเหมือนกลิ่นเลือดดึงดูดฉลาม</p>
+
+        <p style="margin-top: 1.5rem;"><strong>คอร์สธุรกิจสอนให้คุณ &ldquo;ทำอะไร&rdquo;</strong> &mdash; แต่ไม่เคยอธิบายว่า<em>ทำไมธุรกิจบางอันถึงรอด และบางอันถึงตาย</em></p>
+        <p>เมื่อคุณเข้าใจ &ldquo;ราก&rdquo; &mdash; คุณจะหยุดวิ่งตามเทรนด์ แล้วเริ่ม<strong>ออกแบบระบบที่ทำงานให้คุณ</strong></p>
+
+        <div class="gold-box">
+            <p>เทคนิคธุรกิจ 100 ข้อ สู้ไม่ได้กับ<strong>ความเข้าใจในรากของธุรกิจ 1 เรื่อง</strong><br>เพราะเทคนิคหมดอายุทุกฤดู &mdash; แต่รากของธุรกิจเป็นกฎเดียวกันมาสามพันปี</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ COMPARISON ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">เปรียบเทียบ</div>
+        <h2 class="sec-title">&ldquo;ทำงาน<u>ใน</u>ธุรกิจ&rdquo; vs<br><em>&ldquo;ออกแบบธุรกิจ&rdquo;</em></h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองคนนี้ขยันเท่ากัน &mdash; แต่คนหนึ่งติดอยู่กับที่ อีกคนเปิดสาขาที่สอง</p>
+
+        <div class="compare">
+            <div class="compare-col compare-old rv-side">
+                <h4>มองเห็นแค่ &ldquo;ร้าน&rdquo;</h4>
+                <ul>
+                    <li>ทำทุกอย่างเองเพราะไม่ไว้ใจใคร</li>
+                    <li>ดูแต่ยอดขาย ไม่เคยดูกำไรต่อหน่วย</li>
+                    <li>ตั้งราคาจากต้นทุน บวกนิดหน่อย</li>
+                    <li>พึ่งช่องทางเดียว ลูกค้ารายเดียว</li>
+                    <li>จ้างคนแล้วบ่นว่าคนไม่ดี</li>
+                    <li>ขยันจนหมดแรง แต่โตไม่ได้</li>
+                </ul>
+            </div>
+            <div class="compare-col compare-new rv-side">
+                <h4>มองเห็น &ldquo;ระบบ&rdquo;</h4>
+                <ul>
+                    <li>สร้างระบบที่ทำงานแทนตัวเอง</li>
+                    <li>ดูกำไรต่อหน่วยและเงินสดเป็นหลัก</li>
+                    <li>ตั้งราคาจากคุณค่าที่ลูกค้ารับรู้</li>
+                    <li>กระจายช่องทาง สร้างเกราะป้องกัน</li>
+                    <li>ออกแบบแรงจูงใจให้คนทำสิ่งที่ถูก</li>
+                    <li>ทำน้อยลง แต่ลงถูกจุด แล้วโตขึ้น</li>
+                </ul>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ความขยันคือเครื่องมือ &mdash; แต่<strong style="color: var(--text);">ความเข้าใจในระบบ</strong>คืออาวุธที่ทำให้เวลาอยู่ข้างคุณ</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ DARK BAND ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่ทุกคนแข่งกันขายของถูกลง</p>
+            <p class="big-quote">เจ้าของที่เข้าใจว่า<strong>ทำไมธุรกิจถึงรวยขึ้น</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องขายให้ได้มากขึ้น&rdquo;<br>ทุกครั้ง &mdash; โดยไม่ต้องทำงานหนักกว่าเลย</p>
+            <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">เพราะเขาเล่นเกมระยะยาว<br>ในโลกที่ทุกคนเล่นเกมสั้น</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ WHAT YOU'LL LEARN ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช้ได้จริงในสนาม</div>
+        <h2 class="sec-title">คุณจะได้เครื่องมือมองธุรกิจ<br>ใน <em>5 สถานการณ์</em>ที่เจ้าของเจอทุกวัน</h2>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 1</div>
+                <div class="benefit-title">ตอนยอดโตแต่เงินสดหาย</div>
+                <p class="benefit-desc">เข้าใจว่าทำไมการเติบโตถึงกินเงินสด และจะดูตัวเลขไหนเพื่อไม่ให้ &ldquo;ขายดีจนเจ๊ง&rdquo;</p>
+            </div>
+            <div class="benefit-card rv rv-d2 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 2</div>
+                <div class="benefit-title">ตอนอยากขึ้นราคา</div>
+                <p class="benefit-desc">รู้วิธีสร้างอำนาจราคา ทำให้ลูกค้ารู้สึกคุ้มโดยไม่ต้องลด และเลิกกลัวการขึ้นราคา</p>
+            </div>
+            <div class="benefit-card rv rv-d3 tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 3</div>
+                <div class="benefit-title">ตอนของดีแต่ขายไม่ออก</div>
+                <p class="benefit-desc">เข้าใจว่าทำไมช่องทางสำคัญกว่าสินค้า และจะไม่ฝากชีวิตธุรกิจไว้กับช่องทางเดียว</p>
+            </div>
+            <div class="benefit-card rv tiltable">
+                <div class="benefit-num">สถานการณ์ที่ 4</div>
+                <div class="benefit-title">ตอนตัวเองกลายเป็นคอขวด</div>
+                <p class="benefit-desc">รู้วิธีถอดความเก่งออกจากหัวตัวเองมาเป็นระบบ เพื่อให้ธุรกิจเดินได้โดยไม่ต้องมีคุณยืนเฝ้า</p>
+            </div>
+            <div class="benefit-card rv tiltable" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">สถานการณ์ที่ 5</div>
+                <div class="benefit-title">ตอนอยากให้ธุรกิจโตในระยะยาว</div>
+                <p class="benefit-desc">เข้าใจกำแพงคูเมือง การจัดสรรทรัพยากร และพลังของการทบต้น ที่ทำให้ทุกวันที่ผ่านไปคู่แข่งตามยากขึ้น</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ THE BOOK ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่คุณจะได้</div>
+        <h2 class="sec-title">13 บท<br>ที่เปลี่ยน<em>วิธีที่คุณมองธุรกิจ</em>ตลอดชีวิต</h2>
+
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">ทุกบทเล่าจากกรณีศึกษาจริง งานวิจัย และ Insight ของคนทำธุรกิจจริง &mdash; อ่านสนุก ไม่มีแบบฝึกหัด ไม่มีการบ้าน</p>
+
+        <div class="benefit-grid">
+            <div class="benefit-card rv rv-d1">
+                <div class="benefit-num">เครื่องจักร &amp; ตลาด</div>
+                <div class="benefit-title">ทำไมธุรกิจคือเครื่องแปลงความไม่แน่นอนเป็นเงินสด</div>
+                <p class="benefit-desc">มองธุรกิจเป็นระบบ ไม่ใช่ร้าน &mdash; และเข้าใจว่าทำไมตลาดที่ใช่ถึงสำคัญกว่าความเก่งเสมอ</p>
+                <p class="benefit-example">เช่น: ทำไมของที่ดีกว่ามักแพ้ของที่อยู่ในตลาดที่หิวกว่า</p>
+            </div>
+            <div class="benefit-card rv rv-d2">
+                <div class="benefit-num">เงินสด &amp; ราคา</div>
+                <div class="benefit-title">ทำไมขายดีถึงทำให้เงินสดหมด และราคาคืออำนาจ</div>
+                <p class="benefit-desc">กำไรต่อหน่วย วงจรเงินสด และอำนาจราคา &mdash; สามรากที่ตัดสินว่าคุณรวยขึ้นหรือจนลง</p>
+                <p class="benefit-example">เช่น: ทำไมการลดราคาเพื่อปิดการขายถึงทำลายธุรกิจในระยะยาว</p>
+            </div>
+            <div class="benefit-card rv rv-d3">
+                <div class="benefit-num">ช่องทาง &amp; กำแพง</div>
+                <div class="benefit-title">ทำไมสินค้าดีแพ้ช่องทางดี และกำแพงที่แท้จริงสร้างยังไง</div>
+                <p class="benefit-desc">เข้าใจว่าใครคุมช่องทางคนนั้นคุมเกม และคูเมืองแบบไหนที่ทำให้คู่แข่งลอกแล้วไม่คุ้ม</p>
+                <p class="benefit-example">เช่น: ทำไม &ldquo;เรามาก่อน&rdquo; และ &ldquo;เราขยันกว่า&rdquo; ไม่ใช่กำแพงที่แท้จริง</p>
+            </div>
+            <div class="benefit-card rv">
+                <div class="benefit-num">ระบบ &amp; คน</div>
+                <div class="benefit-title">ระบบที่ทำงานแทนคุณ และความจริงเรื่องคนที่เจ้าของเข้าใจกลับด้าน</div>
+                <p class="benefit-desc">ทำไมยิ่งเก่งยิ่งโตไม่ได้ และทำไมคนไม่ได้แย่ แต่ระบบแรงจูงใจต่างหากที่แย่</p>
+                <p class="benefit-example">เช่น: ทำไมการให้โบนัสแบบแข่งกัน ถึงได้ทีมที่ไม่สามัคคี</p>
+            </div>
+            <div class="benefit-card rv" style="border-top-color: var(--gold); background: var(--gold-bg);">
+                <div class="benefit-num" style="color: var(--gold);">เกมระยะยาว</div>
+                <div class="benefit-title">การต่อรอง การจัดสรรทุน และความมหัศจรรย์ของการทบต้น</div>
+                <p class="benefit-desc">ทำไมคนรวยที่สุดไม่ใช่คนที่ยุ่งที่สุด &mdash; แต่คือคนที่เอาทรัพยากรไปลงในจุดที่ทบต้นมากที่สุด</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ MID CTA ═══════════════════════════════════════════════ -->
+    <div class="mid-cta rv">
+        <a href="#pricing" class="mid-cta-btn">ปลดล็อกเนื้อหาทั้งหมด &mdash; 1,990 ฿</a>
+        <p class="mid-cta-note">จ่ายครั้งเดียว &bull; อ่านได้ตลอดชีพ &bull; รับ Unlock Code ทันที</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ PROOF BAR ═══════════════════════════════════════════════ -->
+    <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
+        <div class="proof-bar">
+            <div class="proof-item rv rv-p1"><div class="proof-num">13</div><div class="proof-label">บทเต็ม</div></div>
+            <div class="proof-item rv rv-p2"><div class="proof-num">9</div><div class="proof-label">รากของธุรกิจ</div></div>
+            <div class="proof-item rv rv-p3"><div class="proof-num">100+</div><div class="proof-label">กรณีศึกษา &amp; งานวิจัย</div></div>
+            <div class="proof-item rv rv-p4"><div class="proof-num">3000</div><div class="proof-label">ปีของหลักการ<br><span style="font-size: 0.62rem; color: var(--text-light);">(ตั้งแต่พ่อค้าเร่)</span></div></div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ NOT A TEXTBOOK ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่ต่าง</div>
+        <h2 class="sec-title">นี่ไม่ใช่ตำราเรียน MBA<br><em>นี่คือหนังสือที่อ่านเพลินเหมือนฟังคนเล่าเรื่อง</em></h2>
+
+        <p>มีหนังสือธุรกิจเป็นพันเล่มที่อ่านแล้วง่วง เต็มไปด้วยศัพท์ ตาราง และทฤษฎีลอยๆ</p>
+        <p>เล่มนี้ไม่ใช่แบบนั้น &mdash; <strong>มันเล่าเรื่องให้คุณเห็นภาพ แล้วค่อยเฉลยกฎที่ซ่อนอยู่ข้างใต้</strong></p>
+
+        <div class="scenario">
+            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
+            <p class="scenario-a">ออกแบบเป็น Web Book &mdash; เปิดอ่านได้ทุกที่ ระหว่างรอประชุม ระหว่างเดินทาง ไม่ต้องโหลดแอป</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">แต่ละบทไหลต่อกัน อ่านเพลินไม่มีสะดุด</div>
+            <p class="scenario-a">ไม่มีแบบฝึกหัดท้ายบท ไม่มีตารางให้กรอก &mdash; แค่อ่านไปเรื่อยๆ แล้วสายตาคุณจะเปลี่ยนไปเอง</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">ทุกหลักการมาพร้อมกรณีศึกษาจริง</div>
+            <p class="scenario-a">จาก Costco, Amazon, Starbucks, Toyota ไปจนถึงร้านก๋วยเตี๋ยวข้างทาง &mdash; รากเดียวกันทั้งหมด</p>
+        </div>
+        <div class="scenario">
+            <div class="scenario-q">เขียนจาก Insight ของคนทำธุรกิจจริง</div>
+            <p class="scenario-a">ไม่ใช่ทฤษฎีในห้องเรียน &mdash; แต่คือสิ่งที่คนอยู่ในสนามจริงเห็น เจ็บจริง แล้วถอดออกมาเป็นกฎ</p>
+        </div>
+
+        <div class="gold-box">
+            <p>คุณไม่ต้องชอบอ่านหนังสือก็ได้ &mdash; <strong>แค่อยากเข้าใจว่าทำไมธุรกิจบางอันรวยขึ้น และบางอันจนลง</strong><br>แค่นั้นก็พอ</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ WHO IS THIS FOR ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ใช่สำหรับคุณไหม?</div>
+        <h2 class="sec-title">เล่มนี้เหมาะกับใคร<br>และ<em>ไม่เหมาะ</em>กับใคร</h2>
+
+        <div class="who-grid">
+            <div class="who-col who-yes rv-side">
+                <h4>เหมาะกับคุณ ถ้า...</h4>
+                <ul>
+                    <li>เริ่มรู้แล้วว่า &ldquo;ขายได้&rdquo; ไม่เท่ากับ &ldquo;รวยขึ้น&rdquo;</li>
+                    <li>เป็นเจ้าของธุรกิจ / SME ที่อยากโตอย่างยั่งยืน</li>
+                    <li>เป็น Founder ที่เริ่มเห็นว่าสินค้าดีอย่างเดียวไม่พอ</li>
+                    <li>อยากคิดแบบเจ้าของกิจการ ไม่ใช่แค่คนทำงาน</li>
+                    <li>อยากเข้าใจรากธุรกิจโดยไม่ต้องเรียน MBA</li>
+                    <li>เป็นนักการตลาดที่อยากเห็นภาพธุรกิจทั้งระบบ</li>
+                </ul>
+            </div>
+            <div class="who-col who-no rv-side">
+                <h4>ไม่เหมาะ ถ้า...</h4>
+                <ul>
+                    <li>อยากได้สูตรรวยเร็วภายใน 30 วัน</li>
+                    <li>อยากให้ธุรกิจง่ายโดยไม่ต้องเข้าใจอะไร</li>
+                    <li>อยากฟังว่าตัวเองทำถูกแล้วทุกอย่าง</li>
+                    <li>ต้องการเทมเพลตให้ลอกแบบ Copy-Paste</li>
+                    <li>ไม่อยากเปลี่ยนวิธีมองธุรกิจของตัวเอง</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">ถ้ายังไม่แน่ใจ &mdash; <a href="/vol3" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(27,94,67,0.3);">อ่านเปิดเล่มฟรีก่อน</a> ถ้ารู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ DARK BAND: COST ═══════════════════════════════════════════════ -->
+    <div class="dark-band rv">
+        <div class="dark-band-inner">
+            <p style="font-size: 0.85rem; color: #A29A90; margin-bottom: 0.8rem;">ลองคำนวณดู</p>
+            <p class="big-quote">การตัดสินใจเรื่องราคาผิดเพียงครั้งเดียว<br>หรือเงินสดที่จมไปกับสต็อกที่ขายไม่ออก<br>มันมีมูลค่าเท่าไหร่?</p>
+            <p class="dark-band-sub">1,990 บาท กับการมองเห็นรากธุรกิจให้ขาด &mdash; คุ้มกว่ากี่เท่า?</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ AUTHOR ═══════════════════════════════════════════════ -->
+    <div class="author-box rv">
+        <div class="author-inner">
+            <div class="sec-label">ที่มาของเล่มนี้</div>
+            <h3 class="author-title">หนังสือเล่มนี้ไม่ได้เขียนจากทฤษฎีในห้องเรียน</h3>
+            <p>มันมาจากการอยู่ในสนามธุรกิจจริง &mdash; เห็นธุรกิจที่ขยันแต่จนลง และธุรกิจที่ดูเรียบง่ายแต่รวยขึ้นทุกปี รวมกับงานวิจัยและกรณีศึกษาหลายร้อยชิ้น</p>
+            <p>ทั้งหมดถูกกลั่นลงมาเพื่อตอบคำถามเดียว:</p>
+            <p class="author-punch">&ldquo;ทำไมธุรกิจบางอันถึงรอด โต และสะสมอำนาจ ในขณะที่อีกหลายอันทำงานหนักกว่า แต่กลับจนลง?&rdquo;</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ PRICING ═══════════════════════════════════════════════ -->
+    <div class="pricing-section" id="pricing">
+        <div class="pricing-inner rv">
+
+            <div class="notricks rv">
+                <h3 class="notricks-title">สิ่งที่คุณจะ <u>ไม่</u> เห็นในหน้านี้</h3>
+                <p class="notricks-list">
+                    <span class="nt-line">ไม่มี &ldquo;ราคาเต็ม 19,900 ลดเหลือ...&rdquo;</span><br>
+                    <span class="nt-line">ไม่มีของแถม 47 ชิ้นกองรวมเพื่อให้ดู &ldquo;คุ้ม&rdquo;</span><br>
+                    <span class="nt-line">ไม่มี Countdown Timer ที่รีเซ็ตทุกวัน</span><br>
+                    <span class="nt-line">ไม่มี &ldquo;เหลือ 3 ที่สุดท้าย!&rdquo; ที่ไม่เคยหมด</span><br>
+                    <span class="nt-line">ไม่มีการเทียบราคากาแฟ หรือค่าเสียโอกาสที่ผ่านมา</span>
+                </p>
+                <p class="notricks-why">เพราะหนังสือเล่มนี้ <strong>สอน</strong> คุณเรื่องอำนาจราคาและจิตวิทยาการขายทุกข้อ &mdash;<br>
+                ผมจะไม่ใช้กลพวกนั้นกับคุณเอง</p>
+            </div>
+
+            <div class="value-context">
+                <h4 class="value-context-title">ถ้าคุณอยากเข้าใจธุรกิจจากที่อื่น</h4>
+                <div class="value-alt">
+                    <span class="value-alt-name">หลักสูตร MBA <span class="value-alt-note">(2 ปี + เวลาชีวิตมหาศาล)</span></span>
+                    <span class="value-alt-price">300,000–2,000,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">ที่ปรึกษาธุรกิจรายเดือน <span class="value-alt-note">(ดีแต่แพง และจบเมื่อหยุดจ่าย)</span></span>
+                    <span class="value-alt-price">20,000–80,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">สัมมนาธุรกิจ 2 วัน <span class="value-alt-note">(ฟังสนุก แต่กลับมาก็ลืม)</span></span>
+                    <span class="value-alt-price">5,900–29,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">หนังสือธุรกิจต่างประเทศหลายเล่ม <span class="value-alt-note">(กระจัดกระจาย ไม่เชื่อมเป็นระบบ)</span></span>
+                    <span class="value-alt-price">3,000–8,000 ฿</span>
+                </div>
+                <div class="value-alt value-alt-this">
+                    <span class="value-alt-name">หนังสือที่รวมรากของธุรกิจไว้ครบในที่เดียว <span class="value-alt-note">(อ่านสนุก ใช้ได้จริง ตลอดชีพ)</span></span>
+                    <span class="value-alt-price">1,990 ฿</span>
+                </div>
+                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ และหนังสือเล่มนี้จะอธิบายเองว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 6</p>
+            </div>
+
+            <div class="offer-box rv">
+                <div class="offer-name">One Root of Business &mdash; รากแก้วธุรกิจ</div>
+                <div class="offer-sub">หนังสือกลยุทธ์ธุรกิจแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                <ul class="offer-list">
+                    <li>หนังสือเต็ม 13 บท <span>เจาะลึกรากทั้งหมดของธุรกิจ ตั้งแต่ตลาดถึงการทบต้น</span></li>
+                    <li>เล่าด้วยกรณีศึกษาจริง <span>จากแบรนด์ระดับโลกถึงร้านข้างทาง</span></li>
+                    <li>อ่านสนุก ไม่มีแบบฝึกหัด <span>ไหลๆ เหมือนฟังคนในสนามจริงเล่าให้ฟัง</span></li>
+                    <li>Web Book Access <span>เปิดอ่านผ่านเว็บได้ทันที ไม่ต้องโหลดแอป</span></li>
+                    <li>Unlock Code <span>รับทันทีหลังชำระเงิน</span></li>
+                    <li>อ่านได้ตลอดชีพ <span>จ่ายครั้งเดียว ไม่มี Subscription</span></li>
+                </ul>
+                <div class="offer-access">
+                    <span class="offer-chip">ซื้อแล้วได้รับทันที</span>
+                    <span class="offer-chip">มือถือ</span>
+                    <span class="offer-chip">แท็บเล็ต</span>
+                    <span class="offer-chip">คอมพิวเตอร์</span>
+                </div>
+            </div>
+
+            <div class="price-hero rv">
+                <div class="price-big">1,990</div>
+                <div class="price-unit">บาท</div>
+            </div>
+
+            <div class="price-reason">
+                <h4 class="price-reason-title">ทำไมราคานี้?</h4>
+                <p>เพราะมันคือสิ่งที่คนเรียน MBA จ่ายหลายแสนและใช้เวลาสองปีเพื่อจะได้ &mdash; ไม่ใช่สูตรสำเร็จ แต่คือ <strong>สายตา</strong> ที่มองเห็นระบบที่ซ่อนอยู่ใต้ทุกธุรกิจ</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณตัดสินใจเรื่องราคา เงินสด หรือคน ถูกขึ้นแค่ครั้งเดียว &mdash; มันคืนทุนหลายเท่าตั้งแต่เดือนแรก</p>
+            </div>
+
+            <div class="reader-whisper rv">
+                <p class="whisper-label">ถ้าคุณอ่านมาถึงตรงนี้จริงๆ &mdash;</p>
+                <div class="whisper-body">
+                    <p>แปลว่าคุณไม่ได้แค่เลื่อนผ่าน คุณอ่าน คุณคิด คุณชั่งน้ำหนัก<br>
+                    คนแบบนี้คือเจ้าของธุรกิจที่จะไปได้ไกลที่สุด</p>
+                    <p style="margin-top: 0.6rem;">ใส่รหัสนี้ตอนชำระเงิน ลดอีก 200 บาท</p>
+                    <div class="whisper-code-wrap">
+                        <span class="whisper-code" id="coupon-code" onclick="copyCoupon()" title="คลิกเพื่อคัดลอก">ROOT200</span>
+                        <span class="whisper-copy-hint" id="copy-hint">คลิกเพื่อคัดลอก</span>
+                    </div>
+                    <p class="whisper-note">ไม่ใช่โปรโมชั่น ไม่มีนับถอยหลัง &mdash; แค่ขอบคุณที่ให้เวลากับมัน</p>
+                </div>
+            </div>
+
+            <a href="https://buy.stripe.com/3cIdR9a4f3Jo3QR2wUgYU03" class="pricing-cta">ปลดล็อกทั้ง 13 บท &mdash; รับ Unlock Code ทันที</a>
+            <p class="pricing-note">ไม่ต้องโหลดแอป &bull; ไม่ต้องรอจัดส่ง &bull; อ่านซ้ำได้ตลอดชีพ</p>
+            <p class="pricing-sub-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe<br>ปลดล็อกทั้ง 13 บทเต็ม &bull; จ่ายครั้งเดียว</p>
+            <p style="margin-top: 1.2rem;"><a href="/vol3" class="hero-cta-secondary" style="color: var(--accent); border-color: rgba(27,94,67,0.3);">ยังไม่พร้อมซื้อ? อ่านเปิดเล่มฟรีก่อน &rarr;</a></p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ SOCIAL PROOF ═══════════════════════════════════════════════ -->
+    <div class="social-proof">
+        <div class="social-proof-inner rv">
+            <div class="sp-header">
+                <div class="sec-label" style="color: var(--warm);">เสียงจากคนอ่าน</div>
+                <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
+            </div>
+            <div class="chat-thread">
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #3FA876, #1B5E43);">ภ</div>
+                    <div class="chat-bubble">เพิ่งเข้าใจว่าทำไมร้านขายดีแต่เงินไม่พอ บทเรื่องวงจรเงินสดเปลี่ยนวิธีบริหารร้านผมเลย</div>
+                </div>
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5E9E80, #2A6B4D);">ว</div>
+                    <div class="chat-bubble">ลองขึ้นราคาตามที่เล่มนี้บอก กล้าขึ้นครั้งแรกในรอบสามปี กำไรดีขึ้นจริง</div>
+                </div>
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #6E8C7E, #3D5A4D);">ณ</div>
+                    <div class="chat-bubble">อ่านสนุกมาก ไม่เหมือนหนังสือธุรกิจทั่วไปที่อ่านแล้วง่วง จบเล่มในสองวัน</div>
+                </div>
+                <div class="chat-msg rv">
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A8C6F, #1B5E43);">ก</div>
+                    <div class="chat-bubble">บทเรื่องระบบกับคอขวดโดนมาก ผมคือคอขวดของธุรกิจตัวเองมาตลอดโดยไม่รู้ตัว</div>
+                </div>
+                <div class="chat-typing"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ GUARANTEE ═══════════════════════════════════════════════ -->
+    <div class="guarantee rv">
+        <div class="guarantee-box">
+            <div class="guarantee-icon">&#x1F6E1;</div>
+            <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
+            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด &mdash; ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
+            <div class="guarantee-badge">&#x1F512; MONEY-BACK GUARANTEE</div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ FAQ ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">คำถามที่พบบ่อย</div>
+        <h2 class="sec-title">ก่อนตัดสินใจ</h2>
+
+        <div class="faq-item rv">
+            <div class="faq-q">เป็นเจ้าของธุรกิจเล็กๆ อ่านแล้วใช้ได้จริงไหม?</div>
+            <p class="faq-a">ได้ &mdash; เพราะรากของธุรกิจเป็นกฎเดียวกันไม่ว่าจะร้านก๋วยเตี๋ยวหรือบริษัทใหญ่ ทุกบทเชื่อมกับสถานการณ์ที่เจ้าของธุรกิจเจอจริง เช่น การตั้งราคา เงินสด การจ้างคน และการวางระบบ</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">ต้องมีความรู้บัญชีหรือการเงินก่อนไหม?</div>
+            <p class="faq-a">ไม่ต้อง &mdash; เล่มนี้อธิบายเรื่องกำไร เงินสด และราคา ด้วยภาษาคนธรรมดา ไม่มีศัพท์บัญชีให้ปวดหัว เน้นให้ &ldquo;เห็นภาพ&rdquo; มากกว่าท่องสูตร</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">ต่างจากหนังสือธุรกิจเล่มอื่นยังไง?</div>
+            <p class="faq-a">เล่มนี้ไม่ใช่ตำรา &mdash; มันเล่าเรื่องให้อ่านเพลิน ไม่มีแบบฝึกหัด ไม่มีการบ้าน แต่เนื้อหามาจาก Insight ของคนทำธุรกิจจริง พร้อมกรณีศึกษาและงานวิจัยรองรับ</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">ยังไม่ได้เปิดธุรกิจ อ่านได้ไหม?</div>
+            <p class="faq-a">ได้ และควรอ่าน &mdash; เพราะมันจะทำให้คุณเห็นเกมทั้งหมดก่อนลงสนาม ช่วยให้คุณไม่ต้องไปเรียนรู้รากเหล่านี้ด้วยการเสียเงินจริง</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">ซื้อแล้วได้รับยังไง?</div>
+            <p class="faq-a">หลังชำระเงิน คุณจะได้รับ Unlock Code สำหรับเข้าอ่าน Web Book ได้ทันที &mdash; ไม่ต้องรอจัดส่ง</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">อ่านในมือถือได้ไหม?</div>
+            <p class="faq-a">ได้ &mdash; อ่านผ่านมือถือ แท็บเล็ต หรือคอมพิวเตอร์ได้โดยไม่ต้องโหลดแอป</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">นี่เกี่ยวกับ &ldquo;ซีรีส์รากแก้ว&rdquo; ที่เป็นการตลาดไหม?</div>
+            <p class="faq-a">ใช่ &mdash; เล่มนี้คือ Volume 3 ของ The One Root Series ถ้าสองเล่มแรกพูดเรื่องว่าทำไมมนุษย์ถึงซื้อ เล่มนี้พูดเรื่องว่าทำไมธุรกิจถึงรอดและรวยขึ้น อ่านแยกเล่มได้ ไม่ต้องอ่านเล่มก่อนมาก่อน</p>
+        </div>
+        <div class="faq-item rv">
+            <div class="faq-q">ทำธุรกิจมานานแล้ว อ่านแล้วจะได้อะไรเพิ่ม?</div>
+            <p class="faq-a">ยิ่งทำมานาน ยิ่งได้เยอะ &mdash; เพราะคุณมีประสบการณ์อยู่แล้ว เล่มนี้จะช่วยจัดระเบียบสิ่งที่คุณรู้สึกอยู่ลึกๆ ให้กลายเป็นระบบที่อธิบายได้ ตัดสินใจได้แม่นขึ้น และสอนทีมต่อได้</p>
+        </div>
+        <div class="faq-item rv" style="border: none;">
+            <div class="faq-q">อ่านฟรีก่อนได้ไหม?</div>
+            <p class="faq-a">ได้ครับ &mdash; <a href="/vol3">เปิดให้อ่าน &ldquo;เปิดเล่ม&rdquo; ฟรี</a> ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ ตัดสินใจเอง</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════════════ FINAL CTA ═══════════════════════════════════════════════ -->
+    <div class="final-cta">
+        <div class="final-cta-inner rv">
+            <h2>เทรนด์ธุรกิจเปลี่ยนทุกปี<br>แต่รากของธุรกิจไม่เคยเปลี่ยนเลย</h2>
+            <p>ถ้าคุณยังขายดีแต่เงินไม่พอ ยังกลัวการขึ้นราคา ยังติดเป็นคอขวดของธุรกิจตัวเอง หรือยังรู้สึกว่าทำงานหนักขึ้นทุกปีแต่ไม่ได้รวยขึ้น</p>
+            <p>บางทีสิ่งที่คุณต้องเพิ่มอาจไม่ใช่ความขยัน &mdash; แต่คือสายตาที่มองเห็นรากที่กำลังตัดสินทุกอย่างอยู่ข้างใต้</p>
+            <p style="font-size: 0.82rem; color: #6B6560; margin-top: 0.5rem;">อ่านแล้วไม่ใช่? คืนเงินภายใน 30 วัน ไม่มีเงื่อนไข</p>
+            <a href="https://buy.stripe.com/3cIdR9a4f3Jo3QR2wUgYU03" class="final-cta-btn">เริ่มเห็นรากธุรกิจวันนี้ &mdash; 1,990 บาท</a>
+            <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
+            <a href="/vol3" class="final-cta-free">อ่านเปิดเล่มฟรีก่อน &rarr;</a>
+        </div>
+    </div>
+
+    <!-- ── Sticky mobile CTA ── -->
+    <div class="sticky-cta" id="sticky-cta">
+        <span class="sticky-cta-price"><strong>1,990 ฿</strong> จ่ายครั้งเดียว</span>
+        <a href="https://buy.stripe.com/3cIdR9a4f3Jo3QR2wUgYU03" class="sticky-cta-btn">ซื้อเลย</a>
+    </div>
+
+    <!-- ── Back to top ── -->
+    <button class="to-top" id="to-top" aria-label="กลับขึ้นด้านบน"><span class="tt-mark">&#x25C8;</span></button>
+
+    <div class="sp-footer">&copy; รากแก้วธุรกิจ &mdash; One Root of Business</div>
+
+
+
+    <script>
+    (function() {
+        /* ── Progress bar ── */
+        var bar = document.getElementById('progress-bar');
+        window.addEventListener('scroll', function() {
+            var h = document.documentElement;
+            var pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+            bar.style.width = pct + '%';
+        }, { passive: true });
+
+        /* ── Scroll reveal (enhanced — handles all rv, rv-side) ── */
+        var allReveal = document.querySelectorAll('.rv, .rv-side');
+        var io = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        allReveal.forEach(function(el) { io.observe(el); });
+
+        /* ── Dark-band quote: word-by-word reveal ── */
+        document.querySelectorAll('.big-quote').forEach(function(q) {
+            var html = q.innerHTML;
+            // Split into HTML tags and text segments, only wrap words in text parts
+            var parts = html.split(/(<[^>]+>)/);
+            var result = parts.map(function(part) {
+                if (part.charAt(0) === '<') return part; // HTML tag — keep as-is
+                // Text segment — wrap each word
+                return part.replace(/(\S+)/g, '<span class="bq-word">$1</span>');
+            }).join('');
+            q.innerHTML = result;
+        });
+        var quoteIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var words = e.target.querySelectorAll('.bq-word');
+                    words.forEach(function(w, i) {
+                        w.style.transitionDelay = (i * 0.045) + 's';
+                    });
+                    e.target.classList.add('bq-active');
+                    quoteIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.big-quote').forEach(function(q) { quoteIO.observe(q); });
+
+        /* ── Proof bar: counter animation ── */
+        function animateCounter(el, target, suffix) {
+            suffix = suffix || '';
+            var isLarge = target >= 1000;
+            var duration = isLarge ? 1800 : 1000;
+            var start = 0;
+            var startTime = null;
+            function step(timestamp) {
+                if (!startTime) startTime = timestamp;
+                var progress = Math.min((timestamp - startTime) / duration, 1);
+                // Ease out cubic
+                var eased = 1 - Math.pow(1 - progress, 3);
+                var current = Math.floor(eased * target);
+                el.textContent = current.toLocaleString() + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString() + suffix;
+            }
+            requestAnimationFrame(step);
+        }
+        var counterIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var el = e.target;
+                    var text = el.textContent.trim();
+                    var suffix = '';
+                    if (text.indexOf('+') !== -1) { suffix = '+'; text = text.replace('+', ''); }
+                    var num = parseInt(text.replace(/,/g, ''), 10);
+                    if (!isNaN(num)) animateCounter(el, num, suffix);
+                    counterIO.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+        document.querySelectorAll('.proof-num').forEach(function(el) { counterIO.observe(el); });
+
+        /* ── Price: counter animation ── */
+        var priceIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    var el = e.target.querySelector('.price-big');
+                    if (el) {
+                        var num = parseInt(el.textContent.replace(/,/g, ''), 10);
+                        if (!isNaN(num)) animateCounter(el, num, '');
+                    }
+                    priceIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.price-hero').forEach(function(el) { priceIO.observe(el); });
+
+        /* ── Notricks: mark as visible for strikethrough ── */
+        var ntIO = new IntersectionObserver(function(entries) {
+            entries.forEach(function(e) {
+                if (e.isIntersecting) {
+                    e.target.classList.add('vis');
+                    ntIO.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        document.querySelectorAll('.notricks').forEach(function(el) { ntIO.observe(el); });
+
+        /* ── FAQ stagger delays ── */
+        document.querySelectorAll('.faq-item.rv').forEach(function(el, i) {
+            el.style.transitionDelay = (i * 0.08) + 's';
+        });
+
+        /* ── Reduced-motion guard ── */
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var desktopHover = window.matchMedia('(min-width: 769px) and (hover: hover)').matches;
+
+        /* ── Scroll cue: fade out once the reader starts scrolling ── */
+        (function() {
+            var cue = document.getElementById('scroll-cue');
+            if (!cue) return;
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 80) cue.classList.add('hide');
+                else cue.classList.remove('hide');
+            }, { passive: true });
+        })();
+
+        /* ── Back-to-top: reveal after the hero, smooth-scroll up ── */
+        (function() {
+            var btn = document.getElementById('to-top');
+            var hero = document.querySelector('.hero');
+            if (!btn) return;
+            window.addEventListener('scroll', function() {
+                var past = hero ? hero.getBoundingClientRect().bottom < -120 : window.scrollY > 600;
+                btn.classList.toggle('show', past);
+            }, { passive: true });
+            btn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+            });
+        })();
+
+        /* ── Benefit cards: cursor spotlight + subtle 3D tilt (desktop, motion ok) ── */
+        if (desktopHover && !reduceMotion) {
+            document.querySelectorAll('.benefit-card').forEach(function(card) {
+                card.classList.add('tiltable');
+                card.addEventListener('mousemove', function(e) {
+                    var r = card.getBoundingClientRect();
+                    var px = (e.clientX - r.left) / r.width;
+                    var py = (e.clientY - r.top) / r.height;
+                    card.style.setProperty('--mx', (px * 100) + '%');
+                    card.style.setProperty('--my', (py * 100) + '%');
+                    var rx = (0.5 - py) * 6;   // tilt up/down
+                    var ry = (px - 0.5) * 6;   // tilt left/right
+                    card.style.transform = 'perspective(1200px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-4px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    card.style.transform = '';
+                });
+            });
+        }
+
+        /* ── Hero parallax on mouse (desktop only) ── */
+        if (window.matchMedia('(min-width: 769px) and (hover: hover)').matches) {
+            var geo = document.querySelector('.sacred-geo');
+            var heroEl = document.querySelector('.hero');
+            if (geo && heroEl) {
+                heroEl.addEventListener('mousemove', function(e) {
+                    var rect = heroEl.getBoundingClientRect();
+                    var x = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+                    var y = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+                    var circles = geo.querySelectorAll('.sg-circle');
+                    circles.forEach(function(c, i) {
+                        var depth = (i + 1) * 6;
+                        c.style.transform = 'translate(' + (x * depth) + 'px, ' + (y * depth) + 'px)';
+                    });
+                });
+                heroEl.addEventListener('mouseleave', function() {
+                    geo.querySelectorAll('.sg-circle').forEach(function(c) {
+                        c.style.transition = 'transform 0.6s ease';
+                        c.style.transform = 'translate(0, 0)';
+                        setTimeout(function() { c.style.transition = ''; }, 600);
+                    });
+                });
+            }
+        }
+    })();
+
+    /* ── Sticky CTA show/hide ── */
+    (function() {
+        var sticky = document.getElementById('sticky-cta');
+        var hero = document.querySelector('.hero');
+        var finalCta = document.querySelector('.final-cta');
+        if (!sticky || !hero) return;
+        var shown = false;
+        window.addEventListener('scroll', function() {
+            var heroBottom = hero.getBoundingClientRect().bottom;
+            var finalTop = finalCta ? finalCta.getBoundingClientRect().top : Infinity;
+            var shouldShow = heroBottom < 0 && finalTop > window.innerHeight;
+            if (shouldShow && !shown) { sticky.classList.add('show'); shown = true; }
+            else if (!shouldShow && shown) { sticky.classList.remove('show'); shown = false; }
+        }, { passive: true });
+    })();
+
+    function copyCoupon() {
+        var code = document.getElementById('coupon-code').textContent;
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(code);
+        } else {
+            var t = document.createElement('textarea');
+            t.value = code;
+            document.body.appendChild(t);
+            t.select();
+            document.execCommand('copy');
+            document.body.removeChild(t);
+        }
+        var hint = document.getElementById('copy-hint');
+        hint.textContent = '\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01\u0e41\u0e25\u0e49\u0e27 \u2713';
+        hint.style.color = 'var(--gold)';
+        setTimeout(function() {
+            hint.textContent = '\u0e04\u0e25\u0e34\u0e01\u0e40\u0e1e\u0e37\u0e48\u0e2d\u0e04\u0e31\u0e14\u0e25\u0e2d\u0e01';
+            hint.style.color = '';
+        }, 2000);
+    }
+    </script>
+</body>
+</html>
