@@ -12,6 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Sarabun:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Prompt:wght@300;400;600;700&family=Noto+Serif+Thai:wght@400;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Icon library (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
+    <!-- Lightweight particle ambiance (tsParticles slim) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@tsparticles/slim@3.5.0/tsparticles.slim.bundle.min.js"></script>
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -2399,6 +2403,431 @@
             .offer-name { font-size: 1.05rem; }
             .mini-review-text { font-size: 0.9rem; }
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           VOL.1 POLISH LAYER — richer color, word emphasis, typography
+           (appended last so the cascade lets these refinements win)
+           ═══════════════════════════════════════════════════════════════ */
+        :root {
+            --brass: #B0863A;
+            --brass-light: #E0BC68;
+            --hl-ink: #7A2415;
+            --hl-wash: rgba(224,168,80,0.42);
+            --hl-wash-strong: rgba(194,59,34,0.18);
+        }
+
+        /* ── Text selection ── */
+        ::selection { background: rgba(194,59,34,0.20); color: var(--accent-hover); }
+        ::-moz-selection { background: rgba(194,59,34,0.20); color: var(--accent-hover); }
+
+        /* ── Signature highlighter swipe (the "เน้นคำ" device) ── */
+        mark.hl, .hl {
+            background-color: transparent;
+            background-image: linear-gradient(transparent 62%, var(--hl-wash) 62%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            color: var(--hl-ink);
+            font-weight: 600;
+            padding: 0 0.06em;
+            border-radius: 2px;
+            transition: background-size 0.65s cubic-bezier(0.22,1,0.36,1);
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+        .vis mark.hl, .vis .hl,
+        mark.hl.paint, .hl.paint { background-size: 100% 100%; }
+        mark.hl-strong {
+            background-image: linear-gradient(transparent 60%, var(--hl-wash-strong) 60%);
+            color: var(--accent-hover);
+            font-weight: 700;
+        }
+        /* brass underline accent for premium words */
+        .key {
+            color: var(--accent);
+            font-weight: 700;
+            position: relative;
+            white-space: nowrap;
+        }
+        .key::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brass), var(--brass-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.15s;
+        }
+        .vis .key::after { transform: scaleX(1); }
+
+        /* ── Section titles: gradient + soft swipe underline on <em> ── */
+        .sec-title em {
+            background: linear-gradient(120deg, var(--accent) 0%, #D14A2E 45%, #E08A3A 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 0.06em;
+        }
+        .sec-title em::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%; height: 0.14em;
+            background: linear-gradient(90deg, rgba(194,59,34,0.40), rgba(194,59,34,0));
+            border-radius: 4px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.7s cubic-bezier(0.22,1,0.36,1) 0.25s;
+        }
+        .vis .sec-title em::after { transform: scaleX(1); }
+
+        /* ── Storytelling drop-cap for opening narrative paragraphs ── */
+        p.lead-cap::first-letter {
+            font-family: 'Noto Serif Thai', serif;
+            font-weight: 700;
+            font-size: 3.1rem;
+            line-height: 0.78;
+            float: left;
+            margin: 0.32rem 0.55rem 0 0;
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #E08A3A);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.lead-cap {
+            font-size: 1.04rem;
+            line-height: 1.95;
+        }
+
+        /* ── Hero refinements: depth, glow, animated gradient on <em> ── */
+        .hero { background: radial-gradient(ellipse at 50% -10%, #2A1A14 0%, var(--bg-dark) 55%, #120F0C 100%); padding-bottom: 5.5rem; }
+
+        /* Particle canvas — sits behind everything in the hero */
+        #hero-particles {
+            position: absolute;
+            inset: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-inner, .scroll-cue { position: relative; z-index: 2; }
+
+        /* Floating book mockup */
+        .hero-book-wrap {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+        .hero-book-wrap::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 42%;
+            width: 300px; height: 300px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(194,59,34,0.24) 0%, rgba(184,134,11,0.12) 40%, transparent 68%);
+            filter: blur(8px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-book-img {
+            position: relative;
+            z-index: 1;
+            width: min(195px, 48vw);
+            height: auto;
+            filter: drop-shadow(0 30px 55px rgba(0,0,0,0.6)) drop-shadow(0 4px 14px rgba(0,0,0,0.5));
+            animation: bookFloat 6.5s ease-in-out infinite;
+            transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .hero-book-img:hover { transform: translateY(-6px) scale(1.03) rotate(0.5deg); }
+        @keyframes bookFloat {
+            0%, 100% { transform: translateY(0) rotate(-1.2deg); }
+            50%      { transform: translateY(-13px) rotate(1.2deg); }
+        }
+        .hero-book-tag {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--warm);
+            background: rgba(196,149,106,0.08);
+            border: 1px solid rgba(196,149,106,0.24);
+            border-radius: 30px;
+            padding: 0.3rem 0.9rem;
+        }
+        .hero-book-tag i { color: var(--brass-light); }
+        .hero h1 { letter-spacing: -0.01em; text-wrap: balance; }
+        .hero h1 em {
+            animation: heroShimmer 6s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(212,120,60,0.25);
+        }
+        @keyframes heroShimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .hero-eyebrow {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border: 1px solid rgba(196,149,106,0.30);
+            border-radius: 30px;
+            background: rgba(196,149,106,0.06);
+            backdrop-filter: blur(4px);
+        }
+        .hero-hook {
+            position: relative;
+            padding: 0.6rem 0;
+            border-top: 1px solid rgba(212,207,199,0.12);
+            border-bottom: 1px solid rgba(212,207,199,0.12);
+            color: #E6E1D8;
+        }
+
+        /* ── CTA buttons: gradient + sliding sheen ── */
+        .hero-cta, .mid-cta-btn, .pricing-cta, .final-cta-btn {
+            background: linear-gradient(135deg, var(--accent) 0%, #D4502E 55%, var(--accent-hover) 100%) !important;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .hero-cta::after, .mid-cta-btn::after, .pricing-cta::after, .final-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+            transform: skewX(-18deg);
+            z-index: -1;
+        }
+        .hero-cta:hover::after, .mid-cta-btn:hover::after,
+        .pricing-cta:hover::after, .final-cta-btn:hover::after {
+            animation: ctaSheen 0.85s ease;
+        }
+        @keyframes ctaSheen { from { left: -120%; } to { left: 140%; } }
+        .pricing-cta { box-shadow: 0 10px 34px rgba(194,59,34,0.30); }
+        .pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(194,59,34,0.40); }
+
+        /* ── Price: premium red→brass gradient numeral ── */
+        .price-big {
+            background: linear-gradient(135deg, var(--accent) 0%, #D9622E 40%, var(--brass) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 6px 24px rgba(194,59,34,0.18));
+        }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 220px; height: 220px;
+            transform: translate(-50%,-50%);
+            background: radial-gradient(circle, rgba(212,160,80,0.18) 0%, transparent 68%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ── Pull-quote: decorative opening mark ── */
+        .pull-quote {
+            position: relative;
+            background: linear-gradient(90deg, rgba(196,149,106,0.06), transparent);
+            border-radius: 0 10px 10px 0;
+            padding: 0.6rem 1rem 0.6rem 1.4rem;
+        }
+        .pull-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -0.55rem; left: 0.55rem;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 2.6rem;
+            line-height: 1;
+            color: rgba(194,59,34,0.16);
+        }
+
+        /* ── Big-idea quote: brighten the emphasis ── */
+        .bigidea-quote em {
+            background: linear-gradient(120deg, #E08A4A, #F0B878);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: normal;
+        }
+
+        /* ── Gold-box: brass edge ── */
+        .gold-box {
+            position: relative;
+            border-left: 3px solid var(--brass);
+            box-shadow: 0 2px 18px rgba(194,59,34,0.06);
+        }
+        .gold-box strong { color: var(--brass); }
+
+        /* ── Scenario hover lift ── */
+        .scenario { transition: border-color 0.3s, background 0.3s, transform 0.25s, box-shadow 0.25s; }
+        .scenario:hover { transform: translateX(4px); box-shadow: 0 6px 22px rgba(194,59,34,0.07); }
+
+        /* ── Body emphasis: strong gets a faint accent tint (light bg only) ── */
+        .sec p strong, .price-reason p strong { color: var(--accent-hover); }
+
+        /* ── Coupon code: make it feel like a "gift" ── */
+        .whisper-code {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
+            box-shadow: 0 6px 20px rgba(194,59,34,0.25);
+            letter-spacing: 0.18em;
+        }
+
+        @media (max-width: 640px) {
+            p.lead-cap::first-letter { font-size: 2.6rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero h1 em { animation: none; }
+            .hero-book-img { animation: none; }
+            mark.hl, .hl, .key::after, .sec-title em::after { transition: none; }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════
+           VOL.1 v2 ENHANCEMENTS — book image, richer chat, FA icons
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* ── Book in offer box ── */
+        .offer-book-row {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            margin-bottom: 1.3rem;
+            padding-bottom: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .offer-book-img {
+            width: 92px;
+            height: auto;
+            flex-shrink: 0;
+            filter: drop-shadow(0 10px 22px rgba(26,23,20,0.30));
+        }
+        .offer-book-meta { flex: 1; min-width: 0; }
+        .offer-book-meta .offer-name { margin-bottom: 0.2rem; }
+        .offer-book-meta .offer-sub { margin-bottom: 0.5rem; }
+        .offer-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.18rem;
+            color: #E0A93A;
+            font-size: 0.8rem;
+        }
+        .offer-stars span {
+            margin-left: 0.4rem;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 0.72rem;
+            color: var(--text-sec);
+        }
+
+        /* ── Social-proof header: avatar stack + live status ── */
+        .sp-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.9rem;
+        }
+        .sp-live {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+        .sp-avatars { display: flex; }
+        .sp-av {
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: 0.72rem; font-weight: 700;
+            color: #fff;
+            border: 2px solid var(--bg-dark);
+            margin-left: -10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+        .sp-av:first-child { margin-left: 0; }
+        .sp-av-more {
+            background: #332A24;
+            color: var(--warm);
+        }
+        .sp-count-wrap { text-align: left; line-height: 1.3; }
+        .sp-online {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.68rem;
+            color: #B59A82;
+            margin-top: 0.1rem;
+        }
+        .sp-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #46C988;
+            box-shadow: 0 0 0 0 rgba(70,201,136,0.6);
+            animation: spPulse 1.8s ease-out infinite;
+        }
+        @keyframes spPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(70,201,136,0.55); }
+            70%  { box-shadow: 0 0 0 7px rgba(70,201,136,0); }
+            100% { box-shadow: 0 0 0 0 rgba(70,201,136,0); }
+        }
+
+        /* ── Chat: online dot on avatar + verified tick ── */
+        .chat-avatar { position: relative; }
+        .chat-online {
+            position: absolute;
+            right: -1px; bottom: -1px;
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: #46C988;
+            border: 2px solid var(--bg-dark);
+        }
+        .chat-verify {
+            color: var(--warm);
+            font-size: 0.6rem;
+            margin-left: 0.1rem;
+        }
+        .chat-name { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .chat-react {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.2rem;
+            background: #363230;
+            border: 1px solid #4A4540;
+            border-radius: 12px;
+            padding: 0.1rem 0.45rem;
+            font-size: 0.72rem;
+            margin-top: 0.2rem;
+            align-self: flex-start;
+            cursor: default;
+        }
+        .chat-react-count { font-size: 0.58rem; color: #A29A90; }
+        .chat-seen i { color: var(--warm); margin-right: 0.15rem; }
+
+        /* ── Guarantee FA icon ── */
+        .guarantee-icon {
+            color: var(--gold);
+            font-size: 2.4rem;
+            line-height: 1;
+        }
+        .guarantee-badge i { font-size: 0.66rem; }
+
+        /* ── FA icon polish inside CTAs / hero ── */
+        .hero-cta i, .pricing-cta i, .final-cta-btn i, .mid-cta-btn i { font-size: 0.85em; }
+        .hero-micro > i.fa-circle-check { color: var(--warm); margin-right: 0.2rem; }
+
+        @media (max-width: 640px) {
+            .offer-book-img { width: 76px; }
+            .sp-av { width: 30px; height: 30px; font-size: 0.66rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .sp-dot { animation: none; }
+        }
     </style>
 </head>
 <body>
@@ -2411,18 +2840,23 @@
          HERO
          ═══════════════════════════════════════════════ -->
     <div class="hero">
+        <canvas id="hero-particles" aria-hidden="true"></canvas>
         <div class="hero-aurora" aria-hidden="true"></div>
         <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
         <div class="hero-inner rv">
+            <div class="hero-book-wrap">
+                <img class="hero-book-img" src="images/book-vol1.png" alt="รากแก้วการตลาด — One Root of Marketing" width="190" height="190" loading="eager">
+                <span class="hero-book-tag"><i class="fa-solid fa-bookmark"></i> เล่ม 1 · The One Root Series</span>
+            </div>
             <div class="hero-eyebrow">The One Root of Marketing</div>
             <h1>นักขายที่ปิดดีลได้<br>ไม่ได้พูดเก่งกว่า &mdash;<br><em>เขาอ่านคนออกกว่า</em></h1>
             <p class="hero-sub">หนังสือจิตวิทยาการขายสำหรับคนที่อยากเข้าใจว่า ทำไมลูกค้าถึง &ldquo;ขอคิดก่อน&rdquo; ทำไมคำว่า &ldquo;แพง&rdquo; ไม่ได้แปลว่าไม่มีเงิน และทำไมบางดีลหลุด ทั้งที่คุณพูดถูกทุกอย่าง</p>
             <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
             <div class="hero-cta-row">
-                <a href="#pricing" class="hero-cta">เริ่มอ่านคนออกวันนี้ &mdash; 1,390 บาท</a>
+                <a href="#pricing" class="hero-cta"><i class="fa-solid fa-unlock-keyhole"></i>&nbsp; เริ่มอ่านคนออกวันนี้ &mdash; 1,390 บาท</a>
                 <a href="/vol1" class="hero-cta-secondary">อ่านบทนำฟรีก่อน &rarr;</a>
             </div>
-            <p class="hero-micro">จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านบทแรกฟรีก่อนตัดสินใจ</p>
+            <p class="hero-micro"><i class="fa-solid fa-circle-check"></i> จ่ายครั้งเดียว &bull; รับ <strong>Unlock Code</strong> ทันที &bull; อ่านบนมือถือได้เลย<br>ไม่ต้องโหลดแอป &bull; อ่านบทแรกฟรีก่อนตัดสินใจ</p>
         </div>
         <a href="#pricing" class="scroll-cue" id="scroll-cue" aria-label="เลื่อนลงเพื่ออ่านต่อ">
             <span>เลื่อนอ่าน</span>
@@ -2510,7 +2944,7 @@
             <p>การขายส่วนใหญ่พยายามเพิ่มคำพูด เพิ่ม Script เพิ่มเทคนิคปิดการขาย แต่สิ่งที่เกิดขึ้นจริงในหัวลูกค้ามักไม่ใช่เหตุผลตรง ๆ</p>
             <p>เขาไม่ได้ลังเลเพราะไม่เข้าใจเสมอไป &mdash; เขาอาจลังเลเพราะ:</p>
             <p class="fear-list">กลัวตัดสินใจผิด<br>กลัวเสียเงิน<br>กลัวดูโง่<br>กลัวโดนขาย<br>หรือยังไม่รู้สึกว่า &ldquo;นี่คือทางเลือกที่ปลอดภัยพอ&rdquo;</p>
-            <p><strong>One Root Marketing</strong> ไม่ได้สอนให้คุณพูดมากขึ้น &mdash; แต่สอนให้คุณอ่านให้ขาดว่า ลูกค้าติดอยู่ตรงไหนก่อนจะซื้อ</p>
+            <p><strong>One Root Marketing</strong> ไม่ได้สอนให้คุณพูดมากขึ้น &mdash; แต่สอนให้คุณ<mark class="hl">อ่านให้ขาดว่า ลูกค้าติดอยู่ตรงไหนก่อนจะซื้อ</mark></p>
         </div>
     </div>
 
@@ -2874,8 +3308,17 @@
             </div>
 
             <div class="offer-box rv">
-                <div class="offer-name">One Root Marketing &mdash; รากแก้วการตลาด</div>
-                <div class="offer-sub">หนังสือจิตวิทยาการขายแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                <div class="offer-book-row">
+                    <img class="offer-book-img" src="images/book-vol1.png" alt="One Root Marketing — รากแก้วการตลาด" width="92" height="92" loading="lazy">
+                    <div class="offer-book-meta">
+                        <div class="offer-name">One Root Marketing &mdash; รากแก้วการตลาด</div>
+                        <div class="offer-sub">หนังสือจิตวิทยาการขายแบบ Web Book อ่านได้ทุกอุปกรณ์</div>
+                        <div class="offer-stars">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                            <span>4.9 / 5 จากคนขายจริง 500+ คน</span>
+                        </div>
+                    </div>
+                </div>
                 <ul class="offer-list">
                     <li>หนังสือหลัก 12 บท <span>เจาะลึกจิตวิทยาการตัดสินใจซื้อทุกด้าน</span></li>
                     <li>บทพิเศษ 5 บท (Bonus) <span>เคสและสถานการณ์ขายจริงที่เจอทุกวัน</span></li>
@@ -2900,7 +3343,7 @@
             <div class="price-reason">
                 <h4 class="price-reason-title">ทำไมราคานี้?</h4>
                 <p>เพราะมันคือผลลัพธ์ของสิบกว่าปีที่ผมหมกมุ่นกับคำถามเดียว &mdash; ทำไมคนถึงซื้อ? กรองผ่านงานวิจัยหลายร้อยชิ้น กลั่นผ่านธุรกิจจริงหลายสิบราย ทดสอบกับเงินจริงและลูกค้าจริง</p>
-                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณปิดดีลเพิ่มได้แค่ 1 ดีลต่อเดือน &mdash; มันคืนทุนตั้งแต่สัปดาห์แรก</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณปิดดีลเพิ่มได้แค่ 1 ดีลต่อเดือน &mdash; <mark class="hl-strong">มันคืนทุนตั้งแต่สัปดาห์แรก</mark></p>
             </div>
 
             <div class="reader-whisper rv">
@@ -2932,16 +3375,29 @@
         <div class="social-proof-inner rv">
             <div class="sp-header">
                 <div class="sec-label" style="color: var(--warm);">เสียงจากคนอ่าน</div>
-                <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
+                <div class="sp-live">
+                    <div class="sp-avatars">
+                        <div class="sp-av" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ</div>
+                        <div class="sp-av" style="background: linear-gradient(135deg, #C4956A, #A8703F);">ส</div>
+                        <div class="sp-av" style="background: linear-gradient(135deg, #9C6B8E, #6E4760);">น</div>
+                        <div class="sp-av" style="background: linear-gradient(135deg, #5E9E80, #3C7A5C);">ก</div>
+                        <div class="sp-av sp-av-more">+495</div>
+                    </div>
+                    <div class="sp-count-wrap">
+                        <div><span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span></div>
+                        <div class="sp-online"><span class="sp-dot"></span> มีคนกำลังอ่านอยู่ตอนนี้</div>
+                    </div>
+                </div>
             </div>
             <div class="chat-thread">
                 <!-- ธนกฤต -->
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5B7FA5, #3D5A80);">ธ<span class="chat-online"></span></div>
                     <div class="chat-content">
-                        <span class="chat-name">ธนกฤต ว.</span>
+                        <span class="chat-name">ธนกฤต ว. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
                         <div class="chat-bubble chat-bubble-only">อ่านจบบทที่ 3 แล้วลองเอาไปใช้กับลูกค้าเลยครับ เปลี่ยนจากบอกว่าของดียังไง เป็นถามว่ากังวลเรื่องอะไร</div>
                         <div class="chat-bubble chat-bubble-last">ปิดได้ใน meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ</div>
+                        <div class="chat-react">🔥 <span class="chat-react-count">23</span></div>
                         <div class="chat-info">
                             <span class="chat-time">14:32</span>
                             <span class="chat-tag">Sales Rep &bull; B2B</span>
@@ -2953,7 +3409,7 @@
                 <div class="chat-msg rv">
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #8B6E4E, #6B4C30);">ส</div>
                     <div class="chat-content">
-                        <span class="chat-name">สมชาย พ.</span>
+                        <span class="chat-name">สมชาย พ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
                         <div class="chat-bubble chat-bubble-only">ขายประกันมา 8 ปีแล้ว คิดว่ารู้หมดแล้วแหละ แต่อ่านแล้วเพิงเข้าใจว่าทำไมบางคนปิดง่ายบางคนปิดยาก</div>
                         <div class="chat-bubble chat-bubble-last">ไม่ใช่เรื่องดวง เป็นเรื่องจังหวะของสมองจริงๆ ตอนนี้เลือกได้เลยว่าจะพูดอะไรตอนไหน</div>
                         <div class="chat-info">
@@ -2965,12 +3421,13 @@
 
                 <!-- นภัสสร -->
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #7A5C8A, #5D3F6E);">น</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #7A5C8A, #5D3F6E);">น<span class="chat-online"></span></div>
                     <div class="chat-content">
-                        <span class="chat-name">นภัสสร ก.</span>
+                        <span class="chat-name">นภัสสร ก. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
                         <div class="chat-bubble chat-bubble-first">เอาบท Anchoring ไป train ทีม 12 คนค่ะ</div>
                         <div class="chat-bubble chat-bubble-multi">เดือนถัดมา close rate ทั้งทีมขึ้น ไม่ได้เปลี่ยน script เลยนะ เปลี่ยนแค่ลำดับการพูดเรื่องราคา</div>
                         <div class="chat-bubble chat-bubble-last">เด็กในทีมงงเลยว่าทำไมมันต่างขนาดนี้ 555</div>
+                        <div class="chat-react">👏 <span class="chat-react-count">41</span></div>
                         <div class="chat-info">
                             <span class="chat-time">20:45</span>
                             <span class="chat-tag">Sales Manager</span>
@@ -2995,9 +3452,9 @@
 
                 <!-- พิมพ์ลภัส -->
                 <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #B85C38, #8B3A1E);">พ</div>
+                    <div class="chat-avatar" style="background: linear-gradient(135deg, #B85C38, #8B3A1E);">พ<span class="chat-online"></span></div>
                     <div class="chat-content">
-                        <span class="chat-name">พิมพ์ลภัส อ.</span>
+                        <span class="chat-name">พิมพ์ลภัส อ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
                         <div class="chat-bubble chat-bubble-first">เป็นฟรีแลนซ์ค่ะ ไม่กล้าเสนอราคาเลย</div>
                         <div class="chat-bubble chat-bubble-multi">ลดราคาให้ลูกค้าทุกทีเพราะกลัวเขาไม่จ้าง</div>
                         <div class="chat-bubble chat-bubble-last">อ่านบทที่ 7 เสร็จเสนอราคาโปรเจคถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ</div>
@@ -3012,7 +3469,7 @@
                 <div class="chat-msg rv">
                     <div class="chat-avatar" style="background: linear-gradient(135deg, #C4956A, #9A7050);">อ</div>
                     <div class="chat-content">
-                        <span class="chat-name">อนุวัฒน์ จ.</span>
+                        <span class="chat-name">อนุวัฒน์ จ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
                         <div class="chat-bubble chat-bubble-only">บท dopamine loop นี่เปลี่ยนวิธีเขียน proposal ผมไปเลยครับ เดิม 10 หน้าลูกค้าไม่เคยอ่านจบ ตอนนี้ย่อเหลือ 3 หน้า ลูกค้าโทรกลับเร็วขึ้น</div>
                         <div class="chat-info">
                             <span class="chat-time">22:11</span>
@@ -3045,7 +3502,7 @@
                         <div class="typing-dot"></div>
                     </div>
                 </div>
-                <div class="chat-seen">กำลังพิมพ์...</div>
+                <div class="chat-seen"><i class="fa-solid fa-pen-nib"></i> มีคนกำลังพิมพ์รีวิว...</div>
 
             </div>
         
@@ -3058,10 +3515,10 @@
          ═══════════════════════════════════════════════ -->
     <div class="guarantee rv">
         <div class="guarantee-box">
-            <div class="guarantee-icon">🛡</div>
+            <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
             <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
             <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด — ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
-            <div class="guarantee-badge">🔒 MONEY-BACK GUARANTEE</div>
+            <div class="guarantee-badge"><i class="fa-solid fa-lock"></i> MONEY-BACK GUARANTEE</div>
         </div>
     </div>
 
@@ -3387,6 +3844,56 @@
             hint.style.color = '';
         }, 2000);
     }
+    </script>
+
+    <!-- ── Hero particle ambiance (tsParticles, progressive enhancement) ── -->
+    <script>
+    (function() {
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduceMotion) return;
+        function start() {
+            if (typeof tsParticles === 'undefined') return;
+            tsParticles.load({
+                id: 'hero-particles',
+                options: {
+                    fpsLimit: 60,
+                    fullScreen: { enable: false },
+                    detectRetina: true,
+                    background: { color: 'transparent' },
+                    particles: {
+                        number: { value: 38, density: { enable: true, area: 900 } },
+                        color: { value: ['#C4956A', '#D9572F', '#B8860B'] },
+                        opacity: {
+                            value: { min: 0.1, max: 0.5 },
+                            animation: { enable: true, speed: 0.6, sync: false }
+                        },
+                        size: { value: { min: 1, max: 2.6 } },
+                        move: {
+                            enable: true,
+                            speed: 0.5,
+                            direction: 'top',
+                            outModes: { default: 'out' },
+                            random: true,
+                            straight: false
+                        },
+                        links: {
+                            enable: true,
+                            distance: 130,
+                            color: '#C4956A',
+                            opacity: 0.12,
+                            width: 1
+                        }
+                    },
+                    interactivity: {
+                        events: { onHover: { enable: true, mode: 'grab' }, resize: true },
+                        modes: { grab: { distance: 150, links: { opacity: 0.25 } } }
+                    }
+                }
+            });
+        }
+        if (document.readyState === 'complete') start();
+        else window.addEventListener('load', start);
+    })();
     </script>
 </body>
 </html>
