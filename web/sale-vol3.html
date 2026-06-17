@@ -2399,6 +2399,232 @@
             .offer-name { font-size: 1.05rem; }
             .mini-review-text { font-size: 0.9rem; }
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           VOL.3 POLISH LAYER — richer color, word emphasis, typography
+           (appended last so the cascade lets these refinements win)
+           ═══════════════════════════════════════════════════════════════ */
+        :root {
+            --brass: #B0863A;
+            --brass-light: #E0BC68;
+            --hl-ink: #134A33;
+            --hl-wash: rgba(94,158,128,0.34);
+            --hl-wash-strong: rgba(27,94,67,0.20);
+        }
+
+        /* ── Text selection ── */
+        ::selection { background: rgba(27,94,67,0.22); color: var(--accent-hover); }
+        ::-moz-selection { background: rgba(27,94,67,0.22); color: var(--accent-hover); }
+
+        /* ── Signature highlighter swipe (the "เน้นคำ" device) ──
+           Wrap any key phrase in <mark class="hl"> … </mark>.
+           When its section scrolls into view, the highlighter paints across. */
+        mark.hl, .hl {
+            background-color: transparent;
+            background-image: linear-gradient(transparent 62%, var(--hl-wash) 62%);
+            background-size: 0% 100%;
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            color: var(--hl-ink);
+            font-weight: 600;
+            padding: 0 0.06em;
+            border-radius: 2px;
+            transition: background-size 0.65s cubic-bezier(0.22,1,0.36,1);
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
+        .vis mark.hl, .vis .hl,
+        mark.hl.paint, .hl.paint { background-size: 100% 100%; }
+        /* stronger emerald wash variant */
+        mark.hl-strong {
+            background-image: linear-gradient(transparent 60%, var(--hl-wash-strong) 60%);
+            color: var(--accent-hover);
+            font-weight: 700;
+        }
+        /* brass underline accent for premium words (e.g. ราคา / กำไร) */
+        .key {
+            color: var(--accent);
+            font-weight: 700;
+            position: relative;
+            white-space: nowrap;
+        }
+        .key::after {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; bottom: -2px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--brass), var(--brass-light));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.22,1,0.36,1) 0.15s;
+        }
+        .vis .key::after { transform: scaleX(1); }
+
+        /* ── Section titles: gradient + soft swipe underline on <em> ── */
+        .sec-title em {
+            background: linear-gradient(120deg, var(--accent) 0%, #2E8159 45%, #3FA876 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            padding-bottom: 0.06em;
+        }
+        .sec-title em::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 100%; height: 0.14em;
+            background: linear-gradient(90deg, rgba(94,158,128,0.45), rgba(94,158,128,0));
+            border-radius: 4px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.7s cubic-bezier(0.22,1,0.36,1) 0.25s;
+        }
+        .vis .sec-title em::after { transform: scaleX(1); }
+
+        /* ── Storytelling drop-cap for opening narrative paragraphs ── */
+        p.lead-cap::first-letter {
+            font-family: 'Noto Serif Thai', serif;
+            font-weight: 700;
+            font-size: 3.1rem;
+            line-height: 0.78;
+            float: left;
+            margin: 0.32rem 0.55rem 0 0;
+            color: var(--accent);
+            background: linear-gradient(135deg, var(--accent), #3FA876);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.lead-cap {
+            font-size: 1.04rem;
+            line-height: 1.95;
+        }
+
+        /* ── Hero refinements: depth, glow, animated gradient on <em> ── */
+        .hero { background: radial-gradient(ellipse at 50% -10%, #173026 0%, var(--bg-dark) 55%, #0A150F 100%); }
+        .hero h1 { letter-spacing: -0.01em; text-wrap: balance; }
+        .hero h1 em {
+            animation: heroShimmer 6s ease-in-out infinite;
+            text-shadow: 0 0 40px rgba(63,168,118,0.25);
+        }
+        @keyframes heroShimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        .hero-eyebrow {
+            display: inline-block;
+            padding: 0.35rem 1rem;
+            border: 1px solid rgba(94,158,128,0.28);
+            border-radius: 30px;
+            background: rgba(94,158,128,0.06);
+            backdrop-filter: blur(4px);
+        }
+        .hero-hook {
+            position: relative;
+            padding: 0.6rem 0;
+            border-top: 1px solid rgba(212,207,199,0.12);
+            border-bottom: 1px solid rgba(212,207,199,0.12);
+            color: #E6E1D8;
+        }
+
+        /* ── CTA buttons: gradient + sliding sheen ── */
+        .hero-cta, .mid-cta-btn, .pricing-cta, .final-cta-btn {
+            background: linear-gradient(135deg, var(--accent) 0%, #237A56 55%, var(--accent-hover) 100%) !important;
+            position: relative;
+            overflow: hidden;
+            isolation: isolate;
+        }
+        .hero-cta::after, .mid-cta-btn::after, .pricing-cta::after, .final-cta-btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -120%;
+            width: 60%; height: 100%;
+            background: linear-gradient(100deg, transparent, rgba(255,255,255,0.28), transparent);
+            transform: skewX(-18deg);
+            z-index: -1;
+        }
+        .hero-cta:hover::after, .mid-cta-btn:hover::after,
+        .pricing-cta:hover::after, .final-cta-btn:hover::after {
+            animation: ctaSheen 0.85s ease;
+        }
+        @keyframes ctaSheen { from { left: -120%; } to { left: 140%; } }
+        .pricing-cta { box-shadow: 0 10px 34px rgba(27,94,67,0.30); }
+        .pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(27,94,67,0.40); }
+
+        /* ── Price: premium emerald→brass gradient numeral ── */
+        .price-big {
+            background: linear-gradient(135deg, var(--accent) 0%, #2E8159 40%, var(--brass) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+            filter: drop-shadow(0 6px 24px rgba(27,94,67,0.18));
+        }
+        .price-hero::before {
+            content: '';
+            position: absolute;
+            left: 50%; top: 50%;
+            width: 220px; height: 220px;
+            transform: translate(-50%,-50%);
+            background: radial-gradient(circle, rgba(94,158,128,0.16) 0%, transparent 68%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ── Pull-quote: decorative opening mark ── */
+        .pull-quote {
+            position: relative;
+            background: linear-gradient(90deg, rgba(94,158,128,0.05), transparent);
+            border-radius: 0 10px 10px 0;
+            padding: 0.6rem 1rem 0.6rem 1.4rem;
+        }
+        .pull-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -0.55rem; left: 0.55rem;
+            font-family: 'Noto Serif Thai', serif;
+            font-size: 2.6rem;
+            line-height: 1;
+            color: rgba(27,94,67,0.16);
+        }
+
+        /* ── Big-idea quote: brighten the emphasis ── */
+        .bigidea-quote em {
+            background: linear-gradient(120deg, #3FA876, #7CCBA2);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: normal;
+        }
+
+        /* ── Gold-box → refined emerald "insight" card with brass edge ── */
+        .gold-box {
+            position: relative;
+            border-left: 3px solid var(--brass);
+            box-shadow: 0 2px 18px rgba(27,94,67,0.06);
+        }
+        .gold-box strong { color: var(--brass); }
+
+        /* ── Scenario hover lift ── */
+        .scenario { transition: border-color 0.3s, background 0.3s, transform 0.25s, box-shadow 0.25s; }
+        .scenario:hover { transform: translateX(4px); box-shadow: 0 6px 22px rgba(27,94,67,0.07); }
+
+        /* ── Body emphasis: strong gets a faint emerald tint (light bg only) ── */
+        .sec p strong, .price-reason p strong { color: var(--accent-hover); }
+
+        /* ── Coupon code: make it feel like a "gift" ── */
+        .whisper-code {
+            background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
+            box-shadow: 0 6px 20px rgba(27,94,67,0.25);
+            letter-spacing: 0.18em;
+        }
+
+        @media (max-width: 640px) {
+            p.lead-cap::first-letter { font-size: 2.6rem; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .hero h1 em { animation: none; }
+            mark.hl, .hl, .key::after, .sec-title em::after { transition: none; }
+        }
     </style>
 </head>
 <body>
@@ -2472,8 +2698,8 @@
             <p class="scenario-a">คุณลดราคาทุกครั้งที่โดนต่อ เพราะไม่รู้จะทำยังไงให้ลูกค้า &ldquo;รู้สึกว่าคุ้ม&rdquo; โดยไม่ต้องทิ้งกำไร</p>
         </div>
 
-        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาอาจไม่ใช่ว่าคุณขยันไม่พอ &mdash;</p>
-        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">แต่อาจเป็นเพราะคุณกำลังวิ่งตาม &ldquo;ใบ&rdquo; ที่ร่วงทุกฤดู แทนที่จะดูแล &ldquo;ราก&rdquo; ที่ไม่เคยเปลี่ยน</p>
+        <p style="margin-top: 1.8rem; font-size: 0.95rem;">ปัญหาอาจไม่ใช่ว่า<mark class="hl">คุณขยันไม่พอ</mark> &mdash;</p>
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem;">แต่อาจเป็นเพราะคุณกำลังวิ่งตาม &ldquo;ใบ&rdquo; ที่ร่วงทุกฤดู แทนที่จะดูแล &ldquo;<span class="key">ราก</span>&rdquo; ที่ไม่เคยเปลี่ยน</p>
     </div>
 
     <!-- ═══════════════════════════════════════════════ BIG IDEA ═══════════════════════════════════════════════ -->
@@ -2514,7 +2740,7 @@
         <div class="sec-label">สิ่งที่ MBA ราคาหลายแสนพยายามสอน</div>
         <h2 class="sec-title">ยอดขายคือ <em>เสียงดัง</em><br>กำไรและเงินสดคือ <em>ความเงียบ</em> ที่ตัดสินทุกอย่าง</h2>
 
-        <p>คนทำธุรกิจส่วนใหญ่ภูมิใจกับ &ldquo;ยอดขาย&rdquo; เพราะมันดัง โชว์ได้ ทำให้รู้สึกว่ากำลังชนะ แต่ยอดขายไม่เคยบอกว่าคุณรวยขึ้นหรือจนลง</p>
+        <p class="lead-cap">คนทำธุรกิจส่วนใหญ่ภูมิใจกับ &ldquo;ยอดขาย&rdquo; เพราะมันดัง โชว์ได้ ทำให้รู้สึกว่ากำลังชนะ &mdash; แต่<mark class="hl">ยอดขายไม่เคยบอกว่าคุณรวยขึ้นหรือจนลง</mark></p>
 
         <div class="pull-quote">
             กำไรคือความเห็น แต่เงินสดคือความจริง &mdash; คุณกำไรได้ทุกเดือน แล้วก็ยังตายได้ในวันเดียว ถ้าวันนั้นเงินสดในมือไม่พอจ่ายสิ่งที่ถึงกำหนดต้องจ่าย
@@ -2522,7 +2748,7 @@
         </div>
 
         <p><strong>วงจรเงินสด</strong> ตัดสินว่าใครหมุนเงินได้เร็วและโตได้โดยไม่ต้องกู้ &mdash; สองธุรกิจที่กำไรเท่ากันบนกระดาษ อันที่วงจรเงินสดสั้นกว่าจะรวยกว่าเสมอ</p>
-        <p><strong>อำนาจราคา</strong> คือเครื่องวัดสุดท้ายว่าธุรกิจคุณแข็งแรงจริงหรือแค่ดูดี &mdash; ขึ้นราคา 10% โดยขายได้เท่าเดิม กำไรโตได้ถึง 33% โดยไม่ต้องทำงานเพิ่มแม้แต่นิดเดียว</p>
+        <p><strong>อำนาจราคา</strong> คือเครื่องวัดสุดท้ายว่าธุรกิจคุณแข็งแรงจริงหรือแค่ดูดี &mdash; ขึ้นราคา 10% โดยขายได้เท่าเดิม <mark class="hl-strong">กำไรโตได้ถึง 33%</mark> โดยไม่ต้องทำงานเพิ่มแม้แต่นิดเดียว</p>
         <p><strong>กำแพงคูเมือง</strong> คือสิ่งที่แยกธุรกิจที่รวยถาวร ออกจากธุรกิจที่รวยแค่ชั่วคราว &mdash; เพราะกำไรที่ดีจะดึงดูดคู่แข่งเข้ามาเหมือนกลิ่นเลือดดึงดูดฉลาม</p>
 
         <p style="margin-top: 1.5rem;"><strong>คอร์สธุรกิจสอนให้คุณ &ldquo;ทำอะไร&rdquo;</strong> &mdash; แต่ไม่เคยอธิบายว่า<em>ทำไมธุรกิจบางอันถึงรอด และบางอันถึงตาย</em></p>
@@ -2671,8 +2897,8 @@
         <div class="sec-label">สิ่งที่ต่าง</div>
         <h2 class="sec-title">นี่ไม่ใช่ตำราเรียน MBA<br><em>นี่คือหนังสือที่อ่านเพลินเหมือนฟังคนเล่าเรื่อง</em></h2>
 
-        <p>มีหนังสือธุรกิจเป็นพันเล่มที่อ่านแล้วง่วง เต็มไปด้วยศัพท์ ตาราง และทฤษฎีลอยๆ</p>
-        <p>เล่มนี้ไม่ใช่แบบนั้น &mdash; <strong>มันเล่าเรื่องให้คุณเห็นภาพ แล้วค่อยเฉลยกฎที่ซ่อนอยู่ข้างใต้</strong></p>
+        <p class="lead-cap">มีหนังสือธุรกิจเป็นพันเล่มที่อ่านแล้วง่วง เต็มไปด้วยศัพท์ ตาราง และทฤษฎีลอยๆ</p>
+        <p>เล่มนี้ไม่ใช่แบบนั้น &mdash; <mark class="hl">มันเล่าเรื่องให้คุณเห็นภาพ แล้วค่อยเฉลยกฎที่ซ่อนอยู่ข้างใต้</mark></p>
 
         <div class="scenario">
             <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
@@ -2817,7 +3043,7 @@
             <div class="price-reason">
                 <h4 class="price-reason-title">ทำไมราคานี้?</h4>
                 <p>เพราะมันคือสิ่งที่คนเรียน MBA จ่ายหลายแสนและใช้เวลาสองปีเพื่อจะได้ &mdash; ไม่ใช่สูตรสำเร็จ แต่คือ <strong>สายตา</strong> ที่มองเห็นระบบที่ซ่อนอยู่ใต้ทุกธุรกิจ</p>
-                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณตัดสินใจเรื่องราคา เงินสด หรือคน ถูกขึ้นแค่ครั้งเดียว &mdash; มันคืนทุนหลายเท่าตั้งแต่เดือนแรก</p>
+                <p>ถ้าหลักการในเล่มนี้ช่วยให้คุณตัดสินใจเรื่องราคา เงินสด หรือคน ถูกขึ้นแค่ครั้งเดียว &mdash; <mark class="hl">มันคืนทุนหลายเท่าตั้งแต่เดือนแรก</mark></p>
             </div>
 
             <div class="reader-whisper rv">
