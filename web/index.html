@@ -96,7 +96,11 @@
         html { scroll-behavior: smooth; font-size: 17px; -webkit-text-size-adjust: 100%; }
         body {
             font-family: var(--body);
-            background: var(--bg);
+            background:
+                radial-gradient(1100px 700px at 82% -5%, var(--accent-glow), transparent 55%),
+                radial-gradient(900px 600px at -8% 24%, rgba(196,149,106,0.05), transparent 55%),
+                var(--bg);
+            background-attachment: fixed;
             color: var(--text);
             line-height: 1.75;
             -webkit-font-smoothing: antialiased;
@@ -288,12 +292,11 @@
         }
         @keyframes pulse { 0%,100%{transform:scale(1);opacity:.7} 50%{transform:scale(1.12);opacity:1} }
         .book3d {
-            position: absolute; width: 230px; border-radius: 8px;
-            box-shadow: var(--shadow-xl);
+            position: absolute; width: 230px;
             transform-style: preserve-3d; will-change: transform;
             transition: transform 0.15s ease-out;
         }
-        .book3d img { border-radius: 8px; }
+        .book3d img { filter: drop-shadow(0 24px 34px rgba(0,0,0,0.5)) drop-shadow(0 6px 12px rgba(0,0,0,0.34)); }
         .book3d.b1 { z-index: 3; transform: translateZ(60px); }
         .book3d.b2 { z-index: 2; transform: translate(-120px, 36px) translateZ(0) rotateY(8deg) scale(0.88); opacity: 0.92; }
         .book3d.b3 { z-index: 2; transform: translate(120px, 36px) translateZ(0) rotateY(-8deg) scale(0.88); opacity: 0.92; }
@@ -315,8 +318,31 @@
         @keyframes cueline { 0%,100%{transform:scaleY(1);opacity:.4} 50%{transform:scaleY(0.5);opacity:1} }
 
         /* ─────────── Sections ─────────── */
-        .section { padding: 7rem 2rem; position: relative; }
+        .section { padding: 7rem 2rem; position: relative; overflow: hidden; }
+        .section > * { position: relative; z-index: 2; }
+        .section::before {
+            content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(680px 340px at 88% -8%, var(--accent-glow), transparent 70%),
+                radial-gradient(560px 300px at 6% 108%, rgba(196,149,106,0.06), transparent 70%);
+        }
+        .section::after {
+            content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+            opacity: 0.03; mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
         .section-alt { background: var(--bg-alt); }
+        .section-alt::before {
+            background: radial-gradient(720px 380px at 50% -12%, var(--accent-glow), transparent 72%);
+        }
+        .section-alt::after {
+            opacity: 1; mix-blend-mode: normal;
+            background-image: radial-gradient(var(--border) 1.1px, transparent 1.3px);
+            background-size: 28px 28px;
+            -webkit-mask-image: radial-gradient(ellipse 72% 62% at 50% 44%, #000, transparent 80%);
+                    mask-image: radial-gradient(ellipse 72% 62% at 50% 44%, #000, transparent 80%);
+        }
+        [data-theme="dark"] .section-alt::after { opacity: 0.55; }
         .container { max-width: 1160px; margin: 0 auto; }
         .narrow { max-width: 820px; margin: 0 auto; }
         .sec-head { text-align: center; max-width: 700px; margin: 0 auto 3.5rem; }
@@ -360,8 +386,18 @@
         .branch-icon svg { width: 24px; height: 24px; }
         .branch-name { font-family: var(--sans); font-weight: 600; font-size: 1.1rem; color: var(--heading); }
         .branch-vol { font-family: var(--mono); font-size: 0.72rem; color: var(--text-sec); margin-top: 0.3rem; letter-spacing: 0.5px; }
-        .root-link { width: 100%; height: 70px; display: block; margin: -6px 0; }
-        .root-link path { fill: none; stroke: var(--accent); stroke-width: 1.4; opacity: 0.5; stroke-dasharray: 4 5; }
+        .root-link { width: 100%; height: 86px; display: block; margin: -8px 0; overflow: visible; }
+        .root-link .rl-base { fill: none; stroke: url(#rlg); stroke-width: 2.4; stroke-linecap: round; }
+        .root-link .rl-flow {
+            fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-linecap: round;
+            stroke-dasharray: 12 300; opacity: 0.9;
+            filter: drop-shadow(0 0 5px var(--accent));
+            animation: rootflow 3.4s linear infinite;
+        }
+        @keyframes rootflow { to { stroke-dashoffset: -312; } }
+        .root-link .rl-0 { stop-color: var(--accent); stop-opacity: 0.08; }
+        .root-link .rl-1 { stop-color: var(--accent); stop-opacity: 0.85; }
+        @media (prefers-reduced-motion: reduce) { .root-link .rl-flow { display: none; } }
         .root-core {
             text-align: center; max-width: 360px; margin: 0 auto;
             background: linear-gradient(135deg, var(--accent), var(--accent-2));
@@ -392,8 +428,9 @@
         [data-theme="dark"] .bc-visual.v1 { background: linear-gradient(145deg, #2A241B, #3A3122); }
         [data-theme="dark"] .bc-visual.v3 { background: linear-gradient(145deg, #1C2820, #243A2C); }
         .bc-visual img {
-            height: 220px; width: auto; border-radius: 6px;
-            box-shadow: 0 22px 50px rgba(0,0,0,0.32); transform: translateZ(40px);
+            height: 220px; width: auto;
+            filter: drop-shadow(0 16px 26px rgba(0,0,0,0.42)) drop-shadow(0 4px 8px rgba(0,0,0,0.28));
+            transform: translateZ(40px);
             transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
         }
         .book-card:hover .bc-visual img { transform: translateZ(60px) translateY(-8px); }
@@ -607,10 +644,19 @@
                     <p class="branch-vol">แกนของทั้งซีรีส์</p>
                 </div>
             </div>
-            <svg class="root-link" viewBox="0 0 100 40" preserveAspectRatio="none" aria-hidden="true">
-                <path d="M16.7 0 C16.7 24 50 16 50 40"/>
-                <path d="M50 0 L50 40"/>
-                <path d="M83.3 0 C83.3 24 50 16 50 40"/>
+            <svg class="root-link" viewBox="0 0 700 86" preserveAspectRatio="none" aria-hidden="true">
+                <defs>
+                    <linearGradient id="rlg" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" class="rl-0"/>
+                        <stop offset="100%" class="rl-1"/>
+                    </linearGradient>
+                </defs>
+                <path class="rl-base" d="M116.7 3 C116.7 54 350 28 350 83"/>
+                <path class="rl-base" d="M350 3 L350 83"/>
+                <path class="rl-base" d="M583.3 3 C583.3 54 350 28 350 83"/>
+                <path class="rl-flow" d="M116.7 3 C116.7 54 350 28 350 83"/>
+                <path class="rl-flow" d="M350 3 L350 83"/>
+                <path class="rl-flow" d="M583.3 3 C583.3 54 350 28 350 83"/>
             </svg>
             <div class="root-core reveal" data-r>
                 <p class="root-core-eyebrow">// the_one_root</p>
