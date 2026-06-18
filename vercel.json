@@ -27,7 +27,6 @@
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
     { "source": "/thank-you-v3", "destination": "/thank-you-v3.html" },
     { "source": "/admin", "destination": "/admin.html" },
-    { "source": "/articles", "destination": "/articles.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
