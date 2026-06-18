@@ -27,6 +27,12 @@
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
     { "source": "/thank-you-v3", "destination": "/thank-you-v3.html" },
     { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/articles", "destination": "/articles.html" },
+    { "source": "/articles/ai-marketing-2026", "destination": "/article-ai-marketing-2026.html" },
+    { "source": "/articles/attention-economy", "destination": "/article-attention-economy.html" },
+    { "source": "/articles/pricing-psychology", "destination": "/article-pricing-psychology.html" },
+    { "source": "/articles/hook-shortform-content", "destination": "/article-hook-shortform-content.html" },
+    { "source": "/articles/brand-loyalty-tribe", "destination": "/article-brand-loyalty-tribe.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
