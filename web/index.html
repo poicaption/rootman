@@ -196,6 +196,22 @@
         }
         .nav-link:hover { color: var(--accent); }
         .nav-link:hover::after { width: 100%; }
+        .nav-account {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: var(--sans); font-weight: 600; font-size: 0.82rem;
+            color: var(--text); text-decoration: none;
+            padding: 0.5rem 1rem 0.5rem 0.85rem; line-height: 1;
+            transition: color 0.25s, transform 0.25s;
+            max-width: 13rem;
+        }
+        .nav-account svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--accent); }
+        .nav-account span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .nav-account:hover { color: var(--accent); transform: translateY(-2px); }
+        @media (max-width: 560px) {
+            .nav-account span { display: none; }
+            .nav-account { padding: 0.5rem; }
+        }
+
         .theme-toggle {
             width: 38px; height: 38px; border-radius: 50%;
             border: 1px solid var(--glass-border);
@@ -678,6 +694,10 @@
                 <a href="#root" class="nav-link hide-sm">แนวคิด</a>
                 <a href="/articles" class="nav-link hide-sm">บทความ</a>
                 <a href="/vol1" class="nav-link">อ่านฟรี</a>
+                <a href="/account" class="nav-account glass glass-pill glass-refract" id="navAccount" aria-label="บัญชีของฉัน">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+                    <span id="navAccountText">เข้าสู่ระบบ</span>
+                </a>
                 <button class="theme-toggle" id="themeToggle" aria-label="สลับโหมดมืด/สว่าง">
                     <span class="tm-moon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
                     <span class="tm-sun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></span>
@@ -965,6 +985,22 @@
         var nav = document.getElementById('nav');
         function onScroll(){ nav.classList.toggle('scrolled', window.scrollY > 20); }
         window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    })();
+    </script>
+
+    <!-- Account state in nav -->
+    <script>
+    (function() {
+        var txt = document.getElementById('navAccountText');
+        if (!txt) return;
+        fetch('/api/auth', { credentials: 'same-origin' })
+            .then(function(r){ return r.json(); })
+            .then(function(d){
+                if (d && d.authenticated) {
+                    txt.textContent = d.display_name || d.username || 'บัญชีของฉัน';
+                }
+            })
+            .catch(function(){});
     })();
     </script>
 

@@ -5,161 +5,382 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>บัญชีของฉัน · The One Root Series</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@300;400;500;600;700;800&family=Noto+Serif+Thai:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #f6f1e7;
-    --panel: #fffdf8;
-    --ink: #2a2520;
-    --muted: #8a8175;
-    --line: #e6ddcb;
-    --accent: #b07a3c;
-    --accent-dark: #8a5d2a;
-    --green: #4f8a5b;
-    --red: #c0493b;
-    --radius: 16px;
+    --bg: #FAF6F0; --bg-alt: #F3EDE4; --bg-deep: #EFE7DA;
+    --text: #2D2A26; --text-sec: #6B6560; --heading: #1A1714;
+    --accent: #8B6914; --accent-2: #B8862B; --accent-warm: #C4956A;
+    --accent-glow: rgba(139,105,20,0.12);
+    --border: #E0D6C8; --card-bg: #FFFFFF;
+    --green: #4f8a5b; --red: #C0493B;
+    --glass-bg: rgba(255,255,255,0.55); --glass-bg-strong: rgba(255,255,255,0.78);
+    --glass-border: rgba(255,255,255,0.70); --glass-hi: rgba(255,255,255,0.95);
+    --glass-tint: rgba(196,149,106,0.10);
+    --glass-shadow: 0 10px 34px rgba(60,40,10,0.16), 0 2px 10px rgba(60,40,10,0.08);
+    --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+    --radius: 18px; --radius-sm: 11px;
+    --mono: 'JetBrains Mono','Consolas',monospace;
+    --serif: 'Playfair Display','Noto Serif Thai',Georgia,serif;
+    --body: 'Sarabun','Noto Serif Thai',Georgia,serif;
+    --sans: 'Prompt',sans-serif;
+    --v1: #B8862B; --v2: #C4956A; --v3: #4f8a5b;
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  [data-theme="dark"] {
+    --bg: #14110E; --bg-alt: #1C1814; --bg-deep: #100D0B;
+    --text: #D8D1C6; --text-sec: #9A928A; --heading: #EDE6DB;
+    --accent: #D4A574; --accent-2: #E0B584; --accent-warm: #D4A574;
+    --accent-glow: rgba(212,165,116,0.14);
+    --border: #36302A; --card-bg: #221E1A;
+    --glass-bg: rgba(28,24,20,0.50); --glass-bg-strong: rgba(30,26,22,0.70);
+    --glass-border: rgba(255,255,255,0.14); --glass-hi: rgba(255,255,255,0.20);
+    --glass-tint: rgba(212,165,116,0.12);
+    --glass-shadow: 0 10px 34px rgba(0,0,0,0.5), 0 2px 10px rgba(0,0,0,0.34);
+    --v3: #6cae7a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; -webkit-text-size-adjust: 100%; }
   body {
-    background: radial-gradient(1100px 600px at 50% -10%, #fbf6ec 0%, var(--bg) 65%);
-    color: var(--ink);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Thai", "Helvetica Neue", sans-serif;
+    font-family: var(--body); color: var(--text); line-height: 1.7;
     min-height: 100vh;
-    display: flex; align-items: flex-start; justify-content: center;
-    padding: 48px 18px;
+    background:
+      radial-gradient(1100px 700px at 85% -8%, var(--accent-glow), transparent 55%),
+      radial-gradient(900px 600px at -10% 20%, rgba(196,149,106,0.06), transparent 55%),
+      var(--bg);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
   }
-  .wrap { width: min(94vw, 440px); }
-  .logo { text-align: center; margin-bottom: 22px; }
-  .logo a { text-decoration: none; color: var(--ink); }
-  .logo .mark { font-size: 22px; font-weight: 800; letter-spacing: 1px; }
-  .logo .mark span { color: var(--accent); }
-  .logo .sub { font-size: 12px; color: var(--muted); margin-top: 2px; letter-spacing: .5px; }
-
-  .card {
-    background: var(--panel); border: 1px solid var(--line);
-    border-radius: var(--radius); padding: 28px 26px;
-    box-shadow: 0 10px 40px rgba(120, 90, 40, .08);
-  }
-  .tabs { display: flex; gap: 6px; background: #f0e8d8; border-radius: 12px; padding: 4px; margin-bottom: 22px; }
-  .tabs button {
-    flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer;
-    border-radius: 9px; font-size: 14px; font-weight: 700; color: var(--muted);
-    transition: all .15s; font-family: inherit;
-  }
-  .tabs button.active { background: var(--panel); color: var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,.06); }
-
-  label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
-  .hint { font-size: 12px; color: var(--muted); margin: -2px 0 14px; }
-  input {
-    width: 100%; padding: 12px 14px; border-radius: 11px; border: 1px solid var(--line);
-    background: #fcfaf4; color: var(--ink); font-size: 15px; outline: none; margin-bottom: 16px;
-    font-family: inherit;
-  }
-  input:focus { border-color: var(--accent); }
-  input:disabled { background: #f1ece1; color: var(--muted); }
-  .btn {
-    width: 100%; padding: 13px; border: none; border-radius: 11px; cursor: pointer;
-    background: var(--accent); color: #fff; font-weight: 700; font-size: 15px;
-    transition: filter .15s; font-family: inherit;
-  }
-  .btn:hover { filter: brightness(1.06); }
-  .btn:disabled { opacity: .6; cursor: default; }
-  .btn.ghost { background: transparent; color: var(--accent-dark); border: 1px solid var(--line); }
-  .msg { font-size: 13.5px; margin: 12px 0 0; min-height: 18px; }
-  .msg.err { color: var(--red); }
-  .msg.ok { color: var(--green); }
-  .center { text-align: center; }
-  .small-link { font-size: 13px; color: var(--muted); text-align: center; margin-top: 16px; }
-  .small-link a { color: var(--accent-dark); }
+  a { color: var(--accent); }
   .hidden { display: none !important; }
 
-  /* Library */
-  .hello { font-size: 18px; font-weight: 800; margin: 0 0 2px; }
-  .hello-sub { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+  /* ── Glass ── */
+  .glass {
+    background: linear-gradient(135deg, var(--glass-bg-strong), var(--glass-bg));
+    -webkit-backdrop-filter: blur(18px) saturate(180%); backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 var(--glass-hi);
+    border-radius: var(--radius);
+  }
+  @supports not ((backdrop-filter: blur(2px)) or (-webkit-backdrop-filter: blur(2px))) {
+    .glass { background: var(--card-bg); }
+  }
+
+  /* ── Buttons / inputs ── */
+  .btn {
+    font-family: var(--sans); font-weight: 600; font-size: 0.92rem;
+    border: none; cursor: pointer; border-radius: 100px;
+    padding: 0.8rem 1.5rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+    transition: transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .2s, background .2s, color .2s;
+    text-decoration: none; white-space: nowrap;
+  }
+  .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 10px 26px var(--accent-glow); }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 38px var(--accent-glow); }
+  .btn-primary:disabled { opacity: .55; cursor: default; transform: none; }
+  .btn-ghost {
+    background: linear-gradient(135deg, var(--glass-bg-strong), var(--glass-bg));
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    color: var(--text); border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+  }
+  .btn-ghost:hover { color: var(--accent); transform: translateY(-2px); }
+  .btn-block { width: 100%; }
+
+  label { display: block; font-family: var(--sans); font-size: 0.82rem; font-weight: 600; color: var(--heading); margin: 0 0 0.4rem; }
+  .field-hint { font-size: 0.76rem; color: var(--text-sec); margin: -0.4rem 0 0.9rem; }
+  input {
+    width: 100%; font-family: var(--body); font-size: 1rem; color: var(--text);
+    padding: 0.85rem 1rem; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--card-bg);
+    outline: none; margin-bottom: 1.1rem; transition: border-color .2s, box-shadow .2s;
+  }
+  input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+  input:disabled { background: var(--bg-alt); color: var(--text-sec); cursor: not-allowed; }
+  .msg { font-family: var(--sans); font-size: 0.85rem; min-height: 1.2rem; margin-top: 0.2rem; }
+  .msg.err { color: var(--red); }
+  .msg.ok { color: var(--green); }
+
+  /* ── Auth screen ── */
+  #authView { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2.5rem 1.2rem; }
+  .auth-wrap { width: min(94vw, 430px); }
+  .brand { text-align: center; margin-bottom: 1.6rem; }
+  .brand a { text-decoration: none; }
+  .brand .mark { font-family: var(--mono); font-size: 1.15rem; font-weight: 500; color: var(--heading); letter-spacing: 0.5px; }
+  .brand .mark b { color: var(--accent); font-weight: 700; }
+  .brand .sub { font-family: var(--sans); font-size: 0.78rem; color: var(--text-sec); margin-top: 0.3rem; }
+  .auth-card { padding: 2rem 1.9rem; }
+  .tabs { display: flex; gap: 0.3rem; background: var(--bg-alt); border-radius: 100px; padding: 0.3rem; margin-bottom: 1.6rem; }
+  .tabs button {
+    flex: 1; font-family: var(--sans); font-weight: 600; font-size: 0.9rem; color: var(--text-sec);
+    border: none; background: transparent; cursor: pointer; padding: 0.6rem; border-radius: 100px; transition: all .2s;
+  }
+  .tabs button.active { background: var(--card-bg); color: var(--heading); box-shadow: var(--shadow-md); }
+  .auth-foot { text-align: center; font-family: var(--sans); font-size: 0.82rem; color: var(--text-sec); margin-top: 1.3rem; }
+
+  /* ── Dashboard shell ── */
+  #dashView { display: none; min-height: 100vh; }
+  .shell { display: grid; grid-template-columns: 256px 1fr; min-height: 100vh; }
+
+  .sidebar {
+    position: sticky; top: 0; align-self: start; height: 100vh;
+    display: flex; flex-direction: column; padding: 1.6rem 1.1rem;
+    border-right: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--bg-alt), var(--bg));
+  }
+  .sb-brand { font-family: var(--mono); font-size: 1.05rem; color: var(--heading); text-decoration: none; padding: 0.2rem 0.6rem 1.3rem; display: block; }
+  .sb-brand b { color: var(--accent); }
+  .sb-nav { display: flex; flex-direction: column; gap: 0.25rem; }
+  .sb-item {
+    display: flex; align-items: center; gap: 0.75rem; font-family: var(--sans); font-weight: 500; font-size: 0.92rem;
+    color: var(--text-sec); padding: 0.7rem 0.85rem; border-radius: 12px; cursor: pointer; border: none; background: transparent;
+    text-align: left; width: 100%; transition: all .18s;
+  }
+  .sb-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .sb-item:hover { background: var(--bg-deep); color: var(--text); }
+  .sb-item.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: 0 8px 22px var(--accent-glow); }
+  .sb-sep { height: 1px; background: var(--border); margin: 1rem 0.6rem; }
+  .sb-foot { margin-top: auto; display: flex; flex-direction: column; gap: 0.25rem; }
+  .sb-link { display: flex; align-items: center; gap: 0.6rem; font-family: var(--sans); font-size: 0.84rem; color: var(--text-sec); text-decoration: none; padding: 0.5rem 0.85rem; border-radius: 10px; transition: all .18s; }
+  .sb-link:hover { color: var(--accent); background: var(--bg-deep); }
+  .sb-link svg { width: 15px; height: 15px; }
+
+  .main { padding: 2.2rem clamp(1.2rem, 4vw, 3rem) 4rem; max-width: 1000px; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+  .greet h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.5rem, 3.4vw, 2.1rem); color: var(--heading); line-height: 1.2; }
+  .greet p { font-family: var(--sans); font-size: 0.86rem; color: var(--text-sec); margin-top: 0.2rem; }
+  .topbar-actions { display: flex; align-items: center; gap: 0.6rem; }
+  .icon-btn {
+    width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+    border: 1px solid var(--glass-border); background: linear-gradient(135deg, var(--glass-bg-strong), var(--glass-bg));
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: var(--text-sec); box-shadow: var(--glass-shadow); transition: all .2s;
+  }
+  .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .icon-btn svg { width: 17px; height: 17px; }
+  .tm-sun { display: none; } [data-theme="dark"] .tm-sun { display: block; } [data-theme="dark"] .tm-moon { display: none; }
+
+  .panel { display: none; animation: fade .35s ease; }
+  .panel.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .panel-head { font-family: var(--sans); font-weight: 700; font-size: 1.15rem; color: var(--heading); margin-bottom: 0.3rem; }
+  .panel-sub { font-family: var(--sans); font-size: 0.86rem; color: var(--text-sec); margin-bottom: 1.4rem; }
+
+  /* ── Library ── */
+  .books { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
   .book {
-    display: flex; align-items: center; justify-content: space-between; gap: 12px;
-    padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px;
-    margin-bottom: 10px; background: #fcfaf4;
+    position: relative; padding: 1.3rem; border-radius: var(--radius); overflow: hidden;
+    border: 1px solid var(--border); background: var(--card-bg); box-shadow: var(--shadow-md);
+    display: flex; flex-direction: column; min-height: 200px; transition: transform .25s, box-shadow .25s;
   }
-  .book .title { font-weight: 700; font-size: 14.5px; }
-  .book .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .book a.read {
-    text-decoration: none; background: var(--accent); color: #fff; font-weight: 700;
-    font-size: 13px; padding: 8px 16px; border-radius: 9px; white-space: nowrap;
+  .book:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(60,40,10,0.16); }
+  .book .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
+  .book.v1 .spine { background: var(--v1); } .book.v2 .spine { background: var(--v2); } .book.v3 .spine { background: var(--v3); }
+  .book .vol-tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1px; color: var(--accent); }
+  .book h3 { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--heading); margin: 0.4rem 0 0.2rem; }
+  .book .meta { font-family: var(--sans); font-size: 0.76rem; color: var(--text-sec); margin-top: 0.1rem; }
+  .book .read { margin-top: auto; padding-top: 1.1rem; }
+  .book .code-chip { font-family: var(--mono); font-size: 0.72rem; color: var(--text-sec); margin-top: 0.5rem; }
+
+  .empty-state {
+    text-align: center; padding: 3rem 1.5rem; border: 1.5px dashed var(--border); border-radius: var(--radius);
+    color: var(--text-sec); font-family: var(--sans);
   }
-  .empty-books { color: var(--muted); font-size: 13.5px; text-align: center; padding: 14px 0 6px; }
-  .divider { height: 1px; background: var(--line); margin: 22px 0; }
-  .sec-title { font-size: 14px; font-weight: 800; margin: 0 0 4px; }
-  .sec-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 14px; }
-  .acct-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); margin-top: 18px; }
-  .acct-row a { color: var(--accent-dark); cursor: pointer; }
-  .badge { display: inline-block; font-size: 11px; background: #efe6d4; color: var(--accent-dark); padding: 2px 8px; border-radius: 20px; margin-left: 6px; }
+  .empty-state .ico { font-size: 2.2rem; margin-bottom: 0.6rem; }
+
+  /* ── Cards (forms) ── */
+  .card { padding: 1.7rem 1.6rem; max-width: 480px; }
+  .card + .card { margin-top: 1.3rem; }
+  .card h3 { font-family: var(--sans); font-weight: 700; font-size: 1rem; color: var(--heading); margin-bottom: 0.3rem; }
+  .card .desc { font-family: var(--sans); font-size: 0.82rem; color: var(--text-sec); margin-bottom: 1.2rem; }
+  .info-row { display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0; border-bottom: 1px solid var(--border); font-family: var(--sans); font-size: 0.9rem; }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .k { color: var(--text-sec); }
+  .info-row .v { color: var(--heading); font-weight: 600; word-break: break-all; text-align: right; }
+  .pill { font-family: var(--mono); font-size: 0.74rem; background: var(--accent-glow); color: var(--accent); padding: 0.2rem 0.7rem; border-radius: 100px; }
+
+  /* ── Mobile ── */
+  .mobile-tabbar { display: none; }
+  @media (max-width: 820px) {
+    .shell { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .mobile-tabbar {
+      display: flex; gap: 0.4rem; overflow-x: auto; padding: 0.8rem 1rem; position: sticky; top: 0; z-index: 20;
+      border-bottom: 1px solid var(--border); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
+    }
+    .mobile-tabbar button {
+      flex-shrink: 0; font-family: var(--sans); font-weight: 600; font-size: 0.84rem; color: var(--text-sec);
+      border: 1px solid var(--border); background: var(--card-bg); border-radius: 100px; padding: 0.5rem 1rem; cursor: pointer;
+    }
+    .mobile-tabbar button.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; }
+    .main { padding-top: 1.4rem; }
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="logo">
-    <a href="/">
-      <div class="mark">THE ONE ROOT<span>·</span>SERIES</div>
-      <div class="sub">บัญชีผู้อ่าน</div>
-    </a>
-  </div>
 
-  <!-- ── AUTH ── -->
-  <div class="card" id="authCard">
-    <div class="tabs">
-      <button id="tabLogin" class="active" type="button">เข้าสู่ระบบ</button>
-      <button id="tabRegister" type="button">สร้างบัญชี</button>
+<!-- ════════ AUTH VIEW ════════ -->
+<div id="authView">
+  <div class="auth-wrap">
+    <div class="brand">
+      <a href="/"><div class="mark">one<b>Root</b></div></a>
+      <div class="sub">บัญชีผู้อ่าน · The One Root Series</div>
     </div>
+    <div class="glass auth-card">
+      <div class="tabs">
+        <button id="tabLogin" class="active" type="button">เข้าสู่ระบบ</button>
+        <button id="tabRegister" type="button">สร้างบัญชี</button>
+      </div>
 
-    <!-- Login -->
-    <form id="loginForm">
-      <label for="loginUser">ชื่อผู้ใช้</label>
-      <input id="loginUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
-      <label for="loginPass">รหัสผ่าน</label>
-      <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••">
-      <button class="btn" type="submit" id="loginBtn">เข้าสู่ระบบ</button>
-      <p class="msg" id="loginMsg"></p>
-    </form>
+      <form id="loginForm">
+        <label for="loginUser">ชื่อผู้ใช้</label>
+        <input id="loginUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
+        <label for="loginPass">รหัสผ่าน</label>
+        <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••">
+        <button class="btn btn-primary btn-block" type="submit" id="loginBtn">เข้าสู่ระบบ</button>
+        <p class="msg err" id="loginMsg"></p>
+      </form>
 
-    <!-- Register -->
-    <form id="registerForm" class="hidden">
-      <label for="regName">ชื่อที่ใช้แสดง</label>
-      <input id="regName" type="text" maxlength="60" placeholder="เช่น ชื่อเล่นของคุณ">
-      <label for="regUser">ชื่อผู้ใช้</label>
-      <input id="regUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
-      <p class="hint">ใช้ a-z, 0-9, จุด (.) หรือขีดล่าง (_) ความยาว 3-20 ตัว</p>
-      <label for="regPass">รหัสผ่าน</label>
-      <input id="regPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร">
-      <button class="btn" type="submit" id="regBtn">สร้างบัญชี</button>
-      <p class="hint" style="margin-top:14px">ไม่ต้องใช้อีเมล — เมื่อคุณนำ Unlock Code มาปลดล็อก ระบบจะเชื่อมอีเมลให้อัตโนมัติ</p>
-      <p class="msg" id="regMsg"></p>
-    </form>
-
-    <p class="small-link">มี Unlock Code อยู่แล้วและอยากอ่านเลย? <a href="/vol3">ใส่โค้ดที่หน้าหนังสือได้</a></p>
+      <form id="registerForm" class="hidden">
+        <label for="regName">ชื่อที่ใช้แสดง</label>
+        <input id="regName" type="text" maxlength="60" placeholder="เช่น ชื่อเล่นของคุณ">
+        <label for="regUser">ชื่อผู้ใช้</label>
+        <input id="regUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
+        <p class="field-hint">ใช้ a-z, 0-9, จุด (.) หรือขีดล่าง (_) ความยาว 3-20 ตัว</p>
+        <label for="regPass">รหัสผ่าน</label>
+        <input id="regPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร">
+        <button class="btn btn-primary btn-block" type="submit" id="regBtn">สร้างบัญชี</button>
+        <p class="field-hint" style="margin-top:0.9rem">ไม่ต้องใช้อีเมล — เมื่อนำ Unlock Code มาปลดล็อก ระบบจะเชื่อมอีเมลให้อัตโนมัติ</p>
+        <p class="msg err" id="regMsg"></p>
+      </form>
+    </div>
+    <p class="auth-foot">มี Unlock Code แล้วอยากอ่านเลย? <a href="/vol3">ใส่โค้ดที่หน้าหนังสือ</a> · <a href="/">กลับหน้าแรก</a></p>
   </div>
+</div>
 
-  <!-- ── LIBRARY ── -->
-  <div class="card hidden" id="libCard">
-    <p class="hello" id="libHello">สวัสดี</p>
-    <p class="hello-sub" id="libSub">คลังหนังสือของคุณ</p>
+<!-- ════════ DASHBOARD VIEW ════════ -->
+<div id="dashView">
+  <div class="shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <a href="/" class="sb-brand">one<b>Root</b></a>
+      <nav class="sb-nav">
+        <button class="sb-item active" data-section="library" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          คลังหนังสือ
+        </button>
+        <button class="sb-item" data-section="redeem" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8V21M3 12h18M7.5 8a2.5 2.5 0 1 1 0-5C9 3 12 8 12 8M16.5 8a2.5 2.5 0 1 0 0-5C15 3 12 8 12 8"/></svg>
+          เพิ่มหนังสือ
+        </button>
+        <button class="sb-item" data-section="profile" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+          ข้อมูลบัญชี
+        </button>
+        <button class="sb-item" data-section="security" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          ความปลอดภัย
+        </button>
+      </nav>
+      <div class="sb-sep"></div>
+      <div class="sb-foot">
+        <a href="/" class="sb-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>หน้าแรก</a>
+        <a href="/vol1" class="sb-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>อ่านฟรี เล่ม 1</a>
+        <a href="/articles" class="sb-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4M14 2v5h5M4 13h6M4 17h6"/></svg>บทความ</a>
+        <button class="sb-link" id="logoutSb" type="button" style="border:none;background:transparent;cursor:pointer;width:100%;text-align:left;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>ออกจากระบบ</button>
+      </div>
+    </aside>
 
-    <div id="bookList"></div>
-    <p class="empty-books hidden" id="emptyBooks">ยังไม่มีหนังสือในคลัง — นำ Unlock Code มาปลดล็อกด้านล่างได้เลย</p>
+    <!-- Main -->
+    <div style="display:flex;flex-direction:column;min-width:0;">
+      <div class="mobile-tabbar" id="mTabbar">
+        <button class="active" data-section="library" type="button">คลังหนังสือ</button>
+        <button data-section="redeem" type="button">เพิ่มหนังสือ</button>
+        <button data-section="profile" type="button">ข้อมูลบัญชี</button>
+        <button data-section="security" type="button">ความปลอดภัย</button>
+      </div>
 
-    <div class="divider"></div>
+      <main class="main">
+        <div class="topbar">
+          <div class="greet">
+            <h1 id="greetName">สวัสดี</h1>
+            <p id="greetSub">ยินดีต้อนรับกลับสู่คลังหนังสือของคุณ</p>
+          </div>
+          <div class="topbar-actions">
+            <button class="icon-btn" id="themeToggle" type="button" aria-label="สลับโหมด">
+              <span class="tm-moon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></span>
+              <span class="tm-sun"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></svg></span>
+            </button>
+            <button class="btn btn-ghost" id="logoutTop" type="button">ออกจากระบบ</button>
+          </div>
+        </div>
 
-    <p class="sec-title">เพิ่มหนังสือด้วย Unlock Code</p>
-    <p class="sec-sub">ใส่โค้ดที่ได้รับ (รูปแบบ ROOT-XXXX-XXXX) — 1 โค้ดผูกได้กับบัญชีเดียวเท่านั้น</p>
-    <form id="redeemForm">
-      <input id="redeemCode" type="text" autocapitalize="characters" spellcheck="false" placeholder="ROOT-XXXX-XXXX">
-      <button class="btn" type="submit" id="redeemBtn">ปลดล็อกเข้าบัญชี</button>
-      <p class="msg" id="redeemMsg"></p>
-    </form>
+        <!-- Library -->
+        <section class="panel active" id="panel-library">
+          <div class="panel-head">คลังหนังสือของคุณ</div>
+          <div class="panel-sub" id="libSub">หนังสือทั้งหมดที่คุณปลดล็อกแล้ว — อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ</div>
+          <div class="books" id="bookList"></div>
+          <div class="empty-state hidden" id="emptyBooks">
+            <div class="ico">📚</div>
+            <p style="font-weight:600;color:var(--heading);margin-bottom:0.3rem;">ยังไม่มีหนังสือในคลัง</p>
+            <p style="margin-bottom:1.2rem;">นำ Unlock Code ที่ได้รับมาปลดล็อกเข้าบัญชีได้เลย</p>
+            <button class="btn btn-primary" type="button" data-goto="redeem">+ เพิ่มหนังสือด้วยโค้ด</button>
+          </div>
+        </section>
 
-    <div class="acct-row">
-      <span id="acctEmail"></span>
-      <a id="logoutLink">ออกจากระบบ</a>
+        <!-- Redeem -->
+        <section class="panel" id="panel-redeem">
+          <div class="panel-head">เพิ่มหนังสือด้วย Unlock Code</div>
+          <div class="panel-sub">ใส่โค้ดที่ได้รับ (รูปแบบ ROOT-XXXX-XXXX) — 1 โค้ดผูกกับบัญชีเดียวตลอดไป</div>
+          <div class="glass card">
+            <form id="redeemForm">
+              <label for="redeemCode">Unlock Code</label>
+              <input id="redeemCode" type="text" autocapitalize="characters" spellcheck="false" placeholder="ROOT-XXXX-XXXX" style="font-family:var(--mono);letter-spacing:1px;">
+              <button class="btn btn-primary btn-block" type="submit" id="redeemBtn">ปลดล็อกเข้าบัญชี</button>
+              <p class="msg" id="redeemMsg"></p>
+            </form>
+          </div>
+        </section>
+
+        <!-- Profile -->
+        <section class="panel" id="panel-profile">
+          <div class="panel-head">ข้อมูลบัญชี</div>
+          <div class="panel-sub">จัดการชื่อที่แสดงและดูข้อมูลบัญชีของคุณ</div>
+          <div class="glass card">
+            <div class="info-row"><span class="k">ชื่อผู้ใช้</span><span class="v" id="pfUser">—</span></div>
+            <div class="info-row"><span class="k">อีเมล</span><span class="v" id="pfEmail">—</span></div>
+            <div class="info-row"><span class="k">สถานะ</span><span class="v"><span class="pill" id="pfStatus">active</span></span></div>
+          </div>
+          <div class="glass card">
+            <h3>แก้ไขชื่อที่ใช้แสดง</h3>
+            <p class="desc">ชื่อนี้จะปรากฏเมื่อคุณเข้าสู่ระบบ</p>
+            <form id="profileForm">
+              <label for="pfName">ชื่อที่ใช้แสดง</label>
+              <input id="pfName" type="text" maxlength="60" placeholder="ชื่อที่ใช้แสดง">
+              <button class="btn btn-primary" type="submit" id="pfSaveBtn">บันทึก</button>
+              <p class="msg" id="pfMsg"></p>
+            </form>
+          </div>
+        </section>
+
+        <!-- Security -->
+        <section class="panel" id="panel-security">
+          <div class="panel-head">ความปลอดภัย</div>
+          <div class="panel-sub">เปลี่ยนรหัสผ่านเพื่อความปลอดภัยของบัญชี</div>
+          <div class="glass card">
+            <h3>เปลี่ยนรหัสผ่าน</h3>
+            <p class="desc">ต้องยืนยันรหัสผ่านปัจจุบันก่อนตั้งรหัสใหม่</p>
+            <form id="passForm">
+              <label for="curPass">รหัสผ่านปัจจุบัน</label>
+              <input id="curPass" type="password" autocomplete="current-password" placeholder="••••••••">
+              <label for="newPass">รหัสผ่านใหม่</label>
+              <input id="newPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร">
+              <button class="btn btn-primary" type="submit" id="passBtn">เปลี่ยนรหัสผ่าน</button>
+              <p class="msg" id="passMsg"></p>
+            </form>
+          </div>
+        </section>
+      </main>
     </div>
   </div>
 </div>
@@ -168,15 +389,28 @@
 (function () {
   'use strict';
   function el(id) { return document.getElementById(id); }
-  function show(node) { node.classList.remove('hidden'); }
-  function hide(node) { node.classList.add('hidden'); }
+  function qa(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); }
+  function show(n) { n.classList.remove('hidden'); }
+  function hide(n) { n.classList.add('hidden'); }
 
-  var VOL_NAMES = {
-    vol1: 'The One Root · เล่ม 1',
-    vol2: 'The One Root · เล่ม 2',
-    vol3: 'The One Root · เล่ม 3'
+  // Theme (shared key with the rest of the site)
+  (function () {
+    var saved = localStorage.getItem('oneroot-theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.body.setAttribute('data-theme', 'dark');
+    }
+  })();
+  el('themeToggle').addEventListener('click', function () {
+    var dark = document.body.getAttribute('data-theme') === 'dark';
+    if (dark) { document.body.removeAttribute('data-theme'); localStorage.setItem('oneroot-theme', 'light'); }
+    else { document.body.setAttribute('data-theme', 'dark'); localStorage.setItem('oneroot-theme', 'dark'); }
+  });
+
+  var VOL = {
+    vol1: { name: 'รากแก้วการตลาด', tag: 'VOLUME 1', cls: 'v1', link: '/vol1' },
+    vol2: { name: 'The Invisible War', tag: 'VOLUME 2', cls: 'v2', link: '/vol2' },
+    vol3: { name: 'รากแก้วธุรกิจ', tag: 'VOLUME 3', cls: 'v3', link: '/vol3' }
   };
-  var VOL_LINK = { vol1: '/vol1', vol2: '/vol2', vol3: '/vol3' };
 
   function api(path, opts) {
     opts = opts || {};
@@ -191,7 +425,7 @@
     });
   }
 
-  // ── Tabs ──
+  // ── Auth tabs ──
   el('tabLogin').addEventListener('click', function () {
     el('tabLogin').classList.add('active'); el('tabRegister').classList.remove('active');
     show(el('loginForm')); hide(el('registerForm'));
@@ -201,46 +435,56 @@
     show(el('registerForm')); hide(el('loginForm'));
   });
 
-  // ── Login ──
   el('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var m = el('loginMsg'); m.className = 'msg'; m.textContent = '';
-    el('loginBtn').disabled = true;
+    var m = el('loginMsg'); m.textContent = ''; el('loginBtn').disabled = true;
     api('/api/auth', { method: 'POST', body: { action: 'login', username: el('loginUser').value, password: el('loginPass').value } })
       .then(function (res) {
         el('loginBtn').disabled = false;
-        if (res.data && res.data.ok) { renderLibrary(res.data); }
-        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'เข้าสู่ระบบไม่สำเร็จ'; }
+        if (res.data && res.data.ok) enterDashboard(res.data);
+        else m.textContent = (res.data && res.data.message) || 'เข้าสู่ระบบไม่สำเร็จ';
       })
-      .catch(function () { el('loginBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+      .catch(function () { el('loginBtn').disabled = false; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
   });
 
-  // ── Register ──
   el('registerForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var m = el('regMsg'); m.className = 'msg'; m.textContent = '';
-    el('regBtn').disabled = true;
+    var m = el('regMsg'); m.textContent = ''; el('regBtn').disabled = true;
     api('/api/auth', { method: 'POST', body: { action: 'register', username: el('regUser').value, password: el('regPass').value, display_name: el('regName').value } })
       .then(function (res) {
         el('regBtn').disabled = false;
-        if (res.data && res.data.ok) { renderLibrary(res.data); }
-        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'สร้างบัญชีไม่สำเร็จ'; }
+        if (res.data && res.data.ok) enterDashboard(res.data);
+        else m.textContent = (res.data && res.data.message) || 'สร้างบัญชีไม่สำเร็จ';
       })
-      .catch(function () { el('regBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+      .catch(function () { el('regBtn').disabled = false; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+  });
+
+  // ── Section switching ──
+  function setSection(name) {
+    qa('.sb-item').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-section') === name); });
+    qa('#mTabbar button').forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-section') === name); });
+    qa('.panel').forEach(function (p) { p.classList.toggle('active', p.id === 'panel-' + name); });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  qa('.sb-item, #mTabbar button').forEach(function (b) {
+    b.addEventListener('click', function () { setSection(b.getAttribute('data-section')); });
+  });
+  qa('[data-goto]').forEach(function (b) {
+    b.addEventListener('click', function () { setSection(b.getAttribute('data-goto')); });
   });
 
   // ── Redeem ──
   el('redeemForm').addEventListener('submit', function (e) {
     e.preventDefault();
-    var m = el('redeemMsg'); m.className = 'msg'; m.textContent = 'กำลังตรวจสอบ…';
-    el('redeemBtn').disabled = true;
+    var m = el('redeemMsg'); m.className = 'msg'; m.textContent = 'กำลังตรวจสอบ…'; el('redeemBtn').disabled = true;
     api('/api/redeem-code', { method: 'POST', body: { code: el('redeemCode').value } })
       .then(function (res) {
         el('redeemBtn').disabled = false;
         if (res.data && res.data.ok) {
-          m.className = 'msg ok'; m.textContent = 'ปลดล็อกสำเร็จ! เพิ่ม ' + (VOL_NAMES[res.data.product] || res.data.product) + ' เข้าคลังแล้ว';
+          var v = VOL[res.data.product] || { name: res.data.product };
+          m.className = 'msg ok'; m.textContent = 'ปลดล็อกสำเร็จ! เพิ่ม “' + v.name + '” เข้าคลังแล้ว';
           el('redeemCode').value = '';
-          refresh();
+          refresh().then(function () { setTimeout(function () { setSection('library'); }, 700); });
         } else {
           m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'ปลดล็อกไม่สำเร็จ';
         }
@@ -248,51 +492,85 @@
       .catch(function () { el('redeemBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
   });
 
-  // ── Logout ──
-  el('logoutLink').addEventListener('click', function () {
-    api('/api/auth', { method: 'POST', body: { action: 'logout' } }).then(function () { window.location.reload(); });
+  // ── Profile update ──
+  el('profileForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = el('pfMsg'); m.className = 'msg'; m.textContent = ''; el('pfSaveBtn').disabled = true;
+    api('/api/auth', { method: 'POST', body: { action: 'update_profile', display_name: el('pfName').value } })
+      .then(function (res) {
+        el('pfSaveBtn').disabled = false;
+        if (res.data && res.data.ok) { m.className = 'msg ok'; m.textContent = 'บันทึกแล้ว'; fillUser(res.data); }
+        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'บันทึกไม่สำเร็จ'; }
+      })
+      .catch(function () { el('pfSaveBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด'; });
   });
 
-  function renderLibrary(data) {
-    hide(el('authCard'));
-    show(el('libCard'));
-    el('libHello').textContent = 'สวัสดี, ' + (data.display_name || data.username);
-    el('libSub').textContent = 'คลังหนังสือของคุณ (@' + data.username + ')';
+  // ── Change password ──
+  el('passForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = el('passMsg'); m.className = 'msg'; m.textContent = ''; el('passBtn').disabled = true;
+    api('/api/auth', { method: 'POST', body: { action: 'change_password', current_password: el('curPass').value, new_password: el('newPass').value } })
+      .then(function (res) {
+        el('passBtn').disabled = false;
+        if (res.data && res.data.ok) { m.className = 'msg ok'; m.textContent = 'เปลี่ยนรหัสผ่านเรียบร้อย'; el('curPass').value = ''; el('newPass').value = ''; }
+        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'เปลี่ยนรหัสผ่านไม่สำเร็จ'; }
+      })
+      .catch(function () { el('passBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด'; });
+  });
 
-    var ents = (data.entitlements || []).slice().sort(function (a, b) {
-      return (a.product || '') < (b.product || '') ? -1 : 1;
+  // ── Logout ──
+  function doLogout() { api('/api/auth', { method: 'POST', body: { action: 'logout' } }).then(function () { window.location.href = '/'; }); }
+  el('logoutTop').addEventListener('click', doLogout);
+  el('logoutSb').addEventListener('click', doLogout);
+
+  function fillUser(data) {
+    el('greetName').textContent = 'สวัสดี, ' + (data.display_name || data.username);
+    el('pfUser').textContent = '@' + data.username;
+    el('pfEmail').textContent = data.email || 'ยังไม่มีอีเมลผูกบัญชี';
+    el('pfStatus').textContent = data.status || 'active';
+    el('pfName').value = data.display_name || '';
+  }
+
+  function renderBooks(data) {
+    var ents = (data.entitlements || []).slice().sort(function (a, b) { return (a.product || '') < (b.product || '') ? -1 : 1; });
+    var wrap = el('bookList'); wrap.innerHTML = '';
+    el('libSub').textContent = ents.length
+      ? 'คุณมี ' + ents.length + ' เล่มในคลัง — อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ'
+      : 'หนังสือทั้งหมดที่คุณปลดล็อกแล้ว';
+    if (!ents.length) { show(el('emptyBooks')); return; }
+    hide(el('emptyBooks'));
+    ents.forEach(function (en) {
+      var v = VOL[en.product] || { name: en.product, tag: en.product.toUpperCase(), cls: 'v1', link: '/' };
+      var card = document.createElement('div');
+      card.className = 'book ' + v.cls;
+      card.innerHTML =
+        '<div class="spine"></div>' +
+        '<div class="vol-tag">' + v.tag + '</div>' +
+        '<h3>' + v.name + '</h3>' +
+        '<div class="meta">ปลดล็อกแล้ว</div>' +
+        (en.code ? '<div class="code-chip">' + en.code + '</div>' : '') +
+        '<div class="read"><a class="btn btn-primary btn-block" href="' + v.link + '">อ่านเลย →</a></div>';
+      wrap.appendChild(card);
     });
-    var wrap = el('bookList');
-    wrap.innerHTML = '';
-    if (!ents.length) { show(el('emptyBooks')); }
-    else {
-      hide(el('emptyBooks'));
-      ents.forEach(function (en) {
-        var row = document.createElement('div');
-        row.className = 'book';
-        var left = document.createElement('div');
-        var t = document.createElement('div'); t.className = 'title'; t.textContent = VOL_NAMES[en.product] || en.product;
-        var meta = document.createElement('div'); meta.className = 'meta';
-        meta.textContent = 'ปลดล็อกแล้ว' + (en.code ? ' · ' + en.code : '');
-        left.appendChild(t); left.appendChild(meta);
-        var a = document.createElement('a'); a.className = 'read'; a.href = VOL_LINK[en.product] || '/'; a.textContent = 'อ่านเลย';
-        row.appendChild(left); row.appendChild(a);
-        wrap.appendChild(row);
-      });
-    }
-    el('acctEmail').textContent = data.email ? ('อีเมล: ' + data.email) : 'ยังไม่มีอีเมลผูกบัญชี';
+  }
+
+  function enterDashboard(data) {
+    hide(el('authView'));
+    el('dashView').style.display = 'block';
+    fillUser(data);
+    renderBooks(data);
   }
 
   function refresh() {
     return api('/api/auth', { method: 'GET' }).then(function (res) {
-      if (res.data && res.data.authenticated) { renderLibrary(res.data); return true; }
+      if (res.data && res.data.authenticated) { fillUser(res.data); renderBooks(res.data); return true; }
       return false;
     });
   }
 
-  // ── Initial state ──
+  // ── Boot ──
   api('/api/auth', { method: 'GET' }).then(function (res) {
-    if (res.data && res.data.authenticated) { renderLibrary(res.data); }
+    if (res.data && res.data.authenticated) enterDashboard(res.data);
   }).catch(function () {});
 })();
 </script>

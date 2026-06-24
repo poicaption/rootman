@@ -242,6 +242,52 @@ async function logout(req) {
   return json({ ok: true }, 200, { 'Set-Cookie': 'or_session=; HttpOnly; Secure; SameSite=Lax; Path=/; Max-Age=0' });
 }
 
+async function updateProfile(req, body) {
+  const uname = await getSessionUser(req);
+  if (!uname) return json({ error: 'not_authenticated', message: 'กรุณาเข้าสู่ระบบก่อน' }, 401);
+  const ur = await redis(['GET', `user:${uname}`]);
+  const user = safeParse(ur && ur.result);
+  if (!user) return json({ error: 'not_authenticated' }, 401);
+
+  const display = String(body.display_name || '').trim().slice(0, 60);
+  if (!display) return json({ error: 'invalid_display_name', message: 'กรุณากรอกชื่อที่ใช้แสดง' }, 400);
+  user.display_name = display;
+  await redis(['SET', `user:${uname}`, JSON.stringify(user)]);
+  await logUser(uname, 'update_profile', {});
+  const entitlements = await buildEntitlements(uname);
+  return json({ ok: true, username: user.username || uname, display_name: display, email: user.email || null, entitlements });
+}
+
+async function changePassword(req, body) {
+  const uname = await getSessionUser(req);
+  if (!uname) return json({ error: 'not_authenticated', message: 'กรุณาเข้าสู่ระบบก่อน' }, 401);
+  const ur = await redis(['GET', `user:${uname}`]);
+  const user = safeParse(ur && ur.result);
+  if (!user) return json({ error: 'not_authenticated' }, 401);
+
+  const current = String(body.current_password || '');
+  const next = String(body.new_password || '');
+  if (next.length < 8 || next.length > 128) {
+    return json({ error: 'invalid_password', message: 'รหัสผ่านใหม่ต้องมีอย่างน้อย 8 ตัวอักษร' }, 400);
+  }
+  const salt = fromB64(user.pass_salt);
+  const expected = fromB64(user.pass_hash);
+  const got = await pbkdf2(current, salt, user.pass_iter || 150000);
+  if (!constEq(got, expected)) {
+    return json({ error: 'wrong_password', message: 'รหัสผ่านปัจจุบันไม่ถูกต้อง' }, 401);
+  }
+  const newSalt = new Uint8Array(16);
+  crypto.getRandomValues(newSalt);
+  const iters = 150000;
+  const newHash = await pbkdf2(next, newSalt, iters);
+  user.pass_salt = toB64(newSalt);
+  user.pass_hash = toB64(newHash);
+  user.pass_iter = iters;
+  await redis(['SET', `user:${uname}`, JSON.stringify(user)]);
+  await logUser(uname, 'change_password', {});
+  return json({ ok: true });
+}
+
 export default async function handler(req) {
   if (!REDIS_URL || !REDIS_TOKEN) return json({ error: 'server_misconfigured' }, 500);
   const url = new URL(req.url);
@@ -260,5 +306,7 @@ export default async function handler(req) {
   if (action === 'register') return register(req, body);
   if (action === 'login') return login(req, body);
   if (action === 'logout') return logout(req);
+  if (action === 'update_profile') return updateProfile(req, body);
+  if (action === 'change_password') return changePassword(req, body);
   return json({ error: 'unknown_action' }, 400);
 }
