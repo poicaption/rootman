@@ -166,20 +166,31 @@
   .panel-sub { font-family: var(--sans); font-size: 0.86rem; color: var(--text-sec); margin-bottom: 1.4rem; }
 
   /* ── Library ── */
-  .books { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1.1rem; }
+  .books { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.3rem; }
   .book {
-    position: relative; padding: 1.3rem; border-radius: var(--radius); overflow: hidden;
+    position: relative; border-radius: var(--radius); overflow: hidden;
     border: 1px solid var(--border); background: var(--card-bg); box-shadow: var(--shadow-md);
-    display: flex; flex-direction: column; min-height: 200px; transition: transform .25s, box-shadow .25s;
+    display: flex; flex-direction: column; transition: transform .25s, box-shadow .25s;
   }
-  .book:hover { transform: translateY(-4px); box-shadow: 0 20px 50px rgba(60,40,10,0.16); }
-  .book .spine { position: absolute; left: 0; top: 0; bottom: 0; width: 5px; }
-  .book.v1 .spine { background: var(--v1); } .book.v2 .spine { background: var(--v2); } .book.v3 .spine { background: var(--v3); }
+  .book:hover { transform: translateY(-5px); box-shadow: 0 24px 56px rgba(60,40,10,0.20); }
+  .book-cover { position: relative; display: grid; place-items: center; padding: 1.7rem 1rem 1.5rem; overflow: hidden; }
+  .book-cover::before { content: ''; position: absolute; inset: 0; opacity: 0.18; }
+  .book.v1 .book-cover::before { background: radial-gradient(120% 90% at 50% 0%, var(--v1), transparent 70%); }
+  .book.v2 .book-cover::before { background: radial-gradient(120% 90% at 50% 0%, var(--v2), transparent 70%); }
+  .book.v3 .book-cover::before { background: radial-gradient(120% 90% at 50% 0%, var(--v3), transparent 70%); }
+  .book-cover img {
+    position: relative; height: 172px; width: auto; max-width: 80%; object-fit: contain; border-radius: 4px;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.34), 0 4px 10px rgba(0,0,0,0.22); transition: transform .3s;
+  }
+  .book:hover .book-cover img { transform: translateY(-4px) scale(1.02); }
+  .book-cover .ph { position: relative; font-family: var(--serif); font-size: 2.6rem; color: var(--accent); opacity: 0.7; }
+  .book-body { padding: 1.15rem 1.3rem 1.35rem; display: flex; flex-direction: column; flex: 1; border-top: 1px solid var(--border); }
   .book .vol-tag { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 1px; color: var(--accent); }
-  .book h3 { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--heading); margin: 0.4rem 0 0.2rem; }
-  .book .meta { font-family: var(--sans); font-size: 0.76rem; color: var(--text-sec); margin-top: 0.1rem; }
+  .book h3 { font-family: var(--serif); font-weight: 600; font-size: 1.25rem; color: var(--heading); margin: 0.3rem 0 0.15rem; line-height: 1.25; }
+  .book .meta { font-family: var(--sans); font-size: 0.76rem; color: var(--text-sec); margin-top: 0.2rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .book .meta::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
   .book .read { margin-top: auto; padding-top: 1.1rem; }
-  .book .code-chip { font-family: var(--mono); font-size: 0.72rem; color: var(--text-sec); margin-top: 0.5rem; }
+  .book .code-chip { font-family: var(--mono); font-size: 0.72rem; color: var(--text-sec); margin-top: 0.55rem; }
 
   .empty-state {
     text-align: center; padding: 3rem 1.5rem; border: 1.5px dashed var(--border); border-radius: var(--radius);
@@ -464,13 +475,13 @@
   });
 
   var VOL = {
-    vol1: { name: 'รากแก้วการตลาด', en: 'The One Root of Marketing', tag: 'VOLUME 1', cls: 'v1', link: '/vol1',
+    vol1: { name: 'รากแก้วการตลาด', en: 'The One Root of Marketing', tag: 'VOLUME 1', cls: 'v1', link: '/vol1', cover: 'images/book-vol1.png',
             desc: '12 บท 12 กลไกจิตวิทยาที่ทำให้คนตัดสินใจซื้อ — เข้าใจครั้งเดียว ใช้ได้ทั้งชีวิต',
             chips: ['12+5 บท', 'จิตวิทยาการตลาด'], free: true, buy: '/vol1', cta: 'อ่านฟรีทันที →', badge: 'อ่านฟรี' },
-    vol2: { name: 'The Invisible War', en: 'รากแก้วการตลาด ภาค 2', tag: 'VOLUME 2', cls: 'v2', link: '/vol2',
+    vol2: { name: 'The Invisible War', en: 'รากแก้วการตลาด ภาค 2', tag: 'VOLUME 2', cls: 'v2', link: '/vol2', cover: 'images/book-vol2.png',
             desc: '12 บท + 5 บทพิเศษ ในสนามรบดิจิทัล — เมื่อทุกแบรนด์แย่งชิงทรัพยากรเดียวกัน: ความสนใจของลูกค้า',
             chips: ['12+5 บท', 'สนามรบดิจิทัล', 'Lifetime'], free: false, buy: '/sale-vol2', cta: 'ปลดล็อก Vol.2 →', badge: 'Lifetime Access' },
-    vol3: { name: 'รากแก้วธุรกิจ', en: 'One Root of Business', tag: 'VOLUME 3', cls: 'v3', link: '/vol3',
+    vol3: { name: 'รากแก้วธุรกิจ', en: 'One Root of Business', tag: 'VOLUME 3', cls: 'v3', link: '/vol3', cover: 'images/book-vol3.png',
             desc: '13 บท + 5 บทพิเศษ เจาะ “ราก” ของธุรกิจที่ไม่เคยเปลี่ยน — ซื้อเล่มเดียวเหมือนเรียน MBA ย่อ',
             chips: ['13+5 บท', 'กลยุทธ์ธุรกิจ'], free: false, buy: '/sale-vol3', cta: 'ดูรายละเอียด Vol.3 →', badge: 'เล่มใหม่' }
   };
@@ -607,12 +618,14 @@
       var card = document.createElement('div');
       card.className = 'book ' + v.cls;
       card.innerHTML =
-        '<div class="spine"></div>' +
-        '<div class="vol-tag">' + v.tag + '</div>' +
-        '<h3>' + v.name + '</h3>' +
-        '<div class="meta">ปลดล็อกแล้ว</div>' +
-        (en.code ? '<div class="code-chip">' + en.code + '</div>' : '') +
-        '<div class="read"><a class="btn btn-primary btn-block" href="' + v.link + '">อ่านเลย →</a></div>';
+        '<div class="book-cover">' + (v.cover ? '<img src="' + v.cover + '" alt="' + v.name + '" loading="lazy">' : '<span class="ph">📖</span>') + '</div>' +
+        '<div class="book-body">' +
+          '<div class="vol-tag">' + v.tag + '</div>' +
+          '<h3>' + v.name + '</h3>' +
+          '<div class="meta">ปลดล็อกแล้ว · อ่านได้ทุกอุปกรณ์</div>' +
+          (en.code ? '<div class="code-chip">' + en.code + '</div>' : '') +
+          '<div class="read"><a class="btn btn-primary btn-block" href="' + v.link + '">อ่านเลย →</a></div>' +
+        '</div>';
       wrap.appendChild(card);
     });
   }
