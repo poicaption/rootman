@@ -164,6 +164,86 @@
 
   .purchase-row { background: var(--panel-2); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 13px; }
   .purchase-row .pr-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+
+  /* ── Code generator ── */
+  .gen { padding: 18px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+  @media (max-width: 880px) { .gen { grid-template-columns: 1fr; } }
+  .gen-field { margin-bottom: 16px; }
+  .gen-field > label { display: block; color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .vol-pick { display: flex; gap: 8px; flex-wrap: wrap; }
+  .vol-opt {
+    flex: 1; min-width: 92px; cursor: pointer; user-select: none;
+    background: var(--panel-2); border: 1.5px solid var(--border); border-radius: 11px;
+    padding: 12px 10px; text-align: center; transition: border-color .15s, background .15s;
+  }
+  .vol-opt .vn { font-weight: 800; font-size: 15px; }
+  .vol-opt .vt { color: var(--muted); font-size: 11px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .vol-opt:hover { border-color: var(--accent); }
+  .vol-opt.sel { border-color: var(--accent); background: rgba(196,149,106,.12); }
+  .vol-opt.sel.v1 { border-color: var(--accent-2); background: rgba(106,169,196,.12); }
+  .vol-opt.sel.v3 { border-color: var(--green); background: rgba(76,175,125,.12); }
+
+  .count-row { display: flex; align-items: center; gap: 10px; }
+  .count-row .stepper {
+    width: 38px; height: 40px; border: 1px solid var(--border); background: var(--panel-2);
+    color: var(--text); border-radius: 9px; font-size: 20px; cursor: pointer; line-height: 1;
+  }
+  .count-row .stepper:hover { border-color: var(--accent); }
+  .count-row input {
+    width: 70px; text-align: center; padding: 10px; border-radius: 9px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text); font-size: 16px; font-weight: 700; outline: none;
+  }
+  .count-row .quick { display: flex; gap: 6px; flex-wrap: wrap; }
+  .count-row .quick button {
+    padding: 7px 11px; border: 1px solid var(--border); background: var(--panel-2);
+    color: var(--muted); border-radius: 8px; cursor: pointer; font-size: 12.5px;
+  }
+  .count-row .quick button:hover { border-color: var(--accent); color: var(--text); }
+
+  .gen-field input.note-in {
+    width: 100%; padding: 11px 13px; border-radius: 9px; border: 1px solid var(--border);
+    background: var(--panel); color: var(--text); font-size: 14px; outline: none;
+  }
+  .gen-field input.note-in:focus { border-color: var(--accent); }
+
+  .gen-btn {
+    width: 100%; padding: 13px; border: none; border-radius: 11px; background: var(--accent);
+    color: #1a1206; font-weight: 800; font-size: 15px; cursor: pointer; transition: filter .15s;
+  }
+  .gen-btn:hover { filter: brightness(1.08); }
+  .gen-btn:disabled { opacity: .55; cursor: default; }
+
+  .gen-out {
+    background: var(--panel-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; min-height: 100%; display: flex; flex-direction: column;
+  }
+  .gen-out .go-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .gen-out .go-head .gt { font-weight: 700; font-size: 13.5px; }
+  .gen-out .go-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 30px 10px; margin: auto; }
+  .code-list { display: flex; flex-direction: column; gap: 7px; max-height: 320px; overflow-y: auto; }
+  .code-chip {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    background: var(--panel); border: 1px solid var(--border); border-radius: 9px; padding: 9px 12px;
+  }
+  .code-chip .cc-code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 14px; font-weight: 700; letter-spacing: .5px; }
+  .code-chip .cc-copy { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 7px; padding: 4px 9px; cursor: pointer; font-size: 11.5px; }
+  .code-chip .cc-copy:hover { border-color: var(--accent); color: var(--text); }
+  .copy-all { margin-top: 12px; padding: 10px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 9px; cursor: pointer; font-size: 13px; font-weight: 600; }
+  .copy-all:hover { border-color: var(--accent); }
+
+  .badge.unused { background: rgba(217,164,65,.16); color: var(--amber); }
+  .badge.bound { background: rgba(106,169,196,.16); color: var(--accent-2); }
+  .badge.redeemed { background: rgba(76,175,125,.16); color: var(--green); }
+  .badge.revoked { background: rgba(224,88,75,.15); color: var(--red); }
+
+  .seg { display: inline-flex; border: 1px solid var(--border); border-radius: 9px; overflow: hidden; }
+  .seg button { background: var(--panel-2); border: none; color: var(--muted); padding: 8px 13px; cursor: pointer; font-size: 12.5px; border-right: 1px solid var(--border); }
+  .seg button:last-child { border-right: none; }
+  .seg button.on { background: var(--accent); color: #1a1206; font-weight: 700; }
+  .icon-btn { background: none; border: 1px solid var(--border); color: var(--muted); border-radius: 7px; padding: 4px 9px; cursor: pointer; font-size: 11.5px; }
+  .icon-btn:hover { border-color: var(--accent); color: var(--text); }
+  .icon-btn.danger:hover { border-color: var(--red); color: var(--red); }
+  td .row-actions { display: flex; gap: 6px; }
 </style>
 </head>
 <body>
@@ -192,6 +272,86 @@
 
   <main>
     <div class="cards" id="cards"></div>
+
+    <!-- ── Code generator & management ── -->
+    <div class="section">
+      <div class="section-head">
+        <span>สร้าง &amp; จัดการ Unlock Code</span>
+        <span class="count" id="genTotal"></span>
+      </div>
+      <div class="gen">
+        <!-- generator form -->
+        <div>
+          <div class="gen-field">
+            <label>เลือกหนังสือ</label>
+            <div class="vol-pick" id="volPick">
+              <div class="vol-opt v1" data-vol="1"><div class="vn">Vol.1</div><div class="vt">รากแก้วการตลาด</div></div>
+              <div class="vol-opt v2 sel" data-vol="2"><div class="vn">Vol.2</div><div class="vt">The Invisible War</div></div>
+              <div class="vol-opt v3" data-vol="3"><div class="vn">Vol.3</div><div class="vt">รากแก้วธุรกิจ</div></div>
+            </div>
+          </div>
+          <div class="gen-field">
+            <label>จำนวนโค้ด (สูงสุด 50)</label>
+            <div class="count-row">
+              <button class="stepper" id="cntMinus" type="button">−</button>
+              <input id="cntInput" type="number" min="1" max="50" value="1" />
+              <button class="stepper" id="cntPlus" type="button">+</button>
+              <div class="quick" id="cntQuick">
+                <button data-n="1">1</button>
+                <button data-n="5">5</button>
+                <button data-n="10">10</button>
+                <button data-n="25">25</button>
+                <button data-n="50">50</button>
+              </div>
+            </div>
+          </div>
+          <div class="gen-field">
+            <label>โน้ต / ที่มา (ไม่บังคับ)</label>
+            <input class="note-in" id="noteInput" type="text" maxlength="80" placeholder="เช่น งานสัมมนา 25 มิ.ย. / ลูกค้า VIP / โอนตรง" />
+          </div>
+          <button class="gen-btn" id="genBtn" type="button">สร้างโค้ด</button>
+          <p class="dsub" id="genMsg" style="margin-top:10px;min-height:16px;"></p>
+        </div>
+
+        <!-- output -->
+        <div class="gen-out">
+          <div class="go-head">
+            <span class="gt">โค้ดที่เพิ่งสร้าง</span>
+            <span class="count" id="genOutMeta"></span>
+          </div>
+          <div id="genOutBody">
+            <div class="go-empty">เลือกเล่ม จำนวน แล้วกด "สร้างโค้ด"<br>โค้ดที่ได้จะแสดงที่นี่พร้อมปุ่มคัดลอก</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── All generated codes ── -->
+    <div class="section">
+      <div class="section-head">
+        <span>คลังโค้ดที่สร้างไว้</span>
+        <span class="count" id="codesCount"></span>
+      </div>
+      <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;">
+        <input id="codeSearch" placeholder="ค้นหาโค้ด / โน้ต / บัญชีที่ผูก…" />
+        <div class="seg" id="codeVolSeg">
+          <button data-vol="" class="on">ทั้งหมด</button>
+          <button data-vol="1">Vol.1</button>
+          <button data-vol="2">Vol.2</button>
+          <button data-vol="3">Vol.3</button>
+        </div>
+        <div class="seg" id="codeStatusSeg">
+          <button data-status="" class="on">ทุกสถานะ</button>
+          <button data-status="unused">ยังไม่ใช้</button>
+          <button data-status="bound">ผูกเครื่อง</button>
+          <button data-status="redeemed">เข้าบัญชี</button>
+        </div>
+        <button id="codeRefreshBtn">รีเฟรช</button>
+      </div>
+      <div id="codesWrap">
+        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
+      </div>
+    </div>
 
     <div class="toolbar">
       <input id="searchInput" placeholder="ค้นหาด้วยอีเมล / รหัส (ROOT-XXXX-XXXX) / session_id…" />
@@ -316,6 +476,7 @@
     el('app').style.display = 'block';
     loadOverview();
     loadUsers();
+    loadCodes();
   }
   function showGate(msg) {
     el('app').style.display = 'none';
@@ -713,6 +874,157 @@
     });
   }
 
+  // ── Code generator & management ──
+  var selVol = 2;          // currently selected volume in generator
+  var allCodes = [];       // last-loaded code list
+  var codeVolFilter = '';
+  var codeStatusFilter = '';
+
+  var STATUS_LABEL = { unused: 'ยังไม่ใช้', bound: 'ผูกเครื่อง', redeemed: 'เข้าบัญชี', revoked: 'ถูกยกเลิก' };
+
+  function copyText(text, okEl) {
+    var done = function () {
+      if (!okEl) return;
+      var prev = okEl.textContent; okEl.textContent = 'คัดลอกแล้ว ✓';
+      setTimeout(function () { okEl.textContent = prev; }, 1400);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(fallback);
+    } else { fallback(); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+  }
+
+  function selectVol(v) {
+    selVol = v;
+    Array.prototype.forEach.call(el('volPick').children, function (o) {
+      o.classList.toggle('sel', o.getAttribute('data-vol') === String(v));
+    });
+  }
+
+  function clampCount(n) { n = parseInt(n) || 1; return Math.min(Math.max(n, 1), 50); }
+
+  function doGenerate() {
+    var count = clampCount(el('cntInput').value);
+    el('cntInput').value = count;
+    var note = el('noteInput').value.trim();
+    var btn = el('genBtn');
+    btn.disabled = true; btn.textContent = 'กำลังสร้าง…';
+    el('genMsg').textContent = '';
+    apiPost('/api/generate-code', { vol: selVol, count: count, note: note })
+      .then(function (data) {
+        renderGenerated(data);
+        el('genMsg').style.color = 'var(--green)';
+        el('genMsg').textContent = 'สร้าง ' + data.count + ' โค้ดสำหรับ Vol.' + data.vol + ' เรียบร้อย';
+        el('noteInput').value = '';
+        loadCodes();
+      })
+      .catch(function (e) {
+        if (e && e.unauthorized) return logout();
+        el('genMsg').style.color = 'var(--red)';
+        el('genMsg').textContent = (e && e.message) || 'สร้างโค้ดไม่สำเร็จ';
+      })
+      .then(function () { btn.disabled = false; btn.textContent = 'สร้างโค้ด'; });
+  }
+
+  function renderGenerated(data) {
+    var codes = data.codes || [];
+    el('genOutMeta').textContent = 'Vol.' + data.vol + ' · ' + codes.length + ' โค้ด';
+    var html = '<div class="code-list">';
+    codes.forEach(function (c) {
+      html += '<div class="code-chip"><span class="cc-code">' + esc(c) + '</span>' +
+        '<button class="cc-copy" data-code="' + esc(c) + '">คัดลอก</button></div>';
+    });
+    html += '</div>';
+    html += '<button class="copy-all" id="copyAllBtn">คัดลอกทั้งหมด (' + codes.length + ')</button>';
+    el('genOutBody').innerHTML = html;
+
+    Array.prototype.forEach.call(el('genOutBody').querySelectorAll('.cc-copy'), function (b) {
+      b.addEventListener('click', function () { copyText(b.getAttribute('data-code'), b); });
+    });
+    var all = el('copyAllBtn');
+    if (all) all.addEventListener('click', function () { copyText(codes.join('\n'), all); });
+  }
+
+  function loadCodes() {
+    el('codesWrap').innerHTML = '<div class="empty"><span class="spinner"></span> กำลังโหลด…</div>';
+    api('/api/generate-code?limit=500')
+      .then(function (data) {
+        allCodes = data.codes || [];
+        el('genTotal').textContent = (data.total_generated || allCodes.length) + ' โค้ดทั้งหมด';
+        renderCodes();
+      })
+      .catch(function (e) {
+        if (e && e.unauthorized) return logout();
+        el('codesWrap').innerHTML = '<div class="empty">โหลดข้อมูลไม่ได้: ' + esc((e && e.message) || 'error') + '</div>';
+      });
+  }
+
+  function renderCodes() {
+    var q = el('codeSearch').value.trim().toLowerCase();
+    var rows = allCodes.filter(function (c) {
+      if (codeVolFilter && String(c.vol) !== codeVolFilter) return false;
+      if (codeStatusFilter && c.status !== codeStatusFilter) return false;
+      if (q) {
+        var hay = (c.code + ' ' + (c.note || '') + ' ' + (c.claimed_by || '')).toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    el('codesCount').textContent = rows.length + ' รายการ';
+    if (!rows.length) {
+      el('codesWrap').innerHTML = '<div class="empty">ไม่พบโค้ดตามเงื่อนไข</div>';
+      return;
+    }
+    var html = '<table><thead><tr>' +
+      '<th>รหัส</th><th>เล่ม</th><th>สถานะ</th><th>ผูกกับ</th><th>โน้ต</th><th>สร้างเมื่อ</th><th></th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (c) {
+      var vb = c.vol === 3 ? '<span class="badge v3">Vol.3</span>' : c.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var sb = '<span class="badge ' + c.status + '">' + (STATUS_LABEL[c.status] || c.status) + '</span>';
+      var boundTo = c.claimed_by ? '@' + esc(c.claimed_by)
+        : (c.device_count ? c.device_count + ' เครื่อง' : '<span style="color:var(--muted)">–</span>');
+      var revokable = c.status !== 'revoked';
+      html += '<tr>' +
+        '<td class="mono">' + esc(c.code) + '</td>' +
+        '<td>' + vb + '</td>' +
+        '<td>' + sb + '</td>' +
+        '<td>' + boundTo + '</td>' +
+        '<td>' + (c.note ? esc(c.note) : '<span style="color:var(--muted)">–</span>') + '</td>' +
+        '<td>' + esc(fmtTime(c.created_at)) + '</td>' +
+        '<td><div class="row-actions">' +
+          '<button class="icon-btn act-copy" data-code="' + esc(c.code) + '">คัดลอก</button>' +
+          (revokable ? '<button class="icon-btn danger act-revoke" data-code="' + esc(c.code) + '">ยกเลิก</button>' : '') +
+        '</div></td>' +
+      '</tr>';
+    });
+    html += '</tbody></table>';
+    el('codesWrap').innerHTML = html;
+
+    Array.prototype.forEach.call(el('codesWrap').querySelectorAll('.act-copy'), function (b) {
+      b.addEventListener('click', function () { copyText(b.getAttribute('data-code'), b); });
+    });
+    Array.prototype.forEach.call(el('codesWrap').querySelectorAll('.act-revoke'), function (b) {
+      b.addEventListener('click', function () {
+        var code = b.getAttribute('data-code');
+        if (!window.confirm('ยกเลิกโค้ด ' + code + '? โค้ดจะใช้ปลดล็อกไม่ได้อีก (ใช้กรณีคืนเงิน/สร้างผิด)')) return;
+        b.disabled = true; b.textContent = '…';
+        apiPost('/api/revoke-code', { code: code })
+          .then(function () { loadCodes(); })
+          .catch(function (e) {
+            if (e && e.unauthorized) return logout();
+            b.disabled = false; b.textContent = 'ยกเลิก';
+            window.alert((e && e.message) || 'ยกเลิกไม่สำเร็จ');
+          });
+      });
+    });
+  }
+
   // ── Wire up ──
   el('loginBtn').addEventListener('click', doLogin);
   el('tokenInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
@@ -722,6 +1034,35 @@
   el('searchInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
   el('userRefreshBtn').addEventListener('click', loadUsers);
   el('userSearch').addEventListener('input', filterUsers);
+
+  // Code generator wiring
+  Array.prototype.forEach.call(el('volPick').children, function (o) {
+    o.addEventListener('click', function () { selectVol(parseInt(o.getAttribute('data-vol'))); });
+  });
+  el('cntMinus').addEventListener('click', function () { el('cntInput').value = clampCount(parseInt(el('cntInput').value) - 1); });
+  el('cntPlus').addEventListener('click', function () { el('cntInput').value = clampCount(parseInt(el('cntInput').value) + 1); });
+  el('cntInput').addEventListener('change', function () { el('cntInput').value = clampCount(el('cntInput').value); });
+  Array.prototype.forEach.call(el('cntQuick').children, function (b) {
+    b.addEventListener('click', function () { el('cntInput').value = clampCount(b.getAttribute('data-n')); });
+  });
+  el('genBtn').addEventListener('click', doGenerate);
+  el('codeRefreshBtn').addEventListener('click', loadCodes);
+  el('codeSearch').addEventListener('input', renderCodes);
+  Array.prototype.forEach.call(el('codeVolSeg').children, function (b) {
+    b.addEventListener('click', function () {
+      codeVolFilter = b.getAttribute('data-vol');
+      Array.prototype.forEach.call(el('codeVolSeg').children, function (x) { x.classList.toggle('on', x === b); });
+      renderCodes();
+    });
+  });
+  Array.prototype.forEach.call(el('codeStatusSeg').children, function (b) {
+    b.addEventListener('click', function () {
+      codeStatusFilter = b.getAttribute('data-status');
+      Array.prototype.forEach.call(el('codeStatusSeg').children, function (x) { x.classList.toggle('on', x === b); });
+      renderCodes();
+    });
+  });
+
   el('drawerScrim').addEventListener('click', closeDrawer);
   el('drawerClose').addEventListener('click', closeDrawer);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });

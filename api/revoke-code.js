@@ -42,20 +42,25 @@ export default async function handler(req) {
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'POST, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-admin-token',
       },
     });
   }
   if (req.method !== 'POST') return json({ error: 'method_not_allowed' }, 405);
 
   const adminSecret = process.env.ADMIN_SECRET;
-  if (!adminSecret) return json({ error: 'not_configured', message: 'ADMIN_SECRET not set' }, 500);
+  const adminToken = process.env.ADMIN_TOKEN;
+  if (!adminSecret && !adminToken) return json({ error: 'not_configured', message: 'Neither ADMIN_SECRET nor ADMIN_TOKEN is set' }, 500);
 
   const url = new URL(req.url);
   const auth = req.headers.get('Authorization') || '';
   const bearer = auth.startsWith('Bearer ') ? auth.slice(7) : '';
+  const headerToken = req.headers.get('x-admin-token') || '';
   const tokenParam = url.searchParams.get('token') || '';
-  if (bearer !== adminSecret && tokenParam !== adminSecret) {
+  // Accept the dashboard's derived ADMIN_TOKEN (header) or ADMIN_SECRET (Bearer / ?token=).
+  const allowed = [adminSecret, adminToken].filter(Boolean);
+  const ok = allowed.some(function (a) { return a && (bearer === a || headerToken === a || tokenParam === a); });
+  if (!ok) {
     return json({ error: 'unauthorized' }, 401);
   }
 
