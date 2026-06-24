@@ -3724,6 +3724,7 @@
                         <button id="unlock-btn">ปลดล็อก</button>
                     </div>
                     <p id="unlock-error" class="unlock-error"></p>
+                    <p style="margin-top:14px;font-size:14px;color:#6b6258;">หรือ <a href="/account" style="color:#8a5d2a;font-weight:600;">เข้าสู่ระบบด้วยบัญชี</a> เพื่ออ่านได้ทุกอุปกรณ์</p>
                 </div>
 
                 <!-- 7) Third Eye: self-referential psychology reveal -->
@@ -4565,6 +4566,23 @@
 
             // ── Auto-unlock on page load ──
             (function() {
+                // Path 0: Account session (logged-in user with entitlement for this volume).
+                // Additive — falls through to the legacy device/code flow if not applicable.
+                fetch('/api/content-key?vol=2', { credentials: 'same-origin' })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data && data.passphrase) {
+                            return doUnlock(data.passphrase).catch(function(e) {
+                                console.error('[V2-AUTO] account decrypt failed:', e && e.message);
+                                legacyAutoUnlock();
+                            });
+                        }
+                        legacyAutoUnlock();
+                    })
+                    .catch(function() { legacyAutoUnlock(); });
+            })();
+
+            function legacyAutoUnlock() {
                 // Path 1: Master code (stored)
                 var storedMaster = localStorage.getItem('oneroot2-uk');
                 if (storedMaster) {
@@ -4617,7 +4635,7 @@
                     })
                     .catch(function() { /* network err — skip auto-unlock */ });
                 }
-            })();
+            }
 
             var unlockBtn = document.getElementById('unlock-btn');
             var unlockInput = document.getElementById('unlock-input');

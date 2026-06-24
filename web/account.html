@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>บัญชีของฉัน · The One Root Series</title>
+<style>
+  :root {
+    --bg: #f6f1e7;
+    --panel: #fffdf8;
+    --ink: #2a2520;
+    --muted: #8a8175;
+    --line: #e6ddcb;
+    --accent: #b07a3c;
+    --accent-dark: #8a5d2a;
+    --green: #4f8a5b;
+    --red: #c0493b;
+    --radius: 16px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: radial-gradient(1100px 600px at 50% -10%, #fbf6ec 0%, var(--bg) 65%);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans Thai", "Helvetica Neue", sans-serif;
+    min-height: 100vh;
+    display: flex; align-items: flex-start; justify-content: center;
+    padding: 48px 18px;
+  }
+  .wrap { width: min(94vw, 440px); }
+  .logo { text-align: center; margin-bottom: 22px; }
+  .logo a { text-decoration: none; color: var(--ink); }
+  .logo .mark { font-size: 22px; font-weight: 800; letter-spacing: 1px; }
+  .logo .mark span { color: var(--accent); }
+  .logo .sub { font-size: 12px; color: var(--muted); margin-top: 2px; letter-spacing: .5px; }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 28px 26px;
+    box-shadow: 0 10px 40px rgba(120, 90, 40, .08);
+  }
+  .tabs { display: flex; gap: 6px; background: #f0e8d8; border-radius: 12px; padding: 4px; margin-bottom: 22px; }
+  .tabs button {
+    flex: 1; padding: 10px; border: none; background: transparent; cursor: pointer;
+    border-radius: 9px; font-size: 14px; font-weight: 700; color: var(--muted);
+    transition: all .15s; font-family: inherit;
+  }
+  .tabs button.active { background: var(--panel); color: var(--ink); box-shadow: 0 2px 6px rgba(0,0,0,.06); }
+
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin: 0 0 6px; }
+  .hint { font-size: 12px; color: var(--muted); margin: -2px 0 14px; }
+  input {
+    width: 100%; padding: 12px 14px; border-radius: 11px; border: 1px solid var(--line);
+    background: #fcfaf4; color: var(--ink); font-size: 15px; outline: none; margin-bottom: 16px;
+    font-family: inherit;
+  }
+  input:focus { border-color: var(--accent); }
+  input:disabled { background: #f1ece1; color: var(--muted); }
+  .btn {
+    width: 100%; padding: 13px; border: none; border-radius: 11px; cursor: pointer;
+    background: var(--accent); color: #fff; font-weight: 700; font-size: 15px;
+    transition: filter .15s; font-family: inherit;
+  }
+  .btn:hover { filter: brightness(1.06); }
+  .btn:disabled { opacity: .6; cursor: default; }
+  .btn.ghost { background: transparent; color: var(--accent-dark); border: 1px solid var(--line); }
+  .msg { font-size: 13.5px; margin: 12px 0 0; min-height: 18px; }
+  .msg.err { color: var(--red); }
+  .msg.ok { color: var(--green); }
+  .center { text-align: center; }
+  .small-link { font-size: 13px; color: var(--muted); text-align: center; margin-top: 16px; }
+  .small-link a { color: var(--accent-dark); }
+  .hidden { display: none !important; }
+
+  /* Library */
+  .hello { font-size: 18px; font-weight: 800; margin: 0 0 2px; }
+  .hello-sub { font-size: 13px; color: var(--muted); margin: 0 0 20px; }
+  .book {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px;
+    margin-bottom: 10px; background: #fcfaf4;
+  }
+  .book .title { font-weight: 700; font-size: 14.5px; }
+  .book .meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .book a.read {
+    text-decoration: none; background: var(--accent); color: #fff; font-weight: 700;
+    font-size: 13px; padding: 8px 16px; border-radius: 9px; white-space: nowrap;
+  }
+  .empty-books { color: var(--muted); font-size: 13.5px; text-align: center; padding: 14px 0 6px; }
+  .divider { height: 1px; background: var(--line); margin: 22px 0; }
+  .sec-title { font-size: 14px; font-weight: 800; margin: 0 0 4px; }
+  .sec-sub { font-size: 12.5px; color: var(--muted); margin: 0 0 14px; }
+  .acct-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--muted); margin-top: 18px; }
+  .acct-row a { color: var(--accent-dark); cursor: pointer; }
+  .badge { display: inline-block; font-size: 11px; background: #efe6d4; color: var(--accent-dark); padding: 2px 8px; border-radius: 20px; margin-left: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="logo">
+    <a href="/">
+      <div class="mark">THE ONE ROOT<span>·</span>SERIES</div>
+      <div class="sub">บัญชีผู้อ่าน</div>
+    </a>
+  </div>
+
+  <!-- ── AUTH ── -->
+  <div class="card" id="authCard">
+    <div class="tabs">
+      <button id="tabLogin" class="active" type="button">เข้าสู่ระบบ</button>
+      <button id="tabRegister" type="button">สร้างบัญชี</button>
+    </div>
+
+    <!-- Login -->
+    <form id="loginForm">
+      <label for="loginUser">ชื่อผู้ใช้</label>
+      <input id="loginUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
+      <label for="loginPass">รหัสผ่าน</label>
+      <input id="loginPass" type="password" autocomplete="current-password" placeholder="••••••••">
+      <button class="btn" type="submit" id="loginBtn">เข้าสู่ระบบ</button>
+      <p class="msg" id="loginMsg"></p>
+    </form>
+
+    <!-- Register -->
+    <form id="registerForm" class="hidden">
+      <label for="regName">ชื่อที่ใช้แสดง</label>
+      <input id="regName" type="text" maxlength="60" placeholder="เช่น ชื่อเล่นของคุณ">
+      <label for="regUser">ชื่อผู้ใช้</label>
+      <input id="regUser" type="text" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="username">
+      <p class="hint">ใช้ a-z, 0-9, จุด (.) หรือขีดล่าง (_) ความยาว 3-20 ตัว</p>
+      <label for="regPass">รหัสผ่าน</label>
+      <input id="regPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร">
+      <button class="btn" type="submit" id="regBtn">สร้างบัญชี</button>
+      <p class="hint" style="margin-top:14px">ไม่ต้องใช้อีเมล — เมื่อคุณนำ Unlock Code มาปลดล็อก ระบบจะเชื่อมอีเมลให้อัตโนมัติ</p>
+      <p class="msg" id="regMsg"></p>
+    </form>
+
+    <p class="small-link">มี Unlock Code อยู่แล้วและอยากอ่านเลย? <a href="/vol3">ใส่โค้ดที่หน้าหนังสือได้</a></p>
+  </div>
+
+  <!-- ── LIBRARY ── -->
+  <div class="card hidden" id="libCard">
+    <p class="hello" id="libHello">สวัสดี</p>
+    <p class="hello-sub" id="libSub">คลังหนังสือของคุณ</p>
+
+    <div id="bookList"></div>
+    <p class="empty-books hidden" id="emptyBooks">ยังไม่มีหนังสือในคลัง — นำ Unlock Code มาปลดล็อกด้านล่างได้เลย</p>
+
+    <div class="divider"></div>
+
+    <p class="sec-title">เพิ่มหนังสือด้วย Unlock Code</p>
+    <p class="sec-sub">ใส่โค้ดที่ได้รับ (รูปแบบ ROOT-XXXX-XXXX) — 1 โค้ดผูกได้กับบัญชีเดียวเท่านั้น</p>
+    <form id="redeemForm">
+      <input id="redeemCode" type="text" autocapitalize="characters" spellcheck="false" placeholder="ROOT-XXXX-XXXX">
+      <button class="btn" type="submit" id="redeemBtn">ปลดล็อกเข้าบัญชี</button>
+      <p class="msg" id="redeemMsg"></p>
+    </form>
+
+    <div class="acct-row">
+      <span id="acctEmail"></span>
+      <a id="logoutLink">ออกจากระบบ</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  function el(id) { return document.getElementById(id); }
+  function show(node) { node.classList.remove('hidden'); }
+  function hide(node) { node.classList.add('hidden'); }
+
+  var VOL_NAMES = {
+    vol1: 'The One Root · เล่ม 1',
+    vol2: 'The One Root · เล่ม 2',
+    vol3: 'The One Root · เล่ม 3'
+  };
+  var VOL_LINK = { vol1: '/vol1', vol2: '/vol2', vol3: '/vol3' };
+
+  function api(path, opts) {
+    opts = opts || {};
+    opts.credentials = 'same-origin';
+    opts.headers = opts.headers || {};
+    if (opts.body && typeof opts.body !== 'string') {
+      opts.headers['Content-Type'] = 'application/json';
+      opts.body = JSON.stringify(opts.body);
+    }
+    return fetch(path, opts).then(function (r) {
+      return r.json().then(function (d) { return { status: r.status, data: d }; });
+    });
+  }
+
+  // ── Tabs ──
+  el('tabLogin').addEventListener('click', function () {
+    el('tabLogin').classList.add('active'); el('tabRegister').classList.remove('active');
+    show(el('loginForm')); hide(el('registerForm'));
+  });
+  el('tabRegister').addEventListener('click', function () {
+    el('tabRegister').classList.add('active'); el('tabLogin').classList.remove('active');
+    show(el('registerForm')); hide(el('loginForm'));
+  });
+
+  // ── Login ──
+  el('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = el('loginMsg'); m.className = 'msg'; m.textContent = '';
+    el('loginBtn').disabled = true;
+    api('/api/auth', { method: 'POST', body: { action: 'login', username: el('loginUser').value, password: el('loginPass').value } })
+      .then(function (res) {
+        el('loginBtn').disabled = false;
+        if (res.data && res.data.ok) { renderLibrary(res.data); }
+        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'เข้าสู่ระบบไม่สำเร็จ'; }
+      })
+      .catch(function () { el('loginBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+  });
+
+  // ── Register ──
+  el('registerForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = el('regMsg'); m.className = 'msg'; m.textContent = '';
+    el('regBtn').disabled = true;
+    api('/api/auth', { method: 'POST', body: { action: 'register', username: el('regUser').value, password: el('regPass').value, display_name: el('regName').value } })
+      .then(function (res) {
+        el('regBtn').disabled = false;
+        if (res.data && res.data.ok) { renderLibrary(res.data); }
+        else { m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'สร้างบัญชีไม่สำเร็จ'; }
+      })
+      .catch(function () { el('regBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+  });
+
+  // ── Redeem ──
+  el('redeemForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var m = el('redeemMsg'); m.className = 'msg'; m.textContent = 'กำลังตรวจสอบ…';
+    el('redeemBtn').disabled = true;
+    api('/api/redeem-code', { method: 'POST', body: { code: el('redeemCode').value } })
+      .then(function (res) {
+        el('redeemBtn').disabled = false;
+        if (res.data && res.data.ok) {
+          m.className = 'msg ok'; m.textContent = 'ปลดล็อกสำเร็จ! เพิ่ม ' + (VOL_NAMES[res.data.product] || res.data.product) + ' เข้าคลังแล้ว';
+          el('redeemCode').value = '';
+          refresh();
+        } else {
+          m.className = 'msg err'; m.textContent = (res.data && res.data.message) || 'ปลดล็อกไม่สำเร็จ';
+        }
+      })
+      .catch(function () { el('redeemBtn').disabled = false; m.className = 'msg err'; m.textContent = 'เกิดข้อผิดพลาด กรุณาลองใหม่'; });
+  });
+
+  // ── Logout ──
+  el('logoutLink').addEventListener('click', function () {
+    api('/api/auth', { method: 'POST', body: { action: 'logout' } }).then(function () { window.location.reload(); });
+  });
+
+  function renderLibrary(data) {
+    hide(el('authCard'));
+    show(el('libCard'));
+    el('libHello').textContent = 'สวัสดี, ' + (data.display_name || data.username);
+    el('libSub').textContent = 'คลังหนังสือของคุณ (@' + data.username + ')';
+
+    var ents = (data.entitlements || []).slice().sort(function (a, b) {
+      return (a.product || '') < (b.product || '') ? -1 : 1;
+    });
+    var wrap = el('bookList');
+    wrap.innerHTML = '';
+    if (!ents.length) { show(el('emptyBooks')); }
+    else {
+      hide(el('emptyBooks'));
+      ents.forEach(function (en) {
+        var row = document.createElement('div');
+        row.className = 'book';
+        var left = document.createElement('div');
+        var t = document.createElement('div'); t.className = 'title'; t.textContent = VOL_NAMES[en.product] || en.product;
+        var meta = document.createElement('div'); meta.className = 'meta';
+        meta.textContent = 'ปลดล็อกแล้ว' + (en.code ? ' · ' + en.code : '');
+        left.appendChild(t); left.appendChild(meta);
+        var a = document.createElement('a'); a.className = 'read'; a.href = VOL_LINK[en.product] || '/'; a.textContent = 'อ่านเลย';
+        row.appendChild(left); row.appendChild(a);
+        wrap.appendChild(row);
+      });
+    }
+    el('acctEmail').textContent = data.email ? ('อีเมล: ' + data.email) : 'ยังไม่มีอีเมลผูกบัญชี';
+  }
+
+  function refresh() {
+    return api('/api/auth', { method: 'GET' }).then(function (res) {
+      if (res.data && res.data.authenticated) { renderLibrary(res.data); return true; }
+      return false;
+    });
+  }
+
+  // ── Initial state ──
+  api('/api/auth', { method: 'GET' }).then(function (res) {
+    if (res.data && res.data.authenticated) { renderLibrary(res.data); }
+  }).catch(function () {});
+})();
+</script>
+</body>
+</html>

@@ -27,6 +27,9 @@
     { "source": "/thank-you-v2", "destination": "/thank-you-v2.html" },
     { "source": "/thank-you-v3", "destination": "/thank-you-v3.html" },
     { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/account", "destination": "/account.html" },
+    { "source": "/login", "destination": "/account.html" },
+    { "source": "/library", "destination": "/account.html" },
     { "source": "/api/:path*", "destination": "/api/:path*" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],

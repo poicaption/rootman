@@ -207,6 +207,20 @@
         <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
       </div>
     </div>
+
+    <div class="section">
+      <div class="section-head">
+        <span>บัญชีผู้ใช้</span>
+        <span class="count" id="usersCount"></span>
+      </div>
+      <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);">
+        <input id="userSearch" placeholder="ค้นหาด้วยชื่อผู้ใช้ / ชื่อที่แสดง / อีเมล…" />
+        <button id="userRefreshBtn">รีเฟรช</button>
+      </div>
+      <div id="usersWrap">
+        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
+      </div>
+    </div>
   </main>
 </div>
 
@@ -252,6 +266,20 @@
       });
   }
 
+  function apiPost(path, body) {
+    return fetch(path, {
+      method: 'POST',
+      headers: { 'x-admin-token': token, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    }).then(function (r) {
+      if (r.status === 401) { throw { unauthorized: true }; }
+      return r.json().then(function (data) {
+        if (!r.ok) throw data;
+        return data;
+      });
+    });
+  }
+
   function esc(s) {
     if (s === null || s === undefined) return '';
     return String(s).replace(/[&<>"]/g, function (c) {
@@ -287,6 +315,7 @@
     el('gate').style.display = 'none';
     el('app').style.display = 'block';
     loadOverview();
+    loadUsers();
   }
   function showGate(msg) {
     el('app').style.display = 'none';
@@ -423,7 +452,14 @@
       device_evict: 'ย้ายเครื่อง (เตะเครื่องเก่า)',
       device_full_check: 'อุปกรณ์เต็ม (ตรวจสอบ)',
       master_unlock: 'ปลดล็อกด้วย Master code',
-      content_access: 'เปิดอ่านเนื้อหา'
+      content_access: 'เปิดอ่านเนื้อหา',
+      register: 'สร้างบัญชี',
+      login: 'เข้าสู่ระบบ',
+      redeem: 'ปลดล็อกโค้ดเข้าบัญชี',
+      admin_disable: 'แอดมินระงับบัญชี',
+      admin_enable: 'แอดมินเปิดใช้บัญชี',
+      admin_reset_password: 'แอดมินรีเซ็ตรหัสผ่าน',
+      admin_unbind_code: 'แอดมินปลดการผูกโค้ด'
     };
     return map[ev] || ev || 'เหตุการณ์';
   }
@@ -499,6 +535,184 @@
   }
   function closeDrawer() { el('drawer').classList.remove('open'); }
 
+  // ── Accounts (user management) ──
+  var allAccounts = [];
+
+  function volBadge(p) {
+    if (p === 'vol3') return '<span class="badge v3">Vol.3</span>';
+    if (p === 'vol2') return '<span class="badge v2">Vol.2</span>';
+    return '<span class="badge v1">Vol.1</span>';
+  }
+
+  function loadUsers() {
+    el('usersWrap').innerHTML = '<div class="empty"><span class="spinner"></span> กำลังโหลด…</div>';
+    api('/api/admin-users')
+      .then(function (data) {
+        allAccounts = data.accounts || [];
+        el('usersCount').textContent = (data.count || 0) + ' บัญชี';
+        renderUsers(allAccounts);
+      })
+      .catch(function (e) {
+        if (e && e.unauthorized) return logout();
+        el('usersWrap').innerHTML = '<div class="empty">โหลดข้อมูลไม่ได้: ' + esc((e && e.message) || 'error') + '</div>';
+      });
+  }
+
+  function renderUsers(rows) {
+    if (!rows.length) {
+      el('usersWrap').innerHTML = '<div class="empty">ยังไม่มีบัญชีผู้ใช้</div>';
+      return;
+    }
+    var html = '<table><thead><tr>' +
+      '<th>ชื่อผู้ใช้</th><th>ชื่อที่แสดง</th><th>อีเมล</th><th>หนังสือ</th><th>สถานะ</th><th>สมัครเมื่อ</th><th>เข้าระบบล่าสุด</th>' +
+      '</tr></thead><tbody>';
+    rows.forEach(function (u) {
+      var status = u.status === 'disabled'
+        ? '<span class="badge gone">ระงับ</span>'
+        : '<span class="badge ok">ใช้งานได้</span>';
+      var books = (u.entitlements || []).map(volBadge).join(' ') || '<span style="color:var(--muted)">–</span>';
+      html += '<tr data-username="' + esc(u.username) + '">' +
+        '<td class="mono">@' + esc(u.username) + '</td>' +
+        '<td>' + esc(u.display_name || '–') + '</td>' +
+        '<td class="email">' + esc(u.email || '–') + '</td>' +
+        '<td>' + books + '</td>' +
+        '<td>' + status + '</td>' +
+        '<td>' + esc(fmtTime(u.created_at)) + '</td>' +
+        '<td>' + esc(fmtTime(u.last_login)) + '</td>' +
+        '</tr>';
+    });
+    html += '</tbody></table>';
+    el('usersWrap').innerHTML = html;
+    Array.prototype.forEach.call(el('usersWrap').querySelectorAll('tr[data-username]'), function (tr) {
+      tr.addEventListener('click', function () { openAccount(tr.getAttribute('data-username')); });
+    });
+  }
+
+  function filterUsers() {
+    var q = el('userSearch').value.trim().toLowerCase();
+    if (!q) { renderUsers(allAccounts); return; }
+    renderUsers(allAccounts.filter(function (u) {
+      return (u.username || '').toLowerCase().indexOf(q) >= 0 ||
+        (u.display_name || '').toLowerCase().indexOf(q) >= 0 ||
+        (u.email || '').toLowerCase().indexOf(q) >= 0;
+    }));
+  }
+
+  function openAccount(username) {
+    el('drawer').classList.add('open');
+    el('drawerBody').innerHTML = '<div class="empty"><span class="spinner"></span> กำลังโหลด…</div>';
+    api('/api/admin-users?username=' + encodeURIComponent(username))
+      .then(renderAccount)
+      .catch(function (e) {
+        if (e && e.unauthorized) { closeDrawer(); return logout(); }
+        el('drawerBody').innerHTML = '<button class="close-x" id="drawerCloseInner">&times;</button><div class="empty">' + esc((e && e.message) || 'ไม่พบข้อมูล') + '</div>';
+        rebindClose();
+      });
+  }
+
+  function renderAccount(data) {
+    var disabled = data.status === 'disabled';
+    var html = '<button class="close-x" id="drawerCloseInner">&times;</button>';
+    html += '<h2>@' + esc(data.username) + '</h2>';
+    html += '<div class="dsub">' + esc(data.display_name || '') + ' · ' +
+      (disabled ? '<span class="badge gone">ถูกระงับ</span>' : '<span class="badge ok">ใช้งานได้</span>') + '</div>';
+
+    html += '<div class="mini-cards">' +
+      '<div class="mini"><div class="l">หนังสือ</div><div class="v">' + ((data.entitlements && data.entitlements.length) || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">โค้ดที่ผูก</div><div class="v">' + ((data.codes && data.codes.length) || 0) + '</div></div>' +
+      '<div class="mini"><div class="l">กิจกรรม</div><div class="v">' + ((data.activity && data.activity.length) || 0) + '</div></div>' +
+    '</div>';
+
+    html += '<div class="dh">ข้อมูลบัญชี</div>';
+    html += '<div class="purchase-row">' +
+      '<div class="tl-meta"><b>อีเมล:</b> ' + esc(data.email || '–') + '</div>' +
+      '<div class="tl-meta"><b>สมัครเมื่อ:</b> ' + esc(fmtTime(data.created_at)) + '</div>' +
+      '<div class="tl-meta"><b>เข้าระบบล่าสุด:</b> ' + esc(fmtTime(data.last_login)) + '</div>' +
+    '</div>';
+
+    html += '<div class="dh">หนังสือในคลัง</div>';
+    if (!(data.entitlements && data.entitlements.length)) {
+      html += '<div class="empty">ยังไม่มีหนังสือ</div>';
+    } else {
+      data.entitlements.forEach(function (en) {
+        html += '<div class="purchase-row">' +
+          '<div class="pr-top">' + volBadge(en.product) + '<span class="mono">' + esc(en.code || '–') + '</span></div>' +
+          '<div class="tl-meta">' + esc(fmtTime(en.granted_at)) + (en.via ? ' · via ' + esc(en.via) : '') + '</div>' +
+        '</div>';
+      });
+    }
+
+    html += '<div class="dh">โค้ดที่ผูกกับบัญชีนี้</div>';
+    if (!(data.codes && data.codes.length)) {
+      html += '<div class="empty">ไม่มีโค้ด</div>';
+    } else {
+      data.codes.forEach(function (code) {
+        html += '<div class="purchase-row"><div class="pr-top">' +
+          '<span class="mono">' + esc(code) + '</span>' +
+          '<button class="ghost-btn act-unbind" data-code="' + esc(code) + '">ปลดการผูก</button>' +
+          '</div></div>';
+      });
+    }
+
+    html += '<div class="dh">การจัดการ</div>';
+    html += '<div style="display:flex;flex-wrap:wrap;gap:8px;">' +
+      '<button class="ghost-btn" id="actToggle">' + (disabled ? 'เปิดใช้บัญชี' : 'ระงับบัญชี') + '</button>' +
+      '<button class="ghost-btn" id="actReset">รีเซ็ตรหัสผ่าน</button>' +
+    '</div>';
+    html += '<p class="dsub" id="actMsg" style="margin-top:12px;"></p>';
+
+    html += '<div class="dh">ไทม์ไลน์การใช้งาน</div>';
+    var tl = data.activity || [];
+    if (!tl.length) {
+      html += '<div class="empty">ยังไม่มีกิจกรรม</div>';
+    } else {
+      html += '<div class="timeline">';
+      tl.forEach(function (ev) {
+        var meta = [];
+        if (ev.product) meta.push(ev.product.toUpperCase());
+        if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
+        if (ev.ip) meta.push('IP ' + esc(ev.ip));
+        html += '<div class="tl-item ' + eventClass(ev.event) + '">' +
+          '<div class="tl-time">' + esc(fmtTime(ev.at)) + ' · ' + esc(relTime(ev.at)) + '</div>' +
+          '<div class="tl-event">' + esc(eventLabel(ev.event)) + '</div>' +
+          (meta.length ? '<div class="tl-meta">' + meta.join(' · ') + '</div>' : '') +
+        '</div>';
+      });
+      html += '</div>';
+    }
+
+    el('drawerBody').innerHTML = html;
+    rebindClose();
+
+    function setMsg(t, ok) { var m = el('actMsg'); if (m) { m.textContent = t; m.style.color = ok ? 'var(--green)' : 'var(--red)'; } }
+
+    var tBtn = el('actToggle');
+    if (tBtn) tBtn.addEventListener('click', function () {
+      apiPost('/api/admin-users', { action: disabled ? 'enable' : 'disable', username: data.username })
+        .then(function () { openAccount(data.username); loadUsers(); })
+        .catch(function (e) { if (e && e.unauthorized) return logout(); setMsg((e && e.message) || 'ทำรายการไม่สำเร็จ', false); });
+    });
+
+    var rBtn = el('actReset');
+    if (rBtn) rBtn.addEventListener('click', function () {
+      var np = window.prompt('ตั้งรหัสผ่านใหม่ให้ @' + data.username + ' (อย่างน้อย 8 ตัวอักษร):');
+      if (np == null) return;
+      apiPost('/api/admin-users', { action: 'reset_password', username: data.username, new_password: np })
+        .then(function () { setMsg('รีเซ็ตรหัสผ่านเรียบร้อย', true); })
+        .catch(function (e) { if (e && e.unauthorized) return logout(); setMsg((e && e.message) || 'รีเซ็ตไม่สำเร็จ', false); });
+    });
+
+    Array.prototype.forEach.call(el('drawerBody').querySelectorAll('.act-unbind'), function (b) {
+      b.addEventListener('click', function () {
+        var code = b.getAttribute('data-code');
+        if (!window.confirm('ปลดการผูกโค้ด ' + code + ' ออกจากบัญชีนี้? โค้ดจะสามารถผูกกับบัญชีอื่นได้อีกครั้ง')) return;
+        apiPost('/api/admin-users', { action: 'unbind_code', username: data.username, code: code })
+          .then(function () { openAccount(data.username); loadUsers(); })
+          .catch(function (e) { if (e && e.unauthorized) return logout(); setMsg((e && e.message) || 'ปลดการผูกไม่สำเร็จ', false); });
+      });
+    });
+  }
+
   // ── Wire up ──
   el('loginBtn').addEventListener('click', doLogin);
   el('tokenInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
@@ -506,6 +720,8 @@
   el('logoutBtn').addEventListener('click', logout);
   el('searchBtn').addEventListener('click', doSearch);
   el('searchInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
+  el('userRefreshBtn').addEventListener('click', loadUsers);
+  el('userSearch').addEventListener('input', filterUsers);
   el('drawerScrim').addEventListener('click', closeDrawer);
   el('drawerClose').addEventListener('click', closeDrawer);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
