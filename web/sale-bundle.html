@@ -36,30 +36,33 @@
     <!-- End Meta Pixel Code -->
     <style>
         :root {
-            --bg: #FAFAF7;
-            --bg-alt: #F3F0EB;
-            --bg-warm: #F3F8F4;
-            --bg-dark: #0F1D17;
-            --bg-dark2: #152019;
-            --text: #2D2A26;
-            --text-sec: #6B6560;
-            --text-light: #9A948D;
-            --accent: #1B5E43;
-            --accent-hover: #15452F;
-            --accent-soft: rgba(27,94,67,0.08);
-            --gold: #6E8C7E;
-            --gold-bg: #EDF3EF;
-            --warm: #5E9E80;
-            --border: #E0DCD6;
-            --border-dark: #C8C2BA;
+            /* ── Dark premium (gold) theme — matches series ad ── */
+            --bg: #0C0B09;            /* warm near-black page */
+            --bg-alt: #141210;        /* slightly raised band */
+            --bg-warm: #15120D;       /* warm dark band */
+            --bg-dark: #0A0908;       /* darkest hero / cta */
+            --bg-dark2: #100E0B;
+            --surface: #19160F;       /* elevated card surface (was #fff) */
+            --surface-2: #211C13;     /* hover / nested card */
+            --text: #F2ECDF;          /* warm off-white */
+            --text-sec: #B7AC98;      /* muted warm grey */
+            --text-light: #877C68;    /* faint warm grey */
+            --accent: #C99A3B;        /* GOLD — primary accent */
+            --accent-hover: #E3B85A;
+            --accent-soft: rgba(201,154,59,0.10);
+            --gold: #C99A3B;          /* real gold */
+            --gold-bg: #1C170E;       /* dark gold-tinted surface */
+            --warm: #E0BD6A;          /* lighter warm gold */
+            --border: #2C271D;        /* warm dark border */
+            --border-dark: #3C3527;
             --mono: 'JetBrains Mono', 'Consolas', monospace;
-            /* Per-book signature colours */
-            --v1: #B8862B;            /* Vol.1 — gold (รากแก้วการตลาด) */
-            --v1-bg: #F7F1E4;
-            --v2: #0E8C9E;            /* Vol.2 — teal/cyan (The Invisible War) */
-            --v2-bg: #E4F4F6;
-            --v3: #1B5E43;            /* Vol.3 — green (รากแก้วธุรกิจ) */
-            --v3-bg: #EDF3EF;
+            /* Per-book signature colours (brightened for dark bg) */
+            --v1: #E0A93A;            /* Vol.1 — gold (รากแก้วการตลาด) */
+            --v1-bg: #1E1810;
+            --v2: #2FC2D6;            /* Vol.2 — cyan neon (The Invisible War) */
+            --v2-bg: #0E1E22;
+            --v3: #4FCB8E;            /* Vol.3 — emerald (รากแก้วธุรกิจ) */
+            --v3-bg: #0F1E18;
         }
         /* ── Tri-colour blend token (Vol.1 gold · Vol.2 teal · Vol.3 green) ── */
         :root { --tri: linear-gradient(100deg, var(--v1) 0%, var(--v2) 50%, var(--v3) 100%); }
@@ -74,8 +77,8 @@
         .book-fan:hover img.bk3 { transform: rotate(12deg) translateX(-6px) translateY(0); }
         /* ── Bundle: per-book volume cards ── */
         .vol-cards { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin: 1.5rem 0; }
-        .vol-card { display: grid; grid-template-columns: 116px 1fr; gap: 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; align-items: start; border-top: 4px solid var(--accent); transition: transform 0.3s, box-shadow 0.3s; }
-        .vol-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+        .vol-card { display: grid; grid-template-columns: 116px 1fr; gap: 1.3rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; align-items: start; border-top: 4px solid var(--accent); transition: transform 0.3s, box-shadow 0.3s; }
+        .vol-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); }
         .vol-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.22)); }
         .vol-card .vc-kick { font-family: 'Prompt', sans-serif; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem; }
         .vol-card .vc-name { font-family: 'Prompt', sans-serif; font-size: 1.12rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; line-height: 1.35; }
@@ -104,12 +107,12 @@
         .offer-fan img:nth-child(3) { transform: rotate(9deg); z-index: 2; }
         @media (max-width: 600px) { .vol-card { grid-template-columns: 1fr; gap: 0.9rem; } .vol-card img { max-width: 130px; } .offer-fan img { width: 44px; } }
         /* ── Single-book purchase panel (buy one OR the bundle) ── */
-        .single-buy { margin-top: 2rem; padding: 1.6rem 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: 16px; text-align: center; }
+        .single-buy { margin-top: 2rem; padding: 1.6rem 1.3rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; text-align: center; }
         .single-buy-head { font-family: 'Prompt', sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
         .single-buy-sub { font-size: 0.84rem; color: var(--text-sec); margin-bottom: 1.1rem; }
         .single-buy-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
-        .single-buy-card { display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none; padding: 0.9rem 0.6rem; border-radius: 11px; border: 1.5px solid var(--border); background: var(--bg); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
-        .single-buy-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.07); }
+        .single-buy-card { display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none; padding: 0.9rem 0.6rem; border-radius: 11px; border: 1.5px solid var(--border); background: var(--surface-2); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+        .single-buy-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.4); }
         .single-buy-card .sb-kick { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
         .single-buy-card .sb-name { font-family: 'Prompt', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.3; }
         .single-buy-card .sb-price { font-family: 'Prompt', sans-serif; font-size: 0.92rem; font-weight: 700; margin-top: 0.15rem; }
@@ -232,7 +235,7 @@
         }
         .hero h1 em {
             font-style: normal;
-            background: linear-gradient(135deg, var(--accent) 0%, #3FA876 50%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 50%, var(--accent) 100%);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -391,7 +394,7 @@
             padding: 0.35rem 0;
         }
         .compare-old {
-            background: #F5F3F0;
+            background: var(--surface);
             border: 1px solid var(--border);
         }
         .compare-old h4 { color: var(--text-sec); border-bottom: 1px solid var(--border); }
@@ -415,7 +418,7 @@
             border-radius: 10px;
             letter-spacing: 0.05em;
         }
-        .compare-new h4 { color: var(--gold); border-bottom: 1px solid #E8D5A8; }
+        .compare-new h4 { color: var(--gold); border-bottom: 1px solid var(--border-dark); }
         .compare-new li::before { content: '✦ '; color: var(--gold); }
         .compare-new li { color: var(--text); }
 
@@ -427,7 +430,7 @@
             margin: 1.5rem 0;
         }
         .benefit-card {
-            background: #fff;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 12px;
             padding: 1.6rem 1.5rem;
@@ -561,17 +564,17 @@
             padding: 0.3rem 0;
         }
         .who-yes {
-            background: #F7FBF5;
-            border: 1px solid #D5E8CC;
+            background: rgba(79,203,142,0.07);
+            border: 1px solid rgba(79,203,142,0.28);
         }
-        .who-yes h4 { color: #4A7C3F; border-bottom: 1px solid #D5E8CC; }
-        .who-yes li::before { content: '✓ '; color: #4A7C3F; font-weight: 700; }
+        .who-yes h4 { color: #6FD9A4; border-bottom: 1px solid rgba(79,203,142,0.28); }
+        .who-yes li::before { content: '✓ '; color: #6FD9A4; font-weight: 700; }
         .who-no {
-            background: #F6F1EF;
-            border: 1px solid #E8CCCC;
+            background: rgba(214,120,120,0.07);
+            border: 1px solid rgba(214,120,120,0.26);
         }
-        .who-no h4 { color: #8B4A4A; border-bottom: 1px solid #E8CCCC; }
-        .who-no li::before { content: '✗ '; color: #8B4A4A; font-weight: 700; }
+        .who-no h4 { color: #E08A8A; border-bottom: 1px solid rgba(214,120,120,0.26); }
+        .who-no li::before { content: '✗ '; color: #E08A8A; font-weight: 700; }
 
         /* ── Value context (honest anchor) ── */
         .value-context {
@@ -660,7 +663,7 @@
             text-align: left;
             margin-bottom: 2.5rem;
             padding: 2rem 2rem;
-            background: #fff;
+            background: var(--surface);
             border-radius: 14px;
             border: 1px solid var(--border);
             position: relative;
@@ -722,7 +725,7 @@
         .price-reason {
             text-align: left;
             margin-bottom: 2rem;
-            background: #fff;
+            background: var(--surface);
             border-radius: 12px;
             padding: 1.5rem 1.8rem;
             border: 1px solid var(--border);
@@ -779,7 +782,7 @@
             padding: 1.3rem 1.5rem;
             border: 1px dashed var(--border-dark);
             border-radius: 10px;
-            background: rgba(255,255,255,0.5);
+            background: var(--surface);
             position: relative;
         }
         .reader-whisper::before {
@@ -1213,7 +1216,7 @@
         /* Hero title — subtle ambient glow + animated gradient */
         .hero h1 { text-shadow: 0 0 60px rgba(245,240,235,0.08); }
         .hero h1 em {
-            background: linear-gradient(135deg, var(--accent) 0%, #3FA876 30%, var(--gold) 60%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--warm) 35%, #F5D98A 65%, var(--accent) 100%);
             background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2188,7 +2191,7 @@
             padding: 2.5rem 1.5rem;
         }
         .hiw-card {
-            background: #fff;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem 1.8rem;
@@ -2316,7 +2319,7 @@
             margin: 1.5rem 0 0.5rem;
         }
         .mini-review {
-            background: #fff;
+            background: var(--surface);
             border: 1px solid var(--border);
             border-left: 3px solid var(--gold);
             border-radius: 10px;
@@ -2348,7 +2351,7 @@
         }
         .author-inner {
             background: var(--gold-bg);
-            border: 1px solid #E8D5A8;
+            border: 1px solid var(--border-dark);
             border-left: 4px solid var(--gold);
             border-radius: 14px;
             padding: 2rem 1.9rem;
@@ -2391,7 +2394,7 @@
 
         /* ── Offer box ── */
         .offer-box {
-            background: #fff;
+            background: var(--surface);
             border: 2px solid var(--gold);
             border-radius: 16px;
             padding: 2rem 1.9rem;
@@ -2492,16 +2495,16 @@
            (appended last so the cascade lets these refinements win)
            ═══════════════════════════════════════════════════════════════ */
         :root {
-            --brass: #B0863A;
-            --brass-light: #E0BC68;
-            --hl-ink: #134A33;
-            --hl-wash: rgba(94,158,128,0.34);
-            --hl-wash-strong: rgba(27,94,67,0.20);
+            --brass: #C99A3B;
+            --brass-light: #E6C673;
+            --hl-ink: #F7DFA0;
+            --hl-wash: rgba(201,154,59,0.30);
+            --hl-wash-strong: rgba(224,189,106,0.34);
         }
 
         /* ── Text selection ── */
-        ::selection { background: rgba(27,94,67,0.22); color: var(--accent-hover); }
-        ::-moz-selection { background: rgba(27,94,67,0.22); color: var(--accent-hover); }
+        ::selection { background: rgba(201,154,59,0.30); color: var(--accent-hover); }
+        ::-moz-selection { background: rgba(201,154,59,0.30); color: var(--accent-hover); }
 
         /* ── Signature highlighter swipe (the "เน้นคำ" device) ──
            Wrap any key phrase in <mark class="hl"> … </mark>.
@@ -2550,7 +2553,7 @@
 
         /* ── Section titles: gradient + soft swipe underline on <em> ── */
         .sec-title em {
-            background: linear-gradient(120deg, var(--accent) 0%, #2E8159 45%, #3FA876 100%);
+            background: linear-gradient(120deg, var(--accent) 0%, var(--warm) 50%, #F0CE78 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2562,7 +2565,7 @@
             position: absolute;
             left: 0; bottom: 0;
             width: 100%; height: 0.14em;
-            background: linear-gradient(90deg, rgba(94,158,128,0.45), rgba(94,158,128,0));
+            background: linear-gradient(90deg, rgba(201,154,59,0.5), rgba(201,154,59,0));
             border-radius: 4px;
             transform: scaleX(0);
             transform-origin: left;
@@ -2579,7 +2582,7 @@
             float: left;
             margin: 0.32rem 0.55rem 0 0;
             color: var(--accent);
-            background: linear-gradient(135deg, var(--accent), #3FA876);
+            background: linear-gradient(135deg, var(--accent), var(--warm));
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2590,7 +2593,7 @@
         }
 
         /* ── Hero refinements: depth, glow, animated gradient on <em> ── */
-        .hero { background: radial-gradient(ellipse at 50% -10%, #173026 0%, var(--bg-dark) 55%, #0A150F 100%); padding-bottom: 5.5rem; }
+        .hero { background: radial-gradient(ellipse at 50% -10%, #2C1E0A 0%, var(--bg-dark) 56%, #070605 100%); padding-bottom: 5.5rem; }
 
         /* Particle canvas — sits behind everything in the hero */
         #hero-particles {
@@ -2656,7 +2659,7 @@
         .hero h1 { letter-spacing: -0.01em; text-wrap: balance; }
         .hero h1 em {
             animation: heroShimmer 6s ease-in-out infinite;
-            text-shadow: 0 0 40px rgba(63,168,118,0.25);
+            text-shadow: 0 0 40px rgba(224,189,106,0.28);
         }
         @keyframes heroShimmer { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
         .hero-eyebrow {
@@ -2677,7 +2680,7 @@
 
         /* ── CTA buttons: gradient + sliding sheen ── */
         .hero-cta, .mid-cta-btn, .pricing-cta, .final-cta-btn {
-            background: linear-gradient(135deg, var(--accent) 0%, #237A56 55%, var(--accent-hover) 100%) !important;
+            background: linear-gradient(135deg, var(--accent) 0%, #A9781F 55%, var(--accent-hover) 100%) !important;
             position: relative;
             overflow: hidden;
             isolation: isolate;
@@ -2738,7 +2741,7 @@
 
         /* ── Big-idea quote: brighten the emphasis ── */
         .bigidea-quote em {
-            background: linear-gradient(120deg, #3FA876, #7CCBA2);
+            background: linear-gradient(120deg, var(--warm), #F2D384);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -3243,7 +3246,7 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════ PROOF BAR ═══════════════════════════════════════════════ -->
-    <div class="sec-wide" style="background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
+    <div class="sec-wide" style="background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative;">
         <div class="proof-bar">
             <div class="proof-item rv rv-p1"><div class="proof-num">3</div><div class="proof-label">เล่มเต็มชุด</div></div>
             <div class="proof-item rv rv-p2"><div class="proof-num">37+</div><div class="proof-label">บทหลักรวมทั้งชุด</div></div>
