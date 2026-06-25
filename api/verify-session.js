@@ -42,17 +42,23 @@ export default async function handler(req) {
   const url = new URL(req.url);
   const sessionId = url.searchParams.get('session_id');
   const volParam = url.searchParams.get('vol');
+  // Bundle = all three volumes purchased in one Stripe session.
+  const isBundle = volParam === 'bundle' || volParam === 'all' || url.searchParams.get('bundle') === '1';
   const vol = volParam === '3' ? 3 : volParam === '2' ? 2 : 1;
+  const vols = isBundle ? [1, 2, 3] : [vol];
 
   if (!sessionId || sessionId.length < 10) {
     return json({ error: 'missing_session', message: 'ไม่พบข้อมูลการชำระเงิน' }, 400);
   }
 
   try {
-    // Check if we already generated a code for this session (idempotent)
+    // Idempotent: already generated for this session?
     const existing = await redis(['GET', `session:${sessionId}`]);
     if (existing.result) {
       const data = JSON.parse(existing.result);
+      if (data.codes) {
+        return json({ bundle: true, codes: data.codes, customer_email: data.customer_email || null });
+      }
       return json({ code: data.code, customer_email: data.customer_email || null, vol: data.vol || 1 });
     }
 
@@ -76,11 +82,9 @@ export default async function handler(req) {
       return json({ error: 'not_paid', message: 'การชำระเงินยังไม่สำเร็จ' }, 400);
     }
 
-    // Generate unique code
-    const code = generateCode();
     const now = new Date().toISOString();
 
-    // Extract payment evidence for fraud/chargeback defense
+    // Extract payment evidence for fraud/chargeback defense (shared across all codes)
     const customerDetails = session.customer_details || {};
     const customerEmail = customerDetails.email || null;
     const customerName = customerDetails.name || null;
@@ -95,11 +99,9 @@ export default async function handler(req) {
     const buyerIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || null;
     const userAgent = req.headers.get('user-agent') || null;
 
-    // Permanent code record — now includes proof-of-payment fields
-    const codeRecord = {
+    const baseRecord = {
       session_id: sessionId,
       device_id: null,
-      vol,
       created_at: now,
       // Payment evidence
       customer_email: customerEmail,
@@ -112,32 +114,50 @@ export default async function handler(req) {
       stripe_customer_id: stripeCustomerId,
       buyer_ip: buyerIp,
       user_agent: userAgent,
+      bundle: isBundle || undefined,
     };
 
-    // Store session → code (90-day TTL — used for thank-you page idempotency)
-    await redis(['SET', `session:${sessionId}`, JSON.stringify({ code, customer_email: customerEmail, vol, created_at: now }), 'EX', 7776000]);
+    const emailKey = customerEmail ? `email:${customerEmail.trim().toLowerCase()}` : null;
+    const activityKey = customerEmail ? `activity:${customerEmail.trim().toLowerCase()}` : null;
 
-    // Store code → data (permanent)
-    await redis(['SET', `code:${code}`, JSON.stringify(codeRecord)]);
+    const codes = []; // [{ vol, code }]
 
-    // Permanent purchase audit record (no TTL) — primary evidence ledger
-    await redis(['SET', `purchase:${sessionId}`, JSON.stringify({ ...codeRecord, code })]);
+    // Mint one code per volume (1 for a single book, 3 for a bundle).
+    for (const v of vols) {
+      const code = generateCode();
+      const codeRecord = { ...baseRecord, vol: v };
 
-    // Email index for fast lookup during disputes
-    if (customerEmail) {
-      const emailKey = `email:${customerEmail.trim().toLowerCase()}`;
-      await redis(['LPUSH', emailKey, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
-      await redis(['LTRIM', emailKey, 0, 49]); // keep last 50 purchases per email
+      // Code → data (permanent)
+      await redis(['SET', `code:${code}`, JSON.stringify(codeRecord)]);
 
-      // Seed the per-user activity timeline with the purchase event so each
-      // customer's detailed usage ledger starts the moment they buy.
-      const activityKey = `activity:email:${customerEmail.trim().toLowerCase()}`;
+      // Per-volume purchase audit record (no TTL) — primary evidence ledger
+      const purchaseKey = isBundle ? `purchase:${sessionId}:v${v}` : `purchase:${sessionId}`;
+      await redis(['SET', purchaseKey, JSON.stringify({ ...codeRecord, code })]);
+
+      // Email index for fast lookup during disputes
+      if (emailKey) {
+        await redis(['LPUSH', emailKey, JSON.stringify({ session_id: sessionId, code, vol: v, ts: now })]);
+        await redis(['LTRIM', emailKey, 0, 49]);
+      }
+
+      // Payment-intent index (per code — Stripe disputes reference payment_intent)
+      if (paymentIntent) {
+        await redis(['SET', `pi:${paymentIntent}:v${v}`, JSON.stringify({ session_id: sessionId, code, vol: v, ts: now })]);
+      }
+
+      // Per-volume sales counter
+      await redis(['INCR', `stats:purchases:vol${v}`]);
+
+      codes.push({ vol: v, code });
+    }
+
+    // Buyer activity log (one entry summarising the transaction)
+    if (activityKey) {
       await redis(['LPUSH', activityKey, JSON.stringify({
-        ts: now,
-        event: 'purchase',
-        email: customerEmail,
-        code,
-        vol,
+        type: 'purchase',
+        bundle: isBundle || undefined,
+        vols,
+        codes: codes.map((c) => c.code),
         amount_total: amountTotal,
         currency,
         payment_intent: paymentIntent,
@@ -145,43 +165,48 @@ export default async function handler(req) {
         ip: buyerIp,
         ua: userAgent ? userAgent.slice(0, 200) : null,
       })]);
-      await redis(['LTRIM', activityKey, 0, 499]); // keep last 500 events per user
-    }
-
-    // Payment-intent index (Stripe uses payment_intent in dispute notifications)
-    if (paymentIntent) {
-      await redis(['SET', `pi:${paymentIntent}`, JSON.stringify({ session_id: sessionId, code, vol, ts: now })]);
+      await redis(['LTRIM', activityKey, 0, 499]);
     }
 
     // ── Global indexes for the admin dashboard ──
-    // Recent-purchases feed (last 500) — powers the overview list.
+    // One recent-purchases entry per transaction.
     await redis(['LPUSH', 'purchases:recent', JSON.stringify({
       ts: now,
       email: customerEmail,
       name: customerName,
       country: customerCountry,
-      code,
-      vol,
+      code: codes.map((c) => c.code).join(', '),
+      vol: isBundle ? 'bundle' : vols[0],
+      bundle: isBundle || undefined,
       amount_total: amountTotal,
       currency,
       session_id: sessionId,
     })]);
     await redis(['LTRIM', 'purchases:recent', 0, 499]);
 
-    // Distinct-customer set (for total unique buyers) + rolling revenue counters.
     if (customerEmail) {
       await redis(['SADD', 'users:emails', customerEmail.trim().toLowerCase()]);
     }
+    // One transaction = one purchase event; revenue counted once at the full total.
     await redis(['INCR', 'stats:purchases:total']);
-    await redis(['INCR', `stats:purchases:vol${vol}`]);
+    if (isBundle) await redis(['INCR', 'stats:purchases:bundle']);
     if (amountTotal) {
       await redis(['INCRBY', `stats:revenue:${currency || 'unknown'}`, amountTotal]);
     }
 
-    // Log
-    console.log('[NEW-CODE]', JSON.stringify({ code, vol, session_id: sessionId.slice(0, 20) + '...', email: customerEmail, ts: now }));
+    // Store session → code(s) (90-day TTL — used for thank-you page idempotency)
+    if (isBundle) {
+      await redis(['SET', `session:${sessionId}`, JSON.stringify({ codes, customer_email: customerEmail, bundle: true, created_at: now }), 'EX', 7776000]);
+    } else {
+      await redis(['SET', `session:${sessionId}`, JSON.stringify({ code: codes[0].code, customer_email: customerEmail, vol: vols[0], created_at: now }), 'EX', 7776000]);
+    }
 
-    return json({ code, customer_email: customerEmail, vol });
+    console.log('[NEW-CODE]', JSON.stringify({ bundle: isBundle, codes: codes.map((c) => c.code), vols, session_id: sessionId.slice(0, 20) + '...', email: customerEmail, ts: now }));
+
+    if (isBundle) {
+      return json({ bundle: true, codes, customer_email: customerEmail });
+    }
+    return json({ code: codes[0].code, customer_email: customerEmail, vol: vols[0] });
   } catch (e) {
     console.error('[VERIFY-ERROR]', e.message);
     return json({ error: 'server_error', message: 'เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้' }, 500);
