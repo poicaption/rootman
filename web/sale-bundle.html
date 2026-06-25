@@ -61,9 +61,11 @@
             --v3: #1B5E43;            /* Vol.3 — green (รากแก้วธุรกิจ) */
             --v3-bg: #EDF3EF;
         }
+        /* ── Tri-colour blend token (Vol.1 gold · Vol.2 teal · Vol.3 green) ── */
+        :root { --tri: linear-gradient(100deg, var(--v1) 0%, var(--v2) 50%, var(--v3) 100%); }
         /* ── Bundle: 3-book fan ── */
         .book-fan { display: flex; justify-content: center; align-items: flex-end; perspective: 1200px; margin: 0 auto; }
-        .book-fan img { width: clamp(96px, 22vw, 150px); height: auto; border-radius: 5px; box-shadow: 0 16px 40px rgba(0,0,0,0.28); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
+        .book-fan img { width: clamp(104px, 24vw, 156px); height: auto; filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5)); transition: transform 0.45s cubic-bezier(0.16,1,0.3,1); }
         .book-fan img.bk1 { transform: rotate(-9deg) translateX(24px) translateY(8px); z-index: 1; }
         .book-fan img.bk2 { transform: translateY(-10px) scale(1.06); z-index: 3; position: relative; }
         .book-fan img.bk3 { transform: rotate(9deg) translateX(-24px) translateY(8px); z-index: 2; }
@@ -74,7 +76,7 @@
         .vol-cards { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin: 1.5rem 0; }
         .vol-card { display: grid; grid-template-columns: 116px 1fr; gap: 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 1.4rem; align-items: start; border-top: 4px solid var(--accent); transition: transform 0.3s, box-shadow 0.3s; }
         .vol-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
-        .vol-card img { width: 100%; border-radius: 6px; box-shadow: 0 8px 22px rgba(0,0,0,0.16); }
+        .vol-card img { width: 100%; aspect-ratio: 1 / 1; object-fit: contain; filter: drop-shadow(0 12px 20px rgba(0,0,0,0.22)); }
         .vol-card .vc-kick { font-family: 'Prompt', sans-serif; font-size: 0.66rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; margin-bottom: 0.4rem; }
         .vol-card .vc-name { font-family: 'Prompt', sans-serif; font-size: 1.12rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem; line-height: 1.35; }
         .vol-card .vc-en { font-size: 0.84rem; color: var(--text-light); font-style: italic; margin-bottom: 0.7rem; }
@@ -87,7 +89,36 @@
         .vol-card.cv1 { border-top-color: var(--v1); } .vol-card.cv1 .vc-kick, .vol-card.cv1 .vc-list li::before, .vol-card.cv1 .vc-free { color: var(--v1); }
         .vol-card.cv2 { border-top-color: var(--v2); } .vol-card.cv2 .vc-kick, .vol-card.cv2 .vc-list li::before, .vol-card.cv2 .vc-free { color: var(--v2); }
         .vol-card.cv3 { border-top-color: var(--v3); } .vol-card.cv3 .vc-kick, .vol-card.cv3 .vc-list li::before, .vol-card.cv3 .vc-free { color: var(--v3); }
-        @media (max-width: 600px) { .vol-card { grid-template-columns: 1fr; gap: 0.9rem; } .vol-card img { max-width: 130px; } }
+        /* ── Per-book actions: buy this one OR read free ── */
+        .vol-card .vc-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem 0.9rem; }
+        .vol-card .vc-buy { font-family: 'Prompt', sans-serif; font-size: 0.8rem; font-weight: 600; text-decoration: none; color: #fff; padding: 0.45rem 1rem; border-radius: 8px; transition: transform 0.2s, box-shadow 0.2s, filter 0.2s; }
+        .vol-card .vc-buy:hover { transform: translateY(-1px); filter: brightness(1.05); }
+        .vol-card.cv1 .vc-buy { background: var(--v1); box-shadow: 0 5px 16px rgba(184,134,43,0.32); }
+        .vol-card.cv2 .vc-buy { background: var(--v2); box-shadow: 0 5px 16px rgba(14,140,158,0.32); }
+        .vol-card.cv3 .vc-buy { background: var(--v3); box-shadow: 0 5px 16px rgba(27,94,67,0.32); }
+        /* ── Offer-box mini 3-book fan ── */
+        .offer-fan { display: flex; align-items: center; flex-shrink: 0; padding: 0 6px; }
+        .offer-fan img { width: 56px; height: auto; filter: drop-shadow(0 8px 16px rgba(15,29,23,0.30)); }
+        .offer-fan img:nth-child(1) { transform: rotate(-9deg); z-index: 1; }
+        .offer-fan img:nth-child(2) { transform: scale(1.1); z-index: 3; margin: 0 -12px; }
+        .offer-fan img:nth-child(3) { transform: rotate(9deg); z-index: 2; }
+        @media (max-width: 600px) { .vol-card { grid-template-columns: 1fr; gap: 0.9rem; } .vol-card img { max-width: 130px; } .offer-fan img { width: 44px; } }
+        /* ── Single-book purchase panel (buy one OR the bundle) ── */
+        .single-buy { margin-top: 2rem; padding: 1.6rem 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: 16px; text-align: center; }
+        .single-buy-head { font-family: 'Prompt', sans-serif; font-size: 1.02rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+        .single-buy-sub { font-size: 0.84rem; color: var(--text-sec); margin-bottom: 1.1rem; }
+        .single-buy-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+        .single-buy-card { display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none; padding: 0.9rem 0.6rem; border-radius: 11px; border: 1.5px solid var(--border); background: var(--bg); transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+        .single-buy-card:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(0,0,0,0.07); }
+        .single-buy-card .sb-kick { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+        .single-buy-card .sb-name { font-family: 'Prompt', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+        .single-buy-card .sb-price { font-family: 'Prompt', sans-serif; font-size: 0.92rem; font-weight: 700; margin-top: 0.15rem; }
+        .single-buy-card.sb1 { border-color: rgba(184,134,43,0.4); } .single-buy-card.sb1 .sb-kick, .single-buy-card.sb1 .sb-price { color: var(--v1); } .single-buy-card.sb1:hover { border-color: var(--v1); }
+        .single-buy-card.sb2 { border-color: rgba(14,140,158,0.4); } .single-buy-card.sb2 .sb-kick, .single-buy-card.sb2 .sb-price { color: var(--v2); } .single-buy-card.sb2:hover { border-color: var(--v2); }
+        .single-buy-card.sb3 { border-color: rgba(27,94,67,0.4); } .single-buy-card.sb3 .sb-kick, .single-buy-card.sb3 .sb-price { color: var(--v3); } .single-buy-card.sb3:hover { border-color: var(--v3); }
+        .single-buy-note { font-size: 0.78rem; color: var(--text-sec); margin-top: 1rem; }
+        .single-buy-note strong { color: var(--v1); }
+        @media (max-width: 480px) { .single-buy-row { grid-template-columns: 1fr; } }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 17px; overflow-x: hidden; }
         body {
@@ -493,6 +524,11 @@
             color: var(--text-sec);
             margin-top: 0.2rem;
         }
+        /* ── Proof numbers: weave the three book colours ── */
+        .proof-bar .proof-item:nth-child(1) .proof-num { background: linear-gradient(135deg, var(--v1), #D6A24A); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .proof-bar .proof-item:nth-child(2) .proof-num { background: linear-gradient(135deg, var(--v2), #34BCCE); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .proof-bar .proof-item:nth-child(3) .proof-num { background: linear-gradient(135deg, var(--v3), var(--warm)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .proof-bar .proof-item:nth-child(4) .proof-num { background: linear-gradient(135deg, var(--v1), var(--v3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 
         /* ── Who / Not-for ── */
         .who-grid {
@@ -1111,10 +1147,10 @@
         /* Progress bar — animated mystic glow */
         #progress-bar {
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), var(--gold), var(--warm), var(--accent));
+            background: linear-gradient(90deg, var(--v1), var(--v2), var(--v3), var(--v1));
             background-size: 300% 100%;
             animation: progress-shimmer 3s linear infinite;
-            box-shadow: 0 0 8px rgba(27,94,67,0.3), 0 0 20px rgba(184,134,11,0.15);
+            box-shadow: 0 0 8px rgba(14,140,158,0.3), 0 0 20px rgba(184,134,43,0.15);
         }
 
         /* Section ornaments — sacred geometry symbols */
@@ -1134,9 +1170,10 @@
             content: '';
             position: absolute;
             bottom: 0; left: 0;
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, var(--gold), transparent);
-            opacity: 0.35;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--v1), var(--v2) 50%, var(--v3));
+            opacity: 0.55;
+            border-radius: 2px;
         }
 
         /* Hero — deep atmospheric gradient with layered glow */
@@ -2662,14 +2699,14 @@
         .pricing-cta { box-shadow: 0 10px 34px rgba(27,94,67,0.30); }
         .pricing-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(27,94,67,0.40); }
 
-        /* ── Price: premium emerald→brass gradient numeral ── */
+        /* ── Price: tri-colour gradient numeral (green→teal→gold) ── */
         .price-big {
-            background: linear-gradient(135deg, var(--accent) 0%, #2E8159 40%, var(--brass) 100%);
+            background: linear-gradient(120deg, var(--v3) 0%, var(--v2) 50%, var(--v1) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: none;
-            filter: drop-shadow(0 6px 24px rgba(27,94,67,0.18));
+            filter: drop-shadow(0 6px 24px rgba(14,140,158,0.18));
         }
         .price-hero::before {
             content: '';
@@ -2723,11 +2760,13 @@
         /* ── Body emphasis: strong gets a faint emerald tint (light bg only) ── */
         .sec p strong, .price-reason p strong { color: var(--accent-hover); }
 
-        /* ── Coupon code: make it feel like a "gift" ── */
+        /* ── Coupon code: tri-colour "gift" with white text ── */
         .whisper-code {
-            background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
-            box-shadow: 0 6px 20px rgba(27,94,67,0.25);
-            letter-spacing: 0.18em;
+            background: linear-gradient(100deg, var(--v1), var(--v2) 52%, var(--v3)) !important;
+            color: #fff !important;
+            border: none !important;
+            box-shadow: 0 6px 22px rgba(14,140,158,0.30);
+            letter-spacing: 0.2em;
         }
 
         @media (max-width: 640px) {
@@ -2880,9 +2919,9 @@
         <div class="hero-inner rv">
             <div class="hero-book-wrap">
                 <div class="book-fan">
-                    <img class="bk1" src="images/book-vol1.png" alt="รากแก้วการตลาด — Vol.1" width="150" height="210" loading="eager">
-                    <img class="bk2" src="images/book-vol2.png" alt="The Invisible War — Vol.2" width="150" height="210" loading="eager">
-                    <img class="bk3" src="images/book-vol3.png" alt="รากแก้วธุรกิจ — Vol.3" width="150" height="210" loading="eager">
+                    <img class="bk1" src="images/book-vol1.png" alt="รากแก้วการตลาด — Vol.1" width="156" height="156" loading="eager">
+                    <img class="bk2" src="images/book-vol2.png" alt="The Invisible War — Vol.2" width="156" height="156" loading="eager">
+                    <img class="bk3" src="images/book-vol3.png" alt="รากแก้วธุรกิจ — Vol.3" width="156" height="156" loading="eager">
                 </div>
                 <span class="hero-book-tag" style="margin-top:1.2rem;"><i class="fa-solid fa-layer-group"></i> ครบทั้งซีรีส์ · 3 เล่ม</span>
             </div>
@@ -3017,7 +3056,7 @@
 
         <div class="vol-cards">
             <div class="vol-card cv1 rv rv-d1">
-                <img src="images/book-vol1.png" alt="รากแก้วการตลาด — Vol.1" width="116" height="162" loading="lazy">
+                <img src="images/book-vol1.png" alt="รากแก้วการตลาด — Vol.1" width="120" height="120" loading="lazy">
                 <div>
                     <div class="vc-kick">Vol.1 · ราก</div>
                     <div class="vc-name">รากแก้วการตลาด</div>
@@ -3028,11 +3067,14 @@
                         <li>รากจิตวิทยาที่ใช้ได้กับทุกธุรกิจ</li>
                         <li>กรณีศึกษาแบรนด์ระดับโลก</li>
                     </ul>
-                    <a href="/vol1" class="vc-free">อ่านเปิดเล่มฟรี <i class="fa-solid fa-arrow-right"></i></a>
+                    <div class="vc-actions">
+                        <a href="/sale" class="vc-buy">ซื้อเล่มนี้ · 1,390 ฿</a>
+                        <a href="/vol1" class="vc-free">อ่านฟรีก่อน <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="vol-card cv2 rv rv-d2">
-                <img src="images/book-vol2.png" alt="The Invisible War — Vol.2" width="116" height="162" loading="lazy">
+                <img src="images/book-vol2.png" alt="The Invisible War — Vol.2" width="120" height="120" loading="lazy">
                 <div>
                     <div class="vc-kick">Vol.2 · ลำต้น</div>
                     <div class="vc-name">The Invisible War</div>
@@ -3043,11 +3085,14 @@
                         <li>กลไกอัลกอริทึมและเกมแย่งความสนใจ</li>
                         <li>เชื่อมจิตวิทยาเข้ากับการตลาดดิจิทัลจริง</li>
                     </ul>
-                    <a href="/vol2" class="vc-free">อ่านเปิดเล่มฟรี <i class="fa-solid fa-arrow-right"></i></a>
+                    <div class="vc-actions">
+                        <a href="/sale-vol2" class="vc-buy">ซื้อเล่มนี้ · 1,890 ฿</a>
+                        <a href="/vol2" class="vc-free">อ่านฟรีก่อน <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="vol-card cv3 rv rv-d3">
-                <img src="images/book-vol3.png" alt="รากแก้วธุรกิจ — Vol.3" width="116" height="162" loading="lazy">
+                <img src="images/book-vol3.png" alt="รากแก้วธุรกิจ — Vol.3" width="120" height="120" loading="lazy">
                 <div>
                     <div class="vc-kick">Vol.3 · ยอด</div>
                     <div class="vc-name">รากแก้วธุรกิจ</div>
@@ -3058,13 +3103,16 @@
                         <li>การเงิน ราคา ระบบ และกลยุทธ์ระยะยาว</li>
                         <li>กรณีศึกษาจริงตั้งแต่แบรนด์โลกถึงร้านข้างทาง</li>
                     </ul>
-                    <a href="/vol3" class="vc-free">อ่านเปิดเล่มฟรี <i class="fa-solid fa-arrow-right"></i></a>
+                    <div class="vc-actions">
+                        <a href="/sale-vol3" class="vc-buy">ซื้อเล่มนี้ · 1,990 ฿</a>
+                        <a href="/vol3" class="vc-free">อ่านฟรีก่อน <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="gold-box">
-            <p>ซื้อแยกทีละเล่ม รวม <strong>5,270 บาท</strong> &mdash; ซื้อเป็นชุดพร้อมโค้ด <strong>ROOTCOMPLETE</strong><br>เหลือ <strong>4,570 บาท</strong> ครบทั้งระบบ ราก ลำต้น และยอด ในการตัดสินใจเดียว</p>
+            <p>ไม่ต้องเอาครบทั้งสามก็ได้ &mdash; <strong>เริ่มจากเล่มที่ตรงกับคุณตอนนี้</strong> หรือเอาทั้งชุดไปเลย<br>ซื้อแยกรวม <strong>5,270 บาท</strong> · ซื้อเป็นชุดพร้อมโค้ด <strong>ROOTCOMPLETE</strong> เหลือ <strong>4,570 บาท</strong> — ประหยัด 700 บาท</p>
         </div>
     </div>
 
@@ -3330,7 +3378,11 @@
 
             <div class="offer-box rv">
                 <div class="offer-book-row">
-                    <img class="offer-book-img" src="images/book-vol2.png" alt="The One Root Series — ชุด 3 เล่ม" width="120" height="120" loading="lazy">
+                    <div class="offer-fan">
+                        <img src="images/book-vol1.png" alt="Vol.1 รากแก้วการตลาด" width="64" height="64" loading="lazy">
+                        <img src="images/book-vol2.png" alt="Vol.2 The Invisible War" width="64" height="64" loading="lazy">
+                        <img src="images/book-vol3.png" alt="Vol.3 รากแก้วธุรกิจ" width="64" height="64" loading="lazy">
+                    </div>
                     <div class="offer-book-meta">
                         <div class="offer-name">The One Root Series &mdash; ชุดสมบูรณ์ 3 เล่ม</div>
                         <div class="offer-sub">จิตวิทยา · สนามรบดิจิทัล · รากธุรกิจ — ครบในชุดเดียว</div>
@@ -3386,6 +3438,18 @@
             <a href="https://buy.stripe.com/8x200j2BNgwaaffdbygYU04" class="pricing-cta js-buy">ปลดล็อกทั้ง 3 เล่ม &mdash; รับ Unlock Code ครบทันที</a>
             <p class="pricing-note">อย่าลืมใส่โค้ด <strong>ROOTCOMPLETE</strong> ตอนชำระเงิน เพื่อรับส่วนลด 700 บาท</p>
             <p class="pricing-sub-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe<br>ปลดล็อกครบทั้ง 3 เล่ม รวมบทพิเศษและภาคผนวก &bull; จ่ายครั้งเดียว</p>
+
+            <div class="single-buy">
+                <div class="single-buy-head">หรือยังไม่อยากเอาครบทั้งชุด?</div>
+                <p class="single-buy-sub">ไม่ต้องซื้อครบก็ได้ &mdash; เริ่มจากเล่มที่ตรงกับคุณตอนนี้ก่อน แล้วค่อยเก็บให้ครบทีหลัง</p>
+                <div class="single-buy-row">
+                    <a href="/sale" class="single-buy-card sb1"><span class="sb-kick">Vol.1 · ราก</span><span class="sb-name">รากแก้วการตลาด</span><span class="sb-price">1,390 ฿</span></a>
+                    <a href="/sale-vol2" class="single-buy-card sb2"><span class="sb-kick">Vol.2 · ลำต้น</span><span class="sb-name">The Invisible War</span><span class="sb-price">1,890 ฿</span></a>
+                    <a href="/sale-vol3" class="single-buy-card sb3"><span class="sb-kick">Vol.3 · ยอด</span><span class="sb-name">รากแก้วธุรกิจ</span><span class="sb-price">1,990 ฿</span></a>
+                </div>
+                <p class="single-buy-note">ซื้อแยกได้ทุกเล่ม &mdash; แต่ครบชุดประหยัดกว่า <strong>700 บาท</strong> ด้วยโค้ด ROOTCOMPLETE</p>
+            </div>
+
             <p style="margin-top: 1.2rem;"><a href="/vol3" class="hero-cta-secondary" style="color: var(--accent); border-color: rgba(27,94,67,0.3);">ยังไม่พร้อมซื้อ? อ่านเปิดเล่มฟรีก่อน &rarr;</a></p>
         </div>
     </div>
