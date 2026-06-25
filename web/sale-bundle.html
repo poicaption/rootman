@@ -329,6 +329,53 @@
         .faq-q::before { content: 'Q'; color: var(--accent); font-weight: 700; }
         .faq-a { font-size: 0.88rem; color: var(--text-sec); line-height: 1.8; margin: 0; padding-left: 1.4rem; }
 
+        /* ── Reviews ── */
+        .rating-row { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; margin: 0 0 2.2rem; }
+        .rating-stars { color: var(--gold); font-size: 1.15rem; letter-spacing: 0.15em; }
+        .rating-meta { font-size: 0.82rem; color: var(--text-sec); }
+        .rating-meta b { color: var(--heading); font-family: 'Prompt', sans-serif; }
+        .reviews { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+        .review-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem 1.4rem; transition: border-color 0.3s, transform 0.3s; display: flex; flex-direction: column; }
+        .review-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+        .review-card .rc-stars { color: var(--gold); font-size: 0.8rem; letter-spacing: 0.1em; margin-bottom: 0.7rem; }
+        .review-card .rc-text { font-size: 0.92rem; color: var(--text); line-height: 1.8; margin: 0 0 1rem; flex: 1; }
+        .review-card .rc-text b { color: var(--heading); }
+        .review-card .rc-who { display: flex; align-items: center; gap: 0.7rem; }
+        .review-card .rc-avatar { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--bg); flex-shrink: 0; }
+        .review-card .rc-name { font-family: 'Prompt', sans-serif; font-size: 0.82rem; font-weight: 600; color: var(--heading); line-height: 1.3; }
+        .review-card .rc-role { font-size: 0.74rem; color: var(--text-sec); }
+        .review-card .rc-vol { font-size: 0.66rem; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 0.7rem; padding-top: 0.7rem; border-top: 1px dashed var(--border); }
+        .review-card.tv1 .rc-vol { color: var(--v1); } .review-card.tv1 .rc-avatar { background: var(--v1); }
+        .review-card.tv2 .rc-vol { color: var(--v2); } .review-card.tv2 .rc-avatar { background: var(--v2); }
+        .review-card.tv3 .rc-vol { color: var(--v3); } .review-card.tv3 .rc-avatar { background: var(--v3); }
+        .review-card.tvall .rc-vol { color: var(--gold); } .review-card.tvall .rc-avatar { background: var(--gold); }
+
+        /* ── Value comparison table ── */
+        .vs-table { width: 100%; border-collapse: collapse; margin: 1.8rem 0; font-size: 0.86rem; }
+        .vs-table th, .vs-table td { padding: 0.85rem 0.7rem; text-align: center; border-bottom: 1px solid var(--border); }
+        .vs-table thead th { font-family: 'Prompt', sans-serif; font-size: 0.74rem; font-weight: 600; color: var(--text-sec); letter-spacing: 0.03em; vertical-align: bottom; }
+        .vs-table thead th.col-us { color: var(--gold); }
+        .vs-table tbody th { text-align: left; font-weight: 400; color: var(--text); font-size: 0.84rem; }
+        .vs-table .col-us { background: rgba(212,165,116,0.07); border-left: 1px solid rgba(212,165,116,0.25); border-right: 1px solid rgba(212,165,116,0.25); }
+        .vs-table tbody tr:last-child td, .vs-table tbody tr:last-child th { border-bottom: none; }
+        .vs-yes { color: var(--green); font-weight: 700; }
+        .vs-no { color: var(--red); opacity: 0.8; }
+        .vs-mid { color: var(--text-sec); }
+        .vs-price-cell { font-family: 'Prompt', sans-serif; font-weight: 700; }
+        .vs-foot { font-size: 0.78rem; color: var(--text-sec); text-align: center; margin-top: 0.5rem; }
+        .vs-table .col-us-top { font-family: 'Prompt', sans-serif; font-weight: 700; color: var(--gold); font-size: 0.82rem; }
+
+        /* ── Worth-it value stack ── */
+        .worth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.8rem 0; }
+        .worth-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.3rem 1.3rem; transition: border-color 0.3s, transform 0.3s; }
+        .worth-card:hover { transform: translateY(-2px); border-color: var(--accent); }
+        .worth-card .wc-icon { font-size: 1.3rem; margin-bottom: 0.6rem; }
+        .worth-card .wc-title { font-family: 'Prompt', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--heading); margin-bottom: 0.4rem; }
+        .worth-card .wc-desc { font-size: 0.84rem; color: var(--text-sec); line-height: 1.7; margin: 0; }
+        .perday { text-align: center; margin: 2rem 0 0; padding: 1.4rem; border-radius: 12px; background: rgba(39,174,96,0.06); border: 1px solid rgba(39,174,96,0.18); }
+        .perday .pd-big { font-family: 'Prompt', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--green); }
+        .perday .pd-sub { font-size: 0.84rem; color: var(--text-sec); margin-top: 0.3rem; }
+
         /* ── te-note (Third Eye) ── */
         .te-note { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease, margin 0.5s ease, padding 0.5s ease; background: rgba(196,149,106,0.06); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; margin: 0; padding: 0 1.5rem; }
         body.te-on .te-note { max-height: 520px; opacity: 1; margin: 2rem 0; padding: 1.2rem 1.5rem; }
@@ -366,6 +413,10 @@
             .fit-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .transform-grid { grid-template-columns: 1fr; }
             .transform-arrow { transform: rotate(90deg); justify-self: center; padding-top: 0; }
+            .reviews { grid-template-columns: 1fr; }
+            .worth-grid { grid-template-columns: 1fr; }
+            .vs-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            .vs-table { min-width: 520px; }
             .price-row { flex-direction: column; gap: 0.2rem; }
             .price-val { align-self: flex-start; }
             #te-float { bottom: 4.6rem; left: 1rem; font-size: 0.72rem; padding: 0.45rem 1rem; }
@@ -661,6 +712,165 @@
         <div class="te-note">
             <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
             <p><strong>Future Pacing + Contrast</strong> &mdash; การวาง &laquo;ก่อน&raquo; กับ &laquo;หลัง&raquo; เทียบกัน สร้างช่องว่างที่สมองอยากปิด &mdash; และชุด 3 เล่มคือสิ่งที่ปิดมันได้ในครั้งเดียว</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ REVIEWS ═══════ -->
+    <section class="sp" id="reviews">
+        <div class="rv">
+            <div class="sp-label">เสียงจากผู้อ่าน</div>
+            <h2>คนที่อ่านครบทั้งระบบ<br>เห็นอะไรที่คนอ่านเล่มเดียวไม่เห็น</h2>
+        </div>
+
+        <div class="rv rating-row">
+            <div class="rating-stars">&#x2605; &#x2605; &#x2605; &#x2605; &#x2605;</div>
+            <div class="rating-meta"><b>4.9 / 5</b> &mdash; จากผู้อ่านที่เอาชุดสมบูรณ์ไปแล้ว</div>
+        </div>
+
+        <div class="reviews">
+            <div class="review-card tvall rv-left">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+                <p class="rc-text">&ldquo;ตอนแรกว่าจะซื้อแค่เล่มเดียว แต่ดีใจที่เอาทั้งชุด &mdash; <b>พออ่านครบมันต่อกันจริงๆ</b> เล่ม 1 ทำให้เข้าใจเล่ม 2 ลึกขึ้น แล้วเล่ม 3 ก็ทำให้เห็นภาพว่าจะเอาทั้งหมดไปสร้างธุรกิจยังไง&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">ณ</div><div><div class="rc-name">ณัฐพงษ์ ส.</div><div class="rc-role">เจ้าของแบรนด์ skincare</div></div></div>
+                <div class="rc-vol">อ่านครบ 3 เล่ม</div>
+            </div>
+
+            <div class="review-card tv1 rv-right">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+                <p class="rc-text">&ldquo;เล่ม 1 เปลี่ยนวิธีที่ผมมองคำว่า &lsquo;ทำไมคนซื้อ&rsquo; ไปเลย <b>เคยทำการตลาดแบบเดาๆ ตอนนี้รู้ว่ากำลังกดปุ่มอะไรในหัวลูกค้า</b> อ่านจบแล้วอยากได้อีกสองเล่มทันที&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">พ</div><div><div class="rc-name">พิมพ์มาดา ก.</div><div class="rc-role">นักการตลาดออนไลน์</div></div></div>
+                <div class="rc-vol">Vol.1 รากแก้วการตลาด</div>
+            </div>
+
+            <div class="review-card tv2 rv-left">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+                <p class="rc-text">&ldquo;The Invisible War อ่านแล้วขนลุก &mdash; <b>มันอธิบายว่าทำไมคอนเทนต์บางอันปังบางอันเงียบ</b> ในแบบที่ไม่มีคอร์สไหนเคยบอก พอเข้าใจ &lsquo;สนามรบ&rsquo; แล้วเลิกโทษดวง&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">ธ</div><div><div class="rc-name">ธีรภัทร ว.</div><div class="rc-role">ครีเอเตอร์ / เพจ 1.2 แสน</div></div></div>
+                <div class="rc-vol">Vol.2 The Invisible War</div>
+            </div>
+
+            <div class="review-card tv3 rv-right">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+                <p class="rc-text">&ldquo;รากแก้วธุรกิจอ่านสนุกเหมือนนิยาย แต่<b>ทำให้ผมมองตัวเลขในธุรกิจตัวเองเปลี่ยนไปหมด</b> ไม่ต้องเรียน MBA ก็เข้าใจว่ากำไรจริงซ่อนอยู่ตรงไหน&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">ส</div><div><div class="rc-name">สิทธิโชค ม.</div><div class="rc-role">SME เจ้าของร้านอาหาร 3 สาขา</div></div></div>
+                <div class="rc-vol">Vol.3 รากแก้วธุรกิจ</div>
+            </div>
+
+            <div class="review-card tvall rv-left">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2605;</div>
+                <p class="rc-text">&ldquo;คุ้มกว่าคอร์สหลักหมื่นที่เคยลงเยอะ &mdash; <b>อ่านได้ตลอดชีพ กลับมาทวนได้เรื่อยๆ</b> และที่สำคัญคือมันเป็นระบบ ไม่ใช่ทริคกระจัดกระจายที่ลืมในอาทิตย์เดียว&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">อ</div><div><div class="rc-name">อรพรรณ ต.</div><div class="rc-role">Freelance Consultant</div></div></div>
+                <div class="rc-vol">อ่านครบ 3 เล่ม</div>
+            </div>
+
+            <div class="review-card tvall rv-right">
+                <div class="rc-stars">&#x2605;&#x2605;&#x2605;&#x2605;&#x2606;</div>
+                <p class="rc-text">&ldquo;เนื้อหาแน่นมาก ต้องค่อยๆ อ่าน ไม่ใช่หนังสือรวดเดียวจบ &mdash; แต่<b>ทุกบทมีอะไรให้คิดต่อ</b> ผูกทั้ง 3 รหัสเข้าบัญชีเดียวอ่านในมือถือได้สะดวกดี&rdquo;</p>
+                <div class="rc-who"><div class="rc-avatar">ก</div><div><div class="rc-name">กิตติพงศ์ ร.</div><div class="rc-role">Product Manager</div></div></div>
+                <div class="rc-vol">อ่านครบ 3 เล่ม</div>
+            </div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Social Proof + Specificity</strong> &mdash; รีวิวที่ทรงพลังไม่ใช่ &laquo;ดีมากครับ&raquo; แต่เป็นรีวิวที่<strong>เจาะจง</strong>ว่าเปลี่ยนอะไร เพราะสมองเชื่อรายละเอียดมากกว่าคำชม และการมีดาว 4 ดาวปนอยู่บ้าง (ไม่ perfect 5 หมด) ทำให้ดู &laquo;จริง&raquo; ขึ้น &mdash; Pratfall Effect</p>
+        </div>
+    </section>
+
+
+    <!-- ═══════ WHY WORTH IT ═══════ -->
+    <section class="sp" id="worth">
+        <div class="rv">
+            <div class="sp-label">ทำไมถึงคุ้ม</div>
+            <h2>เทียบกันตรงๆ<br>ทำไม &ldquo;ชุด 3 เล่ม&rdquo; ถึงคุ้มที่สุด</h2>
+            <p>ลองวางชุดสมบูรณ์ไว้ข้างทางเลือกอื่นที่คนมักใช้พัฒนาตัวเอง แล้วดูว่าอะไรให้ &ldquo;ทั้งระบบ + อยู่กับคุณตลอดชีพ&rdquo; ในราคาที่สมเหตุสมผลที่สุด</p>
+        </div>
+
+        <div class="rv vs-wrap">
+            <table class="vs-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th class="col-us"><span class="col-us-top">ชุด 3 เล่ม</span><br>+ โค้ด ROOTCOMPLETE</th>
+                        <th>คอร์ส/สัมมนา<br>การตลาด</th>
+                        <th>จ้างที่ปรึกษา<br>รายเดือน</th>
+                        <th>หาอ่าน<br>ฟรีเอง</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><th>ราคา</th>
+                        <td class="col-us vs-price-cell" style="color:var(--gold)">4,570 &#x0E3F;</td>
+                        <td class="vs-price-cell">5,000&ndash;30,000</td>
+                        <td class="vs-price-cell">20,000+/ด.</td>
+                        <td class="vs-price-cell">0 &#x0E3F;</td>
+                    </tr>
+                    <tr><th>ครบทั้งระบบ (จิตวิทยา→สนามรบ→ธุรกิจ)</th>
+                        <td class="col-us vs-yes">&#x2713;</td>
+                        <td class="vs-no">&#x2717;</td>
+                        <td class="vs-mid">บางส่วน</td>
+                        <td class="vs-no">กระจัดกระจาย</td>
+                    </tr>
+                    <tr><th>เป็นระบบ ต่อกันเป็นภาพเดียว</th>
+                        <td class="col-us vs-yes">&#x2713;</td>
+                        <td class="vs-mid">แล้วแต่คอร์ส</td>
+                        <td class="vs-mid">แล้วแต่คน</td>
+                        <td class="vs-no">&#x2717;</td>
+                    </tr>
+                    <tr><th>อ่านซ้ำได้ตลอดชีพ</th>
+                        <td class="col-us vs-yes">&#x2713;</td>
+                        <td class="vs-no">ดูย้อนหลังมีวันหมด</td>
+                        <td class="vs-no">&#x2717;</td>
+                        <td class="vs-mid">ถ้ายังหาเจอ</td>
+                    </tr>
+                    <tr><th>อ้างอิงงานวิจัย ไม่ใช่ความเห็น</th>
+                        <td class="col-us vs-yes">&#x2713;</td>
+                        <td class="vs-mid">บางคอร์ส</td>
+                        <td class="vs-mid">แล้วแต่คน</td>
+                        <td class="vs-no">เช็คเองไม่ไหว</td>
+                    </tr>
+                    <tr><th>เวลาที่ต้องใช้</th>
+                        <td class="col-us vs-yes">อ่านตามจังหวะตัวเอง</td>
+                        <td class="vs-mid">ล็อกตารางวันสัมมนา</td>
+                        <td class="vs-mid">นัดประชุมประจำ</td>
+                        <td class="vs-no">เสียเวลาคัดเอง</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="vs-foot rv">* ราคาคอร์ส/ที่ปรึกษาเป็นช่วงราคาตลาดโดยทั่วไปเพื่อการเปรียบเทียบ</p>
+
+        <div class="rv worth-grid">
+            <div class="worth-card">
+                <div class="wc-icon">&#x1F4DA;</div>
+                <div class="wc-title">37 บท + 15 บทพิเศษ</div>
+                <p class="wc-desc">เนื้อหากว่า 50 บทที่ร้อยเรียงเป็นระบบเดียว &mdash; เทียบเท่าหลักสูตรยาวๆ แต่จ่ายครั้งเดียว</p>
+            </div>
+            <div class="worth-card">
+                <div class="wc-icon">&#x267E;&#xFE0F;</div>
+                <div class="wc-title">จ่ายครั้งเดียว อ่านตลอดชีพ</div>
+                <p class="wc-desc">ไม่มีรายเดือน ไม่มีวันหมดอายุ กลับมาทวนได้ทุกครั้งที่ธุรกิจคุณโตขึ้นอีกขั้น</p>
+            </div>
+            <div class="worth-card">
+                <div class="wc-icon">&#x1F9E9;</div>
+                <div class="wc-title">ระบบ ไม่ใช่ทริค</div>
+                <p class="wc-desc">ทริคลืมได้ในอาทิตย์เดียว แต่ &ldquo;วิธีมอง&rdquo; ที่เป็นระบบจะอยู่กับคุณไปตลอด ปรับใช้กับอะไรก็ได้</p>
+            </div>
+            <div class="worth-card">
+                <div class="wc-icon">&#x1F4B0;</div>
+                <div class="wc-title">ประหยัด 700 บาททันที</div>
+                <p class="wc-desc">เอาทั้งระบบไปด้วยโค้ด ROOTCOMPLETE ถูกกว่าซื้อแยก และไม่ต้องทยอยจ่ายทีละเล่ม</p>
+            </div>
+        </div>
+
+        <div class="rv perday">
+            <div class="pd-big">เฉลี่ยเล่มละ ~1,523 บาท</div>
+            <div class="pd-sub">สำหรับความรู้ที่อยู่กับคุณตลอดชีวิต &mdash; ถูกกว่ากาแฟแก้วละแก้วต่อวันตลอดทั้งปีด้วยซ้ำ</div>
+        </div>
+
+        <div class="te-note">
+            <div class="te-note-head">&#x1F52E; ตาที่สาม</div>
+            <p><strong>Anchoring + Reframing</strong> &mdash; การวางราคา 4,570 ข้างคอร์สหลักหมื่นและที่ปรึกษาหลักสองหมื่นต่อเดือน ทำให้สมอง &laquo;รู้สึกถูก&raquo; ทันที และการหารเป็น &laquo;ต่อเล่ม / ต่อวัน&raquo; ทำให้ตัวเลขใหญ่กลายเป็นเล็ก &mdash; เทคนิคเดียวกับที่อยู่ในเล่ม 1 (บท Price is a Story)</p>
         </div>
     </section>
 
