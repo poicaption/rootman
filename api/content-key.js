@@ -74,14 +74,23 @@ export default async function handler(req) {
   if (!passphrase) return json({ error: 'server_misconfigured' }, 500);
 
   // Log content access (best-effort, non-blocking on errors).
+  // Capture request fingerprint (IP / UA / geo) — this is the evidence that proves
+  // the buyer actually opened & read the book, used to contest bank chargebacks.
   try {
     const now = new Date().toISOString();
-    await redis(['LPUSH', `activity:user:${uname}`, JSON.stringify({ event: 'content_access', product, at: now })]);
+    const ipRaw = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '';
+    const ip = ipRaw.split(',')[0].trim() || null;
+    const ua = (req.headers.get('user-agent') || '').slice(0, 200) || null;
+    const country = req.headers.get('x-vercel-ip-country') || null;
+    let city = req.headers.get('x-vercel-ip-city') || null;
+    if (city) { try { city = decodeURIComponent(city); } catch (e) { /* keep raw */ } }
+    const fingerprint = { ip, ua, country, city };
+    await redis(['LPUSH', `activity:user:${uname}`, JSON.stringify({ event: 'content_access', product, at: now, ...fingerprint })]);
     await redis(['LTRIM', `activity:user:${uname}`, 0, 499]);
     const ur = await redis(['GET', `user:${uname}`]);
     const user = safeParse(ur && ur.result);
     if (user && user.email) {
-      await redis(['LPUSH', `activity:email:${user.email}`, JSON.stringify({ event: 'content_access', product, username: uname, ts: now })]);
+      await redis(['LPUSH', `activity:email:${user.email}`, JSON.stringify({ event: 'content_access', product, username: uname, ts: now, ...fingerprint })]);
       await redis(['LTRIM', `activity:email:${user.email}`, 0, 499]);
     }
   } catch (e) { /* ignore logging errors */ }

@@ -95,6 +95,44 @@ async function buildEvidenceFromSession(sessionId) {
     }
   }
 
+  // ── Account-based reading activity (proves the buyer opened & READ the book) ──
+  // Stored per-email when the logged-in account fetches a volume's content key.
+  const buyerEmail = (purchase && purchase.customer_email) || (codeRecord && codeRecord.customer_email) || null;
+  let readingActivity = [];
+  let readingSummary = {
+    total_reads: 0, distinct_ips: 0, first_read_at: null, last_read_at: null,
+    ip_list: [], country_list: [],
+  };
+  if (buyerEmail) {
+    const actList = await redis(['LRANGE', `activity:email:${buyerEmail.trim().toLowerCase()}`, 0, -1]);
+    if (Array.isArray(actList && actList.result)) {
+      const all = actList.result.map(safeParse).filter(Boolean).map((ev) => {
+        const event = ev.event || ev.type || null;
+        const ts = ev.ts || ev.at || null;
+        return { ...ev, event: event === 'account_access' ? 'content_access' : event, ts };
+      });
+      readingActivity = all.filter((ev) => ev.event === 'content_access')
+        .sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
+      const ips = new Set();
+      const countries = new Set();
+      let firstR = null, lastR = null;
+      for (const ev of readingActivity) {
+        if (ev.ip) ips.add(ev.ip);
+        if (ev.country) countries.add(ev.country);
+        if (ev.ts && (!firstR || ev.ts < firstR)) firstR = ev.ts;
+        if (ev.ts && (!lastR || ev.ts > lastR)) lastR = ev.ts;
+      }
+      readingSummary = {
+        total_reads: readingActivity.length,
+        distinct_ips: ips.size,
+        first_read_at: firstR,
+        last_read_at: lastR,
+        ip_list: [...ips],
+        country_list: [...countries],
+      };
+    }
+  }
+
   // Live cross-check with Stripe (authoritative source of truth)
   const stripeSession = await fetchStripeSession(sessionId);
 
@@ -102,6 +140,7 @@ async function buildEvidenceFromSession(sessionId) {
     queried_at: new Date().toISOString(),
     session_id: sessionId,
     code,
+    buyer_email: buyerEmail,
     purchase_record: purchase,
     code_record: codeRecord,
     stripe_session: stripeSession,
@@ -114,7 +153,9 @@ async function buildEvidenceFromSession(sessionId) {
       ip_list: distinctIps,
       device_list: distinctDevices,
     },
+    reading_summary: readingSummary,
     audit_log: auditEvents,
+    reading_activity: readingActivity,
   };
 }
 

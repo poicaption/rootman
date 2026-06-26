@@ -678,6 +678,7 @@
         if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
         if (ev.username) meta.push('@' + esc(ev.username));
         if (ev.ip) meta.push('IP ' + esc(ev.ip));
+        if (ev.country) meta.push(esc(ev.country) + (ev.city ? '/' + esc(ev.city) : ''));
         if (ev.device_id_short) meta.push('dev ' + esc(ev.device_id_short));
         if (ev.amount_total) meta.push(esc(money(ev.amount_total, ev.currency)));
         if (ev.slot) meta.push('slot ' + ev.slot);
@@ -841,6 +842,7 @@
         if (ev.product) meta.push(String(ev.product).toUpperCase().replace('VOL', 'Vol.'));
         if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
         if (ev.ip) meta.push('IP ' + esc(ev.ip));
+        if (ev.country) meta.push(esc(ev.country) + (ev.city ? '/' + esc(ev.city) : ''));
         html += '<div class="tl-item ' + eventClass(evName) + '">' +
           '<div class="tl-time">' + esc(fmtTime(evTs)) + ' · ' + esc(relTime(evTs)) + '</div>' +
           '<div class="tl-event">' + esc(eventLabel(evName)) + '</div>' +
