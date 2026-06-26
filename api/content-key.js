@@ -81,7 +81,7 @@ export default async function handler(req) {
     const ur = await redis(['GET', `user:${uname}`]);
     const user = safeParse(ur && ur.result);
     if (user && user.email) {
-      await redis(['LPUSH', `activity:email:${user.email}`, JSON.stringify({ type: 'account_access', product, username: uname, at: now })]);
+      await redis(['LPUSH', `activity:email:${user.email}`, JSON.stringify({ event: 'content_access', product, username: uname, ts: now })]);
       await redis(['LTRIM', `activity:email:${user.email}`, 0, 499]);
     }
   } catch (e) { /* ignore logging errors */ }

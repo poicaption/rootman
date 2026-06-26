@@ -143,6 +143,15 @@ export default async function handler(req) {
 
     // ── Unified activity timeline (most recent first) ──
     let timeline = await lrangeJson(`activity:email:${email}`);
+    // Normalize legacy / alternate field names so every entry renders uniformly.
+    // Some writers logged `type`/`at` instead of the canonical `event`/`ts`, and
+    // an older "account_access" label means the same thing as opening a volume.
+    timeline = timeline.map((ev) => {
+      const event = ev.event || ev.type || null;
+      const ts = ev.ts || ev.at || null;
+      const norm = event === 'account_access' ? 'content_access' : event;
+      return { ...ev, event: norm, ts };
+    });
     // Sort newest → oldest defensively (LPUSH already gives this order).
     timeline.sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
     const totalEvents = timeline.length;

@@ -617,6 +617,8 @@
       register: 'สร้างบัญชี',
       login: 'เข้าสู่ระบบ',
       redeem: 'ปลดล็อกโค้ดเข้าบัญชี',
+      content_access: 'เปิดอ่านเนื้อหา',
+      account_access: 'เปิดอ่านเนื้อหา',
       admin_disable: 'แอดมินระงับบัญชี',
       admin_enable: 'แอดมินเปิดใช้บัญชี',
       admin_reset_password: 'แอดมินรีเซ็ตรหัสผ่าน',
@@ -668,18 +670,22 @@
     } else {
       html += '<div class="timeline">';
       tl.forEach(function (ev) {
+        var evName = ev.event || ev.type;
+        var evTs = ev.ts || ev.at;
         var meta = [];
         if (ev.vol) meta.push('Vol.' + ev.vol);
+        else if (ev.product) meta.push(String(ev.product).toUpperCase().replace('VOL', 'Vol.'));
         if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
+        if (ev.username) meta.push('@' + esc(ev.username));
         if (ev.ip) meta.push('IP ' + esc(ev.ip));
         if (ev.device_id_short) meta.push('dev ' + esc(ev.device_id_short));
         if (ev.amount_total) meta.push(esc(money(ev.amount_total, ev.currency)));
         if (ev.slot) meta.push('slot ' + ev.slot);
         if (ev.evicted_short) meta.push('เตะ ' + esc(ev.evicted_short));
         if (ev.platform) meta.push(esc(ev.platform));
-        html += '<div class="tl-item ' + eventClass(ev.event) + '">' +
-          '<div class="tl-time">' + esc(fmtTime(ev.ts)) + ' · ' + esc(relTime(ev.ts)) + '</div>' +
-          '<div class="tl-event">' + esc(eventLabel(ev.event)) + '</div>' +
+        html += '<div class="tl-item ' + eventClass(evName) + '">' +
+          '<div class="tl-time">' + esc(fmtTime(evTs)) + ' · ' + esc(relTime(evTs)) + '</div>' +
+          '<div class="tl-event">' + esc(eventLabel(evName)) + '</div>' +
           (meta.length ? '<div class="tl-meta">' + meta.join(' · ') + '</div>' : '') +
         '</div>';
       });
@@ -829,13 +835,15 @@
     } else {
       html += '<div class="timeline">';
       tl.forEach(function (ev) {
+        var evName = ev.event || ev.type;
+        var evTs = ev.at || ev.ts;
         var meta = [];
-        if (ev.product) meta.push(ev.product.toUpperCase());
+        if (ev.product) meta.push(String(ev.product).toUpperCase().replace('VOL', 'Vol.'));
         if (ev.code) meta.push('<b>' + esc(ev.code) + '</b>');
         if (ev.ip) meta.push('IP ' + esc(ev.ip));
-        html += '<div class="tl-item ' + eventClass(ev.event) + '">' +
-          '<div class="tl-time">' + esc(fmtTime(ev.at)) + ' · ' + esc(relTime(ev.at)) + '</div>' +
-          '<div class="tl-event">' + esc(eventLabel(ev.event)) + '</div>' +
+        html += '<div class="tl-item ' + eventClass(evName) + '">' +
+          '<div class="tl-time">' + esc(fmtTime(evTs)) + ' · ' + esc(relTime(evTs)) + '</div>' +
+          '<div class="tl-event">' + esc(eventLabel(evName)) + '</div>' +
           (meta.length ? '<div class="tl-meta">' + meta.join(' · ') + '</div>' : '') +
         '</div>';
       });
