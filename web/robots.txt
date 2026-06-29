@@ -1,0 +1,29 @@
+# The One Root — robots policy
+# Public marketing & content pages are open to all crawlers.
+# Private / transactional surfaces are kept out of the index.
+
+User-agent: *
+Allow: /
+
+# Private account & admin surfaces
+Disallow: /admin
+Disallow: /account
+Disallow: /login
+Disallow: /library
+
+# Post-purchase pages (thin, transactional — no SEO value)
+Disallow: /thank-you
+Disallow: /thank-you-v2
+Disallow: /thank-you-v3
+Disallow: /thank-you-bundle
+
+# API endpoints
+Disallow: /api/
+
+# Block common AI scrapers from training on the paid content (optional, polite)
+User-agent: GPTBot
+Disallow: /vol1
+Disallow: /vol2
+Disallow: /vol3
+
+Sitemap: https://rootmanknows.com/sitemap.xml
