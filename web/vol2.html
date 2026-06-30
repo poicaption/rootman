@@ -3289,7 +3289,8 @@
         }
 
         /* Ensure content stays above background overlays (preserve original positioning) */
-        #sidebar { z-index: 100; }
+        /* Keep the sidebar above its dimming overlay (z:999) so the mobile TOC isn't covered */
+        #sidebar { z-index: 1000; }
         #main, main { position: relative; z-index: 2; }
         .cover-section, .unlock-gate { position: relative; z-index: 2; }
     
