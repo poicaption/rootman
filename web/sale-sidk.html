@@ -289,14 +289,27 @@
         @media (min-width: 720px) { .ladder-cards { grid-template-columns: repeat(3, 1fr); } }
         .ladder-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem; text-decoration: none; display: block; transition: transform 0.25s, border-color 0.25s; }
         .ladder-card:hover { transform: translateY(-4px); border-color: var(--gold-line); }
-        .ladder-cover { display: grid; place-items: center; margin: 0 0 0.9rem; padding: 0.9rem 0; border-radius: 10px; background: radial-gradient(120% 90% at 50% 0%, rgba(201,154,59,0.14), transparent 70%); }
-        .ladder-cover img { width: 118px; height: auto; border-radius: 6px; box-shadow: 0 12px 30px rgba(0,0,0,0.45); transition: transform 0.3s; }
+        .ladder-cover { display: grid; place-items: center; margin: 0 0 0.9rem; padding: 1.1rem 0; }
+        .ladder-cover img { width: 118px; height: auto; transition: transform 0.3s; }
+        .lad-v1 .ladder-cover img { filter: drop-shadow(0 0 22px rgba(201,154,59,0.55)) drop-shadow(0 14px 26px rgba(0,0,0,0.5)); }
+        .lad-v2 .ladder-cover img { filter: drop-shadow(0 0 22px rgba(99,128,225,0.55)) drop-shadow(0 14px 26px rgba(0,0,0,0.5)); }
+        .lad-v3 .ladder-cover img { filter: drop-shadow(0 0 22px rgba(70,160,110,0.55)) drop-shadow(0 14px 26px rgba(0,0,0,0.5)); }
         .ladder-card:hover .ladder-cover img { transform: translateY(-4px) scale(1.03); }
         .ladder-step { font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; }
         .ladder-name { font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--text); font-size: 1rem; margin: 0.4rem 0 0.3rem; }
         .ladder-desc { font-size: 0.84rem; color: var(--text-sec); line-height: 1.6; }
         .ladder-link { font-size: 0.82rem; color: var(--gold-light); margin-top: 0.6rem; display: inline-block; }
         .ladder-now { border-color: var(--gold-line); background: linear-gradient(135deg, rgba(201,154,59,0.12), rgba(201,154,59,0.04)); }
+        /* CI-colored detail cards per book identity */
+        .lad-v1 { border-color: rgba(201,154,59,0.42); background: linear-gradient(160deg, rgba(201,154,59,0.11), rgba(201,154,59,0.02)); }
+        .lad-v2 { border-color: rgba(99,128,225,0.42); background: linear-gradient(160deg, rgba(99,128,225,0.11), rgba(99,128,225,0.02)); }
+        .lad-v3 { border-color: rgba(70,160,110,0.42); background: linear-gradient(160deg, rgba(70,160,110,0.11), rgba(70,160,110,0.02)); }
+        .lad-v1:hover { border-color: rgba(201,154,59,0.80); }
+        .lad-v2:hover { border-color: rgba(99,128,225,0.80); }
+        .lad-v3:hover { border-color: rgba(70,160,110,0.80); }
+        .lad-v1 .ladder-step, .lad-v1 .ladder-link { color: #d8a945; }
+        .lad-v2 .ladder-step, .lad-v2 .ladder-link { color: #8ba6f0; }
+        .lad-v3 .ladder-step, .lad-v3 .ladder-link { color: #6cc290; }
 
         /* ═══ PRICING ═══ */
         .pricing-section { background: linear-gradient(180deg, #0A0806, #14100B); border-top: 1px solid var(--border); padding: 3.4rem 1.5rem; }
@@ -709,21 +722,21 @@
 
         <div class="ladder">
             <div class="ladder-cards">
-                <a href="/sale" class="ladder-card">
+                <a href="/sale-sales" class="ladder-card lad-v1">
                     <div class="ladder-step">เล่ม 1 · The One Root of Marketing</div>
                     <div class="ladder-cover"><img src="images/book-vol1.png" alt="รากแก้วการตลาด" width="118" loading="lazy"></div>
                     <div class="ladder-name">รากแก้วการตลาด</div>
                     <div class="ladder-desc"><strong>ทำไมคนถึงซื้อ</strong> &mdash; เจาะลึกจิตวิทยาเบื้องหลังการตัดสินใจของลูกค้า เข้าใจว่าทำไมคนถึงกดซื้อ &mdash; เพื่อให้คุณขายของได้โดยไม่ต้องลดราคา</div>
                     <span class="ladder-link">ดูเล่ม 1 &rarr;</span>
                 </a>
-                <a href="/sale-vol2" class="ladder-card">
+                <a href="/sale-vol2" class="ladder-card lad-v2">
                     <div class="ladder-step">เล่ม 2 · สงครามที่มองไม่เห็น</div>
                     <div class="ladder-cover"><img src="images/book-vol2.png" alt="รากแก้วการตลาด ภาค 2" width="118" loading="lazy"></div>
                     <div class="ladder-name">รากแก้วการตลาด ภาค 2</div>
                     <div class="ladder-desc"><strong>ทำไมคู่แข่งถึงชนะ</strong> &mdash; เปิดสงครามที่มองไม่เห็นเบื้องหลังทุกตลาด: สงคราคา การวางตำแหน่ง และกลยุทธ์เอาชนะโดยไม่ต้องหั่นราคา</div>
                     <span class="ladder-link">ดูเล่ม 2 &rarr;</span>
                 </a>
-                <a href="/sale-vol3" class="ladder-card">
+                <a href="/sale-vol3" class="ladder-card lad-v3">
                     <div class="ladder-step">เล่ม 3 · One Root of Business</div>
                     <div class="ladder-cover"><img src="images/book-vol3.png" alt="รากแก้วธุรกิจ" width="118" loading="lazy"></div>
                     <div class="ladder-name">รากแก้วธุรกิจ</div>
