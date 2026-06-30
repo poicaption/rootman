@@ -116,7 +116,7 @@
   function injectStyles() {
     if (document.getElementById('xsell-styles')) return;
     var css = [
-      '.xs-chip{position:fixed;right:20px;bottom:84px;z-index:9990;display:none;align-items:center;gap:10px;',
+      '.xs-chip{position:fixed;right:20px;bottom:84px;z-index:900;display:none;align-items:center;gap:10px;',
         'max-width:330px;padding:12px 30px 12px 14px;border-radius:12px;color:#ECECEC;',
         "font-family:'Sarabun','IBM Plex Sans Thai',sans-serif;font-size:13px;line-height:1.5;",
         'background:linear-gradient(135deg,#15140F 0%,#1F1B12 100%);',
@@ -125,6 +125,8 @@
         'opacity:0;transform:translateY(16px);transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);',
         '-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}',
       '.xs-chip.visible{display:flex}',
+      // Never overlap the mobile table-of-contents drawer when it is open.
+      '#sidebar.open ~ .xs-chip{display:none !important}',
       '.xs-chip.in{opacity:1;transform:translateY(0)}',
       '.xs-chip::before{content:"";position:absolute;top:0;left:16px;right:16px;height:1px;',
         'background:linear-gradient(90deg,transparent,var(--xs),var(--xs2),transparent);opacity:.65}',

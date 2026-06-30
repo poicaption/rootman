@@ -30,7 +30,7 @@
   function injectStyles() {
     if (document.getElementById('rn-styles')) return;
     var css = [
-      '.rn-hud{position:fixed;top:14px;left:50%;z-index:9985;display:none;align-items:center;gap:2px;',
+      '.rn-hud{position:fixed;top:14px;left:50%;z-index:900;display:none;align-items:center;gap:2px;',
         'padding:5px 6px;border-radius:999px;opacity:0;',
         'transform:translateX(-50%) translateY(-12px);',
         'transition:opacity .3s ease,transform .3s ease;',
@@ -40,6 +40,8 @@
         "font-family:'Sarabun','IBM Plex Sans Thai',sans-serif;color:#ECECEC;",
         '-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}',
       '.rn-hud.show{display:flex;opacity:.5;transform:translateX(-50%) translateY(0)}',
+      // Never overlap the mobile table-of-contents drawer when it is open.
+      '#sidebar.open ~ .rn-hud{display:none !important}',
       '.rn-hud.show:hover,.rn-hud.show:focus-within{opacity:1}',
       '.rn-btn{width:30px;height:30px;border:none;background:transparent;cursor:pointer;border-radius:50%;',
         'display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;',
