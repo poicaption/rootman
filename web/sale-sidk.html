@@ -345,6 +345,11 @@
         .price-big { font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 4rem; color: var(--gold-light); line-height: 1; }
         .price-unit { font-size: 1.1rem; color: var(--text-sec); }
         .price-tagline { text-align: center; font-size: 0.85rem; color: var(--text-dim); margin-bottom: 1.4rem; }
+        .price-launch-wrap { text-align: center; margin-top: 1.6rem; margin-bottom: -0.8rem; }
+        .price-launch-badge { display: inline-block; background: linear-gradient(135deg, #C0392B, #E25C3F); color: #fff; font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.82rem; padding: 0.42rem 1.1rem; border-radius: 999px; box-shadow: 0 8px 22px rgba(192,57,43,0.34); }
+        .price-urgency { text-align: center; font-size: 0.82rem; color: var(--gold-light); margin: -0.4rem 0 1.5rem; line-height: 1.65; }
+        .price-urgency strong { color: var(--text); }
+        .price-guarantee { text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 1rem; line-height: 1.6; }
         .price-reason { background: var(--gold-soft); border-radius: 12px; padding: 1.2rem 1.3rem; margin-bottom: 1.6rem; }
         .price-reason-title { font-family: 'Prompt', sans-serif; font-size: 0.98rem; color: var(--gold-light); margin-bottom: 0.6rem; }
         .price-reason p { font-size: 0.9rem; color: var(--text-sec); margin-bottom: 0.6rem; }
@@ -448,7 +453,7 @@
             <p class="hero-sub">PDF Workbook ที่พาคุณไปทีละขั้น &mdash; จาก &ldquo;ไม่รู้จะเริ่มตรงไหน&rdquo; สู่ &ldquo;รู้ว่าเส้นไหนใช่ ไอเดียไหนเวิร์ก และต้องลงมือยังไง&rdquo; ก่อนคุณจะเสียเงิน เวลา และแรงไปกับทางที่ผิด</p>
             <p class="hero-hook">&ldquo;คนส่วนใหญ่ไม่ได้ล้มเหลวเพราะไม่ขยัน &mdash; แต่ล้มเหลวเพราะยืนผิดสนามตั้งแต่ก้าวแรก&rdquo;</p>
             <div class="hero-cta-row">
-                <a href="#pricing" class="hero-cta"><i class="fa-solid fa-compass-drafting"></i>&nbsp; เริ่มหาเส้นทางของคุณ &mdash; 490 บาท</a>
+                <a href="#pricing" class="hero-cta"><i class="fa-solid fa-compass-drafting"></i>&nbsp; เริ่มหาเส้นทางของคุณ &mdash; 490 บาท <span style="opacity:0.7;font-weight:400;text-decoration:line-through;">990</span></a>
                 <a href="#inside" class="hero-cta-secondary">ดูว่าข้างในมีอะไรบ้าง &rarr;</a>
             </div>
             <p class="hero-micro"><i class="fa-solid fa-circle-check"></i> จ่ายครั้งเดียว &bull; รับไฟล์ PDF ทันที &bull; 51 หน้า ทำตามได้เลย<br>อ่านได้ทุกอุปกรณ์ &bull; เก็บไว้ทำซ้ำได้ตลอด</p>
@@ -711,7 +716,7 @@
     <!-- ═══════════════════ MID CTA ═══════════════════ -->
     <div class="mid-cta rv">
         <a href="#pricing" class="mid-cta-btn">เริ่มหาเส้นทางของคุณ &mdash; 490 ฿</a>
-        <p class="mid-cta-note">จ่ายครั้งเดียว &bull; รับไฟล์ PDF ทันที &bull; ทำซ้ำได้ตลอด</p>
+        <p class="mid-cta-note">🔥 ราคาเปิดตัว (ปกติ 990 ฿) &bull; จ่ายครั้งเดียว &bull; รับไฟล์ PDF ทันที</p>
     </div>
 
     <!-- ═══════════════════ SERIES LADDER ═══════════════════ -->
@@ -803,11 +808,14 @@
                 </div>
             </div>
 
+            <div class="price-launch-wrap rv"><span class="price-launch-badge">🔥 ราคาเปิดตัว &mdash; ลด 50% เฉพาะรุ่นแรก</span></div>
             <div class="price-hero rv">
+                <div class="price-strike">990</div>
                 <div class="price-big">490</div>
                 <div class="price-unit">บาท</div>
             </div>
-            <p class="price-tagline">จ่ายครั้งเดียว &bull; ไม่มีรายเดือน &bull; เป็นเจ้าของตลอดไป</p>
+            <p class="price-tagline"><strong style="color:var(--gold-light);">ประหยัดทันที 500 บาท</strong> &bull; จ่ายครั้งเดียว ไม่มีรายเดือน &bull; เป็นเจ้าของตลอดไป</p>
+            <p class="price-urgency">⏳ ราคาเปิดตัว 490 บาท สงวนไว้สำหรับผู้เริ่มต้นรุ่นแรกเท่านั้น &mdash; เมื่อครบโควตา ราคาจะกลับสู่ปกติที่ <strong>990 บาท</strong></p>
 
             <div class="price-reason">
                 <h4 class="price-reason-title">ทำไมถึงคุ้ม?</h4>
@@ -816,6 +824,7 @@
             </div>
 
             <a href="https://buy.stripe.com/6oU4gzdgrcfU1IJ1sQgYU05" class="pricing-cta">ปลดล็อกชุดเครื่องมือทั้งหมด (51 หน้า) &mdash; รับไฟล์ PDF ทันที</a>
+            <p class="price-guarantee">🛡️ รับประกันความพอใจ &mdash; ถ้าไม่เวิร์ก ทักมาภายใน 7 วัน <strong style="color:var(--text);">คืนเงินเต็มจำนวน</strong></p>
             <p class="pricing-note">ไม่ต้องโหลดแอป &bull; ไม่ต้องรอจัดส่ง &bull; ทำซ้ำได้ตลอดชีพ</p>
             <p class="pricing-sub-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe &bull; จ่ายครั้งเดียว</p>
         </div>
@@ -942,14 +951,14 @@
             <p>ถ้าคุณยังวนคิดว่าจะเริ่มอะไรดี ยังกลัวว่าลงมือไปแล้วจะเจ๊ง หรือยังเลือกไม่ได้สักทีว่าทางไหนใช่</p>
             <p>บางทีสิ่งที่คุณต้องการ ไม่ใช่ไอเดียเพิ่ม &mdash; แต่คือเครื่องมือที่ช่วยให้คุณ <strong style="color: var(--gold-light);">เห็นทางของตัวเองให้ชัด</strong> ก่อนก้าวแรก</p>
             <p style="font-size: 0.82rem; color: var(--text-dim); margin-top: 0.5rem;">ทำแล้วไม่ใช่? คืนเงินภายใน 7 วัน ไม่มีเงื่อนไข</p>
-            <a href="https://buy.stripe.com/6oU4gzdgrcfU1IJ1sQgYU05" class="final-cta-btn">เริ่มหาเส้นทางของคุณวันนี้ &mdash; 490 บาท</a>
+            <a href="https://buy.stripe.com/6oU4gzdgrcfU1IJ1sQgYU05" class="final-cta-btn">เริ่มหาเส้นทางของคุณวันนี้ &mdash; 490 บาท <span style="opacity:0.7;font-weight:400;text-decoration:line-through;">990</span></a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับไฟล์ PDF ทันที</p>
         </div>
     </div>
 
     <!-- ── Sticky mobile CTA ── -->
     <div class="sticky-cta" id="sticky-cta">
-        <span class="sticky-cta-price"><strong>490 ฿</strong> จ่ายครั้งเดียว</span>
+        <span class="sticky-cta-price"><span style="text-decoration:line-through;opacity:0.55;font-weight:400;">990</span> <strong>490 ฿</strong></span>
         <a href="https://buy.stripe.com/6oU4gzdgrcfU1IJ1sQgYU05" class="sticky-cta-btn">ซื้อเลย</a>
     </div>
 

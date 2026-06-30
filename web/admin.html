@@ -7,29 +7,34 @@
 <link rel="apple-touch-icon" href="/images/Logo.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&family=Prompt:wght@500;600;700;800&display=swap" rel="stylesheet">
 <title>ROOT · Admin Dashboard</title>
 <style>
   :root {
-    --bg: #0e1116;
-    --panel: #171b22;
-    --panel-2: #1e242d;
-    --border: #2a313c;
-    --text: #e6e9ef;
-    --muted: #8b95a5;
-    --accent: #c4956a;
-    --accent-2: #6aa9c4;
-    --green: #4caf7d;
+    --bg: #0b0e14;
+    --sidebar: #10141c;
+    --panel: #151b24;
+    --panel-2: #1c2330;
+    --border: #283040;
+    --text: #e8ebf1;
+    --muted: #8a94a6;
+    --accent: #c99a3b;
+    --accent-2: #5b9dd9;
+    --green: #3fb27f;
     --red: #e0584b;
     --amber: #d9a441;
     --radius: 14px;
-    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --shadow: 0 10px 34px rgba(0,0,0,.45);
+    --font-head: 'Prompt', 'Noto Sans Thai', sans-serif;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Noto Sans Thai", sans-serif;
+    font-family: 'Noto Sans Thai', -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", sans-serif;
     font-size: 15px;
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -47,7 +52,8 @@
     border-radius: var(--radius); padding: 36px 32px; width: min(92vw, 380px);
     box-shadow: var(--shadow); text-align: center;
   }
-  .gate-card h1 { font-size: 20px; margin: 0 0 4px; letter-spacing: .5px; }
+  .gate-card h1 { font-family: var(--font-head); font-size: 22px; margin: 0 0 4px; letter-spacing: .5px; }
+  .gate-card h1 span { color: var(--accent); }
   .gate-card p { color: var(--muted); margin: 0 0 22px; font-size: 13px; }
   .gate-card input {
     width: 100%; padding: 12px 14px; border-radius: 10px;
@@ -63,35 +69,76 @@
   .gate-card button:hover { filter: brightness(1.08); }
   .gate-err { color: var(--red); font-size: 13px; min-height: 18px; margin-top: 10px; }
 
-  /* ── Layout ── */
-  header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 24px; border-bottom: 1px solid var(--border);
-    background: var(--panel); position: sticky; top: 0; z-index: 20;
+  /* ── Shell layout ── */
+  .shell { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 234px; flex-shrink: 0; background: var(--sidebar);
+    border-right: 1px solid var(--border); position: sticky; top: 0;
+    height: 100vh; display: flex; flex-direction: column; padding: 22px 16px;
   }
-  header .brand { font-weight: 800; letter-spacing: 1px; font-size: 16px; }
-  header .brand span { color: var(--accent); }
-  header .right { display: flex; align-items: center; gap: 12px; }
+  .sb-brand { font-family: var(--font-head); font-weight: 800; letter-spacing: 1px; font-size: 17px; padding: 4px 10px 24px; }
+  .sb-brand span { color: var(--accent); }
+  .sb-nav { display: flex; flex-direction: column; gap: 4px; }
+  .nav-item {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+    background: none; border: none; color: var(--muted); font-family: inherit; font-size: 14px;
+    padding: 11px 13px; border-radius: 11px; cursor: pointer; transition: background .15s, color .15s;
+  }
+  .nav-item svg { width: 18px; height: 18px; flex-shrink: 0; }
+  .nav-item:hover { background: var(--panel-2); color: var(--text); }
+  .nav-item.active { background: linear-gradient(135deg, rgba(201,154,59,.20), rgba(201,154,59,.05)); color: var(--accent); font-weight: 700; }
+  .sb-foot { margin-top: auto; padding-top: 16px; }
+  .sb-foot .ghost-btn { width: 100%; }
+
+  .content { flex: 1; min-width: 0; }
+  .topbar {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 28px; border-bottom: 1px solid var(--border);
+    background: rgba(11,14,20,.82); backdrop-filter: blur(8px);
+    position: sticky; top: 0; z-index: 20;
+  }
+  .tb-title { font-family: var(--font-head); font-weight: 700; font-size: 18px; }
+  .topbar .right { display: flex; align-items: center; gap: 12px; }
   .ghost-btn {
     background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
-    padding: 8px 14px; border-radius: 9px; cursor: pointer; font-size: 13px;
+    padding: 9px 15px; border-radius: 10px; cursor: pointer; font-size: 13px; font-family: inherit;
+    transition: border-color .15s, background .15s;
   }
-  .ghost-btn:hover { border-color: var(--accent); }
+  .ghost-btn:hover { border-color: var(--accent); background: var(--panel); }
   .updated { color: var(--muted); font-size: 12px; }
 
-  main { padding: 24px; max-width: 1180px; margin: 0 auto; }
+  main { padding: 26px 28px 70px; max-width: 1180px; margin: 0 auto; }
+  .view { display: none; }
+  .view.active { display: block; animation: viewfade .25s ease; }
+  @keyframes viewfade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  @media (max-width: 820px) {
+    .shell { flex-direction: column; }
+    .sidebar { width: auto; height: auto; position: sticky; top: 0; z-index: 30; flex-direction: row; align-items: center; gap: 6px; padding: 10px 12px; overflow-x: auto; }
+    .sb-brand { padding: 0 10px 0 4px; white-space: nowrap; font-size: 15px; }
+    .sb-nav { flex-direction: row; flex: 1; }
+    .nav-item { white-space: nowrap; padding: 9px 12px; }
+    .sb-foot { margin: 0; padding: 0; }
+    .sb-foot .ghost-btn { width: auto; }
+    .topbar { padding: 14px 18px; }
+    main { padding: 20px 18px 60px; }
+  }
 
   /* ── Stat cards ── */
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 26px; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-bottom: 28px; }
   .card {
-    background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 18px 18px 16px; position: relative; overflow: hidden;
+    background: linear-gradient(160deg, var(--panel), var(--panel-2));
+    border: 1px solid var(--border); border-radius: 16px;
+    padding: 20px; position: relative; overflow: hidden;
+    transition: transform .18s, border-color .18s;
   }
-  .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
-  .card .value { font-size: 30px; font-weight: 800; margin-top: 8px; line-height: 1; }
-  .card .sub { color: var(--muted); font-size: 12px; margin-top: 8px; }
+  .card:hover { transform: translateY(-2px); border-color: rgba(201,154,59,.40); }
+  .card::before { content: ""; position: absolute; right: -32px; top: -32px; width: 94px; height: 94px; border-radius: 50%; background: radial-gradient(circle, rgba(201,154,59,.10), transparent 70%); }
+  .card .label { color: var(--muted); font-size: 11.5px; text-transform: uppercase; letter-spacing: .7px; position: relative; }
+  .card .value { font-family: var(--font-head); font-size: 28px; font-weight: 800; margin-top: 10px; line-height: 1.1; position: relative; }
+  .card .sub { color: var(--muted); font-size: 12px; margin-top: 8px; position: relative; }
   .card.accent::after, .card.green::after, .card.blue::after, .card.amber::after {
-    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
   }
   .card.accent::after { background: var(--accent); }
   .card.green::after { background: var(--green); }
@@ -112,9 +159,9 @@
   }
 
   /* ── Section ── */
-  .section { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 26px; }
-  .section-head { padding: 14px 18px; border-bottom: 1px solid var(--border); font-weight: 700; display: flex; justify-content: space-between; align-items: center; }
-  .section-head .count { color: var(--muted); font-size: 12px; font-weight: 500; }
+  .section { background: var(--panel); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 22px; box-shadow: 0 2px 12px rgba(0,0,0,.18); }
+  .section-head { padding: 15px 18px; border-bottom: 1px solid var(--border); font-family: var(--font-head); font-weight: 700; font-size: 14.5px; display: flex; justify-content: space-between; align-items: center; }
+  .section-head .count { color: var(--muted); font-size: 12px; font-weight: 500; font-family: 'Noto Sans Thai', sans-serif; }
 
   table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   th, td { text-align: left; padding: 11px 18px; border-bottom: 1px solid var(--border); white-space: nowrap; }
@@ -266,129 +313,162 @@
 
 <!-- ── App ── -->
 <div id="app" style="display:none">
-  <header>
-    <div class="brand">ROOT<span>·</span>ADMIN</div>
-    <div class="right">
-      <span class="updated" id="updated"></span>
-      <button class="ghost-btn" id="refreshBtn">รีเฟรช</button>
-      <button class="ghost-btn" id="logoutBtn">ออก</button>
-    </div>
-  </header>
-
-  <main>
-    <div class="cards" id="cards"></div>
-
-    <!-- ── Code generator & management ── -->
-    <div class="section">
-      <div class="section-head">
-        <span>สร้าง &amp; จัดการ Unlock Code</span>
-        <span class="count" id="genTotal"></span>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="sb-brand">ROOT<span>·</span>ADMIN</div>
+      <nav class="sb-nav" id="sbNav">
+        <button class="nav-item active" data-view="overview" data-title="ภาพรวม">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span class="lbl">ภาพรวม</span>
+        </button>
+        <button class="nav-item" data-view="codes" data-title="โค้ด &amp; การปลดล็อก">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4"/><path d="M10.5 12.5 20 3"/><path d="M16.5 6.5l3 3"/><path d="M14 9l2.2 2.2"/></svg>
+          <span class="lbl">โค้ด</span>
+        </button>
+        <button class="nav-item" data-view="accounts" data-title="บัญชีผู้ใช้">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span class="lbl">บัญชี</span>
+        </button>
+      </nav>
+      <div class="sb-foot">
+        <button class="ghost-btn" id="logoutBtn">ออกจากระบบ</button>
       </div>
-      <div class="gen">
-        <!-- generator form -->
-        <div>
-          <div class="gen-field">
-            <label>เลือกหนังสือ</label>
-            <div class="vol-pick" id="volPick">
-              <div class="vol-opt v1" data-vol="1"><div class="vn">Vol.1</div><div class="vt">รากแก้วการตลาด</div></div>
-              <div class="vol-opt v2 sel" data-vol="2"><div class="vn">Vol.2</div><div class="vt">The Invisible War</div></div>
-              <div class="vol-opt v3" data-vol="3"><div class="vn">Vol.3</div><div class="vt">รากแก้วธุรกิจ</div></div>
-              <div class="vol-opt vsidk" data-vol="sidk"><div class="vn">Kit</div><div class="vt">Diagnostic Kit</div></div>
+    </aside>
+
+    <div class="content">
+      <header class="topbar">
+        <div class="tb-title" id="viewTitle">ภาพรวม</div>
+        <div class="right">
+          <span class="updated" id="updated"></span>
+          <button class="ghost-btn" id="refreshBtn">รีเฟรช</button>
+        </div>
+      </header>
+
+      <main>
+        <!-- ════════ VIEW: Overview ════════ -->
+        <section class="view active" data-view="overview">
+          <div class="cards" id="cards"></div>
+
+          <div class="toolbar">
+            <input id="searchInput" placeholder="ค้นหาด้วยอีเมล / รหัส (ROOT-XXXX-XXXX) / session_id…" />
+            <button id="searchBtn">ดูกิจกรรมลูกค้า</button>
+          </div>
+
+          <div class="section">
+            <div class="section-head">
+              <span>การซื้อล่าสุด</span>
+              <span class="count" id="recentCount"></span>
+            </div>
+            <div id="recentWrap">
+              <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
             </div>
           </div>
-          <div class="gen-field">
-            <label>จำนวนโค้ด (สูงสุด 50)</label>
-            <div class="count-row">
-              <button class="stepper" id="cntMinus" type="button">−</button>
-              <input id="cntInput" type="number" min="1" max="50" value="1" />
-              <button class="stepper" id="cntPlus" type="button">+</button>
-              <div class="quick" id="cntQuick">
-                <button data-n="1">1</button>
-                <button data-n="5">5</button>
-                <button data-n="10">10</button>
-                <button data-n="25">25</button>
-                <button data-n="50">50</button>
+        </section>
+
+        <!-- ════════ VIEW: Codes ════════ -->
+        <section class="view" data-view="codes">
+          <!-- ── Code generator & management ── -->
+          <div class="section">
+            <div class="section-head">
+              <span>สร้าง &amp; จัดการ Unlock Code</span>
+              <span class="count" id="genTotal"></span>
+            </div>
+            <div class="gen">
+              <!-- generator form -->
+              <div>
+                <div class="gen-field">
+                  <label>เลือกหนังสือ</label>
+                  <div class="vol-pick" id="volPick">
+                    <div class="vol-opt v1" data-vol="1"><div class="vn">Vol.1</div><div class="vt">รากแก้วการตลาด</div></div>
+                    <div class="vol-opt v2 sel" data-vol="2"><div class="vn">Vol.2</div><div class="vt">The Invisible War</div></div>
+                    <div class="vol-opt v3" data-vol="3"><div class="vn">Vol.3</div><div class="vt">รากแก้วธุรกิจ</div></div>
+                    <div class="vol-opt vsidk" data-vol="sidk"><div class="vn">Kit</div><div class="vt">Diagnostic Kit</div></div>
+                  </div>
+                </div>
+                <div class="gen-field">
+                  <label>จำนวนโค้ด (สูงสุด 50)</label>
+                  <div class="count-row">
+                    <button class="stepper" id="cntMinus" type="button">−</button>
+                    <input id="cntInput" type="number" min="1" max="50" value="1" />
+                    <button class="stepper" id="cntPlus" type="button">+</button>
+                    <div class="quick" id="cntQuick">
+                      <button data-n="1">1</button>
+                      <button data-n="5">5</button>
+                      <button data-n="10">10</button>
+                      <button data-n="25">25</button>
+                      <button data-n="50">50</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="gen-field">
+                  <label>โน้ต / ที่มา (ไม่บังคับ)</label>
+                  <input class="note-in" id="noteInput" type="text" maxlength="80" placeholder="เช่น งานสัมมนา 25 มิ.ย. / ลูกค้า VIP / โอนตรง" />
+                </div>
+                <button class="gen-btn" id="genBtn" type="button">สร้างโค้ด</button>
+                <p class="dsub" id="genMsg" style="margin-top:10px;min-height:16px;"></p>
+              </div>
+
+              <!-- output -->
+              <div class="gen-out">
+                <div class="go-head">
+                  <span class="gt">โค้ดที่เพิ่งสร้าง</span>
+                  <span class="count" id="genOutMeta"></span>
+                </div>
+                <div id="genOutBody">
+                  <div class="go-empty">เลือกเล่ม จำนวน แล้วกด "สร้างโค้ด"<br>โค้ดที่ได้จะแสดงที่นี่พร้อมปุ่มคัดลอก</div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="gen-field">
-            <label>โน้ต / ที่มา (ไม่บังคับ)</label>
-            <input class="note-in" id="noteInput" type="text" maxlength="80" placeholder="เช่น งานสัมมนา 25 มิ.ย. / ลูกค้า VIP / โอนตรง" />
+
+          <!-- ── All generated codes ── -->
+          <div class="section">
+            <div class="section-head">
+              <span>คลังโค้ดที่สร้างไว้</span>
+              <span class="count" id="codesCount"></span>
+            </div>
+            <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;">
+              <input id="codeSearch" placeholder="ค้นหาโค้ด / โน้ต / บัญชีที่ผูก…" />
+              <div class="seg" id="codeVolSeg">
+                <button data-vol="" class="on">ทั้งหมด</button>
+                <button data-vol="1">Vol.1</button>
+                <button data-vol="2">Vol.2</button>
+                <button data-vol="3">Vol.3</button>
+                <button data-vol="sidk">Kit</button>
+              </div>
+              <div class="seg" id="codeStatusSeg">
+                <button data-status="" class="on">ทุกสถานะ</button>
+                <button data-status="unused">ยังไม่ใช้</button>
+                <button data-status="bound">ผูกเครื่อง</button>
+                <button data-status="redeemed">เข้าบัญชี</button>
+              </div>
+              <button id="codeRefreshBtn">รีเฟรช</button>
+            </div>
+            <div id="codesWrap">
+              <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
+            </div>
           </div>
-          <button class="gen-btn" id="genBtn" type="button">สร้างโค้ด</button>
-          <p class="dsub" id="genMsg" style="margin-top:10px;min-height:16px;"></p>
-        </div>
+        </section>
 
-        <!-- output -->
-        <div class="gen-out">
-          <div class="go-head">
-            <span class="gt">โค้ดที่เพิ่งสร้าง</span>
-            <span class="count" id="genOutMeta"></span>
+        <!-- ════════ VIEW: Accounts ════════ -->
+        <section class="view" data-view="accounts">
+          <div class="section">
+            <div class="section-head">
+              <span>บัญชีผู้ใช้</span>
+              <span class="count" id="usersCount"></span>
+            </div>
+            <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);">
+              <input id="userSearch" placeholder="ค้นหาด้วยชื่อผู้ใช้ / ชื่อที่แสดง / อีเมล…" />
+              <button id="userRefreshBtn">รีเฟรช</button>
+            </div>
+            <div id="usersWrap">
+              <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
+            </div>
           </div>
-          <div id="genOutBody">
-            <div class="go-empty">เลือกเล่ม จำนวน แล้วกด "สร้างโค้ด"<br>โค้ดที่ได้จะแสดงที่นี่พร้อมปุ่มคัดลอก</div>
-          </div>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
-
-    <!-- ── All generated codes ── -->
-    <div class="section">
-      <div class="section-head">
-        <span>คลังโค้ดที่สร้างไว้</span>
-        <span class="count" id="codesCount"></span>
-      </div>
-      <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);align-items:center;">
-        <input id="codeSearch" placeholder="ค้นหาโค้ด / โน้ต / บัญชีที่ผูก…" />
-        <div class="seg" id="codeVolSeg">
-          <button data-vol="" class="on">ทั้งหมด</button>
-          <button data-vol="1">Vol.1</button>
-          <button data-vol="2">Vol.2</button>
-          <button data-vol="3">Vol.3</button>
-          <button data-vol="sidk">Kit</button>
-        </div>
-        <div class="seg" id="codeStatusSeg">
-          <button data-status="" class="on">ทุกสถานะ</button>
-          <button data-status="unused">ยังไม่ใช้</button>
-          <button data-status="bound">ผูกเครื่อง</button>
-          <button data-status="redeemed">เข้าบัญชี</button>
-        </div>
-        <button id="codeRefreshBtn">รีเฟรช</button>
-      </div>
-      <div id="codesWrap">
-        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
-      </div>
-    </div>
-
-    <div class="toolbar">
-      <input id="searchInput" placeholder="ค้นหาด้วยอีเมล / รหัส (ROOT-XXXX-XXXX) / session_id…" />
-      <button id="searchBtn">ดูกิจกรรมลูกค้า</button>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span>การซื้อล่าสุด</span>
-        <span class="count" id="recentCount"></span>
-      </div>
-      <div id="recentWrap">
-        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
-      </div>
-    </div>
-
-    <div class="section">
-      <div class="section-head">
-        <span>บัญชีผู้ใช้</span>
-        <span class="count" id="usersCount"></span>
-      </div>
-      <div class="toolbar" style="margin:0;padding:14px 18px;border-bottom:1px solid var(--border);">
-        <input id="userSearch" placeholder="ค้นหาด้วยชื่อผู้ใช้ / ชื่อที่แสดง / อีเมล…" />
-        <button id="userRefreshBtn">รีเฟรช</button>
-      </div>
-      <div id="usersWrap">
-        <div class="empty"><span class="spinner"></span> กำลังโหลด…</div>
-      </div>
-    </div>
-  </main>
+  </div>
 </div>
 
 <!-- ── Detail drawer ── -->
@@ -1047,8 +1127,24 @@
   // ── Wire up ──
   el('loginBtn').addEventListener('click', doLogin);
   el('tokenInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doLogin(); });
-  el('refreshBtn').addEventListener('click', loadOverview);
+  el('refreshBtn').addEventListener('click', function () { loadOverview(); loadUsers(); loadCodes(); });
   el('logoutBtn').addEventListener('click', logout);
+
+  // ── View navigation (sidebar tabs) ──
+  var navBtns = document.querySelectorAll('.nav-item');
+  Array.prototype.forEach.call(navBtns, function (b) {
+    b.addEventListener('click', function () {
+      var view = b.getAttribute('data-view');
+      Array.prototype.forEach.call(navBtns, function (x) { x.classList.toggle('active', x === b); });
+      Array.prototype.forEach.call(document.querySelectorAll('.view'), function (v) {
+        v.classList.toggle('active', v.getAttribute('data-view') === view);
+      });
+      var t = el('viewTitle');
+      if (t) t.innerHTML = b.getAttribute('data-title') || b.textContent;
+      window.scrollTo(0, 0);
+    });
+  });
+
   el('searchBtn').addEventListener('click', doSearch);
   el('searchInput').addEventListener('keydown', function (e) { if (e.key === 'Enter') doSearch(); });
   el('userRefreshBtn').addEventListener('click', loadUsers);
