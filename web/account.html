@@ -553,7 +553,10 @@
             chips: ['12+5 บท', 'สนามรบดิจิทัล', 'Lifetime'], free: false, buy: '/sale-vol2', cta: 'ปลดล็อก Vol.2 →', badge: 'Lifetime Access' },
     vol3: { name: 'รากแก้วธุรกิจ', en: 'One Root of Business', tag: 'VOLUME 3', cls: 'v3', link: '/vol3', cover: 'images/book-vol3.png',
             desc: '13 บท + 5 บทพิเศษ เจาะ “ราก” ของธุรกิจที่ไม่เคยเปลี่ยน — ซื้อเล่มเดียวเหมือนเรียน MBA ย่อ',
-            chips: ['13+5 บท', 'กลยุทธ์ธุรกิจ'], free: false, buy: '/sale-vol3', cta: 'ดูรายละเอียด Vol.3 →', badge: 'เล่มใหม่' }
+            chips: ['13+5 บท', 'กลยุทธ์ธุรกิจ'], free: false, buy: '/sale-vol3', cta: 'ดูรายละเอียด Vol.3 →', badge: 'เล่มใหม่' },
+    sidk: { name: 'Side Income Diagnostic Kit', en: 'A Rootman Field Kit', tag: 'FIELD KIT', cls: 'v1', link: '/files/side-income-diagnostic-kit.pdf', cover: 'images/book-SIDK.png', download: true,
+            desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ — บันไดขั้นแรกของ The One Root Series',
+            chips: ['PDF 51 หน้า', 'Workbook', 'Lifetime'], free: false, buy: '/sidk', cta: 'ดูรายละเอียด Kit →', badge: 'PDF Workbook' }
   };
 
   function api(path, opts) {
@@ -701,10 +704,10 @@
         '<div class="book-body">' +
           '<div class="vol-tag">' + v.tag + '</div>' +
           '<h3>' + v.name + '</h3>' +
-          '<div class="meta">ปลดล็อกแล้ว · อ่านได้ทุกอุปกรณ์</div>' +
+          '<div class="meta">' + (v.download ? 'ปลดล็อกแล้ว · ดาวน์โหลดได้ตลอดเวลา' : 'ปลดล็อกแล้ว · อ่านได้ทุกอุปกรณ์') + '</div>' +
           (dateStr ? '<div class="book-date">เพิ่มเข้าคลังเมื่อ ' + dateStr + '</div>' : '') +
           (en.code ? '<button class="code-chip" type="button" data-code="' + en.code + '" title="คัดลอกโค้ด">' + en.code + ' <span class="cc-ico">⧉</span></button>' : '') +
-          '<div class="read"><a class="btn btn-primary btn-block" href="' + v.link + '">อ่านเลย →</a></div>' +
+          '<div class="read"><a class="btn btn-primary btn-block" href="' + v.link + '"' + (v.download ? ' download' : '') + '>' + (v.download ? 'ดาวน์โหลด PDF ↓' : 'อ่านเลย →') + '</a></div>' +
         '</div>';
       wrap.appendChild(card);
     });
@@ -731,7 +734,9 @@
   function renderStore(data) {
     var owned = {};
     (data.entitlements || []).forEach(function (e) { owned[e.product] = true; });
-    var order = ['vol1', 'vol2', 'vol3'];
+    var books = ['vol1', 'vol2', 'vol3'];
+    var bookMissing = books.filter(function (k) { return !owned[k]; });
+    var order = books.concat(['sidk']);
     var missing = order.filter(function (k) { return !owned[k]; });
     var grid = el('storeGrid'); grid.innerHTML = '';
     if (!missing.length) {
@@ -739,8 +744,13 @@
       el('storeSub').textContent = 'ขอบคุณที่เป็นส่วนหนึ่งของซีรีส์ — เปิดอ่านได้จากคลังหนังสือทุกอุปกรณ์';
       return;
     }
-    el('storeTitle').textContent = 'หนังสือที่คุณยังไม่มี';
-    el('storeSub').textContent = 'เติมคลังให้ครบชุด — อีก ' + missing.length + ' เล่มเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์';
+    if (!bookMissing.length) {
+      el('storeTitle').textContent = 'เสริมคลังของคุณ';
+      el('storeSub').textContent = 'คุณมีครบทั้ง 3 เล่มแล้ว — เพิ่มเครื่องมือภาคปฏิบัติเข้าคลังได้อีก';
+    } else {
+      el('storeTitle').textContent = 'หนังสือที่คุณยังไม่มี';
+      el('storeSub').textContent = 'เติมคลังให้ครบชุด — อีก ' + bookMissing.length + ' เล่มเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์';
+    }
     missing.forEach(function (k) {
       var v = VOL[k];
       var card = document.createElement('div');

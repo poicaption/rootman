@@ -44,7 +44,9 @@ export default async function handler(req) {
   const volParam = url.searchParams.get('vol');
   // Bundle = all three volumes purchased in one Stripe session.
   const isBundle = volParam === 'bundle' || volParam === 'all' || url.searchParams.get('bundle') === '1';
-  const vol = volParam === '3' ? 3 : volParam === '2' ? 2 : 1;
+  // Side Income Diagnostic Kit — a standalone PDF product (not part of the 1/2/3 reader series).
+  const isSidk = volParam === 'sidk' || volParam === 'kit';
+  const vol = volParam === '3' ? 3 : volParam === '2' ? 2 : isSidk ? 'sidk' : 1;
   const vols = isBundle ? [1, 2, 3] : [vol];
 
   if (!sessionId || sessionId.length < 10) {

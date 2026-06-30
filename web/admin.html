@@ -128,6 +128,7 @@
   .badge.v1 { background: rgba(106,169,196,.15); color: var(--accent-2); }
   .badge.v2 { background: rgba(196,149,106,.18); color: var(--accent); }
   .badge.v3 { background: rgba(27,94,67,.18); color: #1B5E43; }
+  .badge.vsidk { background: rgba(201,154,59,.18); color: #C99A3B; }
   .badge.ok { background: rgba(76,175,125,.15); color: var(--green); }
   .badge.gone { background: rgba(224,88,75,.15); color: var(--red); }
 
@@ -185,6 +186,7 @@
   .vol-opt.sel { border-color: var(--accent); background: rgba(196,149,106,.12); }
   .vol-opt.sel.v1 { border-color: var(--accent-2); background: rgba(106,169,196,.12); }
   .vol-opt.sel.v3 { border-color: var(--green); background: rgba(76,175,125,.12); }
+  .vol-opt.sel.vsidk { border-color: #C99A3B; background: rgba(201,154,59,.12); }
 
   .count-row { display: flex; align-items: center; gap: 10px; }
   .count-row .stepper {
@@ -291,6 +293,7 @@
               <div class="vol-opt v1" data-vol="1"><div class="vn">Vol.1</div><div class="vt">รากแก้วการตลาด</div></div>
               <div class="vol-opt v2 sel" data-vol="2"><div class="vn">Vol.2</div><div class="vt">The Invisible War</div></div>
               <div class="vol-opt v3" data-vol="3"><div class="vn">Vol.3</div><div class="vt">รากแก้วธุรกิจ</div></div>
+              <div class="vol-opt vsidk" data-vol="sidk"><div class="vn">Kit</div><div class="vt">Diagnostic Kit</div></div>
             </div>
           </div>
           <div class="gen-field">
@@ -342,6 +345,7 @@
           <button data-vol="1">Vol.1</button>
           <button data-vol="2">Vol.2</button>
           <button data-vol="3">Vol.3</button>
+          <button data-vol="sidk">Kit</button>
         </div>
         <div class="seg" id="codeStatusSeg">
           <button data-status="" class="on">ทุกสถานะ</button>
@@ -558,7 +562,7 @@
       '<th>เวลา</th><th>อีเมล</th><th>ชื่อ</th><th>เล่ม</th><th>รหัส</th><th>ยอด</th><th>ประเทศ</th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (p) {
-      var vol = p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       html += '<tr data-email="' + esc(p.email || '') + '" data-code="' + esc(p.code || '') + '">' +
         '<td>' + esc(fmtTime(p.ts)) + '</td>' +
         '<td class="email">' + esc(p.email || '–') + '</td>' +
@@ -655,7 +659,7 @@
     // Purchases
     html += '<div class="dh">การซื้อ</div>';
     (data.purchases || []).forEach(function (p) {
-      var vol = p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       var status = p.revoked ? '<span class="badge gone">ถูกยกเลิก</span>' : '<span class="badge ok">ใช้งานได้</span>';
       html += '<div class="purchase-row">' +
         '<div class="pr-top"><span class="mono">' + esc(p.code || '–') + '</span>' + vol + ' ' + status + '</div>' +
@@ -710,6 +714,7 @@
   var allAccounts = [];
 
   function volBadge(p) {
+    if (p === 'sidk') return '<span class="badge vsidk">Kit</span>';
     if (p === 'vol3') return '<span class="badge v3">Vol.3</span>';
     if (p === 'vol2') return '<span class="badge v2">Vol.2</span>';
     return '<span class="badge v1">Vol.1</span>';
@@ -895,6 +900,8 @@
 
   var STATUS_LABEL = { unused: 'ยังไม่ใช้', bound: 'ผูกเครื่อง', redeemed: 'เข้าบัญชี', revoked: 'ถูกยกเลิก' };
 
+  function volLabel(v) { return v === 'sidk' ? 'SIDK Kit' : 'Vol.' + v; }
+
   function copyText(text, okEl) {
     var done = function () {
       if (!okEl) return;
@@ -919,7 +926,6 @@
       o.classList.toggle('sel', o.getAttribute('data-vol') === String(v));
     });
   }
-
   function clampCount(n) { n = parseInt(n) || 1; return Math.min(Math.max(n, 1), 50); }
 
   function doGenerate() {
@@ -933,7 +939,7 @@
       .then(function (data) {
         renderGenerated(data);
         el('genMsg').style.color = 'var(--green)';
-        el('genMsg').textContent = 'สร้าง ' + data.count + ' โค้ดสำหรับ Vol.' + data.vol + ' เรียบร้อย';
+        el('genMsg').textContent = 'สร้าง ' + data.count + ' โค้ดสำหรับ ' + volLabel(data.vol) + ' เรียบร้อย';
         el('noteInput').value = '';
         loadCodes();
       })
@@ -947,7 +953,7 @@
 
   function renderGenerated(data) {
     var codes = data.codes || [];
-    el('genOutMeta').textContent = 'Vol.' + data.vol + ' · ' + codes.length + ' โค้ด';
+    el('genOutMeta').textContent = volLabel(data.vol) + ' · ' + codes.length + ' โค้ด';
     var html = '<div class="code-list">';
     codes.forEach(function (c) {
       html += '<div class="code-chip"><span class="cc-code">' + esc(c) + '</span>' +
@@ -998,7 +1004,7 @@
       '<th>รหัส</th><th>เล่ม</th><th>สถานะ</th><th>ผูกกับ</th><th>โน้ต</th><th>สร้างเมื่อ</th><th></th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (c) {
-      var vb = c.vol === 3 ? '<span class="badge v3">Vol.3</span>' : c.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vb = c.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : c.vol === 3 ? '<span class="badge v3">Vol.3</span>' : c.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       var sb = '<span class="badge ' + c.status + '">' + (STATUS_LABEL[c.status] || c.status) + '</span>';
       var boundTo = c.claimed_by ? '@' + esc(c.claimed_by)
         : (c.device_count ? c.device_count + ' เครื่อง' : '<span style="color:var(--muted)">–</span>');
@@ -1050,7 +1056,7 @@
 
   // Code generator wiring
   Array.prototype.forEach.call(el('volPick').children, function (o) {
-    o.addEventListener('click', function () { selectVol(parseInt(o.getAttribute('data-vol'))); });
+    o.addEventListener('click', function () { var dv = o.getAttribute('data-vol'); selectVol(dv === 'sidk' ? 'sidk' : parseInt(dv)); });
   });
   el('cntMinus').addEventListener('click', function () { el('cntInput').value = clampCount(parseInt(el('cntInput').value) - 1); });
   el('cntPlus').addEventListener('click', function () { el('cntInput').value = clampCount(parseInt(el('cntInput').value) + 1); });

@@ -54,7 +54,9 @@ async function logUser(uname, event, extra = {}) {
 }
 
 function volId(rec) {
-  const n = parseInt(rec && rec.vol, 10);
+  const raw = rec && rec.vol;
+  if (raw === 'sidk' || raw === 'kit') return 'sidk';
+  const n = parseInt(raw, 10);
   return n >= 1 && n <= 3 ? `vol${n}` : 'vol1';
 }
 
