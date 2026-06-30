@@ -134,6 +134,8 @@
             background: var(--sidebar-bg);
             color: var(--sidebar-text);
             overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
             z-index: 1000;
             display: flex;
             flex-direction: column;
@@ -1014,6 +1016,8 @@
 
             /* Keep touch scrolling inside the TOC drawer instead of the page behind it */
             body.menu-open {
+                position: fixed;
+                width: 100%;
                 overflow: hidden;
             }
 
@@ -3858,18 +3862,30 @@
             });
 
             // --- Mobile Menu ---
+            var __menuScrollY = 0;
+            function setMenu(open) {
+                sidebar.classList.toggle('open', open);
+                menuToggle.classList.toggle('open', open);
+                overlay.classList.toggle('visible', open);
+                if (open) {
+                    // Freeze the reading layer in place so touch-scroll stays in the drawer (iOS-safe)
+                    __menuScrollY = window.scrollY || window.pageYOffset || 0;
+                    document.body.classList.add('menu-open');
+                    document.body.style.top = (-__menuScrollY) + 'px';
+                } else {
+                    document.body.classList.remove('menu-open');
+                    document.body.style.top = '';
+                    window.scrollTo(0, __menuScrollY);
+                }
+            }
             function toggleMenu() {
-                sidebar.classList.toggle('open');
-                menuToggle.classList.toggle('open');
-                overlay.classList.toggle('visible');
-                // Lock background scroll while the mobile TOC drawer is open
-                document.body.classList.toggle('menu-open', sidebar.classList.contains('open'));
+                setMenu(!sidebar.classList.contains('open'));
             }
 
             menuToggle.addEventListener('click', toggleMenu);
             overlay.addEventListener('click', toggleMenu);
 
-            // Close sidebar on link click (mobile)
+            // Close sidebar on link click (mobile) — let the anchor handle navigation
             tocLinks.forEach(function(link) {
                 link.addEventListener('click', function() {
                     if (window.innerWidth <= 960) {
@@ -3877,6 +3893,7 @@
                         menuToggle.classList.remove('open');
                         overlay.classList.remove('visible');
                         document.body.classList.remove('menu-open');
+                        document.body.style.top = '';
                     }
                 });
             });
