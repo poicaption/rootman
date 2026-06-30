@@ -1012,6 +1012,11 @@
                 transform: translateX(0);
             }
 
+            /* Keep touch scrolling inside the TOC drawer instead of the page behind it */
+            body.menu-open {
+                overflow: hidden;
+            }
+
             #menu-toggle {
                 display: flex;
             }
@@ -3604,6 +3609,8 @@
                 sidebar.classList.toggle('open');
                 menuToggle.classList.toggle('open');
                 overlay.classList.toggle('visible');
+                // Lock background scroll while the mobile TOC drawer is open
+                document.body.classList.toggle('menu-open', sidebar.classList.contains('open'));
             }
 
             menuToggle.addEventListener('click', toggleMenu);
@@ -3616,6 +3623,7 @@
                         sidebar.classList.remove('open');
                         menuToggle.classList.remove('open');
                         overlay.classList.remove('visible');
+                        document.body.classList.remove('menu-open');
                     }
                 });
             });
@@ -5170,12 +5178,12 @@
     </script>
 
     <!-- ═══ READING HUD (progress % / time left + chapter nav) ═══ -->
-    <script defer src="/reader-nav.js"></script>
+    <script defer src="/reader-nav.js?v=2"></script>
 
     <!-- ═══ READING PREFERENCES (font size / line spacing) ═══ -->
-    <script defer src="/reader-prefs.js"></script>
+    <script defer src="/reader-prefs.js?v=2"></script>
 
     <!-- ═══ SMART CROSS-SELL (ownership-aware, non-intrusive) ═══ -->
-    <script defer src="/cross-sell.js" data-current="vol1"></script>
+    <script defer src="/cross-sell.js?v=2" data-current="vol1"></script>
 </body>
 </html>
