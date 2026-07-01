@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="/images/Logo.png">
-    <link rel="apple-touch-icon" href="/images/Logo.png">
+    <link rel="icon" type="image/png" href="/images/fav-icon.png">
+    <link rel="apple-touch-icon" href="/images/fav-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <title>The One Root — ทุกอย่างเริ่มต้นจากรากเดียว</title>
     <meta name="description" content="The One Root Series — ชุดหนังสือที่จะเปลี่ยนวิธีคิดของคุณเกี่ยวกับการตลาด ธุรกิจ และจิตวิทยามนุษย์ ไม่ใช่เทรนด์ที่หมดอายุ แต่คือรากฐานที่ใช้ได้ทั้งชีวิต">
@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="The One Root — ทุกอย่างเริ่มต้นจากรากเดียว">
     <meta name="twitter:description" content="3 เล่ม · รากเดียว · ธรรมชาติของมนุษย์ที่ไม่เคยเปลี่ยน — การตลาด ธุรกิจ และจิตวิทยา">
     <meta name="twitter:image" content="https://rootmanknows.com/images/book-vol1.png">
-    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"The One Root","url":"https://rootmanknows.com/","logo":"https://rootmanknows.com/images/Logo.png","description":"ชุดหนังสือเกี่ยวกับการตลาด ธุรกิจ และจิตวิทยามนุษย์ จากรากฐานที่ไม่เปลี่ยนตามเทรนด์"},{"@context":"https://schema.org","@type":"WebSite","name":"The One Root","url":"https://rootmanknows.com/","inLanguage":"th"},{"@context":"https://schema.org","@type":"Book","name":"The One Root Series","author":{"@type":"Person","name":"rootman"},"inLanguage":"th","url":"https://rootmanknows.com/","image":"https://rootmanknows.com/images/book-vol1.png","numberOfPages":12,"bookFormat":"https://schema.org/EBook","hasPart":[{"@type":"Book","name":"รากแก้วการตลาด — The One Root of Marketing","url":"https://rootmanknows.com/sale"},{"@type":"Book","name":"The Invisible War — รากแก้วสนามรบดิจิทัล","url":"https://rootmanknows.com/sale-vol2"},{"@type":"Book","name":"รากแก้วธุรกิจ — The One Root of Business","url":"https://rootmanknows.com/sale-vol3"}]}]</script>
+    <script type="application/ld+json">[{"@context":"https://schema.org","@type":"Organization","name":"The One Root","url":"https://rootmanknows.com/","logo":"https://rootmanknows.com/images/logo-main.png","description":"ชุดหนังสือเกี่ยวกับการตลาด ธุรกิจ และจิตวิทยามนุษย์ จากรากฐานที่ไม่เปลี่ยนตามเทรนด์"},{"@context":"https://schema.org","@type":"WebSite","name":"The One Root","url":"https://rootmanknows.com/","inLanguage":"th"},{"@context":"https://schema.org","@type":"Book","name":"The One Root Series","author":{"@type":"Person","name":"rootman"},"inLanguage":"th","url":"https://rootmanknows.com/","image":"https://rootmanknows.com/images/book-vol1.png","numberOfPages":12,"bookFormat":"https://schema.org/EBook","hasPart":[{"@type":"Book","name":"รากแก้วการตลาด — The One Root of Marketing","url":"https://rootmanknows.com/sale"},{"@type":"Book","name":"The Invisible War — รากแก้วสนามรบดิจิทัล","url":"https://rootmanknows.com/sale-vol2"},{"@type":"Book","name":"รากแก้วธุรกิจ — The One Root of Business","url":"https://rootmanknows.com/sale-vol3"}]}]</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -203,6 +203,9 @@
             border-radius: 8px; padding: 3px; object-fit: contain;
             background: #14110E;
             box-shadow: 0 2px 8px rgba(0,0,0,0.18), inset 0 0 0 1px rgba(255,255,255,0.06);
+        }
+        .nav-logo .nav-wordmark {
+            height: 30px; width: auto; display: block; object-fit: contain;
         }
         .nav-logo span { color: var(--accent); }
         .nav-actions { display: flex; align-items: center; gap: 1.6rem; }
@@ -729,7 +732,7 @@
     <!-- Navigation -->
     <nav class="nav" id="nav">
         <div class="nav-inner">
-            <a href="/" class="nav-logo"><img src="/images/Logo.png" alt="The One Root" class="nav-mark" width="30" height="30">one<span>Root</span></a>
+            <a href="/" class="nav-logo" aria-label="ROOTMAN — The One Root"><img src="/images/logo-long.png" alt="ROOTMAN" class="nav-wordmark" width="150" height="36"></a>
             <div class="nav-actions">
                 <a href="#collection" class="nav-link hide-sm">หนังสือ</a>
                 <a href="#root" class="nav-link hide-sm">แนวคิด</a>
