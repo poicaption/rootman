@@ -317,5 +317,6 @@ window.addEventListener('scroll',on,{passive:true});on();})();
 var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});})();
 </script>
+<script defer src="/guard.js?v=1"></script>
 </body>
 </html>
