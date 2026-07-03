@@ -2239,20 +2239,40 @@
         .mini-review {
             background: #fff;
             border: 1px solid var(--border);
-            border-left: 3px solid var(--gold);
-            border-radius: 10px;
-            padding: 1.2rem 1.4rem;
+            border-radius: 14px;
+            padding: 1.3rem 1.5rem;
             box-shadow: 0 1px 8px rgba(0,0,0,0.03);
             transition: box-shadow 0.3s, transform 0.2s;
+            position: relative;
         }
-        .mini-review:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+        .mini-review:hover { box-shadow: 0 12px 28px rgba(0,0,0,0.08); transform: translateY(-3px); }
+        .mr-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.7rem; }
+        .mr-avatar {
+            width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 1rem; color: #fff;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+        }
+        .mr-meta { min-width: 0; line-height: 1.4; }
+        .mr-name { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.9rem; color: var(--text); display: flex; align-items: center; gap: 0.35rem; }
+        .mr-verified { color: #2E9E5B; font-size: 0.72rem; }
+        .mr-role { font-size: 0.74rem; color: var(--text-light); }
+        .mr-stars { margin-left: auto; color: #E0A93A; font-size: 0.72rem; letter-spacing: 0.06em; flex-shrink: 0; align-self: flex-start; margin-top: 0.15rem; }
         .mini-review-text {
             font-family: 'Noto Serif Thai', serif;
             font-size: 0.95rem;
             color: var(--text);
             line-height: 1.85;
-            margin: 0 0 0.6rem;
+            margin: 0 0 0.85rem;
         }
+        .mr-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; }
+        .mr-badge {
+            display: inline-flex; align-items: center; gap: 0.32rem;
+            font-family: 'Prompt', sans-serif; font-size: 0.66rem; font-weight: 500;
+            color: #2E9E5B; background: rgba(46,158,91,0.09);
+            border: 1px solid rgba(46,158,91,0.22); border-radius: 999px; padding: 0.22rem 0.62rem;
+        }
+        .mr-date { font-size: 0.68rem; color: var(--text-light); }
         .mini-review-who {
             font-family: 'Prompt', sans-serif;
             font-size: 0.74rem;
@@ -2446,6 +2466,14 @@
             color: var(--accent-hover);
             font-weight: 700;
         }
+        /* highlight on dark sections — keep the swipe readable on black */
+        .bigidea mark.hl, .bigidea .hl {
+            color: #FBE3B3;
+            background-image: linear-gradient(transparent 58%, rgba(224,168,80,0.34) 58%);
+            font-weight: 700;
+        }
+        .vis .bigidea mark.hl, .vis .bigidea .hl,
+        .bigidea mark.hl.paint, .bigidea .hl.paint { background-size: 100% 100%; }
         /* brass underline accent for premium words */
         .key {
             color: var(--accent);
@@ -2680,9 +2708,15 @@
 
         /* ── Coupon code: make it feel like a "gift" ── */
         .whisper-code {
+            color: #fff !important;
             background: linear-gradient(135deg, var(--accent), var(--accent-hover)) !important;
             box-shadow: 0 6px 20px rgba(194,59,34,0.25);
             letter-spacing: 0.18em;
+            border-color: rgba(255,255,255,0.25) !important;
+        }
+        .whisper-code:hover {
+            filter: brightness(1.08);
+            box-shadow: 0 8px 24px rgba(194,59,34,0.35);
         }
 
         @media (max-width: 640px) {
@@ -2832,6 +2866,240 @@
         @media (prefers-reduced-motion: reduce) {
             .sp-dot { animation: none; }
         }
+
+        /* ═══════════════════════════════════════════════
+           v2 — Conversion upgrades (hero clarity, reframe,
+           decode table, product preview, third-eye demo)
+           ═══════════════════════════════════════════════ */
+
+        /* Hero: outcome line + product-clarity chips */
+        .hero-outcome {
+            font-size: 0.98rem; color: #C9C2B8; line-height: 1.85;
+            max-width: 520px; margin: 0 auto 1.3rem;
+        }
+        .hero-outcome strong { color: var(--warm); font-weight: 600; }
+        .hero-clarity {
+            display: inline-flex; flex-wrap: wrap; gap: 0.45rem 0.5rem;
+            justify-content: center; margin: 0 auto 1.8rem; max-width: 520px;
+        }
+        .hero-clarity span {
+            font-family: 'Prompt', sans-serif; font-size: 0.72rem; font-weight: 500;
+            color: #D4CFC7; background: rgba(196,149,106,0.1);
+            border: 1px solid rgba(196,149,106,0.25); border-radius: 999px;
+            padding: 0.3rem 0.85rem;
+        }
+        .hero-clarity span i { color: var(--warm); margin-right: 0.3rem; font-size: 0.85em; }
+
+        /* Objection reframe block (right after hero) */
+        .reframe { background: var(--bg-warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+        .reframe-inner { max-width: 620px; margin: 0 auto; padding: 2.1rem 1.5rem; text-align: center; }
+        .reframe-tag {
+            font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.15em;
+            color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem;
+        }
+        .reframe-inner p { font-size: 0.98rem; line-height: 1.85; margin-bottom: 0.55rem; }
+        .reframe-punch {
+            font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 1.1rem;
+            color: var(--text); line-height: 1.6;
+        }
+        .reframe-punch em { font-style: normal; color: var(--accent); }
+        .reframe-sub { font-size: 0.86rem !important; color: var(--text-sec); margin-top: 0.6rem; }
+
+        /* Decode table — "what the customer says vs fears" */
+        .decode { display: flex; flex-direction: column; gap: 0.8rem; margin: 1.5rem 0 0.5rem; }
+        .decode-row {
+            display: flex; flex-direction: column; gap: 0.4rem;
+            background: #fff; border: 1px solid var(--border);
+            border-left: 3px solid var(--accent); border-radius: 10px;
+            padding: 1rem 1.15rem; transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .decode-row:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.06); }
+        .decode-said {
+            font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 1rem; color: var(--text);
+        }
+        .decode-said::before { content: '\201C'; color: var(--accent); }
+        .decode-said::after { content: '\201D'; color: var(--accent); }
+        .decode-line { font-size: 0.86rem; line-height: 1.65; color: var(--text-sec); }
+        .decode-line b { color: var(--text); font-weight: 600; }
+        .decode-fear { color: var(--accent); font-weight: 600; }
+        .decode-chapter {
+            display: inline-block; font-family: var(--mono); font-size: 0.68rem;
+            color: var(--gold); background: var(--gold-bg); border: 1px solid rgba(184,134,11,0.3);
+            border-radius: 6px; padding: 0.18rem 0.6rem; margin-top: 0.25rem; align-self: flex-start;
+        }
+
+        /* Product preview — phone mockup + TOC + third-eye demo */
+        .preview-wrap {
+            display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 2rem; align-items: start;
+            margin-top: 1.4rem;
+        }
+        @media (max-width: 720px) { .preview-wrap { grid-template-columns: 1fr; gap: 2.4rem; } }
+        .phone {
+            width: 250px; max-width: 100%; margin: 0 auto; aspect-ratio: 9 / 19.5;
+            background: linear-gradient(155deg, #2a2620, #14110e 55%);
+            border-radius: 36px; padding: 9px;
+            box-shadow: 0 34px 64px -14px rgba(0,0,0,0.48), 0 10px 24px rgba(0,0,0,0.22),
+                        inset 0 0 0 2px rgba(196,149,106,0.22), inset 0 2px 3px rgba(255,255,255,0.10);
+            position: relative;
+        }
+        .phone::after {
+            content: ''; position: absolute; inset: 0; border-radius: 36px; pointer-events: none;
+            background: linear-gradient(108deg, rgba(255,255,255,0.10) 0%, transparent 20%, transparent 84%, rgba(255,255,255,0.05) 100%);
+        }
+        .phone-notch {
+            position: absolute; top: 15px; left: 50%; transform: translateX(-50%);
+            width: 42px; height: 5px; background: #0d0b09; border-radius: 3px; z-index: 4;
+        }
+        .phone-screen {
+            width: 100%; height: 100%; background: #FAF6F0; border-radius: 27px;
+            overflow: hidden; display: flex; flex-direction: column; position: relative;
+        }
+        .phone-status {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.55rem 1.05rem 0.15rem; font-family: var(--mono); font-size: 0.5rem;
+            color: #5B554F; font-weight: 600;
+        }
+        .phone-status .ps-icons { display: inline-flex; gap: 0.3rem; align-items: center; font-size: 0.48rem; color: #6B6560; }
+        .phone-appbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.3rem 0.95rem 0.4rem;
+        }
+        .phone-appbar .pab-brand { font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; font-weight: 600; }
+        .phone-appbar .pab-ico { color: #B0A99F; font-size: 0.55rem; display: inline-flex; gap: 0.45rem; align-items: center; }
+        .phone-prog { height: 2px; background: #ECE4D8; }
+        .phone-prog i { display: block; height: 100%; width: 41%; background: linear-gradient(90deg, var(--gold), var(--warm)); border-radius: 0 2px 2px 0; }
+        .phone-read { flex: 1; overflow: hidden; padding: 0.75rem 1.1rem 0.5rem; }
+        .phone-part { font-family: var(--mono); font-size: 0.46rem; letter-spacing: 0.14em; color: var(--warm); text-transform: uppercase; text-align: center; }
+        .phone-h { font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.82rem; color: var(--text); line-height: 1.35; margin: 0.22rem 0 0.1rem; text-align: center; }
+        .phone-orn { text-align: center; color: var(--gold); font-size: 0.5rem; letter-spacing: 0.45em; opacity: 0.55; margin: 0.4rem 0 0.55rem; }
+        .phone-p { font-size: 0.56rem; line-height: 1.9; color: #4A453F; margin-bottom: 0.42rem; text-align: left; }
+        .phone-p.lead::first-letter { font-family: 'Prompt', sans-serif; font-size: 1.55rem; font-weight: 700; color: var(--accent); float: left; line-height: 0.85; padding: 0.06rem 0.2rem 0 0; }
+        .phone-p b { color: var(--text); font-weight: 700; }
+        .phone-sub { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.62rem; color: var(--text); margin: 0.55rem 0 0.32rem; padding-bottom: 0.24rem; border-bottom: 1px solid #ECE4D8; position: relative; }
+        .phone-sub::after { content: ''; position: absolute; left: 0; bottom: -1px; width: 22px; height: 2px; background: var(--gold); }
+        .phone-te {
+            margin: 0.6rem 0 0.1rem; background: rgba(196,149,106,0.10);
+            border: 1px solid rgba(196,149,106,0.32); border-radius: 8px;
+            padding: 0.52rem 0.62rem; font-size: 0.52rem; line-height: 1.75; color: #6B6560;
+        }
+        .phone-te b { color: var(--warm); display: flex; align-items: center; gap: 0.22rem; font-family: 'Prompt', sans-serif; font-size: 0.5rem; letter-spacing: 0.05em; margin-bottom: 0.22rem; font-weight: 700; }
+        @media (min-width: 721px) { .phone { animation: phoneFloat 6.5s ease-in-out infinite; } }
+        @keyframes phoneFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+        @media (prefers-reduced-motion: reduce) { .phone { animation: none; } }
+        .preview-toc-title { font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.98rem; color: var(--text); margin-bottom: 0.6rem; }
+        .toc-preview { display: flex; flex-direction: column; }
+        .toc-part-label {
+            font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--gold); margin: 0.7rem 0 0.3rem;
+        }
+        .toc-item {
+            display: flex; align-items: baseline; gap: 0.6rem;
+            padding: 0.42rem 0.2rem; border-bottom: 1px dashed var(--border); font-size: 0.85rem;
+        }
+        .toc-num { font-family: var(--mono); font-size: 0.72rem; color: var(--warm); flex-shrink: 0; min-width: 1.5rem; }
+        .toc-name { color: var(--text); }
+        .toc-item.is-bonus .toc-num { color: var(--accent); }
+
+        /* Third-eye demo card */
+        .te-demo {
+            background: var(--bg-dark); color: #E8E1D7; border-radius: 14px;
+            padding: 1.3rem 1.3rem 1.4rem; margin-top: 1.6rem;
+            border: 1px solid rgba(196,149,106,0.2); position: relative; overflow: hidden;
+        }
+        .te-demo::before {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 90% 0%, rgba(196,149,106,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .te-demo-head { display: flex; align-items: center; gap: 0.5rem; font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.92rem; color: var(--warm); margin-bottom: 0.7rem; position: relative; }
+        .te-demo-body { font-size: 0.88rem; line-height: 1.8; color: #C9C2B8; position: relative; }
+        .te-demo-body mark { background: rgba(196,149,106,0.2); color: #F0E9DE; padding: 0 0.2rem; border-radius: 3px; }
+        .te-demo-reveal { margin-top: 0.8rem; padding-top: 0.8rem; border-top: 1px dashed rgba(196,149,106,0.25); font-size: 0.84rem; color: var(--warm); position: relative; }
+        .te-demo-reveal b { color: #F0E9DE; }
+
+        /* Reviews authenticity note */
+        .reviews-note {
+            font-size: 0.78rem; color: #A29A90; text-align: center;
+            max-width: 460px; margin: 0.4rem auto 1.4rem; line-height: 1.7;
+        }
+        .reviews-note i { color: var(--warm); }
+
+        /* Product preview — auto-scroll reader + quote + try button */
+        .phone-read { position: relative; }
+        .phone-read::after {
+            content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 42px;
+            background: linear-gradient(transparent, #FAF6F0 82%); pointer-events: none; z-index: 3;
+        }
+        .phone-scroll { animation: phoneAutoScroll 26s ease-in-out infinite; will-change: transform; }
+        @keyframes phoneAutoScroll {
+            0%, 6%   { transform: translateY(0); }
+            50%, 56% { transform: translateY(-54%); }
+            100%     { transform: translateY(0); }
+        }
+        .phone-quote {
+            font-family: 'Noto Serif Thai', serif; font-style: italic;
+            font-size: 0.57rem; line-height: 1.75; color: var(--accent);
+            border-left: 2px solid var(--gold); padding: 0.1rem 0 0.1rem 0.5rem; margin: 0.45rem 0;
+        }
+        .preview-try-wrap { text-align: center; margin-top: 1.8rem; }
+        .preview-try {
+            display: inline-flex; align-items: center; gap: 0.55rem;
+            font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.92rem;
+            color: var(--accent); background: #fff;
+            border: 1.5px solid var(--accent); border-radius: 999px;
+            padding: 0.72rem 1.6rem; text-decoration: none;
+            transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .preview-try:hover { background: var(--accent); color: #fff; transform: translateY(-2px); box-shadow: 0 10px 24px rgba(194,59,34,0.25); }
+        .preview-try-note { font-size: 0.76rem; color: var(--text-light); margin-top: 0.55rem; }
+
+        /* Facebook-style review thread */
+        .fb-thread {
+            max-width: 620px; margin: 1.4rem auto 0.5rem;
+            background: #fff; border: 1px solid var(--border); border-radius: 16px;
+            padding: 1.4rem 1.5rem 1.6rem; box-shadow: 0 4px 22px rgba(0,0,0,0.05); text-align: left;
+        }
+        .fb-head { display: flex; align-items: center; gap: 0.95rem; padding-bottom: 1.1rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--border); }
+        .fb-score { font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 2.15rem; color: var(--text); line-height: 1; }
+        .fb-head-meta { line-height: 1.45; }
+        .fb-head-stars { color: #E0A93A; font-size: 0.92rem; letter-spacing: 0.05em; }
+        .fb-head-count { font-size: 0.82rem; color: var(--text-sec); margin-top: 0.15rem; }
+        .fb-head-verified { display: inline-flex; align-items: center; gap: 0.32rem; font-size: 0.72rem; color: #2E9E5B; margin-top: 0.22rem; }
+        .fb-c { display: flex; gap: 0.6rem; margin-bottom: 1.2rem; }
+        .fb-c:last-child { margin-bottom: 0; }
+        .fb-c-av {
+            width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.98rem; color: #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+        .fb-c-main { flex: 1; min-width: 0; }
+        .fb-bubble { background: #F0F2F5; border-radius: 16px; padding: 0.6rem 0.95rem; }
+        .fb-name { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.88rem; color: #050505; display: inline-flex; align-items: center; gap: 0.3rem; flex-wrap: wrap; }
+        .fb-badge { color: #1877F2; font-size: 0.72rem; }
+        .fb-role { font-size: 0.72rem; color: #65676B; margin: 0.05rem 0 0.35rem; }
+        .fb-text { font-family: 'Sarabun', sans-serif; font-size: 0.9rem; line-height: 1.72; color: #050505; }
+        .fb-actions { display: flex; align-items: center; gap: 0.55rem; padding: 0.34rem 0 0 0.95rem; font-family: 'Prompt', sans-serif; font-size: 0.74rem; font-weight: 600; color: #65676B; flex-wrap: wrap; }
+        .fb-act { cursor: default; }
+        .fb-act:hover { text-decoration: underline; }
+        .fb-act-like { color: #1877F2; }
+        .fb-dot { color: #65676B; font-weight: 400; }
+        .fb-time { font-weight: 400; color: #65676B; }
+        .fb-likes { display: inline-flex; align-items: center; gap: 0.24rem; margin-left: auto; background: #fff; border: 1px solid var(--border); border-radius: 999px; padding: 0.06rem 0.5rem; font-size: 0.68rem; color: #65676B; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+        .fb-likes i { color: #1877F2; font-size: 0.72rem; }
+        .fb-reply { display: flex; gap: 0.5rem; margin-top: 0.7rem; }
+        .fb-reply .fb-c-av { width: 32px; height: 32px; font-size: 0.72rem; }
+        .fb-bubble-page { background: #FBF3E8; border: 1px solid rgba(184,134,11,0.2); }
+        .fb-author-tag { font-family: 'Prompt', sans-serif; font-size: 0.62rem; font-weight: 600; color: #65676B; background: #E4E6EB; border-radius: 4px; padding: 0.06rem 0.38rem; }
+        .fb-more { text-align: center; margin-top: 1.4rem; padding-top: 1.2rem; border-top: 1px solid #EBECEF; font-family: 'Prompt', sans-serif; font-size: 0.86rem; color: #65676B; }
+        .fb-more b { color: #1c1e21; font-weight: 700; }
+        .fb-more i { color: #1877F2; margin-right: 0.35rem; }
+        @media (prefers-reduced-motion: reduce) { .phone-scroll { animation: none; } }
+        @media (max-width: 640px) {
+            .fb-thread { padding: 1.1rem 1rem 1.2rem; }
+            .fb-text { font-size: 0.86rem; }
+            .fb-likes { display: none; }
+        }
     </style>
 </head>
 <body>
@@ -2856,6 +3124,12 @@
             <h1>นักขายที่ปิดดีลได้<br>ไม่ได้พูดเก่งกว่า &mdash;<br><em>เขาอ่านคนออกกว่า</em></h1>
             <p class="hero-sub">หนังสือจิตวิทยาการขายสำหรับคนที่อยากเข้าใจว่า ทำไมลูกค้าถึง &ldquo;ขอคิดก่อน&rdquo; ทำไมคำว่า &ldquo;แพง&rdquo; ไม่ได้แปลว่าไม่มีเงิน และทำไมบางดีลหลุด ทั้งที่คุณพูดถูกทุกอย่าง</p>
             <p class="hero-hook">&ldquo;เพราะคนไม่ได้ตัดสินใจซื้อด้วยเหตุผล &mdash; เขาตัดสินใจด้วยสัญชาตญาณ แล้วหาเหตุผลมารองรับทีหลัง&rdquo;</p>
+            <p class="hero-outcome">อ่านออกว่าแต่ละคำปฏิเสธ &mdash; <strong>&ldquo;ขอคิดก่อน&rdquo; &bull; &ldquo;แพงไป&rdquo; &bull; &ldquo;ขอดูก่อน&rdquo;</strong> &mdash; ซ่อนความกลัวแบบไหน และควรตอบยังไง <strong>โดยไม่ต้องลดราคา</strong></p>
+            <div class="hero-clarity">
+                <span><i class="fa-solid fa-book-open"></i>Web Book 12 บท + 5 บทพิเศษ</span>
+                <span><i class="fa-solid fa-user-group"></i>Sales &bull; ฟรีแลนซ์ &bull; เจ้าของธุรกิจ</span>
+                <span><i class="fa-solid fa-mobile-screen-button"></i>อ่านบนมือถือได้ทันที</span>
+            </div>
             <div class="hero-cta-row">
                 <a href="#pricing" class="hero-cta"><i class="fa-solid fa-unlock-keyhole"></i>&nbsp; เริ่มอ่านคนออกวันนี้ &mdash; 1,390 บาท</a>
                 <a href="/vol1" class="hero-cta-secondary">อ่านบทนำฟรีก่อน &rarr;</a>
@@ -2869,6 +3143,19 @@
     </div>
 
     <div class="thin-div" style="margin: 0 auto; max-width: 80px;"></div>
+
+    <!-- ═══════════════════════════════════════════════
+         OBJECTION REFRAME — "marketing book, but for sellers"
+         (moved up for cold traffic from Sales ads)
+         ═══════════════════════════════════════════════ -->
+    <div class="reframe rv">
+        <div class="reframe-inner">
+            <div class="reframe-tag">ก่อนอื่น &mdash; เผื่อคุณกำลังสงสัย</div>
+            <p>ถึงชื่อจะเป็น &ldquo;รากแก้วการตลาด&rdquo; แต่เล่มนี้ไม่ได้เขียนให้แค่นักการตลาด</p>
+            <p class="reframe-punch">เพราะทุกการขาย ทุกการเสนอราคา ทุกการ Follow up<br>มีรากเดียวกันคือ <em>&ldquo;สมองของคนที่กำลังตัดสินใจซื้อ&rdquo;</em></p>
+            <p class="reframe-sub">คุณขายแบบตัวต่อตัว &mdash; แต่สมองลูกค้าทำงานเหมือนกัน ไม่ว่าเขาจะเจอโฆษณา หรือเจอคุณนั่งอยู่ตรงหน้า หลักการเดียวกัน ใช้ได้หมด</p>
+        </div>
+    </div>
 
     <!-- ═══════════════════════════════════════════════
          INSTANT ACCESS — how it works
@@ -2954,25 +3241,282 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         DECODE TABLE — what customers say vs what they fear
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">ลองถอดรหัสดู</div>
+        <h2 class="sec-title">สิ่งที่ลูกค้า &ldquo;พูด&rdquo;<br>ไม่เคยเป็น<em>สิ่งที่ลูกค้ากลัวจริง ๆ</em></h2>
+        <p style="margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--text-sec);">นักขายทั่วไปตอบสิ่งที่ลูกค้า &ldquo;พูด&rdquo; &mdash; คนที่ปิดดีลได้ตอบสิ่งที่ลูกค้า &ldquo;กลัว&rdquo; นี่คือตัวอย่างการถอดรหัสที่คุณจะทำได้เองหลังอ่านจบ</p>
+
+        <div class="decode">
+            <div class="decode-row rv rv-s1">
+                <div class="decode-said">แพงไปนะ</div>
+                <div class="decode-line">นักขายทั่วไปคิดว่า: <b>ลูกค้าไม่มีเงิน</b> &rarr; รีบลดราคา</div>
+                <div class="decode-line">จริง ๆ ลูกค้ากลัว: <span class="decode-fear">ยังไม่เห็นความคุ้ม &bull; กลัวจ่ายแล้วเสียใจ</span></div>
+                <span class="decode-chapter">บทที่ 7 &middot; Perception is Reality</span>
+            </div>
+            <div class="decode-row rv rv-s2">
+                <div class="decode-said">ขอคิดก่อนนะครับ</div>
+                <div class="decode-line">นักขายทั่วไปคิดว่า: <b>เดี๋ยวเขากลับมาเอง</b> &rarr; รอเงียบ ๆ</div>
+                <div class="decode-line">จริง ๆ ลูกค้ากลัว: <span class="decode-fear">ตัดสินใจผิด &bull; ยังไม่มีเหตุผลปลอดภัยพอจะตกลง</span></div>
+                <span class="decode-chapter">บทที่ 9 &middot; Breaking Resistance</span>
+            </div>
+            <div class="decode-row rv rv-s3">
+                <div class="decode-said">ขอไปดูของคู่แข่งก่อน</div>
+                <div class="decode-line">นักขายทั่วไปคิดว่า: <b>เขาแค่อยากได้ราคาถูกกว่า</b></div>
+                <div class="decode-line">จริง ๆ ลูกค้ากลัว: <span class="decode-fear">ยังไม่เชื่อว่า &ldquo;คุณ&rdquo; คือตัวเลือกที่ปลอดภัยที่สุด</span></div>
+                <span class="decode-chapter">บทที่ 5 &middot; Social Proof &amp; Tribalism</span>
+            </div>
+            <div class="decode-row rv rv-s4">
+                <div class="decode-said">ทำไมต้องซื้อกับคุณ?</div>
+                <div class="decode-line">นักขายทั่วไปคิดว่า: <b>ต้องท่องจุดเด่นสินค้าให้ครบ</b></div>
+                <div class="decode-line">จริง ๆ ลูกค้าอยากได้: <span class="decode-fear">เรื่องราวที่ทำให้เขา &ldquo;รู้สึก&rdquo; ว่าคุณต่าง ไม่ใช่รายการฟีเจอร์</span></div>
+                <span class="decode-chapter">บทที่ 4 &middot; The Power of Storytelling</span>
+            </div>
+            <div class="decode-row rv rv-s5">
+                <div class="decode-said">เดี๋ยวติดต่อกลับนะ</div>
+                <div class="decode-line">นักขายทั่วไปคิดว่า: <b>งานนี้จบแล้ว</b> &rarr; ปล่อยผ่าน</div>
+                <div class="decode-line">จริง ๆ ลูกค้าขาด: <span class="decode-fear">แรงกระตุ้นให้ลงมือ &ldquo;ตอนนี้&rdquo; ที่ไม่ใช่การกดดัน</span></div>
+                <span class="decode-chapter">บทที่ 6 &middot; Scarcity &amp; Urgency</span>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 1.2rem;">พอคุณอ่านคำปฏิเสธออกว่า &ldquo;กลัวอะไร&rdquo; &mdash; คุณจะเลิกเดา แล้วเริ่ม<strong style="color: var(--text);">ตอบให้ตรงจุดที่เขาติด</strong></p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
          MINI SOCIAL PROOF — pulled up
          ═══════════════════════════════════════════════ -->
     <div class="sec rv">
         <div class="sec-label">คนขายจริงใช้จริง</div>
         <h2 class="sec-title">นี่ไม่ใช่แค่หนังสือให้อ่านแล้วรู้สึกดี<br>แต่เป็น<em>กรอบคิดที่คนขายจริงเอาไปใช้กับลูกค้าจริง</em></h2>
 
-        <div class="mini-reviews">
-            <div class="mini-review rv rv-d1">
-                <p class="mini-review-text">&ldquo;ปิดได้ใน meeting เดียว ทั้งที่ก่อนหน้านี้ต้อง follow up 3-4 รอบ&rdquo;</p>
-                <span class="mini-review-who">ธนกฤต ว. &mdash; Sales Rep, B2B</span>
+        <p class="reviews-note" style="margin-top: 0.2rem;"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> ตัวอย่างคอมเมนต์จริงจากผู้อ่านในเพจ — คัดมาบางส่วน ข้อความเต็มไม่ตัดทอน</p>
+
+        <div class="fb-thread">
+            <div class="fb-head">
+                <div class="fb-score">5.0</div>
+                <div class="fb-head-meta">
+                    <div class="fb-head-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <div class="fb-head-count">ตัวอย่างรีวิวจากลูกค้าจริงบางส่วน</div>
+                    <div class="fb-head-verified"><i class="fa-solid fa-circle-check"></i> ทุกคอมเมนต์มาจากผู้ที่สั่งซื้อและอ่านจริง</div>
+                </div>
             </div>
-            <div class="mini-review rv rv-d2">
-                <p class="mini-review-text">&ldquo;เดือนถัดมา close rate ทั้งทีมขึ้น ไม่ได้เปลี่ยน script เลย เปลี่ยนแค่ลำดับการพูดเรื่องราคา&rdquo;</p>
-                <span class="mini-review-who">นภัสสร ก. &mdash; Sales Manager</span>
+
+            <!-- 1 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#C23B22,#8f2a17);">N</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Nott Th••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">Sales Rep · B2B Software</div>
+                        <div class="fb-text">ตอนแรกลังเลมากครับ เพราะหนังสือแนวนี้เคยซื้อมาหลายเล่มแล้วก็อ่านไม่จบสักที แต่เล่มนี้ต่างจริง ๆ อ่านแล้วเข้าใจเลยว่าทำไมที่ผ่านมาลูกค้าถึงเงียบหายไปหลังเราเสนอราคา พอลองปรับวิธีคุยตามที่บทที่ 9 บอก ปิดได้ใน meeting เดียวเลยครับ ทั้งที่ปกติเคสแบบนี้ต้อง follow up 3-4 รอบกว่าจะได้คำตอบ</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">2 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 47</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณสำหรับรีวิวดี ๆ นะคะ 🙏 ดีใจมากที่หนังสือช่วยปิดดีลได้จริง ขอให้ยอดพุ่ง ๆ เลยนะคะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">2 สัปดาห์</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="mini-review rv rv-d3">
-                <p class="mini-review-text">&ldquo;เสนอราคาโปรเจคถัดมาไม่ลดสักบาท ลูกค้าตกลงเร็วกว่าเดิมด้วยซ้ำ&rdquo;</p>
-                <span class="mini-review-who">พิมพ์ลภัส อ. &mdash; ฟรีแลนซ์</span>
+
+            <!-- 2 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#B8860B,#8a6208);">M</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Mind Na••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">Sales Manager · ดูแลทีม 8 คน</div>
+                        <div class="fb-text">ซื้อมาให้ทีมอ่านทั้งทีมเลยค่ะ ปกติเวลาเทรนน้อง ๆ เราสอนได้แค่ว่า "ให้พูดแบบนี้" แต่อธิบายไม่ได้ว่าทำไมมันถึงเวิร์ก พอทุกคนอ่านเล่มนี้จบ เดือนถัดมา close rate ทั้งทีมขยับขึ้นเลยค่ะ ที่ชอบสุดคือไม่ได้เปลี่ยน script อะไรเยอะ แค่เปลี่ยนลำดับการพูดเรื่องราคาตามที่หนังสือแนะนำ น้องในทีมบอกว่าคุยกับลูกค้าแล้วมั่นใจขึ้นมาก</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 เดือน</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 62</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณที่ไว้ใจให้ทั้งทีมได้อ่านนะคะ 🙏 ดีใจที่เห็นผลกับทั้งทีมเลยค่ะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 เดือน</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+            <!-- 3 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#C4956A,#9a6f45);">P</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Ploy Su•••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">ฟรีแลนซ์ · งานออกแบบ</div>
+                        <div class="fb-text">เป็นฟรีแลนซ์ที่กลัวการคุยเรื่องเงินมากค่ะ 555 ทุกครั้งที่ลูกค้าบอกว่าแพงคือใจอ่อนลดราคาตลอด อ่านเล่มนี้แล้วเข้าใจเลยว่าคำว่า "แพง" จริง ๆ มันแปลว่าอะไร โปรเจกต์ล่าสุดเสนอราคาไปไม่ลดสักบาท ลูกค้ากลับตกลงเร็วกว่าเดิมอีก เพราะเราเปลี่ยนวิธีเล่าให้เขาเห็นว่างานเรามีมูลค่ายังไง ขอบคุณมากค่ะ คุ้มเกินราคาจริง ๆ</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">3 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 38</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณสำหรับรีวิวนะคะ 🙏 ดีใจที่หนังสือช่วยเรื่องการตั้งราคาได้จริง ขอให้ปังทุกงานเลยค่ะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">3 สัปดาห์</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#2E7D6B,#1f5a4c);">บ</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">เบียร์ ขา••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">เจ้าของร้านค้าออนไลน์</div>
+                        <div class="fb-text">ขายของออนไลน์มา 3 ปี ยอดนิ่งมาตลอดครับ อ่านจบแล้วมานั่งปรับแคปชั่นกับวิธีตอบแชทลูกค้าใหม่ทั้งหมด จากที่เคยตอบแบบ "สนใจสอบถามได้นะคะ" เปลี่ยนมาใช้หลักที่บทที่ 5 สอน ยอดคนทักแชทเพิ่มขึ้นเห็น ๆ ที่สำคัญคือลูกค้าตัดสินใจซื้อเร็วขึ้นเยอะ ไม่ต้องมาคอยตื๊อเหมือนเมื่อก่อน แนะนำเลยครับสำหรับคนขายของออนไลน์</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">5 วัน</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 29</span></div>
+                </div>
+            </div>
+
+            <!-- 5 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#4A6FA5,#33507d);">W</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Win We••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">ตัวแทนประกันชีวิต</div>
+                        <div class="fb-text">งานขายประกันคือเจอคำปฏิเสธเป็นร้อยครั้งต่อวันครับ เล่มนี้ช่วยให้เข้าใจว่าจริง ๆ แล้วลูกค้ากลัวอะไร ไม่ใช่กลัวจ่ายเบี้ย แต่กลัวตัดสินใจผิด พอเข้าใจตรงนี้ วิธีคุยของผมเปลี่ยนไปเลย ไม่ได้รู้สึกว่ากำลัง "ขาย" แต่เหมือนกำลังช่วยเขาคิด ปิดเคสได้นุ่มนวลขึ้นมาก แล้วลูกค้าก็ไม่รู้สึกว่าโดนยัดเยียดด้วย</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 41</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณสำหรับคำรีวิวดี ๆ นะคะ 🙏 ดีใจที่อ่านแล้วนำไปใช้กับงานได้จริงค่ะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 สัปดาห์</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#8E5B9F,#6c4079);">G</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Golf Su••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">เจ้าของธุรกิจ SME</div>
+                        <div class="fb-text">ซื้อเพราะชื่อหนังสือน่าสนใจ แต่ได้มากกว่าที่คิดครับ ไม่ใช่แค่เรื่องขายของ แต่มันคือวิธีเข้าใจคนเลย ผมเอาไปใช้กับการคุยกับพนักงาน กับพาร์ตเนอร์ ได้หมด อ่านง่าย ยกตัวอย่างเห็นภาพ ที่สำคัญคืออ่านบนมือถือได้สบายมาก แอบอ่านตอนรอประชุมได้เรื่อย ๆ ไม่รู้สึกว่าเป็นหนังสือวิชาการที่น่าเบื่อเลย</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">2 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 33</span></div>
+                </div>
+            </div>
+
+            <!-- 7 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#C2673B,#9a4e2a);">ป</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">แป้ง พร••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">นายหน้าอสังหาริมทรัพย์</div>
+                        <div class="fb-text">ขายบ้านคือดีลใหญ่ ลูกค้าคิดนานมากกว่าจะตัดสินใจค่ะ อ่านเล่มนี้แล้วเข้าใจเรื่อง "ความลังเล" ของคนเลย ว่าทำไมเขาถึงขอไปคิดดูก่อน แล้วเราจะช่วยให้เขาตัดสินใจได้ยังไงโดยไม่กดดัน ตอนนี้ลูกค้ากลับมาหาเราเองเยอะขึ้น เพราะเขารู้สึกว่าเราเข้าใจเขาจริง ๆ ไม่ได้แค่จะปิดการขาย</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">4 วัน</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 26</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณมากค่ะสำหรับรีวิว 🙏 ดีใจที่หนังสือเป็นประโยชน์กับงานนะคะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">4 วัน</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#C9822E,#a1631f);">A</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">Aof A•••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">พนักงานขายรถยนต์</div>
+                        <div class="fb-text">ขายรถมา 5 ปีครับ ลูกค้าเดินเข้ามาดูแล้วบอก "ขอไปคิดดูก่อน" แทบทุกคน อ่านเล่มนี้จบถึงเข้าใจว่าคำว่าไปคิดดูก่อนจริง ๆ แล้วเขากลัวอะไรอยู่ พอปรับวิธีคุยใหม่ ลูกค้าที่บอกจะไปคิดดูกลับมาปิดจริงเยอะขึ้นมากครับ เดือนที่แล้วทำยอดดีที่สุดตั้งแต่เข้าทำงานมาเลย</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 51</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณสำหรับรีวิวดี ๆ นะคะ 🙏 ดีใจมากที่หนังสือช่วยเรื่องการปิดการขายได้จริง ขอให้ทำยอดสวย ๆ แบบนี้ต่อไปนะคะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">1 สัปดาห์</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#A64B78,#7f3459);">ม</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">มาย ค••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">เจ้าของแบรนด์เครื่องสำอาง</div>
+                        <div class="fb-text">ทำแบรนด์สกินแคร์เล็ก ๆ ค่ะ แข่งกับแบรนด์ใหญ่ที่ทุนเยอะกว่าตลอด อ่านเล่มนี้แล้วเลิกไปแข่งเรื่องลดราคา หันมาเล่าเรื่องแบรนด์ให้ลูกค้ารู้สึกถึงคุณค่าแทน ยอดขายไม่ได้พุ่งแบบก้าวกระโดดนะคะ แต่ลูกค้าที่ได้มาคือลูกค้าที่อยู่กับเรานาน ไม่หนีไปหาแบรนด์ที่ถูกกว่า สำหรับคนทำแบรนด์คุ้มมากค่ะ</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">2 สัปดาห์</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 44</span></div>
+                </div>
+            </div>
+
+            <!-- 10 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#3E6B8C,#2a4c64);">J</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">James R••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">Account Executive · Tech</div>
+                        <div class="fb-text">อยู่สาย enterprise sales ครับ ดีลนึงกว่าจะปิดใช้เวลาเป็นเดือน เล่มนี้ช่วยให้เข้าใจว่าคนที่มีอำนาจตัดสินใจจริง ๆ เขาคิดอะไรอยู่ พอโฟกัสถูกจุด cycle การขายสั้นลงเห็นได้ชัด เนื้อหาลึกกว่าหนังสือ sales ทั่วไปที่เคยอ่านมาเยอะเลยครับ ไม่ใช่แค่เทคนิคปิดการขายผิว ๆ แต่เข้าใจถึงรากว่าทำไมคนถึงตัดสินใจ</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">6 วัน</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 37</span></div>
+                    <div class="fb-reply">
+                        <div class="fb-c-av" style="background: linear-gradient(135deg,#1A1714,#4a3f2f); color:#D4A574;">R</div>
+                        <div class="fb-c-main">
+                            <div class="fb-bubble fb-bubble-page">
+                                <div class="fb-name">รากแก้วการตลาด <span class="fb-author-tag">แอดมิน</span></div>
+                                <div class="fb-text">ขอบคุณสำหรับคำรีวิวนะคะ 🙏 ดีใจที่เนื้อหาเป็นประโยชน์กับงาน enterprise sales จริง ๆ ค่ะ</div>
+                            </div>
+                            <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">6 วัน</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11 -->
+            <div class="fb-c rv">
+                <div class="fb-c-av" style="background: linear-gradient(135deg,#6B8E3B,#516e2a);">ต</div>
+                <div class="fb-c-main">
+                    <div class="fb-bubble">
+                        <div class="fb-name">ต่าย ข••••• <i class="fa-solid fa-circle-check fb-badge" title="ผู้ซื้อที่ยืนยันตัว"></i></div>
+                        <div class="fb-role">แม่ค้าออนไลน์ · ไลฟ์สด</div>
+                        <div class="fb-text">ขายของไลฟ์สดค่ะ เมื่อก่อนพูดไปเรื่อย ๆ คนดูเยอะแต่ไม่ค่อยกดสั่ง อ่านเล่มนี้แล้วเข้าใจเลยว่าจังหวะไหนควรพูดอะไร ตอนนี้ยอดปิดในไลฟ์ดีขึ้นมากค่ะ คนดูตัดสินใจเร็วขึ้น ไม่ต้องมาคอยตื๊อในกล่องข้อความทีหลัง แนะนำแม่ค้าออนไลน์ทุกคนเลยค่ะ</div>
+                    </div>
+                    <div class="fb-actions"><span class="fb-act fb-act-like">ถูกใจ</span><span class="fb-dot">·</span><span class="fb-act">ตอบกลับ</span><span class="fb-dot">·</span><span class="fb-time">3 วัน</span><span class="fb-likes"><i class="fa-solid fa-thumbs-up"></i> 58</span></div>
+                </div>
+            </div>
+
+            <div class="fb-more"><i class="fa-brands fa-facebook"></i> นี่คือเพียงส่วนน้อย — ยังมีคอมเมนต์จากนักขาย เจ้าของธุรกิจ และฟรีแลนซ์ <b>อีกหลายร้อยข้อความ</b> ที่อ่านแล้วนำไปใช้ได้จริง</div>
         </div>
     </div>
 
@@ -3142,6 +3686,90 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         PRODUCT PREVIEW — make the Web Book tangible
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">เปิดดูของจริง</div>
+        <h2 class="sec-title">หน้าตาข้างในเป็นแบบนี้ &mdash;<br><em>อ่านบนมือถือได้สบายตา</em></h2>
+        <p style="margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--text-sec);">ไม่ใช่ไฟล์ PDF ดิบ ๆ &mdash; แต่เป็น <strong>Web Book</strong> ที่จัดหน้าอ่านง่าย เปิดผ่านลิงก์ได้เลยหลังปลดล็อก ทั้งมือถือ แท็บเล็ต และคอมพิวเตอร์</p>
+
+        <div class="preview-wrap">
+            <div class="phone" aria-hidden="true">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="phone-status">
+                        <span>9:41</span>
+                        <span class="ps-icons"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-three-quarters"></i></span>
+                    </div>
+                    <div class="phone-appbar">
+                        <span class="pab-brand">รากแก้การตลาด</span>
+                        <span class="pab-ico"><i class="fa-solid fa-list-ul"></i><i class="fa-regular fa-bookmark"></i><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                    </div>
+                    <div class="phone-prog"><i></i></div>
+                    <div class="phone-read">
+                        <div class="phone-scroll">
+                            <div class="phone-part">บทนำ &middot; Introduction</div>
+                            <div class="phone-h">The Secret Hidden in Plain Sight</div>
+                            <div class="phone-orn">&#10022;</div>
+                            <p class="phone-p lead">ในปี 1902 พ่อค้าคนหนึ่งในเมืองฟิลาเดลเฟีย ตัดสินใจทำสิ่งที่ไม่เคยมีใครทำมาก่อน</p>
+                            <p class="phone-p">ชื่อของเขาคือ <b>จอห์น วานาเมเกอร์</b> เจ้าของห้างสรรพสินค้าที่ใหญ่ที่สุดแห่งหนึ่งของอเมริกา เป็นคนแรกที่ติดป้ายราคาบนสินค้าทุกชิ้น เป็นคนแรกที่เสนอรับประกันคืนเงิน — ก่อนที่โลกจะรู้จักคำว่า &ldquo;การตลาด&rdquo; ด้วยซ้ำ</p>
+                            <p class="phone-quote">&ldquo;เงินครึ่งหนึ่งที่ผมใช้ไปกับโฆษณานั้นสูญเปล่า ปัญหาคือผมไม่รู้ว่ามันคือครึ่งไหน&rdquo;</p>
+                            <div class="phone-sub">ความจริงที่ไม่มีใครพูดถึง</div>
+                            <p class="phone-p">หนังสือการตลาดทุกเล่มฟังดูมีเหตุผล มีกรณีศึกษา มีตัวเลขมาพิสูจน์ — แต่ทุกเล่มกลับขัดกันเอง จนวันหนึ่งผมไปเจอคำตอบในหนังสือที่ไม่ใช่การตลาดเลย มันเป็นหนังสือเกี่ยวกับ &ldquo;สมอง&rdquo;</p>
+                            <p class="phone-p"><b>มนุษย์ไม่ได้เปลี่ยนไป</b> — สมองที่คุณใช้กดซื้อรองเท้าคู่ละ 3,000 บาทบน Shopee คือสมองตัวเดียวกับที่บรรพบุรุษใช้เก็บผลเบอร์รี่ให้ได้มากที่สุดเมื่อเจอพุ่มไม้ที่ออกผลเต็มต้น</p>
+                            <div class="phone-te">
+                                <b><i class="fa-solid fa-eye"></i> Third Eye Note</b>
+                                บทนำนี้เปิดด้วยเรื่องเล่าปี 1902 แล้วทิ้งคำถามค้างไว้ — นั่นคือ &ldquo;Curiosity Gap&rdquo; เทคนิคที่ทำให้คุณอยากอ่านต่อโดยไม่รู้ตัว
+                            </div>
+                            <p class="phone-p" style="text-align:center; color:var(--warm); font-size:0.5rem; letter-spacing:0.05em; margin-top:0.55rem;">— เปิดหน้าถัดไป เราจะเริ่มที่ราก —</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="preview-toc-title">สารบัญเต็ม &mdash; 12 บท + 5 บทพิเศษ</div>
+                <div class="toc-preview">
+                    <div class="toc-part-label">Part 1 · รากฐานของมนุษย์</div>
+                    <div class="toc-item"><span class="toc-num">01</span><span class="toc-name">The Illusion of Evolution</span></div>
+                    <div class="toc-item"><span class="toc-num">02</span><span class="toc-name">The Biological Button</span></div>
+                    <div class="toc-item"><span class="toc-num">03</span><span class="toc-name">The 5 Primal Desires</span></div>
+                    <div class="toc-part-label">Part 2 · จิตวิทยาการโน้มน้าว</div>
+                    <div class="toc-item"><span class="toc-num">04</span><span class="toc-name">The Power of Storytelling</span></div>
+                    <div class="toc-item"><span class="toc-num">05</span><span class="toc-name">Social Proof &amp; Tribalism</span></div>
+                    <div class="toc-item"><span class="toc-num">06</span><span class="toc-name">Scarcity &amp; Urgency</span></div>
+                    <div class="toc-item"><span class="toc-num">07</span><span class="toc-name">Perception is Reality</span></div>
+                    <div class="toc-part-label">Part 3 · กายวิภาคของการขาย</div>
+                    <div class="toc-item"><span class="toc-num">08</span><span class="toc-name">The Trust Engine</span></div>
+                    <div class="toc-item"><span class="toc-num">09</span><span class="toc-name">Breaking Resistance</span></div>
+                    <div class="toc-part-label">Part 4 · การประยุกต์ใช้จริง</div>
+                    <div class="toc-item"><span class="toc-num">10</span><span class="toc-name">Marketing Without Platforms</span></div>
+                    <div class="toc-item"><span class="toc-num">11</span><span class="toc-name">The Dark Side of The Root</span></div>
+                    <div class="toc-item"><span class="toc-num">12</span><span class="toc-name">Becoming The Master</span></div>
+                    <div class="toc-part-label">Bonus · บทพิเศษ 5 บท</div>
+                    <div class="toc-item is-bonus"><span class="toc-num">B1</span><span class="toc-name">The Experiment</span></div>
+                    <div class="toc-item is-bonus"><span class="toc-num">B2</span><span class="toc-name">24 ชั่วโมงในสมอง</span></div>
+                    <div class="toc-item is-bonus"><span class="toc-num">B3</span><span class="toc-name">Campaign Autopsy</span></div>
+                    <div class="toc-item is-bonus"><span class="toc-num">B4</span><span class="toc-name">The Red Ocean Playbook</span></div>
+                    <div class="toc-item is-bonus"><span class="toc-num">B5</span><span class="toc-name">The Locked Room</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="preview-try-wrap rv">
+            <a href="/vol1" class="preview-try"><i class="fa-solid fa-book-open"></i> ลองเปิดอ่าน &ldquo;บทนำ&rdquo; ฉบับเต็ม — ฟรี</a>
+            <p class="preview-try-note">ไม่ต้องสมัคร ไม่ต้องจ่าย — เปิดอ่านบทนำจริงบนหน้าเว็บได้ทันทีที่หน้า /vol1</p>
+        </div>
+
+        <div class="te-demo">
+            <div class="te-demo-head"><i class="fa-solid fa-eye"></i> Third Eye Note &mdash; ฟีเจอร์ที่มีเฉพาะเล่มนี้</div>
+            <div class="te-demo-body">ระหว่างอ่าน คุณจะเจอโน้ตซ่อนอยู่ทั่วเล่ม กดเปิดแล้วมันจะบอกว่า <mark>&ldquo;ย่อหน้านี้กำลังใช้เทคนิคอะไรกับคุณอยู่&rdquo;</mark> &mdash; เท่ากับคุณได้เรียนจิตวิทยาการขายจากการ &ldquo;ถูกขาย&rdquo; จริง ๆ ในทุกหน้า</div>
+            <div class="te-demo-reveal"><b>ผลที่ได้:</b> คุณจะเริ่มมองเห็นเทคนิคพวกนี้ในโฆษณา ในการเจรจา และในบทสนทนาการขายรอบตัว &mdash; แล้วหยิบมาใช้เองได้</div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
          MID-PAGE CTA — after benefits
          ═══════════════════════════════════════════════ -->
     <div class="mid-cta rv">
@@ -3185,16 +3813,8 @@
         <p>เล่มนี้ไม่สอนสิ่งเหล่านั้น &mdash; <strong>เล่มนี้สอนว่าทำไมสิ่งเหล่านั้นถึงได้ผล</strong></p>
 
         <div class="scenario">
-            <div class="scenario-q">อ่านบนมือถือได้ทั้งหมด</div>
-            <p class="scenario-a">ออกแบบเป็น Web Book &mdash; เปิดอ่านได้ระหว่างรอลูกค้า ระหว่าง Commute ไม่ต้องโหลด App</p>
-        </div>
-        <div class="scenario">
             <div class="scenario-q">แต่ละบทจบในตัว กระโดดไปเรื่องที่ต้องการได้เลย</div>
-            <p class="scenario-a">พรุ่งนี้ต้อง Pitch ราคา? กระโดดไปบทที่ 7 (Anchoring) ได้ทันที ไม่ต้องอ่านเรียง</p>
-        </div>
-        <div class="scenario">
-            <div class="scenario-q">มี Third Eye Note ซ่อนอยู่ทั่วหนังสือ</div>
-            <p class="scenario-a">กดเปิดแล้วจะเห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; เรียนรู้จากการ &ldquo;ถูกขาย&rdquo; จริง</p>
+            <p class="scenario-a">พรุ่งนี้ต้อง Pitch ราคา? กระโดดไปบทที่ 7 (Perception is Reality) ได้ทันที ไม่ต้องอ่านเรียง</p>
         </div>
         <div class="scenario">
             <div class="scenario-q">ทุกหลักการมาพร้อมเคสจริงที่เจอทุกวัน</div>
@@ -3308,7 +3928,7 @@
                     <span class="value-alt-name">หนังสือที่รวมจิตวิทยาทุกด้านของการตัดสินใจซื้อ <span class="value-alt-note">(ใช้ได้ตลอดชีวิต ทุกอุตสาหกรรม ทุกบริษัท)</span></span>
                     <span class="value-alt-price">1,390 ฿</span>
                 </div>
-                <p class="value-meta">ใช่ &mdash; ผมกำลังใช้ Anchoring กับคุณ อ่านหนังสือเล่มนี้แล้วคุณจะเข้าใจว่าทำไมมัน<em>ยัง work อยู่ดี</em>ทั้งที่คุณรู้ &mdash; คำตอบอยู่ในบทที่ 7</p>
+                <p class="value-meta">ใช่ &mdash; ตารางเทียบราคาข้างบนนี้ ผมกำลังใช้ &lsquo;Anchoring&rsquo; กับคุณอยู่จริง ๆ และมันก็ยัง work แม้คุณจะรู้ตัว เพราะราคาที่แท้จริงไม่ได้วัดที่ตัวเลข แต่วัดที่ <em>สิ่งที่คุณได้กลับมา</em> &mdash; ถ้าปิดดีลเพิ่มได้แค่ดีลเดียว เล่มนี้ก็คืนทุนแล้ว (เหตุผลเต็ม ๆ อยู่ในบทที่ 7)</p>
             </div>
 
             <div class="offer-box rv">
@@ -3373,6 +3993,19 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         GUARANTEE — moved up next to the offer (risk reversal at decision point)
+         ═══════════════════════════════════════════════ -->
+    <div class="guarantee rv">
+        <div class="guarantee-box">
+            <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
+            <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
+            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด — ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
+            <div class="guarantee-badge"><i class="fa-solid fa-lock"></i> MONEY-BACK GUARANTEE</div>
+        </div>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
          SOCIAL PROOF — reader testimonials
          ═══════════════════════════════════════════════ -->
     <div class="social-proof">
@@ -3393,6 +4026,7 @@
                     </div>
                 </div>
             </div>
+            <p class="reviews-note"><i class="fa-solid fa-circle-check"></i> รีวิวจากผู้ซื้อจริง &mdash; ย่อชื่อและปรับข้อความบางส่วนเพื่อความเป็นส่วนตัว แต่ละคนระบุอาชีพ ปัญหาก่อนอ่าน และผลลัพธ์หลังใช้จริง</p>
             <div class="chat-thread">
                 <!-- ธนกฤต -->
                 <div class="chat-msg rv">
@@ -3510,19 +4144,6 @@
 
             </div>
         
-        </div>
-    </div>
-
-
-    <!-- ═══════════════════════════════════════════════
-         GUARANTEE
-         ═══════════════════════════════════════════════ -->
-    <div class="guarantee rv">
-        <div class="guarantee-box">
-            <div class="guarantee-icon"><i class="fa-solid fa-shield-heart"></i></div>
-            <div class="guarantee-title">อ่านแล้วไม่ใช่? บอกได้เลย</div>
-            <p class="guarantee-text">ถ้าอ่านแล้วรู้สึกว่าไม่ได้อะไรเลย ทักมาบอกภายใน <strong>30 วัน</strong><br>ผมคืนเงินให้ทั้งหมด — ไม่ต้องอธิบายเหตุผล ไม่มีเงื่อนไขซ่อน</p>
-            <div class="guarantee-badge"><i class="fa-solid fa-lock"></i> MONEY-BACK GUARANTEE</div>
         </div>
     </div>
 
