@@ -291,6 +291,134 @@
             margin-top: 1rem;
         }
 
+        /* ── Why the price ── */
+        .whyprice {
+            background: var(--bg-dark);
+            color: #F5F0EB;
+            padding: 3.6rem 1.5rem;
+            position: relative;
+            border-top: 1px solid rgba(196,149,106,0.12);
+            border-bottom: 1px solid rgba(196,149,106,0.12);
+            overflow: hidden;
+        }
+        .whyprice::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(ellipse at 50% 0%, rgba(196,149,106,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .whyprice-inner { max-width: 720px; margin: 0 auto; position: relative; }
+        .whyprice-label {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            color: var(--warm);
+            text-align: center;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+        .whyprice-title {
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.4rem, 4.6vw, 2rem);
+            font-weight: 700;
+            line-height: 1.5;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 0.9rem;
+        }
+        .whyprice-title em { color: var(--warm); font-style: normal; }
+        .whyprice-sub {
+            text-align: center;
+            color: #C9C2B8;
+            font-size: 0.98rem;
+            line-height: 1.85;
+            max-width: 560px;
+            margin: 0 auto 2.4rem;
+        }
+        .whyprice-reasons { display: grid; gap: 1rem; margin-bottom: 2.4rem; }
+        .whyprice-reason {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(196,149,106,0.18);
+            border-left: 3px solid var(--warm);
+            border-radius: 10px;
+            padding: 1.2rem 1.3rem;
+            text-align: left;
+        }
+        .whyprice-reason-num {
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--warm);
+            flex-shrink: 0;
+            line-height: 1.6;
+        }
+        .whyprice-reason-body h4 {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.3rem;
+        }
+        .whyprice-reason-body p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: #B8B1A8;
+        }
+        .whyprice-reason-body strong { color: #E8C98A; }
+        .whyprice-vs {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: stretch;
+            border: 1px solid rgba(196,149,106,0.2);
+            border-radius: 14px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+        .whyprice-vs-col { padding: 1.6rem 1.3rem; text-align: center; }
+        .whyprice-vs-ordinary { background: rgba(255,255,255,0.02); }
+        .whyprice-vs-this { background: linear-gradient(160deg, rgba(196,149,106,0.15), rgba(196,149,106,0.04)); }
+        .whyprice-vs-tag {
+            font-family: var(--mono);
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            color: var(--warm);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+        .whyprice-vs-price {
+            font-family: 'Prompt', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .whyprice-vs-ordinary .whyprice-vs-price { color: #8A857D; }
+        .whyprice-vs-desc { font-size: 0.82rem; line-height: 1.7; color: #A79F96; }
+        .whyprice-vs-this .whyprice-vs-desc { color: #D8CFC2; }
+        .whyprice-vs-mid {
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--mono); font-size: 0.8rem; color: var(--warm);
+            background: rgba(0,0,0,0.25); padding: 0 0.8rem;
+        }
+        .whyprice-punch {
+            text-align: center;
+            font-family: 'Prompt', sans-serif;
+            font-size: clamp(1.05rem, 3vw, 1.3rem);
+            font-weight: 600;
+            line-height: 1.6;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+        .whyprice-punch strong { color: var(--warm); }
+        .whyprice-punch-sub { text-align: center; color: #A79F96; font-size: 0.86rem; line-height: 1.75; }
+        @media (max-width: 600px) {
+            .whyprice-vs { grid-template-columns: 1fr; }
+            .whyprice-vs-mid { padding: 0.5rem; }
+        }
+
         /* ── Comparison columns ── */
         .compare {
             display: grid;
@@ -3886,6 +4014,58 @@
             <p class="hiw-note"><strong>ไม่ต้องรอจัดส่ง</strong> ไม่ต้องโหลดแอป และอ่านซ้ำได้ตลอดชีพ</p>
         </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════════
+         WHY THE PRICE — why it costs more than an ordinary sales book
+         ═══════════════════════════════════════════════ -->
+    <section class="whyprice rv">
+        <div class="whyprice-inner">
+            <div class="whyprice-label">// ทำไมราคาถึงต่างจากหนังสือขายทั่วไป</div>
+            <h2 class="whyprice-title">ใช่ครับ &mdash; เล่มนี้แพงกว่าหนังสือขายเล่มละสองสามร้อย<br>และผม<em>ตั้งใจ</em>ให้มันเป็นแบบนั้น</h2>
+            <p class="whyprice-sub">เพราะสิ่งที่คุณจ่าย ไม่ได้จ่ายไปกับ &ldquo;จำนวนหน้า&rdquo; หรือ &ldquo;กระดาษ&rdquo; &mdash; แต่จ่ายไปกับสิ่งที่หนังสือขายทั่วไปให้คุณไม่ได้</p>
+
+            <div class="whyprice-reasons">
+                <div class="whyprice-reason">
+                    <div class="whyprice-reason-num">01</div>
+                    <div class="whyprice-reason-body">
+                        <h4>หนังสือทั่วไปเล่าประสบการณ์คนเดียว &mdash; เล่มนี้กลั่นจากงานวิจัย 100+ ชิ้น</h4>
+                        <p>หนังสือขายส่วนใหญ่คือความเห็นของคนคนเดียวที่ &ldquo;เคยขายได้&rdquo; แต่เล่มนี้ยืนอยู่บน<strong>งานวิจัยด้านจิตวิทยาและพฤติกรรมมนุษย์กว่า 100 ชิ้น</strong> บวกเคสขายจริงหลายร้อยเคส — คุณจึงไม่ได้เดิมพันกับความบังเอิญของใครคนหนึ่ง</p>
+                    </div>
+                </div>
+                <div class="whyprice-reason">
+                    <div class="whyprice-reason-num">02</div>
+                    <div class="whyprice-reason-body">
+                        <h4>หนังสือทั่วไปสอน &ldquo;ทำอะไร&rdquo; — เล่มนี้สอน &ldquo;ทำไม&rdquo;</h4>
+                        <p>เทคนิคและสคริปต์ล้าสมัยได้ทุกปี แต่<strong>หลักจิตวิทยาการตัดสินใจไม่เคยเปลี่ยน</strong> เพราะสมองมนุษย์ไม่ได้อัปเดตมา 200,000 ปี &mdash; สิ่งที่คุณเรียนจากเล่มนี้จึงใช้ได้ไปตลอดชีวิตการขาย</p>
+                    </div>
+                </div>
+                <div class="whyprice-reason">
+                    <div class="whyprice-reason-num">03</div>
+                    <div class="whyprice-reason-body">
+                        <h4>หนังสือทั่วไปอ่านจบแล้วจบ &mdash; เล่มนี้อยู่กับคุณตลอดชีพ</h4>
+                        <p>คุณได้ Web Book ที่เปิดอ่านซ้ำได้ทุกที่ทุกเวลา พร้อม <strong>Third Eye Note</strong> ที่ชี้ให้เห็นว่าแต่ละหน้ากำลังใช้เทคนิคอะไรกับคุณอยู่ &mdash; <strong>จ่ายครั้งเดียว ไม่มีค่าต่ออายุ ไม่มีวันหมดอายุ</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="whyprice-vs">
+                <div class="whyprice-vs-col whyprice-vs-ordinary">
+                    <div class="whyprice-vs-tag">หนังสือขายทั่วไป</div>
+                    <div class="whyprice-vs-price">฿200&ndash;400</div>
+                    <div class="whyprice-vs-desc">สอนเทคนิคที่ล้าสมัยได้ • อ่านจบแล้ววางบนชั้น • ใช้ได้กับบางสถานการณ์</div>
+                </div>
+                <div class="whyprice-vs-mid">VS</div>
+                <div class="whyprice-vs-col whyprice-vs-this">
+                    <div class="whyprice-vs-tag">เล่มนี้</div>
+                    <div class="whyprice-vs-price">฿1,390</div>
+                    <div class="whyprice-vs-desc">เข้าใจกลไกที่ไม่มีวันเปลี่ยน • ใช้ได้ทุกดีล ทุกอุตสาหกรรม • ตลอดชีวิตการขาย</div>
+                </div>
+            </div>
+
+            <p class="whyprice-punch">ถ้าเล่มนี้ช่วยให้คุณปิดดีลเพิ่มได้<strong>แค่ดีลเดียว</strong><br>มันก็คืนทุนให้คุณไปหลายเท่าแล้ว</p>
+            <p class="whyprice-punch-sub">คำถามจึงไม่ใช่ &ldquo;ทำไมมันแพงกว่า&rdquo; &mdash; แต่คือ &ldquo;คุณยอมเสียดีลไปอีกกี่ดีล เพราะยังอ่านลูกค้าไม่ออก&rdquo;</p>
+        </div>
+    </section>
 
     <!-- ═══════════════════════════════════════════════
          PRICING
