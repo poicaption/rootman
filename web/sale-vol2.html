@@ -1533,166 +1533,64 @@
             letter-spacing: 0.02em;
         }
 
-        /* ── SIGNAL FEED (social proof, terminal chat) ── */
-        .signal-feed {
-            border-top: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            background: linear-gradient(180deg, var(--void-2), var(--void));
-            padding: 3.2rem 1.5rem;
-            position: relative;
-            z-index: 1;
+        /* ── Field signals: captured customer reviews (gallery + modal) ── */
+        .reviews-note {
+            font-family: var(--thai);
+            font-size: 0.82rem; color: var(--text-dim); text-align: center;
+            max-width: 480px; margin: 0.4rem auto 1.6rem; line-height: 1.7;
         }
-        .signal-inner { max-width: 640px; margin: 0 auto; }
-        .signal-head {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2.2rem;
+        .rv-gallery { columns: 3; column-gap: 0.9rem; max-width: 1180px; margin: 0 auto; }
+        .rv-shot {
+            width: 100%; display: block; border-radius: 14px; margin: 0 0 0.9rem;
+            break-inside: avoid; box-shadow: 0 6px 26px rgba(0,0,0,0.5);
+            border: 1px solid var(--line-2); background: #fff;
         }
-        .signal-live {
-            display: flex;
-            align-items: center;
-            gap: 0.85rem;
+        .rv-showmore-wrap { text-align: center; margin-top: 1.8rem; }
+        .rv-showmore {
+            display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;
+            font-family: var(--mono); font-weight: 600; font-size: 0.9rem; letter-spacing: 0.02em;
+            color: var(--cyan); background: var(--cyan-soft);
+            border: 1px solid rgba(0,240,255,0.4); border-radius: 8px;
+            padding: 0.85rem 1.9rem; transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
-        .signal-avatars { display: flex; }
-        .signal-av {
-            width: 34px; height: 34px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--display);
-            font-size: 0.72rem; font-weight: 700;
-            color: var(--void);
-            border: 2px solid var(--void);
-            margin-left: -10px;
-            box-shadow: 0 0 10px rgba(0,240,255,0.25);
+        .rv-showmore:hover { background: rgba(0,240,255,0.18); border-color: var(--cyan); box-shadow: 0 0 18px rgba(0,240,255,0.25); }
+        .rv-showmore i { color: var(--cyan); }
+
+        .rv-modal { position: fixed; inset: 0; z-index: 2000; display: none; }
+        .rv-modal.open { display: block; }
+        .rv-modal-backdrop { position: absolute; inset: 0; background: rgba(3,6,14,0.86); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+        .rv-modal-panel {
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: min(1120px, 94vw); height: min(88vh, 920px);
+            background: var(--panel); border: 1px solid var(--line-2);
+            border-radius: 14px; display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7), 0 0 40px rgba(0,240,255,0.08);
         }
-        .signal-av:first-child { margin-left: 0; }
-        .signal-av-more {
+        .rv-modal-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+            padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--line); flex-shrink: 0;
             background: var(--panel-2);
-            color: var(--cyan);
-            font-family: var(--mono);
-            font-size: 0.6rem;
         }
-        .signal-count-wrap { text-align: left; line-height: 1.35; font-family: var(--mono); }
-        .signal-count { font-size: 1.1rem; font-weight: 700; color: var(--heading); }
-        .signal-count-label { font-size: 0.7rem; color: var(--text-dim); }
-        .signal-online {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.64rem;
-            color: var(--green);
-            margin-top: 0.15rem;
-            letter-spacing: 0.03em;
+        .rv-modal-title { font-family: var(--mono); font-weight: 600; font-size: 0.85rem; color: var(--heading); display: flex; align-items: center; gap: 0.5rem; letter-spacing: 0.02em; }
+        .rv-modal-title i { color: #4a9eff; }
+        .rv-modal-close {
+            flex-shrink: 0; background: rgba(255,255,255,0.08); border: none; color: var(--heading);
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.05rem;
+            display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
         }
-        .signal-dot {
-            width: 7px; height: 7px;
-            border-radius: 50%;
-            background: var(--green);
-            box-shadow: 0 0 0 0 rgba(77,255,181,0.6);
-            animation: sigPulse 1.8s ease-out infinite;
-        }
-        @keyframes sigPulse {
-            0%   { box-shadow: 0 0 0 0 rgba(77,255,181,0.5); }
-            70%  { box-shadow: 0 0 0 7px rgba(77,255,181,0); }
-            100% { box-shadow: 0 0 0 0 rgba(77,255,181,0); }
-        }
-        .signal-thread { display: flex; flex-direction: column; gap: 1.4rem; }
-        .signal-msg { display: flex; gap: 0.75rem; align-items: flex-start; }
-        .signal-avatar {
-            position: relative;
-            width: 38px; height: 38px;
-            flex-shrink: 0;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: var(--display);
-            font-size: 0.8rem; font-weight: 700;
-            color: var(--void);
-        }
-        .signal-on {
-            position: absolute;
-            right: -1px; bottom: -1px;
-            width: 9px; height: 9px;
-            border-radius: 50%;
-            background: var(--green);
-            border: 2px solid var(--void);
-            box-shadow: 0 0 6px var(--green);
-        }
-        .signal-content { flex: 1; min-width: 0; display: flex; flex-direction: column; }
-        .signal-name {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            font-family: var(--display);
-            font-size: 0.82rem;
-            font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.35rem;
-        }
-        .signal-verify { color: var(--cyan); font-size: 0.62rem; }
-        .signal-bubble {
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-left: 2px solid var(--cyan);
-            border-radius: 4px;
-            padding: 0.65rem 0.85rem;
-            font-size: 0.88rem;
-            color: var(--text);
-            line-height: 1.7;
-            margin-bottom: 0.35rem;
-        }
-        .signal-bubble.alt { border-left-color: var(--magenta); }
-        .signal-bubble.amb { border-left-color: var(--amber); }
-        .signal-react {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.25rem;
-            background: var(--panel-2);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 0.12rem 0.5rem;
-            font-size: 0.74rem;
-            align-self: flex-start;
-            margin-bottom: 0.3rem;
-        }
-        .signal-react-count { font-family: var(--mono); font-size: 0.6rem; color: var(--text-dim); }
-        .signal-meta {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-family: var(--mono);
-            font-size: 0.66rem;
-            color: var(--text-faint);
-        }
-        .signal-tag { color: var(--cyan); }
-        .signal-typing {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-top: 0.4rem;
-            font-family: var(--mono);
-            font-size: 0.68rem;
-            color: var(--text-dim);
-        }
-        .signal-typing .signal-avatar {
-            background: var(--panel-2);
-            border: 1px solid var(--line);
-            color: var(--cyan);
-            font-size: 1rem;
-        }
-        .typing-dots { display: inline-flex; gap: 3px; }
-        .typing-dots span {
-            width: 5px; height: 5px;
-            border-radius: 50%;
-            background: var(--cyan);
-            animation: typingBlink 1.4s infinite ease-in-out both;
-        }
-        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typingBlink {
-            0%, 80%, 100% { opacity: 0.25; transform: translateY(0); }
-            40% { opacity: 1; transform: translateY(-3px); }
+        .rv-modal-close:hover { background: rgba(255,255,255,0.18); }
+        .rv-modal-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 1.1rem; overscroll-behavior: contain; }
+        .rv-modal-grid { columns: 3; column-gap: 0.9rem; }
+        body.rv-modal-open { overflow: hidden; }
+
+        @media (max-width: 900px) { .rv-gallery, .rv-modal-grid { columns: 2; } }
+        @media (max-width: 560px) {
+            .rv-gallery { columns: 1; max-width: 400px; }
+            .rv-modal-grid { columns: 1; max-width: 400px; margin: 0 auto; }
+            .rv-modal-panel { width: 100%; height: 100%; top: 0; left: 0; transform: none; border-radius: 0; border: none; }
+            .rv-showmore { width: 100%; max-width: 400px; justify-content: center; }
         }
 
         /* ── Guarantee FA icon ── */
@@ -1986,83 +1884,99 @@
     </div>
 
 
-    <!-- ═══ SIGNAL FEED (social proof) ═══ -->
-    <div class="signal-feed">
-        <div class="signal-inner rv">
-            <div class="signal-head">
-                <div class="sec-label" style="color: var(--magenta);">INTERCEPTED // FIELD SIGNALS</div>
-                <div class="signal-live">
-                    <div class="signal-avatars">
-                        <div class="signal-av" style="background: linear-gradient(135deg, #00f0ff, #0090ff);">ณ</div>
-                        <div class="signal-av" style="background: linear-gradient(135deg, #ff2b7a, #ff5e8a);">บ</div>
-                        <div class="signal-av" style="background: linear-gradient(135deg, #ffb547, #ff8c42);">ก</div>
-                        <div class="signal-av" style="background: linear-gradient(135deg, #4dffb5, #2bd48a);">ศ</div>
-                        <div class="signal-av signal-av-more">+490</div>
-                    </div>
-                    <div class="signal-count-wrap">
-                        <div><span class="signal-count">500+</span> <span class="signal-count-label">DEPLOYED</span></div>
-                        <div class="signal-online"><span class="signal-dot"></span> 14 readers online now</div>
-                    </div>
-                </div>
-            </div>
+    <!-- ═══ FIELD SIGNALS — customer reviews (static images) ═══ -->
+    <div class="sec rv">
+        <div class="sec-label" style="color: var(--magenta);">INTERCEPTED // FIELD SIGNALS</div>
+        <h2 class="sec-title">ไม่ใช่รีวิวที่เราเขียนขึ้นเอง<br><em>แต่คือสัญญาณจากคนที่เอาไปใช้จริงในสนาม</em></h2>
 
-            <div class="signal-thread">
-                <!-- ณัฐพล -->
-                <div class="signal-msg rv">
-                    <div class="signal-avatar" style="background: linear-gradient(135deg, #00f0ff, #0090ff);">ณ<span class="signal-on"></span></div>
-                    <div class="signal-content">
-                        <span class="signal-name">ณัฐพล ศ. <i class="fa-solid fa-circle-check signal-verify" title="verified reader"></i></span>
-                        <div class="signal-bubble">เอาบท The Hook ไปใช้กับ reels ของแบรนด์ ปรับแค่ 3 วินาทีแรก จากที่ engagement นิ่งมา 2 เดือน</div>
-                        <div class="signal-bubble">คลิปถัดมา reach ทะลุ 400k organic ไม่ได้ยิงแอดเลยสักบาท</div>
-                        <div class="signal-react">🔥 <span class="signal-react-count">38</span></div>
-                        <div class="signal-meta"><span>14:32</span><span class="signal-tag">// content creator</span></div>
-                    </div>
-                </div>
+        <p class="reviews-note"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> บทสนทนาจริงระหว่างลูกค้ากับแอดมินในกล่องข้อความเพจ — คัดมาบางส่วน ข้อความไม่ตัดทอน</p>
 
-                <!-- บุษกร -->
-                <div class="signal-msg rv">
-                    <div class="signal-avatar" style="background: linear-gradient(135deg, #ff2b7a, #ff5e8a);">บ</div>
-                    <div class="signal-content">
-                        <span class="signal-name">บุษกร ว. <i class="fa-solid fa-circle-check signal-verify" title="verified reader"></i></span>
-                        <div class="signal-bubble alt">ทำเอเจนซี่ค่ะ เอาบท Algorithm Mind ไป train ทีม content ทั้งทีม</div>
-                        <div class="signal-bubble alt">เลิกเดาว่าทำไมคลิปดัง เริ่มอ่านสัญญาณเป็นระบบ ลูกค้างงว่าทำไมเดือนนี้ผลงานพุ่ง</div>
-                        <div class="signal-react">👏 <span class="signal-react-count">52</span></div>
-                        <div class="signal-meta"><span>09:17</span><span class="signal-tag">// agency owner</span></div>
-                    </div>
-                </div>
+        <div class="rv-gallery" id="rvTeaser">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-01.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-02.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-03.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-04.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-05.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-06.png" alt="รีวิวจากลูกค้า">
+        </div>
+        <div class="rv-showmore-wrap">
+            <button class="rv-showmore" id="rvShowMore" type="button"><i class="fa-solid fa-comments"></i> ดูรีวิวทั้งหมด (60 รีวิว)</button>
+        </div>
 
-                <!-- กฤษณะ -->
-                <div class="signal-msg rv">
-                    <div class="signal-avatar" style="background: linear-gradient(135deg, #ffb547, #ff8c42);">ก<span class="signal-on"></span></div>
-                    <div class="signal-content">
-                        <span class="signal-name">กฤษณะ ป. <i class="fa-solid fa-circle-check signal-verify" title="verified reader"></i></span>
-                        <div class="signal-bubble amb">ขายของออนไลน์ครับ บท The Price is a Story เปลี่ยนวิธีเขียนแคปชั่นราคาผมไปเลย</div>
-                        <div class="signal-bubble amb">จากที่ลูกค้าทักมาถาม &ldquo;ลดได้ไหม&rdquo; ทุกวัน ตอนนี้เขาทักมาบอก &ldquo;คุ้มมาก&rdquo; แทน ไม่ได้ลดราคาเลย</div>
-                        <div class="signal-react">💸 <span class="signal-react-count">29</span></div>
-                        <div class="signal-meta"><span>20:45</span><span class="signal-tag">// online seller</span></div>
-                    </div>
+        <div class="rv-modal" id="rvModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="รีวิวจากลูกค้า">
+            <div class="rv-modal-backdrop" data-rv-close></div>
+            <div class="rv-modal-panel">
+                <div class="rv-modal-head">
+                    <span class="rv-modal-title"><i class="fa-brands fa-facebook"></i> รีวิวจากลูกค้าจริงในกล่องข้อความเพจ — 60 รีวิว</span>
+                    <button class="rv-modal-close" id="rvModalClose" type="button" aria-label="ปิด"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-
-                <!-- ศิริพร -->
-                <div class="signal-msg rv">
-                    <div class="signal-avatar" style="background: linear-gradient(135deg, #4dffb5, #2bd48a);">ศ<span class="signal-on"></span></div>
-                    <div class="signal-content">
-                        <span class="signal-name">ศิริพร ท. <i class="fa-solid fa-circle-check signal-verify" title="verified reader"></i></span>
-                        <div class="signal-bubble">อ่าน Vol.1 จบแล้วลังเลว่าจะซื้อ Vol.2 ดีไหม</div>
-                        <div class="signal-bubble">ตัดสินใจถูกมากค่ะ Vol.1 สอนว่าทำไมคนซื้อ Vol.2 สอนวิธีทำให้คนเห็นเราก่อนเลื่อนผ่าน คนละมุมแต่ต่อกันพอดี</div>
-                        <div class="signal-react">⚡ <span class="signal-react-count">44</span></div>
-                        <div class="signal-meta"><span>16:28</span><span class="signal-tag">// brand marketer</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-modal-grid">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-01.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-02.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-03.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-04.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-05.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-06.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-07.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-08.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-09.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-10.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-11.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-12.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-13.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-14.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-15.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-16.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-17.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-18.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-19.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-20.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-21.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-22.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-23.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-24.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-25.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-26.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-27.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-28.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-29.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-30.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-31.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-32.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-33.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-34.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-35.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-36.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-37.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-38.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-39.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-40.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-41.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-42.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-43.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-44.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-45.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-46.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-47.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-48.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-49.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-50.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-51.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-52.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-53.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-54.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-55.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-56.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-57.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-58.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-59.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol2/rv-60.png" alt="รีวิวจากลูกค้า">
                     </div>
-                </div>
-
-                <!-- typing -->
-                <div class="signal-typing">
-                    <div class="signal-avatar">+</div>
-                    <div class="typing-dots"><span></span><span></span><span></span></div>
-                    <span>// incoming transmission...</span>
                 </div>
             </div>
         </div>
+        <script>(function(){var b=document.getElementById("rvShowMore"),m=document.getElementById("rvModal"),c=document.getElementById("rvModalClose");if(!b||!m)return;function o(){m.classList.add("open");m.setAttribute("aria-hidden","false");document.body.classList.add("rv-modal-open");}function x(){m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.classList.remove("rv-modal-open");}b.addEventListener("click",o);if(c)c.addEventListener("click",x);m.addEventListener("click",function(e){if(e.target.hasAttribute("data-rv-close"))x();});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.classList.contains("open"))x();});})();</script>
     </div>
 
 

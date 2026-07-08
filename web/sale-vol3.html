@@ -2839,6 +2839,65 @@
         @media (prefers-reduced-motion: reduce) {
             .sp-dot { animation: none; }
         }
+        /* ── Reviews: captured customer conversations (gallery + modal) ── */
+        .reviews-note {
+            font-size: 0.8rem; color: var(--text-light); text-align: center;
+            max-width: 480px; margin: 0.4rem auto 1.6rem; line-height: 1.7;
+        }
+        .reviews-note i { color: var(--warm); }
+        .rv-gallery { columns: 3; column-gap: 0.9rem; max-width: 1180px; margin: 0 auto; }
+        .rv-shot {
+            width: 100%; display: block; border-radius: 14px; margin: 0 0 0.9rem;
+            break-inside: avoid; box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+            border: 1px solid rgba(0,0,0,0.06); background: #fff;
+        }
+        .rv-showmore-wrap { text-align: center; margin-top: 1.8rem; }
+        .rv-showmore {
+            display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer;
+            font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.95rem;
+            color: var(--text); background: rgba(94,158,128,0.08);
+            border: 1px solid rgba(94,158,128,0.45); border-radius: 999px;
+            padding: 0.8rem 1.9rem; transition: background 0.2s, border-color 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rv-showmore:hover { background: rgba(94,158,128,0.16); border-color: var(--warm); }
+        .rv-showmore i { color: var(--warm); }
+
+        .rv-modal { position: fixed; inset: 0; z-index: 2000; display: none; }
+        .rv-modal.open { display: block; }
+        .rv-modal-backdrop { position: absolute; inset: 0; background: rgba(15,29,23,0.82); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+        .rv-modal-panel {
+            position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+            width: min(1120px, 94vw); height: min(88vh, 920px);
+            background: var(--bg-dark2); border: 1px solid rgba(94,158,128,0.25);
+            border-radius: 18px; display: flex; flex-direction: column; overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        .rv-modal-head {
+            display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+            padding: 0.95rem 1.1rem; border-bottom: 1px solid rgba(255,255,255,0.08); flex-shrink: 0;
+        }
+        .rv-modal-title { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.98rem; color: #F0EDE6; display: flex; align-items: center; gap: 0.5rem; }
+        .rv-modal-title i { color: #4a9eff; }
+        .rv-modal-close {
+            flex-shrink: 0; background: rgba(255,255,255,0.08); border: none; color: #F0EDE6;
+            width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.05rem;
+            display: flex; align-items: center; justify-content: center; transition: background 0.2s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .rv-modal-close:hover { background: rgba(255,255,255,0.18); }
+        .rv-modal-body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 1.1rem; overscroll-behavior: contain; }
+        .rv-modal-grid { columns: 3; column-gap: 0.9rem; }
+        body.rv-modal-open { overflow: hidden; }
+
+        @media (max-width: 900px) { .rv-gallery, .rv-modal-grid { columns: 2; } }
+        @media (max-width: 560px) {
+            .rv-gallery { columns: 1; max-width: 400px; }
+            .rv-modal-grid { columns: 1; max-width: 400px; margin: 0 auto; }
+            .rv-modal-panel { width: 100%; height: 100%; top: 0; left: 0; transform: none; border-radius: 0; border: none; }
+            .rv-showmore { width: 100%; max-width: 400px; justify-content: center; }
+        }
+
     </style>
 </head>
 <body>
@@ -3355,103 +3414,99 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════ SOCIAL PROOF ═══════════════════════════════════════════════ -->
-    <div class="social-proof">
-        <div class="social-proof-inner rv">
-            <div class="sp-header">
-                <div class="sec-label" style="color: var(--warm);">// เสียงจากคนอ่าน</div>
-                <div class="sp-live">
-                    <div class="sp-avatars" aria-hidden="true">
-                        <span class="sp-av" style="background:linear-gradient(135deg,#3FA876,#1B5E43);">ภ</span>
-                        <span class="sp-av" style="background:linear-gradient(135deg,#5E9E80,#2A6B4D);">ว</span>
-                        <span class="sp-av" style="background:linear-gradient(135deg,#6E8C7E,#3D5A4D);">ณ</span>
-                        <span class="sp-av" style="background:linear-gradient(135deg,#4A8C6F,#1B5E43);">ก</span>
-                        <span class="sp-av sp-av-more">+</span>
-                    </div>
-                    <div class="sp-count-wrap">
-                        <span class="sp-count">500+</span> <span class="sp-count-label">คนซื้อไปแล้ว</span>
-                        <span class="sp-online"><span class="sp-dot"></span> มีคนกำลังอ่านตอนนี้</span>
-                    </div>
+    <!-- ═══ FIELD SIGNALS — customer reviews (static images) ═══ -->
+    <div class="sec rv">
+        <div class="sec-label" style="color: var(--warm);">// เสียงจากคนอ่าน</div>
+        <h2 class="sec-title">นี่ไม่ใช่รีวิวที่เราเขียนขึ้นเอง<br><em>แต่คือเสียงจริงจากเจ้าของธุรกิจที่อ่านแล้วลงมือทำ</em></h2>
+
+        <p class="reviews-note"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> บทสนทนาจริงระหว่างผู้อ่านกับแอดมินในกล่องข้อความเพจ — คัดมาบางส่วน ข้อความไม่ตัดทอน</p>
+
+        <div class="rv-gallery" id="rvTeaser">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
+        </div>
+        <div class="rv-showmore-wrap">
+            <button class="rv-showmore" id="rvShowMore" type="button"><i class="fa-solid fa-comments"></i> ดูรีวิวทั้งหมด (60 รีวิว)</button>
+        </div>
+
+        <div class="rv-modal" id="rvModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="รีวิวจากลูกค้า">
+            <div class="rv-modal-backdrop" data-rv-close></div>
+            <div class="rv-modal-panel">
+                <div class="rv-modal-head">
+                    <span class="rv-modal-title"><i class="fa-brands fa-facebook"></i> รีวิวจากลูกค้าจริงในกล่องข้อความเพจ — 60 รีวิว</span>
+                    <button class="rv-modal-close" id="rvModalClose" type="button" aria-label="ปิด"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-            </div>
-            <div class="chat-thread">
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #3FA876, #1B5E43);">ภ<span class="chat-online"></span></div>
-                    <div class="chat-content">
-                        <span class="chat-name">ภาคิน ส. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">ที่ผ่านมาคือขายดีนะครับแต่เงินไม่เคยพอ งงมาตลอดว่าเงินหายไปไหน พออ่านบทวงจรเงินสดถึงบางอ้อเลย ปัญหาไม่ใช่ยอดขายแต่คือเงินมันหมุนไม่ทัน กลับมาแก้วิธีเก็บเงินลูกค้าใหม่หมดเลย</div>
-                        <div class="chat-react">❤️ 👍 <span class="chat-react-count">24</span></div>
-                        <div class="chat-info"><span class="chat-time">2 ชม.ที่แล้ว</span><span class="chat-tag">ร้านอาหาร 3 สาขา</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-modal-grid">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-07.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-08.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-09.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-10.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-11.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-12.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-13.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-14.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-15.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-16.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-17.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-18.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-19.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-20.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-21.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-22.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-23.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-24.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-25.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-26.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-27.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-28.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-29.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-30.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-31.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-32.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-33.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-34.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-35.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-36.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-37.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-38.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-39.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-40.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-41.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-42.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-43.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-44.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-45.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-46.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-47.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-48.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-49.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-50.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-51.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-52.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-53.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-54.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-55.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-56.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-57.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-58.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-59.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-60.png" alt="รีวิวจากลูกค้า">
                     </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5E9E80, #2A6B4D);">ศ<span class="chat-online"></span></div>
-                    <div class="chat-content">
-                        <span class="chat-name">ศิริพร ว. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">กล้าขึ้นราคาครั้งแรกในรอบ 3 ปีค่ะ ตอนแรกกลัวลูกค้าหนีมากกก แต่ลองทำตามที่เล่มแนะนำ ปรากฏว่าลูกค้าไม่ได้หนีเลย แถมได้ลูกค้าที่คุยง่ายขึ้นด้วย 555 เสียดายที่ไม่ได้อ่านตั้งแต่ปีที่แล้ว</div>
-                        <div class="chat-react">🙌 <span class="chat-react-count">18</span></div>
-                        <div class="chat-info"><span class="chat-time">5 ชม.ที่แล้ว</span><span class="chat-tag">คาเฟ่ + เบเกอรี่</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A8C6F, #1B5E43);">ก<span class="chat-online"></span></div>
-                    <div class="chat-content">
-                        <span class="chat-name">กิตติพงศ์ ร. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">ผมคือคอขวดของธุรกิจตัวเองมาตลอดโดยไม่รู้ตัวจริงๆอ่ะ อ่านบทระบบแล้วแบบ...ใช่เลย ทุกอย่างต้องผ่านผมหมด สุดท้ายธุรกิจโตไม่ได้เพราะผมเอง 5555 เริ่มทยอยปล่อยมือตามที่เล่มบอกแล้ว</div>
-                        <div class="chat-react">💯 <span class="chat-react-count">31</span></div>
-                        <div class="chat-info"><span class="chat-time">เมื่อวานนี้</span><span class="chat-tag">เจ้าของ SME</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #6E8C7E, #3D5A4D);">ณ</div>
-                    <div class="chat-content">
-                        <span class="chat-name">ณัฐดนัย พ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">อ่านสนุกมากกก ไม่เหมือนหนังสือธุรกิจที่เคยซื้อมาแล้วอ่านไม่จบสักเล่ม เล่มนี้จบในสองวัน ภาษาอ่านง่าย ไม่ต้องมีพื้นบัญชีก็เข้าใจ</div>
-                        <div class="chat-info"><span class="chat-time">เมื่อวานนี้</span><span class="chat-tag">ธุรกิจค้าส่ง</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #3FA876, #2A6B4D);">ธ<span class="chat-online"></span></div>
-                    <div class="chat-content">
-                        <span class="chat-name">ธนกฤต อ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">ตอนแรกลังเลว่าจะเหมือนพวกคอร์สขายฝันรึเปล่า 555 แต่เนื้อหาจริงมาก ไม่มีน้ำ ไม่ได้มาปลุกใจให้รวยข้ามคืน อ่านแล้วเอาไปใช้กับร้านได้จริง คุ้มเกินราคาไปไกล</div>
-                        <div class="chat-react">🔥 <span class="chat-react-count">27</span></div>
-                        <div class="chat-info"><span class="chat-time">2 วันที่แล้ว</span><span class="chat-tag">ร้านวัสดุก่อสร้าง</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #5E9E80, #1B5E43);">ป</div>
-                    <div class="chat-content">
-                        <span class="chat-name">ปรียา ม. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">บทอำนาจราคาเปิดโลกมากค่ะ เมื่อก่อนตั้งราคาตามคู่แข่งตลอด ไม่เคยกล้าคิดว่าตัวเองมีสิทธิ์ตั้งราคาเอง พอเข้าใจรากแล้วมุมมองเปลี่ยนไปเยอะ ตอนนี้คิดเรื่องคุณค่าก่อนคิดเรื่องตัวเลข</div>
-                        <div class="chat-info"><span class="chat-time">2 วันที่แล้ว</span><span class="chat-tag">แบรนด์สกินแคร์</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #4A8C6F, #2A6B4D);">อ</div>
-                    <div class="chat-content">
-                        <span class="chat-name">อรทัย จ. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">ซื้อมาตอนกำลังจะเปิดร้าน อ่านจบแล้วรู้สึกว่าโชคดีที่ได้อ่านก่อน ไม่งั้นคงไปเจ็บตัวเรียนรู้เองเหมือนที่หลายคนเจอ หลายเรื่องในเล่มคือสิ่งที่ไม่มีใครเตือนเรามาก่อน 🥲</div>
-                        <div class="chat-react">❤️ <span class="chat-react-count">15</span></div>
-                        <div class="chat-info"><span class="chat-time">3 วันที่แล้ว</span><span class="chat-tag">กำลังจะเปิดร้าน</span></div>
-                    </div>
-                </div>
-                <div class="chat-msg rv">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #6E8C7E, #1B5E43);">ว</div>
-                    <div class="chat-content">
-                        <span class="chat-name">วีรชัย ต. <i class="fa-solid fa-circle-check chat-verify" title="ผู้ซื้อยืนยันแล้ว"></i></span>
-                        <div class="chat-bubble">อ่านจบแล้วกลับมาอ่านซ้ำอีกรอบ รอบแรกอ่านเอาสนุก รอบสองจดโน้ตจริงจัง มีหลายอย่างที่รู้สึกอยู่ลึกๆแต่บอกไม่ถูก เล่มนี้พูดออกมาให้หมดเลยครับ ทำธุรกิจมาสิบกว่าปียังได้อะไรใหม่</div>
-                        <div class="chat-react">💯 🙌 <span class="chat-react-count">29</span></div>
-                        <div class="chat-info"><span class="chat-time">4 วันที่แล้ว</span><span class="chat-tag">โรงงานเล็ก</span></div>
-                        <div class="chat-seen"><i class="fa-solid fa-check-double"></i> อ่านแล้ว</div>
-                    </div>
-                </div>
-                <div class="chat-typing">
-                    <div class="chat-avatar" style="background: linear-gradient(135deg, #2A6B4D, #0E3D29);"><i class="fa-solid fa-pen-nib" style="font-size:0.55rem;"></i></div>
-                    <div class="typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
                 </div>
             </div>
         </div>
+        <script>(function(){var b=document.getElementById("rvShowMore"),m=document.getElementById("rvModal"),c=document.getElementById("rvModalClose");if(!b||!m)return;function o(){m.classList.add("open");m.setAttribute("aria-hidden","false");document.body.classList.add("rv-modal-open");}function x(){m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.classList.remove("rv-modal-open");}b.addEventListener("click",o);if(c)c.addEventListener("click",x);m.addEventListener("click",function(e){if(e.target.hasAttribute("data-rv-close"))x();});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.classList.contains("open"))x();});})();</script>
     </div>
 
     <!-- ═══════════════════════════════════════════════ GUARANTEE ═══════════════════════════════════════════════ -->
