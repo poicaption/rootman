@@ -2993,25 +2993,99 @@
         </div>
     </div>
 
-    <!-- ═══════════════════════════════════════════════ MINI SOCIAL PROOF ═══════════════════════════════════════════════ -->
+    <!-- ═══ FIELD SIGNALS — customer reviews (static images) ═══ -->
     <div class="sec rv">
-        <div class="sec-label">เจ้าของธุรกิจอ่านแล้วใช้จริง</div>
-        <h2 class="sec-title">นี่ไม่ใช่ตำราที่อ่านแล้วรู้สึกดี<br>แต่เป็น<em>วิธีมองธุรกิจที่เปลี่ยนการตัดสินใจจริง</em></h2>
+        <div class="sec-label" style="color: var(--warm);">// เสียงจากคนอ่าน</div>
+        <h2 class="sec-title">นี่ไม่ใช่รีวิวที่เราเขียนขึ้นเอง<br><em>แต่คือเสียงจริงจากเจ้าของธุรกิจที่อ่านแล้วลงมือทำ</em></h2>
 
-        <div class="mini-reviews">
-            <div class="mini-review rv rv-d1">
-                <p class="mini-review-text">&ldquo;อ่านบทเรื่องเงินสดจบ กลับมาดูธุรกิจตัวเองใหม่ทันที เพิ่งเข้าใจว่าทำไมขายดีแต่เงินหาย&rdquo;</p>
-                <span class="mini-review-who">ภาคิน ส. &mdash; เจ้าของร้านอาหาร 3 สาขา</span>
-            </div>
-            <div class="mini-review rv rv-d2">
-                <p class="mini-review-text">&ldquo;ขึ้นราคา 12% ตามที่เล่มนี้อธิบาย ลูกค้าหายไปนิดเดียว กำไรโตเกือบเท่าตัว&rdquo;</p>
-                <span class="mini-review-who">วรินทร ธ. &mdash; เจ้าของแบรนด์สกินแคร์</span>
-            </div>
-            <div class="mini-review rv rv-d3">
-                <p class="mini-review-text">&ldquo;เริ่มวางระบบให้ร้านเดินได้โดยไม่มีผม ครั้งแรกในรอบ 5 ปีที่ได้พาครอบครัวไปเที่ยว&rdquo;</p>
-                <span class="mini-review-who">ณัฐดนัย พ. &mdash; เจ้าของธุรกิจค้าส่ง</span>
+        <p class="reviews-note"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> บทสนทนาจริงระหว่างผู้อ่านกับแอดมินในกล่องข้อความเพจ — คัดมาบางส่วน ข้อความไม่ตัดทอน</p>
+
+        <div class="rv-gallery" id="rvTeaser">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
+            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
+        </div>
+        <div class="rv-showmore-wrap">
+            <button class="rv-showmore" id="rvShowMore" type="button"><i class="fa-solid fa-comments"></i> ดูรีวิวทั้งหมด (60 รีวิว)</button>
+        </div>
+
+        <div class="rv-modal" id="rvModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="รีวิวจากลูกค้า">
+            <div class="rv-modal-backdrop" data-rv-close></div>
+            <div class="rv-modal-panel">
+                <div class="rv-modal-head">
+                    <span class="rv-modal-title"><i class="fa-brands fa-facebook"></i> รีวิวจากลูกค้าจริงในกล่องข้อความเพจ — 60 รีวิว</span>
+                    <button class="rv-modal-close" id="rvModalClose" type="button" aria-label="ปิด"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="rv-modal-body">
+                    <div class="rv-modal-grid">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-07.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-08.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-09.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-10.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-11.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-12.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-13.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-14.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-15.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-16.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-17.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-18.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-19.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-20.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-21.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-22.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-23.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-24.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-25.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-26.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-27.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-28.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-29.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-30.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-31.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-32.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-33.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-34.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-35.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-36.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-37.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-38.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-39.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-40.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-41.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-42.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-43.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-44.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-45.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-46.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-47.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-48.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-49.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-50.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-51.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-52.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-53.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-54.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-55.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-56.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-57.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-58.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-59.png" alt="รีวิวจากลูกค้า">
+                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-60.png" alt="รีวิวจากลูกค้า">
+                    </div>
+                </div>
             </div>
         </div>
+        <script>(function(){var b=document.getElementById("rvShowMore"),m=document.getElementById("rvModal"),c=document.getElementById("rvModalClose");if(!b||!m)return;function o(){m.classList.add("open");m.setAttribute("aria-hidden","false");document.body.classList.add("rv-modal-open");}function x(){m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.classList.remove("rv-modal-open");}b.addEventListener("click",o);if(c)c.addEventListener("click",x);m.addEventListener("click",function(e){if(e.target.hasAttribute("data-rv-close"))x();});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.classList.contains("open"))x();});})();</script>
     </div>
 
     <!-- ═══════════════════════════════════════════════ MECHANISM ═══════════════════════════════════════════════ -->
@@ -3412,101 +3486,6 @@
             <p class="pricing-sub-note">ชำระผ่านบัตรเครดิต/เดบิต หรือ PromptPay &bull; ปลอดภัยผ่าน Stripe<br>ปลดล็อกทั้งเล่ม รวมบทพิเศษและภาคผนวก &bull; จ่ายครั้งเดียว</p>
             <p style="margin-top: 1.2rem;"><a href="/vol3" class="hero-cta-secondary" style="color: var(--accent); border-color: rgba(27,94,67,0.3);">ยังไม่พร้อมซื้อ? อ่านเปิดเล่มฟรีก่อน &rarr;</a></p>
         </div>
-    </div>
-
-    <!-- ═══ FIELD SIGNALS — customer reviews (static images) ═══ -->
-    <div class="sec rv">
-        <div class="sec-label" style="color: var(--warm);">// เสียงจากคนอ่าน</div>
-        <h2 class="sec-title">นี่ไม่ใช่รีวิวที่เราเขียนขึ้นเอง<br><em>แต่คือเสียงจริงจากเจ้าของธุรกิจที่อ่านแล้วลงมือทำ</em></h2>
-
-        <p class="reviews-note"><i class="fa-brands fa-facebook" style="color:#1877F2;"></i> บทสนทนาจริงระหว่างผู้อ่านกับแอดมินในกล่องข้อความเพจ — คัดมาบางส่วน ข้อความไม่ตัดทอน</p>
-
-        <div class="rv-gallery" id="rvTeaser">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
-            <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
-        </div>
-        <div class="rv-showmore-wrap">
-            <button class="rv-showmore" id="rvShowMore" type="button"><i class="fa-solid fa-comments"></i> ดูรีวิวทั้งหมด (60 รีวิว)</button>
-        </div>
-
-        <div class="rv-modal" id="rvModal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="รีวิวจากลูกค้า">
-            <div class="rv-modal-backdrop" data-rv-close></div>
-            <div class="rv-modal-panel">
-                <div class="rv-modal-head">
-                    <span class="rv-modal-title"><i class="fa-brands fa-facebook"></i> รีวิวจากลูกค้าจริงในกล่องข้อความเพจ — 60 รีวิว</span>
-                    <button class="rv-modal-close" id="rvModalClose" type="button" aria-label="ปิด"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-                <div class="rv-modal-body">
-                    <div class="rv-modal-grid">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-01.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-02.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-03.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-04.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-05.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-06.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-07.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-08.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-09.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-10.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-11.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-12.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-13.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-14.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-15.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-16.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-17.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-18.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-19.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-20.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-21.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-22.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-23.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-24.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-25.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-26.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-27.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-28.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-29.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-30.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-31.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-32.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-33.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-34.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-35.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-36.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-37.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-38.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-39.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-40.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-41.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-42.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-43.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-44.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-45.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-46.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-47.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-48.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-49.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-50.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-51.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-52.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-53.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-54.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-55.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-56.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-57.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-58.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-59.png" alt="รีวิวจากลูกค้า">
-                <img class="rv-shot" loading="lazy" src="/images/reviews-vol3/rv-60.png" alt="รีวิวจากลูกค้า">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script>(function(){var b=document.getElementById("rvShowMore"),m=document.getElementById("rvModal"),c=document.getElementById("rvModalClose");if(!b||!m)return;function o(){m.classList.add("open");m.setAttribute("aria-hidden","false");document.body.classList.add("rv-modal-open");}function x(){m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.classList.remove("rv-modal-open");}b.addEventListener("click",o);if(c)c.addEventListener("click",x);m.addEventListener("click",function(e){if(e.target.hasAttribute("data-rv-close"))x();});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.classList.contains("open"))x();});})();</script>
     </div>
 
     <!-- ═══════════════════════════════════════════════ GUARANTEE ═══════════════════════════════════════════════ -->
