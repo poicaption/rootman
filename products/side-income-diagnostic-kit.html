@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<title>Side Income Diagnostic Kit — Rootman Field Kit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=Prompt:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#141210; --ink:#1f1b16; --gold:#C99A3B; --gold-light:#E0BD6A;
+    --cream:#F4EEE2; --paper:#FBF8F2; --soft:#FAF6F0; --green:#3E9D6E; --green-tint:#EAF5EE;
+    --muted:#6b6256;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{margin:0;font-family:'Sarabun',sans-serif;color:var(--ink);font-size:11.5pt;line-height:1.62;background:#fff;}
+
+  /* ---- Page setup ---- */
+  @page{size:A4;margin:18mm 16mm;}
+  @page dark{size:A4;margin:0;}
+
+  .sheet{position:relative;min-height:251mm;page-break-after:always;}
+  .sheet:last-child{page-break-after:auto;}
+  .sheet--dark{page:dark;margin:0;}
+
+  /* ---- Dark full-bleed pages (cover / divider / final) ---- */
+  .dark{
+    background:radial-gradient(ellipse 60% 45% at 50% 32%, rgba(201,154,59,.14) 0%, transparent 70%),
+               linear-gradient(170deg,#15120F 0%,#1d1810 45%,#15120F 100%);
+    color:#F2ECE0;min-height:297mm;width:210mm;padding:30mm 22mm;
+    display:flex;flex-direction:column;justify-content:center;text-align:center;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .dark .kic{font-family:'Prompt';letter-spacing:.5em;font-size:9.5pt;color:var(--gold-light);text-transform:uppercase;margin-bottom:14mm;}
+  .dark h1{font-family:'Prompt';font-weight:700;font-size:30pt;line-height:1.18;margin:0 0 6mm;color:#FCF7EE;}
+  .dark h1 .gold{color:var(--gold-light);}
+  .dark .sub{font-size:13pt;color:#E9E0CF;font-weight:600;margin:0 0 10mm;}
+  .dark .rule{width:54mm;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:8mm auto;}
+  .dark .desc{font-size:11pt;color:#cfc6b6;max-width:130mm;margin:0 auto;line-height:1.7;}
+  .dark .brand{margin-top:16mm;font-family:'Prompt';letter-spacing:.42em;font-size:9pt;color:var(--gold-light);text-transform:uppercase;}
+
+  /* ---- Headers ---- */
+  .sec-tag{font-family:'JetBrains Mono';font-size:8.5pt;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;}
+  h2.sec{font-family:'Prompt';font-weight:700;font-size:18pt;color:var(--black);margin:1mm 0 1mm;line-height:1.25;}
+  .goal{font-size:10.5pt;color:var(--muted);margin:0 0 5mm;font-weight:600;}
+  .hbar{height:2px;background:linear-gradient(90deg,var(--gold) 0%,var(--gold) 22mm,#e7dcc4 22mm,#e7dcc4 100%);margin:0 0 6mm;border-radius:2px;}
+
+  h3.q{font-family:'Prompt';font-weight:600;font-size:13pt;color:var(--ink);margin:4.5mm 0 2.5mm;}
+  p{margin:0 0 3.4mm;}
+  .lead{font-size:12pt;}
+  strong{color:var(--black);}
+  em{color:var(--gold);font-style:normal;font-weight:600;}
+
+  /* ---- Light divider page ---- */
+  .divider{min-height:251mm;display:flex;flex-direction:column;justify-content:center;
+    background:linear-gradient(180deg,var(--paper),var(--cream));padding:0 6mm;}
+  .divider .sec-tag{text-align:center;}
+  .divider h2{text-align:center;font-family:'Prompt';font-weight:700;font-size:22pt;color:var(--black);margin:2mm 0 8mm;}
+
+  /* ---- Writing lines ---- */
+  .line{border-bottom:1.6px dotted #c2b291;height:8.5mm;margin:0 0 1mm;}
+  .line.sm{height:6mm;}
+  ol.qs{margin:0 0 0 0;padding:0 0 0 6mm;}
+  ol.qs li{margin:0 0 4mm;}
+  ol.qs li .qt{font-weight:600;color:var(--black);}
+
+  /* ---- Boxes ---- */
+  .box{border-radius:8px;padding:4.2mm 6mm;margin:4mm 0;font-size:10.5pt;line-height:1.6;}
+  .ex{background:var(--cream);border-left:4px solid var(--gold);}
+  .ex .lbl{font-family:'Prompt';font-weight:700;font-size:9.5pt;color:#9a751f;letter-spacing:.04em;margin-bottom:2mm;text-transform:uppercase;}
+  .cue{background:var(--green-tint);border-left:4px solid var(--green);}
+  .cue .lbl{font-family:'Prompt';font-weight:700;font-size:9.5pt;color:#2f7a55;margin-bottom:2mm;}
+  .warn{background:#fbf2e6;border-left:4px solid #d99a3a;}
+  .insight{background:#1d1810;color:#f3ead8;border-radius:8px;padding:5mm 7mm;margin:4mm 0;font-size:11.5pt;line-height:1.7;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .insight b{color:var(--gold-light);}
+
+  /* ---- Tables ---- */
+  table{width:100%;border-collapse:collapse;margin:3mm 0;font-size:10pt;}
+  th,td{border:1px solid #e0d6c2;padding:2.0mm 3mm;text-align:left;vertical-align:top;}
+  thead th{background:#f1e9d8;font-family:'Prompt';font-weight:600;color:#5a4a2a;font-size:9.5pt;}
+  td.sc{text-align:center;font-family:'JetBrains Mono';width:18mm;color:var(--muted);}
+  tr.total td{background:#1d1810;color:#f3ead8;font-weight:700;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tr.total td .gl{color:var(--gold-light);}
+
+  /* ---- Checkbox / pills ---- */
+  .cb{display:inline-block;width:3.6mm;height:3.6mm;border:1.6px solid var(--gold);border-radius:2px;vertical-align:-0.4mm;margin-right:2mm;}
+  ul.chk{list-style:none;padding:0;margin:3mm 0;}
+  ul.chk li{margin:0 0 2.6mm;}
+  .pill{display:inline-block;border:1.5px solid #d8cbb0;border-radius:999px;padding:1mm 5mm;margin:1mm 2mm 1mm 0;font-size:10pt;}
+  .pill .cb{margin-right:2mm;}
+
+  ul.bul{margin:2mm 0 3mm;padding-left:6mm;}
+  ul.bul li{margin:0 0 1.8mm;}
+
+  .fill{font-weight:600;color:var(--black);}
+  .dotfill{border-bottom:1.4px dotted #c2b291;display:inline-block;min-width:40mm;}
+  .small{font-size:9.5pt;color:var(--muted);}
+  p.small{margin:1.2mm 0 2mm;}
+  .grid2{display:flex;gap:6mm;}
+  .grid2>div{flex:1;}
+  .foot{margin-top:4mm;text-align:center;font-family:'Prompt';letter-spacing:.32em;font-size:7.5pt;color:#bdae92;text-transform:uppercase;}
+
+  /* ===== Inspiration / story pages ===== */
+  .story{padding:2mm 4mm 0;}
+  .story .skicker{font-family:'JetBrains Mono';font-size:8.5pt;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;}
+  .story h2{font-family:'Prompt';font-weight:700;font-size:19pt;color:var(--black);margin:1.5mm 0 6mm;line-height:1.28;}
+  .story p{font-size:11.5pt;line-height:1.85;margin:0 0 4.2mm;}
+  .pullquote{border-left:4px solid var(--gold);background:var(--cream);padding:5mm 6mm;margin:7mm 0 0;font-family:'Prompt';font-weight:600;font-size:13.5pt;line-height:1.5;color:#7a5f23;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ===== Expansion components ===== */
+  .pathcard{border:1.5px solid #e3d8c0;border-radius:10px;overflow:hidden;margin:4mm 0;page-break-inside:avoid;}
+  .pathcard .ph{background:linear-gradient(100deg,#1d1810,#2a2114);color:#f3ead8;padding:3.4mm 5mm;display:flex;align-items:center;gap:4mm;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .pathcard .ph .pn{font-family:'JetBrains Mono';color:var(--gold-light);font-size:14pt;}
+  .pathcard .ph .pt{font-family:'Prompt';font-weight:700;font-size:13.5pt;}
+  .pathcard .ph .pe{margin-left:auto;font-size:8.5pt;color:#cdbf9a;text-align:right;line-height:1.3;}
+  .pathcard .pb{padding:4mm 5mm;}
+  .metarow{display:flex;flex-wrap:wrap;gap:2mm 2.5mm;margin:1mm 0 3mm;font-size:8.6pt;}
+  .metarow span{background:#f4eedf;border:1px solid #e6dcc4;border-radius:999px;padding:.5mm 2.6mm;}
+  .metarow b{color:#8a6a1f;}
+  .tg{display:inline-block;border-radius:4px;padding:.3mm 2.2mm;font-size:8.2pt;font-weight:600;margin-right:1mm;}
+  .tg.good{background:var(--green-tint);color:#2f7a55;}
+  .tg.bad{background:#fbeaea;color:#b14444;}
+  .fitcol{display:flex;gap:6mm;}
+  .fitcol>div{flex:1;}
+  .fitcol h4{font-family:'Prompt';font-size:10pt;margin:0 0 1.5mm;}
+  .fitcol ul{margin:0;padding-left:5mm;font-size:9.4pt;}
+  .fitcol li{margin:0 0 1.2mm;}
+  .steps{counter-reset:s;list-style:none;padding:0;margin:2mm 0 3mm;}
+  .steps li{position:relative;padding-left:8mm;margin:0 0 2mm;font-size:10pt;}
+  .steps li:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:.3mm;width:5.4mm;height:5.4mm;background:var(--gold);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono';font-size:8.5pt;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .toc{list-style:none;padding:0;margin:4mm 0;}
+  .toc li{display:flex;align-items:center;gap:5mm;padding:3.2mm 0;border-bottom:1px dashed #d9cdb2;}
+  .toc .tn{font-family:'JetBrains Mono';color:var(--gold);font-size:15pt;width:13mm;}
+  .toc .tt{font-family:'Prompt';font-weight:600;font-size:12pt;color:var(--black);}
+  .toc .td{font-size:9.3pt;color:var(--muted);}
+  .axis{margin:0 0 4mm;}
+  .axis .al{display:flex;justify-content:space-between;font-size:9.6pt;font-weight:600;color:var(--black);margin-bottom:1.4mm;}
+  .axis .track{display:flex;gap:2.4mm;justify-content:center;}
+  .axis .track i{width:5.4mm;height:5.4mm;border:1.6px solid var(--gold);border-radius:50%;display:inline-block;}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — COVER (dark) ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">A Rootman Field Kit</div>
+    <h1>SIDE INCOME<br><span class="gold">DIAGNOSTIC KIT</span></h1>
+    <div class="sub">หาเส้นทางรายได้เสริมที่ใช่<br>แล้วเช็กไอเดียให้ชัวร์ ก่อนเสียเงิน เวลา และแรงผิดทาง</div>
+    <div class="rule"></div>
+    <p class="desc">PDF Workbook ที่พาคุณไปทีละขั้น — จาก “ไม่รู้จะเริ่มตรงไหน”<br>สู่ “รู้ว่าเส้นไหนใช่ ไอเดียไหนเวิร์ก และต้องลงมือยังไง”</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ PAGE 2 — วิธีใช้ ============ -->
+<section class="sheet">
+  <div class="sec-tag">How to use</div>
+  <h2 class="sec">วิธีใช้ PDF นี้</h2>
+  <div class="hbar"></div>
+  <p class="lead">PDF นี้ไม่ใช่หนังสือให้อ่านเอาเพลิน แต่เป็น <strong>เครื่องมือให้ลงมือ</strong> — ออกแบบมาให้คุณใช้เช็กไอเดียรายได้เสริม <em>ทีละไอเดีย</em></p>
+  <p>ถ้าคุณมีหลายไอเดียในหัว นั่นคือจุดเริ่มที่ถูกต้อง ให้ใช้แบบฟอร์มชุดนี้ทำซ้ำกับแต่ละไอเดีย แล้ว <strong>เอาคะแนนมาเทียบกัน</strong> — ไอเดียที่ได้คะแนนสูงสุดคือไอเดียที่ควรเริ่มก่อน ไม่ใช่ไอเดียที่คุณ “อิน” ที่สุด</p>
+
+  <h3 class="q">สิ่งที่ต้องเตรียม</h3>
+  <ul class="bul">
+    <li>ไอเดียรายได้เสริม 1 ไอเดีย (เอาที่กำลังลังเลที่สุดมาก่อน)</li>
+    <li>เวลา 30–60 นาที แบบไม่มีคนกวน</li>
+    <li>ความจริงใจกับตัวเอง — เครื่องมือนี้แม่นเท่ากับความตรงของคำตอบคุณ</li>
+    <li>ปากกา (ถ้าพิมพ์ออกมา) หรือเปิด PDF แล้วจดคำตอบในสมุด/แท็บเล็ต</li>
+  </ul>
+
+  <div class="box cue">
+    <div class="lbl">วิธีอ่านผล (สำคัญ)</div>
+    ทุก Section จะจบด้วยกล่อง “อ่านผลยังไง” บอกว่าถ้าคำตอบของคุณออกมาแบบนี้ ควรทำอะไรต่อ — อย่าข้ามกล่องนั้น เพราะนั่นคือหัวใจของเครื่องมือ
+  </div>
+  <div class="insight">กติกาเดียว: ตอบจาก<b>ความจริงที่เป็นอยู่ตอนนี้</b> ไม่ใช่จากความหวังว่าอนาคตจะเป็นยังไง</div>
+  <div class="foot">Side Income Diagnostic Kit · Rootman</div>
+</section>
+
+<!-- ============ PAGE 3 — คำเตือน ============ -->
+<section class="sheet">
+  <div class="sec-tag">Before you start</div>
+  <h2 class="sec">อย่าเริ่มรายได้เสริมจากความตื่นเต้นอย่างเดียว</h2>
+  <div class="hbar"></div>
+  <p>หลายคนไม่ได้ล้มเหลวเพราะไม่ขยัน — หลายคนล้มเหลวเพราะ <strong>เริ่มจากไอเดียที่ไม่เคยถูกเช็กจริง ๆ</strong></p>
+  <p>เห็นคนอื่นขายดี — รีบเริ่ม · เห็นเทรนด์กำลังมา — รีบเริ่ม · เห็นคอร์สบอกว่าทำง่าย — รีบเริ่ม · เห็นสินค้าน่าขาย — รีบเริ่ม</p>
+  <p>แต่ไม่เคยหยุดถามคำถามที่แพงที่สุด 6 ข้อนี้ก่อน:</p>
+  <ul class="bul">
+    <li>คนต้องการมันจริงไหม</li>
+    <li>คนยอมจ่ายจริงไหม</li>
+    <li>เราหาลูกค้าเจอไหม</li>
+    <li>เรามีเวลาทำจริงไหม</li>
+    <li>ถ้าไม่เวิร์ก เราจะเสียอะไร</li>
+    <li>ไอเดียนี้เหมาะกับชีวิตเราจริงหรือเปล่า</li>
+  </ul>
+  <p>เงินที่หายไปกับการ “เริ่มมั่ว” ไม่ได้เจ็บที่สุด ที่เจ็บที่สุดคือ <strong>เวลาและความเชื่อมั่นในตัวเอง</strong> ที่หายไปกับมัน จนหลายคนเข็ดและไม่กล้าเริ่มอะไรอีกเลย</p>
+  <div class="insight">หนังสือเล่มเล็กนี้มีหน้าที่เดียว — ทำให้คุณ <b>เริ่มอย่างคนที่มองเห็น</b> ไม่ใช่เริ่มอย่างคนที่กำลังเดา</div>
+  <div class="foot">Side Income Diagnostic Kit · Rootman</div>
+</section>
+
+<!-- ============ Contents / Journey Map ============ -->
+<section class="sheet">
+  <div class="sec-tag">Your Journey</div>
+  <h2 class="sec">เครื่องมือนี้พาคุณเดิน 5 ส่วน</h2>
+  <div class="hbar"></div>
+  <p class="lead">นี่ไม่ใช่แค่ “แบบเช็กไอเดีย” แต่เป็นระบบที่พาคุณจาก <strong>“ยังไม่รู้จะทำอะไร”</strong> ไปจนถึง <strong>“รู้ว่าจะเริ่มอะไร เริ่มยังไง และวันไหน”</strong></p>
+  <ul class="toc">
+    <li><span class="tn">01</span><span><span class="tt">คุณคือใคร</span><br><span class="td">สำรวจทรัพยากร ทักษะ เวลา เงิน และสไตล์การทำงานของคุณ</span></span></li>
+    <li><span class="tn">02</span><span><span class="tt">6 เส้นทางรายได้เสริม</span><br><span class="td">รู้จักทุกสายงาน ใครเหมาะ ใครไม่เหมาะ ลงทุนเท่าไหร่ เพดานแค่ไหน</span></span></li>
+    <li><span class="tn">03</span><span><span class="tt">หาเส้นทางของคุณ</span><br><span class="td">จับคู่ตัวคุณกับเส้นทางที่ใช่ จนได้คำตอบว่า “ควรไปสายไหน”</span></span></li>
+    <li><span class="tn">04</span><span><span class="tt">เช็กไอเดียให้ชัวร์</span><br><span class="td">เอาไอเดียในสายนั้นมาเช็กด้วย S.I.D.E. + Scorecard 100 คะแนน</span></span></li>
+    <li><span class="tn">05</span><span><span class="tt">ลงมือจริง</span><br><span class="td">แผน 7 วัน + 90 วัน ตั้งราคา หาลูกค้า 10 คนแรก และระบบไม่หมดไฟ</span></span></li>
+  </ul>
+  <div class="box cue"><div class="lbl">ทำตามลำดับ</div>ถ้าคุณ “ยังไม่มีไอเดีย” — เริ่มที่ส่วนที่ 1 · ถ้าคุณ “มีไอเดียแล้วแต่ไม่แน่ใจ” — ข้ามไปส่วนที่ 4 ได้เลย แล้วค่อยย้อนกลับมาส่วนที่ 1–3 เพื่อหาตัวเลือกเทียบ</div>
+  <div class="foot">Side Income Diagnostic Kit · Rootman</div>
+</section>
+
+<!-- ============ PART 1 divider ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">ส่วนที่ 1</div>
+    <h1>คุณคือ<span class="gold">ใคร</span></h1>
+    <div class="rule"></div>
+    <p class="desc">ก่อนจะถามว่า “ทำอะไรดี” ต้องตอบก่อนว่า “เรามีอะไรอยู่ในมือ”<br>เพราะเส้นทางที่ใช่ ไม่ได้เริ่มจากเทรนด์ — มันเริ่มจากตัวคุณ</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ Inspiration · Part 1 ============ -->
+<section class="sheet">
+  <div class="story">
+    <div class="skicker">ส่วนที่ 1 · เรื่องเล่า</div>
+    <h2>คำตอบไม่เคยอยู่ในมือถือของคนอื่น</h2>
+    <p>ตีสองของคืนวันธรรมดา คุณยังนอนไม่หลับ นิ้วเลื่อนฟีดไปเรื่อย ๆ เห็นคนรุ่นเดียวกันเปิดร้าน เห็นคนอายุน้อยกว่ามีรายได้หลักแสน เห็นคำว่า “อิสรภาพทางการเงิน” ลอยผ่านตาเป็นร้อยครั้ง แล้วคุณก็ถามตัวเองเบา ๆ ว่า — แล้วเราล่ะ ทำไมยังอยู่ที่เดิม</p>
+    <p>ความรู้สึกนั้นเจ็บ และมันผลักให้คนจำนวนมากกระโดดใส่ไอเดียแรกที่เห็น ลงคอร์สที่แพงที่สุด สั่งของมาสต็อกเต็มห้อง — เพราะคิดว่า “รีบเริ่ม” คือทางออก สามเดือนต่อมา ของยังกองอยู่ เงินหาย และความมั่นใจหายไปด้วย</p>
+    <p>แต่นี่คือสิ่งที่ไม่มีใครบอกคุณ: คนที่ไปได้ไกล ไม่ได้เริ่มจากการดูว่าคนอื่นทำอะไร เขาเริ่มจากการนับว่า “ตัวเองมีอะไรอยู่ในมือ” ทักษะที่ใช้ทุกวันจนลืมไปว่ามันมีค่า ความรู้ที่คนรอบตัวชอบมาถาม เวลาว่างเล็ก ๆ ที่ยังไม่เคยถูกใช้ให้เป็นเงิน</p>
+    <p>ส่วนนี้จะไม่ถามว่าเทรนด์ไหนกำลังมา มันจะถามแค่ว่า — คุณคือใคร และคุณถืออะไรอยู่ เพราะรายได้เสริมที่ยั่งยืน ไม่ได้สร้างจากการเป็นคนอื่น แต่สร้างจากการเป็นตัวคุณในเวอร์ชันที่ขายเป็น</p>
+    <div class="pullquote">เทรนด์เปลี่ยนทุกเดือน แต่ของที่อยู่ในมือคุณ อยู่กับคุณมาทั้งชีวิต</div>
+  </div>
+  <div class="foot">ส่วนที่ 1 · แรงบันดาลใจ</div>
+</section>
+
+<!-- ============ 1.1 Self Inventory ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 1 · สำรวจตัวเอง</div>
+  <h2 class="sec">ทรัพยากร 5 อย่างที่คุณมีอยู่แล้ว</h2>
+  <p class="goal">เป้าหมาย: เห็น “ต้นทุน” ที่คุณมี ก่อนเลือกเส้นทาง</p>
+  <div class="hbar"></div>
+  <p>คนส่วนใหญ่เริ่มผิดเพราะมองออกไปข้างนอก (เทรนด์ คนอื่น) ก่อนมองเข้าข้างใน เครื่องมือที่ดีเริ่มจากการนับของในมือ ตอบสั้น ๆ ตามจริง</p>
+  <h3 class="q">1 · ความรู้ — เรื่องที่ฉันรู้ลึกกว่าคนทั่วไป</h3>
+  <div class="line sm"></div>
+  <h3 class="q">2 · ทักษะ — สิ่งที่ฉันทำได้ดี/ทำได้เร็ว</h3>
+  <div class="line sm"></div>
+  <h3 class="q">3 · เวลา — ว่างจริงต่อสัปดาห์กี่ชั่วโมง และช่วงไหน</h3>
+  <div class="line sm"></div>
+  <h3 class="q">4 · เงินทุน — เริ่มได้แบบไม่เดือดร้อนเท่าไหร่</h3>
+  <div class="line sm"></div>
+  <h3 class="q">5 · บุคลิก/ความชอบ — งานแบบไหนที่ทำแล้วไม่ฝืน</h3>
+  <div class="line sm"></div>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — คุณเอ พนักงานออฟฟิศ</div>ความรู้: ทำสไลด์/พรีเซนต์ · ทักษะ: ออกแบบ + เล่าเรื่อง · เวลา: 6–8 ชม./สัปดาห์ (หลังเลิกงาน) · เงิน: ~2,000 บาท · ชอบ: ทำงานเงียบ ๆ คนเดียว ไม่ชอบออกหน้ากล้อง</div>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ข้อ 1–2 = วัตถุดิบของ “สิ่งที่จะขาย” · ข้อ 3–4 = กรอบความเสี่ยงที่รับได้ · ข้อ 5 = ตัวกรองที่คนมองข้ามบ่อยสุด แต่เป็นตัวตัดสินว่าจะ “ทำต่อไหวไหม”</div>
+  <div class="foot">ส่วนที่ 1 · สำรวจตัวเอง</div>
+</section>
+
+<!-- ============ 1.2 Work Style ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 1 · สไตล์การทำงาน</div>
+  <h2 class="sec">คุณเป็นคนทำงานแบบไหน</h2>
+  <p class="goal">เป้าหมาย: รู้สไตล์ตัวเอง เพื่อเลี่ยงเส้นทางที่ฝืนธรรมชาติ</p>
+  <div class="hbar"></div>
+  <p>ไม่มีสไตล์ไหนดีกว่ากัน แต่มี “สไตล์ที่ใช่กับเส้นทางไหน” วงกลมจุดที่ใกล้ตัวคุณที่สุด (1 = ซ้ายสุด, 5 = ขวาสุด)</p>
+  <div class="axis"><div class="al"><span>ชอบอยู่หน้ากล้อง / โชว์ตัว</span><span>ชอบอยู่หลังกล้อง / ไม่ออกหน้า</span></div><div class="track"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="axis"><div class="al"><span>สนุกกับการคุย/ปฏิสัมพันธ์กับคน</span><span>ชอบทำงานเงียบ ๆ คนเดียว</span></div><div class="track"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="axis"><div class="al"><span>อยากได้เงินเร็ว (เดือนนี้)</span><span>ยอมสะสมเพื่อสินทรัพย์ระยะยาว</span></div><div class="track"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <div class="axis"><div class="al"><span>ชอบทำงานเป็นชิ้น มีจุดจบชัด</span><span>ชอบสร้างของที่ค่อย ๆ โต</span></div><div class="track"><i></i><i></i><i></i><i></i><i></i></div></div>
+  <h3 class="q">ฉันถนัดทำงานกับอะไรมากที่สุด (เลือก 1)</h3>
+  <p><span class="pill"><span class="cb"></span>คน (ขาย/สอน/ดูแล)</span><span class="pill"><span class="cb"></span>ของ (ทำ/ขาย/จัดการสินค้า)</span><span class="pill"><span class="cb"></span>ข้อมูล &amp; ไอเดีย (เขียน/สร้าง/วิเคราะห์)</span></p>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>เก็บคำตอบ 5 ข้อนี้ไว้ — ในส่วนที่ 3 เราจะเอามันมาจับคู่กับ 6 เส้นทางโดยตรง เช่น ถ้าคุณ “หลังกล้อง + เงียบ ๆ + ถนัดข้อมูล” คุณจะเหมาะกับสายบริการหรือสายสินค้าดิจิทัลมากกว่าสายคอนเทนต์หน้ากล้อง</div>
+  <div class="foot">ส่วนที่ 1 · สไตล์การทำงาน</div>
+</section>
+
+<!-- ============ 1.3 Goal ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 1 · เป้าหมาย</div>
+  <h2 class="sec">คุณอยากได้อะไรจากรายได้เสริมนี้จริง ๆ</h2>
+  <p class="goal">เป้าหมาย: ตั้งโจทย์ให้ชัด เพราะเป้าต่างกัน เส้นทางก็ต่างกัน</p>
+  <div class="hbar"></div>
+  <div class="insight">คนสองคนทำ “ไอเดียเดียวกัน” แต่ถ้าเป้าหมายต่างกัน — เส้นทางที่ใช่ของแต่ละคนก็คนละทาง</div>
+  <h3 class="q">เป้าหมายหลักของฉัน (เลือก 1 ที่ “ใช่ที่สุด”)</h3>
+  <ul class="chk">
+    <li><span class="cb"></span><strong>เงินก้อนเร็ว</strong> — อยากเห็นเงินเข้าภายใน 2–4 สัปดาห์</li>
+    <li><span class="cb"></span><strong>รายได้เสริมประจำ</strong> — อยากได้เพิ่มสม่ำเสมอทุกเดือน</li>
+    <li><span class="cb"></span><strong>สร้างสินทรัพย์/ธุรกิจ</strong> — ยอมช้าตอนแรก เพื่อให้มันโตและทำงานแทนเรา</li>
+    <li><span class="cb"></span><strong>เรียนรู้ทักษะ/ทดลอง</strong> — อยากลองของ เก็บประสบการณ์ก่อน</li>
+  </ul>
+  <h3 class="q">ตัวเลขเป้าหมาย</h3>
+  <p>รายได้เสริมที่อยากได้ต่อเดือน: <span class="dotfill" style="min-width:34mm;"></span> บาท<br>
+  ภายในกี่เดือน: <span class="dotfill" style="min-width:24mm;"></span><br>
+  ถ้าคิดง่าย ๆ ราคาต่อชิ้น/งาน ~ <span class="dotfill" style="min-width:24mm;"></span> บาท → ต้องขายเดือนละ <span class="dotfill" style="min-width:18mm;"></span> ชิ้น</p>
+  <div class="box ex"><div class="lbl">ตัวอย่าง</div>อยากได้ 10,000 บาท/เดือน · งานละ ~1,000 บาท → ต้องปิดงาน 10 ชิ้น/เดือน = ~2–3 งาน/สัปดาห์ → ฟังดูทำได้จริงไหมกับเวลาที่มี? นี่คือ “เช็กความเป็นจริง” ตั้งแต่ก่อนเริ่ม</div>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>เป้า “เงินเร็ว” → เอนไปสายบริการ/ขายของ/แอฟฟิลิเอต · เป้า “สร้างสินทรัพย์” → เอนไปสายคอนเทนต์/สินค้าดิจิทัล · จดเป้านี้ไว้ เดี๋ยวใช้ในหน้าจับคู่</div>
+  <div class="foot">ส่วนที่ 1 · เป้าหมาย</div>
+</section>
+
+<!-- ============ 1.4 Fast money vs Asset ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 1 · แนวคิดสำคัญ</div>
+  <h2 class="sec">เงินเร็ว vs สินทรัพย์ที่ทำงานแทนคุณ</h2>
+  <p class="goal">เป้าหมาย: เข้าใจ “เพดาน” ของแต่ละแบบ ก่อนเลือก</p>
+  <div class="hbar"></div>
+  <p>รายได้เสริมทุกแบบในโลกนี้ ตกอยู่ใน 2 ตระกูลใหญ่ — และความผิดพลาดที่แพงที่สุดคือ “เลือกผิดตระกูลกับเป้าหมายตัวเอง”</p>
+  <table>
+    <thead><tr><th style="width:26mm;">—</th><th>เงินเร็ว (ขายเวลา)</th><th>สินทรัพย์ (สร้างของ)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>เห็นเงิน</strong></td><td>เร็ว (วัน–สัปดาห์)</td><td>ช้า (สัปดาห์–เดือน)</td></tr>
+      <tr><td><strong>เพดาน</strong></td><td>จำกัด (เท่าเวลาที่มี)</td><td>สูงมาก (ขายซ้ำได้)</td></tr>
+      <tr><td><strong>หยุดทำ</strong></td><td>เงินหยุดทันที</td><td>ยังมีเงินเข้าต่อ</td></tr>
+      <tr><td><strong>ความเสี่ยง</strong></td><td>ต่ำ</td><td>กลาง (ลงแรงก่อนรู้ผล)</td></tr>
+      <tr><td><strong>ตัวอย่าง</strong></td><td>รับจ้าง บริการ คอนซัลต์</td><td>คอนเทนต์ เทมเพลต คอร์ส</td></tr>
+    </tbody>
+  </table>
+  <div class="insight">สูตรของคนที่ไปได้ไกล: <b>เริ่มที่ “เงินเร็ว” เพื่อมีกระแสเงินสด → แล้วเอากำไร/ความรู้ที่ได้ไปสร้าง “สินทรัพย์”</b> ที่ค่อย ๆ ปลดล็อกเพดาน</div>
+  <h3 class="q">ตอนนี้คุณควรเริ่มจากตระกูลไหน?</h3>
+  <p><span class="pill"><span class="cb"></span>เงินเร็วก่อน (ต้องการกระแสเงินสด)</span><span class="pill"><span class="cb"></span>สินทรัพย์เลย (มีเวลา/เงินรองรับ)</span><span class="pill"><span class="cb"></span>ทำคู่กัน</span></p>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ไม่มีคำตอบผิด — แต่ถ้าคุณ “เงินตึง” แล้วเลือกสินทรัพย์ล้วน คุณจะหมดแรงก่อนเห็นผล · ถ้าคุณ “มีเวลา/เงินรองรับ” แล้วเลือกแต่เงินเร็ว คุณจะติดเพดานเร็วเกินไป</div>
+  <div class="foot">ส่วนที่ 1 · เงินเร็ว vs สินทรัพย์</div>
+</section>
+
+<!-- ============ PART 2 divider ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">ส่วนที่ 2</div>
+    <h1>6 <span class="gold">เส้นทาง</span><br>รายได้เสริม</h1>
+    <div class="rule"></div>
+    <p class="desc">รายได้เสริมเป็นพัน ๆ ไอเดียในโลก จริง ๆ แล้วแตกมาจาก 6 เส้นทางนี้<br>เข้าใจทั้ง 6 สาย แล้วคุณจะเลือกได้ว่า “สายไหนคือของคุณ”</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ Inspiration · Part 2 ============ -->
+<section class="sheet">
+  <div class="story">
+    <div class="skicker">ส่วนที่ 2 · เรื่องเล่า</div>
+    <h2>ไม่มีเส้นทางที่ดีที่สุด มีแต่เส้นทางที่ใช่กับคุณ</h2>
+    <p>ลองนึกถึงสองคน คนแรกขายของออนไลน์แล้วรวย อีกคนใช้สูตรเดียวกันเป๊ะ แต่เจ๊งใน 4 เดือน คนส่วนใหญ่สรุปว่าคนที่สอง “ไม่เก่งพอ” ทั้งที่ความจริงอาจง่ายกว่านั้นมาก — เขาแค่เดินผิดเส้นทางสำหรับตัวเอง</p>
+    <p>รายได้เสริมเป็นพันไอเดียในโลกนี้ จริง ๆ แล้วไหลมาจากแม่น้ำไม่กี่สาย บางสายเริ่มเร็วแต่ติดเพดานไว บางสายโตช้าแต่ทำงานแทนคุณตอนหลับ บางสายใช้เงินนำ บางสายใช้แค่ความเชื่อใจ ไม่มีสายไหน “ดีที่สุด” มีแต่สายที่เข้ากับเวลา เงิน นิสัย และเป้าหมายของคุณ</p>
+    <p>คนที่หลงทางบ่อยที่สุด คือคนที่เลือกเส้นทางตาม “คนที่กำลังดัง” ไม่ใช่ตาม “คนที่ตัวเองเป็น” เขาฝืนออกหน้ากล้องทั้งที่เกลียดการถูกมอง ฝืนสต็อกของทั้งที่ไม่ชอบความเสี่ยง แล้วก็โทษตัวเองว่าไม่มีวินัย</p>
+    <p>หกหน้าถัดจากนี้คือแผนที่ของทั้งหกสาย อ่านมันเหมือนยืนดูทางแยกจากที่สูง ก่อนจะเลือกลงเดินสายไหน — เพราะการรู้จักภูมิประเทศทั้งหมด คือสิ่งที่แยกคนที่ “เลือกอย่างมีสติ” ออกจากคนที่ “เดินมั่วแล้วหวังว่าจะถึง”</p>
+    <div class="pullquote">ความล้มเหลวหลายครั้ง ไม่ใช่เพราะคุณไม่เก่ง แต่เพราะคุณยืนผิดสนาม</div>
+  </div>
+  <div class="foot">ส่วนที่ 2 · แรงบันดาลใจ</div>
+</section>
+
+<!-- ============ 2.0 Overview ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · ภาพรวม</div>
+  <h2 class="sec">6 เส้นทาง ในหน้าเดียว</h2>
+  <p class="goal">เป้าหมาย: เห็นภาพรวมก่อน แล้วค่อยเจาะทีละสาย</p>
+  <div class="hbar"></div>
+  <table style="font-size:9pt;">
+    <thead><tr><th>เส้นทาง</th><th>เริ่มเร็ว</th><th>ทุน</th><th>ต้องมีทักษะ</th><th>เพดาน</th><th>เหมาะกับ</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1 บริการ</strong></td><td>เร็วมาก</td><td>ต่ำ</td><td>สูง</td><td>กลาง</td><td>มีทักษะ อยากได้เงินเร็ว</td></tr>
+      <tr><td><strong>2 ขายของ</strong></td><td>เร็ว</td><td>กลาง</td><td>กลาง</td><td>สูง</td><td>ชอบหาดีล จัดการของได้</td></tr>
+      <tr><td><strong>3 คอนเทนต์</strong></td><td>ช้า</td><td>ต่ำ</td><td>กลาง</td><td>สูงมาก</td><td>ชอบเล่า/แชร์ ยอมสะสม</td></tr>
+      <tr><td><strong>4 สอน/ที่ปรึกษา</strong></td><td>กลาง</td><td>ต่ำ</td><td>สูง</td><td>สูง</td><td>มีความรู้ ชอบช่วยคน</td></tr>
+      <tr><td><strong>5 สินค้าดิจิทัล</strong></td><td>กลาง</td><td>ต่ำ-กลาง</td><td>สูง</td><td>สูงมาก</td><td>ชอบสร้างของ ทำครั้งเดียวขายซ้ำ</td></tr>
+      <tr><td><strong>6 แอฟฟิลิเอต</strong></td><td>กลาง</td><td>เกือบ 0</td><td>ต่ำ</td><td>กลาง</td><td>ทุนน้อย ถนัดแนะนำ/เชื่อมคน</td></tr>
+    </tbody>
+  </table>
+  <div class="insight">อย่าเพิ่งรีบเลือกตอนนี้ — อ่านทั้ง 6 หน้าถัดไปก่อน แล้วในส่วนที่ 3 เราจะมี “แบบจับคู่” ที่ให้คะแนนความเหมาะของแต่ละสายกับตัวคุณ</div>
+  <div class="box cue"><div class="lbl">เลือกได้มากกว่า 1</div>คนเก่งหลายคนเดิน 2 สายพร้อมกันแบบเสริมกัน เช่น <strong>บริการ (เงินเร็ว) + สินค้าดิจิทัล (สินทรัพย์)</strong> หรือ <strong>คอนเทนต์ (สร้างความเชื่อใจ) + แอฟฟิลิเอต/สอน (เก็บเงิน)</strong> — แต่ตอนเริ่ม ให้โฟกัส 1 สายก่อนเสมอ</div>
+  <div class="foot">ส่วนที่ 2 · ภาพรวม 6 เส้นทาง</div>
+</section>
+
+<!-- ============ Path 1 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 1</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">01</span><span class="pt">สายบริการ (รับจ้างทักษะ)</span><span class="pe">ขายทักษะ + เวลา<br>เริ่มเร็วที่สุด</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> ต่ำ (0–1,000)</span><span><b>เวลา:</b> 5–10 ชม./สัปดาห์</span><span><b>เห็นเงินแรก:</b> 1–2 สัปดาห์</span><span><b>เพดาน:</b> กลาง</span><span><b>Leverage:</b> ต่ำ</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>มีทักษะทำได้เลย</li><li>อยากได้เงินเร็ว ทุนน้อย</li><li>โอเคกับการขายเวลาตัวเอง</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>ไม่มีเวลาทำงานส่งมอบ</li><li>อยากได้ passive ตั้งแต่แรก</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> คิดเป็นชิ้น / โปรเจกต์ / รายเดือน (retainer)</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> รับทำสไลด์ · ตัดต่อคลิป · เขียนคอนเทนต์ · ทำกราฟิก · ผู้ช่วยเสมือน (VA) · ทำบัญชี · ยิงแอดให้ร้านเล็ก · แปลภาษา</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>เลือก “บริการเดียว” ให้คม ไม่รับทุกอย่าง</li><li>ทำพอร์ตโชว์ฝีมือ 3 ชิ้น (ทำเองก็ได้)</li><li>เสนอราคาเปิดตัวกับ 3 คนแรกในกลุ่ม/คนรู้จัก</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> รับงานถูกเกินจนไม่มีเวลา หมดไฟ และไม่มีระบบ → ติดอยู่กับการ “ขายเวลาตัวเอง” ตลอดไป</div>
+  <div class="insight">สายนี้เริ่มเร็วที่สุด เหมาะเป็น “ประตูบานแรก” — แต่ถ้าไม่ยกระดับเป็นเทมเพลต/ขึ้นราคา/มีทีม จะชนเพดานเวลาตัวเองเร็ว</div>
+  <div class="foot">เส้นทางที่ 1 · สายบริการ</div>
+</section>
+
+<!-- ============ Path 2 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 2</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">02</span><span class="pt">สายขายของ (Commerce)</span><span class="pe">ขายสินค้า<br>กำไรต่อชิ้น × จำนวน</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> กลาง (1,000–10,000)</span><span><b>เวลา:</b> 8–15 ชม./สัปดาห์</span><span><b>เห็นเงินแรก:</b> 1–4 สัปดาห์</span><span><b>เพดาน:</b> สูง</span><span><b>Leverage:</b> กลาง</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>ชอบหาสินค้า/ดีล</li><li>จัดการของ/แพ็ก/ส่งได้</li><li>มีทุนหมุนนิดหน่อย</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>ไม่อยากยุ่งกับสต็อก/โลจิสติกส์</li><li>รับความเสี่ยงสต็อกค้างไม่ได้</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> กำไรต่อชิ้น × จำนวน · ลดเสี่ยงด้วยพรีออเดอร์/ดรอปชิป</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> ขายของเฉพาะกลุ่มใน Shopee/TikTok · พรีออเดอร์ของนำเข้า · ดรอปชิป · ของมือสองคัดสภาพ · จัดเซ็ตของขวัญ</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>เลือก niche แคบ (กลุ่มคนชัด ๆ)</li><li>หา supplier หรือเปิดพรีออเดอร์</li><li>ทดสอบ 1 โพสต์/คลิปก่อนลงสต็อกจริง</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> สต็อกค้าง และการแข่งราคาจนไม่เหลือกำไร</div>
+  <div class="insight">อย่าเริ่มที่ “ของที่เราชอบ” แต่เริ่มที่ “ของที่กลุ่มหนึ่งหาซื้อยากแต่อยากได้” — demand นำหน้า สินค้าตามทีหลัง</div>
+  <div class="foot">เส้นทางที่ 2 · สายขายของ</div>
+</section>
+
+<!-- ============ Path 3 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 3</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">03</span><span class="pt">สายคอนเทนต์ (Creator)</span><span class="pe">สร้างผู้ติดตาม<br>สินทรัพย์ที่ทำงานแทนคุณ</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> ต่ำ</span><span><b>เวลา:</b> 6–12 ชม./สัปดาห์</span><span><b>เห็นเงินแรก:</b> 1–3 เดือน</span><span><b>เพดาน:</b> สูงมาก</span><span><b>Leverage:</b> สูง</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>ชอบเล่า/สอน/แชร์</li><li>ทำคอนเทนต์สม่ำเสมอได้</li><li>ยอมสะสมแบบยังไม่เห็นเงินทันที</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>อยากได้เงินเดือนนี้</li><li>ทนทำของฟรี 1–3 เดือนแรกไม่ได้</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> สปอนเซอร์/รีวิว · affiliate · ขายสินค้า-บริการตัวเองผ่าน audience</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> เพจให้ความรู้เฉพาะทาง · รีวิวสินค้ากลุ่มเดียว · สอนทักษะสั้น ๆ · เล่าประสบการณ์อาชีพ</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>เลือก 1 หัวข้อที่เกาะได้นาน (ไม่เปลี่ยนไปมา)</li><li>โพสต์/คลิป 20 ชิ้นแรกแบบสม่ำเสมอ</li><li>ดูชิ้นที่คนตอบสนองดี แล้วต่อยอดแนวนั้น</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> เปลี่ยนหัวข้อไปมา และเลิกก่อนถึงจุดที่อัลกอริทึมเริ่มดัน</div>
+  <div class="insight">คอนเทนต์คือสินทรัพย์ที่ทำงานแทนคุณ — แต่มัน “จ่ายช้าและจ่ายทีหลัง” ต้องใจเย็นพอจะข้ามช่วงเงียบให้ได้</div>
+  <div class="foot">เส้นทางที่ 3 · สายคอนเทนต์</div>
+</section>
+
+<!-- ============ Path 4 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 4</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">04</span><span class="pt">สายสอน / ที่ปรึกษา (Expert)</span><span class="pe">ขายความรู้<br>+ ประสบการณ์</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> ต่ำ</span><span><b>เวลา:</b> 5–10 ชม./สัปดาห์</span><span><b>เห็นเงินแรก:</b> 2–6 สัปดาห์</span><span><b>เพดาน:</b> สูง</span><span><b>Leverage:</b> กลาง-สูง</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>มีความรู้/ประสบการณ์ที่คนอยากรู้</li><li>ชอบช่วยคนแก้ปัญหา</li><li>สื่อสารให้คนเข้าใจได้</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>ยังไม่มีผลลัพธ์/เรื่องเล่าให้คนเชื่อ</li><li>ไม่ชอบปฏิสัมพันธ์กับคน</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> คอนซัลต์รายชั่วโมง · คลาสสด · คอร์สอัด · coaching เป็นแพ็กเกจ</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> สอนทักษะที่ใช้ในงาน · ติวสอบ · ที่ปรึกษาธุรกิจเล็ก · โค้ชสุขภาพ/การเงินส่วนตัว</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>นิยาม “ผลลัพธ์เดียว” ที่คุณช่วยลูกค้าได้</li><li>เปิดคลาส/คอนซัลต์กลุ่มเล็กราคาเริ่มต้น</li><li>เก็บคำชม (testimonial) เป็นหลักฐาน</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> รอจน “เก่งพอ” ถึงจะเริ่ม — ซึ่งไม่มีวันพอ</div>
+  <div class="insight">คุณไม่ต้องเป็นที่ 1 ของโลก — แค่ “นำหน้าลูกค้า 3 ก้าว” ในเรื่องนั้น คุณก็สอนเขาได้แล้ว</div>
+  <div class="foot">เส้นทางที่ 4 · สายสอน/ที่ปรึกษา</div>
+</section>
+
+<!-- ============ Path 5 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 5</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">05</span><span class="pt">สายสินค้าดิจิทัล (Builder)</span><span class="pe">ทำครั้งเดียว<br>ขายซ้ำได้ไม่จำกัด</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> ต่ำ-กลาง</span><span><b>เวลา:</b> 10–20 ชม. ช่วงสร้าง</span><span><b>เห็นเงินแรก:</b> 3–8 สัปดาห์</span><span><b>เพดาน:</b> สูงมาก</span><span><b>Leverage:</b> สูงสุด</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>ชอบสร้างของ</li><li>อยากทำครั้งเดียวขายซ้ำ</li><li>อดทนช่วงสร้างได้</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>อยากได้เงินเร็ว</li><li>ยังไม่มีความรู้/ทักษะที่แปลงเป็นสินค้าได้</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> ขายซ้ำได้ไม่จำกัด — template, ebook, preset, Notion, prompt pack, คอร์สอัด</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> เทมเพลตเอกสาร/สไลด์ · พรีเซ็ตแต่งรูป · ebook how-to · Notion template · prompt pack</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>หา “ปัญหาซ้ำ ๆ” ที่คนยอมจ่ายเพื่อข้ามขั้นตอน</li><li>ทำเวอร์ชันเล็กที่สุดที่ขายได้ (ไม่ต้องสมบูรณ์)</li><li>ขายให้ 10 คนแรกแล้วปรับจากฟีดแบ็ก</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> ทำสินค้านานเป็นเดือนโดยไม่เคยถามตลาดเลยสักครั้ง</div>
+  <div class="insight">Leverage สูงสุด แต่ต้อง “มีของจริง” ก่อน — เหมาะเป็น <strong>เส้นทางที่ 2</strong> ที่ต่อยอดจากสายบริการหรือสายสอน</div>
+  <div class="foot">เส้นทางที่ 5 · สายสินค้าดิจิทัล</div>
+</section>
+
+<!-- ============ Path 6 ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 2 · เส้นทางที่ 6</div>
+  <div class="pathcard">
+    <div class="ph"><span class="pn">06</span><span class="pt">สายแนะนำ / แอฟฟิลิเอต</span><span class="pe">ทุนเกือบศูนย์<br>ได้ค่าคอมจากการแนะนำ</span></div>
+    <div class="pb">
+      <div class="metarow"><span><b>ทุน:</b> เกือบ 0</span><span><b>เวลา:</b> 4–10 ชม./สัปดาห์</span><span><b>เห็นเงินแรก:</b> 2–6 สัปดาห์</span><span><b>เพดาน:</b> กลาง-สูง</span><span><b>Leverage:</b> กลาง</span></div>
+      <div class="fitcol">
+        <div><h4><span class="tg good">เหมาะถ้า</span></h4><ul><li>ทุนแทบเป็นศูนย์</li><li>ยังไม่มีสินค้าเอง</li><li>ถนัดแนะนำ/รีวิว/เชื่อมคน</li></ul></div>
+        <div><h4><span class="tg bad">ไม่เหมาะถ้า</span></h4><ul><li>ไม่มีช่องทาง/audience และไม่อยากสร้าง</li><li>ไม่อยากทำคอนเทนต์เลย</li></ul></div>
+      </div>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>โมเดลรายได้:</strong> ค่าคอมจากการแนะนำสินค้า/บริการคนอื่น · นายหน้า · รีวิวพร้อมลิงก์</p>
+      <p style="font-size:9.4pt;margin:1mm 0;"><strong>ตัวอย่างไอเดีย:</strong> แอฟฟิลิเอต TikTok/Shopee · แนะนำคอร์ส/เครื่องมือพร้อมลิงก์ · นายหน้าจับคู่ลูกค้ากับช่าง/ฟรีแลนซ์</p>
+      <p style="font-size:9.4pt;margin:2mm 0 1mm;"><strong>3 ก้าวแรก</strong></p>
+      <ol class="steps"><li>เลือกสินค้าที่เราใช้จริง/เชื่อจริง</li><li>ทำคอนเทนต์ “ช่วยตัดสินใจ” ไม่ใช่แค่โชว์ลิงก์</li><li>วางลิงก์ในจุดที่คนพร้อมซื้อพอดี</li></ol>
+    </div>
+  </div>
+  <div class="box warn"><strong>กับดักใหญ่:</strong> สแปมลิงก์โดยไม่สร้างความเชื่อใจ → ไม่มีใครกด</div>
+  <div class="insight">คนกดลิงก์เพราะ “เชื่อคุณ” ไม่ใช่เพราะเห็นลิงก์ — ขายความเชื่อใจก่อนเสมอ</div>
+  <div class="foot">เส้นทางที่ 6 · สายแอฟฟิลิเอต</div>
+</section>
+
+<!-- ============ PART 3 divider ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">ส่วนที่ 3</div>
+    <h1>หาเส้นทาง<br>ของ<span class="gold">คุณ</span></h1>
+    <div class="rule"></div>
+    <p class="desc">ถึงเวลาเอา “ตัวคุณ” (ส่วนที่ 1) มาจับคู่กับ “6 เส้นทาง” (ส่วนที่ 2)<br>เพื่อให้ได้คำตอบเดียวที่ชัด — ควรเริ่มสายไหนก่อน</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ Inspiration · Part 3 ============ -->
+<section class="sheet">
+  <div class="story">
+    <div class="skicker">ส่วนที่ 3 · เรื่องเล่า</div>
+    <h2>พลังของการเลือกแค่ทางเดียว</h2>
+    <p>มีคนประเภทหนึ่งที่ขยันมาก เปิดเพจวันจันทร์ ขายของวันพุธ ทำคลิปวันศุกร์ ลงคอร์สวันเสาร์ ดูเหมือนลงมือเต็มที่ แต่ผ่านไปครึ่งปี ไม่มีอะไรโตสักอย่าง เพราะพลังที่กระจายไป 5 ทาง มันไม่เคยมากพอจะดันทางไหนให้ทะลุ</p>
+    <p>การโฟกัสไม่ใช่การปิดโอกาส มันคือการให้โอกาสหนึ่งอย่างได้รับพลังมากพอจะมีชีวิต คุณตัดอีกสี่ทางทิ้งชั่วคราว ไม่ใช่เพราะมันไม่ดี แต่เพราะคุณให้เกียรติทางที่เลือกมากพอจะทำมันให้สุด</p>
+    <p>ส่วนนี้จะให้คุณทำสิ่งที่คนส่วนใหญ่หลีกเลี่ยง — เลือก เอาตัวคุณจากส่วนที่ 1 มาทาบกับหกเส้นทางในส่วนที่ 2 แล้วให้คะแนนตามจริง ไม่ใช่ตามที่อยากให้เป็น สุดท้ายคุณจะเหลือคำตอบเดียวที่ชัด</p>
+    <p>และเมื่อคุณมีคำตอบเดียวนั้น ความลังเลที่กินพลังคุณมาตลอดจะหายไป คุณจะตื่นมาแล้วรู้ว่าวันนี้ต้องโฟกัสอะไร นั่นคือของขวัญของความชัดเจน — มันเปลี่ยน “ความขยันที่เหนื่อยเปล่า” ให้กลายเป็น “ความขยันที่ไปถึง”</p>
+    <div class="pullquote">คนที่ไล่ตามกระต่ายสองตัวพร้อมกัน สุดท้ายจับไม่ได้สักตัว</div>
+  </div>
+  <div class="foot">ส่วนที่ 3 · แรงบันดาลใจ</div>
+</section>
+
+<!-- ============ 3.1 Matching scorecard ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 3 · แบบจับคู่</div>
+  <h2 class="sec">Path Matching Scorecard</h2>
+  <p class="goal">ให้คะแนนความ “เข้ากับตัวคุณ” ของแต่ละเส้นทาง 1–5 ต่อช่อง</p>
+  <div class="hbar"></div>
+  <p style="font-size:9.6pt;">อิงคำตอบจากส่วนที่ 1 ให้คะแนนตามจริง (5 = ใช่เลย, 1 = ไม่ใช่) แล้วรวมแต่ละแถว — <strong>แถวที่คะแนนสูงสุดคือเส้นทางหลักของคุณ</strong></p>
+  <table style="font-size:8.8pt;">
+    <thead><tr><th>เส้นทาง</th><th class="sc">ทักษะ<br>พร้อม</th><th class="sc">ทุน+เวลา<br>เหมาะ</th><th class="sc">ตรง<br>บุคลิก</th><th class="sc">ตรง<br>เป้าหมาย</th><th class="sc">อยาก<br>ทำ</th><th class="sc">รวม<br>/25</th></tr></thead>
+    <tbody>
+      <tr><td>1 · บริการ</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+      <tr><td>2 · ขายของ</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+      <tr><td>3 · คอนเทนต์</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+      <tr><td>4 · สอน/ที่ปรึกษา</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+      <tr><td>5 · สินค้าดิจิทัล</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+      <tr><td>6 · แอฟฟิลิเอต</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">_</td><td class="sc">__</td></tr>
+    </tbody>
+  </table>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — คุณเอ (ทำสไลด์เก่ง หลังกล้อง เงียบ ๆ เงินเร็ว)</div>บริการ = 5+5+5+5+4 = <strong>24</strong> · สินค้าดิจิทัล = 5+4+5+3+4 = <strong>21</strong> · คอนเทนต์ = 3+4+2+2+3 = 14 → <strong>เส้นทางหลัก = สายบริการ, เส้นทางรอง = สินค้าดิจิทัล</strong></div>
+  <h3 class="q">3 อันดับของฉัน</h3>
+  <p>อันดับ 1: <span class="dotfill" style="min-width:46mm;"></span> (__/25)<br>
+  อันดับ 2: <span class="dotfill" style="min-width:46mm;"></span> (__/25)<br>
+  อันดับ 3: <span class="dotfill" style="min-width:46mm;"></span> (__/25)</p>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>คะแนนนำห่าง → ชัดเจน เริ่มสายนั้นเลย · คะแนน 2 สายใกล้กัน → ดูหน้า “แผนผังตัดสินใจ” ถัดไปช่วยตัด</div>
+  <div class="foot">ส่วนที่ 3 · Path Matching</div>
+</section>
+
+<!-- ============ 3.2 Decision flow ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 3 · ตัดสินใจ</div>
+  <h2 class="sec">แผนผังตัดสินใจ (เผื่อยังลังเล)</h2>
+  <p class="goal">ถ้า 2 สายคะแนนใกล้กัน ใช้คำถามนี้ตัด</p>
+  <div class="hbar"></div>
+  <div class="box" style="background:#f7f1e5;border:1px solid #e6dcc4;">
+    <p style="margin:0 0 2mm;"><strong>Q1 · คุณ “ต้องการเงิน” เร็วแค่ไหน?</strong></p>
+    <p style="margin:0 0 1mm;font-size:10pt;">→ ต้องการภายในเดือนนี้ &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">สายบริการ</span> หรือ <span class="tg good">แอฟฟิลิเอต</span> หรือ <span class="tg good">ขายของ</span></p>
+    <p style="margin:0;font-size:10pt;">→ รอได้ 1–3 เดือน &nbsp;<strong>=&gt;</strong>&nbsp; ไป Q2</p>
+  </div>
+  <div class="box" style="background:#f7f1e5;border:1px solid #e6dcc4;">
+    <p style="margin:0 0 2mm;"><strong>Q2 · คุณชอบ “อยู่หน้าคน” แค่ไหน?</strong></p>
+    <p style="margin:0 0 1mm;font-size:10pt;">→ ชอบเล่า/โชว์/สื่อสาร &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">คอนเทนต์</span> หรือ <span class="tg good">สอน/ที่ปรึกษา</span></p>
+    <p style="margin:0;font-size:10pt;">→ ชอบทำงานเงียบ ๆ สร้างของ &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">สินค้าดิจิทัล</span></p>
+  </div>
+  <div class="box" style="background:#f7f1e5;border:1px solid #e6dcc4;">
+    <p style="margin:0 0 2mm;"><strong>Q3 · คุณมี “ของในมือ” แบบไหน?</strong></p>
+    <p style="margin:0 0 1mm;font-size:10pt;">→ มีทักษะทำงานให้คนอื่นได้ &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">บริการ</span> · มีความรู้สอนได้ &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">สอน</span></p>
+    <p style="margin:0;font-size:10pt;">→ มีสายตาหาของ/ดีล &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">ขายของ</span> · มีแค่เวลา+ความเชื่อใจ &nbsp;<strong>=&gt;</strong>&nbsp; <span class="tg good">แอฟฟิลิเอต</span></p>
+  </div>
+  <div class="insight">กฎทอง: ถ้ายังลังเลสุด ๆ — <b>เลือกสายที่ “เริ่มได้เร็วและเสี่ยงน้อยที่สุด” ก่อน</b> เอาชัยชนะเล็ก ๆ มาสร้างความมั่นใจ แล้วค่อยขยับไปสายที่เพดานสูงกว่า</div>
+  <div class="foot">ส่วนที่ 3 · แผนผังตัดสินใจ</div>
+</section>
+
+<!-- ============ 3.3 Your Path result ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark" style="justify-content:flex-start;text-align:left;padding:26mm 22mm;">
+    <div class="kic" style="margin-bottom:6mm;">My Path</div>
+    <h1 style="font-size:24pt;text-align:left;">เส้นทางของ<span class="gold">ฉัน</span></h1>
+    <p class="desc" style="text-align:left;margin:4mm 0 7mm;">หน้านี้คือ “คำตอบ” ที่คุณตามหามาทั้งส่วนที่ 1–3 เขียนให้ชัด แล้วถือมันไว้</p>
+    <div style="background:rgba(255,255,255,.05);border:1px solid rgba(201,154,59,.4);border-radius:10px;padding:6mm 7mm;font-size:11pt;line-height:2.3;">
+      เส้นทางหลักของฉันคือ : <span style="display:inline-block;min-width:78mm;border-bottom:1.4px dotted #8a7a5a;"></span><br>
+      เพราะ : <span style="display:inline-block;min-width:95mm;border-bottom:1.4px dotted #8a7a5a;"></span><br>
+      เส้นทางรอง (ไว้ต่อยอด) : <span style="display:inline-block;min-width:60mm;border-bottom:1.4px dotted #8a7a5a;"></span><br>
+      ไอเดียในสายนี้ที่ฉันจะลองเช็กต่อ 3 อัน :<br>
+      1) <span style="display:inline-block;min-width:110mm;border-bottom:1.4px dotted #8a7a5a;"></span><br>
+      2) <span style="display:inline-block;min-width:110mm;border-bottom:1.4px dotted #8a7a5a;"></span><br>
+      3) <span style="display:inline-block;min-width:110mm;border-bottom:1.4px dotted #8a7a5a;"></span>
+    </div>
+    <p class="desc" style="text-align:left;margin-top:7mm;color:var(--gold-light);font-weight:600;">ขั้นต่อไป → เอา 3 ไอเดียนี้เข้า “ส่วนที่ 4 · เช็กไอเดียให้ชัวร์” ทีละอัน แล้วเริ่มจากตัวที่คะแนนสูงสุด</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ PAGE 4 — S.I.D.E. (divider) ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark" style="justify-content:flex-start;text-align:left;padding:28mm 24mm;">
+    <div class="kic" style="margin-bottom:8mm;">ส่วนที่ 4 · เช็กไอเดียให้ชัวร์</div>
+    <h1 style="font-size:26pt;text-align:left;">The <span class="gold">S.I.D.E.</span><br>Framework</h1>
+    <p class="desc" style="text-align:left;margin:6mm 0 8mm;max-width:150mm;">ทุกไอเดียรายได้เสริมที่ “ไปรอด” มักผ่าน 4 ด่านนี้ครบ — เครื่องมือนี้บังคับให้คุณมองไอเดียจากหลายด้าน ไม่ใช่ด้านเดียว</p>
+    <table style="color:#eadfca;">
+      <thead><tr><th style="background:#2a2114;color:var(--gold-light);width:14mm;">—</th><th style="background:#2a2114;color:var(--gold-light);">ด่าน</th><th style="background:#2a2114;color:var(--gold-light);">คำถามแกน</th></tr></thead>
+      <tbody style="background:rgba(255,255,255,.03);">
+        <tr><td style="color:var(--gold-light);font-family:'JetBrains Mono';text-align:center;">S</td><td><b>Spending Desire</b></td><td>มีคนอยาก “จ่ายเงิน” กับเรื่องนี้จริงไหม (ไม่ใช่แค่สนใจ)</td></tr>
+        <tr><td style="color:var(--gold-light);font-family:'JetBrains Mono';text-align:center;">I</td><td><b>Interest Signal</b></td><td>มีสัญญาณจากตลาดจริงไหม (ค้นหา/มีคนขาย/มี pain)</td></tr>
+        <tr><td style="color:var(--gold-light);font-family:'JetBrains Mono';text-align:center;">D</td><td><b>Delivery Fit</b></td><td>เรา “ทำ ขาย ส่งมอบ” ได้จริงไหมด้วยสิ่งที่มี</td></tr>
+        <tr><td style="color:var(--gold-light);font-family:'JetBrains Mono';text-align:center;">E</td><td><b>Energy &amp; Economics</b></td><td>คุ้มเวลา คุ้มแรง คุ้มเงิน และเหมาะกับชีวิตเราหรือเปล่า</td></tr>
+      </tbody>
+    </table>
+    <p class="desc" style="text-align:left;margin-top:8mm;max-width:150mm;font-size:10pt;">เข็มทิศ: Section 2 = เช็ก <b style="color:var(--gold-light)">I</b> · Section 3 = เช็ก <b style="color:var(--gold-light)">S</b> · Section 4 = เช็ก <b style="color:var(--gold-light)">E</b> (ฝั่งชีวิตเรา) · Section 5 = เช็ก <b style="color:var(--gold-light)">D+E</b> (ความเสี่ยง)</p>
+  </div>
+</section>
+
+<!-- ============ Inspiration · Part 4 ============ -->
+<section class="sheet">
+  <div class="story">
+    <div class="skicker">ส่วนที่ 4 · เรื่องเล่า</div>
+    <h2>ไอเดียทุกอันสวยเสมอ จนกระทั่งมันเจอความจริง</h2>
+    <p>ในหัวคุณ ไอเดียมันสมบูรณ์แบบ ลูกค้าต่อแถว ยอดขายพุ่ง ทุกคนรักมัน — เพราะในหัว ไม่มีคู่แข่ง ไม่มีคนเมิน ไม่มีใครต่อราคา ไอเดียในหัวจึงไม่เคยแพ้ มันแพ้ก็ต่อเมื่อออกมาเจอโลกจริงเท่านั้น</p>
+    <p>คนจำนวนมากกลัวการ “เช็กไอเดีย” เพราะลึก ๆ กลัวว่ามันจะไม่ผ่าน เลยเลือกหลับตาแล้วทุ่มเงินลงไป ด้วยความหวังว่าถ้าไม่มองปัญหา ปัญหาจะไม่มีจริง — แต่ตลาดไม่เคยใจดีกับคนที่ปฏิเสธความจริง</p>
+    <p>การเช็กไอเดียไม่ใช่การมองโลกในแง่ร้าย มันคือการให้เกียรติเงินและเวลาของตัวเอง มันคือการถามคำถามที่แพงที่สุดตอนที่มันยังฟรี ก่อนที่ตลาดจะถามคำถามเดียวกันด้วยราคาที่คุณต้องจ่ายจริง</p>
+    <p>ส่วนนี้คือสนามซ้อมก่อนสนามจริง เอาไอเดียที่คุณรักที่สุดมาวางบนโต๊ะ แล้วมองมันอย่างคนที่กล้าเห็นความจริง ถ้ามันผ่าน คุณจะเริ่มด้วยความมั่นใจ ถ้ามันไม่ผ่าน คุณเพิ่งประหยัดเงินไปหลายเดือนโดยไม่ต้องเจ็บจริง</p>
+    <div class="pullquote">ถามคำถามที่แพงที่สุดตอนที่มันยังฟรี</div>
+  </div>
+  <div class="foot">ส่วนที่ 4 · แรงบันดาลใจ</div>
+</section>
+
+<!-- ============ Section 1 — Idea Snapshot ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 1 · I = ตัวตั้งต้น</div>
+  <h2 class="sec">Idea Snapshot</h2>
+  <p class="goal">เป้าหมาย: ดึงไอเดียจากในหัว ออกมาเป็นภาพชัดบนกระดาษ</p>
+  <div class="hbar"></div>
+  <p>ไอเดียที่อยู่ในหัวมัน “สวยเสมอ” เพราะยังไม่เจอความจริง ขั้นแรกคือทำให้มันจับต้องได้ ตอบให้สั้นและตรง (1–2 บรรทัดพอ)</p>
+  <ol class="qs">
+    <li><span class="qt">ไอเดียรายได้เสริมของฉันคืออะไร</span><div class="line"></div></li>
+    <li><span class="qt">ฉันจะขายอะไร (สินค้า / บริการ / คอนเทนต์)</span><div class="line"></div></li>
+    <li><span class="qt">สิ่งนี้ช่วยแก้ปัญหาอะไรให้ลูกค้า</span><div class="line"></div></li>
+    <li><span class="qt">กลุ่มเป้าหมายคือใคร (เจาะให้แคบ)</span><div class="line"></div></li>
+    <li><span class="qt">เขาเจอปัญหานี้บ่อยแค่ไหน</span><div class="line"></div></li>
+    <li><span class="qt">เขาเคยจ่ายเงินเพื่อแก้ปัญหานี้ไหม จ่ายให้ใคร</span><div class="line"></div></li>
+  </ol>
+  <div class="foot">Section 1 · Idea Snapshot</div>
+</section>
+<section class="sheet">
+  <ol class="qs" start="7">
+    <li><span class="qt">ฉันจะขายผ่านช่องทางไหน</span><div class="line"></div></li>
+    <li><span class="qt">ต้องใช้เงินเริ่มต้นเท่าไหร่ (ตัวเลขจริง)</span><div class="line"></div></li>
+    <li><span class="qt">ต้องใช้เวลากี่ชั่วโมงต่อสัปดาห์</span><div class="line"></div></li>
+    <li><span class="qt">ฉันคาดหวังรายได้ต่อเดือนเท่าไหร่</span><div class="line"></div></li>
+    <li><span class="qt">ทำไมฉันถึงอยากทำไอเดียนี้ (เหตุผลจริง ไม่ต้องสวย)</span><div class="line"></div></li>
+  </ol>
+  <div class="box ex">
+    <div class="lbl">ตัวอย่างเดินเรื่อง — รับจ้างทำสไลด์พรีเซนต์</div>
+    1) บริการทำ/ปรับสไลด์ให้ดูโปร · 3) แก้ปัญหา “สไลด์น่าเบื่อ ทำเองไม่สวย เสียเวลา” · 4) ฟรีแลนซ์/เจ้าของร้านที่ต้องพิตช์งาน · 6) เคย—จ้างฟรีแลนซ์ในกลุ่มเฟซบุ๊ก · 8) ~500 บาท · 9) 6–8 ชม./สัปดาห์ · 10) 8,000–15,000 บาท
+  </div>
+  <div class="box cue">
+    <div class="lbl">อ่านผลยังไง</div>
+    • ถ้าข้อ 4 ตอบว่า “ทุกคน/ใครก็ได้” → ยังแคบไม่พอ กลับไปเจาะให้เหลือกลุ่มเดียว<br>
+    • ถ้าข้อ 6 ตอบว่า “ไม่เคยมีใครจ่าย” → สัญญาณเสี่ยงตั้งแต่ต้น (ไปดู Section 3)<br>
+    • ถ้าข้อ 8/9 กับ 10 ไม่สมเหตุผลกัน (ลงทุนเยอะ แต่หวังรายได้น้อย) → ปรับความคาดหวังก่อนเริ่ม
+  </div>
+  <div class="foot">Section 1 · Idea Snapshot</div>
+</section>
+
+<!-- ============ Section 2 — Market Reality ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 2 · I = Interest Signal</div>
+  <h2 class="sec">Market Reality Check</h2>
+  <p class="goal">เป้าหมาย: ไอเดียนี้มีตลาด “จริง” ไหม</p>
+  <div class="hbar"></div>
+  <p>ตลาดไม่สนว่าไอเดียคุณดีแค่ไหน มันสนแค่ว่า “มีคนกำลังมองหาสิ่งนี้อยู่หรือเปล่า” — ทำ 8 ข้อนี้แบบ <strong>เปิดมือถือหาไปด้วย</strong> ไม่ใช่เดาในหัว</p>
+  <ul class="bul">
+    <li>มีคนค้นหาเรื่องนี้อยู่ไหม (ลองพิมพ์ใน Google / TikTok / Shopee)</li>
+    <li>มีคนขายสิ่งใกล้เคียงอยู่แล้วไหม · คู่แข่งมีกี่ราย</li>
+    <li>คู่แข่งดูเหมือนขายได้จริงไหม (รีวิว/ยอดขาย/คอมเมนต์)</li>
+    <li>ลูกค้ามี pain ชัดไหม · เขาบ่นเรื่องนี้ที่ไหน</li>
+    <li>ลูกค้ากลุ่มนี้อยู่ที่ไหนบนออนไลน์ · เราเข้าถึงได้ไหมโดยไม่ต้องยิงแอดแพง</li>
+  </ul>
+  <table>
+    <thead><tr><th>หัวข้อ</th><th>1 = อ่อน</th><th>5 = แข็งแรง</th><th>คะแนน</th></tr></thead>
+    <tbody>
+      <tr><td>Pain ชัด</td><td>ลูกค้าไม่รู้ตัวว่ามีปัญหา</td><td>บ่นเรื่องนี้เป็นประจำ</td><td class="sc">__/5</td></tr>
+      <tr><td>ตลาดมีอยู่จริง</td><td>หาแทบไม่เจอ</td><td>เจอคนพูดถึง/ค้นหาเยอะ</td><td class="sc">__/5</td></tr>
+      <tr><td>มีคู่แข่งพิสูจน์ demand</td><td>ไม่มีใครขาย</td><td>มีหลายเจ้าและดูขายได้</td><td class="sc">__/5</td></tr>
+      <tr><td>ลูกค้าเข้าถึงได้</td><td>ไม่รู้จะหาที่ไหน</td><td>รู้กลุ่ม/ช่องทางชัด</td><td class="sc">__/5</td></tr>
+      <tr><td>ปัญหาเกิดซ้ำบ่อย</td><td>นาน ๆ เกิดที</td><td>เกิดทุกสัปดาห์/เดือน</td><td class="sc">__/5</td></tr>
+      <tr class="total"><td colspan="3">รวมคะแนนตลาด</td><td class="sc"><span class="gl">__/25</span></td></tr>
+    </tbody>
+  </table>
+  <div class="box warn"><strong>จุดที่คนเข้าใจผิด:</strong> “ไม่มีคู่แข่งเลย” มักไม่ใช่ข่าวดี — บ่อยครั้งมันแปลว่า “ยังไม่มีใครยอมจ่าย” ตลาดที่มีคู่แข่งขายได้ = ตลาดที่พิสูจน์แล้วว่ามีเงิน</div>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — รับทำสไลด์</div>เจอฟรีแลนซ์รับทำสไลด์เพียบ มีรีวิว มีคนจ้างซ้ำ → 5+5+5+4+4 = <strong>23/25</strong></div>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>20–25: ตลาดแข็งแรง ไปต่อ · 12–19: มีตลาดแต่ต้องเจาะกลุ่มให้คมขึ้น · ต่ำกว่า 12: อาจเป็นไอเดียที่ “เราชอบ” แต่ “ตลาดยังไม่ต้องการ”</div>
+  <div class="foot">Section 2 · Market Reality Check</div>
+</section>
+
+<!-- ============ Section 3 — Willingness to Pay ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 3 · S = Spending Desire</div>
+  <h2 class="sec">Willingness to Pay Check</h2>
+  <p class="goal">เป้าหมาย: คนจะยอม “จ่ายเงิน” จริงไหม</p>
+  <div class="hbar"></div>
+  <div class="insight">คนไม่ได้จ่ายเงินเพราะไอเดียน่าสนใจ — เขาจ่ายเมื่อรู้สึกว่าสิ่งนั้นทำให้ชีวิตเขา <b>ดีขึ้น ง่ายขึ้น คุ้มขึ้น หรือเสี่ยงน้อยลง</b></div>
+  <p>“สนใจ” กับ “ยอมจ่าย” ห่างกันคนละโลก คนกดไลก์เป็นพัน แต่จ่ายจริงอาจเป็นศูนย์ — ติ๊กข้อที่ “ใช่”</p>
+  <ul class="chk">
+    <li><span class="cb"></span>ลูกค้าได้ประโยชน์ที่ <strong>จับต้องได้</strong></li>
+    <li><span class="cb"></span>ช่วยประหยัดเวลา &nbsp;&nbsp; <span class="cb"></span>ช่วยประหยัดเงิน &nbsp;&nbsp; <span class="cb"></span>ช่วยหาเงินเพิ่ม</li>
+    <li><span class="cb"></span>ช่วยลดความเครียด &nbsp;&nbsp; <span class="cb"></span>ช่วยลดความเสี่ยง</li>
+    <li><span class="cb"></span>ถ้าไม่ซื้อ เขาจะ “เสียโอกาสบางอย่าง” ที่รู้สึกได้</li>
+    <li><span class="cb"></span>มีโอกาสที่เขาจะซื้อซ้ำ หรือบอกต่อ</li>
+  </ul>
+  <p><strong>ราคาที่เขาน่าจะรับได้:</strong> <span class="dotfill" style="min-width:50mm;"></span> บาท<br><span class="small">วิธีหา: ดูว่าคู่แข่งคิดเท่าไหร่ แล้วถามว่าเราอยู่ช่วงไหน—ถูกกว่า/เท่ากัน/พรีเมียม เพราะอะไร</span></p>
+  <h3 class="q">เหตุผลที่ลูกค้าน่าจะยอมจ่าย:</h3>
+  <div class="line sm"></div><div class="line sm"></div>
+  <h3 class="q">เหตุผลที่ลูกค้าอาจยังไม่จ่าย <span class="small">(ข้อนี้สำคัญกว่า — คือสิ่งที่ต้องแก้)</span></h3>
+  <div class="line sm"></div><div class="line sm"></div>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — รับทำสไลด์</div>จ่ายเพราะ “ประหยัดเวลา 3–4 ชม./สไลด์ + พิตช์ดูโปรจนปิดงานได้” · ยังไม่จ่ายเพราะ “กลัวงานไม่ตรงสไตล์” → แก้ด้วยโชว์พอร์ต + แก้ฟรี 1 รอบ</div>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ติ๊ก ≥5 ข้อ และมี ≥1 ข้อที่ผูกกับ “เงิน/เวลา” ตรง ๆ → สัญญาณดี · ติ๊ก &lt;3 ข้อ → คุณค่ายังคลุมเครือ · ถ้าช่อง “ยังไม่จ่าย” ว่าง → ยังไม่ได้คิด objection จริง มันมีเสมอ</div>
+  <div class="foot">Section 3 · Willingness to Pay</div>
+</section>
+
+<!-- ============ Section 4 — Personal Fit ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 4 · E = ฝั่งชีวิตเรา</div>
+  <h2 class="sec">Personal Fit Check</h2>
+  <p class="goal">เป้าหมาย: ไอเดียนี้เหมาะกับ “ชีวิตจริง” ของคุณไหม</p>
+  <div class="hbar"></div>
+  <div class="insight">ไอเดียที่ดีสำหรับคนอื่น อาจเป็นไอเดียที่ <b>แย่สำหรับชีวิตคุณ</b></div>
+  <p>ไอเดียเก่งแค่ไหน ถ้าไม่เข้ากับเวลา/นิสัย/เงินของคุณ มันจะหยุดกลางทางเสมอ ตอบให้ตรง:</p>
+  <ul class="bul">
+    <li>ฉันมีเวลาว่างจริง ๆ ต่อสัปดาห์: <span class="dotfill" style="min-width:24mm;"></span> ชม. · ไอเดียนี้ต้องใช้: <span class="dotfill" style="min-width:24mm;"></span> ชม.</li>
+    <li>ทักษะที่ต้องใช้: มีแล้ว / ยังไม่มี · ถ้ายังไม่มี ต้องเรียนเพิ่ม ~ <span class="dotfill" style="min-width:24mm;"></span></li>
+    <li>เงินเริ่มต้น: <span class="dotfill" style="min-width:24mm;"></span> บาท · ถ้าเดือนแรกขายไม่ได้เลย ยังไหวไหม: ไหว / ไม่ไหว</li>
+    <li>ทำหลังเลิกงานได้ไหม / ทำคนเดียวได้ไหม / ทำต่อเนื่อง 3 เดือนได้ไหม / เบื่อง่ายไหม</li>
+  </ul>
+  <table>
+    <thead><tr><th>ด้าน</th><th>เขียว (ไปได้)</th><th>แดง (ต้องระวัง)</th></tr></thead>
+    <tbody>
+      <tr><td>เวลา</td><td>พอ</td><td>ไม่พอ</td></tr>
+      <tr><td>ทักษะ</td><td>มีแล้ว</td><td>ต้องเรียนเพิ่มเยอะ</td></tr>
+      <tr><td>เงินเริ่มต้น</td><td>รับได้</td><td>เสี่ยงเกินไป</td></tr>
+      <tr><td>พลังใจ</td><td>ทำต่อเนื่องได้</td><td>อาจหลุดง่าย</td></tr>
+      <tr><td>ความเข้ากับชีวิต</td><td>เหมาะ</td><td>ต้องปรับ</td></tr>
+    </tbody>
+  </table>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — รับทำสไลด์</div>เวลา=พอ · ทักษะ=มีแล้ว · เงิน=รับได้ · พลังใจ=ไหว · เข้ากับชีวิต=เหมาะ → <strong>5 เขียว</strong> เหมาะมาก</div>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>เขียว 4–5 ด้าน: เหมาะ ไปต่อ · แดง 1–2: ทำได้ แต่ออกแบบวิธีเริ่มให้เลี่ยงจุดแดง · แดง ≥3: “ไม่ใช่ตอนนี้” เลือกไอเดียที่เขียวกว่า</div>
+  <div class="foot">Section 4 · Personal Fit</div>
+</section>
+
+<!-- ============ Section 5 — Risk & Cost ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 5 · D + E = ความเสี่ยง</div>
+  <h2 class="sec">Risk &amp; Cost Check</h2>
+  <p class="goal">เป้าหมาย: เห็นราคาของความล้มเหลว “ก่อน” จ่ายจริง</p>
+  <div class="hbar"></div>
+  <p>คนเก่งไม่ใช่คนที่ไม่เสี่ยง แต่คือคนที่ <strong>รู้ว่ากำลังเสี่ยงอะไร และเสี่ยงเท่าไหร่</strong> — ติ๊กระดับความเสี่ยงแต่ละหมวด</p>
+  <table>
+    <thead><tr><th>หมวดความเสี่ยง</th><th style="text-align:center;width:18mm;">ต่ำ</th><th style="text-align:center;width:18mm;">กลาง</th><th style="text-align:center;width:18mm;">สูง</th></tr></thead>
+    <tbody>
+      <tr><td>เงินเริ่มต้น</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>เวลาที่ต้องใช้</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>สต็อกสินค้า</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>การหาลูกค้า</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>การแข่งขันด้านราคา</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>การส่งมอบงาน</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>ความต่อเนื่อง</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>ความน่าเชื่อถือ (เราหน้าใหม่)</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+      <tr><td>ข้อจำกัดกฎหมาย/แพลตฟอร์ม</td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td><td align="center"><span class="cb"></span></td></tr>
+    </tbody>
+  </table>
+  <p><strong>ตีราคาความเสี่ยง:</strong> ถ้าไม่เวิร์ก จะเสียเงินสูงสุด <span class="dotfill" style="min-width:26mm;"></span> บาท · เสียเวลาก่อนรู้ผล <span class="dotfill" style="min-width:24mm;"></span> ชม.</p>
+  <h3 class="q">เริ่มเล็กเพื่อลดความเสี่ยงได้ไหม? (ติ๊กที่ทำได้)</h3>
+  <ul class="chk">
+    <li><span class="cb"></span>ถามตลาดก่อนลงทุน &nbsp; <span class="cb"></span>โพสต์เดียวทดสอบความสนใจ</li>
+    <li><span class="cb"></span>เริ่มด้วย Service ก่อน &nbsp; <span class="cb"></span>Preorder (ขายก่อนผลิต) &nbsp; <span class="cb"></span>รับแค่ 3 คนแรก</li>
+  </ul>
+  <p><strong>Risk Level โดยรวม:</strong> &nbsp; <span class="pill"><span class="cb"></span>Low</span><span class="pill"><span class="cb"></span>Medium</span><span class="pill"><span class="cb"></span>High</span></p>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>Low: ลุยได้เลย ไป Section 8 · Medium: เลือก “ทางลดความเสี่ยง” ≥1 ข้อก่อนลงเงิน · High: หาวิธีทดสอบแบบ “เกือบฟรี” ให้เจอก่อน ถ้าหาไม่เจอ = ไอเดียใหญ่เกินกำลังตอนนี้</div>
+  <div class="foot">Section 5 · Risk &amp; Cost</div>
+</section>
+
+<!-- ============ Section 6 — Scorecard (2 pages) ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 6 · The Verdict</div>
+  <h2 class="sec">100-Point Side Income Scorecard</h2>
+  <p class="goal">รวมทุกอย่างเป็น “คะแนนเดียว” ที่ตัดสินใจได้ — ให้คะแนน 0–5 ต่อข้อ (หมวดละ 20)</p>
+  <div class="hbar"></div>
+  <table>
+    <thead><tr><th>1 · Market Demand (20)</th><th class="sc">0–5</th></tr></thead>
+    <tbody>
+      <tr><td>มีตลาดจริง (ค้นเจอคนพูดถึง/ค้นหา)</td><td class="sc">___</td></tr>
+      <tr><td>Pain ชัด (ลูกค้าบ่นเป็นประจำ)</td><td class="sc">___</td></tr>
+      <tr><td>มีคู่แข่งพิสูจน์แล้วว่าขายได้</td><td class="sc">___</td></tr>
+      <tr><td>เข้าถึงลูกค้าได้โดยไม่ต้องพึ่งงบแอดสูง</td><td class="sc">___</td></tr>
+      <tr class="total"><td>รวมหมวด 1</td><td class="sc"><span class="gl">__/20</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">เกณฑ์: 5 = มีหลักฐานชัดที่เห็นด้วยตา · 3 = พอมีแต่ไม่แน่ใจ · 0 = เดาเอาล้วน ๆ</p>
+  <table>
+    <thead><tr><th>2 · Willingness to Pay (20)</th><th class="sc">0–5</th></tr></thead>
+    <tbody>
+      <tr><td>ลูกค้าเห็นคุณค่าแบบจับต้องได้</td><td class="sc">___</td></tr>
+      <tr><td>มีเหตุผลชัดให้ “จ่ายตอนนี้”</td><td class="sc">___</td></tr>
+      <tr><td>ราคาเหมาะกับสิ่งที่ได้</td><td class="sc">___</td></tr>
+      <tr><td>มีโอกาสซื้อซ้ำ/บอกต่อ</td><td class="sc">___</td></tr>
+      <tr class="total"><td>รวมหมวด 2</td><td class="sc"><span class="gl">__/20</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">เกณฑ์: 5 = ประโยชน์ผูกกับเงิน/เวลาโดยตรง · 3 = ดีแต่เป็นนามธรรม · 0 = บอกไม่ได้ว่าทำไมต้องจ่าย</p>
+  <table>
+    <thead><tr><th>3 · Personal Fit (20)</th><th class="sc">0–5</th></tr></thead>
+    <tbody>
+      <tr><td>เหมาะกับเวลาที่มี</td><td class="sc">___</td></tr>
+      <tr><td>เหมาะกับทักษะที่มี (หรือเรียนทันไว)</td><td class="sc">___</td></tr>
+      <tr><td>เหมาะกับเงินเริ่มต้นที่รับไหว</td><td class="sc">___</td></tr>
+      <tr><td>ทำต่อเนื่องได้โดยไม่หมดไฟ</td><td class="sc">___</td></tr>
+      <tr class="total"><td>รวมหมวด 3</td><td class="sc"><span class="gl">__/20</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">เกณฑ์: อิงผล Section 4 — เขียว = 5, ต้องปรับเล็กน้อย = 3, แดง = 0–1</p>
+  <div class="foot">Section 6 · Scorecard (1/2)</div>
+</section>
+<section class="sheet">
+  <table>
+    <thead><tr><th>4 · Execution Simplicity (20)</th><th class="sc">0–5</th></tr></thead>
+    <tbody>
+      <tr><td>เริ่มได้ง่าย ไม่ต้องตั้งระบบเยอะ</td><td class="sc">___</td></tr>
+      <tr><td>ส่งมอบงาน/สินค้าไม่ซับซ้อน</td><td class="sc">___</td></tr>
+      <tr><td>ทดลองขายได้เร็ว (ภายในสัปดาห์)</td><td class="sc">___</td></tr>
+      <tr><td>ไม่ต้องพึ่งทรัพยากร/คนอื่นเยอะ</td><td class="sc">___</td></tr>
+      <tr class="total"><td>รวมหมวด 4</td><td class="sc"><span class="gl">__/20</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">เกณฑ์: 5 = เริ่มได้คนเดียวในสัปดาห์นี้ · 3 = ต้องเตรียมพอควร · 0 = ต้องตั้งระบบใหญ่ก่อนถึงขายได้</p>
+  <table>
+    <thead><tr><th>5 · Growth Potential (20)</th><th class="sc">0–5</th></tr></thead>
+    <tbody>
+      <tr><td>ขยายได้ (รับลูกค้าเพิ่มได้)</td><td class="sc">___</td></tr>
+      <tr><td>ทำซ้ำได้ (มีระบบ/เทมเพลต)</td><td class="sc">___</td></tr>
+      <tr><td>ต่อยอดเป็นสินค้า/บริการอื่นได้</td><td class="sc">___</td></tr>
+      <tr><td>ไม่ติดกับ “เวลาเราต่อชิ้น” มากเกินไป</td><td class="sc">___</td></tr>
+      <tr class="total"><td>รวมหมวด 5</td><td class="sc"><span class="gl">__/20</span></td></tr>
+    </tbody>
+  </table>
+  <p class="small">เกณฑ์: 5 = โตได้โดยไม่ต้องเพิ่มเวลาเราเป็นเงาตามตัว · 0 = ขายเวลาตัวเองล้วน เพดานชัด</p>
+  <table>
+    <thead><tr><th>รวมคะแนนทั้งหมด</th><th class="sc">คะแนน</th></tr></thead>
+    <tbody>
+      <tr><td>1. Market Demand</td><td class="sc">__/20</td></tr>
+      <tr><td>2. Willingness to Pay</td><td class="sc">__/20</td></tr>
+      <tr><td>3. Personal Fit</td><td class="sc">__/20</td></tr>
+      <tr><td>4. Execution Simplicity</td><td class="sc">__/20</td></tr>
+      <tr><td>5. Growth Potential</td><td class="sc">__/20</td></tr>
+      <tr class="total"><td>รวมทั้งหมด</td><td class="sc"><span class="gl">__/100</span></td></tr>
+    </tbody>
+  </table>
+  <div class="box ex"><div class="lbl">ตัวอย่าง — รับทำสไลด์</div>18 + 17 + 19 + 18 + 12 = <strong>84/100</strong> → โซน Start แต่ Growth ต่ำสุด (ติดที่ขายเวลาตัวเอง) = จุดที่ต้องวางแผนต่อยอด เช่น ทำเทมเพลตขาย</div>
+  <div class="foot">Section 6 · Scorecard (2/2)</div>
+</section>
+
+<!-- ============ Score Interpretation (divider) ============ -->
+<section class="sheet">
+  <div class="divider">
+    <div class="sec-tag">Score Interpretation</div>
+    <h2>คะแนนของคุณบอกอะไร</h2>
+    <table style="font-size:11pt;">
+      <thead><tr><th>คะแนน</th><th>ผล</th><th>แปลว่า</th><th>ทำอะไรต่อ</th></tr></thead>
+      <tbody>
+        <tr><td><strong>0–40</strong></td><td>Stop</td><td>ยังเสี่ยงเกินไป</td><td>อย่าเพิ่งเริ่ม — ปรับแกนใหญ่ หรือเลือกไอเดียใหม่</td></tr>
+        <tr><td><strong>41–65</strong></td><td>Adjust</td><td>มีของ แต่มีจุดอ่อนชัด</td><td>แก้หมวดคะแนนต่ำสุดก่อน แล้วให้คะแนนใหม่</td></tr>
+        <tr><td><strong>66–80</strong></td><td>Test</td><td>แข็งแรงพอจะลอง</td><td>เริ่มด้วยแผนทดสอบ 7 วัน แบบไม่ลงทุนหนัก</td></tr>
+        <tr><td><strong>81–100</strong></td><td>Start</td><td>แข็งแรงจริง</td><td>เริ่มจริงจังได้ วางแผน 30 วันต่อเลย</td></tr>
+      </tbody>
+    </table>
+    <div class="insight" style="margin-top:8mm;">อย่าโกงคะแนนตัวเอง — ถ้าผลออกมาเป็น Stop/Adjust นั่นไม่ใช่ความล้มเหลว แต่คือเครื่องมือเพิ่ง <b>ประหยัดเงินและเวลาหลายเดือน</b> ให้คุณไปแล้ว</div>
+  </div>
+</section>
+
+<!-- ============ Section 7 — Decision Page ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 7 · Decision</div>
+  <h2 class="sec">Start / Adjust / Stop</h2>
+  <p class="goal">หน้าสรุปการตัดสินใจของไอเดียนี้</p>
+  <div class="hbar"></div>
+  <p><strong>ชื่อไอเดีย:</strong></p><div class="line"></div>
+  <p style="margin-top:4mm;"><strong>คะแนนรวม:</strong> <span class="dotfill" style="min-width:30mm;"></span> /100</p>
+  <p style="margin-top:3mm;"><strong>ผลลัพธ์:</strong> &nbsp; <span class="pill"><span class="cb"></span>Start</span><span class="pill"><span class="cb"></span>Adjust</span><span class="pill"><span class="cb"></span>Stop</span></p>
+  <h3 class="q">เหตุผลที่ควรทำต่อ:</h3><div class="line"></div><div class="line"></div>
+  <h3 class="q">จุดอ่อนที่ต้องแก้ก่อน (หมวดคะแนนต่ำสุด):</h3><div class="line"></div>
+  <h3 class="q">ความเสี่ยงที่ต้องระวัง:</h3><div class="line"></div>
+  <h3 class="q">ขั้นตอนถัดไปที่ควรทำภายใน 7 วัน:</h3><div class="line"></div>
+  <div class="insight">เซ็นใจตัวเองสักหน่อย — “ฉันจะลงมือขั้นแรกภายในวันที่ <b>____ / ____ / ____</b>”</div>
+  <div class="foot">Section 7 · Decision Page</div>
+</section>
+
+<!-- ============ PART 5 divider ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">ส่วนที่ 5</div>
+    <h1>ลงมือ<span class="gold">จริง</span></h1>
+    <div class="rule"></div>
+    <p class="desc">รู้เส้นทางแล้ว เช็กไอเดียแล้ว — เหลือสิ่งเดียวที่เปลี่ยนทุกอย่าง: การลงมือ<br>ส่วนนี้คือแผนที่ 90 วัน ตั้งราคา หาลูกค้า และระบบที่ทำให้คุณไม่หมดไฟ</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ Inspiration · Part 5 ============ -->
+<section class="sheet">
+  <div class="story">
+    <div class="skicker">ส่วนที่ 5 · เรื่องเล่า</div>
+    <h2>ระยะทางที่ไกลที่สุด คือจากหัวถึงมือ</h2>
+    <p>คนที่อ่านมาถึงตรงนี้ รู้มากกว่าคน 90% ที่อยากมีรายได้เสริมแล้ว คุณรู้จักตัวเอง รู้เส้นทาง เช็กไอเดียเป็น แต่ความรู้ทั้งหมดนี้มีค่าเท่ากับศูนย์ ถ้ามันยังอยู่แค่ในหน้ากระดาษ</p>
+    <p>โลกนี้ไม่ได้ขาดคนที่ “รู้” มันขาดคนที่ “ทำ” และทำต่อเนื่องนานพอ คนที่สำเร็จในเรื่องรายได้เสริม ส่วนใหญ่ไม่ได้ฉลาดกว่าคุณ เขาแค่ยอมเริ่มทั้งที่ยังไม่พร้อม 100% และยอมอยู่กับมันในวันที่ยังไม่มีใครปรบมือ</p>
+    <p>เงินก้อนแรกมักไม่สวย ลูกค้าคนแรกมักได้มาแบบทุลักทุเล โพสต์แรก ๆ มักเงียบ นั่นไม่ใช่สัญญาณว่าคุณผิดทาง มันคือค่าผ่านประตูที่ทุกคนต้องจ่าย คนที่ไปไม่ถึงคือคนที่ถอยตรงนี้ คนที่ไปถึงคือคนที่เดินต่ออีกนิด</p>
+    <p>ส่วนสุดท้ายนี้จะเปลี่ยนความรู้ให้เป็นการกระทำ — แผน 7 วัน 90 วัน วิธีตั้งราคา วิธีหาลูกค้าสิบคนแรก และระบบที่ทำให้คุณไม่หมดไฟกลางทาง อย่าอ่านมันเฉย ๆ ลงมือทีละก้าวเล็ก ๆ เพราะก้าวเล็กที่ทำจริง ชนะแผนใหญ่ที่ไม่เคยเริ่มเสมอ</p>
+    <div class="pullquote">ก้าวเล็กที่ลงมือจริง ชนะแผนยิ่งใหญ่ที่ไม่เคยเริ่ม</div>
+  </div>
+  <div class="foot">ส่วนที่ 5 · แรงบันดาลใจ</div>
+</section>
+
+<!-- ============ Section 8 — 7-Day Plan ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 8 · Validation</div>
+  <h2 class="sec">7-Day Validation Plan</h2>
+  <p class="goal">เปลี่ยนไอเดียเป็น “หลักฐานจริง” ใน 7 วัน โดยไม่ลงทุนหนัก</p>
+  <div class="hbar"></div>
+  <div class="insight">กฎของสัปดาห์นี้: ทุกวันต้องได้ <b>“หลักฐาน”</b> ไม่ใช่แค่ <b>“ความรู้สึก”</b></div>
+  <table>
+    <thead><tr><th style="width:20mm;">วัน</th><th>สิ่งที่ทำ</th><th>หลักฐานที่ต้องได้</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Day 1</strong></td><td>เขียนประโยคขายให้คม: “ฉันช่วยใคร แก้ปัญหาอะไร ด้วยวิธีไหน”</td><td>1 ประโยคที่คนนอกอ่านแล้วเข้าใจทันที</td></tr>
+      <tr><td><strong>Day 2</strong></td><td>ส่องคู่แข่ง 10 ราย: ขายอะไร ราคาเท่าไหร่ จุดอ่อนคืออะไร</td><td>ช่องว่างในตลาดที่เราจะเสียบ</td></tr>
+      <tr><td><strong>Day 3</strong></td><td>เขียน 3 โพสต์ทดสอบ (มุมปัญหา/ผลลัพธ์/เล่าเรื่อง)</td><td>มุมที่คนตอบสนองดีที่สุด</td></tr>
+      <tr><td><strong>Day 4</strong></td><td>ถามกลุ่มเป้าหมายจริง 5–10 คน (ยังไม่ขาย)</td><td>คำพูดจริงของลูกค้า</td></tr>
+      <tr><td><strong>Day 5</strong></td><td>ทำ Offer ง่าย 1 หน้า: ได้อะไร/ราคา/เริ่มยังไง</td><td>ข้อเสนอที่กดสั่งได้จริง</td></tr>
+      <tr><td><strong>Day 6</strong></td><td>เปิดรับความสนใจจริง: DM / Waitlist / Preorder / รับ 3 คนแรก</td><td>มีคนทักจริงกี่คน</td></tr>
+      <tr><td><strong>Day 7</strong></td><td>สรุปผลและตัดสินใจ</td><td>ทำต่อ / ปรับ / หยุด</td></tr>
+    </tbody>
+  </table>
+  <h3 class="q">สรุปผลสิ้นสุดสัปดาห์</h3>
+  <ul class="bul">
+    <li>มีคนสนใจจริง: <span class="dotfill" style="min-width:18mm;"></span> คน · ถามราคา: <span class="dotfill" style="min-width:18mm;"></span> คน · ยอมจ่าย/จอง: <span class="dotfill" style="min-width:18mm;"></span> คน</li>
+    <li>objection ที่เจอบ่อยสุด: <span class="dotfill" style="min-width:70mm;"></span></li>
+    <li><strong>สรุป:</strong> <span class="pill"><span class="cb"></span>ทำต่อ</span><span class="pill"><span class="cb"></span>ปรับ</span><span class="pill"><span class="cb"></span>หยุด</span></li>
+  </ul>
+  <div class="box cue"><div class="lbl">เกณฑ์ตัดสินง่าย ๆ</div>มี “คนยอมจ่ายหรือจองจริง ≥ 1 คน” = สัญญาณเขียว ขยายผล · มีแต่คน “สนใจ” แต่ไม่จ่าย = ปรับ offer/ราคา/กลุ่ม · เงียบสนิท = กลับไป Section 2–3</div>
+  <div class="foot">Section 8 · 7-Day Validation Plan</div>
+</section>
+
+<!-- ============ 90-Day Roadmap ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · แผนเดินทาง</div>
+  <h2 class="sec">90-Day Roadmap</h2>
+  <p class="goal">จาก “ทดสอบ” สู่ “รายได้จริงที่ทำซ้ำได้” ใน 3 เดือน</p>
+  <div class="hbar"></div>
+  <p>7 วันแรกพิสูจน์ว่า “มีคนจ่าย” — 90 วันถัดมาคือทำให้มัน <strong>เป็นระบบและโตได้</strong> โฟกัสทีละเดือน อย่ากระโดด</p>
+  <table>
+    <thead><tr><th style="width:24mm;">ช่วง</th><th>เป้าหมายเดียวของเดือน</th><th>สิ่งที่ต้องได้</th></tr></thead>
+    <tbody>
+      <tr><td><strong>เดือน 1<br>พิสูจน์</strong></td><td>ปิดลูกค้าจริง 3–5 ราย ด้วยมือ (ยังไม่ต้องมีระบบ)</td><td>มีคนจ่าย + รู้ว่าคำพูด/ช่องทางไหนเวิร์ก</td></tr>
+      <tr><td><strong>เดือน 2<br>วางระบบ</strong></td><td>ทำให้งานซ้ำได้: เทมเพลต ราคา ขั้นตอนส่งมอบ</td><td>ลดเวลาต่อชิ้น + รับลูกค้าได้มากขึ้นโดยไม่วุ่น</td></tr>
+      <tr><td><strong>เดือน 3<br>ขยาย</strong></td><td>เพิ่มช่องทาง/ขึ้นราคา/เพิ่มบริการต่อยอด 1 อย่าง</td><td>รายได้โตขึ้น หรือเริ่มสร้าง “สินทรัพย์” ตัวแรก</td></tr>
+    </tbody>
+  </table>
+  <h3 class="q">เป้าหมายตัวเลขของฉัน</h3>
+  <p>เดือน 1: <span class="dotfill" style="min-width:26mm;"></span> บาท · เดือน 2: <span class="dotfill" style="min-width:26mm;"></span> บาท · เดือน 3: <span class="dotfill" style="min-width:26mm;"></span> บาท</p>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ถ้าเดือน 1 ยังปิดไม่ได้สักราย — อย่าเพิ่งไปเดือน 2 ปัญหาไม่ใช่ “ระบบ” แต่คือ offer/ตลาด กลับไปแก้ก่อน</div>
+  <div class="foot">ส่วนที่ 5 · 90-Day Roadmap</div>
+</section>
+
+<!-- ============ Pricing & First Sale ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · ตั้งราคา</div>
+  <h2 class="sec">ตั้งราคา &amp; ปิดการขายแรก</h2>
+  <p class="goal">เป้าหมาย: ตั้งราคาที่ “ขายได้และไม่ขายตัวเองถูก”</p>
+  <div class="hbar"></div>
+  <div class="insight">มือใหม่ส่วนใหญ่ตั้งราคาถูกเกินเพราะ “กลัวไม่มีคนซื้อ” — แต่ราคาถูกเกินกลับทำให้คน <b>ไม่เชื่อในคุณค่า</b> และทำให้คุณหมดไฟเร็ว</div>
+  <h3 class="q">3 วิธีหาราคาตั้งต้น (ใช้ร่วมกัน)</h3>
+  <ul class="bul">
+    <li><strong>อิงต้นทุน:</strong> ต้นทุน + เวลา × ค่าตัวที่อยากได้ต่อชม. = พื้นราคาขั้นต่ำ</li>
+    <li><strong>อิงคู่แข่ง:</strong> ดูเจ้าอื่นคิดเท่าไหร่ แล้วเลือกจุดยืน — ถูกกว่า / เท่ากัน / พรีเมียม (พร้อมเหตุผล)</li>
+    <li><strong>อิงคุณค่า:</strong> ลูกค้าประหยัด/ได้เพิ่มเท่าไหร่จากงานเรา → ราคาควรเป็นเศษเสี้ยวของสิ่งนั้น</li>
+  </ul>
+  <table>
+    <thead><tr><th>ระดับ (Price Ladder)</th><th>ตัวอย่าง</th><th class="sc">ราคา</th></tr></thead>
+    <tbody>
+      <tr><td>ตัวเรียกลูกค้า (เริ่มง่าย)</td><td>แพ็กเล็ก/ทดลอง</td><td class="sc">____</td></tr>
+      <tr><td>ตัวหลัก (ขายดีสุด)</td><td>แพ็กมาตรฐาน</td><td class="sc">____</td></tr>
+      <tr><td>ตัวพรีเมียม (กำไรสูง)</td><td>แพ็กครบ/เร่งด่วน</td><td class="sc">____</td></tr>
+    </tbody>
+  </table>
+  <h3 class="q">ข้อเสนอเปิดตัว (Intro Offer) สำหรับ 3 คนแรก</h3>
+  <div class="line sm"></div><div class="line sm"></div>
+  <div class="box cue"><div class="lbl">เคล็ดปิดการขายแรก</div>เสนอราคาพิเศษ “3 คนแรก” แลกกับ <strong>รีวิว/คำชม</strong> — คุณได้ลูกค้าจริง + ได้หลักฐานไว้ขายคนต่อไป ทั้งคู่ได้ประโยชน์</div>
+  <div class="foot">ส่วนที่ 5 · ตั้งราคา &amp; ปิดการขาย</div>
+</section>
+
+<!-- ============ First 10 Customers ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · หาลูกค้า</div>
+  <h2 class="sec">หาลูกค้า 10 คนแรก</h2>
+  <p class="goal">เป้าหมาย: รู้ว่าจะไปยืนตรงไหน และพูดอะไร</p>
+  <div class="hbar"></div>
+  <p>10 คนแรกไม่ได้มาจากการ “รอ” แต่มาจากการ “ไปหา” ถึงที่ เลือกช่องทางตามเส้นทางของคุณ</p>
+  <table style="font-size:9pt;">
+    <thead><tr><th>เส้นทาง</th><th>ไปหาลูกค้าที่ไหนก่อน</th></tr></thead>
+    <tbody>
+      <tr><td>บริการ</td><td>กลุ่มเฟซบุ๊กอาชีพ · คนรู้จัก · มาร์เก็ตเพลสฟรีแลนซ์</td></tr>
+      <tr><td>ขายของ</td><td>TikTok/Reels คลิปสั้น · กลุ่มซื้อขาย niche · มาร์เก็ตเพลส</td></tr>
+      <tr><td>คอนเทนต์</td><td>โพสต์สม่ำเสมอ · คอมเมนต์ในเพจใหญ่สายเดียวกัน</td></tr>
+      <tr><td>สอน/ที่ปรึกษา</td><td>เปิดคลาสฟรี/เวิร์กช็อปเล็ก · ตอบคำถามในกลุ่ม</td></tr>
+      <tr><td>สินค้าดิจิทัล</td><td>คอมมูนิตี้คนทำงานสายนั้น · มาร์เก็ตเพลสสินค้าดิจิทัล</td></tr>
+      <tr><td>แอฟฟิลิเอต</td><td>คอนเทนต์ช่วยตัดสินใจ · รีวิวในกลุ่มที่คนกำลังเลือกซื้อ</td></tr>
+    </tbody>
+  </table>
+  <h3 class="q">สคริปต์ทักลูกค้า (เติมในช่องว่าง)</h3>
+  <div class="box ex"><div class="lbl">เทมเพลตทัก</div>“สวัสดีครับ/ค่ะ เห็นว่าคุณ <span class="dotfill" style="min-width:30mm;"></span> (เจอปัญหานี้) — พอดีผม/ฉันช่วย <span class="dotfill" style="min-width:30mm;"></span> (แก้ปัญหานี้) ให้ได้ ถ้าสนใจขอเล่าให้ฟังสั้น ๆ ได้ไหมครับ/คะ?”</div>
+  <h3 class="q">ตารางติดตาม 10 คนแรก</h3>
+  <table style="font-size:9pt;"><thead><tr><th class="sc">#</th><th>ชื่อ/ช่องทาง</th><th>สถานะ (ทัก/คุย/ปิด)</th></tr></thead>
+  <tbody>
+    <tr><td class="sc">1–5</td><td><div class="line sm" style="height:6mm;"></div></td><td><div class="line sm" style="height:6mm;"></div></td></tr>
+    <tr><td class="sc">6–10</td><td><div class="line sm" style="height:6mm;"></div></td><td><div class="line sm" style="height:6mm;"></div></td></tr>
+  </tbody></table>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ทัก 10 คน ปิดได้ 1–2 = ปกติของมือใหม่ ไปต่อ · ทัก 20+ คนยังไม่มีใครคุยต่อ = offer/กลุ่มยังไม่ตรง กลับไปแก้</div>
+  <div class="foot">ส่วนที่ 5 · หาลูกค้า 10 คนแรก</div>
+</section>
+
+<!-- ============ System & Anti-burnout ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · ระบบ</div>
+  <h2 class="sec">ระบบง่าย ๆ ที่ทำให้ไม่หมดไฟ</h2>
+  <p class="goal">เป้าหมาย: ทำต่อได้นาน โดยไม่พังไปกับงานประจำ</p>
+  <div class="hbar"></div>
+  <div class="insight">รายได้เสริมส่วนใหญ่ไม่ได้ตายเพราะไอเดียแย่ — มันตายเพราะคนทำ <b>หมดแรงก่อนถึงจุดที่มันเริ่มได้ผล</b></div>
+  <h3 class="q">3 ตัวเลขที่ควรวัดทุกสัปดาห์ (KPI ง่าย ๆ)</h3>
+  <ul class="bul">
+    <li><strong>Reach:</strong> เข้าถึงคนใหม่กี่คน (โพสต์/ทัก/คลิป)</li>
+    <li><strong>Conversation:</strong> มีคนคุย/ถามจริงกี่ราย</li>
+    <li><strong>Cash:</strong> ปิดได้กี่บาท</li>
+  </ul>
+  <table>
+    <thead><tr><th>สัปดาห์</th><th class="sc">Reach</th><th class="sc">คุย</th><th class="sc">บาท</th></tr></thead>
+    <tbody>
+      <tr><td>W1</td><td class="sc">__</td><td class="sc">__</td><td class="sc">__</td></tr>
+      <tr><td>W2</td><td class="sc">__</td><td class="sc">__</td><td class="sc">__</td></tr>
+      <tr><td>W3</td><td class="sc">__</td><td class="sc">__</td><td class="sc">__</td></tr>
+      <tr><td>W4</td><td class="sc">__</td><td class="sc">__</td><td class="sc">__</td></tr>
+    </tbody>
+  </table>
+  <h3 class="q">กติกากันหมดไฟ</h3>
+  <ul class="bul">
+    <li>กำหนด “เวลาทำงานเสริม” เป็นช่วงเวลาตายตัว ไม่ใช่ทำตอนมีอารมณ์</li>
+    <li>ตั้งเป้าเล็กรายสัปดาห์ (ทำได้จริง) ดีกว่าเป้าใหญ่รายปีที่กดดัน</li>
+    <li>1 งานต่อครั้ง — อย่ารับเกินกำลังจนกระทบงานหลัก/สุขภาพ</li>
+  </ul>
+  <div class="box cue"><div class="lbl">อ่านผลยังไง</div>ถ้า Reach ขึ้นแต่ Cash ไม่ขึ้น = ปัญหาการปิดการขาย/ราคา · ถ้า Reach ไม่ขึ้นเลย = ต้องเพิ่มการเข้าถึง (โพสต์/ทักมากขึ้น)</div>
+  <div class="foot">ส่วนที่ 5 · ระบบไม่หมดไฟ</div>
+</section>
+
+<!-- ============ 5 Traps / Mindset ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · Mindset</div>
+  <h2 class="sec">5 กับดักของมือใหม่รายได้เสริม</h2>
+  <p class="goal">รู้ไว้ก่อน เพื่อไม่ต้องเสียเงินเรียนรู้มันเอง</p>
+  <div class="hbar"></div>
+  <table>
+    <thead><tr><th style="width:8mm;">#</th><th>กับดัก</th><th>ทางออก</th></tr></thead>
+    <tbody>
+      <tr><td><strong>1</strong></td><td>รอให้ “พร้อม 100%” ค่อยเริ่ม</td><td>เริ่มเล็กที่ 70% แล้วปรับหน้างาน</td></tr>
+      <tr><td><strong>2</strong></td><td>ทำหลายอย่างพร้อมกัน</td><td>โฟกัส 1 สาย 1 ไอเดียก่อน</td></tr>
+      <tr><td><strong>3</strong></td><td>ตั้งราคาถูกเกินเพราะกลัว</td><td>ตั้งตามคุณค่า + ใช้ intro offer</td></tr>
+      <tr><td><strong>4</strong></td><td>เงียบหายเมื่อยังไม่เห็นผลใน 2 สัปดาห์</td><td>วัดเป็น 90 วัน ไม่ใช่ 2 สัปดาห์</td></tr>
+      <tr><td><strong>5</strong></td><td>เปรียบเทียบจุดเริ่มของเรากับจุดที่คนอื่นไปไกลแล้ว</td><td>เทียบกับตัวเองสัปดาห์ที่แล้วพอ</td></tr>
+    </tbody>
+  </table>
+  <div class="insight">ความจริงที่คนไม่ค่อยบอก: รายได้เสริมที่สำเร็จ มักไม่ได้มาจากไอเดียที่ฉลาดที่สุด — แต่มาจากคนที่ <b>เริ่มเร็วพอ และอยู่นานพอ</b> จนตลาดเริ่มไว้ใจ</div>
+  <h3 class="q">คำสัญญากับตัวเอง</h3>
+  <p>ฉันจะให้เวลาเส้นทางนี้อย่างน้อย <span class="dotfill" style="min-width:20mm;"></span> วัน ก่อนตัดสินว่ามันเวิร์กหรือไม่ · เริ่มวันที่ <span class="dotfill" style="min-width:30mm;"></span></p>
+  <div class="foot">ส่วนที่ 5 · 5 กับดัก &amp; Mindset</div>
+</section>
+
+<!-- ============ Section 9 — Idea Prompts ============ -->
+<section class="sheet">
+  <div class="sec-tag">Section 9 · Idea Engine</div>
+  <h2 class="sec">30 Side Income Idea Prompts</h2>
+  <p class="goal">ถ้ายังไม่มีไอเดีย (หรืออยากมีตัวเลือกเทียบ) ให้แตกไอเดียจาก “ของที่คุณมีอยู่แล้ว”</p>
+  <div class="hbar"></div>
+  <p>นี่ไม่ใช่ลิสต์อาชีพสำเร็จรูป แต่เป็น <strong>คำถามจุดประกาย</strong> เจอข้อไหนที่ทำให้นึกอะไรออก ให้จดทันที</p>
+  <div class="grid2">
+    <div>
+      <h3 class="q" style="margin-top:2mm;">1 · ใช้ความรู้</h3>
+      <ul class="bul"><li>ฉันรู้อะไรที่คนอื่นอยากรู้ให้เร็วขึ้น</li><li>ฉันเคยแก้ปัญหาอะไรที่คนอื่นยังติดอยู่</li><li>ฉันสรุปเรื่องซับซ้อนให้คนเข้าใจง่ายได้ไหม</li></ul>
+      <h3 class="q">2 · ใช้ทักษะ</h3>
+      <ul class="bul"><li>ฉันทำอะไรได้เร็วกว่าคนทั่วไป</li><li>ทักษะไหนที่คนยอมจ่ายเพื่อประหยัดเวลา</li><li>ฉันช่วยงานอะไรให้ธุรกิจเล็กได้</li></ul>
+      <h3 class="q">3 · ใช้ประสบการณ์</h3>
+      <ul class="bul"><li>ฉันเคยผ่านปัญหาอะไรที่คนอื่นกำลังเจอ</li><li>ประสบการณ์ไหนแปลงเป็นคู่มือได้</li><li>ข้อผิดพลาดอะไรที่มือใหม่มักพลาด</li></ul>
+    </div>
+    <div>
+      <h3 class="q" style="margin-top:2mm;">4 · ใช้การคัดเลือก</h3>
+      <ul class="bul"><li>ช่วยคัดสินค้า/เครื่องมือ/ข้อมูลให้คนอื่นได้ไหม</li><li>รวมของที่คนต้องหาเองให้เป็นชุดได้ไหม</li><li>ทำ checklist ให้คนตัดสินใจง่ายขึ้นได้ไหม</li></ul>
+      <h3 class="q">5 · ใช้ AI</h3>
+      <ul class="bul"><li>ใช้ AI ช่วยทำงานอะไรให้คนอื่นเร็วขึ้นได้</li><li>ทำ prompt pack สำหรับงานเฉพาะทางได้ไหม</li><li>ทำ template ให้คนใช้ AI ง่ายขึ้นได้ไหม</li></ul>
+    </div>
+  </div>
+  <h3 class="q">จดไอเดียที่นึกออก (เลือก 3 ไปเข้า Scorecard):</h3>
+  <div class="line sm"></div><div class="line sm"></div><div class="line sm"></div>
+  <div class="box cue"><div class="lbl">ทำต่อ</div>เอา 3 ไอเดียนี้กลับไปทำ Section 6 (Scorecard) ทีละอัน แล้วเริ่มจากตัวที่คะแนนสูงสุด</div>
+  <div class="foot">Section 9 · Idea Prompts</div>
+</section>
+
+<!-- ============ Idea Bank 40+ ============ -->
+<section class="sheet">
+  <div class="sec-tag">ส่วนที่ 5 · คลังไอเดีย</div>
+  <h2 class="sec">40+ ไอเดียรายได้เสริม แยกตาม 6 สาย</h2>
+  <p class="goal">ติดขัดว่าจะทำอะไร? หยิบจากสายที่คุณจับคู่ได้ในส่วนที่ 3</p>
+  <div class="hbar"></div>
+  <div class="fitcol">
+    <div>
+      <h4 style="color:#8a6a1f;">1 · บริการ</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>ทำสไลด์/พรีเซนต์</li><li>ตัดต่อคลิปสั้น</li><li>เขียนคอนเทนต์/แคปชัน</li><li>ออกแบบกราฟิก/โลโก้</li><li>ผู้ช่วยเสมือน (VA)</li><li>ทำบัญชี/ยื่นภาษีรายเล็ก</li><li>ยิงแอดให้ร้านเล็ก</li></ul>
+      <h4 style="color:#8a6a1f;">2 · ขายของ</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>พรีออเดอร์ของนำเข้า</li><li>ดรอปชิปสินค้า niche</li><li>ของมือสองคัดสภาพ</li><li>จัดเซ็ตของขวัญ</li><li>สินค้าทำมือเฉพาะกลุ่ม</li><li>ของกินเฉพาะถิ่น</li></ul>
+      <h4 style="color:#8a6a1f;">3 · คอนเทนต์</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>เพจให้ความรู้เฉพาะทาง</li><li>รีวิวสินค้ากลุ่มเดียว</li><li>สอนทักษะสั้น ๆ</li><li>เล่าประสบการณ์อาชีพ</li><li>คลิปสรุปเรื่องยากให้ง่าย</li></ul>
+    </div>
+    <div>
+      <h4 style="color:#8a6a1f;">4 · สอน/ที่ปรึกษา</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>สอนทักษะที่ใช้ในงาน</li><li>ติวสอบ/ภาษา</li><li>ที่ปรึกษาธุรกิจเล็ก</li><li>โค้ชการเงินส่วนตัว</li><li>โค้ชสุขภาพ/ออกกำลัง</li><li>เวิร์กช็อปออนไลน์</li></ul>
+      <h4 style="color:#8a6a1f;">5 · สินค้าดิจิทัล</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>เทมเพลตเอกสาร/สไลด์</li><li>พรีเซ็ตแต่งรูป</li><li>ebook how-to</li><li>Notion template</li><li>prompt pack สำหรับ AI</li><li>คอร์สอัดวิดีโอ</li></ul>
+      <h4 style="color:#8a6a1f;">6 · แอฟฟิลิเอต</h4>
+      <ul class="bul" style="font-size:9.2pt;"><li>แอฟฟิลิเอต TikTok/Shopee</li><li>แนะนำคอร์ส/เครื่องมือ</li><li>นายหน้าจับคู่บริการ</li><li>รีวิวช่วยตัดสินใจ</li><li>รวมดีล/ส่วนลด</li></ul>
+    </div>
+  </div>
+  <div class="box cue"><div class="lbl">ใช้ยังไง</div>เลือก 3 ไอเดียจากสายที่คุณได้คะแนนสูงสุด → เอาเข้า Scorecard (ส่วนที่ 4) → เริ่มจากตัวที่คะแนนนำ</div>
+  <div class="foot">ส่วนที่ 5 · คลังไอเดีย 40+</div>
+</section>
+
+<!-- ============ Full worked example ============ -->
+<section class="sheet">
+  <div class="sec-tag">ภาคผนวก · ตัวอย่างเต็ม</div>
+  <h2 class="sec">เดินครบ Kit ใน 1 ไอเดีย</h2>
+  <p class="goal">ดูภาพรวมว่าเครื่องมือทั้งเล่มเชื่อมกันยังไง — ผ่าน “คุณเอ”</p>
+  <div class="hbar"></div>
+  <table style="font-size:9.4pt;">
+    <thead><tr><th style="width:42mm;">ขั้นตอน</th><th>สิ่งที่คุณเอทำ / ได้</th></tr></thead>
+    <tbody>
+      <tr><td><strong>ส่วนที่ 1 · ตัวเอง</strong></td><td>ทักษะ=ทำสไลด์ · เวลา 6–8 ชม. · ทุน 2,000 · หลังกล้อง เงียบ ๆ · เป้า=เงินเร็ว</td></tr>
+      <tr><td><strong>ส่วนที่ 3 · จับคู่</strong></td><td>สายบริการ 24/25 (สูงสุด) → <strong>เส้นทางหลัก = บริการ</strong></td></tr>
+      <tr><td><strong>ไอเดีย</strong></td><td>“รับทำสไลด์พรีเซนต์ให้ธุรกิจเล็ก/ฟรีแลนซ์”</td></tr>
+      <tr><td>S.I.D.E. · ตลาด</td><td>Market Reality = 23/25 (มีคู่แข่งขายได้จริง)</td></tr>
+      <tr><td>WTP</td><td>ติ๊ก 6/7 ข้อ — จ่ายเพราะประหยัดเวลา + พิตช์ดูโปร</td></tr>
+      <tr><td>Personal Fit</td><td>5 เขียว — เหมาะมาก</td></tr>
+      <tr><td><strong>Scorecard</strong></td><td>18+17+19+18+12 = <strong>84/100 → โซน Start</strong></td></tr>
+      <tr><td>จุดอ่อน</td><td>Growth ต่ำสุด (ขายเวลาตัวเอง) → วางแผนทำเทมเพลตขายต่อยอด</td></tr>
+      <tr><td><strong>7 วัน</strong></td><td>ทัก 12 คน · ปิดได้ 2 งาน = 2,400 บาท → สัญญาณเขียว</td></tr>
+      <tr><td><strong>90 วัน</strong></td><td>ด.1 ปิด 5 งาน · ด.2 ทำเทมเพลตลดเวลา · ด.3 ขึ้นราคา + ขายเทมเพลต</td></tr>
+    </tbody>
+  </table>
+  <div class="insight">เห็นไหมว่าทุกหน้าในเล่มนี้ <b>ไม่ได้แยกกัน</b> — มันคือทางเดินเส้นเดียวจาก “ไม่รู้จะทำอะไร” ไปจนถึง “มีลูกค้าจ่ายเงินจริง”</div>
+  <div class="foot">ภาคผนวก · ตัวอย่างเต็ม</div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sheet">
+  <div class="sec-tag">ภาคผนวก · FAQ</div>
+  <h2 class="sec">คำถามที่คนถามบ่อยก่อนเริ่ม</h2>
+  <div class="hbar"></div>
+  <h3 class="q">ไม่มีเงินทุนเลย เริ่มได้ไหม?</h3>
+  <p>ได้ — สายบริการ สอน และแอฟฟิลิเอต เริ่มได้ด้วยทุนเกือบศูนย์ ใช้ทักษะ/เวลา/ความเชื่อใจเป็นต้นทุนแทนเงิน</p>
+  <h3 class="q">มีเวลาน้อยมาก (วันละ 1 ชม.) ไหวไหม?</h3>
+  <p>ไหว ถ้าเลือกสายที่ “ทำเป็นชิ้นได้” เช่น บริการ/สินค้าดิจิทัล และตั้งเป้าเล็ก — 1 ชม./วันสม่ำเสมอ ชนะ 8 ชม.ครั้งเดียวแล้วหาย</p>
+  <h3 class="q">กลัวคนรู้จักเห็นแล้วมองไม่ดี?</h3>
+  <p>เริ่มเงียบ ๆ ในกลุ่มเป้าหมายที่ไม่ใช่คนรู้จักก่อนได้ ผลลัพธ์จริงจะเปลี่ยนสายตาคนรอบตัวเอง</p>
+  <h3 class="q">จะรู้ได้ยังไงว่า “ควรหยุด”?</h3>
+  <p>ให้เวลามันตามที่สัญญาไว้ (เช่น 90 วัน) ถ้าทำตามแผนครบแล้วยังไม่มีใครจ่ายเลยสักราย = สัญญาณให้ปรับไอเดีย ไม่ใช่ปรับความพยายาม</p>
+  <h3 class="q">ควรลาออกจากงานประจำมาทำเต็มตัวเลยไหม?</h3>
+  <p>อย่าเพิ่ง — รายได้เสริมควรพิสูจน์ตัวเองจน “มั่นคงพอ” ก่อน งานประจำคือทุนสำรองที่ให้คุณกล้าทดลองโดยไม่กดดันเกินไป</p>
+  <div class="box cue"><div class="lbl">หลักคิดเดียว</div>คำถามเหล่านี้ส่วนใหญ่คือ “ความกลัว” ไม่ใช่ “ข้อเท็จจริง” — เครื่องมือทั้งเล่มนี้ออกแบบมาเพื่อเปลี่ยนความกลัวให้เป็นข้อมูลที่ตัดสินใจได้</div>
+  <div class="foot">ภาคผนวก · FAQ</div>
+</section>
+
+<!-- ============ Pre-launch checklist ============ -->
+<section class="sheet">
+  <div class="sec-tag">ภาคผนวก · เช็กลิสต์</div>
+  <h2 class="sec">เช็กลิสต์ก่อนเริ่มจริง</h2>
+  <p class="goal">ติ๊กให้ครบก่อนกดเริ่ม — ถ้ายังไม่ครบ คือยังไม่พร้อม</p>
+  <div class="hbar"></div>
+  <ul class="chk" style="font-size:11pt;line-height:1.9;">
+    <li><span class="cb"></span>ฉันรู้แล้วว่า <strong>เส้นทางหลัก</strong> ของฉันคือสายไหน (ส่วนที่ 3)</li>
+    <li><span class="cb"></span>ฉันมี <strong>1 ไอเดีย</strong> ที่ผ่าน Scorecard ≥ 66/100 (โซน Test/Start)</li>
+    <li><span class="cb"></span>ฉันรู้ว่า <strong>ลูกค้าคือใคร</strong> และเขาเจ็บปวดเรื่องอะไร</li>
+    <li><span class="cb"></span>ฉันรู้ <strong>ราคา</strong> ที่จะเสนอ และมี intro offer สำหรับ 3 คนแรก</li>
+    <li><span class="cb"></span>ฉันรู้ว่าจะ <strong>ไปหาลูกค้า 10 คนแรก</strong> ที่ไหน</li>
+    <li><span class="cb"></span>ฉันรู้ว่า <strong>ถ้าพลาด จะเสียอะไร</strong> และรับไหว (ส่วน Risk)</li>
+    <li><span class="cb"></span>ฉันให้คำมั่นว่าจะให้เวลามันอย่างน้อย <strong>____ วัน</strong></li>
+    <li><span class="cb"></span>ฉันจดวันเริ่มลงปฏิทินแล้ว: <strong>____ / ____ / ____</strong></li>
+  </ul>
+  <div class="insight">ถ้าติ๊กครบ 8 ข้อ — คุณไม่ได้กำลัง “เดา” อีกต่อไป คุณกำลังเริ่มอย่างคนที่ <b>มองเห็น</b> ลงมือเลย</div>
+  <div class="foot">ภาคผนวก · เช็กลิสต์ก่อนเริ่ม</div>
+</section>
+
+<!-- ============ Final (dark) ============ -->
+<section class="sheet sheet--dark">
+  <div class="dark">
+    <div class="kic">The Last Page</div>
+    <h1 style="font-size:23pt;">ไอเดียที่ดี ไม่ใช่ไอเดีย<br>ที่<span class="gold">น่าตื่นเต้น</span>ที่สุด</h1>
+    <div class="rule"></div>
+    <p class="desc">แต่คือไอเดียที่ผ่านการเช็กแล้วว่า “น่าลองจริง”<br><br>รายได้เสริมไม่ควรเริ่มจากความหวังอย่างเดียว แต่ควรเริ่มจากความชัดเจน<br><br>เมื่อคุณรู้ว่าไอเดียไหนมีตลาด · คนยอมจ่ายไหม · เหมาะกับชีวิตคุณหรือเปล่า · และควรทดลองยังไงให้เสี่ยงน้อยที่สุด — คุณจะไม่ต้องเริ่มจากการเดาเหมือนเดิมอีกต่อไป</p>
+    <p class="desc" style="margin-top:10mm;color:var(--gold-light);font-weight:600;">เก็บเล่มนี้ไว้ ทุกครั้งที่มีไอเดียใหม่โผล่มาในหัว — เปิดมันขึ้นมา แล้วเช็กก่อนเสมอ</p>
+    <div class="brand">Rootman</div>
+  </div>
+</section>
+
+<!-- ============ Appendix — Blank reusable form ============ -->
+<section class="sheet">
+  <div class="sec-tag">Appendix</div>
+  <h2 class="sec">ฟอร์มเปล่าสำหรับทำซ้ำ</h2>
+  <p class="goal">พิมพ์หน้านี้เพิ่มได้เรื่อย ๆ เพื่อเช็กไอเดียใหม่ (ทำซ้ำได้ไม่จำกัด)</p>
+  <div class="hbar"></div>
+  <p><strong>ชื่อไอเดีย:</strong> <span class="dotfill" style="min-width:80mm;"></span> &nbsp; <strong>วันที่:</strong> ___/___/___</p>
+  <table style="margin-top:5mm;">
+    <thead><tr><th>หมวด</th><th class="sc">คะแนน</th></tr></thead>
+    <tbody>
+      <tr><td>Market Demand</td><td class="sc">__/20</td></tr>
+      <tr><td>Willingness to Pay</td><td class="sc">__/20</td></tr>
+      <tr><td>Personal Fit</td><td class="sc">__/20</td></tr>
+      <tr><td>Execution Simplicity</td><td class="sc">__/20</td></tr>
+      <tr><td>Growth Potential</td><td class="sc">__/20</td></tr>
+      <tr class="total"><td>รวม</td><td class="sc"><span class="gl">__/100</span></td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top:4mm;"><strong>ผล:</strong> <span class="pill"><span class="cb"></span>Stop</span><span class="pill"><span class="cb"></span>Adjust</span><span class="pill"><span class="cb"></span>Test</span><span class="pill"><span class="cb"></span>Start</span></p>
+  <h3 class="q">จุดอ่อนที่ต้องแก้:</h3><div class="line"></div>
+  <h3 class="q">ขั้นแรกที่จะทำ (ภายใน 7 วัน):</h3><div class="line"></div>
+  <div class="foot">Side Income Diagnostic Kit · A Rootman Field Kit</div>
+</section>
+
+</body>
+</html>
