@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review capture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ffffff; padding: 24px;
+    display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+  .cap { background: #ffffff; }
+
+  .rv-phone {
+    width: 380px; background: #fff; border-radius: 16px; overflow: hidden;
+    color: #050505;
+    font-family: "Noto Sans Thai", "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+  }
+  .rv-hd { display: flex; align-items: center; gap: 9px; padding: 11px 12px 10px; border-bottom: 1px solid #e9ebee; }
+  .rv-hd .rv-back { color: #0866ff; font-size: 24px; line-height: 1; font-weight: 400; flex-shrink: 0; }
+  .rv-hd-av { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; background: conic-gradient(from 30deg, #f6c8ae, #d9b0c4, #c9c0e0, #b7d0e8, #d7c3b0, #f0c9c0); filter: blur(6px); }
+  .rv-hd-mid { flex: 1; min-width: 0; }
+  .rv-hd-name { font-weight: 700; font-size: 15px; color: #050505; filter: blur(4.5px); white-space: nowrap; overflow: hidden; text-overflow: clip; letter-spacing: .3px; }
+  .rv-hd-sub { color: #65676b; font-size: 11.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rv-hd-ic { flex-shrink: 0; display: flex; align-items: center; gap: 10px; color: #0866ff; }
+  .rv-hd-ic .rv-baht { width: 26px; height: 26px; border: 1.6px solid #0866ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+  .rv-hd-ic .rv-dots { font-size: 20px; color: #050505; letter-spacing: -1px; }
+
+  .rv-body { padding: 16px 12px 16px; display: flex; flex-direction: column; gap: 3px; background: #fff; }
+  .rv-row { display: flex; align-items: flex-end; gap: 7px; margin-top: 9px; }
+  .rv-row.a { justify-content: flex-end; }
+  .rv-row .rv-av { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; align-self: flex-end;
+    background: conic-gradient(from 60deg, #e8b7c4, #c9bfe0, #b3cfe8, #d8c6ae, #efc7bf); filter: blur(5px); }
+  .rv-bubs { display: flex; flex-direction: column; gap: 3px; max-width: 74%; }
+  .rv-row.a .rv-bubs { align-items: flex-end; }
+  .rv-bub { position: relative; padding: 8px 13px; font-size: 14.5px; line-height: 1.35; word-wrap: break-word; white-space: pre-wrap; }
+  .rv-bub.c { background: #e9ebee; color: #050505; border-radius: 18px; }
+  .rv-bub.a { background: #0a7cff; color: #fff; border-radius: 18px; }
+  .rv-bubs.c .rv-bub { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+  .rv-bubs.c .rv-bub:first-child { border-top-left-radius: 18px; }
+  .rv-bubs.c .rv-bub:last-child { border-bottom-left-radius: 18px; }
+  .rv-bubs.a .rv-bub { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+  .rv-bubs.a .rv-bub:first-child { border-top-right-radius: 18px; }
+  .rv-bubs.a .rv-bub:last-child { border-bottom-right-radius: 18px; }
+  .rv-bub .rv-react { position: absolute; bottom: -11px; background: #fff; border-radius: 999px;
+    padding: 1px 4px; font-size: 12px; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,.22); }
+  .rv-bub.a .rv-react { right: 6px; }
+  .rv-bub.c .rv-react { left: 6px; }
+  .rv-seen { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .rv-seen .rv-av { width: 16px; height: 16px; border-radius: 50%;
+    background: conic-gradient(from 60deg, #e8b7c4, #c9bfe0, #b3cfe8, #d8c6ae, #efc7bf); filter: blur(3px); }
+</style>
+</head>
+<body>
+<script>
+  function esc(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+    });
+  }
+
+  var REVIEWS = [
+  {
+    "n": "Ploy พนักงานออฟฟิศ",
+    "g": "brave",
+    "m": [
+      [
+        "c",
+        "หนูเป็นคนเงียบมากค่ะ มีไอเดียในหัวเต็มไปหมดแต่ไม่เคยกล้าพูดในที่ประชุมเลย"
+      ],
+      [
+        "c",
+        "อ่านเล่มนี้แล้วลองยกมือพูดครั้งแรกเมื่อวาน หัวหน้าชมกลางที่ประชุมว่าเป็นไอเดียที่ดีที่สุดของวัน หนูเกือบร้องไห้"
+      ],
+      [
+        "a",
+        "อ่านแล้วน้ำตาจะไหลตามเลยค่ะ 🥹 ไอเดียดีๆ ของคุณไม่ควรอยู่แค่ในหัวนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Tar มนุษย์เงินเดือน",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ผมทำงานหนักที่สุดในทีม แต่คนที่ได้เลื่อนตำแหน่งคือคนที่พูดเก่งกว่าครับ อ่านบท 'โลกไม่ให้คะแนนสิ่งที่มองไม่เห็น' แล้วจุก"
+      ],
+      [
+        "a",
+        "บทนั้นเขียนตอนเจ็บๆ เลยค่ะ 😌 คนเก่งเงียบๆ มักเจอแบบนี้กันเยอะเลยนะคะ"
+      ],
+      [
+        "c",
+        "อาทิตย์ก่อนผมเดินเข้าไปคุยกับหัวหน้าเรื่องขอรับผิดชอบโปรเจกต์ใหญ่เอง ครั้งแรกในชีวิตที่ไม่รอให้ใครเลือก",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Mook ฟรีแลนซ์ดีไซเนอร์",
+    "g": "brave",
+    "m": [
+      [
+        "c",
+        "รับงานออกแบบค่ะ แต่เขินทุกครั้งที่ต้องเสนอราคา กลัวลูกค้าหาว่าแพง เลยตั้งราคาถูกกว่าที่ควรมาตลอด"
+      ],
+      [
+        "c",
+        "พออ่านบทเรื่องการขอกับการขายตัวเองโดยไม่รู้สึกผิด กล้าเสนอราคาเต็มครั้งแรก ลูกค้าตอบตกลงเฉยเลยค่ะ ไม่ต่อสักบาท"
+      ],
+      [
+        "a",
+        "เห็นมั้ยคะ ที่ผ่านมาเราแค่ลดราคาความมั่นใจตัวเองไปฟรีๆ เลย 🙌",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Beam เด็กจบใหม่",
+    "g": "emotion",
+    "m": [
+      [
+        "c",
+        "เพิ่งจบครับ ไปสัมภาษณ์งานทีไรพูดถึงตัวเองไม่เป็นเลย เหมือนกลัวว่าถ้าพูดดีไปจะดูอวด"
+      ],
+      [
+        "a",
+        "เข้าใจเลยค่ะ หลายคนถูกสอนมาว่าพูดถึงตัวเองคือไม่ถ่อมตัวเนอะ"
+      ],
+      [
+        "c",
+        "หนังสือแยกให้เห็นชัดว่ากล้ากับอวดมันคนละเรื่อง สัมภาษณ์รอบล่าสุดผมเล่าผลงานตัวเองได้แบบไม่เขิน ได้งานแล้วครับ 🎉",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Nan คนขี้อาย",
+    "g": "emotion",
+    "m": [
+      [
+        "c",
+        "ปกติเป็นคนไม่กล้าทักใครก่อนเลยค่ะ กลัวโดนปฏิเสธแล้วอาย"
+      ],
+      [
+        "c",
+        "บท 'ศาสตร์ของการถูกปฏิเสธโดยไม่เสียศูนย์' เปลี่ยนหนูเลย เข้าใจว่าคำว่าไม่ ไม่ได้แปลว่าเราไม่ดีพอ ตอนนี้เริ่มทักคนในงานสัมมนาก่อนได้แล้ว"
+      ],
+      [
+        "a",
+        "ก้าวเล็กๆ ที่ยิ่งใหญ่มากเลยค่ะ ภูมิใจในตัวคุณแทนเลยนะคะ 🥹",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Kong เจ้าของธุรกิจเล็ก",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ทำแบรนด์เล็กๆ ครับ ของดีจริงแต่ผมอายที่จะโปรโมทตัวเอง เลยเงียบมาตลอด"
+      ],
+      [
+        "c",
+        "อ่านจบเริ่มกล้าออกมาเล่าเรื่องแบรนด์ตัวเองในเพจ ไม่ได้อวดนะ แค่กล้าให้คนเห็น ยอดทักเข้ามาเยอะขึ้นชัดเจนครับ"
+      ],
+      [
+        "a",
+        "ของดีที่ไม่มีใครเห็น กับของที่ไม่มี บางทีโลกมองเหมือนกันเลยค่ะ ดีใจที่คุณกล้าออกมานะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ink คนชอบรอ",
+    "g": "brave",
+    "m": [
+      [
+        "c",
+        "หนูเป็นพวกรอให้พร้อมก่อนค่อยเริ่มค่ะ รอมา 3 ปีแล้วยังไม่เริ่มสักที 😅"
+      ],
+      [
+        "a",
+        "ความพร้อมแบบ 100% มันไม่เคยมาถึงจริงๆ นะคะ"
+      ],
+      [
+        "c",
+        "ประโยคในเล่มที่ว่า 'อย่ารอให้ใครแต่งตั้ง' มันตบหน้าหนูเลย อาทิตย์นี้เปิดเพจขายงานตัวเองแล้วค่ะ ทั้งที่ยังไม่พร้อม แต่เริ่มแล้ว",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Aof วิศวกร",
+    "g": "read",
+    "m": [
+      [
+        "c",
+        "ผมเป็นสายเทคนิค พูดกับคนไม่เก่ง นึกว่าหนังสือแนวนี้จะอ่านยาก"
+      ],
+      [
+        "c",
+        "แต่อ่านเพลินมากครับ มีเรื่องเล่ากับประโยคจำเยอะ อ่านรวดเดียวจบแล้วกลับมาเปิดซ้ำเป็นคู่มือ"
+      ],
+      [
+        "a",
+        "ตั้งใจเขียนให้คนไม่ชอบอ่านก็อ่านจบค่ะ ขอบคุณที่ให้โอกาสเล่มนี้นะคะ 🙏",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Fah คุณแม่กลับมาทำงาน",
+    "g": "emotion",
+    "m": [
+      [
+        "c",
+        "ห่างจากงานไป 5 ปีเพื่อเลี้ยงลูกค่ะ กลับมาสมัครงานทีไรไม่มั่นใจเลย รู้สึกว่าตัวเองตกยุค"
+      ],
+      [
+        "c",
+        "เล่มนี้ทำให้หนูกล้าอีกครั้ง กล้าเขียนใน resume ว่าทักษะที่ได้จากการดูแลครอบครัวก็มีค่า สัมภาษณ์แล้วเขาสนใจมากค่ะ"
+      ],
+      [
+        "a",
+        "คุณไม่ได้หายไปไหนเลยค่ะ แค่ไปทำสิ่งที่ยากที่สุดอย่างหนึ่งมา ดีใจที่คุณเห็นค่าตัวเองนะคะ 🥹",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Poon คนกลัวเด่น",
+    "g": "brave",
+    "m": [
+      [
+        "c",
+        "ผมกลัวการเป็นจุดสนใจมากครับ กลัวคนหมั่นไส้ เลยเลือกที่จะกลมกลืนไปกับทุกคน"
+      ],
+      [
+        "c",
+        "อ่านแล้วเข้าใจว่าที่ผ่านมาไม่ใช่ถ่อมตัว แต่คือกลัว หนังสือสอนให้เด่นแบบมีชั้นเชิงไม่ทำร้ายใคร เริ่มกล้าแชร์ผลงานในทีมแล้วครับ"
+      ],
+      [
+        "a",
+        "เด่นเพราะของจริง ไม่เหมือนเด่นเพราะเสียงดังค่ะ คุณทำได้ดีมากเลยนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "May นักการตลาด",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ในที่ประชุมหนูมักปล่อยให้คนอื่นพูดไอเดียที่หนูคิดไว้ก่อนตลอด แล้วก็มานั่งเสียดายทีหลัง"
+      ],
+      [
+        "a",
+        "เจ็บที่สุดคือเห็นไอเดียตัวเองได้เครดิตกับคนอื่นเนอะคะ 😔"
+      ],
+      [
+        "c",
+        "ใช้เทคนิค 'เสนอหน้าให้คนจำ ไม่ใช่คนรำคาญ' ในเล่ม ตอนนี้พูดก่อน เคลมไอเดียตัวเองได้แล้ว หัวหน้าเริ่มมองเห็นค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Golf คนเก่งเงียบ",
+    "g": "emotion",
+    "m": [
+      [
+        "c",
+        "อ่านไปน้ำตาไหลไปครับ เหมือนหนังสือเขียนถึงผมทั้งเล่ม คนที่เก่งจริงแต่โลกมองข้ามเพราะไม่ยอมให้ใครเห็น"
+      ],
+      [
+        "a",
+        "ขอบคุณที่เปิดใจเล่าให้ฟังนะคะ 🥹 เล่มนี้เขียนเพื่อคนแบบคุณเลยค่ะ"
+      ],
+      [
+        "c",
+        "อ่านจบรู้สึกเหมือนมีคนอนุญาตให้ผมกล้าเป็นตัวเองได้สักที ขอบคุณจริงๆ ครับ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Tul อยากเปลี่ยนสายงาน",
+    "g": "brave",
+    "m": [
+      [
+        "c",
+        "อยากเปลี่ยนสายงานมานานแล้วครับ แต่ไม่กล้าเพราะกลัวคนอื่นว่าบ้า อายุปูนนี้แล้วยังเปลี่ยน"
+      ],
+      [
+        "c",
+        "เล่มนี้ทำให้ผมกล้าเข้าไปในห้องที่ยังไม่มีที่ของเรา เริ่มไปงาน meetup สายใหม่ ทักคนก่อน ตอนนี้มีคนชวนไปคุยงานแล้วครับ"
+      ],
+      [
+        "a",
+        "ห้องที่ยังไม่มีที่ของเรา คือห้องที่โอกาสรออยู่เยอะที่สุดเลยค่ะ เยี่ยมมากนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Bow ซื้อให้น้อง",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ซื้อให้น้องสาวค่ะ น้องเก่งมากแต่ขี้อายจนไม่กล้าสมัครงานที่ใฝ่ฝัน"
+      ],
+      [
+        "a",
+        "พี่สาวใจดีที่สุดเลยค่ะ 🥹"
+      ],
+      [
+        "c",
+        "น้องอ่านจบแล้วกล้าส่งใบสมัครที่เคยกลัวมาตลอด บอกว่าเหมือนมีคนคอยดันหลังเบาๆ คุ้มมากค่ะเล่มนี้",
+        1
+      ]
+    ]
+  }
+];
+
+  function rvAvatar(hueA, hueB, blur, size) {
+    return '<span class="rv-av" style="width:' + size + 'px;height:' + size + 'px;background:conic-gradient(from ' +
+      hueA + 'deg, hsl(' + hueA + ',55%,72%), hsl(' + hueB + ',50%,68%), hsl(' + ((hueA + 90) % 360) +
+      ',52%,74%), hsl(' + ((hueB + 180) % 360) + ',48%,70%));filter:blur(' + blur + 'px);"></span>';
+  }
+
+  function rvRenderOne(rv, hue) {
+    var html = '<div class="rv-phone">';
+    html += '<div class="rv-hd">' +
+      '<span class="rv-back">&#8249;</span>' +
+      '<span class="rv-hd-av" style="background:conic-gradient(from ' + hue[0] + 'deg, hsl(' + hue[0] +
+      ',55%,72%), hsl(' + hue[1] + ',50%,68%), hsl(' + ((hue[0] + 120) % 360) + ',52%,74%));"></span>' +
+      '<div class="rv-hd-mid">' +
+      '<div class="rv-hd-name">' + esc(rv.n) + '</div>' +
+      '<div class="rv-hd-sub">+ เพิ่มรายละเอียดและป้ายกำกับ</div>' +
+      '</div>' +
+      '<div class="rv-hd-ic"><span class="rv-baht">&#3647;</span><span class="rv-dots">&#8942;</span></div>' +
+      '</div>';
+    html += '<div class="rv-body">';
+    var msgs = rv.m, i = 0;
+    while (i < msgs.length) {
+      var side = msgs[i][0];
+      var group = [];
+      while (i < msgs.length && msgs[i][0] === side) { group.push(msgs[i]); i++; }
+      html += '<div class="rv-row ' + side + '">';
+      if (side === 'c') html += rvAvatar(hue[0], hue[1], 5, 28);
+      html += '<div class="rv-bubs ' + side + '">';
+      group.forEach(function (mm) {
+        var react = mm[2] ? '<span class="rv-react">&#10084;&#65039;</span>' : '';
+        html += '<div class="rv-bub ' + side + '">' + esc(mm[1]) + react + '</div>';
+      });
+      html += '</div></div>';
+    }
+    if (msgs.length && msgs[msgs.length - 1][0] === 'a') {
+      html += '<div class="rv-seen">' + rvAvatar(hue[0], hue[1], 3, 16) + '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  var out = '';
+  for (var k = 0; k < REVIEWS.length; k++) {
+    var hue = [Math.floor(Math.random() * 360), Math.floor(Math.random() * 360)];
+    out += '<div class="cap" id="cap-' + (k + 1) + '" data-cat="' + (REVIEWS[k].g || '') + '">' +
+      rvRenderOne(REVIEWS[k], hue) + '</div>';
+  }
+  document.body.insertAdjacentHTML('beforeend', out);
+</script>
+</body>
+</html>

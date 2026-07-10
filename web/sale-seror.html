@@ -258,12 +258,102 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
     .who { grid-template-columns: 1fr; }
     section { padding: 2.8rem 0; }
   }
+
+  /* ══════════════════════════════════════════════
+     ART / ABSTRACT LAYER — เสร่อศาสตร์
+     painterly blobs · grain · collage shapes · brush accents
+     ══════════════════════════════════════════════ */
+  section, header.hero { position: relative; overflow: hidden; }
+  .wrap, .narrow { position: relative; z-index: 2; }
+
+  /* fixed painterly canvas behind everything */
+  .art-canvas { position: fixed; inset: 0; z-index: -2; pointer-events: none; overflow: hidden; }
+  .art-blob { position: absolute; border-radius: 50%; filter: blur(70px); mix-blend-mode: multiply;
+    will-change: transform; animation: artdrift 22s ease-in-out infinite alternate; }
+  .art-blob.b1 { width: 48vw; height: 48vw; top: -10vw; right: -8vw; opacity: 0.55;
+    background: radial-gradient(circle at 32% 32%, #FF7A4D, transparent 70%); }
+  .art-blob.b2 { width: 42vw; height: 42vw; top: 44vh; left: -14vw; opacity: 0.42; animation-delay: -6s;
+    background: radial-gradient(circle at 60% 40%, #E23A15, transparent 70%); }
+  .art-blob.b3 { width: 38vw; height: 38vw; bottom: -12vw; right: 6vw; opacity: 0.40; animation-delay: -12s;
+    background: radial-gradient(circle at 50% 50%, #FF9E73, transparent 72%); }
+  @keyframes artdrift { from { transform: translate3d(0,0,0) scale(1); } to { transform: translate3d(2.5vw,-2vw,0) scale(1.08); } }
+  @media (prefers-reduced-motion: reduce) { .art-blob { animation: none; } }
+
+  /* film grain overlay */
+  body::after {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* scattered collage shapes */
+  .art-shape { position: absolute; z-index: 1; pointer-events: none; }
+  .as-ring { border-radius: 50%; border: 2.5px solid var(--coral); }
+  .as-ring.dash { border-style: dashed; border-width: 2px; border-color: rgba(226,58,21,0.45); }
+  .as-ring.ink { border-color: rgba(26,15,10,0.14); }
+  .as-dot { border-radius: 50%; background: var(--red); }
+  .as-dot.coral { background: var(--coral); }
+  .as-blade { border-radius: 40% 60% 55% 45% / 55% 45% 55% 45%;
+    background: linear-gradient(135deg, var(--coral), var(--coral-2)); opacity: 0.5; filter: blur(1px); }
+  .as-plus { font-family: var(--sans); font-weight: 900; color: var(--red); line-height: 1; }
+  .as-squig { stroke: var(--coral); stroke-width: 6; fill: none; stroke-linecap: round; opacity: 0.7; }
+  .band .as-ring, .bigidea .as-ring { border-color: rgba(255,158,115,0.4); }
+  .band .as-plus, .bigidea .as-plus { color: var(--coral-2); }
+  .band .as-dot, .bigidea .as-dot { background: var(--coral); }
+  .band .as-squig, .bigidea .as-squig { stroke: rgba(255,158,115,0.6); }
+
+  /* hero abstract composition */
+  .hero-art { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+  .hero-book { position: relative; z-index: 2; }
+  .hero-halo { position: absolute; left: 50%; top: 46%; width: 340px; height: 340px; transform: translate(-50%,-50%);
+    border-radius: 50%; background: radial-gradient(circle, rgba(255,122,77,0.35), transparent 68%); z-index: 1; pointer-events: none; }
+
+  /* hand-brush accent under section titles */
+  .sec-title { position: relative; }
+  .sec-title::after {
+    content: ""; display: block; width: 132px; height: 15px; margin: 0.85rem auto 0;
+    background: no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='15' viewBox='0 0 132 15'%3E%3Cpath d='M3 9 C30 3 48 12 72 6 C92 1 108 11 129 5' stroke='%23E23A15' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+  .band .sec-title::after, .bigidea .sec-title::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='132' height='15' viewBox='0 0 132 15'%3E%3Cpath d='M3 9 C30 3 48 12 72 6 C92 1 108 11 129 5' stroke='%23FF9E73' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  /* asymmetric color-block on the reframe card */
+  .reframe-inner { position: relative; overflow: hidden; }
+  .reframe-inner::before {
+    content: ""; position: absolute; top: -40px; right: -40px; width: 150px; height: 150px;
+    background: linear-gradient(135deg, var(--coral), var(--coral-2)); opacity: 0.14;
+    border-radius: 45% 55% 60% 40% / 50% 45% 55% 50%; z-index: 0; }
+  .reframe-inner > * { position: relative; z-index: 1; }
+
+  @media (max-width: 640px) {
+    .art-shape { transform: scale(0.7); }
+    .hero-halo { width: 240px; height: 240px; }
+  }
 </style>
 </head>
 <body>
 
+  <!-- ── Abstract painterly canvas ── -->
+  <div class="art-canvas" aria-hidden="true">
+    <span class="art-blob b1"></span>
+    <span class="art-blob b2"></span>
+    <span class="art-blob b3"></span>
+  </div>
+
   <!-- ── HERO ── -->
   <header class="hero">
+    <div class="hero-art" aria-hidden="true">
+      <span class="hero-halo"></span>
+      <span class="art-shape as-ring" style="width:74px;height:74px;top:11%;left:9%;"></span>
+      <span class="art-shape as-ring dash" style="width:128px;height:128px;top:16%;right:7%;"></span>
+      <span class="art-shape as-ring ink" style="width:210px;height:210px;bottom:2%;right:-40px;"></span>
+      <span class="art-shape as-dot" style="width:13px;height:13px;top:62%;left:15%;"></span>
+      <span class="art-shape as-dot coral" style="width:22px;height:22px;top:29%;left:21%;"></span>
+      <span class="art-shape as-plus" style="font-size:2.3rem;top:68%;right:13%;transform:rotate(12deg);">+</span>
+      <span class="art-shape as-plus" style="font-size:1.3rem;top:14%;left:34%;transform:rotate(-8deg);">+</span>
+      <span class="art-shape as-blade" style="width:88px;height:120px;bottom:6%;left:5%;transform:rotate(-18deg);"></span>
+      <svg class="art-shape as-squig" style="top:12%;left:46%;" width="84" height="30" viewBox="0 0 84 30"><path d="M4 20 C18 4 30 26 44 12 C56 2 68 22 80 10"/></svg>
+    </div>
     <div class="wrap">
       <span class="hero-eyebrow">The Audacity Advantage</span>
       <h1 class="th-title">เสร่อศาสตร์</h1>
@@ -291,6 +381,9 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 
   <!-- ── PAIN ── -->
   <section class="band">
+    <span class="art-shape as-ring" style="width:118px;height:118px;top:-32px;right:8%;"></span>
+    <span class="art-shape as-plus" style="font-size:2rem;bottom:14%;left:6%;transform:rotate(-14deg);">+</span>
+    <span class="art-shape as-dot" style="width:14px;height:14px;top:26%;left:12%;"></span>
     <div class="wrap">
       <p class="sec-eyebrow">ถ้าคุณเคยรู้สึกแบบนี้…</p>
       <h2 class="sec-title">คุณเก่ง — แต่<em>คนที่กล้ากว่า</em>ได้ไปก่อน</h2>
@@ -306,6 +399,9 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 
   <!-- ── OUTCOMES ── -->
   <section>
+    <span class="art-shape as-ring dash" style="width:92px;height:92px;top:7%;left:3%;"></span>
+    <span class="art-shape as-dot coral" style="width:18px;height:18px;bottom:9%;right:5%;"></span>
+    <span class="art-shape as-blade" style="width:70px;height:96px;top:12%;right:-14px;transform:rotate(24deg);"></span>
     <div class="wrap">
       <p class="sec-eyebrow">ผลลัพธ์ที่คุณจะได้</p>
       <h2 class="sec-title">อ่านจบแล้ว คุณจะ<em>กล้าขึ้น</em><br>ใน 5 สถานการณ์ที่คนเก่งมักเงียบ</h2>
@@ -342,6 +438,10 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 
   <!-- ── BIG IDEA ── -->
   <section class="bigidea">
+    <span class="art-shape as-ring" style="width:156px;height:156px;top:-44px;left:-44px;"></span>
+    <span class="art-shape as-plus" style="font-size:2.6rem;bottom:10%;right:8%;transform:rotate(10deg);">+</span>
+    <span class="art-shape as-dot" style="width:16px;height:16px;top:22%;right:13%;"></span>
+    <svg class="art-shape as-squig" style="bottom:16%;left:7%;" width="84" height="30" viewBox="0 0 84 30"><path d="M4 20 C18 4 30 26 44 12 C56 2 68 22 80 10"/></svg>
     <div class="wrap">
       <div class="bigidea-inner">
         <div class="bigidea-label">แก่นของเล่มนี้</div>
@@ -409,17 +509,19 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 
   <!-- ── REVIEWS ── -->
   <section style="background:var(--bg-alt);">
+    <span class="art-shape as-ring dash" style="width:104px;height:104px;top:8%;right:5%;"></span>
+    <span class="art-shape as-dot coral" style="width:16px;height:16px;bottom:12%;left:8%;"></span>
     <div class="wrap">
       <p class="sec-eyebrow">เสียงจากผู้อ่านจริง</p>
       <h2 class="sec-title">ไม่ใช่แค่หนังสือให้อ่านแล้วรู้สึกดี<br>แต่เป็น<em>เล่มที่คนอ่านแล้วกลับมาบอกต่อ</em></h2>
       <p class="reviews-note">บทสนทนาจริงระหว่างผู้อ่านกับแอดมินในกล่องข้อความเพจ — คัดมาบางส่วน ข้อความไม่ตัดทอน</p>
       <div class="rv-gallery" id="rvTeaser">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-01.png" alt="รีวิวจากผู้อ่าน">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-02.png" alt="รีวิวจากผู้อ่าน">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-03.png" alt="รีวิวจากผู้อ่าน">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-04.png" alt="รีวิวจากผู้อ่าน">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-05.png" alt="รีวิวจากผู้อ่าน">
-        <img class="rv-shot" loading="lazy" src="/images/reviews/rv-06.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-01.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-02.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-03.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-04.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-05.png" alt="รีวิวจากผู้อ่าน">
+        <img class="rv-shot" loading="lazy" src="/images/reviews/seror-06.png" alt="รีวิวจากผู้อ่าน">
       </div>
       <div class="rv-showmore-wrap">
         <button class="rv-showmore" id="rvShowMore" type="button">💬 ดูรีวิวทั้งหมด</button>
@@ -435,66 +537,20 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
         </div>
         <div class="rv-modal-body">
           <div class="rv-modal-grid">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-01.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-02.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-03.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-04.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-05.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-06.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-07.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-08.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-09.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-10.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-11.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-12.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-13.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-14.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-15.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-16.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-17.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-18.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-19.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-20.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-21.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-22.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-23.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-24.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-25.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-26.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-27.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-28.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-29.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-30.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-31.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-32.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-33.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-34.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-35.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-36.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-37.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-38.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-39.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-40.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-41.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-42.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-43.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-44.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-45.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-46.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-47.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-48.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-49.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-50.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-51.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-52.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-53.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-54.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-55.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-56.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-57.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-58.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-59.png" alt="รีวิวจากผู้อ่าน">
-            <img class="rv-shot" loading="lazy" src="/images/reviews/rv-60.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-01.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-02.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-03.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-04.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-05.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-06.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-07.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-08.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-09.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-10.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-11.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-12.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-13.png" alt="รีวิวจากผู้อ่าน">
+            <img class="rv-shot" loading="lazy" src="/images/reviews/seror-14.png" alt="รีวิวจากผู้อ่าน">
           </div>
         </div>
       </div>
@@ -560,6 +616,9 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 
   <!-- ── PRICE ── -->
   <section id="buy">
+    <span class="art-shape as-ring" style="width:112px;height:112px;bottom:6%;left:5%;"></span>
+    <span class="art-shape as-plus" style="font-size:1.9rem;top:12%;right:9%;transform:rotate(-12deg);">+</span>
+    <span class="art-shape as-blade" style="width:64px;height:88px;bottom:14%;right:6%;transform:rotate(-20deg);"></span>
     <div class="wrap">
       <p class="sec-eyebrow">ราคาตรงไปตรงมา</p>
       <h2 class="sec-title">ไม่มีกลลวง ไม่มี Countdown</h2>
