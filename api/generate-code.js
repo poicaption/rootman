@@ -79,7 +79,7 @@ function isAuthorized(provided, allowed) {
 
 function normVol(v) {
   if (v === 'sidk' || v === 'kit') return 'sidk';
-  return v === 3 || v === '3' ? 3 : v === 2 || v === '2' ? 2 : 1;
+  return v === 4 || v === '4' ? 4 : v === 3 || v === '3' ? 3 : v === 2 || v === '2' ? 2 : 1;
 }
 
 // Derive a code's live status from its Redis record.

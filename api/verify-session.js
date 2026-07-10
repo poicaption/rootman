@@ -46,7 +46,7 @@ export default async function handler(req) {
   const isBundle = volParam === 'bundle' || volParam === 'all' || url.searchParams.get('bundle') === '1';
   // Side Income Diagnostic Kit — a standalone PDF product (not part of the 1/2/3 reader series).
   const isSidk = volParam === 'sidk' || volParam === 'kit';
-  const vol = volParam === '3' ? 3 : volParam === '2' ? 2 : isSidk ? 'sidk' : 1;
+  const vol = volParam === '4' ? 4 : volParam === '3' ? 3 : volParam === '2' ? 2 : isSidk ? 'sidk' : 1;
   const vols = isBundle ? [1, 2, 3] : [vol];
 
   if (!sessionId || sessionId.length < 10) {

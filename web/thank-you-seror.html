@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/images/fav-icon.png">
+<link rel="apple-touch-icon" href="/images/fav-icon.png">
+<title>ขอบคุณที่ซื้อ — เสร่อศาสตร์ (The Audacity Advantage)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&family=Prompt:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2615991928816882');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel Code -->
+<script>
+  (function () {
+    var s = localStorage.getItem('oneroot-theme');
+    if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+  })();
+</script>
+<style>
+  :root {
+    --bg: #FFF8F2; --bg-alt: #FEF1EA; --ink: #1A0F0A; --text: #241A16; --text-sec: #6E5248;
+    --red: #E23A15; --coral: #FF7A4D; --border: #F2D8C8; --card: #FFFFFF;
+    --green: #4f8a5b; --mono: 'JetBrains Mono','Consolas',monospace;
+    --sans: 'Prompt', sans-serif; --body: 'Sarabun','Prompt',sans-serif;
+    --serif: 'Playfair Display', serif;
+  }
+  [data-theme="dark"] {
+    --bg: #17100C; --bg-alt: #1F1611; --ink: #FCE8DD; --text: #E8D4C8; --text-sec: #C99A86;
+    --border: #3A241C; --card: #241812;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--body); color: var(--text); min-height: 100vh; line-height: 1.75;
+    background:
+      radial-gradient(1000px 640px at 82% -10%, rgba(226,58,21,0.12), transparent 55%),
+      radial-gradient(800px 560px at -6% 22%, rgba(255,122,77,0.10), transparent 55%),
+      var(--bg);
+    display: flex; align-items: center; justify-content: center; padding: 2.5rem 1.2rem;
+  }
+  h1, h2, h3 { font-family: var(--sans); color: var(--ink); letter-spacing: -0.01em; }
+  .card-wrap { max-width: 620px; width: 100%; }
+  .celebrate { text-align: center; margin-bottom: 1.8rem; }
+  .celebrate .spark { font-size: 2.6rem; }
+  .celebrate h1 { font-size: clamp(1.8rem, 6vw, 2.6rem); font-weight: 900; margin: 0.5rem 0 0.3rem; }
+  .celebrate .en { font-family: var(--serif); font-style: italic; color: var(--red); font-size: 1.1rem; }
+  .celebrate p { color: var(--text-sec); margin-top: 0.6rem; }
+
+  .code-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 22px;
+    padding: 2rem 1.6rem; box-shadow: 0 18px 50px rgba(226,58,21,0.14); text-align: center;
+  }
+  .code-label { font-family: var(--sans); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+  .code-display {
+    font-family: var(--mono); font-weight: 700; font-size: clamp(1.3rem, 6vw, 2rem); color: var(--ink);
+    background: var(--bg-alt); border: 2px dashed var(--red); border-radius: 14px;
+    padding: 1.1rem 1rem; cursor: pointer; word-break: break-all; user-select: all;
+    transition: background .2s;
+  }
+  .code-display:hover { background: rgba(226,58,21,0.06); }
+  .app.loading .code-display { color: var(--text-sec); font-family: var(--body); font-weight: 400; }
+  .app.error-state .code-display { border-color: #B0453A; color: #B0453A; font-family: var(--body); font-size: 1.05rem; }
+
+  .btn-row { display: flex; gap: 0.8rem; margin-top: 1.2rem; flex-wrap: wrap; justify-content: center; }
+  .btn { font-family: var(--sans); font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+    padding: 0.8rem 1.4rem; border-radius: 999px; text-decoration: none; }
+  .btn-1 { background: linear-gradient(135deg, var(--red), var(--coral)); color: #fff; }
+  .btn-2 { background: transparent; color: var(--red); border: 1.5px solid var(--border); }
+  .saved-msg { margin-top: 1rem; color: var(--green); font-size: 0.9rem; min-height: 1.2em; opacity: 0; transition: opacity .2s; }
+  .saved-msg.show { opacity: 1; }
+
+  .steps { background: var(--card); border: 1px solid var(--border); border-radius: 18px;
+    padding: 1.6rem; margin-top: 1.4rem; }
+  .steps h3 { font-size: 1.05rem; margin-bottom: 1rem; }
+  .step { display: flex; gap: 0.9rem; margin-bottom: 1rem; align-items: flex-start; }
+  .step:last-child { margin-bottom: 0; }
+  .step-num { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%;
+    background: var(--red); color: #fff; font-family: var(--sans); font-weight: 700;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+  .step-b { font-size: 0.98rem; }
+  .step-b strong { color: var(--ink); }
+  .step-b .h { color: var(--text-sec); font-size: 0.9rem; }
+  .inline-code { font-family: var(--mono); background: var(--bg-alt); padding: 0.1rem 0.4rem; border-radius: 5px; color: var(--red); font-size: 0.88rem; }
+  .cta-primary { display: block; text-align: center; margin-top: 1.4rem; font-family: var(--sans); font-weight: 700;
+    color: #fff; background: linear-gradient(135deg, var(--red), var(--coral)); padding: 1rem;
+    border-radius: 999px; text-decoration: none; }
+  .warn { margin-top: 1.2rem; font-size: 0.85rem; color: var(--text-sec); text-align: center; }
+  .foot { text-align: center; margin-top: 1.6rem; color: var(--text-sec); font-size: 0.85rem; }
+  .foot a { color: var(--red); text-decoration: none; }
+  #themeToggle { position: fixed; top: 1rem; right: 1rem; background: var(--card); border: 1px solid var(--border);
+    width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<button id="themeToggle" aria-label="Toggle theme">◐</button>
+<div class="card-wrap app loading" id="app">
+
+  <div class="celebrate">
+    <div class="spark">⚡</div>
+    <h1>ยินดีด้วย — คุณกล้าแล้ว!</h1>
+    <p class="en">Welcome to The Audacity Advantage</p>
+    <p>นี่คือก้าวแรกของการเป็นคนที่โลกมองข้ามไม่ได้ ด้านล่างคือ Unlock Code ของคุณ</p>
+  </div>
+
+  <div class="code-card">
+    <p class="code-label">🔑 Unlock Code ของคุณ</p>
+    <div class="code-display" id="code-display">กำลังตรวจสอบการชำระเงิน…</div>
+    <div class="btn-row">
+      <button class="btn btn-1" id="btn-copy">📋 คัดลอกโค้ด</button>
+      <button class="btn btn-2" id="btn-screenshot">📸 บันทึกภาพ</button>
+    </div>
+    <p class="saved-msg" id="saved-msg"></p>
+  </div>
+
+  <div class="steps">
+    <h3>วิธีเข้าอ่านหนังสือ</h3>
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-b"><strong>เก็บโค้ดนี้ไว้ให้ดี</strong><div class="h">กดคัดลอกหรือถ่ายภาพหน้าจอไว้ก่อน เผื่อไว้ใช้ภายหลัง</div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-b"><strong>แนะนำ: สร้างบัญชีเพื่อผูกสิทธิ์ถาวร</strong><div class="h">ไปที่ <span class="inline-code">/account</span> — สมัครด้วยชื่อผู้ใช้ + รหัสผ่าน (ไม่ต้องใช้อีเมล) แล้วใส่โค้ดเพื่อผูกกับบัญชี อ่านได้ทุกเครื่องที่ล็อกอิน</div></div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-b"><strong>ทางเลือก: ใส่โค้ดที่หน้าหนังสือโดยตรง</strong><div class="h">เปิด <span class="inline-code">/seror</span> → เลื่อนลงล่างสุด → วางโค้ดในช่อง &ldquo;มี Unlock Code แล้ว?&rdquo; แล้วกดปลดล็อก — วิธีนี้ผูกกับอุปกรณ์ (สูงสุด 2 เครื่องต่อ 1 โค้ด)</div></div>
+    </div>
+    <a href="/account" class="cta-primary">สร้างบัญชี &amp; ปลดล็อก →</a>
+    <p class="warn">⚠️ อย่าแชร์โค้ดนี้กับใคร — 1 โค้ดใช้ได้สูงสุด 2 เครื่องเท่านั้น</p>
+  </div>
+
+  <div class="foot">© เสร่อศาสตร์ — The Audacity Advantage · <a href="/account">บัญชีของฉัน</a> · <a href="/seror">ไปหน้าหนังสือ</a></div>
+</div>
+
+<script>
+(function () {
+  var app = document.getElementById('app');
+  var codeEl = document.getElementById('code-display');
+  var copyBtn = document.getElementById('btn-copy');
+  var ssBtn = document.getElementById('btn-screenshot');
+  var savedMsg = document.getElementById('saved-msg');
+  var currentCode = '';
+
+  document.getElementById('themeToggle').addEventListener('click', function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (dark) { document.documentElement.removeAttribute('data-theme'); localStorage.setItem('oneroot-theme', 'light'); }
+    else { document.documentElement.setAttribute('data-theme', 'dark'); localStorage.setItem('oneroot-theme', 'dark'); }
+  });
+
+  function doCopy() {
+    if (!currentCode) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(currentCode).then(onCopied, fallbackCopy);
+    } else { fallbackCopy(); }
+  }
+  function fallbackCopy() {
+    var ta = document.createElement('textarea');
+    ta.value = currentCode; ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta); onCopied();
+  }
+  function onCopied() {
+    copyBtn.innerHTML = '✓ คัดลอกแล้ว!';
+    savedMsg.textContent = '✓ รหัสอยู่ในคลิปบอร์ดแล้ว — ไปวางที่ /account หรือหน้าหนังสือได้เลย';
+    savedMsg.classList.add('show');
+    setTimeout(function () { copyBtn.innerHTML = '📋 คัดลอกอีกครั้ง'; }, 3500);
+  }
+  copyBtn.addEventListener('click', doCopy);
+  codeEl.addEventListener('click', doCopy);
+
+  ssBtn.addEventListener('click', function () {
+    savedMsg.textContent = '💡 มือถือ: Power+Volume Down  ·  คอม: Win+Shift+S เพื่อจับภาพหน้าจอ';
+    savedMsg.classList.add('show');
+  });
+
+  function showCode(code) { currentCode = code; app.classList.remove('loading'); codeEl.textContent = code; }
+  function showError(msg) {
+    app.classList.remove('loading'); app.classList.add('error-state'); codeEl.textContent = msg;
+  }
+
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('demo') === '1') { showCode('ROOT-DEMO-SR01'); return; }
+
+  var sessionId = params.get('session_id');
+  if (!sessionId) { showError('ไม่พบข้อมูลการชำระเงิน — หากคุณชำระเงินแล้ว กรุณาติดต่อแอดมิน'); return; }
+
+  fetch('/api/verify-session?vol=4&session_id=' + encodeURIComponent(sessionId))
+    .then(function (r) { return r.json(); })
+    .then(function (data) {
+      if (data.code) {
+        showCode(data.code);
+        if (typeof fbq === 'function') {
+          if (data.customer_email) { fbq('init', '2615991928816882', { em: data.customer_email }); }
+          fbq('track', 'Purchase', { value: 990.00, currency: 'THB', content_name: 'เสร่อศาสตร์ (The Audacity Advantage)', content_type: 'product', content_ids: ['oneroot-book-seror'], num_items: 1 });
+        }
+      } else { showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้'); }
+    })
+    .catch(function () { showError('เกิดข้อผิดพลาด — กรุณารีเฟรชหน้านี้'); });
+})();
+</script>
+<script defer src="/guard.js?v=1"></script>
+</body>
+</html>

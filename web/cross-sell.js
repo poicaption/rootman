@@ -20,7 +20,7 @@
 
   var script = document.currentScript;
   var CURRENT = (script && script.getAttribute('data-current')) || '';
-  if (!/^vol[123]$/.test(CURRENT)) return;
+  if (!/^(vol[123]|seror)$/.test(CURRENT)) return;
 
   // ── Book catalogue ──────────────────────────────────────────────────
   var BOOKS = {
@@ -56,14 +56,26 @@
       endBody: 'รากแก้วธุรกิจ — มองธุรกิจทั้งระบบจากรากเดียว ตั้งแต่หน้าร้านสู่ระบบที่ขยายได้ พร้อมภาคผนวกเครื่องมือเหมือนเรียน MBA ย่อ',
       endCta: 'ดูรากแก้วธุรกิจ →',
       meta: '13 บท + 5 บทพิเศษ'
+    },
+    seror: {
+      num: 'S', glyph: '⚡', product: 'vol4', accent: '#FF7A4D', accent2: '#E23A15',
+      tag: 'ศาสตร์แห่งการกล้า', title: 'เสร่อศาสตร์',
+      chipCta: 'กล้าอย่างมีชั้นเชิง',
+      url: '/sale-seror', preview: '/seror',
+      kicker: 'ฉีกออกจากซีรีส์ Root',
+      endTitle: 'เก่งอย่างเดียวไม่พอ — <em>ต้องกล้าให้โลกเห็น</em>',
+      endBody: 'เสร่อศาสตร์ — โลกไม่ได้ให้รางวัลกับคนที่เก่งที่สุด แต่ให้กับคนที่กล้าเสนอตัว 15 บท เปลี่ยนคนเงียบให้เป็นคนที่โลกมองข้ามไม่ได้ พร้อมระบบฝึก 30 วัน',
+      endCta: 'ดูเสร่อศาสตร์ →',
+      meta: '15 บท + ภาคผนวก'
     }
   };
 
   // Complete-the-series order: next volume first, then the other.
   var ORDER = {
-    vol1: ['vol2', 'vol3'],
-    vol2: ['vol3', 'vol1'],
-    vol3: ['vol1', 'vol2']
+    vol1: ['vol2', 'vol3', 'seror'],
+    vol2: ['vol3', 'vol1', 'seror'],
+    vol3: ['vol1', 'vol2', 'seror'],
+    seror: ['vol1', 'vol3', 'vol2']
   };
 
   var SHOW_DELAY_MS = 25000; // appear ~25s after the reader is unlocked
@@ -101,7 +113,8 @@
     var list = ORDER[CURRENT] || [];
     for (var i = 0; i < list.length; i++) {
       var v = list[i];
-      if (!owned[v] && !isDismissed(v)) return v;
+      var prod = (BOOKS[v] && BOOKS[v].product) || v;
+      if (!owned[prod] && !isDismissed(v)) return v;
     }
     return null;
   }
@@ -190,7 +203,7 @@
     chip.setAttribute('style', themeVars);
     chip.innerHTML =
       '<button class="xs-close" aria-label="ปิด">×</button>' +
-      '<div class="xs-glyph">V.' + b.num + '</div>' +
+      '<div class="xs-glyph">' + (b.glyph || ('V.' + b.num)) + '</div>' +
       '<div class="xs-body">' +
         '<span class="xs-tag">// ' + b.tag + '</span>' +
         '<span class="xs-name">' + b.title + '</span>' +

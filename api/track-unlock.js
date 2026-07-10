@@ -92,7 +92,8 @@ export default async function handler(req) {
         }
       } catch (_) { /* lookup failure is non-fatal */ }
 
-      const reqVol = body.vol === 3 || body.vol === '3' ? 3
+      const reqVol = body.vol === 4 || body.vol === '4' ? 4
+        : body.vol === 3 || body.vol === '3' ? 3
         : body.vol === 2 || body.vol === '2' ? 2 : (codeVol || 1);
       const ua = (req.headers.get('user-agent') || '').slice(0, 200) || null;
 

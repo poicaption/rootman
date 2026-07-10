@@ -554,6 +554,9 @@
     vol3: { name: 'รากแก้วธุรกิจ', en: 'One Root of Business', tag: 'VOLUME 3', cls: 'v3', link: '/vol3', cover: 'images/book-vol3.png',
             desc: '13 บท + 5 บทพิเศษ เจาะ “ราก” ของธุรกิจที่ไม่เคยเปลี่ยน — ซื้อเล่มเดียวเหมือนเรียน MBA ย่อ',
             chips: ['13+5 บท', 'กลยุทธ์ธุรกิจ'], free: false, buy: '/sale-vol3', cta: 'ดูรายละเอียด Vol.3 →', badge: 'เล่มใหม่' },
+    vol4: { name: 'เสร่อศาสตร์', en: 'The Audacity Advantage', tag: 'AUDACITY', cls: 'v3', link: '/seror', cover: 'images/book-seror.png',
+            desc: '15 บท ศาสตร์แห่งการกล้า — เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง พร้อมระบบฝึก 30 วัน',
+            chips: ['15 บท', 'ศาสตร์แห่งการกล้า', 'ฉีกแนว'], free: false, buy: '/sale-seror', cta: 'ดูรายละเอียด เสร่อศาสตร์ →', badge: 'เล่มใหม่' },
     sidk: { name: 'Side Income Diagnostic Kit', en: 'A Rootman Field Kit', tag: 'FIELD KIT', cls: 'v1', link: '/files/side-income-diagnostic-kit.pdf', cover: 'images/book-SIDK.png', download: true,
             desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ — บันไดขั้นแรกของ The One Root Series',
             chips: ['PDF 51 หน้า', 'Workbook', 'Lifetime'], free: false, buy: '/sale-sidk', cta: 'ดูรายละเอียด Kit →', badge: 'PDF Workbook' }
@@ -736,7 +739,7 @@
     (data.entitlements || []).forEach(function (e) { owned[e.product] = true; });
     var books = ['vol1', 'vol2', 'vol3'];
     var bookMissing = books.filter(function (k) { return !owned[k]; });
-    var order = books.concat(['sidk']);
+    var order = books.concat(['vol4', 'sidk']);
     var missing = order.filter(function (k) { return !owned[k]; });
     var grid = el('storeGrid'); grid.innerHTML = '';
     if (!missing.length) {
