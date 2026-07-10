@@ -544,7 +544,7 @@
         .root-core-sub { font-size: 0.92rem; opacity: 0.86; }
 
         /* Collection — 3D tilt cards */
-        .books-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .books-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; }
         .book-card {
             background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius);
             overflow: hidden; box-shadow: var(--shadow-sm);
@@ -560,8 +560,10 @@
         .bc-visual.v1 { background: linear-gradient(145deg, #F3E9D6, #E6D3B3); }
         .bc-visual.v2 { background: linear-gradient(145deg, #2A2520, #4A3F32); }
         .bc-visual.v3 { background: linear-gradient(145deg, #DCE9E0, #BFD8C7); }
+        .bc-visual.vsr { background: linear-gradient(145deg, #FFE2D3, #FFB596); }
         [data-theme="dark"] .bc-visual.v1 { background: linear-gradient(145deg, #2A241B, #3A3122); }
         [data-theme="dark"] .bc-visual.v3 { background: linear-gradient(145deg, #1C2820, #243A2C); }
+        [data-theme="dark"] .bc-visual.vsr { background: linear-gradient(145deg, #3A1C12, #52281A); }
         .bc-visual img {
             height: 220px; width: auto;
             filter: drop-shadow(0 16px 26px rgba(0,0,0,0.42)) drop-shadow(0 4px 8px rgba(0,0,0,0.28));
@@ -741,7 +743,8 @@
             .book3d { width: 180px; }
             .book3d.b2 { transform: translate(-92px,28px) rotateY(8deg) scale(0.86); }
             .book3d.b3 { transform: translate(92px,28px) rotateY(-8deg) scale(0.86); }
-            .books-grid, .features-grid { grid-template-columns: 1fr; }
+            .books-grid { grid-template-columns: repeat(2, 1fr); gap: 1.4rem; }
+            .features-grid { grid-template-columns: 1fr; }
             .branches { grid-template-columns: 1fr; }
             .counters { grid-template-columns: repeat(2,1fr); gap: 2.4rem; }
             .section { padding: 5rem 1.5rem; }
@@ -750,6 +753,7 @@
             html { font-size: 16px; }
             .nav-link.hide-sm { display: none; }
             .hero-meta { gap: 1.2rem; }
+            .books-grid { grid-template-columns: 1fr; }
         }
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -979,22 +983,29 @@
                     </div>
                 </div>
             </article>
-        </div>
 
-        <!-- เสร่อศาสตร์ — the break-away book (distinct mass-market identity) -->
-        <div class="seror-feature reveal" data-r>
-            <span class="sf-badge"> NEW · ฉีกแนว</span>
-            <div class="sf-cover"><img src="images/book-seror.png" alt="เสร่อศาสตร์ — The Audacity Advantage" loading="lazy"></div>
-            <div class="sf-body">
-                <p class="sf-eyebrow">เล่มที่ฉีกออกจากซีรีส์ Root</p>
-                <h3>เสร่อศาสตร์</h3>
-                <p class="sf-en">The Audacity Advantage — ศาสตร์แห่งการกล้า</p>
-                <p class="sf-desc">โลกไม่ได้ให้รางวัลกับคนที่เก่งที่สุด แต่ให้รางวัลกับคนที่กล้าให้โลกเห็นว่าตัวเองเก่ง — 15 บท เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง ไม่ใช่หน้าด้าน พร้อมระบบฝึก 30 วัน</p>
-                <div class="sf-actions">
-                    <a href="/sale-seror" class="sf-btn solid">ดูรายละเอียด →</a>
-                    <a href="/seror" class="sf-btn ghost">อ่านบทนำฟรี</a>
+            <!-- เสร่อศาสตร์ — break-away book (distinct mass-market identity) -->
+            <article class="book-card tilt reveal" data-r>
+                <div class="bc-visual vsr">
+                    <span class="bc-badge badge-seror">NEW · ฉีกแนว</span>
+                    <img src="images/book-seror.png" alt="เสร่อศาสตร์ — The Audacity Advantage">
                 </div>
-            </div>
+                <div class="bc-body">
+                    <p class="bc-vol">Audacity</p>
+                    <h3 class="bc-title">เสร่อศาสตร์</h3>
+                    <p class="bc-title-en">The Audacity Advantage</p>
+                    <p class="bc-desc">โลกไม่ได้ให้รางวัลกับคนที่เก่งที่สุด แต่ให้รางวัลกับคนที่กล้าให้โลกเห็นว่าตัวเองเก่ง — 15 บท ศาสตร์แห่งการกล้า เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง พร้อมระบบฝึก 30 วัน</p>
+                    <div class="bc-tags">
+                        <span class="bc-tag">15 บท</span>
+                        <span class="bc-tag">ศาสตร์แห่งการกล้า</span>
+                        <span class="bc-tag">ฉีกแนว</span>
+                    </div>
+                    <div class="bc-actions">
+                        <a href="/seror" class="btn btn-primary">อ่านบทนำฟรี →</a>
+                        <a href="/sale-seror" class="btn btn-ghost">รายละเอียด</a>
+                    </div>
+                </div>
+            </article>
         </div>
 
         <!-- Starter Kit — entry-level, not a headline book -->
