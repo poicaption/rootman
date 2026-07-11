@@ -340,7 +340,7 @@
         <label for="regPass">รหัสผ่าน</label>
         <input id="regPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร">
         <button class="btn btn-primary btn-block" type="submit" id="regBtn">สร้างบัญชี</button>
-        <p class="field-hint" style="margin-top:0.9rem">ไม่ต้องใช้อีเมล — เมื่อนำ Unlock Code มาปลดล็อก ระบบจะเชื่อมอีเมลให้อัตโนมัติ</p>
+        <p class="field-hint" style="margin-top:0.9rem">ไม่ต้องใช้อีเมล เมื่อนำ Unlock Code มาปลดล็อก ระบบจะเชื่อมอีเมลให้อัตโนมัติ</p>
         <p class="msg err" id="regMsg"></p>
       </form>
     </div>
@@ -416,7 +416,7 @@
         <!-- Library -->
         <section class="panel active" id="panel-library">
           <div class="panel-head">คลังหนังสือของคุณ</div>
-          <div class="panel-sub" id="libSub">หนังสือทั้งหมดที่คุณปลดล็อกแล้ว — อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ</div>
+          <div class="panel-sub" id="libSub">หนังสือทั้งหมดที่คุณปลดล็อกแล้ว อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ</div>
           <div class="glass series hidden" id="seriesCard">
             <div class="series-top">
               <div class="series-label">ความคืบหน้าซีรีส์</div>
@@ -442,10 +442,10 @@
         <!-- Redeem -->
         <section class="panel" id="panel-redeem">
           <div class="panel-head">เพิ่มหนังสือเข้าคลัง</div>
-          <div class="panel-sub">มี Unlock Code อยู่แล้ว? ใส่ด้านล่างได้เลย — หรือเลือกเล่มที่ยังไม่มีไปปลดล็อกเพิ่ม</div>
+          <div class="panel-sub">มี Unlock Code อยู่แล้ว? ใส่ด้านล่างได้เลย หรือเลือกเล่มที่ยังไม่มีไปปลดล็อกเพิ่ม</div>
           <div class="glass card">
             <h3>มีโค้ดอยู่แล้ว</h3>
-            <p class="desc">ใส่โค้ดที่ได้รับ (รูปแบบ ROOT-XXXX-XXXX) — 1 โค้ดผูกกับบัญชีเดียวตลอดไป</p>
+            <p class="desc">ใส่โค้ดที่ได้รับ (รูปแบบ ROOT-XXXX-XXXX) 1 โค้ดผูกกับบัญชีเดียวตลอดไป</p>
             <form id="redeemForm">
               <label for="redeemCode">Unlock Code</label>
               <input id="redeemCode" type="text" autocapitalize="characters" spellcheck="false" placeholder="ROOT-XXXX-XXXX" style="font-family:var(--mono);letter-spacing:1px;">
@@ -456,7 +456,7 @@
 
           <div class="store" id="storeWrap">
             <div class="store-head"><span class="dot"></span><span id="storeTitle">หนังสือที่คุณยังไม่มี</span></div>
-            <div class="store-sub" id="storeSub">เติมคลังให้ครบชุด — ปลดล็อกเล่มที่เหลือเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์</div>
+            <div class="store-sub" id="storeSub">เติมคลังให้ครบชุด ปลดล็อกเล่มที่เหลือเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์</div>
             <div class="store-grid" id="storeGrid"></div>
           </div>
         </section>
@@ -466,8 +466,8 @@
           <div class="panel-head">ข้อมูลบัญชี</div>
           <div class="panel-sub">จัดการชื่อที่แสดงและดูข้อมูลบัญชีของคุณ</div>
           <div class="glass card">
-            <div class="info-row"><span class="k">ชื่อผู้ใช้</span><span class="v" id="pfUser">—</span></div>
-            <div class="info-row"><span class="k">อีเมล</span><span class="v" id="pfEmail">—</span></div>
+            <div class="info-row"><span class="k">ชื่อผู้ใช้</span><span class="v" id="pfUser"></span></div>
+            <div class="info-row"><span class="k">อีเมล</span><span class="v" id="pfEmail"></span></div>
             <div class="info-row"><span class="k">สถานะ</span><span class="v"><span class="pill" id="pfStatus">active</span></span></div>
           </div>
           <div class="glass card">
@@ -482,7 +482,7 @@
           </div>
           <div class="glass card">
             <h3>การตั้งค่าการอ่าน</h3>
-            <p class="desc">ปรับขนาดตัวอักษรและระยะบรรทัดเริ่มต้นของหน้าอ่านหนังสือ — มีผลกับอุปกรณ์นี้</p>
+            <p class="desc">ปรับขนาดตัวอักษรและระยะบรรทัดเริ่มต้นของหน้าอ่านหนังสือ มีผลกับอุปกรณ์นี้</p>
             <div class="rpref-row">
               <span class="rpref-label">ขนาดตัวอักษร</span>
               <div class="rpref-btns">
@@ -546,19 +546,19 @@
 
   var VOL = {
     vol1: { name: 'รากแก้วการตลาด', en: 'The One Root of Marketing', tag: 'VOLUME 1', cls: 'v1', link: '/vol1', cover: 'images/book-vol1.png',
-            desc: '12 บท 12 กลไกจิตวิทยาที่ทำให้คนตัดสินใจซื้อ — เข้าใจครั้งเดียว ใช้ได้ทั้งชีวิต',
+            desc: '12 บท 12 กลไกจิตวิทยาที่ทำให้คนตัดสินใจซื้อ เข้าใจครั้งเดียว ใช้ได้ทั้งชีวิต',
             chips: ['12+5 บท', 'จิตวิทยาการตลาด'], free: true, buy: '/vol1', cta: 'อ่านฟรีทันที →', badge: 'อ่านฟรี' },
     vol2: { name: 'The Invisible War', en: 'รากแก้วการตลาด ภาค 2', tag: 'VOLUME 2', cls: 'v2', link: '/vol2', cover: 'images/book-vol2.png',
-            desc: '12 บท + 5 บทพิเศษ ในสนามรบดิจิทัล — เมื่อทุกแบรนด์แย่งชิงทรัพยากรเดียวกัน: ความสนใจของลูกค้า',
+            desc: '12 บท + 5 บทพิเศษ ในสนามรบดิจิทัล เมื่อทุกแบรนด์แย่งชิงทรัพยากรเดียวกัน: ความสนใจของลูกค้า',
             chips: ['12+5 บท', 'สนามรบดิจิทัล', 'Lifetime'], free: false, buy: '/sale-vol2', cta: 'ปลดล็อก Vol.2 →', badge: 'Lifetime Access' },
     vol3: { name: 'รากแก้วธุรกิจ', en: 'One Root of Business', tag: 'VOLUME 3', cls: 'v3', link: '/vol3', cover: 'images/book-vol3.png',
-            desc: '13 บท + 5 บทพิเศษ เจาะ “ราก” ของธุรกิจที่ไม่เคยเปลี่ยน — ซื้อเล่มเดียวเหมือนเรียน MBA ย่อ',
+            desc: '13 บท + 5 บทพิเศษ เจาะ “ราก” ของธุรกิจที่ไม่เคยเปลี่ยน ซื้อเล่มเดียวเหมือนเรียน MBA ย่อ',
             chips: ['13+5 บท', 'กลยุทธ์ธุรกิจ'], free: false, buy: '/sale-vol3', cta: 'ดูรายละเอียด Vol.3 →', badge: 'เล่มใหม่' },
     vol4: { name: 'เสร่อศาสตร์', en: 'The Audacity Advantage', tag: 'AUDACITY', cls: 'v3', link: '/seror', cover: 'images/book-seror.png',
-            desc: '15 บท ศาสตร์แห่งการกล้า — เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง พร้อมระบบฝึก 30 วัน',
+            desc: '15 บท ศาสตร์แห่งการกล้า เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง พร้อมระบบฝึก 30 วัน',
             chips: ['15 บท', 'ศาสตร์แห่งการกล้า', 'ฉีกแนว'], free: false, buy: '/sale-seror', cta: 'ดูรายละเอียด เสร่อศาสตร์ →', badge: 'เล่มใหม่' },
     sidk: { name: 'Side Income Diagnostic Kit', en: 'A Rootman Field Kit', tag: 'FIELD KIT', cls: 'v1', link: '/files/side-income-diagnostic-kit.pdf', cover: 'images/book-SIDK.png', download: true,
-            desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ — บันไดขั้นแรกของ The One Root Series',
+            desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ บันไดขั้นแรกของ The One Root Series',
             chips: ['PDF 51 หน้า', 'Workbook', 'Lifetime'], free: false, buy: '/sale-sidk', cta: 'ดูรายละเอียด Kit →', badge: 'PDF Workbook' }
   };
 
@@ -693,7 +693,7 @@
     var ents = (data.entitlements || []).slice().sort(function (a, b) { return (a.product || '') < (b.product || '') ? -1 : 1; });
     var wrap = el('bookList'); wrap.innerHTML = '';
     el('libSub').textContent = ents.length
-      ? 'คุณมี ' + ents.length + ' เล่มในคลัง — อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ'
+      ? 'คุณมี ' + ents.length + ' เล่มในคลัง อ่านได้ทุกอุปกรณ์ที่เข้าสู่ระบบ'
       : 'หนังสือทั้งหมดที่คุณปลดล็อกแล้ว';
     if (!ents.length) { show(el('emptyBooks')); return; }
     hide(el('emptyBooks'));
@@ -744,15 +744,15 @@
     var grid = el('storeGrid'); grid.innerHTML = '';
     if (!missing.length) {
       el('storeTitle').textContent = '🎉 คุณมีครบทุกเล่มแล้ว';
-      el('storeSub').textContent = 'ขอบคุณที่เป็นส่วนหนึ่งของซีรีส์ — เปิดอ่านได้จากคลังหนังสือทุกอุปกรณ์';
+      el('storeSub').textContent = 'ขอบคุณที่เป็นส่วนหนึ่งของซีรีส์ เปิดอ่านได้จากคลังหนังสือทุกอุปกรณ์';
       return;
     }
     if (!bookMissing.length) {
       el('storeTitle').textContent = 'เสริมคลังของคุณ';
-      el('storeSub').textContent = 'คุณมีครบทั้ง 3 เล่มแล้ว — เพิ่มเครื่องมือภาคปฏิบัติเข้าคลังได้อีก';
+      el('storeSub').textContent = 'คุณมีครบทั้ง 3 เล่มแล้ว เพิ่มเครื่องมือภาคปฏิบัติเข้าคลังได้อีก';
     } else {
       el('storeTitle').textContent = 'หนังสือที่คุณยังไม่มี';
-      el('storeSub').textContent = 'เติมคลังให้ครบชุด — อีก ' + bookMissing.length + ' เล่มเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์';
+      el('storeSub').textContent = 'เติมคลังให้ครบชุด อีก ' + bookMissing.length + ' เล่มเพื่อต่อภาพ “รากเดียว” ให้สมบูรณ์';
     }
     missing.forEach(function (k) {
       var v = VOL[k];

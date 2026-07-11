@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   The One Root — Reading comfort preferences (shared across vol1/2/3).
+   The One Root Reading comfort preferences (shared across vol1/2/3).
 
    Adds a small "ตั้งค่าการอ่าน" panel inside the sidebar footer letting
    readers tune the two things that matter most for long-form Thai text:

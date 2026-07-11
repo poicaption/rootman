@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   The One Root — Reading HUD (shared across vol1/2/3).
+   The One Root Reading HUD (shared across vol1/2/3).
 
    A small, auto-fading heads-up display pinned to the top-centre that adds
    two reading-quality features WITHOUT touching unlock / auth / permissions:
