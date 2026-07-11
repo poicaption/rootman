@@ -40,6 +40,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '2615991928816882');
     fbq('track', 'PageView');
+    fbq('track', 'ViewContent', { content_ids: ['oneroot-book-seror'], content_name: 'เสร่อศาสตร์ (The Audacity Advantage)', content_type: 'product', value: 690, currency: 'THB' });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"
@@ -4357,6 +4358,15 @@
             if (shouldShow && !shown) { sticky.classList.add('show'); shown = true; }
             else if (!shouldShow && shown) { sticky.classList.remove('show'); shown = false; }
         }, { passive: true });
+    })();
+
+    /* ── FB Pixel: track checkout intent on Stripe buttons ── */
+    (function() {
+        document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function(a) {
+            a.addEventListener('click', function() {
+                if (window.fbq) fbq('track', 'InitiateCheckout', { content_ids: ['oneroot-book-seror'], content_name: 'เสร่อศาสตร์ (The Audacity Advantage)', content_type: 'product', value: 690, currency: 'THB', num_items: 1 });
+            });
+        });
     })();
 
     function copyCoupon() {

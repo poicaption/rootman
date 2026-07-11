@@ -410,7 +410,9 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
         showCode(data.code);
         if (typeof fbq === 'function') {
           if (data.customer_email) { fbq('init', '2615991928816882', { em: data.customer_email }); }
-          fbq('track', 'Purchase', { value: 1890.00, currency: 'THB', content_name: 'รากแก้วการตลาด Vol.2 (The Invisible War)', content_type: 'product', content_ids: ['oneroot-book-v2'], num_items: 1 });
+          var pxVal = (data.amount_total != null) ? data.amount_total / 100 : 1890.00;
+          var pxCur = data.currency ? String(data.currency).toUpperCase() : 'THB';
+          fbq('track', 'Purchase', { value: pxVal, currency: pxCur, content_name: 'รากแก้วการตลาด Vol.2 (The Invisible War)', content_type: 'product', content_ids: ['oneroot-book-v2'], num_items: 1 });
         }
       } else { showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้'); }
     })

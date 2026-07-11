@@ -59,9 +59,9 @@ export default async function handler(req) {
     if (existing.result) {
       const data = JSON.parse(existing.result);
       if (data.codes) {
-        return json({ bundle: true, codes: data.codes, customer_email: data.customer_email || null });
+        return json({ bundle: true, codes: data.codes, customer_email: data.customer_email || null, amount_total: data.amount_total ?? null, currency: data.currency ?? null });
       }
-      return json({ code: data.code, customer_email: data.customer_email || null, vol: data.vol || 1 });
+      return json({ code: data.code, customer_email: data.customer_email || null, vol: data.vol || 1, amount_total: data.amount_total ?? null, currency: data.currency ?? null });
     }
 
     // Verify with Stripe
@@ -198,17 +198,17 @@ export default async function handler(req) {
 
     // Store session → code(s) (90-day TTL — used for thank-you page idempotency)
     if (isBundle) {
-      await redis(['SET', `session:${sessionId}`, JSON.stringify({ codes, customer_email: customerEmail, bundle: true, created_at: now }), 'EX', 7776000]);
+      await redis(['SET', `session:${sessionId}`, JSON.stringify({ codes, customer_email: customerEmail, bundle: true, amount_total: amountTotal, currency, created_at: now }), 'EX', 7776000]);
     } else {
-      await redis(['SET', `session:${sessionId}`, JSON.stringify({ code: codes[0].code, customer_email: customerEmail, vol: vols[0], created_at: now }), 'EX', 7776000]);
+      await redis(['SET', `session:${sessionId}`, JSON.stringify({ code: codes[0].code, customer_email: customerEmail, vol: vols[0], amount_total: amountTotal, currency, created_at: now }), 'EX', 7776000]);
     }
 
     console.log('[NEW-CODE]', JSON.stringify({ bundle: isBundle, codes: codes.map((c) => c.code), vols, session_id: sessionId.slice(0, 20) + '...', email: customerEmail, ts: now }));
 
     if (isBundle) {
-      return json({ bundle: true, codes, customer_email: customerEmail });
+      return json({ bundle: true, codes, customer_email: customerEmail, amount_total: amountTotal, currency });
     }
-    return json({ code: codes[0].code, customer_email: customerEmail, vol: vols[0] });
+    return json({ code: codes[0].code, customer_email: customerEmail, vol: vols[0], amount_total: amountTotal, currency });
   } catch (e) {
     console.error('[VERIFY-ERROR]', e.message);
     return json({ error: 'server_error', message: 'เกิดข้อผิดพลาด กรุณาลองรีเฟรชหน้านี้' }, 500);
