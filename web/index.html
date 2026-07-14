@@ -1107,7 +1107,7 @@
     (function() {
         var toggle = document.getElementById('themeToggle');
         var saved = localStorage.getItem('oneroot-theme');
-        if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (saved !== 'light') {
             document.body.setAttribute('data-theme', 'dark');
         }
         toggle.addEventListener('click', function() {

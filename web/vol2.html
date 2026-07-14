@@ -3995,7 +3995,7 @@
             }
 
             var savedTheme = localStorage.getItem('oneroot-theme');
-            if (savedTheme === 'dark') {
+            if (savedTheme !== 'light') {
                 setTheme(true);
             } else if (!savedTheme) {
                 // Vol.2 default: dark cyber theme to match /sale-vol2

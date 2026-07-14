@@ -29,7 +29,7 @@ src="https://www.facebook.com/tr?id=2615991928816882&ev=PageView&noscript=1"/></
 <script>
   (function () {
     var s = localStorage.getItem('oneroot-theme');
-    if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (s !== 'light') {
       document.documentElement.setAttribute('data-theme', 'dark');
     }
   })();

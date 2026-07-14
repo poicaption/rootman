@@ -438,7 +438,7 @@ img{max-width:100%;display:block}
 </footer>
 <script>
 (function(){var t=document.getElementById('themeToggle');var s=localStorage.getItem('oneroot-theme');
-if(s==='dark'||(!s&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.body.setAttribute('data-theme','dark');}
+if(s!=='light'){document.body.setAttribute('data-theme','dark');}
 t&&t.addEventListener('click',function(){var d=document.body.getAttribute('data-theme')==='dark';
 if(d){document.body.removeAttribute('data-theme');localStorage.setItem('oneroot-theme','light');}
 else{document.body.setAttribute('data-theme','dark');localStorage.setItem('oneroot-theme','dark');}});})();

@@ -534,7 +534,7 @@
   // Theme (shared key with the rest of the site)
   (function () {
     var saved = localStorage.getItem('oneroot-theme');
-    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (saved !== 'light') {
       document.body.setAttribute('data-theme', 'dark');
     }
   })();

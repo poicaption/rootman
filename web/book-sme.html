@@ -3339,7 +3339,8 @@ START
     function initThemeToggle(){
         var btn = document.getElementById('theme-toggle');
         var saved = localStorage.getItem('sme_theme');
-        if (saved) document.documentElement.setAttribute('data-theme', saved);
+        if (saved === null) document.documentElement.setAttribute('data-theme', 'dark');
+        else if (saved) document.documentElement.setAttribute('data-theme', saved);
         function syncLabel(){
             var dark = document.documentElement.getAttribute('data-theme') === 'dark';
             btn.querySelector('.theme-icon').textContent = dark ? '\u2600' : '\u263D';
