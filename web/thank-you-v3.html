@@ -22,12 +22,10 @@ t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
 fbq('init', '2887861328214244');
-fbq('init', '1049030470871554');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=2887861328214244&ev=PageView&noscript=1"/></noscript>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1049030470871554&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel Code -->
 <script>
   (function () {
@@ -405,7 +403,7 @@ src="https://www.facebook.com/tr?id=2887861328214244&ev=PageView&noscript=1"/></
       if (data.code) {
         showCode(data.code);
         if (typeof fbq === 'function') {
-          if (data.customer_email) { fbq('init', '2887861328214244', { em: data.customer_email }); fbq('init', '1049030470871554', { em: data.customer_email }); }
+          if (data.customer_email) { fbq('init', '2887861328214244', { em: data.customer_email }); }
           var pxVal = (data.amount_total != null) ? data.amount_total / 100 : 1990.00;
           var pxCur = data.currency ? String(data.currency).toUpperCase() : 'THB';
           fbq('track', 'Purchase', { value: pxVal, currency: pxCur, content_name: 'รากแก้วธุรกิจ Vol.3 (One Root of Business)', content_type: 'product', content_ids: ['oneroot-book-v3'], num_items: 1 });
