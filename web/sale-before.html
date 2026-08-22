@@ -2566,7 +2566,7 @@
         :root {
             --brass: #B0863A;
             --brass-light: #E0BC68;
-            --hl-ink: #7A2415;
+            --hl-ink: #4A3410;
             --hl-wash: rgba(224,168,80,0.42);
             --hl-wash-strong: rgba(30,58,95,0.18);
         }
@@ -2627,7 +2627,7 @@
 
         /* ── Section titles: gradient + soft swipe underline on <em> ── */
         .sec-title em {
-            background: linear-gradient(120deg, var(--accent) 0%, #D14A2E 45%, #E08A3A 100%);
+            background: linear-gradient(120deg, var(--accent) 0%, #B4863A 45%, #C79A4C 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2656,7 +2656,7 @@
             float: left;
             margin: 0.32rem 0.55rem 0 0;
             color: var(--accent);
-            background: linear-gradient(135deg, var(--accent), #E08A3A);
+            background: linear-gradient(135deg, var(--accent), #C79A4C);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2754,7 +2754,7 @@
 
         /* ── CTA buttons: gradient + sliding sheen ── */
         .hero-cta, .mid-cta-btn, .pricing-cta, .final-cta-btn {
-            background: linear-gradient(135deg, var(--accent) 0%, #D4502E 55%, var(--accent-hover) 100%) !important;
+            background: linear-gradient(135deg, var(--accent) 0%, #B4863A 55%, var(--accent-hover) 100%) !important;
             position: relative;
             overflow: hidden;
             isolation: isolate;
@@ -2778,7 +2778,7 @@
 
         /* ── Price: premium red→brass gradient numeral ── */
         .price-big {
-            background: linear-gradient(135deg, var(--accent) 0%, #D9622E 40%, var(--brass) 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, #B4863A 40%, var(--brass) 100%);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -2815,7 +2815,7 @@
 
         /* ── Big-idea quote: brighten the emphasis ── */
         .bigidea-quote em {
-            background: linear-gradient(120deg, #E08A4A, #F0B878);
+            background: linear-gradient(120deg, #C79A4C, #E8C98A);
             -webkit-background-clip: text;
             background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -3289,6 +3289,20 @@
             .fb-likes { display: none; }
         }
     </style>
+
+<style>
+    /* The BTP table of contents is far longer than the seror one (72 mechanisms),
+       so it scrolls inside a box that matches the phone mock-up height. */
+    .toc-preview {
+        max-height: 480px; overflow-y: auto; padding-right: 0.7rem;
+        scrollbar-width: thin; scrollbar-color: rgba(180,134,58,0.5) transparent;
+    }
+    .toc-preview::-webkit-scrollbar { width: 5px; }
+    .toc-preview::-webkit-scrollbar-thumb { background: rgba(180,134,58,0.5); border-radius: 3px; }
+    .toc-preview::-webkit-scrollbar-track { background: transparent; }
+    .preview-wrap { align-items: start; }
+    @media (max-width: 720px) { .toc-preview { max-height: 360px; } }
+</style>
 </head>
 <body>
 
@@ -3448,38 +3462,38 @@
     <div class="sec rv">
         <div class="sec-label">ระดับของคำถาม</div>
         <h2 class="sec-title">ความต่างระหว่างคนที่<em>ทำการตลาดเป็น</em><br>กับคนที่<em>มองเกมออก</em> อยู่ที่คำถาม</h2>
-        <p style="margin-bottom: 1.4rem; font-size: 0.93rem; color: var(--text-sec);">คำถามฝั่งซ้ายพาคุณไปหาเทคนิค คำถามฝั่งขวาพาคุณไปหาสาเหตุ แล้วเทคนิคที่ถูกต้องจะโผล่ออกมาเอง</p>
+        <p style="margin-bottom: 1.4rem; font-size: 0.93rem; color: var(--text-sec);">คำถามชุดบนพาคุณไปหาเทคนิค คำถามชุดล่างพาคุณไปหาสาเหตุ แล้วเทคนิคที่ถูกต้องจะโผล่ออกมาเอง</p>
 
         <div class="decode">
             <div class="decode-row rv rv-d1">
-                <div class="decode-said">&ldquo;ต้องทำ Hook ยังไง&rdquo;</div>
-                <div class="decode-line"></div>
-                <div class="decode-fear">อะไรจะสร้างความต่างมากพอให้สมองหยุด</div>
-                <div class="decode-chapter">กลไก 14 &middot; Contrast Creates Attention</div>
+                <div class="decode-said">ต้องทำ Hook ยังไง</div>
+                <div class="decode-line">คำถามนี้พาไปหา: <b>เทคนิคที่ใช้ได้อีกไม่กี่เดือน</b></div>
+                <div class="decode-line">คำถามที่ควรถามคือ: <span class="decode-fear">อะไรจะสร้างความต่างมากพอให้สมองหยุด</span></div>
+                <span class="decode-chapter">กลไก 14 &middot; Contrast Creates Attention</span>
             </div>
             <div class="decode-row rv rv-d2">
-                <div class="decode-said">&ldquo;ควรลดราคากี่เปอร์เซ็นต์&rdquo;</div>
-                <div class="decode-line"></div>
-                <div class="decode-fear">ลูกค้ากำลังใช้จุดอ้างอิงอะไรในการประเมินราคานี้</div>
-                <div class="decode-chapter">กลไก 01 + 43 &middot; Value Is Relative / Price Needs an Anchor</div>
+                <div class="decode-said">ควรลดราคากี่เปอร์เซ็นต์</div>
+                <div class="decode-line">คำถามนี้พาไปหา: <b>ส่วนลดที่กัดกำไรแล้วต้องลดอีกในรอบหน้า</b></div>
+                <div class="decode-line">คำถามที่ควรถามคือ: <span class="decode-fear">ลูกค้ากำลังใช้จุดอ้างอิงอะไรในการประเมินราคานี้</span></div>
+                <span class="decode-chapter">กลไก 01 + 43 &middot; Value Is Relative / Price Needs an Anchor</span>
             </div>
             <div class="decode-row rv rv-d3">
-                <div class="decode-said">&ldquo;ทำยังไงให้คนซื้อ&rdquo;</div>
-                <div class="decode-line"></div>
-                <div class="decode-fear">สิ่งที่ขวางอยู่ตอนนี้คือความอยาก ความเชื่อ ความเสี่ยง หรือความยุ่งยาก</div>
-                <div class="decode-chapter">กลไก 37&ndash;42 &middot; PART VII OFFER</div>
+                <div class="decode-said">ทำยังไงให้คนซื้อ</div>
+                <div class="decode-line">คำถามนี้พาไปหา: <b>การเร่งปิดการขายโดยไม่รู้ว่าติดตรงไหน</b></div>
+                <div class="decode-line">คำถามที่ควรถามคือ: <span class="decode-fear">สิ่งที่ขวางอยู่ตอนนี้คือความอยาก ความเชื่อ ความเสี่ยง หรือความยุ่งยาก</span></div>
+                <span class="decode-chapter">กลไก 37&ndash;42 &middot; PART VII OFFER</span>
             </div>
             <div class="decode-row rv">
-                <div class="decode-said">&ldquo;ทำยังไงให้ไวรัล&rdquo;</div>
-                <div class="decode-line"></div>
-                <div class="decode-fear">คนที่ส่งเรื่องนี้ต่อ เขาได้อะไรจากการส่ง</div>
-                <div class="decode-chapter">กลไก 63 &middot; Give People a Reason to Talk</div>
+                <div class="decode-said">ทำยังไงให้ไวรัล</div>
+                <div class="decode-line">คำถามนี้พาไปหา: <b>การเลียนแบบคลิปที่เพิ่งดังเมื่อสัปดาห์ก่อน</b></div>
+                <div class="decode-line">คำถามที่ควรถามคือ: <span class="decode-fear">คนที่ส่งเรื่องนี้ต่อ เขาได้อะไรจากการส่ง</span></div>
+                <span class="decode-chapter">กลไก 63 &middot; Give People a Reason to Talk</span>
             </div>
             <div class="decode-row rv">
-                <div class="decode-said">&ldquo;แบรนด์เราจำยาก ต้องรีแบรนด์ไหม&rdquo;</div>
-                <div class="decode-line"></div>
-                <div class="decode-fear">เราขาดความจำ หรือขาดทางเดินกลับไปหาความจำนั้น</div>
-                <div class="decode-chapter">กลไก 19&ndash;24 &middot; PART IV MEMORY</div>
+                <div class="decode-said">แบรนด์เราจำยาก ต้องรีแบรนด์ไหม</div>
+                <div class="decode-line">คำถามนี้พาไปหา: <b>โลโก้ใหม่ที่สวยขึ้น แต่คนยังจำไม่ได้เหมือนเดิม</b></div>
+                <div class="decode-line">คำถามที่ควรถามคือ: <span class="decode-fear">เราขาดความจำ หรือขาดทางเดินกลับไปหาความจำนั้น</span></div>
+                <span class="decode-chapter">กลไก 19&ndash;24 &middot; PART IV MEMORY</span>
             </div>
         </div>
     </div>
@@ -3672,29 +3686,86 @@
         </div>
 
         <div class="preview-wrap rv">
-            <div class="phone">
+            <div class="phone" aria-hidden="true">
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
-                    <div class="phone-status"><span>9:41</span><span class="ps-icons"><i class="fa-solid fa-signal"></i> <i class="fa-solid fa-wifi"></i> <i class="fa-solid fa-battery-three-quarters"></i></span></div>
-                    <div class="phone-appbar"><i class="fa-solid fa-list-ul"></i><span>Before the Platform</span><i class="fa-solid fa-ellipsis-vertical"></i></div>
-                    <div class="phone-prog"><span></span></div>
-                    <div class="phone-scroll">
-                        <div class="phone-part">01 / 72 MECHANISMS</div>
-                        <div class="phone-h">Value Is Relative</div>
-                        <div class="phone-sub">คุณค่าไม่มีตัวเลขของตัวเอง</div>
-                        <p class="phone-p">ร้านไวน์เล็ก ๆ ร้านหนึ่งย้ายชั้นวางใหม่ทั้งหมดในคืนวันอาทิตย์ ไม่ได้เปลี่ยนสินค้า ไม่ได้เปลี่ยนราคา สิ่งเดียวที่เปลี่ยนคือขวดที่แพงที่สุดถูกย้ายมาไว้ตรงทางเข้า</p>
-                        <p class="phone-p">สองสัปดาห์ต่อมา คำบ่นว่า &ldquo;แพง&rdquo; เบาลง ทั้งที่ราคาทุกขวดยังเท่าเดิม</p>
-                        <div class="phone-quote">ราคาไม่ได้บอกคุณค่าของสินค้า มันบอกคุณค่าเมื่อเทียบกับบางสิ่ง</div>
-                        <p class="phone-p">สิ่งที่เปลี่ยนไม่ใช่ราคา สิ่งที่เปลี่ยนคือสิ่งที่ลูกค้าเห็นก่อนจะเห็นราคา&hellip;</p>
+                    <div class="phone-status">
+                        <span>9:41</span>
+                        <span class="ps-icons"><i class="fa-solid fa-signal"></i><i class="fa-solid fa-wifi"></i><i class="fa-solid fa-battery-three-quarters"></i></span>
                     </div>
-                    <div class="phone-orn">&#9635;</div>
+                    <div class="phone-appbar">
+                        <span class="pab-brand">Before the Platform</span>
+                        <span class="pab-ico"><i class="fa-solid fa-list-ul"></i><i class="fa-regular fa-bookmark"></i><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                    </div>
+                    <div class="phone-prog"><i></i></div>
+                    <div class="phone-read">
+                        <div class="phone-scroll">
+                            <div class="phone-part">PART I &middot; HUMAN &middot; 01 / 72</div>
+                            <div class="phone-h">Value Is Relative</div>
+                            <div class="phone-orn">&#10022;</div>
+                            <p class="phone-p lead">ร้านไวน์เล็ก ๆ ร้านหนึ่งย้ายชั้นวางใหม่ทั้งหมดในคืนวันอาทิตย์</p>
+                            <p class="phone-p">ไม่ได้เปลี่ยนสินค้า ไม่ได้เปลี่ยนราคา สิ่งเดียวที่เปลี่ยนคือ<b>ขวดที่แพงที่สุดถูกย้ายมาไว้ตรงทางเข้า</b></p>
+                            <p class="phone-p">สองสัปดาห์ต่อมา คำบ่นว่า &ldquo;แพง&rdquo; เบาลง ทั้งที่ราคาทุกขวดยังเท่าเดิม</p>
+                            <p class="phone-quote">&ldquo;ราคาไม่ได้บอกคุณค่าของสินค้า มันบอกคุณค่าเมื่อเทียบกับบางสิ่ง&rdquo;</p>
+                            <div class="phone-sub">เครื่องยนต์ข้างใต้</div>
+                            <p class="phone-p">สมองไม่ได้ประเมินตัวเลขแบบสัมบูรณ์ มันประเมินจาก<b>จุดอ้างอิงที่เห็นล่าสุด</b> สิ่งที่เปลี่ยนไม่ใช่ราคา แต่คือสิ่งที่ลูกค้าเห็นก่อนจะเห็นราคา</p>
+                            <div class="phone-te">
+                                <b><i class="fa-solid fa-diagram-project"></i> MECHANISM MAP</b>
+                                INPUT &rarr; HUMAN PROCESS &rarr; PERCEPTION &rarr; BEHAVIOR &rarr; BUSINESS RESULT ทุกกลไกถูกแกะออกมาเป็นแผนภาพเดียวกันทั้ง 72 บท
+                            </div>
+                            <p class="phone-p" style="text-align:center; color:var(--warm); font-size:0.5rem; letter-spacing:0.05em; margin-top:0.55rem;">เลื่อนต่อ &middot; WHEN IT FAILS</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="preview-try">
-                <div class="preview-toc-title">อ่านกลไกแรกเต็ม ๆ ได้ฟรี</div>
-                <p class="preview-try-note">Prologue + How to Read This Book + กลไก 01 เปิดให้อ่านฟรีทั้งหมด ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
-                <div class="preview-try-wrap"><a href="/before" class="mid-cta-btn">อ่านกลไก 01 ฟรี &rarr;</a></div>
+
+            <div>
+                <div class="preview-toc-title">สารบัญเต็ม 12 Parts &middot; 72 กลไก &middot; 12 ENDGAME</div>
+                <div class="toc-preview">
+                    <div class="toc-part-label">PART I &middot; HUMAN &mdash; ก่อนการตลาด มีมนุษย์</div>
+                    <div class="toc-item"><span class="toc-num">01</span><span class="toc-name">Value Is Relative</span></div>
+                    <div class="toc-item"><span class="toc-num">06</span><span class="toc-name">People Buy Themselves</span></div>
+                    <div class="toc-part-label">PART II &middot; DEMAND &mdash; ก่อน Targeting มีความต้องการ</div>
+                    <div class="toc-item"><span class="toc-num">08</span><span class="toc-name">People Hire Products</span></div>
+                    <div class="toc-item"><span class="toc-num">10</span><span class="toc-name">Demand Has Temperature</span></div>
+                    <div class="toc-part-label">PART III &middot; ATTENTION &mdash; ก่อน Content มีความสนใจ</div>
+                    <div class="toc-item"><span class="toc-num">14</span><span class="toc-name">Contrast Creates Attention</span></div>
+                    <div class="toc-item"><span class="toc-num">16</span><span class="toc-name">Tension Holds Attention</span></div>
+                    <div class="toc-part-label">PART IV &middot; MEMORY &mdash; ก่อน Branding มีความทรงจำ</div>
+                    <div class="toc-item"><span class="toc-num">21</span><span class="toc-name">Distinctiveness Before Beauty</span></div>
+                    <div class="toc-item"><span class="toc-num">24</span><span class="toc-name">Build Retrieval Paths</span></div>
+                    <div class="toc-part-label">PART V &middot; FRAME &mdash; ก่อน Message มีกรอบตีความ</div>
+                    <div class="toc-item"><span class="toc-num">25</span><span class="toc-name">The First Number Wins</span></div>
+                    <div class="toc-item"><span class="toc-num">29</span><span class="toc-name">Define the Problem</span></div>
+                    <div class="toc-part-label">PART VI &middot; POSITION &mdash; ก่อน Competition ต้องเลือกสนาม</div>
+                    <div class="toc-item"><span class="toc-num">32</span><span class="toc-name">Narrow to Become Large</span></div>
+                    <div class="toc-item"><span class="toc-num">34</span><span class="toc-name">Sell the Mechanism</span></div>
+                    <div class="toc-part-label">PART VII &middot; OFFER &mdash; ก่อน Promotion ต้องมีข้อเสนอ</div>
+                    <div class="toc-item"><span class="toc-num">37</span><span class="toc-name">Outcome First</span></div>
+                    <div class="toc-item"><span class="toc-num">42</span><span class="toc-name">Reverse the Risk</span></div>
+                    <div class="toc-part-label">PART VIII &middot; PRICE &mdash; ก่อน Discounting ต้องเข้าใจราคา</div>
+                    <div class="toc-item"><span class="toc-num">43</span><span class="toc-name">Price Needs an Anchor</span></div>
+                    <div class="toc-item"><span class="toc-num">47</span><span class="toc-name">The Pain of Paying</span></div>
+                    <div class="toc-part-label">PART IX &middot; TRUST &mdash; ก่อน Persuasion ต้องมีเหตุผลให้เชื่อ</div>
+                    <div class="toc-item"><span class="toc-num">50</span><span class="toc-name">People Watch People</span></div>
+                    <div class="toc-item"><span class="toc-num">53</span><span class="toc-name">Small Yes Before Big Yes</span></div>
+                    <div class="toc-part-label">PART X &middot; DECISION &mdash; ก่อน Conversion ต้องออกแบบการตัดสินใจ</div>
+                    <div class="toc-item"><span class="toc-num">55</span><span class="toc-name">Defaults Are Decisions</span></div>
+                    <div class="toc-item"><span class="toc-num">59</span><span class="toc-name">Sequence the Objections</span></div>
+                    <div class="toc-part-label">PART XI &middot; GROWTH &mdash; ก่อน Scale ต้องเข้าใจการเติบโต</div>
+                    <div class="toc-item"><span class="toc-num">63</span><span class="toc-name">Give People a Reason to Talk</span></div>
+                    <div class="toc-item"><span class="toc-num">65</span><span class="toc-name">Build Loops, Not Campaigns</span></div>
+                    <div class="toc-part-label">PART XII &middot; STRATEGY &mdash; ก่อนโลกเปลี่ยน ต้องรู้ว่าอะไรไม่ควรเปลี่ยน</div>
+                    <div class="toc-item"><span class="toc-num">67</span><span class="toc-name">Find the Bottleneck</span></div>
+                    <div class="toc-item"><span class="toc-num">71</span><span class="toc-name">The Platform Extinction Test</span></div>
+                    <div class="toc-item is-bonus"><span class="toc-num">72</span><span class="toc-name">Stack the Mechanisms</span></div>
+                </div>
             </div>
+        </div>
+
+        <div class="preview-try-wrap rv">
+            <a href="/before" class="preview-try"><i class="fa-solid fa-book-open"></i> อ่านกลไก 01 ฉบับเต็ม ฟรี</a>
+            <p class="preview-try-note">Prologue + How to Read This Book + กลไก 01 เปิดให้อ่านฟรีทั้งหมด ไม่ต้องสมัคร ไม่ต้องกรอกอะไร ถ้าอ่านแล้วรู้สึกว่า &ldquo;รู้อยู่แล้ว&rdquo; ก็ไม่ต้องซื้อ</p>
         </div>
     </div>
 
@@ -3763,6 +3834,8 @@
                     <li>คนที่ต้องการคู่มือใช้เครื่องมือหรือแพลตฟอร์มเฉพาะ</li>
                     <li>คนที่อยากได้คำยืนยันว่าสิ่งที่ทำอยู่ตอนนี้ถูกหมดแล้ว</li>
                     <li>คนที่ยังไม่เคยลงมือทำการตลาดจริงเลยแม้แต่ครั้งเดียว</li>
+                    <li>คนที่ต้องการเทมเพลตพร้อมใช้ มากกว่าเหตุผลว่าทำไมมันถึงทำงาน</li>
+                    <li>คนที่กำลังมองหาทางลัดให้ยอดขึ้นภายในสัปดาห์นี้</li>
                 </ul>
             </div>
         </div>
@@ -3970,8 +4043,6 @@
         </div>
     </div>
 
-         FOOTER
-         ═══════════════════════════════════════════════ -->
     <!-- ── Sticky mobile CTA ── -->
     <div class="sticky-cta" id="sticky-cta">
         <span class="sticky-cta-price"><strong>4,990 ฿</strong> จ่ายครั้งเดียว</span>
@@ -4237,7 +4308,7 @@
                     background: { color: 'transparent' },
                     particles: {
                         number: { value: 38, density: { enable: true, area: 900 } },
-                        color: { value: ['#C4956A', '#D9572F', '#B8860B'] },
+                        color: { value: ['#C4956A', '#B4863A', '#B8860B'] },
                         opacity: {
                             value: { min: 0.1, max: 0.5 },
                             animation: { enable: true, speed: 0.6, sync: false }
