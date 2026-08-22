@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Review capture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ffffff; padding: 24px;
+    display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start; }
+  .cap { background: #ffffff; }
+
+  .rv-phone {
+    width: 380px; background: #fff; border-radius: 16px; overflow: hidden;
+    color: #050505;
+    font-family: "Noto Sans Thai", "Helvetica Neue", "Segoe UI", Roboto, sans-serif;
+  }
+  .rv-hd { display: flex; align-items: center; gap: 9px; padding: 11px 12px 10px; border-bottom: 1px solid #e9ebee; }
+  .rv-hd .rv-back { color: #0866ff; font-size: 24px; line-height: 1; font-weight: 400; flex-shrink: 0; }
+  .rv-hd-av { width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0; background: conic-gradient(from 30deg, #f6c8ae, #d9b0c4, #c9c0e0, #b7d0e8, #d7c3b0, #f0c9c0); filter: blur(6px); }
+  .rv-hd-mid { flex: 1; min-width: 0; }
+  .rv-hd-name { font-weight: 700; font-size: 15px; color: #050505; filter: blur(4.5px); white-space: nowrap; overflow: hidden; text-overflow: clip; letter-spacing: .3px; }
+  .rv-hd-sub { color: #65676b; font-size: 11.5px; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .rv-hd-ic { flex-shrink: 0; display: flex; align-items: center; gap: 10px; color: #0866ff; }
+  .rv-hd-ic .rv-baht { width: 26px; height: 26px; border: 1.6px solid #0866ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+  .rv-hd-ic .rv-dots { font-size: 20px; color: #050505; letter-spacing: -1px; }
+
+  .rv-body { padding: 16px 12px 16px; display: flex; flex-direction: column; gap: 3px; background: #fff; }
+  .rv-row { display: flex; align-items: flex-end; gap: 7px; margin-top: 9px; }
+  .rv-row.a { justify-content: flex-end; }
+  .rv-row .rv-av { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; align-self: flex-end;
+    background: conic-gradient(from 60deg, #e8b7c4, #c9bfe0, #b3cfe8, #d8c6ae, #efc7bf); filter: blur(5px); }
+  .rv-bubs { display: flex; flex-direction: column; gap: 3px; max-width: 74%; }
+  .rv-row.a .rv-bubs { align-items: flex-end; }
+  .rv-bub { position: relative; padding: 8px 13px; font-size: 14.5px; line-height: 1.35; word-wrap: break-word; white-space: pre-wrap; }
+  .rv-bub.c { background: #e9ebee; color: #050505; border-radius: 18px; }
+  .rv-bub.a { background: #0a7cff; color: #fff; border-radius: 18px; }
+  .rv-bubs.c .rv-bub { border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
+  .rv-bubs.c .rv-bub:first-child { border-top-left-radius: 18px; }
+  .rv-bubs.c .rv-bub:last-child { border-bottom-left-radius: 18px; }
+  .rv-bubs.a .rv-bub { border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
+  .rv-bubs.a .rv-bub:first-child { border-top-right-radius: 18px; }
+  .rv-bubs.a .rv-bub:last-child { border-bottom-right-radius: 18px; }
+  .rv-bub .rv-react { position: absolute; bottom: -11px; background: #fff; border-radius: 999px;
+    padding: 1px 4px; font-size: 12px; line-height: 1; box-shadow: 0 1px 4px rgba(0,0,0,.22); }
+  .rv-bub.a .rv-react { right: 6px; }
+  .rv-bub.c .rv-react { left: 6px; }
+  .rv-seen { display: flex; justify-content: flex-end; margin-top: 8px; }
+  .rv-seen .rv-av { width: 16px; height: 16px; border-radius: 50%;
+    background: conic-gradient(from 60deg, #e8b7c4, #c9bfe0, #b3cfe8, #d8c6ae, #efc7bf); filter: blur(3px); }
+</style>
+</head>
+<body>
+<script>
+  function esc(s) {
+    if (s === null || s === undefined) return '';
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c];
+    });
+  }
+
+  var REVIEWS = [
+  {
+    "n": "Krit เจ้าของแบรนด์สกินแคร์",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ผมลดราคามาสามรอบแล้วยอดไม่ขึ้นครับ อ่านกลไก 01 กับ 43 จบแล้วถึงรู้ว่าปัญหาไม่ได้อยู่ที่ราคาเลย"
+      ],
+      [
+        "c",
+        "แค่ย้ายลำดับสิ่งที่ลูกค้าเห็นก่อนราคาในหน้าเว็บ ไม่ได้แตะตัวเลขสักบาท คำถามว่า 'ลดได้ไหม' ในแชทลดลงเห็นได้ชัดครับ"
+      ],
+      [
+        "a",
+        "นี่แหละค่ะที่หนังสือพยายามบอก ลูกค้าไม่เคยประเมินราคาแบบสัมบูรณ์เลยนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Nan ผู้บริหารการตลาด",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "อ่านหนังสือการตลาดมาเยอะมากค่ะ ส่วนใหญ่จำได้แต่ศัพท์ แต่เล่มนี้ต่างตรงที่มีหัวข้อ WHEN IT FAILS ทุกบท"
+      ],
+      [
+        "c",
+        "เพิ่งรู้ว่าที่ผ่านมาเอา Scarcity ไปใช้ผิดตลอด เพราะสินค้ายังไม่มี Desire ตั้งแต่แรก ของที่เหลือ 2 ชิ้นก็ยังเป็นของที่ไม่มีใครอยากได้อยู่ดี"
+      ],
+      [
+        "a",
+        "ส่วน WHEN IT FAILS นี่คือส่วนที่ผู้เขียนตั้งใจที่สุดเลยค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Pat เอเจนซี่",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ซื้อให้ทีม strategy ทั้งทีมครับ 4,990 ตอนแรกก็คิดหนัก"
+      ],
+      [
+        "c",
+        "แต่พอประชุมแล้วทุกคนพูดภาษาเดียวกันได้ว่าปัญหาอยู่ชั้นไหน มันประหยัดเวลาประชุมไปมหาศาลครับ ไม่ต้องเถียงกันด้วยความเห็นอีกแล้ว"
+      ],
+      [
+        "a",
+        "การมีภาษากลางในทีมนี่มีค่ามากจริงๆ ค่ะ ดีใจที่ได้ยินแบบนี้นะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ohm เจ้าของร้านอาหาร",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ผมไม่ได้ทำการตลาดออนไลน์เลยครับ ทำร้านอาหารอย่างเดียว กลัวว่าจะใช้ไม่ได้"
+      ],
+      [
+        "a",
+        "ทุกกลไกมีหัวข้อ TRANSFER TEST ที่ยกตัวอย่างข้ามธุรกิจไว้ให้ค่ะ ลองดูนะคะ"
+      ],
+      [
+        "c",
+        "ใช้ได้จริงครับ เอาเรื่องเมนูราคาสูงที่ไม่ได้ตั้งใจขายไปลอง เมนูหลักขายดีขึ้นชัดเจนโดยไม่ต้องขึ้นราคา",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ying ที่ปรึกษาธุรกิจ",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "สิ่งที่ชอบที่สุดคือเขาไม่แต่งตัวเลขค่ะ เคสไหนยืนยันไม่ได้เขาบอกตรงๆ ว่าเป็นตัวอย่างสมมติ"
+      ],
+      [
+        "c",
+        "อ่านหนังสือแนวนี้มาเยอะ ส่วนใหญ่ยัดตัวเลขให้ดูน่าเชื่อจนสุดท้ายเช็กไม่ได้สักอัน"
+      ],
+      [
+        "a",
+        "ผู้เขียนบอกว่าหนังสือแพงต้องน่าเชื่อถือกว่าหวือหวาค่ะ ขอบคุณที่สังเกตเห็นนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Beam Product Manager",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "เอากลไก 39 Time-to-Value ไปใช้กับ onboarding ครับ"
+      ],
+      [
+        "c",
+        "เมื่อก่อนให้ user ตั้งค่าครบก่อนถึงจะได้เห็นอะไร ตอนนี้ออกแบบให้เห็นผลลัพธ์เล็กๆ ใน 10 นาทีแรก อัตราคนที่กลับมาวันที่สองดีขึ้นแบบเห็นได้ชัดครับ"
+      ],
+      [
+        "a",
+        "ระยะทางถึงผลลัพธ์แรกคือส่วนลดที่ถูกหักออกจากคุณค่าโดยอัตโนมัติเลยค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Wut เจ้าของโรงงาน",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ผมอายุ 52 แล้วครับ ทำโรงงานมา 20 ปี ไม่เคยเรียนการตลาด"
+      ],
+      [
+        "c",
+        "อ่านแล้วเข้าใจหมดเลยครับ ภาษาไม่ยาก แต่เนื้อหาลึก ลูกชายที่เรียนบริหารมายังบอกว่าเล่มนี้ลึกกว่าที่เรียนในห้อง"
+      ],
+      [
+        "a",
+        "หลักของเล่มนี้คือเนื้อหาลึกได้ แต่ภาษาห้ามทำให้ความลึกกลายเป็นความยากค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Fai ฟรีแลนซ์ออกแบบ",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "หนูใช้กลไก 29 Define the Problem กับการเสนอราคาลูกค้าค่ะ"
+      ],
+      [
+        "c",
+        "แทนที่จะบอกราคาก่อน หนูช่วยลูกค้าตีค่าปัญหาเป็นตัวเลขก่อน ลูกค้าเลิกต่อราคาไปเลย แถมได้งานที่ scope ชัดกว่าเดิมมาก"
+      ],
+      [
+        "a",
+        "คนที่นิยามปัญหาได้ เป็นเจ้าของทางออกค่ะ 🙌",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Tee ทำ SaaS",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "ตอนแรกคิดว่าเป็นหนังสือรวมทริคอีกเล่มครับ"
+      ],
+      [
+        "c",
+        "แต่พอเจอ ENDGAME ท้ายแต่ละ Part ที่เอากลไก 6 ตัวมาประกอบกันเป็นระบบเดียว ถึงเข้าใจว่าทำไมเขาถึงเรียกว่าระบบคิด ไม่ใช่หนังสือสอนการตลาด"
+      ],
+      [
+        "a",
+        "ENDGAME คือส่วนที่คนอ่านชอบพูดถึงมากที่สุดเลยค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Mook คลินิกความงาม",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "คนไข้เข้ามาปรึกษาเยอะแต่ปิดไม่ได้ค่ะ เมื่อก่อนคิดว่าเพราะแพง"
+      ],
+      [
+        "a",
+        "ลองเปิด READ THIS WHEN 'คนสนใจ แต่ไม่ซื้อ' ดูนะคะ เขาแยกให้เป็น Desire / Belief / Risk / Friction ค่ะ"
+      ],
+      [
+        "c",
+        "ตรงเป๊ะเลยค่ะ ปัญหาเราคือ Risk ล้วนๆ พอเพิ่มการรับประกันผลกับตารางที่บอกว่าจะเกิดอะไรในแต่ละสัปดาห์ ตัวเลขเปลี่ยนทันที",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Golf เจ้าของร้านค้าส่ง",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ราคาสูงกว่าเล่มอื่นเยอะครับ ลังเลอยู่เป็นอาทิตย์"
+      ],
+      [
+        "c",
+        "ซื้อแล้วรู้สึกว่าถ้าเทียบกับงบโฆษณาที่เคยเทไปผิดจุดเดือนเดียว มันไม่ได้แพงเลยครับ ตอนนี้ก่อนจะเทงบผมเปิด DIAGNOSTIC ก่อนทุกครั้ง"
+      ],
+      [
+        "a",
+        "ระบบวินิจฉัย 10 ชั้นออกแบบมาเพื่อตอนนั้นเลยค่ะ 🙏",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Jib นักการตลาด B2B",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "ทำ B2B ค่ะ หนังสือการตลาดส่วนใหญ่พูดแต่ B2C จนอ่านแล้วเอามาใช้ไม่ได้"
+      ],
+      [
+        "c",
+        "เล่มนี้พูดถึงเรื่องคนตัดสินใจกับคนใช้ไม่ใช่คนเดียวกัน และเรื่องความเสี่ยงของคนที่ต้องเซ็นชื่อ ตรงกับงานจริงมากค่ะ"
+      ],
+      [
+        "a",
+        "ตรงนั้นคือจุดที่ดีล B2B ค้างบ่อยที่สุดเลยค่ะ ดีใจที่ตรงกับงานนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Art ครีเอทีฟ",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "กลไก 13 Relevance Before Creativity ทำผมเงียบไปพักนึงครับ"
+      ],
+      [
+        "c",
+        "ทำครีเอทีฟมา 8 ปี เพิ่งยอมรับว่าหลายงานที่ผมภูมิใจมันสวยแต่ไม่เกี่ยวกับคนดู ความเกี่ยวข้องเป็นประตู ความสร้างสรรค์เป็นตัวคูณ ประโยคนี้ติดหัวเลย"
+      ],
+      [
+        "a",
+        "ประโยคนั้นคนพูดถึงเยอะมากค่ะ 🙌",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Nink เจ้าของคาเฟ่",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ร้านอยู่ในซอย คนไม่ค่อยรู้จักค่ะ เมื่อก่อนคิดว่าต้องยิงแอดเพิ่ม"
+      ],
+      [
+        "c",
+        "อ่าน PART IV เรื่องความทรงจำแล้วเปลี่ยนวิธีคิดเลยค่ะ ปัญหาเราไม่ใช่คนไม่เห็น แต่คือเห็นแล้วนึกไม่ออกตอนอยากกินกาแฟ"
+      ],
+      [
+        "a",
+        "ถูกจำ กับ ถูกจำในสถานการณ์ เป็นคนละเรื่องกันเลยค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Pond หัวหน้าทีม Growth",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ผมใช้เป็นคู่มือ onboarding คนใหม่ในทีมครับ"
+      ],
+      [
+        "c",
+        "แทนที่จะให้เขาไปนั่งดูคอร์สยิงแอดอย่างเดียว ให้อ่าน PART I กับ PART X ก่อน แล้วคุยกัน คนใหม่เข้าใจงานเร็วขึ้นมากครับ"
+      ],
+      [
+        "a",
+        "ใช้เป็นคู่มือทีมนี่เป็นวิธีที่คุ้มที่สุดเลยค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Aim ขายของออนไลน์",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ตะกร้าทิ้งเยอะมากค่ะ ลองแก้ทุกอย่างแล้วไม่ดีขึ้น"
+      ],
+      [
+        "c",
+        "อ่านกลไก 57 Remove Friction แล้วไปนั่งไล่ทุกขั้นตอนหลังลูกค้ากดซื้อ เจอว่ามีช่องที่ต้องกรอกโดยไม่จำเป็นสามช่อง ตัดออกแล้วดีขึ้นทันทีค่ะ"
+      ],
+      [
+        "a",
+        "ถ้าคนตัดสินใจซื้อแล้ว หน้าที่เราคืออย่าสร้างเหตุผลใหม่ให้เขาเปลี่ยนใจค่ะ 🙌",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Chai ผู้รับเหมา",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ผมทำงานก่อสร้างครับ ไม่คิดว่าหนังสือการตลาดจะช่วยได้"
+      ],
+      [
+        "c",
+        "กลไก 03 เรื่องความแน่นอนเปลี่ยนวิธีทำงานผมเลยครับ เริ่มให้ตารางที่ระบุวันตรวจงานเป็นจุดๆ ลูกค้ายอมจ่ายแพงกว่าเจ้าอื่นเพราะไม่ต้องคอยโทรถาม"
+      ],
+      [
+        "a",
+        "ความแน่นอนคือสินค้า ไม่ใช่ของแถมค่ะ 🙏",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ice นักเรียน MBA",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "เรียน MBA อยู่ค่ะ ตอนแรกคิดว่าคงซ้ำกับที่เรียน"
+      ],
+      [
+        "c",
+        "ไม่ซ้ำเลยค่ะ ในห้องเรียนสอนกรอบ แต่เล่มนี้สอนว่ากรอบพวกนั้นทำงานผ่านกลไกอะไร และเมื่อไรมันพัง อาจารย์ยังยืมไปอ่านเลยค่ะ"
+      ],
+      [
+        "a",
+        "ดีใจมากค่ะ 🥹 ฝากทักทายอาจารย์ด้วยนะคะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Beer เอเจนซี่เล็ก",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ที่ชอบคือเขาไม่ขายด้วยกลลวงที่ตัวเองสอนครับ"
+      ],
+      [
+        "c",
+        "ในหน้าขายเขียนเลยว่าไม่มี countdown ไม่มีเหลือ 3 ที่สุดท้าย เพราะเล่มนี้อธิบายกลไกพวกนั้นให้ฟังอยู่แล้ว อ่านแล้วเชื่อถือขึ้นเยอะเลยครับ"
+      ],
+      [
+        "a",
+        "ผู้เขียนยืนยันเรื่องนี้หนักมากค่ะ 🙏",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Preaw แบรนด์เสื้อผ้า",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ของเราเหมือนคู่แข่งไปหมดค่ะ แข่งกันแค่ราคา"
+      ],
+      [
+        "a",
+        "ลองเปิด READ THIS WHEN 'สินค้าเหมือนคู่แข่ง' ดูนะคะ มีเส้นทางเฉพาะให้ค่ะ"
+      ],
+      [
+        "c",
+        "อ่านตามเส้นทางนั้น 8 บท แล้วกลับมาตั้งหมวดใหม่ให้ตัวเอง ตอนนี้ลูกค้าเลิกเทียบเรากับเจ้าถูกที่สุดแล้วค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Sun เจ้าของธุรกิจครอบครัว",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "อ่านช้ามากครับ วันละกลไกเดียว แต่คิดตามทุกคำถามท้ายบท"
+      ],
+      [
+        "c",
+        "ผ่านไปสองเดือน กลับมาดูสมุดที่จดคำตอบไว้ กลายเป็นแผนที่ธุรกิจตัวเองที่ละเอียดกว่าที่เคยมีเลยครับ"
+      ],
+      [
+        "a",
+        "นี่คือวิธีอ่านที่ผู้เขียนตั้งใจที่สุดเลยค่ะ 🙌",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ta ทำคอนเทนต์",
+    "g": "result",
+    "m": [
+      [
+        "c",
+        "ทำคอนเทนต์มาสามปี ยอดวิวดีแต่ขายไม่ออกค่ะ"
+      ],
+      [
+        "c",
+        "เล่มนี้ทำให้เห็นว่าความสนใจกับความทรงจำเป็นคนละกลไก และคนจำคอนเทนต์เราได้แต่จำแบรนด์ไม่ได้ ตอนนี้แก้ตรงจุดแล้วค่ะ"
+      ],
+      [
+        "a",
+        "ถูกมองเห็นไม่มีค่า ถ้าอีกหนึ่งสัปดาห์ไม่มีใครจำได้ว่าเคยเห็นค่ะ",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Ken ผู้บริหารระดับสูง",
+    "g": "value",
+    "m": [
+      [
+        "c",
+        "ผมซื้อหนังสือธุรกิจมาเยอะจนเลิกนับแล้วครับ ส่วนใหญ่อ่านครึ่งเล่มแล้ววาง"
+      ],
+      [
+        "c",
+        "เล่มนี้ผมใช้เป็นเครื่องมือในห้องประชุมจริง เปิดเฉพาะกลไกที่เกี่ยวกับวาระวันนั้น มันทำหน้าที่เป็นระบบวินิจฉัย ไม่ใช่หนังสือครับ"
+      ],
+      [
+        "a",
+        "โหมด WAR ROOM ออกแบบมาเพื่อแบบนั้นเลยค่ะ 🙏",
+        1
+      ]
+    ]
+  },
+  {
+    "n": "Nut สตาร์ทอัพ",
+    "g": "depth",
+    "m": [
+      [
+        "c",
+        "กลไก 71 The Platform Extinction Test คือบทที่ผมชอบที่สุดครับ"
+      ],
+      [
+        "c",
+        "เอามาถามกับทุกอย่างที่ทีมทำ ว่าถ้าพรุ่งนี้แพลตฟอร์มนี้หายไป อะไรของเราที่ยังเหลืออยู่ คำตอบทำให้เราเปลี่ยนแผนทั้งไตรมาสเลยครับ"
+      ],
+      [
+        "a",
+        "คำถามข้อนั้นคือหัวใจของทั้งเล่มเลยค่ะ 🙌",
+        1
+      ]
+    ]
+  }
+];
+
+  function rvAvatar(hueA, hueB, blur, size) {
+    return '<span class="rv-av" style="width:' + size + 'px;height:' + size + 'px;background:conic-gradient(from ' +
+      hueA + 'deg, hsl(' + hueA + ',55%,72%), hsl(' + hueB + ',50%,68%), hsl(' + ((hueA + 90) % 360) +
+      ',52%,74%), hsl(' + ((hueB + 180) % 360) + ',48%,70%));filter:blur(' + blur + 'px);"></span>';
+  }
+
+  function rvRenderOne(rv, hue) {
+    var html = '<div class="rv-phone">';
+    html += '<div class="rv-hd">' +
+      '<span class="rv-back">&#8249;</span>' +
+      '<span class="rv-hd-av" style="background:conic-gradient(from ' + hue[0] + 'deg, hsl(' + hue[0] +
+      ',55%,72%), hsl(' + hue[1] + ',50%,68%), hsl(' + ((hue[0] + 120) % 360) + ',52%,74%));"></span>' +
+      '<div class="rv-hd-mid">' +
+      '<div class="rv-hd-name">' + esc(rv.n) + '</div>' +
+      '<div class="rv-hd-sub">+ เพิ่มรายละเอียดและป้ายกำกับ</div>' +
+      '</div>' +
+      '<div class="rv-hd-ic"><span class="rv-baht">&#3647;</span><span class="rv-dots">&#8942;</span></div>' +
+      '</div>';
+    html += '<div class="rv-body">';
+    var msgs = rv.m, i = 0;
+    while (i < msgs.length) {
+      var side = msgs[i][0];
+      var group = [];
+      while (i < msgs.length && msgs[i][0] === side) { group.push(msgs[i]); i++; }
+      html += '<div class="rv-row ' + side + '">';
+      if (side === 'c') html += rvAvatar(hue[0], hue[1], 5, 28);
+      html += '<div class="rv-bubs ' + side + '">';
+      group.forEach(function (mm) {
+        var react = mm[2] ? '<span class="rv-react">&#10084;&#65039;</span>' : '';
+        html += '<div class="rv-bub ' + side + '">' + esc(mm[1]) + react + '</div>';
+      });
+      html += '</div></div>';
+    }
+    if (msgs.length && msgs[msgs.length - 1][0] === 'a') {
+      html += '<div class="rv-seen">' + rvAvatar(hue[0], hue[1], 3, 16) + '</div>';
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  var out = '';
+  for (var k = 0; k < REVIEWS.length; k++) {
+    var hue = [Math.floor(Math.random() * 360), Math.floor(Math.random() * 360)];
+    out += '<div class="cap" id="cap-' + (k + 1) + '" data-cat="' + (REVIEWS[k].g || '') + '">' +
+      rvRenderOne(REVIEWS[k], hue) + '</div>';
+  }
+  document.body.insertAdjacentHTML('beforeend', out);
+</script>
+</body>
+</html>

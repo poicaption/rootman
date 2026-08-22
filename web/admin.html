@@ -176,6 +176,7 @@
   .badge.v2 { background: rgba(196,149,106,.18); color: var(--accent); }
   .badge.v3 { background: rgba(27,94,67,.18); color: #1B5E43; }
   .badge.v4 { background: rgba(226,58,21,.16); color: #E23A15; }
+  .badge.v5 { background: rgba(180,134,58,.18); color: #B4863A; }
   .badge.vsidk { background: rgba(201,154,59,.18); color: #C99A3B; }
   .badge.ok { background: rgba(76,175,125,.15); color: var(--green); }
   .badge.gone { background: rgba(224,88,75,.15); color: var(--red); }
@@ -235,6 +236,7 @@
   .vol-opt.sel.v1 { border-color: var(--accent-2); background: rgba(106,169,196,.12); }
   .vol-opt.sel.v3 { border-color: var(--green); background: rgba(76,175,125,.12); }
   .vol-opt.sel.v4 { border-color: #E23A15; background: rgba(226,58,21,.12); }
+  .vol-opt.sel.v5 { border-color: #B4863A; background: rgba(180,134,58,.14); }
   .vol-opt.sel.vsidk { border-color: #C99A3B; background: rgba(201,154,59,.12); }
 
   .count-row { display: flex; align-items: center; gap: 10px; }
@@ -442,6 +444,7 @@
                     <div class="vol-opt v2 sel" data-vol="2"><div class="vn">Vol.2</div><div class="vt">The Invisible War</div></div>
                     <div class="vol-opt v3" data-vol="3"><div class="vn">Vol.3</div><div class="vt">รากแก้วธุรกิจ</div></div>
                     <div class="vol-opt v4" data-vol="4"><div class="vn">เสร่อ</div><div class="vt">เสร่อศาสตร์</div></div>
+                    <div class="vol-opt v5" data-vol="5"><div class="vn">BTP</div><div class="vt">Before the Platform</div></div>
                     <div class="vol-opt vsidk" data-vol="sidk"><div class="vn">Kit</div><div class="vt">Diagnostic Kit</div></div>
                   </div>
                 </div>
@@ -495,6 +498,7 @@
                 <button data-vol="2">Vol.2</button>
                 <button data-vol="3">Vol.3</button>
                 <button data-vol="4">เสร่อ</button>
+                <button data-vol="5">BTP</button>
                 <button data-vol="sidk">Kit</button>
               </div>
               <div class="seg" id="codeStatusSeg">
@@ -711,7 +715,8 @@
       { cls: 'blue', label: 'ลูกค้า (unique)', value: (s.unique_buyers || 0).toLocaleString(), sub: 'อีเมลไม่ซ้ำ' },
       { cls: 'amber', label: 'ซื้อวันนี้', value: (s.purchases_today || 0).toLocaleString(), sub: 'ตามวันที่ UTC' },
       { cls: '', label: 'Vol.1 / Vol.2 / Vol.3', value: (s.vol1_purchases || 0) + ' / ' + (s.vol2_purchases || 0) + ' / ' + (s.vol3_purchases || 0), sub: 'แยกตามเล่ม' },
-      { cls: '', label: 'เสร่อศาสตร์ (Audacity)', value: (s.vol4_purchases || 0).toLocaleString(), sub: 'เล่มใหม่ ฉีกแนว' }
+      { cls: '', label: 'เสร่อศาสตร์ (Audacity)', value: (s.vol4_purchases || 0).toLocaleString(), sub: 'เล่มใหม่ ฉีกแนว' },
+      { cls: '', label: 'Before the Platform', value: (s.vol5_purchases || 0).toLocaleString(), sub: 'เรือธง 72 กลไก' }
     ];
     el('cards').innerHTML = cards.map(function (c) {
       return '<div class="card ' + c.cls + '">' +
@@ -730,7 +735,7 @@
       '<th>เวลา</th><th>อีเมล</th><th>ชื่อ</th><th>เล่ม</th><th>รหัส</th><th>ยอด</th><th>ประเทศ</th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (p) {
-      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 5 ? '<span class="badge v5">BTP</span>' : p.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       html += '<tr data-email="' + esc(p.email || '') + '" data-code="' + esc(p.code || '') + '">' +
         '<td>' + esc(fmtTime(p.ts)) + '</td>' +
         '<td class="email">' + esc(p.email || '–') + '</td>' +
@@ -827,7 +832,7 @@
     // Purchases
     html += '<div class="dh">การซื้อ</div>';
     (data.purchases || []).forEach(function (p) {
-      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vol = p.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : p.vol === 5 ? '<span class="badge v5">BTP</span>' : p.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : p.vol === 3 ? '<span class="badge v3">Vol.3</span>' : p.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       var status = p.revoked ? '<span class="badge gone">ถูกยกเลิก</span>' : '<span class="badge ok">ใช้งานได้</span>';
       html += '<div class="purchase-row">' +
         '<div class="pr-top"><span class="mono">' + esc(p.code || '–') + '</span>' + vol + ' ' + status + '</div>' +
@@ -884,6 +889,7 @@
   function volBadge(p) {
     if (p === 'sidk') return '<span class="badge vsidk">Kit</span>';
     if (p === 'vol4') return '<span class="badge v4">เสร่อ</span>';
+    if (p === 'vol5') return '<span class="badge v5">BTP</span>';
     if (p === 'vol3') return '<span class="badge v3">Vol.3</span>';
     if (p === 'vol2') return '<span class="badge v2">Vol.2</span>';
     return '<span class="badge v1">Vol.1</span>';
@@ -1069,7 +1075,7 @@
 
   var STATUS_LABEL = { unused: 'ยังไม่ใช้', bound: 'ผูกเครื่อง', redeemed: 'เข้าบัญชี', revoked: 'ถูกยกเลิก' };
 
-  function volLabel(v) { return v === 'sidk' ? 'SIDK Kit' : v === 4 || v === '4' ? 'เสร่อศาสตร์' : 'Vol.' + v; }
+  function volLabel(v) { return v === 'sidk' ? 'SIDK Kit' : v === 5 || v === '5' ? 'Before the Platform' : v === 4 || v === '4' ? 'เสร่อศาสตร์' : 'Vol.' + v; }
 
   function copyText(text, okEl) {
     var done = function () {
@@ -1173,7 +1179,7 @@
       '<th>รหัส</th><th>เล่ม</th><th>สถานะ</th><th>ผูกกับ</th><th>โน้ต</th><th>สร้างเมื่อ</th><th></th>' +
       '</tr></thead><tbody>';
     rows.forEach(function (c) {
-      var vb = c.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : c.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : c.vol === 3 ? '<span class="badge v3">Vol.3</span>' : c.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
+      var vb = c.vol === 'sidk' ? '<span class="badge vsidk">Kit</span>' : c.vol === 5 ? '<span class="badge v5">BTP</span>' : c.vol === 4 ? '<span class="badge v4">เสร่อ</span>' : c.vol === 3 ? '<span class="badge v3">Vol.3</span>' : c.vol === 2 ? '<span class="badge v2">Vol.2</span>' : '<span class="badge v1">Vol.1</span>';
       var sb = '<span class="badge ' + c.status + '">' + (STATUS_LABEL[c.status] || c.status) + '</span>';
       var boundTo = c.claimed_by ? '@' + esc(c.claimed_by)
         : (c.device_count ? c.device_count + ' เครื่อง' : '<span style="color:var(--muted)">–</span>');

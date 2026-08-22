@@ -574,6 +574,9 @@ src="https://www.facebook.com/tr?id=1049030470871554&ev=PageView&noscript=1"
     vol4: { name: 'เสร่อศาสตร์', en: 'The Audacity Advantage', tag: 'AUDACITY', cls: 'v3', link: '/seror', cover: 'images/book-seror.png',
             desc: '15 บท ศาสตร์แห่งการกล้า เปลี่ยนคนเงียบให้กล้าเข้าไปอยู่ในพื้นที่ของโอกาส อย่างมีชั้นเชิง พร้อมระบบฝึก 30 วัน',
             chips: ['15 บท', 'ศาสตร์แห่งการกล้า', 'ฉีกแนว'], free: false, buy: '/sale-seror', cta: 'ดูรายละเอียด เสร่อศาสตร์ →', badge: 'เล่มใหม่' },
+    vol5: { name: 'BEFORE THE PLATFORM', en: '72 Timeless Marketing Mechanisms', tag: 'FLAGSHIP', cls: 'v2', link: '/before', cover: 'images/book-btp.png',
+            desc: '72 กลไกการตลาดที่เกิดก่อนทุกแพลตฟอร์ม 12 Parts + 12 ENDGAME พร้อมระบบวินิจฉัยที่ใช้ในห้องประชุมได้จริง',
+            chips: ['72 กลไก', '12 ENDGAME', 'Flagship'], free: false, buy: '/sale-before', cta: 'ดูรายละเอียด BEFORE THE PLATFORM →', badge: 'เรือธง' },
     sidk: { name: 'Side Income Diagnostic Kit', en: 'A Rootman Field Kit', tag: 'FIELD KIT', cls: 'v1', link: '/files/side-income-diagnostic-kit.pdf', cover: 'images/book-SIDK.png', download: true,
             desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ บันไดขั้นแรกของ The One Root Series',
             chips: ['PDF 51 หน้า', 'Workbook', 'Lifetime'], free: false, buy: '/sale-sidk', cta: 'ดูรายละเอียด Kit →', badge: 'PDF Workbook' }
@@ -756,7 +759,7 @@ src="https://www.facebook.com/tr?id=1049030470871554&ev=PageView&noscript=1"
     (data.entitlements || []).forEach(function (e) { owned[e.product] = true; });
     var books = ['vol1', 'vol2', 'vol3'];
     var bookMissing = books.filter(function (k) { return !owned[k]; });
-    var order = books.concat(['vol4', 'sidk']);
+    var order = books.concat(['vol5', 'vol4', 'sidk']);
     var missing = order.filter(function (k) { return !owned[k]; });
     var grid = el('storeGrid'); grid.innerHTML = '';
     if (!missing.length) {

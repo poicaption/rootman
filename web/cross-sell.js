@@ -20,7 +20,7 @@
 
   var script = document.currentScript;
   var CURRENT = (script && script.getAttribute('data-current')) || '';
-  if (!/^(vol[123]|seror)$/.test(CURRENT)) return;
+  if (!/^(vol[123]|seror|btp)$/.test(CURRENT)) return;
 
   // ── Book catalogue ──────────────────────────────────────────────────
   var BOOKS = {
@@ -67,15 +67,27 @@
       endBody: 'เสร่อศาสตร์ โลกไม่ได้ให้รางวัลกับคนที่เก่งที่สุด แต่ให้กับคนที่กล้าเสนอตัว 15 บท เปลี่ยนคนเงียบให้เป็นคนที่โลกมองข้ามไม่ได้ พร้อมระบบฝึก 30 วัน',
       endCta: 'ดูเสร่อศาสตร์ →',
       meta: '15 บท + ภาคผนวก'
+    },
+    btp: {
+      num: 'V', glyph: '▣', product: 'vol5', accent: '#B4863A', accent2: '#1E3A5F',
+      tag: 'เรือธง · 72 กลไก', title: 'BEFORE THE PLATFORM',
+      chipCta: 'กลไกที่ไม่ขึ้นกับแพลตฟอร์ม',
+      url: '/sale-before', preview: '/before',
+      kicker: 'หนังสือเรือธงของ ROOTMAN',
+      endTitle: 'เครื่องมือเปลี่ยนเร็ว <em>แต่มนุษย์เปลี่ยนช้ากว่าเสมอ</em>',
+      endBody: 'BEFORE THE PLATFORM 72 กลไกการตลาดที่เกิดก่อนทุกแพลตฟอร์ม และจะยังทำงานหลังแพลตฟอร์มเหล่านั้นหายไป พร้อม 12 ENDGAME และระบบวินิจฉัยที่ใช้ในห้องประชุมได้จริง',
+      endCta: 'ดู BEFORE THE PLATFORM →',
+      meta: '72 กลไก + 12 ENDGAME'
     }
   };
 
   // Complete-the-series order: next volume first, then the other.
   var ORDER = {
-    vol1: ['vol2', 'vol3', 'seror'],
-    vol2: ['vol3', 'vol1', 'seror'],
-    vol3: ['vol1', 'vol2', 'seror'],
-    seror: ['vol1', 'vol3', 'vol2']
+    vol1: ['vol2', 'vol3', 'btp', 'seror'],
+    vol2: ['vol3', 'vol1', 'btp', 'seror'],
+    vol3: ['btp', 'vol1', 'vol2', 'seror'],
+    seror: ['vol1', 'vol3', 'btp', 'vol2'],
+    btp: ['vol3', 'vol1', 'vol2', 'seror']
   };
 
   var SHOW_DELAY_MS = 25000; // appear ~25s after the reader is unlocked

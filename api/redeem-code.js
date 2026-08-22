@@ -57,7 +57,7 @@ function volId(rec) {
   const raw = rec && rec.vol;
   if (raw === 'sidk' || raw === 'kit') return 'sidk';
   const n = parseInt(raw, 10);
-  return n >= 1 && n <= 4 ? `vol${n}` : 'vol1';
+  return n >= 1 && n <= 5 ? `vol${n}` : 'vol1';
 }
 
 export default async function handler(req) {
