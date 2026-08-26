@@ -37,7 +37,7 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '1049030470871554');
     fbq('track', 'PageView');
-    fbq('track', 'ViewContent', {content_name: 'sale-general', content_category: 'landing-page'});
+    fbq('track', 'ViewContent', { content_ids: ['oneroot-book'], content_name: 'รากแก้วการตลาด (The One Root of Marketing)', content_type: 'product', value: 1390, currency: 'THB' });
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1049030470871554&ev=PageView&noscript=1"/></noscript>
 
@@ -1552,5 +1552,15 @@
     }
     </script>
 <script defer src="/guard.js?v=1"></script>
+<script>
+/* FB Pixel: checkout intent on any Stripe link */
+(function () {
+    document.querySelectorAll('a[href*="buy.stripe.com"]').forEach(function (a) {
+        a.addEventListener('click', function () {
+            if (window.fbq) fbq('track', 'InitiateCheckout', { content_ids: ['oneroot-book'], content_name: 'รากแก้วการตลาด (The One Root of Marketing)', content_type: 'product', value: 1390, currency: 'THB', num_items: 1 });
+        });
+    });
+})();
+</script>
 </body>
 </html>

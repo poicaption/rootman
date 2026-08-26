@@ -209,11 +209,15 @@ src="https://www.facebook.com/tr?id=1049030470871554&ev=PageView&noscript=1"/></
     .then(function (data) {
       if (data.code) {
         showCode(data.code);
-        if (typeof fbq === 'function') {
+        var pxKey = 'fbpx_purchase_' + sessionId;
+        var pxDone = false;
+        try { pxDone = window.localStorage.getItem(pxKey) === '1'; } catch (e) {}
+        if (typeof fbq === 'function' && !pxDone) {
           if (data.customer_email) { fbq('init', '1049030470871554', { em: data.customer_email }); }
           var pxVal = (data.amount_total != null) ? data.amount_total / 100 : 690.00;
           var pxCur = data.currency ? String(data.currency).toUpperCase() : 'THB';
-          fbq('track', 'Purchase', { value: pxVal, currency: pxCur, content_name: 'เสร่อศาสตร์ (The Audacity Advantage)', content_type: 'product', content_ids: ['oneroot-book-seror'], num_items: 1 });
+          fbq('track', 'Purchase', { value: pxVal, currency: pxCur, content_name: 'เสร่อศาสตร์ (The Audacity Advantage)', content_type: 'product', content_ids: ['oneroot-book-seror'], num_items: 1 }, { eventID: 'stripe_' + sessionId });
+          try { window.localStorage.setItem(pxKey, '1'); } catch (e) {}
         }
       } else { showError(data.message || 'ไม่สามารถตรวจสอบการชำระเงินได้'); }
     })
