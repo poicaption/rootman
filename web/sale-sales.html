@@ -7,9 +7,9 @@
     <link rel="apple-touch-icon" href="/images/fav-icon.png">
     <link rel="manifest" href="/site.webmanifest">
     <title>รากแก้วการตลาด อาวุธลับของนักขายที่ปิดทุกดีล</title>
-    <meta name="description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย เขาแค่อ่านคนออก เจาะลึกจิตวิทยาที่เปลี่ยนการขายของคุณตลอดชีวิต">
+    <meta name="description" content="เมื่อทุกคนมี AI ช่วยขาย ความได้เปรียบไม่ใช่ใครพูดได้ดีกว่า แต่คือใครอ่านลูกค้าได้ลึกกว่า จิตวิทยาเบื้องหลังการตัดสินใจซื้อ สำหรับนักขายยุค AI">
     <meta property="og:title" content="รากแก้วการตลาด อาวุธลับของนักขายที่ปิดทุกดีล">
-    <meta property="og:description" content="นักขายที่ปิดได้ทุกดีลไม่ได้เก่งเรื่องขาย เขาแค่อ่านคนออก">
+    <meta property="og:description" content="เมื่อทุกคนมี AI ช่วยขาย ความได้เปรียบไม่ใช่ใครพูดได้ดีกว่า แต่คือใครอ่านลูกค้าได้ลึกกว่า">
     <meta property="og:type" content="book">
     <link rel="canonical" href="https://rootmanknows.com/sales">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -3290,6 +3290,74 @@
             .fb-text { font-size: 0.86rem; }
             .fb-likes { display: none; }
         }
+
+        /* ── The Great Compression (AI era) ── */
+        .cmp-table {
+            max-width: 580px; margin: 1.5rem auto 0.2rem;
+            background: #fff; border: 1px solid var(--border); border-radius: 14px;
+            overflow: hidden; box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+        }
+        .cmp-r {
+            display: grid; grid-template-columns: 1fr 86px 86px;
+            align-items: center; gap: 0.4rem;
+            padding: 0.6rem 1.05rem; border-bottom: 1px solid var(--border);
+        }
+        .cmp-r:last-child { border-bottom: none; }
+        .cmp-head { background: var(--bg-alt); }
+        .cmp-head span {
+            font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.08em;
+            color: var(--text-sec); text-align: center;
+        }
+        .cmp-head span:first-child { text-align: left; }
+        .cmp-skill { font-size: 0.86rem; line-height: 1.55; }
+        .cmp-b, .cmp-a { font-family: 'Prompt', sans-serif; font-weight: 700; font-size: 0.94rem; text-align: center; }
+        .cmp-b { color: var(--text-light); }
+        .cmp-a { color: var(--accent); }
+        .cmp-note { text-align: center; font-size: 0.82rem; color: var(--text-sec); margin-top: 0.9rem; }
+
+        .formula {
+            max-width: 580px; margin: 1.7rem auto 0;
+            background: var(--bg-dark); border-radius: 16px;
+            padding: 1.5rem 1.4rem; text-align: center;
+        }
+        .formula-line { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.98rem; line-height: 2.1; color: #EDE7DF; }
+        .formula-line b { color: var(--gold); }
+        .formula-eq { display: block; margin-top: 0.5rem; padding-top: 0.7rem; border-top: 1px solid rgba(255,255,255,0.12); color: #fff; }
+        .formula-sub { font-size: 0.8rem; color: #A29A90; margin-top: 0.7rem; line-height: 1.8; }
+
+        /* ── 5 layers of buying motive ── */
+        .layers-head {
+            font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 1rem;
+            text-align: center; margin: 2.4rem 0 0.2rem;
+        }
+        .layers-sub { text-align: center; font-size: 0.84rem; color: var(--text-sec); margin-bottom: 0.6rem; }
+        .layers { max-width: 600px; margin: 0.8rem auto 0; }
+        .layer { display: flex; gap: 0.8rem; padding: 0.72rem 0; border-bottom: 1px dashed var(--border); }
+        .layer:last-child { border-bottom: none; }
+        .layer-n {
+            flex: 0 0 26px; height: 26px; border-radius: 50%;
+            background: var(--bg-alt); color: var(--text-sec);
+            font-family: var(--mono); font-size: 0.7rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .layer-deep .layer-n { background: var(--accent); color: #fff; }
+        .layer-t { font-family: 'Prompt', sans-serif; font-weight: 600; font-size: 0.9rem; line-height: 1.6; }
+        .layer-deep .layer-t { color: var(--accent); }
+        .layer-e { font-size: 0.86rem; color: var(--text-sec); font-style: italic; line-height: 1.7; }
+        .layers-note {
+            max-width: 600px; margin: 1rem auto 0; text-align: center;
+            font-size: 0.84rem; color: var(--text-sec); line-height: 1.85;
+        }
+
+        @media (max-width: 640px) {
+            .cmp-r { grid-template-columns: 1fr 58px 58px; padding: 0.55rem 0.75rem; }
+            .cmp-skill { font-size: 0.78rem; }
+            .cmp-b, .cmp-a { font-size: 0.84rem; }
+            .cmp-head span { font-size: 0.56rem; }
+            .formula-line { font-size: 0.88rem; }
+            .layer-t { font-size: 0.85rem; }
+            .layer-e { font-size: 0.8rem; }
+        }
     </style>
 </head>
 <body>
@@ -3310,10 +3378,10 @@
                 <img class="hero-book-img" src="images/book-vol1.png" alt="รากแก้วการตลาด One Root of Marketing" width="190" height="190" loading="eager">
                 <span class="hero-book-tag"><i class="fa-solid fa-bookmark"></i> เล่ม 1 · The One Root Series</span>
             </div>
-            <div class="hero-eyebrow">The One Root of Marketing</div>
+            <div class="hero-eyebrow">The One Root of Marketing &middot; ฉบับนักขายยุค AI</div>
             <h1>นักขายที่ปิดดีลได้<br>ไม่ได้พูดเก่งกว่า <br><em>เขาอ่านคนออกกว่า</em></h1>
-            <p class="hero-sub">หนังสือจิตวิทยาการขายสำหรับคนที่อยากเข้าใจว่า ทำไมลูกค้าถึง &ldquo;ขอคิดก่อน&rdquo; ทำไมคำว่า &ldquo;แพง&rdquo; ไม่ได้แปลว่าไม่มีเงิน และทำไมบางดีลหลุด ทั้งที่คุณพูดถูกทุกอย่าง</p>
-            <p class="hero-hook">&ldquo;คนไม่ได้ซื้อเพราะเหตุผล เขาซื้อด้วยสัญชาตญาณ แล้วค่อยหาเหตุผลมารองรับทีหลัง&rdquo; พออ่านจบเล่มนี้ คุณจะจับ &lsquo;สัญญาณซื้อ&rsquo; กับ &lsquo;สัญญาณลังเล&rsquo; ของลูกค้าได้ตั้งแต่ก่อนปิดดีล แล้วรู้ทันทีว่าควรพูดอะไรต่อ</p>
+            <p class="hero-sub">เมื่อทุกคนมี AI ช่วยร่างข้อความ ตอบแชท และทำ Proposal ได้ในไม่กี่วินาที ความได้เปรียบจะไม่ใช่ <strong>ใครพูดได้ดีกว่า</strong> แต่คือ <strong>ใครอ่านลูกค้าได้ลึกกว่า</strong></p>
+            <p class="hero-hook">&ldquo;คนไม่ได้ซื้อเพราะเหตุผล เขาซื้อด้วยสัญชาตญาณ แล้วค่อยหาเหตุผลมารองรับทีหลัง&rdquo; AI ช่วยเรียบเรียงคำพูดแทนคุณได้ แต่ยังบอกไม่ได้ว่าลูกค้าที่นั่งอยู่ตรงหน้ากำลังติดอะไรอยู่ พออ่านจบเล่มนี้ คุณจะจับ &lsquo;สัญญาณซื้อ&rsquo; กับ &lsquo;สัญญาณลังเล&rsquo; ของลูกค้าได้ตั้งแต่ก่อนปิดดีล แล้วรู้ทันทีว่าควรพูดอะไรต่อ</p>
             <p class="hero-outcome">อ่านออกว่าแต่ละคำปฏิเสธ <strong>&ldquo;ขอคิดก่อน&rdquo; &bull; &ldquo;แพงไป&rdquo; &bull; &ldquo;ขอดูก่อน&rdquo;</strong> ซ่อนความกลัวแบบไหน และควรตอบยังไง <strong>โดยไม่ต้องลดราคา</strong></p>
             <div class="hero-clarity">
                 <span><i class="fa-solid fa-book-open"></i>Web Book 12 บท + 5 บทพิเศษ</span>
@@ -3343,7 +3411,7 @@
             <div class="reframe-tag">ก่อนอื่น เผื่อคุณกำลังสงสัย</div>
             <p>ถึงชื่อจะเป็น &ldquo;รากแก้วการตลาด&rdquo; แต่เล่มนี้ไม่ได้เขียนให้แค่นักการตลาด</p>
             <p class="reframe-punch">เพราะทุกการขาย ทุกการเสนอราคา ทุกการ Follow up<br>มีรากเดียวกันคือ <em>&ldquo;สมองของคนที่กำลังตัดสินใจซื้อ&rdquo;</em></p>
-            <p class="reframe-sub">คุณขายแบบตัวต่อตัว แต่สมองลูกค้าทำงานเหมือนกัน ไม่ว่าเขาจะเจอโฆษณา หรือเจอคุณนั่งอยู่ตรงหน้า หลักการเดียวกัน ใช้ได้หมด</p>
+            <p class="reframe-sub">คุณขายแบบตัวต่อตัว แต่สมองลูกค้าทำงานเหมือนกัน ไม่ว่าเขาจะเจอโฆษณา เจอข้อความที่ AI ช่วยร่าง หรือเจอคุณนั่งอยู่ตรงหน้า หลักการเดียวกัน ใช้ได้หมด และยิ่งในวันที่ AI ทำให้ทุกคน &ldquo;พูดให้ดูดี&rdquo; ได้ใกล้เคียงกัน รากตรงนี้ยิ่งเป็นสิ่งเดียวที่ทำให้ต่าง</p>
         </div>
     </div>
 
@@ -3425,13 +3493,72 @@
 
 
     <!-- ═══════════════════════════════════════════════
+         THE GREAT COMPRESSION what AI changed
+         ═══════════════════════════════════════════════ -->
+    <div class="sec rv">
+        <div class="sec-label">สิ่งที่เปลี่ยนไปในปีนี้</div>
+        <h2 class="sec-title">และตอนนี้ คู่แข่งของคุณ<br><em>ก็มี AI ตัวเดียวกับคุณ</em></h2>
+
+        <p>AI ไม่ได้ทำให้การขายซับซ้อนขึ้นอย่างที่หลายคนกลัว มันกำลังทำสิ่งที่ตรงข้าม คือทำให้สิ่งที่เคยเป็น &ldquo;ข้อได้เปรียบ&rdquo; กลายเป็น &ldquo;ของพื้นฐาน&rdquo;</p>
+
+        <p>เมื่อก่อน คนที่เขียนข้อความหาลูกค้าเก่งกว่าได้เปรียบ คนที่ทำ Proposal สวยกว่าได้เปรียบ คนที่หาข้อมูลลูกค้าได้ไวกว่าได้เปรียบ</p>
+
+        <p>วันนี้ช่องว่างเหล่านั้นกำลังแคบลงเรื่อย ๆ</p>
+
+        <div class="cmp-table">
+            <div class="cmp-r cmp-head">
+                <span>ทักษะที่เคยแยกคนเก่งออกจากคนทั่วไป</span>
+                <span>ก่อนมี AI</span>
+                <span>วันนี้</span>
+            </div>
+            <div class="cmp-r"><span class="cmp-skill">เขียนข้อความเปิดการขาย</span><span class="cmp-b">5 / 10</span><span class="cmp-a">8 / 10</span></div>
+            <div class="cmp-r"><span class="cmp-skill">ทำ Proposal ให้ดูน่าเชื่อถือ</span><span class="cmp-b">4 / 10</span><span class="cmp-a">8 / 10</span></div>
+            <div class="cmp-r"><span class="cmp-skill">หาข้อมูลลูกค้า / คู่แข่ง</span><span class="cmp-b">5 / 10</span><span class="cmp-a">9 / 10</span></div>
+            <div class="cmp-r"><span class="cmp-skill">ร่าง Follow up 20 เวอร์ชัน</span><span class="cmp-b">3 / 10</span><span class="cmp-a">9 / 10</span></div>
+            <div class="cmp-r"><span class="cmp-skill">สรุปบทสนทนา ทำเอกสารตามหลังดีล</span><span class="cmp-b">5 / 10</span><span class="cmp-a">9 / 10</span></div>
+        </div>
+        <p class="cmp-note">เรียกปรากฏการณ์นี้ว่า <strong style="color: var(--text);">The Great Compression</strong><br>AI กำลังบีบความต่างของ &ldquo;ฝีมือการผลิตคำพูด&rdquo; ให้เข้าใกล้กัน</p>
+
+        <div class="pull-quote">
+            AI กำลังทำให้ Execution กลายเป็น Commodity สิ่งที่เคยเป็นความได้เปรียบ กำลังกลายเป็นของที่ทุกคนมี
+        </div>
+
+        <p>แต่ตรงนี้คือจุดที่คนส่วนใหญ่มองข้าม</p>
+
+        <p>AI สร้าง Follow up ให้คุณได้ 50 เวอร์ชันใน 10 วินาที แต่ถ้าคุณตั้งต้นผิดว่า &ldquo;ลูกค้าคนนี้ลังเลเพราะราคา&rdquo; ทั้งที่จริง ๆ เขากลัวว่าจะตัดสินใจผิด</p>
+
+        <div class="gold-box">
+            <p>มันก็แค่ช่วยให้คุณสร้าง<strong>ข้อความที่ผิดทาง 50 อันได้เร็วขึ้น</strong><br>เร็วขึ้น ไม่เท่ากับ ตรงขึ้น</p>
+        </div>
+
+        <p style="margin-top: 1.5rem;">เพราะฉะนั้นความได้เปรียบกำลังเคลื่อนออกจาก &ldquo;กลางสายพาน&rdquo; คือการผลิตคำพูด และย้อนกลับไปอยู่ที่<strong>ต้นน้ำ</strong> (อ่านลูกค้าออก ตั้งข้อเสนอเป็น วางจุดยืนถูก) กับ<strong>ปลายน้ำ</strong> (ความเชื่อใจ ความสัมพันธ์ การบอกต่อ)</p>
+
+        <p>และนี่ไม่ใช่เรื่อง &ldquo;มนุษย์สู้ AI&rdquo; ตรงกันข้ามเลย</p>
+
+        <div class="formula">
+            <p class="formula-line">
+                <b>Human Insight</b> &mdash; รู้ว่าลูกค้าคนนี้กลัวอะไร<br>
+                <b>Human Judgment</b> &mdash; รู้ว่าจังหวะนี้ควรพูดอะไร<br>
+                <b>AI Execution</b> &mdash; ผลิตออกมาให้เร็วและดี
+                <span class="formula-eq">= นักขายที่คู่แข่งตามไม่ทัน</span>
+            </p>
+            <p class="formula-sub">AI ยิ่งเก่งขึ้นเท่าไหร่ สองข้อแรกยิ่งมีราคามากขึ้นเท่านั้น<br>เพราะมันคือสิ่งเดียวที่ยังลอกกันไม่ได้</p>
+        </div>
+
+        <p style="margin-top: 1.6rem; font-family: 'Prompt', sans-serif; font-weight: 600; color: var(--accent); font-size: 1.02rem; text-align: center;">AI ทำให้ของซับซ้อนราคาถูกลง<br>จนของพื้นฐานกลับมามีราคาแพงอีกครั้ง</p>
+    </div>
+
+
+    <!-- ═══════════════════════════════════════════════
          BIG IDEA
          ═══════════════════════════════════════════════ -->
     <div class="bigidea rv">
         <div class="bigidea-inner">
-            <div class="bigidea-label">แก่นของเล่มนี้</div>
+            <div class="bigidea-label">แก่นของเล่มนี้ &middot; Human Buying Truth</div>
             <p class="bigidea-quote">ลูกค้าไม่ได้ซื้อเพราะคุณพูดครบ<br><em>เขาซื้อเมื่อความกลัวในหัวเขาถูกปลดออก</em></p>
             <p>การขายส่วนใหญ่พยายามเพิ่มคำพูด เพิ่ม Script เพิ่มเทคนิคปิดการขาย แต่สิ่งที่เกิดขึ้นจริงในหัวลูกค้ามักไม่ใช่เหตุผลตรง ๆ</p>
+            <p>AI รู้ทฤษฎีเรื่องมนุษย์เยอะมาก ทั้ง Social Proof, Scarcity, Loss Aversion, Status, Identity มันตอบได้ทันทีว่า &ldquo;คนทั่วไปซื้อของแพงเพราะสถานะ&rdquo;</p>
+            <p>แต่สิ่งที่มันยังตอบแทนคุณไม่ได้คือ <strong>ลูกค้าที่นั่งอยู่ตรงหน้าคุณ ในวันนี้ ภายใต้สถานการณ์ของเขา กำลังพยายามพิสูจน์อะไรกับตัวเอง</strong></p>
             <p>เขาไม่ได้ลังเลเพราะไม่เข้าใจเสมอไป เขาอาจลังเลเพราะ:</p>
             <p class="fear-list">กลัวตัดสินใจผิด<br>กลัวเสียเงิน<br>กลัวดูโง่<br>กลัวโดนขาย<br>หรือยังไม่รู้สึกว่า &ldquo;นี่คือทางเลือกที่ปลอดภัยพอ&rdquo;</p>
             <p><strong>One Root Marketing</strong> ไม่ได้สอนให้คุณพูดมากขึ้น แต่สอนให้คุณ<mark class="hl">อ่านให้ขาดว่า ลูกค้าติดอยู่ตรงไหนก่อนจะซื้อ</mark></p>
@@ -3445,7 +3572,7 @@
     <div class="sec rv">
         <div class="sec-label">ลองถอดรหัสดู</div>
         <h2 class="sec-title">สิ่งที่ลูกค้า &ldquo;พูด&rdquo;<br>ไม่เคยเป็น<em>สิ่งที่ลูกค้ากลัวจริง ๆ</em></h2>
-        <p style="margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--text-sec);">นักขายทั่วไปตอบสิ่งที่ลูกค้า &ldquo;พูด&rdquo; คนที่ปิดดีลได้ตอบสิ่งที่ลูกค้า &ldquo;กลัว&rdquo; นี่คือตัวอย่างการถอดรหัสที่คุณจะทำได้เองหลังอ่านจบ</p>
+        <p style="margin-bottom: 0.4rem; font-size: 0.92rem; color: var(--text-sec);">นักขายทั่วไปตอบสิ่งที่ลูกค้า &ldquo;พูด&rdquo; คนที่ปิดดีลได้ตอบสิ่งที่ลูกค้า &ldquo;กลัว&rdquo; และถ้าคุณป้อนให้ AI แต่ &ldquo;คำพูด&rdquo; มันก็จะช่วยคุณตอบผิดจุดได้อย่างสวยงาม นี่คือตัวอย่างการถอดรหัสที่คุณจะทำได้เองหลังอ่านจบ</p>
 
         <div class="decode">
             <div class="decode-row rv rv-s1">
@@ -3480,6 +3607,34 @@
             </div>
         </div>
         <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 1.2rem;">พอคุณอ่านคำปฏิเสธออกว่า &ldquo;กลัวอะไร&rdquo; คุณจะเลิกเดา แล้วเริ่ม<strong style="color: var(--text);">ตอบให้ตรงจุดที่เขาติด</strong></p>
+
+        <h3 class="layers-head">5 ชั้นของคำว่า &ldquo;ลูกค้าต้องการอะไร&rdquo;</h3>
+        <p class="layers-sub">ตัวอย่าง: ลูกค้าบอกว่า &ldquo;ขอดูตัวที่ถูกกว่านี้หน่อย&rdquo;</p>
+
+        <div class="layers">
+            <div class="layer">
+                <span class="layer-n">1</span>
+                <div><div class="layer-t">สิ่งที่เขาบอกว่าอยากได้</div><div class="layer-e">&ldquo;ขอรุ่นที่ถูกกว่านี้&rdquo;</div></div>
+            </div>
+            <div class="layer">
+                <span class="layer-n">2</span>
+                <div><div class="layer-t">ผลลัพธ์จริงที่ต้องการ</div><div class="layer-e">&ldquo;อยากให้งบไม่บานเกินที่ขอไว้&rdquo;</div></div>
+            </div>
+            <div class="layer">
+                <span class="layer-n">3</span>
+                <div><div class="layer-t">ความรู้สึกที่ต้องการ</div><div class="layer-e">&ldquo;อยากรู้สึกว่าการตัดสินใจนี้ปลอดภัย&rdquo;</div></div>
+            </div>
+            <div class="layer layer-deep">
+                <span class="layer-n">4</span>
+                <div><div class="layer-t">ตัวตนที่อยากเป็น หรือกลัวว่าตัวเองเป็น</div><div class="layer-e">&ldquo;อยากเป็นคนที่เลือกไม่พลาด ไม่ใช่คนที่โดนหลอก&rdquo;</div></div>
+            </div>
+            <div class="layer layer-deep">
+                <span class="layer-n">5</span>
+                <div><div class="layer-t">แรงกระตุ้นที่ทำให้ต้องตัดสินใจ &ldquo;วันนี้&rdquo;</div><div class="layer-e">&ldquo;สิ้นเดือนนี้ต้องเข้ารายงานผู้ใหญ่&rdquo;</div></div>
+            </div>
+        </div>
+
+        <p class="layers-note">นักขายส่วนใหญ่หยุดอยู่ที่ชั้น 1 &middot; AI ที่ถูกสั่งดี ๆ ช่วยเดาชั้น 2&ndash;3 ให้ได้<br><strong style="color: var(--text);">แต่ดีลส่วนใหญ่ตัดสินกันที่ชั้น 4 และ 5</strong> ซึ่งคือคำตอบว่าทำไมคนเดิม ของเดิม ราคาเท่าเดิม เมื่อวานไม่ซื้อ แต่วันนี้กลับซื้อ</p>
     </div>
 
 
@@ -3606,8 +3761,10 @@
         <p style="margin-top: 1.5rem;"><strong>Sales Training สอนให้คุณ &ldquo;ทำอะไร&rdquo;</strong> แต่ไม่เคยสอนว่า<em>ทำไมมันถึงได้ผล</em></p>
         <p>เมื่อคุณเข้าใจ &ldquo;ทำไม&rdquo; คุณจะหยุดท่อง Script แล้วเริ่ม<strong>อ่านสถานการณ์ได้เอง</strong></p>
 
+        <p style="margin-top: 1.2rem;">ทุกวันนี้ AI เขียน Script ให้คุณได้ดีกว่าคอร์สอบรมหลายที่ด้วยซ้ำ แต่สิ่งที่มันยังทำแทนคุณไม่ได้ คือการอ่านสีหน้าตรงหน้า อ่านจังหวะที่ลูกค้าเงียบไปสองวินาที และอ่านคำถามที่เขาถามซ้ำเป็นรอบที่สาม <strong>สัญญาณเหล่านี้ไม่ได้อยู่ใน Prompt</strong> แต่อยู่ตรงหน้าคุณ</p>
+
         <div class="gold-box">
-            <p>เทคนิคการขาย 100 ข้อ สู้ไม่ได้กับ<strong>ความเข้าใจสมองมนุษย์ 1 เรื่อง</strong><br>เพราะเทคนิคหมดอายุ แต่ธรรมชาติของมนุษย์ไม่เคยเปลี่ยนมา 200,000 ปี</p>
+            <p>เทคนิคการขาย 100 ข้อ สู้ไม่ได้กับ<strong>ความเข้าใจสมองมนุษย์ 1 เรื่อง</strong><br>เพราะเทคนิคหมดอายุ เครื่องมือเปลี่ยนทุกปี แต่ธรรมชาติของมนุษย์ไม่เคยเปลี่ยนมา 200,000 ปี</p>
         </div>
     </div>
 
@@ -3619,11 +3776,11 @@
         <div class="sec-label">เปรียบเทียบ</div>
         <h2 class="sec-title">&ldquo;ขายตาม Script&rdquo; vs<br><em>&ldquo;ขายเพราะอ่านคนออก&rdquo;</em></h2>
 
-        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองแนวทางนี้ใช้พลังงานเท่ากัน แต่ผลลัพธ์ต่างกันอย่างสิ้นเชิง</p>
+        <p style="margin-bottom: 2rem; font-size: 0.92rem; color: var(--text-sec);">สองแนวทางนี้ใช้พลังงานเท่ากัน แต่ผลลัพธ์ต่างกันอย่างสิ้นเชิง และต่างมากขึ้นอีกเมื่อคอลัมน์ซ้ายกลายเป็นสิ่งที่ AI ทำแทนได้ทั้งหมด</p>
 
         <div class="compare">
             <div class="compare-col compare-old rv-side">
-                <h4>ขายตาม Script</h4>
+                <h4>ขายตาม Script (ที่ AI ก็เขียนให้ได้)</h4>
                 <ul>
                     <li>ท่องประโยคปิดการขาย</li>
                     <li>ลูกค้าบอก &ldquo;แพง&rdquo; ก็ลดราคา</li>
@@ -3645,7 +3802,7 @@
                 </ul>
             </div>
         </div>
-        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">Script คือเครื่องมือ แต่<strong style="color: var(--text);">ความเข้าใจคน</strong>คืออาวุธที่ไม่มีวันทื่อ</p>
+        <p style="text-align: center; font-size: 0.85rem; color: var(--text-sec); margin-top: 0.5rem;">Script คือเครื่องมือ และตอนนี้มันเกือบฟรี แต่<strong style="color: var(--text);">ความเข้าใจคน</strong>คืออาวุธที่ไม่มีวันทื่อ และยังดาวน์โหลดมาใช้ไม่ได้</p>
     </div>
 
 
@@ -3654,8 +3811,8 @@
          ═══════════════════════════════════════════════ -->
     <div class="dark-band rv">
         <div class="dark-band-inner">
-            <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่สินค้าเหมือนกัน ราคาใกล้กัน</p>
-            <p class="big-quote">นักขายที่เข้าใจว่า<strong>ทำไมลูกค้าตัดสินใจ</strong><br>จะชนะคนที่แค่รู้ว่า &ldquo;ต้องพูดอะไร&rdquo;<br>ทุกครั้ง โดยไม่ต้อง Hard Sell สักประโยค</p>
+            <p style="font-size: 0.85rem; color: #A29A90;">ในตลาดที่สินค้าเหมือนกัน ราคาใกล้กัน และทุกคนใช้ AI ตัวเดียวกัน</p>
+            <p class="big-quote">เครื่องมือเหมือนกัน<br><strong>แต่ยอดขายไม่เหมือนกัน</strong><br>เพราะทุกคนมี AI ได้ แต่ไม่ได้เข้าใจมนุษย์เท่ากัน</p>
             <p style="font-size: 0.85rem; color: #A29A90; margin-top: 0.8rem;">ลูกค้าจะรู้สึกว่าคุณ &ldquo;เข้าใจเขา&rdquo;<br>ทั้งที่คุณแค่เข้าใจว่าสมองทำงานยังไง</p>
         </div>
     </div>
@@ -3832,8 +3989,10 @@
         <div class="sec-label">สิ่งที่ต่าง</div>
         <h2 class="sec-title">นี่ไม่ใช่หนังสือ &ldquo;สอนขาย&rdquo;<br><em>นี่คือหนังสือสอนอ่านคน</em></h2>
 
-        <p>มีหนังสือสอนขายเป็นร้อยเล่มในตลาด ส่วนใหญ่สอน Script สอน Framework สอนท่าปิด</p>
+        <p>มีหนังสือสอนขายเป็นร้อยเล่มในตลาด ส่วนใหญ่สอน Script สอน Framework สอนท่าปิด ซึ่งเป็นสิ่งที่ AI สรุปให้คุณได้ในสามวินาที</p>
         <p>เล่มนี้ไม่สอนสิ่งเหล่านั้น <strong>เล่มนี้สอนว่าทำไมสิ่งเหล่านั้นถึงได้ผล</strong></p>
+        <p>พูดให้ตรงกว่านั้น นี่คือ<strong>หนังสือจิตวิทยาการตัดสินใจซื้อของมนุษย์ สำหรับโลกที่ทุกคนมี AI</strong></p>
+        <p>เล่มนี้ไม่ได้สอนตามเทรนด์ล่าสุด และนั่นคือข้อดี เพราะแพลตฟอร์มเปลี่ยน อัลกอริธึมเปลี่ยน AI เปลี่ยน เครื่องมือเปลี่ยน แต่สิ่งที่เล่มนี้ลงไปขุด อยู่ใต้สิ่งเหล่านั้นทั้งหมด คือ <strong>มนุษย์</strong></p>
 
         <div class="scenario">
             <div class="scenario-q">แต่ละบทจบในตัว กระโดดไปเรื่องที่ต้องการได้เลย</div>
@@ -3842,6 +4001,12 @@
         <div class="scenario">
             <div class="scenario-q">ทุกหลักการมาพร้อมเคสจริงที่เจอทุกวัน</div>
             <p class="scenario-a">ไม่ใช่ทฤษฎีลอยๆ ทุกบทมีตัวอย่างจากร้านค้า แบรนด์ หรือสถานการณ์ขายที่คุณรู้จัก</p>
+        </div>
+
+        <p style="margin-top: 1.4rem;">หลังอ่านจบ คุณจะเลิกถามแค่ว่า &ldquo;ลูกค้าต้องการสินค้าอะไร&rdquo; และเริ่มมองว่า เขากำลังหนีอะไร กำลังพยายามไปหาอะไร ต้องเชื่ออะไรก่อนเงินจะออกจากกระเป๋า กลัวอะไรหากซื้อ กลัวอะไรหากไม่ซื้อ และสิ่งที่คุณขายเข้าไปมีความหมายอะไรในชีวิตเขา</p>
+
+        <div class="gold-box">
+            <p>สิ่งที่เปลี่ยนหลังอ่านจบ ไม่ใช่ &ldquo;คุณเขียนข้อความหาลูกค้าเก่งขึ้น&rdquo;<br>แต่คือ <strong>คุณจะเห็นสิ่งที่อยู่ก่อนคำพูดทุกคำ</strong><br>แล้ว Copy ข้อเสนอ การตั้งราคา การ Follow up จะเปลี่ยนตามเอง</p>
         </div>
 
         <div class="gold-box">
@@ -3862,20 +4027,21 @@
                 <ul>
                     <li>ปิดได้บ้าง แต่ไม่รู้ว่า &ldquo;ทำไม&rdquo;</li>
                     <li>เบื่อ Script ที่ไม่ work กับลูกค้าทุกคน</li>
+                    <li>ใช้ AI ช่วยงานขายอยู่แล้ว แต่ข้อความที่ได้มายัง &ldquo;ไม่โดน&rdquo;</li>
                     <li>อยากเป็นนักขายที่ลูกค้า &ldquo;อยากซื้อ&rdquo; ไม่ใช่ &ldquo;ถูกขาย&rdquo;</li>
                     <li>เป็น Sales Manager ที่ต้อง Train ทีม</li>
                     <li>เป็นฟรีแลนซ์ / เจ้าของธุรกิจที่ต้องขายตัวเอง</li>
-                    <li>อยากสร้างความสามารถที่ติดตัวไปทุกบริษัท</li>
+                    <li>อยากมีทักษะที่ AI ยังทดแทนไม่ได้</li>
                 </ul>
             </div>
             <div class="who-col who-no rv-side">
                 <h4>ไม่เหมาะ ถ้า...</h4>
                 <ul>
                     <li>อยากได้แค่ &ldquo;ประโยคปิดการขาย 50 ข้อ&rdquo;</li>
+                    <li>อยากได้ชุด Prompt สำเร็จรูปไปวางใน AI แล้วจบ</li>
                     <li>ไม่สนใจว่าทำไมลูกค้าตัดสินใจ แค่อยากปิดยอด</li>
                     <li>คิดว่าขายเก่งคือพูดเก่ง</li>
                     <li>ไม่เชื่อว่าจิตวิทยามีผลต่อการขาย</li>
-                    <li>ต้องการสูตรลัดแบบ Copy-Paste</li>
                 </ul>
             </div>
         </div>
@@ -3959,7 +4125,7 @@
                     <div class="whyprice-reason-num">02</div>
                     <div class="whyprice-reason-body">
                         <h4>หนังสือทั่วไปสอน &ldquo;ทำอะไร&rdquo; เล่มนี้สอน &ldquo;ทำไม&rdquo;</h4>
-                        <p>เทคนิคและสคริปต์ล้าสมัยได้ทุกปี แต่<strong>หลักจิตวิทยาการตัดสินใจไม่เคยเปลี่ยน</strong> เพราะสมองมนุษย์ไม่ได้อัปเดตมา 200,000 ปี สิ่งที่คุณเรียนจากเล่มนี้จึงใช้ได้ไปตลอดชีวิตการขาย</p>
+                        <p>เทคนิคและสคริปต์ล้าสมัยได้ทุกปี และตอนนี้ AI ก็ผลิตมันให้ใครก็ได้ในไม่กี่วินาที สิ่งที่ยังก๊อปปี้กันไม่ได้คือ<strong>ความเข้าใจว่าทำไมมันถึงได้ผล และควรใช้กับใครตอนไหน</strong> เพราะสมองมนุษย์ไม่ได้อัปเดตมา 200,000 ปี สิ่งที่คุณเรียนจากเล่มนี้จึงใช้ได้ไปตลอดชีวิตการขาย</p>
                     </div>
                 </div>
                 <div class="whyprice-reason">
@@ -3975,7 +4141,7 @@
                 <div class="whyprice-vs-col whyprice-vs-ordinary">
                     <div class="whyprice-vs-tag">หนังสือขายทั่วไป</div>
                     <div class="whyprice-vs-price">฿200&ndash;400</div>
-                    <div class="whyprice-vs-desc">สอนเทคนิคที่ล้าสมัยได้ • อ่านจบแล้ววางบนชั้น • ใช้ได้กับบางสถานการณ์</div>
+                    <div class="whyprice-vs-desc">สอนเทคนิคที่ล้าสมัยได้ • ส่วนใหญ่ AI สรุปให้ได้ในนาทีเดียว • ใช้ได้กับบางสถานการณ์</div>
                 </div>
                 <div class="whyprice-vs-mid">VS</div>
                 <div class="whyprice-vs-col whyprice-vs-this">
@@ -4018,6 +4184,10 @@
                 <div class="value-alt">
                     <span class="value-alt-name">Sales Coaching 1-on-1 ต่อเดือน <span class="value-alt-note">(ดีแต่แพงและจบเมื่อหยุดจ่าย)</span></span>
                     <span class="value-alt-price">10,000–30,000 ฿</span>
+                </div>
+                <div class="value-alt">
+                    <span class="value-alt-name">ชุด AI Tools ช่วยงานขายรายเดือน <span class="value-alt-note">(ช่วยให้คุณพูดได้เร็วขึ้น แต่ไม่บอกว่าควรพูดอะไร)</span></span>
+                    <span class="value-alt-price">700–2,000 ฿ / เดือน</span>
                 </div>
                 <div class="value-alt">
                     <span class="value-alt-name">หนังสือ Sales ภาษาอังกฤษ 1 เล่ม <span class="value-alt-note">(สอน &ldquo;ทำอะไร&rdquo; แต่ไม่สอน &ldquo;ทำไม&rdquo;)</span></span>
@@ -4116,6 +4286,16 @@
         <h2 class="sec-title">ก่อนตัดสินใจ</h2>
 
         <div class="faq-item rv">
+            <div class="faq-q">ยุคนี้มี AI แล้ว ยังต้องอ่านเรื่องจิตวิทยาอีกไหม?</div>
+            <p class="faq-a">ต้องมากขึ้นกว่าเดิม เพราะ AI ทำให้ทุกคน &ldquo;พูดได้ดีพอกันหมด&rdquo; เมื่อฝีมือการผลิตคำพูดเท่ากัน สิ่งที่ตัดสินว่าใครปิดดีลได้ก็เหลือแค่ว่าใครรู้ว่าควรพูดกับอะไรในใจลูกค้า เล่มนี้ทำงานอยู่คนละชั้นกับ AI ไม่ได้แข่งกัน แต่เสริมกัน</p>
+        </div>
+
+        <div class="faq-item rv">
+            <div class="faq-q">ถาม ChatGPT เอาก็ได้ไม่ใช่เหรอ?</div>
+            <p class="faq-a">ถามได้ครับ และมันจะตอบเรื่อง Social Proof, Scarcity, Loss Aversion ได้ดีมาก แต่มันตอบในระดับ &ldquo;คนทั่วไป&rdquo; สิ่งที่คุณต้องการคือกรอบคิดที่ทำให้คุณ<strong>ถามถูกข้อ</strong>ตั้งแต่แรก และอ่านออกว่าลูกค้าตรงหน้าติดตรงไหน เล่มนี้สอนกรอบคิดนั้น ไม่ใช่ชุดคำตอบสำเร็จรูป</p>
+        </div>
+
+        <div class="faq-item rv">
             <div class="faq-q">อ่านแล้วเอาไปใช้ทันทีได้ไหม?</div>
             <p class="faq-a">ได้ เพราะแต่ละบทเชื่อมกับสถานการณ์ขายจริง เช่น การตั้งราคา การ Follow up การสร้าง Trust การรับมือคำว่าแพง และการปลดแรงต้านก่อนลูกค้าตัดสินใจ</p>
         </div>
@@ -4177,9 +4357,10 @@
          ═══════════════════════════════════════════════ -->
     <div class="final-cta">
         <div class="final-cta-inner rv">
-            <h2>เทคนิคการขายเปลี่ยนทุกปี<br>แต่สมองลูกค้าไม่ได้เปลี่ยนเร็วขนาดนั้น</h2>
+            <h2>เทคนิคการขายเปลี่ยนทุกปี เครื่องมือเปลี่ยนทุกเดือน<br>แต่เหตุผลที่ทำให้มนุษย์ซื้อ ไม่ได้เปลี่ยนตาม</h2>
             <p>ถ้าคุณยังเจอคำว่า &ldquo;ขอคิดก่อน&rdquo; ยังต้องลดราคาเพื่อปิดดีล ยัง Follow up แล้วเงียบ หรือยังรู้สึกว่าลูกค้าหลุดไปทั้งที่คุณอธิบายดีแล้ว</p>
-            <p>บางทีสิ่งที่คุณต้องเพิ่มอาจไม่ใช่ Script ใหม่ แต่คือความสามารถในการอ่านว่า ลูกค้ากำลังกลัวอะไร เชื่ออะไร และตัดสินใจจากอะไรจริง ๆ</p>
+            <p>สิ่งที่คุณต้องเพิ่มอาจไม่ใช่ Script ใหม่ หรือ Prompt ที่เก่งขึ้น แต่คือความสามารถในการอ่านว่า ลูกค้ากำลังกลัวอะไร เชื่ออะไร และตัดสินใจจากอะไรจริง ๆ</p>
+            <p style="font-size: 0.88rem; color: #6B6560;">เมื่อทุกคนมี AI ความได้เปรียบไม่ใช่การขายได้มากกว่า แต่คือการเข้าใจมนุษย์ได้ลึกกว่า</p>
             <p style="font-size: 0.82rem; color: #6B6560; margin-top: 0.5rem;">อ่านแล้วไม่ใช่? คืนเงินภายใน 30 วัน ไม่มีเงื่อนไข</p>
             <a href="https://buy.stripe.com/5kQbJ17W7djYaffc7ugYU01" class="final-cta-btn">เริ่มอ่านคนออกวันนี้ 1,390 บาท</a>
             <p class="final-cta-note">ชำระผ่าน Stripe &bull; ปลอดภัย &bull; รับ Unlock Code ทันที</p>
