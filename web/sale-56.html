@@ -3308,6 +3308,23 @@
         color: rgba(225,20,41,0.05); letter-spacing: -0.06em;
         pointer-events: none; z-index: 0; user-select: none;
     }
+    /* WebGL ember field — only visible once three.js has actually started */
+    #hero-three {
+        position: absolute; inset: 0; width: 100%; height: 100%;
+        pointer-events: none; z-index: 0; opacity: 0;
+        transition: opacity 1.4s ease;
+    }
+    #hero-three.on { opacity: 1; }
+    .hero.three-on #hero-particles { display: none; }
+    .hero.three-on .s56-ghost { color: rgba(225,20,41,0.035); }
+    /* Keeps the headline readable over the ember field */
+    .hero.three-on .hero-inner::before {
+        content: ''; position: absolute; inset: -140px -180px; z-index: -1; pointer-events: none;
+        background: radial-gradient(46% 42% at 50% 48%, rgba(6,4,5,0.80), rgba(6,4,5,0.42) 52%, transparent 70%);
+    }
+
+    /* The price block reads as a centred unit, not left-aligned body copy */
+    .price-hero { text-align: center; }
     .hero-inner { z-index: 1; }
 
     /* Launch-price ribbon */
@@ -3348,26 +3365,75 @@
         font-size: 0.68rem; letter-spacing: 0.08em; color: #FF7183;
     }
 
-    /* 56 numbered story tiles */
-    .s56-grid {
-        display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
-        gap: 0.5rem; max-width: 900px; margin: 1.6rem auto 0;
+    /* Wide sections centre their heading with the content below it */
+    .sec-wide { max-width: 1040px; margin: 0 auto; text-align: center; }
+    .sec-wide .sec-label { display: inline-block; text-align: left; }
+    .sec-wide .sec-title { margin-left: auto; margin-right: auto; max-width: 30ch; }
+
+    /* Table of contents: 7 tabs, 8 stories each (was a 56-tile wall) */
+    .s56-toc { max-width: 880px; margin: 2rem auto 0; text-align: left; }
+    .s56-tabs {
+        display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+        margin-bottom: 1.8rem;
     }
-    .s56-tile {
-        display: flex; gap: 0.55rem; align-items: baseline;
-        padding: 0.55rem 0.7rem; border-radius: 9px;
+    .s56-tab {
+        font-family: 'Prompt', sans-serif; font-size: 0.82rem; font-weight: 600;
+        padding: 0.5rem 1.05rem; border-radius: 999px; cursor: pointer;
+        border: 1px solid var(--border); background: #fff; color: var(--text-sec);
+        transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .s56-tab:hover { border-color: rgba(225,20,41,0.45); color: var(--s56-red); }
+    .s56-tab.on {
+        background: linear-gradient(135deg, var(--s56-red), var(--s56-deep));
+        border-color: transparent; color: #fff;
+        box-shadow: 0 8px 20px rgba(225,20,41,0.28);
+    }
+
+    .s56-panel { display: none; }
+    .s56-panel.on { display: block; animation: s56-fade 0.45s cubic-bezier(0.16,1,0.3,1); }
+    @keyframes s56-fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+    .s56-panel-head {
+        border-left: 3px solid var(--s56-red); padding: 0.1rem 0 0.1rem 1rem;
+        margin-bottom: 1.5rem;
+    }
+    .s56-panel-n {
+        display: block; font-family: var(--mono); font-size: 0.68rem;
+        letter-spacing: 0.22em; color: var(--s56-red); margin-bottom: 0.25rem;
+    }
+    .s56-panel-t {
+        display: block; font-family: 'Prompt', sans-serif; font-weight: 700;
+        font-size: 1.15rem; line-height: 1.45; color: var(--text);
+    }
+    .s56-panel-q {
+        display: block; font-size: 0.88rem; color: var(--text-sec);
+        line-height: 1.75; margin-top: 0.35rem;
+    }
+
+    .s56-rows {
+        list-style: none; padding: 0; margin: 0;
+        display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem 1.4rem;
+    }
+    .s56-row {
+        display: flex; gap: 0.85rem; align-items: baseline;
+        padding: 0.8rem 0.95rem; border-radius: 12px;
         border: 1px solid var(--border); background: #fff;
-        font-size: 0.78rem; line-height: 1.5; color: var(--text-sec);
+        font-size: 0.88rem; line-height: 1.6; color: var(--text);
         transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .s56-tile:hover {
+    .s56-row:hover {
         border-color: rgba(225,20,41,0.45); transform: translateY(-2px);
-        box-shadow: 0 6px 18px rgba(225,20,41,0.12);
+        box-shadow: 0 8px 22px rgba(225,20,41,0.12);
     }
-    .s56-tile b {
-        font-family: var(--mono); font-size: 0.68rem; color: var(--s56-red); flex: 0 0 auto;
+    .s56-row b {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+        color: var(--s56-red); flex: 0 0 auto;
     }
-    .s56-grid-note { text-align: center; font-size: 0.84rem; color: var(--text-sec); margin-top: 1rem; }
+    .s56-toc-note {
+        text-align: center; font-size: 0.86rem; color: var(--text-sec);
+        margin-top: 1.8rem; line-height: 1.8;
+    }
 
     /* Evidence ledger */
     .s56-ledger { max-width: 660px; margin: 1.5rem auto 0; }
@@ -3409,6 +3475,32 @@
         font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.06em; color: #6E7782;
     }
 
+    /* Deliverables inside the offer box read as a spaced list, not a stack of
+       full-width pills jammed together. */
+    .offer-box .offer-list {
+        display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.6rem;
+    }
+    .offer-box .offer-chip {
+        display: flex; gap: 0.7rem; align-items: baseline;
+        padding: 0.8rem 1.05rem; border-radius: 12px;
+        font-size: 0.85rem; font-weight: 400; line-height: 1.7;
+        color: var(--text); border-color: rgba(225,20,41,0.18);
+    }
+    .offer-box .offer-chip::before {
+        content: '\25C6'; flex: 0 0 auto; color: var(--s56-red);
+        font-size: 0.6rem; line-height: 1.9;
+    }
+    .offer-box .offer-chip strong {
+        font-family: 'Prompt', sans-serif; font-weight: 700; color: var(--s56-deep);
+    }
+
+    /* The anatomy pills above the phone mock-up stay inline */
+    .s56-pills {
+        display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: center;
+        margin-bottom: 1.8rem;
+    }
+    .s56-pills .offer-chip { padding: 0.45rem 1rem; font-size: 0.78rem; line-height: 1.6; }
+
     /* 56-item table of contents scrolls inside the preview column */
     .toc-preview {
         max-height: 480px; overflow-y: auto; padding-right: 0.7rem;
@@ -3423,7 +3515,9 @@
         .toc-preview { max-height: 360px; }
         .s56-part { grid-template-columns: 56px 1fr; }
         .s56-part-n { font-size: 1.2rem; }
-        .s56-grid { grid-template-columns: repeat(auto-fill, minmax(142px, 1fr)); }
+        .s56-rows { grid-template-columns: 1fr; gap: 0.6rem; }
+        .s56-tab { font-size: 0.76rem; padding: 0.42rem 0.85rem; }
+        .s56-panel-t { font-size: 1.05rem; }
     }
 </style>
 </head>
@@ -3437,6 +3531,7 @@
          ═══════════════════════════════════════════════ -->
     <div class="hero">
         <canvas id="hero-particles" aria-hidden="true"></canvas>
+        <canvas id="hero-three" aria-hidden="true"></canvas>
         <div class="hero-aurora" aria-hidden="true"></div>
         <div class="s56-ghost" aria-hidden="true">56</div>
         <div class="sacred-geo" aria-hidden="true"><div class="sg-circle sg-1"></div><div class="sg-circle sg-2"></div><div class="sg-circle sg-3"></div></div>
@@ -3770,72 +3865,146 @@
     </div>
 
     <!-- ═══════════════════════════════════════════════
-         56 STORIES GRID
+         TABLE OF CONTENTS (7 tabs)
          ═══════════════════════════════════════════════ -->
     <div class="sec sec-wide rv">
         <div class="sec-label">สารบัญเต็ม</div>
         <h2 class="sec-title">56 เรื่อง &middot; 56 แกนคิด<br><em>ไม่มีเรื่องไหนสอนสิ่งเดียวกันซ้ำ</em></h2>
-        <p style="text-align:center; margin-bottom: 0.4rem; font-size: 0.93rem; color: var(--text-sec);">ก่อนเขียน ทุกแกนคิดถูกเอามาเทียบกันทั้ง 56 ตัว เพื่อไม่ให้มีบทไหนพูดเรื่องเดียวกันด้วยคำใหม่</p>
+        <p style="max-width: 52ch; margin: 0 auto; font-size: 0.93rem; color: var(--text-sec);">ก่อนเขียน ทุกแกนคิดถูกเอามาเทียบกันทั้ง 56 ตัว เพื่อไม่ให้มีบทไหนพูดเรื่องเดียวกันด้วยคำใหม่ กดเลือกภาคเพื่อดูรายชื่อเรื่องข้างใน</p>
 
-        <div class="s56-grid">
-            <div class="s56-tile"><b>01</b><span>ต้นแบบหมายเลข 5,127</span></div>
-            <div class="s56-tile"><b>02</b><span>100 คำปฏิเสธก่อน Canva</span></div>
-            <div class="s56-tile"><b>03</b><span>นักวิทยาศาสตร์ที่ทุนไม่เอา</span></div>
-            <div class="s56-tile"><b>04</b><span>วันที่โลกวิทยาศาสตร์ยังตามเธอไม่ทัน</span></div>
-            <div class="s56-tile"><b>05</b><span>ต้นฉบับที่สำนักพิมพ์วางคืน</span></div>
-            <div class="s56-tile"><b>06</b><span>จรวดสามลำที่ไม่ถึงวงโคจร</span></div>
-            <div class="s56-tile"><b>07</b><span>วันที่ถูกไล่ออกจากบริษัทตัวเอง</span></div>
-            <div class="s56-tile"><b>08</b><span>ชายวัย 65 ที่เพิ่งเริ่มขยายเกม</span></div>
-            <div class="s56-tile"><b>09</b><span>เมื่อการพิชิตขั้วโลกไม่สำคัญอีกต่อไป</span></div>
-            <div class="s56-tile"><b>10</b><span>LEGO เกือบตายเพราะพยายามเป็นทุกอย่าง</span></div>
-            <div class="s56-tile"><b>11</b><span>บริษัทล้มละลาย แต่ตัวละครยังมีค่า</span></div>
-            <div class="s56-tile"><b>12</b><span>วันที่ Intel ยอมทิ้งธุรกิจที่สร้างบริษัท</span></div>
-            <div class="s56-tile"><b>13</b><span>โลกเลิกซื้อฟิล์ม แต่ Fujifilm ไม่ตายตาม</span></div>
-            <div class="s56-tile"><b>14</b><span>Adobe ยอมเจ็บวันนี้เพื่ออนาคต</span></div>
-            <div class="s56-tile"><b>15</b><span>IBM เลิกชนะด้วยเครื่องอย่างเดียว</span></div>
-            <div class="s56-tile"><b>16</b><span>Netflix ฆ่าธุรกิจที่ยังทำเงินให้ตัวเอง</span></div>
-            <div class="s56-tile"><b>17</b><span>ชายวัย 52 ที่มองเห็นบางอย่างในร้านเบอร์เกอร์</span></div>
-            <div class="s56-tile"><b>18</b><span>โรงงานที่อนุญาตให้พนักงานหยุดทุกอย่าง</span></div>
-            <div class="s56-tile"><b>19</b><span>เมื่อเครื่องบินสามลำต้องทำงานแทนสี่ลำ</span></div>
-            <div class="s56-tile"><b>20</b><span>IKEA ไม่ได้หารถขนของที่ถูกลง</span></div>
-            <div class="s56-tile"><b>21</b><span>รายงานนักศึกษาที่กลายเป็นเครือข่ายระดับโลก</span></div>
-            <div class="s56-tile"><b>22</b><span>Ford ไม่ได้แค่สร้างรถให้เร็วขึ้น</span></div>
-            <div class="s56-tile"><b>23</b><span>ปัญหาของ Amazon ที่กลายเป็นธุรกิจอีกก้อน</span></div>
-            <div class="s56-tile"><b>24</b><span>ตู้เย็น 76 เครื่องที่ถูกทุบทิ้ง</span></div>
-            <div class="s56-tile"><b>25</b><span>79 วันที่ Coca-Cola เรียนรู้ว่ารสชาติไม่ใช่ทุกอย่าง</span></div>
-            <div class="s56-tile"><b>26</b><span>วันที่ Domino's ยอมบอกว่าพิซซ่าตัวเองมีปัญหา</span></div>
-            <div class="s56-tile"><b>27</b><span>Best Buy รอดเพราะลงไปฟังคนหน้าร้าน</span></div>
-            <div class="s56-tile"><b>28</b><span>วันที่ Starbucks ปิดเกือบ 7,100 ร้านพร้อมกัน</span></div>
-            <div class="s56-tile"><b>29</b><span>ร้านลูกอมที่เปลี่ยนวิธีมองธุรกิจของ Buffett</span></div>
-            <div class="s56-tile"><b>30</b><span>เปิดตัวอีกครั้ง แล้วได้สองการจอง</span></div>
-            <div class="s56-tile"><b>31</b><span>กรรไกรหนึ่งคู่กับถุงน่องหนึ่งตัว</span></div>
-            <div class="s56-tile"><b>32</b><span>โฆษณาที่บอกลูกค้าว่าอย่าซื้อเสื้อตัวนี้</span></div>
-            <div class="s56-tile"><b>33</b><span>กาวที่ห่วยเกินกว่าจะเป็นกาว</span></div>
-            <div class="s56-tile"><b>34</b><span>สารประหลาดที่ไม่ถูกโยนลงถังขยะ</span></div>
-            <div class="s56-tile"><b>35</b><span>จานเพาะเชื้อที่คนอื่นอาจล้างทิ้ง</span></div>
-            <div class="s56-tile"><b>36</b><span>เมล็ดพืชที่ติดขนหมา</span></div>
-            <div class="s56-tile"><b>37</b><span>เมื่อคำตอบของอนาคตซ่อนอยู่ในตำราเก่า</span></div>
-            <div class="s56-tile"><b>38</b><span>หมอที่พยายามฆ่าสมมติฐานของตัวเอง</span></div>
-            <div class="s56-tile"><b>39</b><span>โลกมองเห็นดารา แต่เธอคิดเรื่องระบบสื่อสาร</span></div>
-            <div class="s56-tile"><b>40</b><span>งานสำคัญไม่จำเป็นต้องเกิดตอนอายุ 25</span></div>
-            <div class="s56-tile"><b>41</b><span>Challenger: เมื่อเรื่องผิดปกติกลายเป็นเรื่องปกติ</span></div>
-            <div class="s56-tile"><b>42</b><span>Columbia: 17 ปีผ่านไป ระบบยังผิดแบบเดิม</span></div>
-            <div class="s56-tile"><b>43</b><span>ยานอวกาศที่หายไปเพราะหน่วยวัดสองระบบ</span></div>
-            <div class="s56-tile"><b>44</b><span>45 นาทีที่เผาเงินกว่า 460 ล้านดอลลาร์</span></div>
-            <div class="s56-tile"><b>45</b><span>เมื่อคนระดับ Nobel แพ้ Leverage</span></div>
-            <div class="s56-tile"><b>46</b><span>บริษัทที่ตัวเลขดูดีจนไม่มีใครอยากเห็นความจริง</span></div>
-            <div class="s56-tile"><b>47</b><span>เมื่อเรื่องเล่าโตเร็วกว่าหลักฐาน</span></div>
-            <div class="s56-tile"><b>48</b><span>ระบบที่ข่าวร้ายเดินขึ้นข้างบนไม่ได้</span></div>
-            <div class="s56-tile"><b>49</b><span>&ldquo;Houston, we've had a problem&rdquo;</span></div>
-            <div class="s56-tile"><b>50</b><span>กล้องโทรทรรศน์ราคาแพงที่มองไม่ชัด</span></div>
-            <div class="s56-tile"><b>51</b><span>โรงงานที่เปลี่ยนระบบ แล้วคนเดิมกลายเป็นคนเก่ง</span></div>
-            <div class="s56-tile"><b>52</b><span>Tylenol: วันที่ความเชื่อใจแพงกว่ายอดขาย</span></div>
-            <div class="s56-tile"><b>53</b><span>หมอที่มีข้อมูลถูก แต่ทำให้โลกเชื่อไม่ได้</span></div>
-            <div class="s56-tile"><b>54</b><span>บริษัทที่จงใจฆ่า Server ตัวเอง</span></div>
-            <div class="s56-tile"><b>55</b><span>ทีมเล็กที่ถูกสร้างมาเพื่อทำของที่คนอื่นว่ายาก</span></div>
-            <div class="s56-tile"><b>56</b><span>สองพี่น้องที่สร้างเครื่องมือหาความจริงเอง</span></div>
+        <div class="s56-toc">
+            <div class="s56-tabs" role="tablist" aria-label="เลือกภาค">
+                <button class="s56-tab on" type="button" role="tab" aria-selected="true" aria-controls="s56p0" data-part="0">ภาค 1</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p1" data-part="1">ภาค 2</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p2" data-part="2">ภาค 3</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p3" data-part="3">ภาค 4</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p4" data-part="4">ภาค 5</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p5" data-part="5">ภาค 6</button>
+                <button class="s56-tab" type="button" role="tab" aria-selected="false" aria-controls="s56p6" data-part="6">ภาค 7</button>
+            </div>
+            <div class="s56-panel on" id="s56p0" role="tabpanel" data-part="0">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 1 &middot; เรื่องที่ 01&ndash;08</span>
+                    <span class="s56-panel-t">โลกไม่ได้มีหน้าที่เชื่อคุณ</span>
+                    <span class="s56-panel-q">เมื่อคนอื่นยังไม่เชื่อ เรามีหลักฐานอะไรให้ตัวเองเดินต่อ</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>01</b><span>ต้นแบบหมายเลข 5,127</span></li>
+                    <li class="s56-row"><b>02</b><span>100 คำปฏิเสธก่อน Canva</span></li>
+                    <li class="s56-row"><b>03</b><span>นักวิทยาศาสตร์ที่ทุนไม่เอา</span></li>
+                    <li class="s56-row"><b>04</b><span>วันที่โลกวิทยาศาสตร์ยังตามเธอไม่ทัน</span></li>
+                    <li class="s56-row"><b>05</b><span>ต้นฉบับที่สำนักพิมพ์วางคืน</span></li>
+                    <li class="s56-row"><b>06</b><span>จรวดสามลำที่ไม่ถึงวงโคจร</span></li>
+                    <li class="s56-row"><b>07</b><span>วันที่ถูกไล่ออกจากบริษัทตัวเอง</span></li>
+                    <li class="s56-row"><b>08</b><span>ชายวัย 65 ที่เพิ่งเริ่มขยายเกม</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p1" role="tabpanel" data-part="1">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 2 &middot; เรื่องที่ 09&ndash;16</span>
+                    <span class="s56-panel-t">ถ้าเกมเดิมชนะไม่ได้ เปลี่ยนเกม</span>
+                    <span class="s56-panel-q">อะไรควรเก็บ อะไรควรทิ้ง และเราจะแยกสองอย่างนี้อย่างไร</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>09</b><span>เมื่อการพิชิตขั้วโลกไม่สำคัญอีกต่อไป</span></li>
+                    <li class="s56-row"><b>10</b><span>LEGO เกือบตายเพราะพยายามเป็นทุกอย่าง</span></li>
+                    <li class="s56-row"><b>11</b><span>บริษัทล้มละลาย แต่ตัวละครยังมีค่า</span></li>
+                    <li class="s56-row"><b>12</b><span>วันที่ Intel ยอมทิ้งธุรกิจที่สร้างบริษัท</span></li>
+                    <li class="s56-row"><b>13</b><span>โลกเลิกซื้อฟิล์ม แต่ Fujifilm ไม่ตายตาม</span></li>
+                    <li class="s56-row"><b>14</b><span>Adobe ยอมเจ็บวันนี้เพื่ออนาคต</span></li>
+                    <li class="s56-row"><b>15</b><span>IBM เลิกชนะด้วยเครื่องอย่างเดียว</span></li>
+                    <li class="s56-row"><b>16</b><span>Netflix ฆ่าธุรกิจที่ยังทำเงินให้ตัวเอง</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p2" role="tabpanel" data-part="2">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 3 &middot; เรื่องที่ 17&ndash;24</span>
+                    <span class="s56-panel-t">คนอื่นขายสินค้า คนชนะออกแบบระบบ</span>
+                    <span class="s56-panel-q">ผลลัพธ์ที่ดีเกิดจากคนเก่ง หรือจากงานที่ถูกจัดวางถูกวิธี</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>17</b><span>ชายวัย 52 ที่มองเห็นบางอย่างในร้านเบอร์เกอร์</span></li>
+                    <li class="s56-row"><b>18</b><span>โรงงานที่อนุญาตให้พนักงานหยุดทุกอย่าง</span></li>
+                    <li class="s56-row"><b>19</b><span>เมื่อเครื่องบินสามลำต้องทำงานแทนสี่ลำ</span></li>
+                    <li class="s56-row"><b>20</b><span>IKEA ไม่ได้หารถขนของที่ถูกลง</span></li>
+                    <li class="s56-row"><b>21</b><span>รายงานนักศึกษาที่กลายเป็นเครือข่ายระดับโลก</span></li>
+                    <li class="s56-row"><b>22</b><span>Ford ไม่ได้แค่สร้างรถให้เร็วขึ้น</span></li>
+                    <li class="s56-row"><b>23</b><span>ปัญหาของ Amazon ที่กลายเป็นธุรกิจอีกก้อน</span></li>
+                    <li class="s56-row"><b>24</b><span>ตู้เย็น 76 เครื่องที่ถูกทุบทิ้ง</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p3" role="tabpanel" data-part="3">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 4 &middot; เรื่องที่ 25&ndash;32</span>
+                    <span class="s56-panel-t">ตลาดไม่ได้จ่ายให้ของดีที่สุดเสมอไป</span>
+                    <span class="s56-panel-q">ลูกค้าให้คุณค่ากับอะไรกันแน่ และเรากำลังวัดสิ่งนั้นหรือแค่สิ่งที่วัดง่าย</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>25</b><span>79 วันที่ Coca-Cola เรียนรู้ว่ารสชาติไม่ใช่ทุกอย่าง</span></li>
+                    <li class="s56-row"><b>26</b><span>วันที่ Domino's ยอมบอกว่าพิซซ่าตัวเองมีปัญหา</span></li>
+                    <li class="s56-row"><b>27</b><span>Best Buy รอดเพราะลงไปฟังคนหน้าร้าน</span></li>
+                    <li class="s56-row"><b>28</b><span>วันที่ Starbucks ปิดเกือบ 7,100 ร้านพร้อมกัน</span></li>
+                    <li class="s56-row"><b>29</b><span>ร้านลูกอมที่เปลี่ยนวิธีมองธุรกิจของ Buffett</span></li>
+                    <li class="s56-row"><b>30</b><span>เปิดตัวอีกครั้ง แล้วได้สองการจอง</span></li>
+                    <li class="s56-row"><b>31</b><span>กรรไกรหนึ่งคู่กับถุงน่องหนึ่งตัว</span></li>
+                    <li class="s56-row"><b>32</b><span>โฆษณาที่บอกลูกค้าว่าอย่าซื้อเสื้อตัวนี้</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p4" role="tabpanel" data-part="4">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 5 &middot; เรื่องที่ 33&ndash;40</span>
+                    <span class="s56-panel-t">โชคช่วยคนที่รู้ว่าตัวเองกำลังเห็นอะไร</span>
+                    <span class="s56-panel-q">เหตุบังเอิญจะกลายเป็นการค้นพบได้เมื่อใด</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>33</b><span>กาวที่ห่วยเกินกว่าจะเป็นกาว</span></li>
+                    <li class="s56-row"><b>34</b><span>สารประหลาดที่ไม่ถูกโยนลงถังขยะ</span></li>
+                    <li class="s56-row"><b>35</b><span>จานเพาะเชื้อที่คนอื่นอาจล้างทิ้ง</span></li>
+                    <li class="s56-row"><b>36</b><span>เมล็ดพืชที่ติดขนหมา</span></li>
+                    <li class="s56-row"><b>37</b><span>เมื่อคำตอบของอนาคตซ่อนอยู่ในตำราเก่า</span></li>
+                    <li class="s56-row"><b>38</b><span>หมอที่พยายามฆ่าสมมติฐานของตัวเอง</span></li>
+                    <li class="s56-row"><b>39</b><span>โลกมองเห็นดารา แต่เธอคิดเรื่องระบบสื่อสาร</span></li>
+                    <li class="s56-row"><b>40</b><span>งานสำคัญไม่จำเป็นต้องเกิดตอนอายุ 25</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p5" role="tabpanel" data-part="5">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 6 &middot; เรื่องที่ 41&ndash;48</span>
+                    <span class="s56-panel-t">คนฉลาดก็แพ้ระบบโง่ได้</span>
+                    <span class="s56-panel-q">ทำไมคนเก่งทั้งห้องถึงอนุมัติสิ่งที่รู้อยู่แล้วว่าเสี่ยง</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>41</b><span>Challenger: เมื่อเรื่องผิดปกติกลายเป็นเรื่องปกติ</span></li>
+                    <li class="s56-row"><b>42</b><span>Columbia: 17 ปีผ่านไป ระบบยังผิดแบบเดิม</span></li>
+                    <li class="s56-row"><b>43</b><span>ยานอวกาศที่หายไปเพราะหน่วยวัดสองระบบ</span></li>
+                    <li class="s56-row"><b>44</b><span>45 นาทีที่เผาเงินกว่า 460 ล้านดอลลาร์</span></li>
+                    <li class="s56-row"><b>45</b><span>เมื่อคนระดับ Nobel แพ้ Leverage</span></li>
+                    <li class="s56-row"><b>46</b><span>บริษัทที่ตัวเลขดูดีจนไม่มีใครอยากเห็นความจริง</span></li>
+                    <li class="s56-row"><b>47</b><span>เมื่อเรื่องเล่าโตเร็วกว่าหลักฐาน</span></li>
+                    <li class="s56-row"><b>48</b><span>ระบบที่ข่าวร้ายเดินขึ้นข้างบนไม่ได้</span></li>
+                </ol>
+            </div>
+            <div class="s56-panel" id="s56p6" role="tabpanel" data-part="6">
+                <div class="s56-panel-head">
+                    <span class="s56-panel-n">ภาค 7 &middot; เรื่องที่ 49&ndash;56</span>
+                    <span class="s56-panel-t">ความสำเร็จไม่ได้อยู่ที่วิ่งเร็ว แต่อยู่ที่ออกแบบเกมถูก</span>
+                    <span class="s56-panel-q">เมื่อเราไม่รู้อนาคต เราจะตัดสินใจอย่างไรโดยไม่หลอกตัวเอง</span>
+                </div>
+                <ol class="s56-rows">
+                    <li class="s56-row"><b>49</b><span>&ldquo;Houston, we've had a problem&rdquo;</span></li>
+                    <li class="s56-row"><b>50</b><span>กล้องโทรทรรศน์ราคาแพงที่มองไม่ชัด</span></li>
+                    <li class="s56-row"><b>51</b><span>โรงงานที่เปลี่ยนระบบ แล้วคนเดิมกลายเป็นคนเก่ง</span></li>
+                    <li class="s56-row"><b>52</b><span>Tylenol: วันที่ความเชื่อใจแพงกว่ายอดขาย</span></li>
+                    <li class="s56-row"><b>53</b><span>หมอที่มีข้อมูลถูก แต่ทำให้โลกเชื่อไม่ได้</span></li>
+                    <li class="s56-row"><b>54</b><span>บริษัทที่จงใจฆ่า Server ตัวเอง</span></li>
+                    <li class="s56-row"><b>55</b><span>ทีมเล็กที่ถูกสร้างมาเพื่อทำของที่คนอื่นว่ายาก</span></li>
+                    <li class="s56-row"><b>56</b><span>สองพี่น้องที่สร้างเครื่องมือหาความจริงเอง</span></li>
+                </ol>
+            </div>
         </div>
-        <p class="s56-grid-note">เรื่องที่ 01 เปิดให้อ่านฟรีทั้งบท &mdash; <a href="/56" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(225,20,41,0.3);">อ่านเลย</a></p>
+
+        <p class="s56-toc-note">เรื่องที่ 01 เปิดให้อ่านฟรีทั้งบท &mdash; <a href="/56" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(225,20,41,0.3);">อ่านเลย</a></p>
+        <script>(function(){var r=document.querySelector('.s56-toc');if(!r)return;var tabs=r.querySelectorAll('.s56-tab'),panels=r.querySelectorAll('.s56-panel');function pick(i){tabs.forEach(function(t,k){var on=k===i;t.classList.toggle('on',on);t.setAttribute('aria-selected',on?'true':'false');});panels.forEach(function(p,k){p.classList.toggle('on',k===i);});}tabs.forEach(function(t,i){t.addEventListener('click',function(){pick(i);});t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?i+1:e.key==='ArrowLeft'?i-1:-1;if(n<0||n>=tabs.length)return;e.preventDefault();tabs[n].focus();pick(n);});});})();</script>
     </div>
 
     <!-- ═══════════════════════════════════════════════
@@ -3846,12 +4015,12 @@
         <h2 class="sec-title">หน้าตาข้างในเป็นแบบนี้<br><em>อ่านบนมือถือได้สบายตา</em></h2>
         <p style="margin-bottom: 1.4rem; font-size: 0.93rem; color: var(--text-sec);">ทุกเรื่องจบด้วยชิ้นส่วนชุดเดียวกัน ทำให้คุณอ่านเร็วก็ได้ อ่านลึกก็ได้</p>
 
-        <div class="offer-list" style="margin-bottom: 1.6rem;">
-            <div class="offer-chip"><strong>เรื่องจริง</strong> เล่าเป็นเรื่อง มีจุดหัก ไม่ใช่สรุปเป็นข้อ ๆ</div>
-            <div class="offer-chip"><strong>ขนานแรง</strong> ส่วนที่แกะว่ากลไกอะไรทำให้เรื่องจบแบบนี้</div>
-            <div class="offer-chip"><strong>DOSE</strong> 3&ndash;4 บรรทัดที่ออกแบบมาให้ติดหัวไปทั้งวัน</div>
-            <div class="offer-chip"><strong>หมายเหตุการตรวจสอบ</strong> จุดไหนยังเถียงกัน จุดไหนเป็นคำบอกเล่าของเจ้าตัว</div>
-            <div class="offer-chip"><strong>แหล่งข้อมูล</strong> ลิงก์ไปเอกสารต้นทาง ตรวจเองได้</div>
+        <div class="s56-pills">
+            <div class="offer-chip"><strong>เรื่องจริง</strong> เล่าเป็นเรื่อง มีจุดหัก</div>
+            <div class="offer-chip"><strong>ขนานแรง</strong> แกะว่ากลไกอะไรทำให้เรื่องจบแบบนี้</div>
+            <div class="offer-chip"><strong>DOSE</strong> 3&ndash;4 บรรทัดที่ติดหัวไปทั้งวัน</div>
+            <div class="offer-chip"><strong>หมายเหตุการตรวจสอบ</strong> จุดไหนยังเถียงกันอยู่</div>
+            <div class="offer-chip"><strong>แหล่งข้อมูล</strong> ลิงก์ไปเอกสารต้นทาง</div>
         </div>
 
         <div class="preview-wrap rv">
@@ -4274,6 +4443,158 @@
         </div>
     </div>
 
+
+    <script type="module">
+    import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.min.js';
+
+    (function () {
+        var hero = document.querySelector('.hero');
+        var cv = document.getElementById('hero-three');
+        if (!hero || !cv) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var renderer;
+        try {
+            renderer = new THREE.WebGLRenderer({ canvas: cv, alpha: true, antialias: false, powerPreference: 'low-power' });
+        } catch (e) { return; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.6));
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(58, 1, 0.1, 140);
+        camera.position.z = 34;
+
+        // Soft round sprite so the embers glow instead of reading as squares.
+        var tex = (function () {
+            var c = document.createElement('canvas');
+            c.width = c.height = 64;
+            var g = c.getContext('2d').createRadialGradient(32, 32, 0, 32, 32, 32);
+            g.addColorStop(0, 'rgba(255,255,255,1)');
+            g.addColorStop(0.35, 'rgba(255,255,255,0.55)');
+            g.addColorStop(1, 'rgba(255,255,255,0)');
+            var x = c.getContext('2d');
+            x.fillStyle = g;
+            x.fillRect(0, 0, 64, 64);
+            return new THREE.CanvasTexture(c);
+        })();
+
+        var COUNT = window.innerWidth < 720 ? 380 : 820;
+        var pos = new Float32Array(COUNT * 3);
+        var col = new Float32Array(COUNT * 3);
+        var drift = new Float32Array(COUNT * 2);
+        var CRIMSON = new THREE.Color(0xE11429);
+        var EMBER = new THREE.Color(0xFF6B4A);
+        var STEEL = new THREE.Color(0x8A939E);
+
+        for (var i = 0; i < COUNT; i++) {
+            pos[i * 3] = (Math.random() - 0.5) * 100;
+            pos[i * 3 + 1] = (Math.random() - 0.5) * 64;
+            pos[i * 3 + 2] = (Math.random() - 0.5) * 70 - 12;
+            var r = Math.random();
+            var c = r > 0.86 ? STEEL : (r > 0.52 ? CRIMSON : EMBER);
+            col[i * 3] = c.r; col[i * 3 + 1] = c.g; col[i * 3 + 2] = c.b;
+            drift[i * 2] = 0.9 + Math.random() * 2.4;        // rise speed
+            drift[i * 2 + 1] = Math.random() * Math.PI * 2;  // sway phase
+        }
+
+        var geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+        geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+        var embers = new THREE.Points(geo, new THREE.PointsMaterial({
+            size: 0.62, map: tex, vertexColors: true, transparent: true,
+            opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending,
+            sizeAttenuation: true
+        }));
+        scene.add(embers);
+
+        // Slowly tumbling wireframe shards, echoing the cracked cover art.
+        var shards = [];
+        var shardMat = new THREE.MeshBasicMaterial({
+            color: 0xE11429, wireframe: true, transparent: true,
+            opacity: 0.09, blending: THREE.AdditiveBlending, depthWrite: false
+        });
+        [[-34, 12, -48, 6], [36, -14, -52, 7], [10, 20, -60, 5]].forEach(function (s) {
+            var m = new THREE.Mesh(new THREE.IcosahedronGeometry(s[3], 1), shardMat);
+            m.position.set(s[0], s[1], s[2]);
+            scene.add(m);
+            shards.push(m);
+        });
+
+        var ring = new THREE.Mesh(
+            new THREE.TorusGeometry(27, 0.05, 6, 128),
+            new THREE.MeshBasicMaterial({
+                color: 0xFF6B4A, transparent: true, opacity: 0.11,
+                blending: THREE.AdditiveBlending, depthWrite: false
+            })
+        );
+        ring.position.z = -44;
+        ring.rotation.x = 1.12;
+        scene.add(ring);
+
+        function resize() {
+            var w = hero.clientWidth, h = hero.clientHeight;
+            if (!w || !h) return;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+        }
+        resize();
+        window.addEventListener('resize', resize, { passive: true });
+
+        var mx = 0, my = 0, tx = 0, ty = 0;
+        window.addEventListener('pointermove', function (e) {
+            tx = (e.clientX / window.innerWidth - 0.5) * 2;
+            ty = (e.clientY / window.innerHeight - 0.5) * 2;
+        }, { passive: true });
+
+        var running = true, raf = 0, last = performance.now();
+        new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+                running = e.isIntersecting;
+                if (running) { last = performance.now(); tick(last); }
+                else if (raf) { cancelAnimationFrame(raf); raf = 0; }
+            });
+        }, { threshold: 0 }).observe(hero);
+        document.addEventListener('visibilitychange', function () {
+            if (document.hidden && raf) { cancelAnimationFrame(raf); raf = 0; }
+            else if (!document.hidden && running) { last = performance.now(); tick(last); }
+        });
+
+        function tick(now) {
+            raf = requestAnimationFrame(tick);
+            var dt = Math.min((now - last) / 1000, 0.05);
+            last = now;
+
+            var p = geo.attributes.position.array;
+            for (var i = 0; i < COUNT; i++) {
+                p[i * 3 + 1] += drift[i * 2] * dt;
+                p[i * 3] += Math.sin(now * 0.0004 + drift[i * 2 + 1]) * dt * 1.6;
+                if (p[i * 3 + 1] > 34) {
+                    p[i * 3 + 1] = -34;
+                    p[i * 3] = (Math.random() - 0.5) * 100;
+                }
+            }
+            geo.attributes.position.needsUpdate = true;
+
+            shards.forEach(function (m, k) {
+                m.rotation.x += dt * (0.05 + k * 0.015);
+                m.rotation.y += dt * (0.07 - k * 0.012);
+            });
+            ring.rotation.z += dt * 0.06;
+
+            mx += (tx - mx) * 0.04;
+            my += (ty - my) * 0.04;
+            camera.position.x = mx * 3.2;
+            camera.position.y = -my * 2.2;
+            camera.lookAt(0, 0, -10);
+
+            renderer.render(scene, camera);
+        }
+
+        hero.classList.add('three-on');
+        cv.classList.add('on');
+        tick(last);
+    })();
+    </script>
     <!-- ═══════════════════════════════════════════════
          FOOTER
          ═══════════════════════════════════════════════ -->
