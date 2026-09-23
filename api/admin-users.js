@@ -39,6 +39,15 @@ function safeParse(s) {
   try { return JSON.parse(s); } catch { return null; }
 }
 
+// Must mirror volId() in api/redeem-code.js, or unbinding a code leaves the
+// entitlement it granted behind.
+function volId(rec) {
+  const raw = rec && rec.vol;
+  if (raw === 'sidk' || raw === 'kit') return 'sidk';
+  const n = parseInt(raw, 10);
+  return n >= 1 && n <= 6 ? `vol${n}` : 'vol1';
+}
+
 function timingSafeEqual(a, b) {
   if (typeof a !== 'string' || typeof b !== 'string') return false;
   if (a.length !== b.length) return false;
@@ -160,8 +169,7 @@ async function doAction(body) {
     const rec = safeParse(await val(['GET', `code:${code}`]));
     let product = null;
     if (rec) {
-      const n = parseInt(rec.vol, 10);
-      product = n >= 1 && n <= 3 ? `vol${n}` : null;
+      product = volId(rec);
       delete rec.claimed_by_user;
       delete rec.claimed_at;
       await redis(['SET', `code:${code}`, JSON.stringify(rec)]);
@@ -172,8 +180,7 @@ async function doAction(body) {
       let stillEntitled = false;
       for (const c of remaining) {
         const r2 = safeParse(await val(['GET', `code:${c}`]));
-        const n2 = r2 && parseInt(r2.vol, 10);
-        if (n2 && `vol${n2}` === product) { stillEntitled = true; break; }
+        if (r2 && volId(r2) === product) { stillEntitled = true; break; }
       }
       if (!stillEntitled) {
         await redis(['SREM', `entitlements:${name}`, product]);
