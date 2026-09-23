@@ -4,6 +4,9 @@
 __pycache__/
 *.pyc
 
+# Book source folders stay local (56-stories also holds a cover mock-up PNG)
+/56-stories/
+
 # Local-only admin helper scripts (contain secrets when filled in)
 revoke-code.ps1
 *.local.ps1

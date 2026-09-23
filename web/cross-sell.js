@@ -20,7 +20,7 @@
 
   var script = document.currentScript;
   var CURRENT = (script && script.getAttribute('data-current')) || '';
-  if (!/^(vol[123]|seror|btp)$/.test(CURRENT)) return;
+  if (!/^(vol[123]|seror|btp|s56)$/.test(CURRENT)) return;
 
   // ── Book catalogue ──────────────────────────────────────────────────
   var BOOKS = {
@@ -78,16 +78,28 @@
       endBody: 'BEFORE THE PLATFORM 72 กลไกการตลาดที่เกิดก่อนทุกแพลตฟอร์ม และจะยังทำงานหลังแพลตฟอร์มเหล่านั้นหายไป พร้อม 12 ENDGAME และระบบวินิจฉัยที่ใช้ในห้องประชุมได้จริง',
       endCta: 'ดู BEFORE THE PLATFORM →',
       meta: '72 กลไก + 12 ENDGAME'
+    },
+    s56: {
+      num: 'VI', glyph: '◆', product: 'vol6', accent: '#E11429', accent2: '#0A0708',
+      tag: '56 เรื่องจริง', title: '56 เรื่องจริง ขนานแรง',
+      chipCta: 'เรื่องจริงที่ตรวจสอบได้',
+      url: '/sale-56', preview: '/56',
+      kicker: 'เล่มใหม่ล่าสุด',
+      endTitle: 'เรื่องความสำเร็จส่วนใหญ่ <em>ถูกเล่าโดยคนที่รู้ตอนจบแล้ว</em>',
+      endBody: '56 เรื่องจริง ขนานแรง 56 เรื่องที่ตรวจสอบกับเอกสารต้นทางแล้ว จาก Dyson ถึง Wright Brothers แต่ละเรื่องพาคุณออกมาพร้อมเครื่องมือคิดหนึ่งตัว ไม่ใช่แค่ความรู้สึกฮึกเหิม',
+      endCta: 'ดู 56 เรื่องจริง ขนานแรง →',
+      meta: '56 เรื่อง + 7 ภาค'
     }
   };
 
   // Complete-the-series order: next volume first, then the other.
   var ORDER = {
-    vol1: ['vol2', 'vol3', 'btp', 'seror'],
-    vol2: ['vol3', 'vol1', 'btp', 'seror'],
-    vol3: ['btp', 'vol1', 'vol2', 'seror'],
-    seror: ['vol1', 'vol3', 'btp', 'vol2'],
-    btp: ['vol3', 'vol1', 'vol2', 'seror']
+    vol1: ['s56', 'vol2', 'vol3', 'btp', 'seror'],
+    vol2: ['s56', 'vol3', 'vol1', 'btp', 'seror'],
+    vol3: ['s56', 'btp', 'vol1', 'vol2', 'seror'],
+    seror: ['s56', 'vol1', 'vol3', 'btp', 'vol2'],
+    btp: ['s56', 'vol3', 'vol1', 'vol2', 'seror'],
+    s56: ['vol1', 'seror', 'vol3', 'btp', 'vol2']
   };
 
   var SHOW_DELAY_MS = 25000; // appear ~25s after the reader is unlocked

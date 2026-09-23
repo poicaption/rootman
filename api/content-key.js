@@ -52,6 +52,7 @@ function getPassphrase(vol) {
   if (vol === 3) return process.env.UNLOCK_PASSPHRASE_V3 || 'from store to system';
   if (vol === 4) return process.env.UNLOCK_PASSPHRASE_V4 || 'from unseen to unmissable';
   if (vol === 5) return process.env.UNLOCK_PASSPHRASE_V5 || 'mechanism before platform';
+  if (vol === 6) return process.env.UNLOCK_PASSPHRASE_V6 || 'fifty six true stories';
   return process.env.UNLOCK_PASSPHRASE || '';
 }
 
@@ -64,7 +65,7 @@ export default async function handler(req) {
 
   const url = new URL(req.url);
   const vol = parseInt(url.searchParams.get('vol'), 10);
-  if (!(vol >= 1 && vol <= 5)) return json({ error: 'invalid_vol' }, 400);
+  if (!(vol >= 1 && vol <= 6)) return json({ error: 'invalid_vol' }, 400);
   const product = `vol${vol}`;
 
   const member = await redis(['SISMEMBER', `entitlements:${uname}`, product]);

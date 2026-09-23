@@ -55,8 +55,13 @@ const MASTER_HASH_V2 = '5726a7d599e3a196ec4863d400c8803023968ed11df253f139cb00cb
 const MASTER_HASH_V3 = '2e18efae7a487d708dec9acafdb475f494a79733682e84bc5d97f5fe64226c7b';
 const MASTER_HASH_V4 = 'c772b6a4b645db90e9e5ef6db35eab787122dcd72347f29a404438794b1d5193';
 const MASTER_HASH_V5 = '17bd51ac6583f4796442b03164d146c867fe9d5b9257951f190744d5561e0b49';
+const MASTER_HASH_V6 = '257ca0aa0c10dc7e7759f5f2852fcc2b1d13002312559aeed04d955939e7d93b';
 
 function getPassphrase(vol) {
+  if (vol === 6) {
+    // Vol.6 (56 เรื่องจริง ขนานแรง) master phrase. Falls back to env var if set, else hardcoded.
+    return process.env.UNLOCK_PASSPHRASE_V6 || 'fifty six true stories';
+  }
   if (vol === 5) {
     // Vol.5 (BEFORE THE PLATFORM) master phrase. Falls back to env var if set, else hardcoded.
     return process.env.UNLOCK_PASSPHRASE_V5 || 'mechanism before platform';
@@ -89,7 +94,8 @@ export default async function handler(req) {
     stage = 'parse_body';
     const body = await req.json();
     const { code, device_id, action } = body;
-    const reqVol = body.vol === 5 || body.vol === '5' ? 5
+    const reqVol = body.vol === 6 || body.vol === '6' ? 6
+      : body.vol === 5 || body.vol === '5' ? 5
       : body.vol === 4 || body.vol === '4' ? 4
       : body.vol === 3 || body.vol === '3' ? 3
       : body.vol === 2 || body.vol === '2' ? 2 : 1;
@@ -134,6 +140,10 @@ export default async function handler(req) {
       await appendAudit('MASTER-V5', { ...auditBase, event: 'master_unlock', vol: 5 });
       return json({ passphrase: getPassphrase(5), master: true, vol: 5 });
     }
+    if (hash === MASTER_HASH_V6) {
+      await appendAudit('MASTER-V6', { ...auditBase, event: 'master_unlock', vol: 6 });
+      return json({ passphrase: getPassphrase(6), master: true, vol: 6 });
+    }
 
     // Look up unique code in Redis
     stage = 'redis_get';
@@ -153,7 +163,7 @@ export default async function handler(req) {
     // event from here on, so each customer has a unified per-user timeline.
     auditBase.email = data.customer_email || null;
     // Determine the volume this code unlocks. Codes saved before vol-tagging default to 1.
-    const codeVol = data.vol === 5 ? 5 : data.vol === 4 ? 4 : data.vol === 3 ? 3 : data.vol === 2 ? 2 : 1;
+    const codeVol = data.vol === 6 ? 6 : data.vol === 5 ? 5 : data.vol === 4 ? 4 : data.vol === 3 ? 3 : data.vol === 2 ? 2 : 1;
     // If client requested a specific vol that mismatches the code's vol, reject.
     if (reqVol !== codeVol) {
       return json({ error: 'wrong_volume', message: 'รหัสนี้ใช้กับเล่มอื่น (Vol.' + codeVol + ')' }, 400);

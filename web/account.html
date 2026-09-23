@@ -581,6 +581,9 @@ src="https://www.facebook.com/tr?id=2887861328214244&ev=PageView&noscript=1"
     vol5: { name: 'BEFORE THE PLATFORM', en: '72 Timeless Marketing Mechanisms', tag: 'FLAGSHIP', cls: 'v2', link: '/before', cover: 'images/book-btp.png',
             desc: '72 กลไกการตลาดที่เกิดก่อนทุกแพลตฟอร์ม 12 Parts + 12 ENDGAME พร้อมระบบวินิจฉัยที่ใช้ในห้องประชุมได้จริง',
             chips: ['72 กลไก', '12 ENDGAME', 'Flagship'], free: false, buy: '/sale-before', cta: 'ดูรายละเอียด BEFORE THE PLATFORM →', badge: 'เรือธง' },
+    vol6: { name: '56 เรื่องจริง ขนานแรง', en: 'ที่ให้คุณเสพจนสำเร็จ', tag: '56 STORIES', cls: 'v1', link: '/56', cover: 'images/book-56.png',
+            desc: '56 เรื่องจริงที่ตรวจสอบกับเอกสารต้นทางแล้ว จาก Dyson ถึง Wright Brothers แต่ละเรื่องทิ้งเครื่องมือคิดไว้หนึ่งตัว',
+            chips: ['56 เรื่อง', '7 ภาค', 'ตรวจสอบได้'], free: false, buy: '/sale-56', cta: 'ดูรายละเอียด 56 เรื่องจริง →', badge: 'เล่มใหม่' },
     sidk: { name: 'Side Income Diagnostic Kit', en: 'A Rootman Field Kit', tag: 'FIELD KIT', cls: 'v1', link: '/files/side-income-diagnostic-kit.pdf', cover: 'images/book-SIDK.png', download: true,
             desc: 'PDF Workbook 51 หน้า วินิจฉัยเส้นทางรายได้เสริมที่ใช่กับตัวคุณ บันไดขั้นแรกของ The One Root Series',
             chips: ['PDF 51 หน้า', 'Workbook', 'Lifetime'], free: false, buy: '/sale-sidk', cta: 'ดูรายละเอียด Kit →', badge: 'PDF Workbook' }
@@ -763,7 +766,7 @@ src="https://www.facebook.com/tr?id=2887861328214244&ev=PageView&noscript=1"
     (data.entitlements || []).forEach(function (e) { owned[e.product] = true; });
     var books = ['vol1', 'vol2', 'vol3'];
     var bookMissing = books.filter(function (k) { return !owned[k]; });
-    var order = books.concat(['vol5', 'vol4', 'sidk']);
+    var order = books.concat(['vol6', 'vol5', 'vol4', 'sidk']);
     var missing = order.filter(function (k) { return !owned[k]; });
     var grid = el('storeGrid'); grid.innerHTML = '';
     if (!missing.length) {

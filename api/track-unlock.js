@@ -92,7 +92,8 @@ export default async function handler(req) {
         }
       } catch (_) { /* lookup failure is non-fatal */ }
 
-      const reqVol = body.vol === 5 || body.vol === '5' ? 5
+      const reqVol = body.vol === 6 || body.vol === '6' ? 6
+        : body.vol === 5 || body.vol === '5' ? 5
         : body.vol === 4 || body.vol === '4' ? 4
         : body.vol === 3 || body.vol === '3' ? 3
         : body.vol === 2 || body.vol === '2' ? 2 : (codeVol || 1);
